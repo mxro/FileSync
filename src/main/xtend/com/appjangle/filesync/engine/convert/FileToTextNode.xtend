@@ -18,15 +18,15 @@ class FileToTextNode implements FileToNodes {
 		val ops = new LinkedList<Closure<NetworkOperationContext>>
 
 		ops.add(
-			[ctx|
+			[ ctx |
 				ctx.node.setValueSafe(content).catchExceptions(
 					[ er |
 						cb.onFailure(er.exception())
 					])
-					])
+			])
 
 		cb.onSuccess(ops);
 
 	}
-	
-	}
+
+}

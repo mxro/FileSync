@@ -21,7 +21,7 @@ public class MetadataUtilsJre {
       InputStream _inputStream = JreFiles.getInputStream(file);
       Object _fromXML = xstream.fromXML(_inputStream);
       final NodesMetadata nodesMetadata = ((NodesMetadata) _fromXML);
-      _xblockexpression = null;
+      _xblockexpression = nodesMetadata;
     }
     return _xblockexpression;
   }

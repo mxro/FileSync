@@ -7,7 +7,7 @@ import de.mxro.file.FileItem;
 public class MetadataUtilsJre {
   public static NodesMetadata readFromFile(final FileItem file) {
     throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from Object to NodesMetadata"
-      + "\nType mismatch: cannot convert from FileItem to JreFileItem");
+      + "\nType mismatch: cannot convert from FileItem to JreFileItem"
+      + "\nType mismatch: cannot convert from Object to NodesMetadata");
   }
 }

@@ -26,8 +26,13 @@ public class FolderSynchronization {
       metadata.setVisible(false);
       FileItem _child = metadata.getChild("nodes.xml");
       final NodesMetadata nodes = MetadataUtilsJre.readFromFile(_child);
+      final Object locallyChangedFiles = this.determineLocallyChangedFiles(nodes, folder);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
+  }
+  
+  public Object determineLocallyChangedFiles(final NodesMetadata metadata, final FileItem folder) {
+    return null;
   }
 }

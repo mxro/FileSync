@@ -1,10 +1,11 @@
 package com.appjangle.filesync.engine
 
+import de.mxro.async.callbacks.ValueCallback
+import de.mxro.file.FileItem
 import io.nextweb.Node
-import java.io.File
 
 interface FolderSynchronization {
 	
-	def void nodeToFolder(Node node, File file)
+	def void nodeToFolder(Node node, FileItem file, ValueCallback<FolderSynchronizationResult> cb)
 	
 }

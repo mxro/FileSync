@@ -1,16 +1,19 @@
-package com.appjangle.filesync.engine;
+package com.appjangle.filesync.internal;
 
-import com.appjangle.filesync.engine.NodeToFolderSynchronizationResult;
 import com.appjangle.filesync.engine.metadata.FileItemMetaData;
 import com.appjangle.filesync.engine.metadata.MetadataUtilsJre;
 import com.appjangle.filesync.engine.metadata.NodesMetadata;
+import com.appjangle.filesync.internal.NodeToFolderSynchronizationResult;
 import com.google.common.base.Objects;
+
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
 import io.nextweb.Node;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.ListExtensions;

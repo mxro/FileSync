@@ -1,4 +1,4 @@
-package com.appjangle.filesync.engine
+package com.appjangle.filesync
 
 import io.nextweb.Node
 import io.nextweb.Session

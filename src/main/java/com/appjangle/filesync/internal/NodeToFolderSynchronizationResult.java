@@ -1,4 +1,4 @@
-package com.appjangle.filesync.engine;
+package com.appjangle.filesync.internal;
 
 import de.mxro.file.FileItem;
 import java.util.List;

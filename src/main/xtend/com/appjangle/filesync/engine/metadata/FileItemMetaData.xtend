@@ -2,11 +2,11 @@ package com.appjangle.filesync.engine.metadata
 
 import java.util.Date
 
-class FileItemMetaData {
+interface FileItemMetaData {
 	
-	var String name
+	def String name()
 	
-	var Date lastModified
+	def Date lastModified()
 	
 	
 }

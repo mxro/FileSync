@@ -3,8 +3,8 @@ package com.appjangle.filesync.engine.metadata;
 import java.util.Date;
 
 @SuppressWarnings("all")
-public class FileItemMetaData {
-  private String name;
+public interface FileItemMetaData {
+  public abstract String name();
   
-  private Date lastModified;
+  public abstract Date lastModified();
 }

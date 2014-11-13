@@ -28,8 +28,17 @@ class FolderSynchronization {
 		
 		val locallyAddedFiles = determineLocallyAddedFiles(nodes, folder)
 		
-		
 		val locallyRemovedFiles = determineLocallyRemovedFiles(nodes, folder)
+		
+		val locallyChangedFiles = determineLocallyChangedFiles(nodes, folder)
+		
+	}
+	
+	def determineLocallyChangedFiles(NodesMetadata metadata, FileItem item) {
+		
+		for (FileItemMetaData fileMetadata: metadata) {
+			
+		}
 		
 		
 	}

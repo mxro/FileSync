@@ -19,7 +19,7 @@ class GetLocalOperationsProcess {
 
 	val Node node = null;
 	val FileItem folder = null;
-
+	val NodesMetaData metaData = null;
 
 	def getLocalOperations( ValueCallback<List<NetworkOperation>> cb) {
 
@@ -30,6 +30,7 @@ class GetLocalOperationsProcess {
 			throw new Exception('File passed does not exist. ' + folder)
 
 		val metadata = folder.assertFolder(".filesync-meta")
+		metaData = metadata
 		metadata.visible = false;
 
 		val nodes = MetadataUtilsJre.readFromFile(metadata.getChild("nodes.xml"))
@@ -69,6 +70,19 @@ class GetLocalOperationsProcess {
 
 		fileNames.forEach[ fileName | 
 			convert.update(folder.getChild(fileName), node, agg.createCallback());
+		]
+		
+	}
+
+	def createOperationsFromRemovedFiles(List<String> fileNames, ValueCallback<List<NetworkOperation>> cb) {
+
+
+		val agg = Async.collect(fileNames.size, Async.embed(cb, [ res |
+			cb.onSuccess(CollectionsUtils.flatten(res))
+		]))
+
+		fileNames.forEach[ fileName | 
+			convert.deleteNodes()
 		]
 		
 	}

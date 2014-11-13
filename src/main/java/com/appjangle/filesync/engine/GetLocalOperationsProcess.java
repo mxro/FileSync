@@ -3,9 +3,7 @@ package com.appjangle.filesync.engine;
 import com.appjangle.filesync.Convert;
 import com.appjangle.filesync.NetworkOperation;
 import com.appjangle.filesync.engine.metadata.FileItemMetaData;
-import com.appjangle.filesync.engine.metadata.MetadataUtilsJre;
 import com.appjangle.filesync.engine.metadata.NodesMetadata;
-import com.google.common.base.Objects;
 import de.mxro.async.Aggregator;
 import de.mxro.async.Async;
 import de.mxro.async.callbacks.ValueCallback;
@@ -17,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.function.Consumer;
-import org.eclipse.xtext.xbase.lib.Exceptions;
 
 @SuppressWarnings("all")
 public class GetLocalOperationsProcess {
@@ -27,45 +24,11 @@ public class GetLocalOperationsProcess {
   
   private final FileItem folder = null;
   
+  private final /* NodesMetaData */Object metaData = null;
+  
   public ArrayList<NetworkOperation> getLocalOperations(final ValueCallback<List<NetworkOperation>> cb) {
-    try {
-      boolean _isDirectory = this.folder.isDirectory();
-      boolean _not = (!_isDirectory);
-      if (_not) {
-        throw new Exception(("File passed and not directory. " + this.folder));
-      }
-      boolean _exists = this.folder.exists();
-      boolean _not_1 = (!_exists);
-      if (_not_1) {
-        throw new Exception(("File passed does not exist. " + this.folder));
-      }
-      final FileItem metadata = this.folder.assertFolder(".filesync-meta");
-      metadata.setVisible(false);
-      FileItem _child = metadata.getChild("nodes.xml");
-      final NodesMetadata nodes = MetadataUtilsJre.readFromFile(_child);
-      boolean _equals = Objects.equal(nodes, null);
-      if (_equals) {
-        return new ArrayList<NetworkOperation>(0);
-      }
-      final ArrayList<String> locallyAddedFiles = GetLocalOperationsProcess.determineLocallyAddedFiles(nodes, this.folder);
-      final ArrayList<String> locallyRemovedFiles = GetLocalOperationsProcess.determineLocallyRemovedFiles(nodes, this.folder);
-      final ArrayList<String> locallyChangedFiles = GetLocalOperationsProcess.determineLocallyChangedFiles(nodes, this.folder);
-      final Closure<List<List<NetworkOperation>>> _function = new Closure<List<List<NetworkOperation>>>() {
-        public void apply(final List<List<NetworkOperation>> res) {
-          final List<NetworkOperation> ops = CollectionsUtils.<NetworkOperation>flatten(res);
-          cb.onSuccess(ops);
-        }
-      };
-      ValueCallback<List<List<NetworkOperation>>> _embed = Async.<List<List<NetworkOperation>>>embed(cb, _function);
-      final Aggregator<List<NetworkOperation>> agg = Async.<List<NetworkOperation>>collect(3, _embed);
-      ValueCallback<List<NetworkOperation>> _createCallback = agg.createCallback();
-      this.createOperationsFromChangedFiles(locallyChangedFiles, _createCallback);
-      ValueCallback<List<NetworkOperation>> _createCallback_1 = agg.createCallback();
-      this.createOperationsFromCreatedFiles(locallyAddedFiles, _createCallback_1);
-      return null;
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nAssignment to final field");
   }
   
   public void createOperationsFromChangedFiles(final List<String> fileNames, final ValueCallback<List<NetworkOperation>> cb) {
@@ -86,6 +49,11 @@ public class GetLocalOperationsProcess {
       }
     };
     fileNames.forEach(_function_1);
+  }
+  
+  public void createOperationsFromRemovedFiles(final List<String> fileNames, final ValueCallback<List<NetworkOperation>> cb) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nInvalid number of arguments. The method deleteNodes(FileItemMetaData, Node, ValueCallback<List<NetworkOperation>>) is not applicable for the arguments ");
   }
   
   public void createOperationsFromCreatedFiles(final List<String> fileNames, final ValueCallback<List<NetworkOperation>> cb) {

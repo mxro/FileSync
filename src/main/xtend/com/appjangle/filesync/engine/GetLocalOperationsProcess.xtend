@@ -19,7 +19,8 @@ class GetLocalOperationsProcess {
 
 	val Node node = null;
 	val FileItem folder = null;
-	val NodesMetaData metaData = null;
+	
+	var NodesMetadata nodes = null;
 
 	def getLocalOperations( ValueCallback<List<NetworkOperation>> cb) {
 
@@ -30,10 +31,10 @@ class GetLocalOperationsProcess {
 			throw new Exception('File passed does not exist. ' + folder)
 
 		val metadata = folder.assertFolder(".filesync-meta")
-		metaData = metadata
+		
 		metadata.visible = false;
 
-		val nodes = MetadataUtilsJre.readFromFile(metadata.getChild("nodes.xml"))
+		nodes = MetadataUtilsJre.readFromFile(metadata.getChild("nodes.xml"))
 
 		if (nodes == null) {
 			return new ArrayList<NetworkOperation>(0)

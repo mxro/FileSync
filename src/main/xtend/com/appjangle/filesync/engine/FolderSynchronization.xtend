@@ -30,6 +30,8 @@ class FolderSynchronization {
 	def determineLocallyChangedFiles(NodesMetadata metadata, FileItem folder) {
 		
 		
+		val cachedChildren = metadata.getChildren
+		
 		
 	}
 	

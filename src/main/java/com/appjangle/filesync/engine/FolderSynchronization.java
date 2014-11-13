@@ -16,9 +16,9 @@ public class FolderSynchronization {
       + "\nType mismatch: type void is not applicable at this location");
   }
   
-  public void determineLocallyChangedFiles(final NodesMetadata metadata, final FileItem item) {
+  public void determineLocallyChangedFiles(final NodesMetadata metadata, final FileItem folder) {
     throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from NodesMetadata to Iterable<? extends FileItemMetaData> | FileItemMetaData[]");
+      + "\nThe method getItem is undefined for the type FolderSynchronization");
   }
   
   public ArrayList<String> determineLocallyAddedFiles(final NodesMetadata metadata, final FileItem folder) {

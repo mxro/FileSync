@@ -34,9 +34,11 @@ class FolderSynchronization {
 		
 	}
 	
-	def determineLocallyChangedFiles(NodesMetadata metadata, FileItem item) {
+	def determineLocallyChangedFiles(NodesMetadata metadata, FileItem folder) {
 		
-		for (FileItemMetaData fileMetadata: metadata) {
+		for (FileItemMetaData fileMetadata: metadata.children) {
+			
+			val item = folder.getItem(fileMetadata.name)
 			
 		}
 		

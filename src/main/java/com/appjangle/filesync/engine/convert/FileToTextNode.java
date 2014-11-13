@@ -10,5 +10,7 @@ import java.util.List;
 @SuppressWarnings("all")
 public class FileToTextNode implements FileToNodes {
   public void update(final FileItem source, final Node node, final ValueCallback<List<NetworkOperation>> cb) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nType mismatch: cannot convert from (Session, Node)=>Object to NetworkOperation");
   }
 }

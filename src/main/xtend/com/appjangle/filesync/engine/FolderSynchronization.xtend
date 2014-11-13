@@ -17,6 +17,8 @@ class FolderSynchronization {
 		  
 		
 		val metadata = folder.assertFolder(".filesync-meta")
+		metadata.visible = false;
+		
 		  
 		
 	}

@@ -21,6 +21,7 @@ public class FolderSynchronization {
         throw new Exception(("File passed does not exist. " + folder));
       }
       final FileItem metadata = folder.assertFolder(".filesync-meta");
+      metadata.setVisible(false);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

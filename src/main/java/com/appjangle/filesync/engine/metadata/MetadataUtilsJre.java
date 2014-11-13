@@ -1,7 +1,6 @@
 package com.appjangle.filesync.engine.metadata;
 
 import com.appjangle.filesync.engine.metadata.NodesMetadata;
-import com.appjangle.filesync.engine.metadata.NodesMetadataData;
 import com.thoughtworks.xstream.XStream;
 import de.mxro.file.FileItem;
 import de.mxro.file.Jre.JreFiles;
@@ -15,9 +14,7 @@ public class MetadataUtilsJre {
       boolean _exists = file.exists();
       boolean _not = (!_exists);
       if (_not) {
-        final NodesMetadata newNodesMetadata = new NodesMetadataData();
-        file.create();
-        return newNodesMetadata;
+        return null;
       }
       final XStream xstream = new XStream();
       InputStream _inputStream = JreFiles.getInputStream(file);

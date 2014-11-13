@@ -19,19 +19,23 @@ import org.eclipse.xtext.xbase.lib.Exceptions;
 public class FolderSynchronization {
   private final Convert convert = null;
   
-  public ArrayList<NetworkOperation> getLocalOperations(final Node node, final FileItem folder, final ValueCallback<NodeToFolderSynchronizationResult> cb) {
+  private final Node node;
+  
+  private final FileItem folder;
+  
+  public ArrayList<NetworkOperation> getLocalOperations(final ValueCallback<NodeToFolderSynchronizationResult> cb) {
     try {
-      boolean _isDirectory = folder.isDirectory();
+      boolean _isDirectory = this.folder.isDirectory();
       boolean _not = (!_isDirectory);
       if (_not) {
-        throw new Exception(("File passed and not directory. " + folder));
+        throw new Exception(("File passed and not directory. " + this.folder));
       }
-      boolean _exists = folder.exists();
+      boolean _exists = this.folder.exists();
       boolean _not_1 = (!_exists);
       if (_not_1) {
-        throw new Exception(("File passed does not exist. " + folder));
+        throw new Exception(("File passed does not exist. " + this.folder));
       }
-      final FileItem metadata = folder.assertFolder(".filesync-meta");
+      final FileItem metadata = this.folder.assertFolder(".filesync-meta");
       metadata.setVisible(false);
       FileItem _child = metadata.getChild("nodes.xml");
       final NodesMetadata nodes = MetadataUtilsJre.readFromFile(_child);
@@ -39,16 +43,16 @@ public class FolderSynchronization {
       if (_equals) {
         return new ArrayList<NetworkOperation>(0);
       }
-      final ArrayList<String> locallyAddedFiles = FolderSynchronization.determineLocallyAddedFiles(nodes, folder);
-      final ArrayList<String> locallyRemovedFiles = FolderSynchronization.determineLocallyRemovedFiles(nodes, folder);
-      final ArrayList<String> locallyChangedFiles = FolderSynchronization.determineLocallyChangedFiles(nodes, folder);
+      final ArrayList<String> locallyAddedFiles = FolderSynchronization.determineLocallyAddedFiles(nodes, this.folder);
+      final ArrayList<String> locallyRemovedFiles = FolderSynchronization.determineLocallyRemovedFiles(nodes, this.folder);
+      final ArrayList<String> locallyChangedFiles = FolderSynchronization.determineLocallyChangedFiles(nodes, this.folder);
       return null;
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
   
-  public void createOperationsFromChangedFiles(final List<String> fileNames, final Node node, final int idx, final FileItem folder, final List<NetworkOperation> res, final ValueCallback<List<NetworkOperation>> cb) {
+  public void createOperationsFromChangedFiles(final List<String> fileNames, final int idx, final List<NetworkOperation> res, final ValueCallback<List<NetworkOperation>> cb) {
     int _size = fileNames.size();
     boolean _greaterEqualsThan = (idx >= _size);
     if (_greaterEqualsThan) {
@@ -56,8 +60,8 @@ public class FolderSynchronization {
       return;
     }
     String _get = fileNames.get(idx);
-    FileItem _child = folder.getChild(_get);
-    this.convert.update(_child, node, cb);
+    FileItem _child = this.folder.getChild(_get);
+    this.convert.update(_child, this.node, cb);
   }
   
   public static ArrayList<String> determineLocallyChangedFiles(final NodesMetadata metadata, final FileItem folder) {

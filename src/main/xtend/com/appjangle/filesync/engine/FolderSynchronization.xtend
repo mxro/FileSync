@@ -15,7 +15,11 @@ class FolderSynchronization {
 
 	val Convert convert = null;
 
-	def getLocalOperations(Node node, FileItem folder, ValueCallback<NodeToFolderSynchronizationResult> cb) {
+	val Node node;
+	val FileItem folder;
+
+
+	def getLocalOperations( ValueCallback<NodeToFolderSynchronizationResult> cb) {
 
 		if (!folder.directory)
 			throw new Exception('File passed and not directory. ' + folder)
@@ -38,9 +42,11 @@ class FolderSynchronization {
 
 		val locallyChangedFiles = determineLocallyChangedFiles(nodes, folder)
 
+
+		
 	}
 
-	def createOperationsFromChangedFiles(List<String> fileNames, Node node, int idx, FileItem folder, List<NetworkOperation> res, ValueCallback<List<NetworkOperation>> cb) {
+	def createOperationsFromChangedFiles(List<String> fileNames,  int idx, List<NetworkOperation> res, ValueCallback<List<NetworkOperation>> cb) {
 
 		if (idx >= fileNames.size) {
 			cb.onSuccess(res)

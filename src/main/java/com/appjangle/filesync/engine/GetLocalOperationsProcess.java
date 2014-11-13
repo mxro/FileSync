@@ -50,6 +50,12 @@ public class GetLocalOperationsProcess {
       final ArrayList<String> locallyAddedFiles = GetLocalOperationsProcess.determineLocallyAddedFiles(nodes, this.folder);
       final ArrayList<String> locallyRemovedFiles = GetLocalOperationsProcess.determineLocallyRemovedFiles(nodes, this.folder);
       final ArrayList<String> locallyChangedFiles = GetLocalOperationsProcess.determineLocallyChangedFiles(nodes, this.folder);
+      final Closure<List<Object>> _function = new Closure<List<Object>>() {
+        public void apply(final List<Object> res) {
+        }
+      };
+      ValueCallback<List<Object>> _embed = Async.<List<Object>>embed(cb, _function);
+      final Aggregator<Object> agg = Async.<Object>collect(3, _embed);
       this.createOperationsFromChangedFiles(locallyChangedFiles, new ValueCallback<List<NetworkOperation>>() {
         public void onSuccess(final List<NetworkOperation> value) {
           cb.onSuccess(value);

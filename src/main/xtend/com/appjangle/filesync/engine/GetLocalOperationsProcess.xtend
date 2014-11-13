@@ -46,6 +46,10 @@ class GetLocalOperationsProcess {
 		val locallyChangedFiles = determineLocallyChangedFiles(nodes, folder)
 
 		
+		val agg = Async.collect(3, Async.embed(cb, [res |
+			
+		]));
+		
 		createOperationsFromChangedFiles(locallyChangedFiles, new ValueCallback<List<NetworkOperation>>() {
 			
 			override onSuccess(List<NetworkOperation> value) {

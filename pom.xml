@@ -226,5 +226,12 @@
 		</snapshotRepository> </distributionManagement> <repositories> <repository> 
 		<id>Appjangle Releases</id> <url>http://maven.appjangle.com/appjangle/releases</url> 
 		</repository> </repositories> -->
+		
+		<scm>
+		<connection>scm:git:git@github.com:mxro/FileSync.git</connection>
+		<url>https://github.com/mxro/FileSync</url>
+		<developerConnection>scm:git:git@github.com:mxro/FileSync.git
+		</developerConnection>
+	</scm>
 
 </project>

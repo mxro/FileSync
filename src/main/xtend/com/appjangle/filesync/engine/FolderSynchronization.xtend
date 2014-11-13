@@ -45,7 +45,7 @@ class FolderSynchronization {
 	}
 
 
-	static def createOperationsFromChangedFiles(fileNames, test) {
+	static def createOperationsFromChangedFiles(List<String> fileNames, FileItem folder) {
 		
 	}
 

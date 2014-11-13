@@ -45,7 +45,7 @@ public class FolderSynchronization {
     }
   }
   
-  public static Object createOperationsFromChangedFiles(final /* fileNames */Object __unknown__, final /* test */Object __unknown___1) {
+  public static Object createOperationsFromChangedFiles(final List<String> fileNames, final FileItem folder) {
     return null;
   }
   

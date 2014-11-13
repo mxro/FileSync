@@ -3,6 +3,7 @@ package com.appjangle.filesync.engine.convert;
 import com.appjangle.filesync.Convert;
 import com.appjangle.filesync.NetworkOperation;
 import com.appjangle.filesync.NetworkOperationContext;
+import com.appjangle.filesync.engine.metadata.FileItemMetaData;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
 import io.nextweb.Node;
@@ -35,5 +36,8 @@ public class FileToTextNode implements Convert {
   }
   
   public void createNodes(final FileItem source, final Node node, final ValueCallback<List<NetworkOperation>> cb) {
+  }
+  
+  public void deleteNodes(final FileItemMetaData cachedFile, final Node node, final ValueCallback<List<NetworkOperation>> cb) {
   }
 }

@@ -8,6 +8,7 @@ import com.appjangle.filesync.engine.metadata.NodesMetadata
 import de.mxro.async.Async
 import de.mxro.async.callbacks.ValueCallback
 import de.mxro.file.FileItem
+import de.mxro.fn.collections.CollectionsUtils
 import io.nextweb.Node
 import java.util.ArrayList
 import java.util.LinkedList
@@ -63,7 +64,7 @@ class GetLocalOperationsProcess {
 
 
 		val agg = Async.collect(fileNames.size, Async.embed(cb, [ res |
-			CollectionUtils.
+			cb.onSuccess(CollectionsUtils.flatten(res))
 		]))
 
 		fileNames.forEach[ fileName | 

@@ -1,5 +1,6 @@
 package com.appjangle.filesync.engine
 
+import com.appjangle.filesync.Convert
 import com.appjangle.filesync.NetworkOperation
 import com.appjangle.filesync.engine.metadata.FileItemMetaData
 import com.appjangle.filesync.engine.metadata.MetadataUtilsJre
@@ -12,7 +13,7 @@ import java.util.List
 
 class FolderSynchronization {
 
-	val Convert = null;
+	val Convert convert = null;
 
 	def getLocalOperations(Node node, FileItem folder, ValueCallback<NodeToFolderSynchronizationResult> cb) {
 
@@ -39,12 +40,17 @@ class FolderSynchronization {
 
 	}
 
-	def createOperationsFromChangedFiles(List<String> fileNames, FileItem folder, ValueCallback<List<NetworkOperation>> cb) {
+	def createOperationsFromChangedFiles(List<String> fileNames, int idx, FileItem folder, List<NetworkOperation> res, ValueCallback<List<NetworkOperation>> cb) {
 
-		fileNames.map [ fileName |
-			folder.getChild(fileName)
-		]
-
+		if (idx >= fileNames.size) {
+			cb.onSuccess(res)
+			return
+		}
+			
+			
+		convert.update(folder.getChild(filesNames.get(idx)), )
+	
+	
 	}
 
 	static def determineLocallyChangedFiles(NodesMetadata metadata, FileItem folder) {

@@ -1,5 +1,6 @@
 package com.appjangle.filesync.engine;
 
+import com.appjangle.filesync.Convert;
 import com.appjangle.filesync.NetworkOperation;
 import com.appjangle.filesync.engine.NodeToFolderSynchronizationResult;
 import com.appjangle.filesync.engine.metadata.FileItemMetaData;
@@ -13,12 +14,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.Exceptions;
-import org.eclipse.xtext.xbase.lib.Functions.Function1;
-import org.eclipse.xtext.xbase.lib.ListExtensions;
 
 @SuppressWarnings("all")
 public class FolderSynchronization {
-  private final Object Convert = null;
+  private final Convert convert = null;
   
   public ArrayList<NetworkOperation> getLocalOperations(final Node node, final FileItem folder, final ValueCallback<NodeToFolderSynchronizationResult> cb) {
     try {
@@ -49,13 +48,12 @@ public class FolderSynchronization {
     }
   }
   
-  public List<FileItem> createOperationsFromChangedFiles(final List<String> fileNames, final FileItem folder, final ValueCallback<List<NetworkOperation>> cb) {
-    final Function1<String, FileItem> _function = new Function1<String, FileItem>() {
-      public FileItem apply(final String fileName) {
-        return folder.getChild(fileName);
-      }
-    };
-    return ListExtensions.<String, FileItem>map(fileNames, _function);
+  public void createOperationsFromChangedFiles(final List<String> fileNames, final int idx, final FileItem folder, final List<NetworkOperation> res, final ValueCallback<List<NetworkOperation>> cb) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nno viable alternative at input \')\'"
+      + "\nThe method or field filesNames is undefined for the type FolderSynchronization"
+      + "\nInvalid number of arguments. The method update(FileItem, Node, ValueCallback<List<Closure<NetworkOperationContext>>>) is not applicable for the arguments (FileItem)"
+      + "\nget cannot be resolved");
   }
   
   public static ArrayList<String> determineLocallyChangedFiles(final NodesMetadata metadata, final FileItem folder) {

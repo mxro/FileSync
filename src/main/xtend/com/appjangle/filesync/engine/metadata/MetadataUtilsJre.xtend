@@ -14,7 +14,7 @@ class MetadataUtilsJre {
 		  
 		val xstream = new XStream
 		
-		val NodesMetadata nodesMetadata = xstream.fromXML(W.getInputStream(file))
+		val NodesMetadata nodesMetadata = xstream.fromXML( W.getInputStream(file)) as NodesMetadata
 		 
 		 null
 		  

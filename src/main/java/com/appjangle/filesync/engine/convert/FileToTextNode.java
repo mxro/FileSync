@@ -3,7 +3,7 @@ package com.appjangle.filesync.engine.convert;
 import com.appjangle.filesync.Convert;
 import com.appjangle.filesync.NetworkOperation;
 import com.appjangle.filesync.NetworkOperationContext;
-import com.appjangle.filesync.engine.metadata.FileItemMetaData;
+import com.appjangle.filesync.engine.metadata.FileItemMetadata;
 import com.appjangle.filesync.engine.metadata.NodesMetadata;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
@@ -22,6 +22,9 @@ public class FileToTextNode implements Convert {
   
   public void update(final NodesMetadata metadata, final FileItem source, final Node parent, final ValueCallback<List<NetworkOperation>> cb) {
     final String content = source.getText();
+    String _name = source.getName();
+    FileItemMetadata _child = metadata.getChild(_name);
+    final String address = _child.uri();
     final LinkedList<NetworkOperation> ops = new LinkedList<NetworkOperation>();
     final NetworkOperation _function = new NetworkOperation() {
       public void apply(final NetworkOperationContext ctx) {
@@ -43,6 +46,6 @@ public class FileToTextNode implements Convert {
   public void createNodes(final NodesMetadata metadata, final FileItem source, final Node parent, final ValueCallback<List<NetworkOperation>> cb) {
   }
   
-  public void deleteNodes(final NodesMetadata metadata, final FileItemMetaData cachedFile, final Node parent, final ValueCallback<List<NetworkOperation>> cb) {
+  public void deleteNodes(final NodesMetadata metadata, final FileItemMetadata cachedFile, final Node parent, final ValueCallback<List<NetworkOperation>> cb) {
   }
 }

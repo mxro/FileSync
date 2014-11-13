@@ -5,8 +5,8 @@ import java.util.List
 interface NodesMetadata {
 	
 	
-	def List<FileItemMetaData> getChildren()
+	def List<FileItemMetadata> getChildren()
 	
-	def FileItemMetaData getChild(String name)
+	def FileItemMetadata getChild(String name)
 	
 }

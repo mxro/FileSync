@@ -2,7 +2,6 @@ package com.appjangle.filesync.engine
 
 import com.appjangle.filesync.Convert
 import com.appjangle.filesync.NetworkOperation
-import com.appjangle.filesync.engine.metadata.FileItemMetaData
 import com.appjangle.filesync.engine.metadata.MetadataUtilsJre
 import com.appjangle.filesync.engine.metadata.NodesMetadata
 import de.mxro.async.Async
@@ -12,6 +11,7 @@ import de.mxro.fn.collections.CollectionsUtils
 import io.nextweb.Node
 import java.util.ArrayList
 import java.util.List
+import com.appjangle.filesync.engine.metadata.FileItemMetadata
 
 class GetLocalOperationsProcess {
 
@@ -105,7 +105,7 @@ class GetLocalOperationsProcess {
 
 		val res = new ArrayList<String>(0)
 
-		for (FileItemMetaData fileMetadata : metadata.children) {
+		for (FileItemMetadata fileMetadata : metadata.children) {
 
 			val item = folder.getChild(fileMetadata.name)
 
@@ -143,11 +143,11 @@ class GetLocalOperationsProcess {
 
 	}
 
-	static def getNamesFromCache(List<FileItemMetaData> cachedChildren) {
+	static def getNamesFromCache(List<FileItemMetadata> cachedChildren) {
 
 		val res = new ArrayList<String>(cachedChildren.size)
 
-		for (FileItemMetaData fileItemMetaData : cachedChildren) {
+		for (FileItemMetadata fileItemMetaData : cachedChildren) {
 			res.add(fileItemMetaData.name)
 		}
 

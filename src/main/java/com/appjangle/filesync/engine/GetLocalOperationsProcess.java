@@ -2,7 +2,7 @@ package com.appjangle.filesync.engine;
 
 import com.appjangle.filesync.Convert;
 import com.appjangle.filesync.NetworkOperation;
-import com.appjangle.filesync.engine.metadata.FileItemMetaData;
+import com.appjangle.filesync.engine.metadata.FileItemMetadata;
 import com.appjangle.filesync.engine.metadata.MetadataUtilsJre;
 import com.appjangle.filesync.engine.metadata.NodesMetadata;
 import com.google.common.base.Objects;
@@ -82,26 +82,26 @@ public class GetLocalOperationsProcess {
   
   public void createOperationsFromRemovedFiles(final List<String> fileNames, final ValueCallback<List<NetworkOperation>> cb) {
     throw new Error("Unresolved compilation problems:"
-      + "\nInvalid number of arguments. The method deleteNodes(NodesMetadata, FileItemMetaData, Node, ValueCallback<List<NetworkOperation>>) is not applicable for the arguments (FileItemMetaData,Node,ValueCallback<List<NetworkOperation>>)"
-      + "\nType mismatch: cannot convert from FileItemMetaData to NodesMetadata"
+      + "\nInvalid number of arguments. The method deleteNodes(NodesMetadata, FileItemMetadata, Node, ValueCallback<List<NetworkOperation>>) is not applicable for the arguments (FileItemMetadata,Node,ValueCallback<List<NetworkOperation>>)"
+      + "\nType mismatch: cannot convert from Node to FileItemMetadata"
       + "\nType mismatch: cannot convert from ValueCallback<List<NetworkOperation>> to Node"
-      + "\nType mismatch: cannot convert from Node to FileItemMetaData");
+      + "\nType mismatch: cannot convert from FileItemMetadata to NodesMetadata");
   }
   
   public void createOperationsFromCreatedFiles(final List<String> fileNames, final ValueCallback<List<NetworkOperation>> cb) {
     throw new Error("Unresolved compilation problems:"
       + "\nInvalid number of arguments. The method createNodes(NodesMetadata, FileItem, Node, ValueCallback<List<NetworkOperation>>) is not applicable for the arguments (FileItem,Node,ValueCallback<List<NetworkOperation>>)"
       + "\nType mismatch: cannot convert from Node to FileItem"
-      + "\nType mismatch: cannot convert from ValueCallback<List<NetworkOperation>> to Node"
-      + "\nType mismatch: cannot convert from FileItem to NodesMetadata");
+      + "\nType mismatch: cannot convert from FileItem to NodesMetadata"
+      + "\nType mismatch: cannot convert from ValueCallback<List<NetworkOperation>> to Node");
   }
   
   public static ArrayList<String> determineLocallyChangedFiles(final NodesMetadata metadata, final FileItem folder) {
     ArrayList<String> _xblockexpression = null;
     {
       final ArrayList<String> res = new ArrayList<String>(0);
-      List<FileItemMetaData> _children = metadata.getChildren();
-      for (final FileItemMetaData fileMetadata : _children) {
+      List<FileItemMetadata> _children = metadata.getChildren();
+      for (final FileItemMetadata fileMetadata : _children) {
         {
           String _name = fileMetadata.name();
           final FileItem item = folder.getChild(_name);
@@ -125,7 +125,7 @@ public class GetLocalOperationsProcess {
   }
   
   public static ArrayList<String> determineLocallyAddedFiles(final NodesMetadata metadata, final FileItem folder) {
-    List<FileItemMetaData> _children = metadata.getChildren();
+    List<FileItemMetadata> _children = metadata.getChildren();
     final ArrayList<String> previousNames = GetLocalOperationsProcess.getNamesFromCache(_children);
     List<FileItem> _children_1 = folder.getChildren();
     final ArrayList<String> currentNames = GetLocalOperationsProcess.getNames(_children_1);
@@ -134,7 +134,7 @@ public class GetLocalOperationsProcess {
   }
   
   public static ArrayList<String> determineLocallyRemovedFiles(final NodesMetadata metadata, final FileItem folder) {
-    List<FileItemMetaData> _children = metadata.getChildren();
+    List<FileItemMetadata> _children = metadata.getChildren();
     final ArrayList<String> previousNames = GetLocalOperationsProcess.getNamesFromCache(_children);
     List<FileItem> _children_1 = folder.getChildren();
     final ArrayList<String> currentNames = GetLocalOperationsProcess.getNames(_children_1);
@@ -142,10 +142,10 @@ public class GetLocalOperationsProcess {
     return previousNames;
   }
   
-  public static ArrayList<String> getNamesFromCache(final List<FileItemMetaData> cachedChildren) {
+  public static ArrayList<String> getNamesFromCache(final List<FileItemMetadata> cachedChildren) {
     int _size = cachedChildren.size();
     final ArrayList<String> res = new ArrayList<String>(_size);
-    for (final FileItemMetaData fileItemMetaData : cachedChildren) {
+    for (final FileItemMetadata fileItemMetaData : cachedChildren) {
       String _name = fileItemMetaData.name();
       res.add(_name);
     }

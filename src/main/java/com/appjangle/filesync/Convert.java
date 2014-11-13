@@ -1,7 +1,7 @@
 package com.appjangle.filesync;
 
 import com.appjangle.filesync.NetworkOperation;
-import com.appjangle.filesync.engine.metadata.FileItemMetaData;
+import com.appjangle.filesync.engine.metadata.FileItemMetadata;
 import com.appjangle.filesync.engine.metadata.NodesMetadata;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
@@ -14,5 +14,5 @@ public interface Convert {
   
   public abstract void createNodes(final NodesMetadata metadata, final FileItem source, final Node parent, final ValueCallback<List<NetworkOperation>> cb);
   
-  public abstract void deleteNodes(final NodesMetadata metadata, final FileItemMetaData cachedFile, final Node parent, final ValueCallback<List<NetworkOperation>> cb);
+  public abstract void deleteNodes(final NodesMetadata metadata, final FileItemMetadata cachedFile, final Node parent, final ValueCallback<List<NetworkOperation>> cb);
 }

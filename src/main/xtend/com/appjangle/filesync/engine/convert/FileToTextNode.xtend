@@ -42,7 +42,20 @@ class FileToTextNode implements Convert {
 	}
 	
 	override deleteNodes(NodesMetadata metadata, FileItemMetadata cachedFile, Node parent, ValueCallback<List<NetworkOperation>> cb) {
-		
+		val address = cachedFile.uri
+
+		val ops = new LinkedList<NetworkOperation>
+
+		ops.add(
+			[ ctx |
+				
+				ctx.node.removeSafe(ctx.session.link(address)).catchExceptions(
+					[ er |
+						cb.onFailure(er.exception())
+					])
+			])
+
+		cb.onSuccess(ops);
 	}
 
 }

@@ -7,10 +7,12 @@ import com.appjangle.filesync.engine.metadata.FileItemMetadata;
 import com.appjangle.filesync.engine.metadata.NodesMetadata;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
+import de.mxro.fn.Success;
 import io.nextweb.Link;
 import io.nextweb.Node;
 import io.nextweb.Query;
 import io.nextweb.Session;
+import io.nextweb.promise.NextwebPromise;
 import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
 import java.util.LinkedList;
@@ -50,5 +52,24 @@ public class FileToTextNode implements Convert {
   }
   
   public void deleteNodes(final NodesMetadata metadata, final FileItemMetadata cachedFile, final Node parent, final ValueCallback<List<NetworkOperation>> cb) {
+    final String address = cachedFile.uri();
+    final LinkedList<NetworkOperation> ops = new LinkedList<NetworkOperation>();
+    final NetworkOperation _function = new NetworkOperation() {
+      public void apply(final NetworkOperationContext ctx) {
+        Node _node = ctx.node();
+        Session _session = ctx.session();
+        Link _link = _session.link(address);
+        NextwebPromise<Success> _removeSafe = _node.removeSafe(_link);
+        final ExceptionListener _function = new ExceptionListener() {
+          public void onFailure(final ExceptionResult er) {
+            Throwable _exception = er.exception();
+            cb.onFailure(_exception);
+          }
+        };
+        _removeSafe.catchExceptions(_function);
+      }
+    };
+    ops.add(_function);
+    cb.onSuccess(ops);
   }
 }

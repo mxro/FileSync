@@ -49,7 +49,7 @@ public class GetLocalOperationsProcess {
       LinkedList<NetworkOperation> _linkedList = new LinkedList<NetworkOperation>();
       this.createOperationsFromChangedFiles(locallyChangedFiles, 0, _linkedList, new ValueCallback<List<NetworkOperation>>() {
         public void onSuccess(final List<NetworkOperation> value) {
-          throw new UnsupportedOperationException("TODO: auto-generated method stub");
+          cb.onSuccess(value);
         }
         
         public void onFailure(final Throwable t) {

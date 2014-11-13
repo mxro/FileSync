@@ -47,7 +47,7 @@ class GetLocalOperationsProcess {
 		createOperationsFromChangedFiles(locallyChangedFiles, 0, new LinkedList<NetworkOperation>, new ValueCallback<List<NetworkOperation>>() {
 			
 			override onSuccess(List<NetworkOperation> value) {
-				throw new UnsupportedOperationException("TODO: auto-generated method stub")
+				cb.onSuccess(value)
 			}
 			
 			override onFailure(Throwable t) {

@@ -49,10 +49,15 @@ public class FolderSynchronization {
   }
   
   public void createOperationsFromChangedFiles(final List<String> fileNames, final Node node, final int idx, final FileItem folder, final List<NetworkOperation> res, final ValueCallback<List<NetworkOperation>> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nno viable alternative at input \')\'"
-      + "\nCannot instantiate the interface type ValueCallback"
-      + "\nType mismatch: cannot convert from ValueCallback<Object> to ValueCallback<List<NetworkOperation>>");
+    int _size = fileNames.size();
+    boolean _greaterEqualsThan = (idx >= _size);
+    if (_greaterEqualsThan) {
+      cb.onSuccess(res);
+      return;
+    }
+    String _get = fileNames.get(idx);
+    FileItem _child = folder.getChild(_get);
+    this.convert.update(_child, node, cb);
   }
   
   public static ArrayList<String> determineLocallyChangedFiles(final NodesMetadata metadata, final FileItem folder) {

@@ -47,10 +47,7 @@ class FolderSynchronization {
 			return
 		}
 			
-			
-		convert.update(folder.getChild(fileNames.get(idx)), node, new ValueCallback<);
-	
-	
+		convert.update(folder.getChild(fileNames.get(idx)), node, cb);
 	}
 
 	static def determineLocallyChangedFiles(NodesMetadata metadata, FileItem folder) {

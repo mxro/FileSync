@@ -46,7 +46,7 @@ class GetLocalOperationsProcess {
 		val locallyChangedFiles = determineLocallyChangedFiles(nodes, folder)
 
 		
-		createOperationsFromChangedFiles(locallyChangedFiles, 0, new LinkedList<NetworkOperation>, new ValueCallback<List<NetworkOperation>>() {
+		createOperationsFromChangedFiles(locallyChangedFiles, new ValueCallback<List<NetworkOperation>>() {
 			
 			override onSuccess(List<NetworkOperation> value) {
 				cb.onSuccess(value)

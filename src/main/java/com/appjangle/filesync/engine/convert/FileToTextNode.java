@@ -4,6 +4,7 @@ import com.appjangle.filesync.Convert;
 import com.appjangle.filesync.NetworkOperation;
 import com.appjangle.filesync.NetworkOperationContext;
 import com.appjangle.filesync.engine.metadata.FileItemMetaData;
+import com.appjangle.filesync.engine.metadata.NodesMetadata;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
 import io.nextweb.Node;
@@ -19,7 +20,7 @@ public class FileToTextNode implements Convert {
     return fileName;
   }
   
-  public void update(final FileItem source, final Node parent, final ValueCallback<List<NetworkOperation>> cb) {
+  public void update(final NodesMetadata metadata, final FileItem source, final Node parent, final ValueCallback<List<NetworkOperation>> cb) {
     final String content = source.getText();
     final LinkedList<NetworkOperation> ops = new LinkedList<NetworkOperation>();
     final NetworkOperation _function = new NetworkOperation() {
@@ -39,9 +40,9 @@ public class FileToTextNode implements Convert {
     cb.onSuccess(ops);
   }
   
-  public void createNodes(final FileItem source, final Node parent, final ValueCallback<List<NetworkOperation>> cb) {
+  public void createNodes(final NodesMetadata metadata, final FileItem source, final Node parent, final ValueCallback<List<NetworkOperation>> cb) {
   }
   
-  public void deleteNodes(final FileItemMetaData cachedFile, final Node parent, final ValueCallback<List<NetworkOperation>> cb) {
+  public void deleteNodes(final NodesMetadata metadata, final FileItemMetaData cachedFile, final Node parent, final ValueCallback<List<NetworkOperation>> cb) {
   }
 }

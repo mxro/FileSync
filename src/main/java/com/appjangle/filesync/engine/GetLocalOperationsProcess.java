@@ -16,7 +16,6 @@ import io.nextweb.Node;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.function.Consumer;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 
 @SuppressWarnings("all")
@@ -74,63 +73,27 @@ public class GetLocalOperationsProcess {
   }
   
   public void createOperationsFromChangedFiles(final List<String> fileNames, final ValueCallback<List<NetworkOperation>> cb) {
-    int _size = fileNames.size();
-    final Closure<List<List<NetworkOperation>>> _function = new Closure<List<List<NetworkOperation>>>() {
-      public void apply(final List<List<NetworkOperation>> res) {
-        List<NetworkOperation> _flatten = CollectionsUtils.<NetworkOperation>flatten(res);
-        cb.onSuccess(_flatten);
-      }
-    };
-    ValueCallback<List<List<NetworkOperation>>> _embed = Async.<List<List<NetworkOperation>>>embed(cb, _function);
-    final Aggregator<List<NetworkOperation>> agg = Async.<List<NetworkOperation>>collect(_size, _embed);
-    final Consumer<String> _function_1 = new Consumer<String>() {
-      public void accept(final String fileName) {
-        FileItem _child = GetLocalOperationsProcess.this.folder.getChild(fileName);
-        ValueCallback<List<NetworkOperation>> _createCallback = agg.createCallback();
-        GetLocalOperationsProcess.this.convert.update(_child, GetLocalOperationsProcess.this.node, _createCallback);
-      }
-    };
-    fileNames.forEach(_function_1);
+    throw new Error("Unresolved compilation problems:"
+      + "\nInvalid number of arguments. The method update(NodesMetadata, FileItem, Node, ValueCallback<List<NetworkOperation>>) is not applicable for the arguments (FileItem,Node,ValueCallback<List<NetworkOperation>>)"
+      + "\nType mismatch: cannot convert from Node to FileItem"
+      + "\nType mismatch: cannot convert from FileItem to NodesMetadata"
+      + "\nType mismatch: cannot convert from ValueCallback<List<NetworkOperation>> to Node");
   }
   
   public void createOperationsFromRemovedFiles(final List<String> fileNames, final ValueCallback<List<NetworkOperation>> cb) {
-    int _size = fileNames.size();
-    final Closure<List<List<NetworkOperation>>> _function = new Closure<List<List<NetworkOperation>>>() {
-      public void apply(final List<List<NetworkOperation>> res) {
-        List<NetworkOperation> _flatten = CollectionsUtils.<NetworkOperation>flatten(res);
-        cb.onSuccess(_flatten);
-      }
-    };
-    ValueCallback<List<List<NetworkOperation>>> _embed = Async.<List<List<NetworkOperation>>>embed(cb, _function);
-    final Aggregator<List<NetworkOperation>> agg = Async.<List<NetworkOperation>>collect(_size, _embed);
-    final Consumer<String> _function_1 = new Consumer<String>() {
-      public void accept(final String fileName) {
-        FileItemMetaData _child = GetLocalOperationsProcess.this.nodes.getChild(fileName);
-        ValueCallback<List<NetworkOperation>> _createCallback = agg.createCallback();
-        GetLocalOperationsProcess.this.convert.deleteNodes(_child, GetLocalOperationsProcess.this.node, _createCallback);
-      }
-    };
-    fileNames.forEach(_function_1);
+    throw new Error("Unresolved compilation problems:"
+      + "\nInvalid number of arguments. The method deleteNodes(NodesMetadata, FileItemMetaData, Node, ValueCallback<List<NetworkOperation>>) is not applicable for the arguments (FileItemMetaData,Node,ValueCallback<List<NetworkOperation>>)"
+      + "\nType mismatch: cannot convert from FileItemMetaData to NodesMetadata"
+      + "\nType mismatch: cannot convert from ValueCallback<List<NetworkOperation>> to Node"
+      + "\nType mismatch: cannot convert from Node to FileItemMetaData");
   }
   
   public void createOperationsFromCreatedFiles(final List<String> fileNames, final ValueCallback<List<NetworkOperation>> cb) {
-    int _size = fileNames.size();
-    final Closure<List<List<NetworkOperation>>> _function = new Closure<List<List<NetworkOperation>>>() {
-      public void apply(final List<List<NetworkOperation>> res) {
-        List<NetworkOperation> _flatten = CollectionsUtils.<NetworkOperation>flatten(res);
-        cb.onSuccess(_flatten);
-      }
-    };
-    ValueCallback<List<List<NetworkOperation>>> _embed = Async.<List<List<NetworkOperation>>>embed(cb, _function);
-    final Aggregator<List<NetworkOperation>> agg = Async.<List<NetworkOperation>>collect(_size, _embed);
-    final Consumer<String> _function_1 = new Consumer<String>() {
-      public void accept(final String fileName) {
-        FileItem _child = GetLocalOperationsProcess.this.folder.getChild(fileName);
-        ValueCallback<List<NetworkOperation>> _createCallback = agg.createCallback();
-        GetLocalOperationsProcess.this.convert.createNodes(_child, GetLocalOperationsProcess.this.node, _createCallback);
-      }
-    };
-    fileNames.forEach(_function_1);
+    throw new Error("Unresolved compilation problems:"
+      + "\nInvalid number of arguments. The method createNodes(NodesMetadata, FileItem, Node, ValueCallback<List<NetworkOperation>>) is not applicable for the arguments (FileItem,Node,ValueCallback<List<NetworkOperation>>)"
+      + "\nType mismatch: cannot convert from Node to FileItem"
+      + "\nType mismatch: cannot convert from ValueCallback<List<NetworkOperation>> to Node"
+      + "\nType mismatch: cannot convert from FileItem to NodesMetadata");
   }
   
   public static ArrayList<String> determineLocallyChangedFiles(final NodesMetadata metadata, final FileItem folder) {

@@ -3,6 +3,7 @@ package com.appjangle.filesync.engine.convert
 import com.appjangle.filesync.Convert
 import com.appjangle.filesync.NetworkOperation
 import com.appjangle.filesync.engine.metadata.FileItemMetaData
+import com.appjangle.filesync.engine.metadata.NodesMetadata
 import de.mxro.async.callbacks.ValueCallback
 import de.mxro.file.FileItem
 import io.nextweb.Node
@@ -15,12 +16,14 @@ class FileToTextNode implements Convert {
 		return fileName
 	}
 
-	override update(FileItem source, Node parent, ValueCallback<List<NetworkOperation>> cb) {
+	override update(NodesMetadata metadata, FileItem source, Node parent, ValueCallback<List<NetworkOperation>> cb) {
 
 		val content = source.text
 
 		val ops = new LinkedList<NetworkOperation>
-
+		
+		
+		
 		ops.add(
 			[ ctx |
 				
@@ -36,11 +39,11 @@ class FileToTextNode implements Convert {
 
 	}
 	
-	override createNodes(FileItem source, Node parent, ValueCallback<List<NetworkOperation>> cb) {
+	override createNodes(NodesMetadata metadata, FileItem source, Node parent, ValueCallback<List<NetworkOperation>> cb) {
 		
 	}
 	
-	override deleteNodes(FileItemMetaData cachedFile, Node parent, ValueCallback<List<NetworkOperation>> cb) {
+	override deleteNodes(NodesMetadata metadata, FileItemMetaData cachedFile, Node parent, ValueCallback<List<NetworkOperation>> cb) {
 		
 	}
 

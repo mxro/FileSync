@@ -15,7 +15,7 @@ class FileToTextNode implements Convert {
 		return fileName
 	}
 
-	override update(FileItem source, Node node, ValueCallback<List<NetworkOperation>> cb) {
+	override update(FileItem source, Node parent, ValueCallback<List<NetworkOperation>> cb) {
 
 		val content = source.text
 
@@ -36,11 +36,11 @@ class FileToTextNode implements Convert {
 
 	}
 	
-	override createNodes(FileItem source, Node node, ValueCallback<List<NetworkOperation>> cb) {
+	override createNodes(FileItem source, Node parent, ValueCallback<List<NetworkOperation>> cb) {
 		
 	}
 	
-	override deleteNodes(FileItemMetaData cachedFile, Node node, ValueCallback<List<NetworkOperation>> cb) {
+	override deleteNodes(FileItemMetaData cachedFile, Node parent, ValueCallback<List<NetworkOperation>> cb) {
 		
 	}
 

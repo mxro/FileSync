@@ -19,7 +19,7 @@ public class FileToTextNode implements Convert {
     return fileName;
   }
   
-  public void update(final FileItem source, final Node node, final ValueCallback<List<NetworkOperation>> cb) {
+  public void update(final FileItem source, final Node parent, final ValueCallback<List<NetworkOperation>> cb) {
     final String content = source.getText();
     final LinkedList<NetworkOperation> ops = new LinkedList<NetworkOperation>();
     final NetworkOperation _function = new NetworkOperation() {
@@ -39,9 +39,9 @@ public class FileToTextNode implements Convert {
     cb.onSuccess(ops);
   }
   
-  public void createNodes(final FileItem source, final Node node, final ValueCallback<List<NetworkOperation>> cb) {
+  public void createNodes(final FileItem source, final Node parent, final ValueCallback<List<NetworkOperation>> cb) {
   }
   
-  public void deleteNodes(final FileItemMetaData cachedFile, final Node node, final ValueCallback<List<NetworkOperation>> cb) {
+  public void deleteNodes(final FileItemMetaData cachedFile, final Node parent, final ValueCallback<List<NetworkOperation>> cb) {
   }
 }

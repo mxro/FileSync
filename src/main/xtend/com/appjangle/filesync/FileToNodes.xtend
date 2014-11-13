@@ -1,6 +1,6 @@
 package com.appjangle.filesync
 
-import com.appjangle.filesync.engine.NetworkOperation
+
 import de.mxro.async.callbacks.ValueCallback
 import de.mxro.file.FileItem
 import io.nextweb.Node

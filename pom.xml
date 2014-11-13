@@ -13,18 +13,12 @@
 		<module.draftCompile>true</module.draftCompile>
 		<module.clientVersion>0.3.5</module.clientVersion>
 		<module.importedPackages>
-			org.junit,
-			io.nextweb.operations,
-			io.nextweb.operations.callbacks,
-			io.nextweb.operations.entity,
-			io.nextweb.operations.entitylist,
-			io.nextweb.plugins,
-			org.apache.commons.lang;version="[0.0.1,999.9.9]",
+			
 			*
 		</module.importedPackages>
 		<module.exportedPackages>
-			!com.appjangle.qunit.internal*,
-			com.appjangle.qunit*
+			!com.appjangle.filesync.internal*,
+			com.appjangle.filesync*
 		</module.exportedPackages>
 		<module.serviceDefinitions>
 		</module.serviceDefinitions>

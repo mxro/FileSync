@@ -1,6 +1,6 @@
 package com.appjangle.filesync.engine.convert;
 
-import com.appjangle.filesync.FileToNodes;
+import com.appjangle.filesync.Convert;
 import com.appjangle.filesync.NetworkOperationContext;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
@@ -13,7 +13,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 @SuppressWarnings("all")
-public class FileToTextNode implements FileToNodes {
+public class FileToTextNode implements Convert {
   public void update(final FileItem source, final Node node, final ValueCallback<List<Closure<NetworkOperationContext>>> cb) {
     final String content = source.getText();
     final LinkedList<Closure<NetworkOperationContext>> ops = new LinkedList<Closure<NetworkOperationContext>>();

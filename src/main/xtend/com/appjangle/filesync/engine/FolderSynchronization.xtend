@@ -12,6 +12,8 @@ import java.util.List
 
 class FolderSynchronization {
 
+	val Convert = null;
+
 	def getLocalOperations(Node node, FileItem folder, ValueCallback<NodeToFolderSynchronizationResult> cb) {
 
 		if (!folder.directory)

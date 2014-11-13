@@ -8,6 +8,6 @@ import io.nextweb.Node;
 import java.util.List;
 
 @SuppressWarnings("all")
-public interface FileToNodes {
+public interface Convert {
   public abstract void update(final FileItem source, final Node node, final ValueCallback<List<Closure<NetworkOperationContext>>> cb);
 }

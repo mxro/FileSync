@@ -18,6 +18,8 @@ import org.eclipse.xtext.xbase.lib.ListExtensions;
 
 @SuppressWarnings("all")
 public class FolderSynchronization {
+  private final Object Convert = null;
+  
   public ArrayList<NetworkOperation> getLocalOperations(final Node node, final FileItem folder, final ValueCallback<NodeToFolderSynchronizationResult> cb) {
     try {
       boolean _isDirectory = folder.isDirectory();

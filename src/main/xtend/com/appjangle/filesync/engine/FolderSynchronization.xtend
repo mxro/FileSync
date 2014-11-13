@@ -1,5 +1,6 @@
 package com.appjangle.filesync.engine
 
+import com.appjangle.filesync.NetworkOperation
 import com.appjangle.filesync.engine.metadata.FileItemMetaData
 import com.appjangle.filesync.engine.metadata.MetadataUtilsJre
 import com.appjangle.filesync.engine.metadata.NodesMetadata
@@ -26,10 +27,7 @@ class FolderSynchronization {
 		val nodes = MetadataUtilsJre.readFromFile(metadata.getChild("nodes.xml"))
 
 		if (nodes == null) {
-			
-			
-			
-			
+			return new ArrayList<NetworkOperation>(0)
 		}
 
 		if (nodes != null) {

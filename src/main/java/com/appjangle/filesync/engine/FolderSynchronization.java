@@ -1,5 +1,6 @@
 package com.appjangle.filesync.engine;
 
+import com.appjangle.filesync.NetworkOperation;
 import com.appjangle.filesync.engine.NodeToFolderSynchronizationResult;
 import com.appjangle.filesync.engine.metadata.FileItemMetaData;
 import com.appjangle.filesync.engine.metadata.MetadataUtilsJre;
@@ -17,7 +18,7 @@ import org.eclipse.xtext.xbase.lib.ListExtensions;
 
 @SuppressWarnings("all")
 public class FolderSynchronization {
-  public static void getLocalOperations(final Node node, final FileItem folder, final ValueCallback<NodeToFolderSynchronizationResult> cb) {
+  public static ArrayList<NetworkOperation> getLocalOperations(final Node node, final FileItem folder, final ValueCallback<NodeToFolderSynchronizationResult> cb) {
     try {
       boolean _isDirectory = folder.isDirectory();
       boolean _not = (!_isDirectory);
@@ -35,6 +36,7 @@ public class FolderSynchronization {
       final NodesMetadata nodes = MetadataUtilsJre.readFromFile(_child);
       boolean _equals = Objects.equal(nodes, null);
       if (_equals) {
+        return new ArrayList<NetworkOperation>(0);
       }
       boolean _notEquals = (!Objects.equal(nodes, null));
       if (_notEquals) {
@@ -42,6 +44,7 @@ public class FolderSynchronization {
         final ArrayList<String> locallyRemovedFiles = FolderSynchronization.determineLocallyRemovedFiles(nodes, folder);
         final ArrayList<String> locallyChangedFiles = FolderSynchronization.determineLocallyChangedFiles(nodes, folder);
       }
+      return null;
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

@@ -1,10 +1,10 @@
 package com.appjangle.filesync.engine.convert;
 
 import com.appjangle.filesync.Convert;
+import com.appjangle.filesync.NetworkOperation;
 import com.appjangle.filesync.NetworkOperationContext;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
-import de.mxro.fn.Closure;
 import io.nextweb.Node;
 import io.nextweb.Query;
 import io.nextweb.promise.exceptions.ExceptionListener;
@@ -14,10 +14,10 @@ import java.util.List;
 
 @SuppressWarnings("all")
 public class FileToTextNode implements Convert {
-  public void update(final FileItem source, final Node node, final ValueCallback<List<Closure<NetworkOperationContext>>> cb) {
+  public void update(final FileItem source, final Node node, final ValueCallback<List<NetworkOperation>> cb) {
     final String content = source.getText();
-    final LinkedList<Closure<NetworkOperationContext>> ops = new LinkedList<Closure<NetworkOperationContext>>();
-    final Closure<NetworkOperationContext> _function = new Closure<NetworkOperationContext>() {
+    final LinkedList<NetworkOperation> ops = new LinkedList<NetworkOperation>();
+    final NetworkOperation _function = new NetworkOperation() {
       public void apply(final NetworkOperationContext ctx) {
         Node _node = ctx.node();
         Query _setValueSafe = _node.setValueSafe(content);

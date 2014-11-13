@@ -12,9 +12,7 @@ import java.util.List
 class FolderSynchronization {
 
 
-
-
-	def nodeToFolder(Node node, FileItem folder, ValueCallback<NodeToFolderSynchronizationResult> cb) {
+	static def getLocalOperations(Node node, FileItem folder, ValueCallback<NodeToFolderSynchronizationResult> cb) {
 
 		if (!folder.directory)
 			throw new Exception('File passed and not directory. ' + folder)
@@ -39,7 +37,7 @@ class FolderSynchronization {
 
 	}
 
-	def determineLocallyChangedFiles(NodesMetadata metadata, FileItem folder) {
+	static def determineLocallyChangedFiles(NodesMetadata metadata, FileItem folder) {
 
 		val res = new ArrayList<String>(0)
 
@@ -59,7 +57,7 @@ class FolderSynchronization {
 
 	}
 
-	def determineLocallyAddedFiles(NodesMetadata metadata, FileItem folder) {
+	static def determineLocallyAddedFiles(NodesMetadata metadata, FileItem folder) {
 
 		val previousNames = getNamesFromCache(metadata.children)
 
@@ -70,7 +68,7 @@ class FolderSynchronization {
 
 	}
 
-	def determineLocallyRemovedFiles(NodesMetadata metadata, FileItem folder) {
+	static def determineLocallyRemovedFiles(NodesMetadata metadata, FileItem folder) {
 
 		val previousNames = getNamesFromCache(metadata.children)
 
@@ -81,7 +79,7 @@ class FolderSynchronization {
 
 	}
 
-	def getNamesFromCache(List<FileItemMetaData> cachedChildren) {
+	static def getNamesFromCache(List<FileItemMetaData> cachedChildren) {
 
 		val res = new ArrayList<String>(cachedChildren.size)
 
@@ -93,7 +91,7 @@ class FolderSynchronization {
 
 	}
 
-	def getNames(List<FileItem> cachedChildren) {
+	static def getNames(List<FileItem> cachedChildren) {
 
 		val res = new ArrayList<String>(cachedChildren.size)
 

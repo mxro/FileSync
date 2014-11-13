@@ -15,7 +15,7 @@ import org.eclipse.xtext.xbase.lib.Exceptions;
 
 @SuppressWarnings("all")
 public class FolderSynchronization {
-  public void nodeToFolder(final Node node, final FileItem folder, final ValueCallback<NodeToFolderSynchronizationResult> cb) {
+  public static void getLocalOperations(final Node node, final FileItem folder, final ValueCallback<NodeToFolderSynchronizationResult> cb) {
     try {
       boolean _isDirectory = folder.isDirectory();
       boolean _not = (!_isDirectory);
@@ -33,16 +33,16 @@ public class FolderSynchronization {
       final NodesMetadata nodes = MetadataUtilsJre.readFromFile(_child);
       boolean _notEquals = (!Objects.equal(nodes, null));
       if (_notEquals) {
-        final ArrayList<String> locallyAddedFiles = this.determineLocallyAddedFiles(nodes, folder);
-        final ArrayList<String> locallyRemovedFiles = this.determineLocallyRemovedFiles(nodes, folder);
-        final ArrayList<String> locallyChangedFiles = this.determineLocallyChangedFiles(nodes, folder);
+        final ArrayList<String> locallyAddedFiles = FolderSynchronization.determineLocallyAddedFiles(nodes, folder);
+        final ArrayList<String> locallyRemovedFiles = FolderSynchronization.determineLocallyRemovedFiles(nodes, folder);
+        final ArrayList<String> locallyChangedFiles = FolderSynchronization.determineLocallyChangedFiles(nodes, folder);
       }
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
   
-  public ArrayList<String> determineLocallyChangedFiles(final NodesMetadata metadata, final FileItem folder) {
+  public static ArrayList<String> determineLocallyChangedFiles(final NodesMetadata metadata, final FileItem folder) {
     ArrayList<String> _xblockexpression = null;
     {
       final ArrayList<String> res = new ArrayList<String>(0);
@@ -70,25 +70,25 @@ public class FolderSynchronization {
     return _xblockexpression;
   }
   
-  public ArrayList<String> determineLocallyAddedFiles(final NodesMetadata metadata, final FileItem folder) {
+  public static ArrayList<String> determineLocallyAddedFiles(final NodesMetadata metadata, final FileItem folder) {
     List<FileItemMetaData> _children = metadata.getChildren();
-    final ArrayList<String> previousNames = this.getNamesFromCache(_children);
+    final ArrayList<String> previousNames = FolderSynchronization.getNamesFromCache(_children);
     List<FileItem> _children_1 = folder.getChildren();
-    final ArrayList<String> currentNames = this.getNames(_children_1);
+    final ArrayList<String> currentNames = FolderSynchronization.getNames(_children_1);
     currentNames.removeAll(previousNames);
     return currentNames;
   }
   
-  public ArrayList<String> determineLocallyRemovedFiles(final NodesMetadata metadata, final FileItem folder) {
+  public static ArrayList<String> determineLocallyRemovedFiles(final NodesMetadata metadata, final FileItem folder) {
     List<FileItemMetaData> _children = metadata.getChildren();
-    final ArrayList<String> previousNames = this.getNamesFromCache(_children);
+    final ArrayList<String> previousNames = FolderSynchronization.getNamesFromCache(_children);
     List<FileItem> _children_1 = folder.getChildren();
-    final ArrayList<String> currentNames = this.getNames(_children_1);
+    final ArrayList<String> currentNames = FolderSynchronization.getNames(_children_1);
     previousNames.removeAll(currentNames);
     return previousNames;
   }
   
-  public ArrayList<String> getNamesFromCache(final List<FileItemMetaData> cachedChildren) {
+  public static ArrayList<String> getNamesFromCache(final List<FileItemMetaData> cachedChildren) {
     int _size = cachedChildren.size();
     final ArrayList<String> res = new ArrayList<String>(_size);
     for (final FileItemMetaData fileItemMetaData : cachedChildren) {
@@ -98,7 +98,7 @@ public class FolderSynchronization {
     return res;
   }
   
-  public ArrayList<String> getNames(final List<FileItem> cachedChildren) {
+  public static ArrayList<String> getNames(final List<FileItem> cachedChildren) {
     int _size = cachedChildren.size();
     final ArrayList<String> res = new ArrayList<String>(_size);
     for (final FileItem fileItem : cachedChildren) {

@@ -9,9 +9,9 @@ import java.util.List;
 
 @SuppressWarnings("all")
 public interface Convert {
-  public abstract void update(final FileItem source, final Node node, final ValueCallback<List<NetworkOperation>> cb);
+  public abstract void update(final FileItem source, final Node parent, final ValueCallback<List<NetworkOperation>> cb);
   
-  public abstract void createNodes(final FileItem source, final Node node, final ValueCallback<List<NetworkOperation>> cb);
+  public abstract void createNodes(final FileItem source, final Node parent, final ValueCallback<List<NetworkOperation>> cb);
   
-  public abstract void deleteNodes(final FileItemMetaData cachedFile, final Node node, final ValueCallback<List<NetworkOperation>> cb);
+  public abstract void deleteNodes(final FileItemMetaData cachedFile, final Node parent, final ValueCallback<List<NetworkOperation>> cb);
 }

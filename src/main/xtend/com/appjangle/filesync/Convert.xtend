@@ -8,13 +8,13 @@ import java.util.List
 
 interface Convert {
 	
-	def void update(FileItem source, Node node, ValueCallback<List<NetworkOperation>> cb)
+	def void update(FileItem source, Node parent, ValueCallback<List<NetworkOperation>> cb)
 	
 	
-	def void createNodes(FileItem source, Node node, ValueCallback<List<NetworkOperation>> cb)
+	def void createNodes(FileItem source, Node parent, ValueCallback<List<NetworkOperation>> cb)
 	
 	
-	def void deleteNodes(FileItemMetaData cachedFile, Node node, ValueCallback<List<NetworkOperation>> cb);
+	def void deleteNodes(FileItemMetaData cachedFile, Node parent, ValueCallback<List<NetworkOperation>> cb);
 	
 	
 }

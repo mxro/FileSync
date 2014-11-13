@@ -19,6 +19,9 @@ class FileToTextNode implements Convert {
 
 		ops.add(
 			[ ctx |
+				
+				
+				
 				ctx.node.setValueSafe(content).catchExceptions(
 					[ er |
 						cb.onFailure(er.exception())
@@ -30,7 +33,6 @@ class FileToTextNode implements Convert {
 	}
 	
 	override createNodes(FileItem source, Node node, ValueCallback<List<NetworkOperation>> cb) {
-
 		
 	}
 	

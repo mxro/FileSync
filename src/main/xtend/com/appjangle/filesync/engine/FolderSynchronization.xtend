@@ -15,6 +15,8 @@ class FolderSynchronization {
 		if (!folder.exists)
 		  throw new Exception('File passed does not exist. '+folder)
 		  
+		
+		val metadata = folder.assertFolder(".filesync-meta")
 		  
 		
 	}

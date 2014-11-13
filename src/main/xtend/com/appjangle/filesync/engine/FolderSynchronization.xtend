@@ -1,10 +1,13 @@
 package com.appjangle.filesync.engine
 
+import com.appjangle.filesync.engine.metadata.FileItemMetaData
+import com.appjangle.filesync.engine.metadata.MetadataUtilsJre
+import com.appjangle.filesync.engine.metadata.NodesMetadata
 import de.mxro.async.callbacks.ValueCallback
 import de.mxro.file.FileItem
 import io.nextweb.Node
-import com.appjangle.filesync.engine.metadata.MetadataUtilsJre
-import com.appjangle.filesync.engine.metadata.NodesMetadata
+import java.util.ArrayList
+import java.util.List
 
 class FolderSynchronization {
 	
@@ -36,6 +39,17 @@ class FolderSynchronization {
 			if
 		}
 		
+		
+	}
+	
+	
+	def getNames(List<FileItemMetaData> cachedChildren) {
+		
+		
+		val res = new ArrayList<String>(cachedChildren.size)
+		
+		
+		res
 		
 	}
 	

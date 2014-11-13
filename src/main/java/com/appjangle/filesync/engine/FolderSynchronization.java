@@ -31,6 +31,9 @@ public class FolderSynchronization {
       metadata.setVisible(false);
       FileItem _child = metadata.getChild("nodes.xml");
       final NodesMetadata nodes = MetadataUtilsJre.readFromFile(_child);
+      boolean _equals = Objects.equal(nodes, null);
+      if (_equals) {
+      }
       boolean _notEquals = (!Objects.equal(nodes, null));
       if (_notEquals) {
         final ArrayList<String> locallyAddedFiles = FolderSynchronization.determineLocallyAddedFiles(nodes, folder);
@@ -40,6 +43,10 @@ public class FolderSynchronization {
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
+  }
+  
+  public static Object createOperationsFromChangedFiles(final /* fileNames */Object __unknown__, final /* test */Object __unknown___1) {
+    return null;
   }
   
   public static ArrayList<String> determineLocallyChangedFiles(final NodesMetadata metadata, final FileItem folder) {

@@ -7,4 +7,6 @@ interface NodesMetadata {
 	
 	def List<FileItemMetaData> getChildren()
 	
+	def FileItemMetaData getChild(String name)
+	
 }

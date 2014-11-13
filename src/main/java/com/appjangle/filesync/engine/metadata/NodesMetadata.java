@@ -6,4 +6,6 @@ import java.util.List;
 @SuppressWarnings("all")
 public interface NodesMetadata {
   public abstract List<FileItemMetaData> getChildren();
+  
+  public abstract FileItemMetaData getChild(final String name);
 }

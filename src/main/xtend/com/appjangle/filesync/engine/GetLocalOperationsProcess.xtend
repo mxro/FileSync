@@ -55,7 +55,7 @@ class GetLocalOperationsProcess {
 		]));
 		
 		createOperationsFromChangedFiles(locallyChangedFiles, agg.createCallback)
-		
+		createOperationsFromRemovedFiles(locallyRemovedFiles, agg.createCallback)
 		createOperationsFromCreatedFiles(locallyAddedFiles, agg.createCallback)
 		
 	}
@@ -83,7 +83,7 @@ class GetLocalOperationsProcess {
 		]))
 
 		fileNames.forEach[ fileName | 
-			convert.deleteNodes()
+			convert.deleteNodes(nodes.getChild(fileName), node, agg.createCallback)
 		]
 		
 	}

@@ -64,7 +64,9 @@ public class GetLocalOperationsProcess {
       ValueCallback<List<NetworkOperation>> _createCallback = agg.createCallback();
       this.createOperationsFromChangedFiles(locallyChangedFiles, _createCallback);
       ValueCallback<List<NetworkOperation>> _createCallback_1 = agg.createCallback();
-      this.createOperationsFromCreatedFiles(locallyAddedFiles, _createCallback_1);
+      this.createOperationsFromRemovedFiles(locallyRemovedFiles, _createCallback_1);
+      ValueCallback<List<NetworkOperation>> _createCallback_2 = agg.createCallback();
+      this.createOperationsFromCreatedFiles(locallyAddedFiles, _createCallback_2);
       return null;
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
@@ -92,8 +94,23 @@ public class GetLocalOperationsProcess {
   }
   
   public void createOperationsFromRemovedFiles(final List<String> fileNames, final ValueCallback<List<NetworkOperation>> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nInvalid number of arguments. The method deleteNodes(FileItemMetaData, Node, ValueCallback<List<NetworkOperation>>) is not applicable for the arguments ");
+    int _size = fileNames.size();
+    final Closure<List<List<NetworkOperation>>> _function = new Closure<List<List<NetworkOperation>>>() {
+      public void apply(final List<List<NetworkOperation>> res) {
+        List<NetworkOperation> _flatten = CollectionsUtils.<NetworkOperation>flatten(res);
+        cb.onSuccess(_flatten);
+      }
+    };
+    ValueCallback<List<List<NetworkOperation>>> _embed = Async.<List<List<NetworkOperation>>>embed(cb, _function);
+    final Aggregator<List<NetworkOperation>> agg = Async.<List<NetworkOperation>>collect(_size, _embed);
+    final Consumer<String> _function_1 = new Consumer<String>() {
+      public void accept(final String fileName) {
+        FileItemMetaData _child = GetLocalOperationsProcess.this.nodes.getChild(fileName);
+        ValueCallback<List<NetworkOperation>> _createCallback = agg.createCallback();
+        GetLocalOperationsProcess.this.convert.deleteNodes(_child, GetLocalOperationsProcess.this.node, _createCallback);
+      }
+    };
+    fileNames.forEach(_function_1);
   }
   
   public void createOperationsFromCreatedFiles(final List<String> fileNames, final ValueCallback<List<NetworkOperation>> cb) {

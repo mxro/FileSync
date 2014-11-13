@@ -48,7 +48,7 @@ class FolderSynchronization {
 		}
 			
 			
-		convert.update(folder.getChild(fileNames.get(idx)), node, [ ops | ]);
+		convert.update(folder.getChild(fileNames.get(idx)), node, new ValueCallback<);
 	
 	
 	}

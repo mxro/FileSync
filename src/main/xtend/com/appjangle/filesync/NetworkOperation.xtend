@@ -1,11 +1,10 @@
 package com.appjangle.filesync
 
-import io.nextweb.Node
-import io.nextweb.Session
+import de.mxro.fn.Closure
 
-interface NetworkOperation {
+interface NetworkOperation extends Closure<NetworkOperationContext> {
 	
 	
-	def void define(Session session, Node node)
+	
 	
 }

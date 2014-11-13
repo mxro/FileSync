@@ -1,9 +1,8 @@
 package com.appjangle.filesync;
 
-import io.nextweb.Node;
-import io.nextweb.Session;
+import com.appjangle.filesync.NetworkOperationContext;
+import de.mxro.fn.Closure;
 
 @SuppressWarnings("all")
-public interface NetworkOperation {
-  public abstract void define(final Session session, final Node node);
+public interface NetworkOperation extends Closure<NetworkOperationContext> {
 }

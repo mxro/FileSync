@@ -8,6 +8,6 @@ import java.util.List
 
 interface Convert {
 	
-	def void update(FileItem source, Node node, ValueCallback<List<Closure<NetworkOperationContext>>> cb);
+	def void update(FileItem source, Node node, ValueCallback<List<NetworkOperation>> cb);
 	
 }

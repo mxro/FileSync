@@ -50,8 +50,9 @@ public class FolderSynchronization {
   
   public void createOperationsFromChangedFiles(final List<String> fileNames, final Node node, final int idx, final FileItem folder, final List<NetworkOperation> res, final ValueCallback<List<NetworkOperation>> cb) {
     throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from (Object)=>Object to ValueCallback<List<Closure<NetworkOperationContext>>>"
-      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or use the closures in a more specific context.");
+      + "\nno viable alternative at input \')\'"
+      + "\nCannot instantiate the interface type ValueCallback"
+      + "\nType mismatch: cannot convert from ValueCallback<Object> to ValueCallback<List<NetworkOperation>>");
   }
   
   public static ArrayList<String> determineLocallyChangedFiles(final NodesMetadata metadata, final FileItem folder) {

@@ -60,6 +60,8 @@ public class GetLocalOperationsProcess {
       final Aggregator<List<NetworkOperation>> agg = Async.<List<NetworkOperation>>collect(3, _embed);
       ValueCallback<List<NetworkOperation>> _createCallback = agg.createCallback();
       this.createOperationsFromChangedFiles(locallyChangedFiles, _createCallback);
+      ValueCallback<List<NetworkOperation>> _createCallback_1 = agg.createCallback();
+      this.createOperationsFromCreatedFiles(locallyAddedFiles, _createCallback_1);
       return null;
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);

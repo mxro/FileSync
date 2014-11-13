@@ -54,7 +54,11 @@ class GetLocalOperationsProcess {
 		
 		createOperationsFromChangedFiles(locallyChangedFiles, agg.createCallback)
 		
+		createOperationsFromCreatedFiles(locallyAddedFiles, agg.createCallback)
+		
 	}
+
+   
 
 	def createOperationsFromChangedFiles(List<String> fileNames, ValueCallback<List<NetworkOperation>> cb) {
 

@@ -33,8 +33,10 @@ class FolderSynchronization {
 	def determineLocallyChangedFiles(NodesMetadata metadata, FileItem folder) {
 		
 		
-		val cachedChildren = metadata.getChildren
+		val previousNames = getNamesFromCache(metadata.children)
 		
+		
+		val currentNames = getNames(folder.children)
 		
 		
 		

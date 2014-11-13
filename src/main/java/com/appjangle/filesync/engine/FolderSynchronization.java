@@ -17,7 +17,10 @@ public class FolderSynchronization {
   }
   
   public void determineLocallyChangedFiles(final NodesMetadata metadata, final FileItem folder) {
-    final List<FileItemMetaData> cachedChildren = metadata.getChildren();
+    List<FileItemMetaData> _children = metadata.getChildren();
+    final ArrayList<String> previousNames = this.getNamesFromCache(_children);
+    List<FileItem> _children_1 = folder.getChildren();
+    final ArrayList<String> currentNames = this.getNames(_children_1);
   }
   
   public ArrayList<String> getNamesFromCache(final List<FileItemMetaData> cachedChildren) {

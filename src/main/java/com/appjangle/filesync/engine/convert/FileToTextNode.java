@@ -7,8 +7,10 @@ import com.appjangle.filesync.engine.metadata.FileItemMetadata;
 import com.appjangle.filesync.engine.metadata.NodesMetadata;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
+import io.nextweb.Link;
 import io.nextweb.Node;
 import io.nextweb.Query;
+import io.nextweb.Session;
 import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
 import java.util.LinkedList;
@@ -28,8 +30,9 @@ public class FileToTextNode implements Convert {
     final LinkedList<NetworkOperation> ops = new LinkedList<NetworkOperation>();
     final NetworkOperation _function = new NetworkOperation() {
       public void apply(final NetworkOperationContext ctx) {
-        Node _node = ctx.node();
-        Query _setValueSafe = _node.setValueSafe(content);
+        Session _session = ctx.session();
+        Link _link = _session.link(address);
+        Query _setValueSafe = _link.setValueSafe(content);
         final ExceptionListener _function = new ExceptionListener() {
           public void onFailure(final ExceptionResult er) {
             Throwable _exception = er.exception();

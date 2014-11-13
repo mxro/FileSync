@@ -23,15 +23,11 @@ class FileToTextNode implements Convert {
 		val address = metadata.getChild(source.getName).uri
 
 		val ops = new LinkedList<NetworkOperation>
-		
-		
-		
+
 		ops.add(
 			[ ctx |
 				
-				
-				
-				ctx.node.setValueSafe(content).catchExceptions(
+				ctx.session.link(address).setValueSafe(content).catchExceptions(
 					[ er |
 						cb.onFailure(er.exception())
 					])

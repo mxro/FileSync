@@ -12,8 +12,7 @@ import java.util.List
 
 class FolderSynchronization {
 
-
-	static def getLocalOperations(Node node, FileItem folder, ValueCallback<NodeToFolderSynchronizationResult> cb) {
+	def getLocalOperations(Node node, FileItem folder, ValueCallback<NodeToFolderSynchronizationResult> cb) {
 
 		if (!folder.directory)
 			throw new Exception('File passed and not directory. ' + folder)
@@ -30,27 +29,20 @@ class FolderSynchronization {
 			return new ArrayList<NetworkOperation>(0)
 		}
 
-		if (nodes != null) {
-			
-			val locallyAddedFiles = determineLocallyAddedFiles(nodes, folder)
+		val locallyAddedFiles = determineLocallyAddedFiles(nodes, folder)
 
-			val locallyRemovedFiles = determineLocallyRemovedFiles(nodes, folder)
+		val locallyRemovedFiles = determineLocallyRemovedFiles(nodes, folder)
 
-			val locallyChangedFiles = determineLocallyChangedFiles(nodes, folder)
-
-		}
+		val locallyChangedFiles = determineLocallyChangedFiles(nodes, folder)
 
 	}
 
+	def createOperationsFromChangedFiles(List<String> fileNames, FileItem folder, ValueCallback<List<NetworkOperation>> cb) {
 
-	static def createOperationsFromChangedFiles(List<String> fileNames, FileItem folder) {
-		
-		
 		fileNames.map [ fileName |
 			folder.getChild(fileName)
 		]
-		
-		
+
 	}
 
 	static def determineLocallyChangedFiles(NodesMetadata metadata, FileItem folder) {

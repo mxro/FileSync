@@ -18,7 +18,7 @@ import org.eclipse.xtext.xbase.lib.ListExtensions;
 
 @SuppressWarnings("all")
 public class FolderSynchronization {
-  public static ArrayList<NetworkOperation> getLocalOperations(final Node node, final FileItem folder, final ValueCallback<NodeToFolderSynchronizationResult> cb) {
+  public ArrayList<NetworkOperation> getLocalOperations(final Node node, final FileItem folder, final ValueCallback<NodeToFolderSynchronizationResult> cb) {
     try {
       boolean _isDirectory = folder.isDirectory();
       boolean _not = (!_isDirectory);
@@ -38,19 +38,16 @@ public class FolderSynchronization {
       if (_equals) {
         return new ArrayList<NetworkOperation>(0);
       }
-      boolean _notEquals = (!Objects.equal(nodes, null));
-      if (_notEquals) {
-        final ArrayList<String> locallyAddedFiles = FolderSynchronization.determineLocallyAddedFiles(nodes, folder);
-        final ArrayList<String> locallyRemovedFiles = FolderSynchronization.determineLocallyRemovedFiles(nodes, folder);
-        final ArrayList<String> locallyChangedFiles = FolderSynchronization.determineLocallyChangedFiles(nodes, folder);
-      }
+      final ArrayList<String> locallyAddedFiles = FolderSynchronization.determineLocallyAddedFiles(nodes, folder);
+      final ArrayList<String> locallyRemovedFiles = FolderSynchronization.determineLocallyRemovedFiles(nodes, folder);
+      final ArrayList<String> locallyChangedFiles = FolderSynchronization.determineLocallyChangedFiles(nodes, folder);
       return null;
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
   
-  public static List<FileItem> createOperationsFromChangedFiles(final List<String> fileNames, final FileItem folder) {
+  public List<FileItem> createOperationsFromChangedFiles(final List<String> fileNames, final FileItem folder, final ValueCallback<List<NetworkOperation>> cb) {
     final Function1<String, FileItem> _function = new Function1<String, FileItem>() {
       public FileItem apply(final String fileName) {
         return folder.getChild(fileName);

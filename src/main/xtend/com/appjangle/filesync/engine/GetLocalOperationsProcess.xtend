@@ -54,8 +54,8 @@ class GetLocalOperationsProcess {
 			
 		]));
 		
-		createOperationsFromChangedFiles(locallyChangedFiles, agg.createCallback)
 		createOperationsFromRemovedFiles(locallyRemovedFiles, agg.createCallback)
+		createOperationsFromChangedFiles(locallyChangedFiles, agg.createCallback)		
 		createOperationsFromCreatedFiles(locallyAddedFiles, agg.createCallback)
 		
 	}

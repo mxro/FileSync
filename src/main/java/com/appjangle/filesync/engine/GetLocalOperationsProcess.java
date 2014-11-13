@@ -62,9 +62,9 @@ public class GetLocalOperationsProcess {
       ValueCallback<List<List<NetworkOperation>>> _embed = Async.<List<List<NetworkOperation>>>embed(cb, _function);
       final Aggregator<List<NetworkOperation>> agg = Async.<List<NetworkOperation>>collect(3, _embed);
       ValueCallback<List<NetworkOperation>> _createCallback = agg.createCallback();
-      this.createOperationsFromChangedFiles(locallyChangedFiles, _createCallback);
+      this.createOperationsFromRemovedFiles(locallyRemovedFiles, _createCallback);
       ValueCallback<List<NetworkOperation>> _createCallback_1 = agg.createCallback();
-      this.createOperationsFromRemovedFiles(locallyRemovedFiles, _createCallback_1);
+      this.createOperationsFromChangedFiles(locallyChangedFiles, _createCallback_1);
       ValueCallback<List<NetworkOperation>> _createCallback_2 = agg.createCallback();
       this.createOperationsFromCreatedFiles(locallyAddedFiles, _createCallback_2);
       return null;

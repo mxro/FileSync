@@ -40,7 +40,7 @@ class FolderSynchronization {
 
 	}
 
-	def createOperationsFromChangedFiles(List<String> fileNames, int idx, FileItem folder, List<NetworkOperation> res, ValueCallback<List<NetworkOperation>> cb) {
+	def createOperationsFromChangedFiles(List<String> fileNames, Node node, int idx, FileItem folder, List<NetworkOperation> res, ValueCallback<List<NetworkOperation>> cb) {
 
 		if (idx >= fileNames.size) {
 			cb.onSuccess(res)
@@ -48,7 +48,7 @@ class FolderSynchronization {
 		}
 			
 			
-		convert.update(folder.getChild(filesNames.get(idx)), )
+		convert.update(folder.getChild(fileNames.get(idx)), node, [ ops | ]);
 	
 	
 	}

@@ -48,12 +48,10 @@ public class FolderSynchronization {
     }
   }
   
-  public void createOperationsFromChangedFiles(final List<String> fileNames, final int idx, final FileItem folder, final List<NetworkOperation> res, final ValueCallback<List<NetworkOperation>> cb) {
+  public void createOperationsFromChangedFiles(final List<String> fileNames, final Node node, final int idx, final FileItem folder, final List<NetworkOperation> res, final ValueCallback<List<NetworkOperation>> cb) {
     throw new Error("Unresolved compilation problems:"
-      + "\nno viable alternative at input \')\'"
-      + "\nThe method or field filesNames is undefined for the type FolderSynchronization"
-      + "\nInvalid number of arguments. The method update(FileItem, Node, ValueCallback<List<Closure<NetworkOperationContext>>>) is not applicable for the arguments (FileItem)"
-      + "\nget cannot be resolved");
+      + "\nType mismatch: cannot convert from (Object)=>Object to ValueCallback<List<Closure<NetworkOperationContext>>>"
+      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or use the closures in a more specific context.");
   }
   
   public static ArrayList<String> determineLocallyChangedFiles(final NodesMetadata metadata, final FileItem folder) {

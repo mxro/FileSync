@@ -8,10 +8,17 @@ class MetadataUtilsJre {
 
 	def static NodesMetadata readFromFile(FileItem file) {
 
-		if (!file.exists)
-			val NodesMetadata newNodesMetadata =new NodesMetadataData
+		if (!file.exists) {
+			val NodesMetadata newNodesMetadata = new NodesMetadataData
 			
-			return newNodesMetadata 
+			
+			file.create
+			
+			
+			
+			return newNodesMetadata
+			
+			} 
 
 		val xstream = new XStream
 

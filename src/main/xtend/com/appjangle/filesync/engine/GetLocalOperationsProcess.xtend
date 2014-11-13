@@ -12,15 +12,15 @@ import java.util.ArrayList
 import java.util.LinkedList
 import java.util.List
 
-class FolderSynchronization {
+class GetLocalOperationsProcess {
 
 	val Convert convert = null;
 
-	val Node node;
-	val FileItem folder;
+	val Node node = null;
+	val FileItem folder = null;
 
 
-	def getLocalOperations( ValueCallback<NodeToFolderSynchronizationResult> cb) {
+	def getLocalOperations( ValueCallback<List<NetworkOperation>> cb) {
 
 		if (!folder.directory)
 			throw new Exception('File passed and not directory. ' + folder)

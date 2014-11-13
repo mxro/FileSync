@@ -2,7 +2,6 @@ package com.appjangle.filesync.engine;
 
 import com.appjangle.filesync.Convert;
 import com.appjangle.filesync.NetworkOperation;
-import com.appjangle.filesync.engine.NodeToFolderSynchronizationResult;
 import com.appjangle.filesync.engine.metadata.FileItemMetaData;
 import com.appjangle.filesync.engine.metadata.MetadataUtilsJre;
 import com.appjangle.filesync.engine.metadata.NodesMetadata;
@@ -17,14 +16,14 @@ import java.util.List;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 
 @SuppressWarnings("all")
-public class FolderSynchronization {
+public class GetLocalOperationsProcess {
   private final Convert convert = null;
   
-  private final Node node;
+  private final Node node = null;
   
-  private final FileItem folder;
+  private final FileItem folder = null;
   
-  public ArrayList<NetworkOperation> getLocalOperations(final ValueCallback<NodeToFolderSynchronizationResult> cb) {
+  public ArrayList<NetworkOperation> getLocalOperations(final ValueCallback<List<NetworkOperation>> cb) {
     try {
       boolean _isDirectory = this.folder.isDirectory();
       boolean _not = (!_isDirectory);
@@ -44,9 +43,9 @@ public class FolderSynchronization {
       if (_equals) {
         return new ArrayList<NetworkOperation>(0);
       }
-      final ArrayList<String> locallyAddedFiles = FolderSynchronization.determineLocallyAddedFiles(nodes, this.folder);
-      final ArrayList<String> locallyRemovedFiles = FolderSynchronization.determineLocallyRemovedFiles(nodes, this.folder);
-      final ArrayList<String> locallyChangedFiles = FolderSynchronization.determineLocallyChangedFiles(nodes, this.folder);
+      final ArrayList<String> locallyAddedFiles = GetLocalOperationsProcess.determineLocallyAddedFiles(nodes, this.folder);
+      final ArrayList<String> locallyRemovedFiles = GetLocalOperationsProcess.determineLocallyRemovedFiles(nodes, this.folder);
+      final ArrayList<String> locallyChangedFiles = GetLocalOperationsProcess.determineLocallyChangedFiles(nodes, this.folder);
       LinkedList<NetworkOperation> _linkedList = new LinkedList<NetworkOperation>();
       this.createOperationsFromChangedFiles(locallyChangedFiles, 0, _linkedList, new ValueCallback<List<NetworkOperation>>() {
         public void onSuccess(final List<NetworkOperation> value) {
@@ -105,18 +104,18 @@ public class FolderSynchronization {
   
   public static ArrayList<String> determineLocallyAddedFiles(final NodesMetadata metadata, final FileItem folder) {
     List<FileItemMetaData> _children = metadata.getChildren();
-    final ArrayList<String> previousNames = FolderSynchronization.getNamesFromCache(_children);
+    final ArrayList<String> previousNames = GetLocalOperationsProcess.getNamesFromCache(_children);
     List<FileItem> _children_1 = folder.getChildren();
-    final ArrayList<String> currentNames = FolderSynchronization.getNames(_children_1);
+    final ArrayList<String> currentNames = GetLocalOperationsProcess.getNames(_children_1);
     currentNames.removeAll(previousNames);
     return currentNames;
   }
   
   public static ArrayList<String> determineLocallyRemovedFiles(final NodesMetadata metadata, final FileItem folder) {
     List<FileItemMetaData> _children = metadata.getChildren();
-    final ArrayList<String> previousNames = FolderSynchronization.getNamesFromCache(_children);
+    final ArrayList<String> previousNames = GetLocalOperationsProcess.getNamesFromCache(_children);
     List<FileItem> _children_1 = folder.getChildren();
-    final ArrayList<String> currentNames = FolderSynchronization.getNames(_children_1);
+    final ArrayList<String> currentNames = GetLocalOperationsProcess.getNames(_children_1);
     previousNames.removeAll(currentNames);
     return previousNames;
   }

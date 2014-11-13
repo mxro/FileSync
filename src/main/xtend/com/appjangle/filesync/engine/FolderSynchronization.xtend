@@ -47,6 +47,12 @@ class FolderSynchronization {
 
 	static def createOperationsFromChangedFiles(List<String> fileNames, FileItem folder) {
 		
+		
+		fileNames.map [ fileName |
+			folder.getChild(fileName)
+		]
+		
+		
 	}
 
 	static def determineLocallyChangedFiles(NodesMetadata metadata, FileItem folder) {

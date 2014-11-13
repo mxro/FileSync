@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.Exceptions;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.ListExtensions;
 
 @SuppressWarnings("all")
 public class FolderSynchronization {
@@ -45,8 +47,13 @@ public class FolderSynchronization {
     }
   }
   
-  public static Object createOperationsFromChangedFiles(final List<String> fileNames, final FileItem folder) {
-    return null;
+  public static List<FileItem> createOperationsFromChangedFiles(final List<String> fileNames, final FileItem folder) {
+    final Function1<String, FileItem> _function = new Function1<String, FileItem>() {
+      public FileItem apply(final String fileName) {
+        return folder.getChild(fileName);
+      }
+    };
+    return ListExtensions.<String, FileItem>map(fileNames, _function);
   }
   
   public static ArrayList<String> determineLocallyChangedFiles(final NodesMetadata metadata, final FileItem folder) {

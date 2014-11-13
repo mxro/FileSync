@@ -50,21 +50,16 @@ public class GetLocalOperationsProcess {
       final ArrayList<String> locallyAddedFiles = GetLocalOperationsProcess.determineLocallyAddedFiles(nodes, this.folder);
       final ArrayList<String> locallyRemovedFiles = GetLocalOperationsProcess.determineLocallyRemovedFiles(nodes, this.folder);
       final ArrayList<String> locallyChangedFiles = GetLocalOperationsProcess.determineLocallyChangedFiles(nodes, this.folder);
-      final Closure<List<Object>> _function = new Closure<List<Object>>() {
-        public void apply(final List<Object> res) {
+      final Closure<List<List<NetworkOperation>>> _function = new Closure<List<List<NetworkOperation>>>() {
+        public void apply(final List<List<NetworkOperation>> res) {
+          final List<NetworkOperation> ops = CollectionsUtils.<NetworkOperation>flatten(res);
+          cb.onSuccess(ops);
         }
       };
-      ValueCallback<List<Object>> _embed = Async.<List<Object>>embed(cb, _function);
-      final Aggregator<Object> agg = Async.<Object>collect(3, _embed);
-      this.createOperationsFromChangedFiles(locallyChangedFiles, new ValueCallback<List<NetworkOperation>>() {
-        public void onSuccess(final List<NetworkOperation> value) {
-          cb.onSuccess(value);
-        }
-        
-        public void onFailure(final Throwable t) {
-          cb.onFailure(t);
-        }
-      });
+      ValueCallback<List<List<NetworkOperation>>> _embed = Async.<List<List<NetworkOperation>>>embed(cb, _function);
+      final Aggregator<List<NetworkOperation>> agg = Async.<List<NetworkOperation>>collect(3, _embed);
+      ValueCallback<List<NetworkOperation>> _createCallback = agg.createCallback();
+      this.createOperationsFromChangedFiles(locallyChangedFiles, _createCallback);
       return null;
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);

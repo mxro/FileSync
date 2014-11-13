@@ -47,20 +47,13 @@ class GetLocalOperationsProcess {
 
 		
 		val agg = Async.collect(3, Async.embed(cb, [res |
+			val ops = CollectionsUtils.flatten(res)
+			
+			cb.onSuccess(ops)
 			
 		]));
 		
-		createOperationsFromChangedFiles(locallyChangedFiles, new ValueCallback<List<NetworkOperation>>() {
-			
-			override onSuccess(List<NetworkOperation> value) {
-				cb.onSuccess(value)
-			}
-			
-			override onFailure(Throwable t) {
-				cb.onFailure(t)
-			}
-			
-		})
+		createOperationsFromChangedFiles(locallyChangedFiles, agg.createCallback)
 		
 	}
 

@@ -9,6 +9,7 @@ import de.mxro.async.callbacks.ValueCallback
 import de.mxro.file.FileItem
 import io.nextweb.Node
 import java.util.ArrayList
+import java.util.LinkedList
 import java.util.List
 
 class FolderSynchronization {
@@ -42,7 +43,18 @@ class FolderSynchronization {
 
 		val locallyChangedFiles = determineLocallyChangedFiles(nodes, folder)
 
-
+		
+		createOperationsFromChangedFiles(locallyChangedFiles, 0, new LinkedList<NetworkOperation>, new ValueCallback<List<NetworkOperation>>() {
+			
+			override onSuccess(List<NetworkOperation> value) {
+				throw new UnsupportedOperationException("TODO: auto-generated method stub")
+			}
+			
+			override onFailure(Throwable t) {
+				cb.onFailure(t)
+			}
+			
+		})
 		
 	}
 

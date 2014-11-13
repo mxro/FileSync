@@ -12,6 +12,7 @@ import de.mxro.file.FileItem;
 import io.nextweb.Node;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 
@@ -46,6 +47,16 @@ public class FolderSynchronization {
       final ArrayList<String> locallyAddedFiles = FolderSynchronization.determineLocallyAddedFiles(nodes, this.folder);
       final ArrayList<String> locallyRemovedFiles = FolderSynchronization.determineLocallyRemovedFiles(nodes, this.folder);
       final ArrayList<String> locallyChangedFiles = FolderSynchronization.determineLocallyChangedFiles(nodes, this.folder);
+      LinkedList<NetworkOperation> _linkedList = new LinkedList<NetworkOperation>();
+      this.createOperationsFromChangedFiles(locallyChangedFiles, 0, _linkedList, new ValueCallback<List<NetworkOperation>>() {
+        public void onSuccess(final List<NetworkOperation> value) {
+          throw new UnsupportedOperationException("TODO: auto-generated method stub");
+        }
+        
+        public void onFailure(final Throwable t) {
+          cb.onFailure(t);
+        }
+      });
       return null;
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);

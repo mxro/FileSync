@@ -11,7 +11,6 @@ import de.mxro.file.FileItem
 import de.mxro.fn.collections.CollectionsUtils
 import io.nextweb.Node
 import java.util.ArrayList
-import java.util.LinkedList
 import java.util.List
 
 class GetLocalOperationsProcess {
@@ -67,7 +66,11 @@ class GetLocalOperationsProcess {
 		fileNames.forEach[ fileName | 
 			convert.update(folder.getChild(fileName), node, agg.createCallback());
 		]
-			
+		
+	}
+
+
+	def createOperationsFromCreatedFiles(List<String> fileNames, ValueCallback<List<NetworkOperation>> cb) {
 		
 	}
 

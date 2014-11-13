@@ -86,6 +86,10 @@ public class GetLocalOperationsProcess {
     fileNames.forEach(_function_1);
   }
   
+  public Object createOperationsFromCreatedFiles(final List<String> fileNames, final ValueCallback<List<NetworkOperation>> cb) {
+    return null;
+  }
+  
   public static ArrayList<String> determineLocallyChangedFiles(final NodesMetadata metadata, final FileItem folder) {
     ArrayList<String> _xblockexpression = null;
     {

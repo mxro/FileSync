@@ -20,8 +20,11 @@ class FileToTextNode implements FileToNodes {
 		
 		ops.add([ ctx |
 			
+			ctx.node.setValue(content)
+			
 		])
 		
+		ops
 		
 	}
 	

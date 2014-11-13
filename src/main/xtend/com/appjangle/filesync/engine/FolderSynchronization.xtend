@@ -26,11 +26,14 @@ class FolderSynchronization {
 		
 		val nodes = MetadataUtilsJre.readFromFile(metadata.getChild("nodes.xml"))
 		
+		if (!nodes == null) {
 		val locallyAddedFiles = determineLocallyAddedFiles(nodes, folder)
 		
 		val locallyRemovedFiles = determineLocallyRemovedFiles(nodes, folder)
 		
 		val locallyChangedFiles = determineLocallyChangedFiles(nodes, folder)
+		}
+		}
 		
 	}
 	

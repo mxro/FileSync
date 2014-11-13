@@ -16,13 +16,11 @@ class FileToTextNode implements FileToNodes {
 		
 		val content = source.text
 		
-		val ops = new LinkedList<NetworkOperation>
+		val ops = new LinkedList<Closure<NetworkOperationContext>>
 		
-		val operation = [ ctx |
+		ops.add([ ctx |
 			
-		]
-		
-		ops.add(operation)
+		])
 		
 		
 	}

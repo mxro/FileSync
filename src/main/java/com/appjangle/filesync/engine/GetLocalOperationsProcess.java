@@ -35,8 +35,8 @@ public class GetLocalOperationsProcess {
       public void apply(final List<List<NetworkOperation>> res) {
       }
     };
-    ValueCallback<List<List<NetworkOperation>>> _forwardExceptions = Async.<List<List<NetworkOperation>>>forwardExceptions(cb, _function);
-    final Aggregator<List<NetworkOperation>> agg = Async.<List<NetworkOperation>>collect(_size, _forwardExceptions);
+    ValueCallback<List<List<NetworkOperation>>> _embed = Async.<List<List<NetworkOperation>>>embed(cb, _function);
+    final Aggregator<List<NetworkOperation>> agg = Async.<List<NetworkOperation>>collect(_size, _embed);
     final Consumer<String> _function_1 = new Consumer<String>() {
       public void accept(final String fileName) {
         FileItem _child = GetLocalOperationsProcess.this.folder.getChild(fileName);

@@ -62,7 +62,7 @@ class GetLocalOperationsProcess {
 	def createOperationsFromChangedFiles(List<String> fileNames, ValueCallback<List<NetworkOperation>> cb) {
 
 
-		val agg = Async.collect(fileNames.size, Async.forwardExceptions(cb, [ res |
+		val agg = Async.collect(fileNames.size, Async.embed(cb, [ res |
 			
 		]))
 

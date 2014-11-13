@@ -32,6 +32,10 @@ class FolderSynchronization {
 		
 		val cachedChildren = metadata.getChildren
 		
+		for (FileItem child: folder.getChildren) {
+			if
+		}
+		
 		
 	}
 	

@@ -1,12 +1,10 @@
 package com.appjangle.filesync.engine;
 
 import com.appjangle.filesync.engine.NodeToFolderSynchronizationResult;
-import com.appjangle.filesync.engine.metadata.FileItemMetaData;
 import com.appjangle.filesync.engine.metadata.NodesMetadata;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
 import io.nextweb.Node;
-import java.util.List;
 
 @SuppressWarnings("all")
 public class FolderSynchronization {
@@ -16,6 +14,7 @@ public class FolderSynchronization {
   }
   
   public void determineLocallyChangedFiles(final NodesMetadata metadata, final FileItem folder) {
-    final List<FileItemMetaData> cachedChildren = metadata.getChildren();
+    throw new Error("Unresolved compilation problems:"
+      + "\nmismatched input \'}\' expecting \'(\'");
   }
 }

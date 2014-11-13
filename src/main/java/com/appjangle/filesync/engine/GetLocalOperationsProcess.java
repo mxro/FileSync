@@ -86,8 +86,24 @@ public class GetLocalOperationsProcess {
     fileNames.forEach(_function_1);
   }
   
-  public Object createOperationsFromCreatedFiles(final List<String> fileNames, final ValueCallback<List<NetworkOperation>> cb) {
-    return null;
+  public void createOperationsFromCreatedFiles(final List<String> fileNames, final ValueCallback<List<NetworkOperation>> cb) {
+    int _size = fileNames.size();
+    final Closure<List<List<NetworkOperation>>> _function = new Closure<List<List<NetworkOperation>>>() {
+      public void apply(final List<List<NetworkOperation>> res) {
+        List<NetworkOperation> _flatten = CollectionsUtils.<NetworkOperation>flatten(res);
+        cb.onSuccess(_flatten);
+      }
+    };
+    ValueCallback<List<List<NetworkOperation>>> _embed = Async.<List<List<NetworkOperation>>>embed(cb, _function);
+    final Aggregator<List<NetworkOperation>> agg = Async.<List<NetworkOperation>>collect(_size, _embed);
+    final Consumer<String> _function_1 = new Consumer<String>() {
+      public void accept(final String fileName) {
+        FileItem _child = GetLocalOperationsProcess.this.folder.getChild(fileName);
+        ValueCallback<List<NetworkOperation>> _createCallback = agg.createCallback();
+        GetLocalOperationsProcess.this.convert.createNodes(_child, GetLocalOperationsProcess.this.node, _createCallback);
+      }
+    };
+    fileNames.forEach(_function_1);
   }
   
   public static ArrayList<String> determineLocallyChangedFiles(final NodesMetadata metadata, final FileItem folder) {

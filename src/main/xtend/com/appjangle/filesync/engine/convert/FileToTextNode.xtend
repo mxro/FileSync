@@ -29,5 +29,12 @@ class FileToTextNode implements Convert {
 		cb.onSuccess(ops);
 
 	}
+	
+	override createNodes(FileItem source, Node node, ValueCallback<List<NetworkOperation>> cb) {
+		
+		
+		
+		
+	}
 
 }

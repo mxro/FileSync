@@ -72,6 +72,14 @@ class GetLocalOperationsProcess {
 
 	def createOperationsFromCreatedFiles(List<String> fileNames, ValueCallback<List<NetworkOperation>> cb) {
 		
+		val agg = Async.collect(fileNames.size, Async.embed(cb, [ res |
+			cb.onSuccess(CollectionsUtils.flatten(res))
+		]))
+		
+		fileNames.forEach[fileName |
+			convert.createNodes(folder.getChild(fileName), node, agg.createCallback());
+		]
+		
 	}
 
 	static def determineLocallyChangedFiles(NodesMetadata metadata, FileItem folder) {

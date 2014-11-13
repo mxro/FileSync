@@ -33,4 +33,7 @@ public class FileToTextNode implements Convert {
     ops.add(_function);
     cb.onSuccess(ops);
   }
+  
+  public void createNodes(final FileItem source, final Node node, final ValueCallback<List<NetworkOperation>> cb) {
+  }
 }

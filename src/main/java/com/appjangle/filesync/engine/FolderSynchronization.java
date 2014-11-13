@@ -6,6 +6,7 @@ import de.mxro.file.FileItem;
 import io.nextweb.Node;
 
 @SuppressWarnings("all")
-public interface FolderSynchronization {
-  public abstract void nodeToFolder(final Node node, final FileItem file, final ValueCallback<FolderSynchronizationResult> cb);
+public class FolderSynchronization {
+  public void nodeToFolder(final Node node, final FileItem file, final ValueCallback<FolderSynchronizationResult> cb) {
+  }
 }

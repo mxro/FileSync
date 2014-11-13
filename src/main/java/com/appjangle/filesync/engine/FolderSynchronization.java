@@ -30,6 +30,7 @@ public class FolderSynchronization {
       FileItem _child = metadata.getChild("nodes.xml");
       final NodesMetadata nodes = MetadataUtilsJre.readFromFile(_child);
       final ArrayList<String> locallyAddedFiles = this.determineLocallyAddedFiles(nodes, folder);
+      final ArrayList<String> locallyRemovedFiles = this.determineLocallyRemovedFiles(nodes, folder);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -42,6 +43,15 @@ public class FolderSynchronization {
     final ArrayList<String> currentNames = this.getNames(_children_1);
     currentNames.removeAll(previousNames);
     return currentNames;
+  }
+  
+  public ArrayList<String> determineLocallyRemovedFiles(final NodesMetadata metadata, final FileItem folder) {
+    List<FileItemMetaData> _children = metadata.getChildren();
+    final ArrayList<String> previousNames = this.getNamesFromCache(_children);
+    List<FileItem> _children_1 = folder.getChildren();
+    final ArrayList<String> currentNames = this.getNames(_children_1);
+    previousNames.removeAll(currentNames);
+    return previousNames;
   }
   
   public ArrayList<String> getNamesFromCache(final List<FileItemMetaData> cachedChildren) {

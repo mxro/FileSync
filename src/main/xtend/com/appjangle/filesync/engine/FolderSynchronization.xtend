@@ -28,6 +28,10 @@ class FolderSynchronization {
 		
 		val locallyAddedFiles = determineLocallyAddedFiles(nodes, folder)
 		
+		
+		val locallyRemovedFiles = determineLocallyRemovedFiles(nodes, folder)
+		
+		
 	}
 	
 	def determineLocallyAddedFiles(NodesMetadata metadata, FileItem folder) {
@@ -38,6 +42,17 @@ class FolderSynchronization {
 		
 		currentNames.removeAll(previousNames)
 		return currentNames
+		
+	}
+	
+	def determineLocallyRemovedFiles(NodesMetadata metadata, FileItem folder) {
+
+		val previousNames = getNamesFromCache(metadata.children)
+		
+		val currentNames = getNames(folder.children)
+		
+		previousNames.removeAll(currentNames)
+		return previousNames
 		
 	}
 	

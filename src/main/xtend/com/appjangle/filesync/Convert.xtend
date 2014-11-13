@@ -12,7 +12,7 @@ interface Convert {
 	def void update(NodesMetadata metadata, FileItem source, Node parent, ValueCallback<List<NetworkOperation>> cb)
 	
 	
-	def void createNodes(NodesMetadata metadata,FileItem source, Node parent, ValueCallback<List<NetworkOperation>> cb)
+	def void createNodes(NodesMetadata metadata, FileItem source, Node parent, ValueCallback<List<NetworkOperation>> cb)
 	
 	
 	def void deleteNodes(NodesMetadata metadata, FileItemMetadata cachedFile, Node parent, ValueCallback<List<NetworkOperation>> cb);

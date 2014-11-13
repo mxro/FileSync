@@ -41,7 +41,7 @@ class FolderSynchronization {
 	}
 	
 	
-	def getNames(List<FileItemMetaData> cachedChildren) {
+	def getNamesFromCache(List<FileItemMetaData> cachedChildren) {
 		
 		
 		val res = new ArrayList<String>(cachedChildren.size)

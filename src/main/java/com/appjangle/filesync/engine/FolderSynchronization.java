@@ -20,7 +20,7 @@ public class FolderSynchronization {
     final List<FileItemMetaData> cachedChildren = metadata.getChildren();
   }
   
-  public ArrayList<String> getNames(final List<FileItemMetaData> cachedChildren) {
+  public ArrayList<String> getNamesFromCache(final List<FileItemMetaData> cachedChildren) {
     int _size = cachedChildren.size();
     final ArrayList<String> res = new ArrayList<String>(_size);
     for (final FileItemMetaData fileItemMetaData : cachedChildren) {

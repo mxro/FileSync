@@ -11,6 +11,9 @@ import java.util.List
 
 class FolderSynchronization {
 
+
+
+
 	def nodeToFolder(Node node, FileItem folder, ValueCallback<NodeToFolderSynchronizationResult> cb) {
 
 		if (!folder.directory)

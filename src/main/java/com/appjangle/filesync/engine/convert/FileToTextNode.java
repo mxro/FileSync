@@ -15,6 +15,10 @@ import java.util.List;
 
 @SuppressWarnings("all")
 public class FileToTextNode implements Convert {
+  public String fileNameToAddress(final String fileName) {
+    return fileName;
+  }
+  
   public void update(final FileItem source, final Node node, final ValueCallback<List<NetworkOperation>> cb) {
     final String content = source.getText();
     final LinkedList<NetworkOperation> ops = new LinkedList<NetworkOperation>();

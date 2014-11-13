@@ -11,6 +11,10 @@ import java.util.List
 
 class FileToTextNode implements Convert {
 
+	def fileNameToAddress(String fileName) {
+		return fileName
+	}
+
 	override update(FileItem source, Node node, ValueCallback<List<NetworkOperation>> cb) {
 
 		val content = source.text

@@ -17,17 +17,21 @@ public class FolderSynchronization {
   }
   
   public void determineLocallyChangedFiles(final NodesMetadata metadata, final FileItem folder) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nmismatched input \'}\' expecting \'(\'");
+    final List<FileItemMetaData> cachedChildren = metadata.getChildren();
   }
   
   public ArrayList<String> getNames(final List<FileItemMetaData> cachedChildren) {
-    ArrayList<String> _xblockexpression = null;
-    {
-      int _size = cachedChildren.size();
-      final ArrayList<String> res = new ArrayList<String>(_size);
-      _xblockexpression = res;
+    int _size = cachedChildren.size();
+    final ArrayList<String> res = new ArrayList<String>(_size);
+    for (final FileItemMetaData fileItemMetaData : cachedChildren) {
+      String _name = fileItemMetaData.name();
+      res.add(_name);
     }
-    return _xblockexpression;
+    return res;
+  }
+  
+  public ArrayList<String> getNames(final List<FileItem> cachedChildren) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method name is undefined for the type FolderSynchronization");
   }
 }

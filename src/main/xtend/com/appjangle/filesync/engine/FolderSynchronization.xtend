@@ -35,9 +35,7 @@ class FolderSynchronization {
 		
 		val cachedChildren = metadata.getChildren
 		
-		for (FileItem child: folder.getChildren) {
-			if
-		}
+		
 		
 		
 	}
@@ -48,8 +46,26 @@ class FolderSynchronization {
 		
 		val res = new ArrayList<String>(cachedChildren.size)
 		
+		for (FileItemMetaData fileItemMetaData: cachedChildren) {
+			res.add(fileItemMetaData.name)
+		}
 		
-		res
+		
+		return res
+		
+	}
+	
+	def getNames(List<FileItem> cachedChildren) {
+		
+		
+		val res = new ArrayList<String>(cachedChildren.size)
+		
+		for (FileItem fileItemMetaData: cachedChildren) {
+			res.add(fileItemMetaData.name)
+		}
+		
+		
+		return res
 		
 	}
 	

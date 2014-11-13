@@ -63,7 +63,7 @@ class GetLocalOperationsProcess {
 
 
 		val agg = Async.collect(fileNames.size, Async.embed(cb, [ res |
-			
+			CollectionUtils.
 		]))
 
 		fileNames.forEach[ fileName | 

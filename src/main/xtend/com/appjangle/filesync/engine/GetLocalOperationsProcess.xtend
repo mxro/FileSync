@@ -5,6 +5,7 @@ import com.appjangle.filesync.NetworkOperation
 import com.appjangle.filesync.engine.metadata.FileItemMetaData
 import com.appjangle.filesync.engine.metadata.MetadataUtilsJre
 import com.appjangle.filesync.engine.metadata.NodesMetadata
+import de.mxro.async.Async
 import de.mxro.async.callbacks.ValueCallback
 import de.mxro.file.FileItem
 import io.nextweb.Node
@@ -58,14 +59,18 @@ class GetLocalOperationsProcess {
 		
 	}
 
-	def createOperationsFromChangedFiles(List<String> fileNames,  int idx, List<NetworkOperation> res, ValueCallback<List<NetworkOperation>> cb) {
+	def createOperationsFromChangedFiles(List<String> fileNames, ValueCallback<List<NetworkOperation>> cb) {
 
-		if (idx >= fileNames.size) {
-			cb.onSuccess(res)
-			return
-		}
+
+		val agg = Async.collect(fileNames.size, Async.forwardExceptions(cb, [ res |
 			
-		convert.update(folder.getChild(fileNames.get(idx)), node, cb);
+		]))
+
+		fileNames.forEach[ fileName | 
+			convert.update(folder.getChild(fileName), node, agg.createCallback());
+		]
+			
+		
 	}
 
 	static def determineLocallyChangedFiles(NodesMetadata metadata, FileItem folder) {

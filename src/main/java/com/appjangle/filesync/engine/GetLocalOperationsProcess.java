@@ -3,17 +3,17 @@ package com.appjangle.filesync.engine;
 import com.appjangle.filesync.Convert;
 import com.appjangle.filesync.NetworkOperation;
 import com.appjangle.filesync.engine.metadata.FileItemMetaData;
-import com.appjangle.filesync.engine.metadata.MetadataUtilsJre;
 import com.appjangle.filesync.engine.metadata.NodesMetadata;
-import com.google.common.base.Objects;
+import de.mxro.async.Aggregator;
+import de.mxro.async.Async;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
+import de.mxro.fn.Closure;
 import io.nextweb.Node;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
-import org.eclipse.xtext.xbase.lib.Exceptions;
+import java.util.function.Consumer;
 
 @SuppressWarnings("all")
 public class GetLocalOperationsProcess {
@@ -24,54 +24,27 @@ public class GetLocalOperationsProcess {
   private final FileItem folder = null;
   
   public ArrayList<NetworkOperation> getLocalOperations(final ValueCallback<List<NetworkOperation>> cb) {
-    try {
-      boolean _isDirectory = this.folder.isDirectory();
-      boolean _not = (!_isDirectory);
-      if (_not) {
-        throw new Exception(("File passed and not directory. " + this.folder));
-      }
-      boolean _exists = this.folder.exists();
-      boolean _not_1 = (!_exists);
-      if (_not_1) {
-        throw new Exception(("File passed does not exist. " + this.folder));
-      }
-      final FileItem metadata = this.folder.assertFolder(".filesync-meta");
-      metadata.setVisible(false);
-      FileItem _child = metadata.getChild("nodes.xml");
-      final NodesMetadata nodes = MetadataUtilsJre.readFromFile(_child);
-      boolean _equals = Objects.equal(nodes, null);
-      if (_equals) {
-        return new ArrayList<NetworkOperation>(0);
-      }
-      final ArrayList<String> locallyAddedFiles = GetLocalOperationsProcess.determineLocallyAddedFiles(nodes, this.folder);
-      final ArrayList<String> locallyRemovedFiles = GetLocalOperationsProcess.determineLocallyRemovedFiles(nodes, this.folder);
-      final ArrayList<String> locallyChangedFiles = GetLocalOperationsProcess.determineLocallyChangedFiles(nodes, this.folder);
-      LinkedList<NetworkOperation> _linkedList = new LinkedList<NetworkOperation>();
-      this.createOperationsFromChangedFiles(locallyChangedFiles, 0, _linkedList, new ValueCallback<List<NetworkOperation>>() {
-        public void onSuccess(final List<NetworkOperation> value) {
-          cb.onSuccess(value);
-        }
-        
-        public void onFailure(final Throwable t) {
-          cb.onFailure(t);
-        }
-      });
-      return null;
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nInvalid number of arguments. The method createOperationsFromChangedFiles(List<String>, ValueCallback<List<NetworkOperation>>) is not applicable for the arguments (ArrayList<String>,int,LinkedList<NetworkOperation>,new ValueCallback<List<NetworkOperation>>(){})"
+      + "\nType mismatch: cannot convert from int to ValueCallback<List<NetworkOperation>>");
   }
   
-  public void createOperationsFromChangedFiles(final List<String> fileNames, final int idx, final List<NetworkOperation> res, final ValueCallback<List<NetworkOperation>> cb) {
+  public void createOperationsFromChangedFiles(final List<String> fileNames, final ValueCallback<List<NetworkOperation>> cb) {
     int _size = fileNames.size();
-    boolean _greaterEqualsThan = (idx >= _size);
-    if (_greaterEqualsThan) {
-      cb.onSuccess(res);
-      return;
-    }
-    String _get = fileNames.get(idx);
-    FileItem _child = this.folder.getChild(_get);
-    this.convert.update(_child, this.node, cb);
+    final Closure<List<List<NetworkOperation>>> _function = new Closure<List<List<NetworkOperation>>>() {
+      public void apply(final List<List<NetworkOperation>> res) {
+      }
+    };
+    ValueCallback<List<List<NetworkOperation>>> _forwardExceptions = Async.<List<List<NetworkOperation>>>forwardExceptions(cb, _function);
+    final Aggregator<List<NetworkOperation>> agg = Async.<List<NetworkOperation>>collect(_size, _forwardExceptions);
+    final Consumer<String> _function_1 = new Consumer<String>() {
+      public void accept(final String fileName) {
+        FileItem _child = GetLocalOperationsProcess.this.folder.getChild(fileName);
+        ValueCallback<List<NetworkOperation>> _createCallback = agg.createCallback();
+        GetLocalOperationsProcess.this.convert.update(_child, GetLocalOperationsProcess.this.node, _createCallback);
+      }
+    };
+    fileNames.forEach(_function_1);
   }
   
   public static ArrayList<String> determineLocallyChangedFiles(final NodesMetadata metadata, final FileItem folder) {

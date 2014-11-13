@@ -60,8 +60,8 @@ class FolderSynchronization {
 		
 		val res = new ArrayList<String>(cachedChildren.size)
 		
-		for (FileItem fileItemMetaData: cachedChildren) {
-			res.add(fileItemMetaData.name)
+		for (FileItem fileItem: cachedChildren) {
+			res.add(fileItem.name)
 		}
 		
 		

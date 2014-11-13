@@ -31,7 +31,12 @@ public class FolderSynchronization {
   }
   
   public ArrayList<String> getNames(final List<FileItem> cachedChildren) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method name is undefined for the type FolderSynchronization");
+    int _size = cachedChildren.size();
+    final ArrayList<String> res = new ArrayList<String>(_size);
+    for (final FileItem fileItem : cachedChildren) {
+      String _name = fileItem.getName();
+      res.add(_name);
+    }
+    return res;
   }
 }

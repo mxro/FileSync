@@ -20,11 +20,11 @@ class FileToTextNode implements FileToNodes {
 		
 		ops.add([ ctx |
 			
-			ctx.node.setValue(content)
+			ctx.node.setValueSafe(content).catchExceptions([er| cb.onFailure(er.exception())
 			
 		])
 		
-		ops
+		cb.onSuccess(ops)
 		
 	}
 	

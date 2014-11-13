@@ -12,6 +12,6 @@ import java.util.List;
 public class FileToTextNode implements FileToNodes {
   public void update(final FileItem source, final Node node, final ValueCallback<List<Closure<NetworkOperationContext>>> cb) {
     throw new Error("Unresolved compilation problems:"
-      + "\nThis expression is not allowed in this context, since it doesn\'t cause any side effects.");
+      + "\nmismatched input \'}\' expecting \']\'");
   }
 }

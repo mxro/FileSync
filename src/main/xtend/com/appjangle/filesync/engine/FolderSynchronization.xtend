@@ -20,7 +20,9 @@ class FolderSynchronization {
 		val metadata = folder.assertFolder(".filesync-meta")
 		metadata.visible = false;
 		
-		MetadataUtilsJre.readFromFile(metadata.getChild("nodes.xml"))
+		val nodes = MetadataUtilsJre.readFromFile(metadata.getChild("nodes.xml"))
+		
+		
 		
 	}
 	

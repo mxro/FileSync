@@ -2,6 +2,7 @@ package com.appjangle.filesync.engine;
 
 import com.appjangle.filesync.engine.NodeToFolderSynchronizationResult;
 import com.appjangle.filesync.engine.metadata.MetadataUtilsJre;
+import com.appjangle.filesync.engine.metadata.NodesMetadata;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
 import io.nextweb.Node;
@@ -24,7 +25,7 @@ public class FolderSynchronization {
       final FileItem metadata = folder.assertFolder(".filesync-meta");
       metadata.setVisible(false);
       FileItem _child = metadata.getChild("nodes.xml");
-      MetadataUtilsJre.readFromFile(_child);
+      final NodesMetadata nodes = MetadataUtilsJre.readFromFile(_child);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

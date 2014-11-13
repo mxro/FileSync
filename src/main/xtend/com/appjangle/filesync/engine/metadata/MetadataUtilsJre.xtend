@@ -15,7 +15,6 @@ class MetadataUtilsJre {
 			file.create
 			
 			
-			
 			return newNodesMetadata
 			
 			} 

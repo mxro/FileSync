@@ -7,8 +7,7 @@ import de.mxro.file.FileItem;
 public class MetadataUtilsJre {
   public static NodesMetadata readFromFile(final FileItem file) {
     throw new Error("Unresolved compilation problems:"
-      + "\nno viable alternative at input \')\'"
-      + "\nAmbiguous feature call.\nThe methods\n\tfromXML(String) in XStream,\n\tfromXML(Reader) in XStream and\n\tfromXML(InputStream) in XStream\nall match."
-      + "\nType mismatch: cannot convert from Object to NodesMetadata");
+      + "\nType mismatch: cannot convert from Object to NodesMetadata"
+      + "\nType mismatch: cannot convert from FileItem to JreFileItem");
   }
 }

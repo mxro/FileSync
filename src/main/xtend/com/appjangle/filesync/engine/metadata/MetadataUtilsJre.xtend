@@ -3,7 +3,7 @@ package com.appjangle.filesync.engine.metadata
 import de.mxro.file.FileItem
 import com.thoughtworks.xstream.XStream
 
-class MetadataUtils {
+class MetadataUtilsJre {
 	
 	
 	def static NodesMetadata readFromFile(FileItem file) {

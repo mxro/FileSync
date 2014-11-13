@@ -6,7 +6,7 @@ import io.nextweb.Node
 
 class FolderSynchronization {
 	
-	def void nodeToFolder(Node node, FileItem file, ValueCallback<FolderSynchronizationResult> cb) {
+	def void nodeToFolder(Node node, FileItem file, ValueCallback<NodeToFolderSynchronizationResult> cb) {
 		
 	}
 	

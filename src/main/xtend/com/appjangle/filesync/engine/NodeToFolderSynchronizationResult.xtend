@@ -3,7 +3,7 @@ package com.appjangle.filesync.engine
 import de.mxro.file.FileItem
 import java.util.List
 
-interface FolderSynchronizationResult {
+interface NodeToFolderSynchronizationResult {
 	
 	def boolean isSuccess()
 	

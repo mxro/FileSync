@@ -12,7 +12,10 @@ class FolderSynchronization {
 		  throw new Exception('File passed and not directory. '+folder)
 		  
 		
-		
+		if (!folder.exists)
+		  throw new Exception('File passed does not exist. '+folder)
+		  
+		  
 		
 	}
 	

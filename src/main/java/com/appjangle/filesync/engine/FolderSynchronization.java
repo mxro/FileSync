@@ -15,6 +15,11 @@ public class FolderSynchronization {
       if (_not) {
         throw new Exception(("File passed and not directory. " + folder));
       }
+      boolean _exists = folder.exists();
+      boolean _not_1 = (!_exists);
+      if (_not_1) {
+        throw new Exception(("File passed does not exist. " + folder));
+      }
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

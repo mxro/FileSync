@@ -13,7 +13,7 @@
 		<module.draftCompile>true</module.draftCompile>
 		<module.clientVersion>0.3.5</module.clientVersion>
 		<module.importedPackages>
-			
+
 			*
 		</module.importedPackages>
 		<module.exportedPackages>
@@ -28,11 +28,17 @@
 	<dependencies>
 
 		<dependency>
+			<groupId>de.mxro.file</groupId>
+			<artifactId>file-api</artifactId>
+			<version>[0.0.1,)</version>
+		</dependency>
+
+		<dependency>
 			<groupId>com.appjangle.jreinternal</groupId>
 			<artifactId>appjangle-jre-internal</artifactId>
 			<version>[0.0.1,)</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.eclipse.xtend</groupId>
 			<artifactId>org.eclipse.xtend.lib</artifactId>
@@ -226,8 +232,8 @@
 		</snapshotRepository> </distributionManagement> <repositories> <repository> 
 		<id>Appjangle Releases</id> <url>http://maven.appjangle.com/appjangle/releases</url> 
 		</repository> </repositories> -->
-		
-		<scm>
+
+	<scm>
 		<connection>scm:git:git@github.com:mxro/FileSync.git</connection>
 		<url>https://github.com/mxro/FileSync</url>
 		<developerConnection>scm:git:git@github.com:mxro/FileSync.git

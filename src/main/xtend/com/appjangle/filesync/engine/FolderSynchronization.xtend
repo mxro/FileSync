@@ -26,19 +26,18 @@ class FolderSynchronization {
 		
 		val nodes = MetadataUtilsJre.readFromFile(metadata.getChild("nodes.xml"))
 		
-		val locallyChangedFiles = determineLocallyChangedFiles(nodes, folder)
+		val locallyAddedFiles = determineLocallyAddedFiles(nodes, folder)
 		
 	}
 	
-	def determineLocallyChangedFiles(NodesMetadata metadata, FileItem folder) {
-		
-		
+	def determineLocallyAddedFiles(NodesMetadata metadata, FileItem folder) {
+
 		val previousNames = getNamesFromCache(metadata.children)
-		
 		
 		val currentNames = getNames(folder.children)
 		
-		
+		currentNames.removeAll(previousNames)
+		return currentNames
 		
 	}
 	

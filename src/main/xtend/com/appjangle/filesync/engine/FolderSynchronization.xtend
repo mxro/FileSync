@@ -3,6 +3,7 @@ package com.appjangle.filesync.engine
 import de.mxro.async.callbacks.ValueCallback
 import de.mxro.file.FileItem
 import io.nextweb.Node
+import com.appjangle.filesync.engine.metadata.MetadataUtilsJre
 
 class FolderSynchronization {
 	
@@ -19,7 +20,7 @@ class FolderSynchronization {
 		val metadata = folder.assertFolder(".filesync-meta")
 		metadata.visible = false;
 		
-		
+		MetadataUtilsJre.readFromFile(metadata.getChild("nodes.xml"))
 		
 	}
 	

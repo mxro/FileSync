@@ -1,6 +1,7 @@
 package com.appjangle.filesync.engine
 
 import com.appjangle.filesync.engine.metadata.Metadata
+import com.appjangle.filesync.engine.metadata.MetadataUtilsJre
 import de.mxro.file.FileItem
 
 class FileUtils {
@@ -15,7 +16,7 @@ class FileUtils {
 			metadataFolder.createFile("nodes.xml")
 		}
 		
-		val metadata = MetadataUtilsJre.readFromFile(metadataFolder.getChild("nodes.xml"))
+		MetadataUtilsJre.readFromFile(metadataFolder.getChild("nodes.xml"))
 	}
 	
 }

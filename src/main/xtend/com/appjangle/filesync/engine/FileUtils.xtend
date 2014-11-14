@@ -1,6 +1,8 @@
 package com.appjangle.filesync.engine
 
 import com.appjangle.filesync.FileOperation
+import com.appjangle.filesync.FileOperationContext
+import com.appjangle.filesync.engine.metadata.Metadata
 import com.appjangle.filesync.engine.metadata.MetadataUtilsJre
 import de.mxro.file.FileItem
 import java.util.List
@@ -24,9 +26,22 @@ class FileUtils {
 		MetadataUtilsJre.readFromFile(metadataFolder.getChild("nodes.xml"))
 	}
 	
-	def execute(List<FileOperation> operations) {
+	def execute(List<FileOperation> operations, FileItem folder, Metadata metadata) {
+		
+		val ctx = new FileOperationContext() {
+			
+			override folder() {
+				folder
+			}
+			
+			override metadata() {
+				metadata
+			}
+			
+		}
 		
 		for (op : operations) {
+			op.apply(ctx)
 			
 		}
 		

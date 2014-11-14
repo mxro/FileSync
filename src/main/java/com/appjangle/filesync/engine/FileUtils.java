@@ -1,6 +1,7 @@
 package com.appjangle.filesync.engine;
 
 import com.appjangle.filesync.FileOperation;
+import com.appjangle.filesync.FileOperationContext;
 import com.appjangle.filesync.engine.metadata.Metadata;
 import com.appjangle.filesync.engine.metadata.MetadataUtilsJre;
 import de.mxro.file.FileItem;
@@ -31,8 +32,18 @@ public class FileUtils {
     return _xblockexpression;
   }
   
-  public void execute(final List<FileOperation> operations) {
+  public void execute(final List<FileOperation> operations, final FileItem folder, final Metadata metadata) {
+    final FileOperationContext ctx = new FileOperationContext() {
+      public FileItem folder() {
+        return folder;
+      }
+      
+      public Metadata metadata() {
+        return metadata;
+      }
+    };
     for (final FileOperation op : operations) {
+      op.apply(ctx);
     }
   }
 }

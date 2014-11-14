@@ -20,6 +20,7 @@ import io.nextweb.Session;
 import io.nextweb.promise.Deferred;
 import io.nextweb.promise.NextwebPromise;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import mx.gwtutils.MxroGWTUtils;
@@ -119,6 +120,19 @@ public class FileToTextNode implements Converter {
             final FileItem file = _folder.createFile(fileName);
             String _value = source.<String>value(String.class);
             file.setText(_value);
+            metadata.add(new ItemMetadata() {
+              public String name() {
+                return fileName;
+              }
+              
+              public Date lastModified() {
+                return new Date();
+              }
+              
+              public String uri() {
+                return source.uri();
+              }
+            });
           }
         };
         ops.add(_function);

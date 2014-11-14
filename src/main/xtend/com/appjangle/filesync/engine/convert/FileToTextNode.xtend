@@ -1,15 +1,16 @@
 package com.appjangle.filesync.engine.convert
 
+import com.appjangle.filesync.Converter
+import com.appjangle.filesync.FileOperation
 import com.appjangle.filesync.NetworkOperation
+import com.appjangle.filesync.engine.metadata.ItemMetadata
+import com.appjangle.filesync.engine.metadata.Metadata
 import de.mxro.async.callbacks.ValueCallback
 import de.mxro.file.FileItem
 import io.nextweb.Node
+import java.util.Date
 import java.util.LinkedList
 import java.util.List
-import com.appjangle.filesync.Converter
-import com.appjangle.filesync.FileOperation
-import com.appjangle.filesync.engine.metadata.Metadata
-import com.appjangle.filesync.engine.metadata.ItemMetadata
 import mx.gwtutils.MxroGWTUtils
 
 import static extension de.mxro.async.Async.embed
@@ -84,7 +85,6 @@ class FileToTextNode implements Converter {
 
 	override createFiles(FileItem folder, Metadata metadata, Node source, ValueCallback<List<FileOperation>> cb) {
 
-		
 		source.getFileName(folder, '.txt', cb.embed([fileName |
 			
 			val ops = new LinkedList<FileOperation>
@@ -95,11 +95,26 @@ class FileToTextNode implements Converter {
 					
 					file.text = source.value(String)
 					
+					metadata.add(new ItemMetadata() {
+						
+						override name() {
+							fileName
+						}
+						
+						override lastModified() {
+							new Date()
+						}
+						
+						override uri() {
+							source.uri()
+						}
+						
+					})
+					
 				]
 			)
 			
 			cb.onSuccess(ops)
-			
 			
 		]))
 	}

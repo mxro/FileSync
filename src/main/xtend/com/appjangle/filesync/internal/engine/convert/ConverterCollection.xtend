@@ -116,16 +116,20 @@ class ConverterCollection implements Converter {
 	
 	override createFiles(FileItem folder, Metadata metadata, Node source, ValueCallback<List<FileOperation>> cb) {
 		findConverter(source, cb.embed [ converter |
-			converter.deleteNodes(metadata, cachedFile, cb)
+			converter.createFiles(folder, metadata, source, cb)
 		])
 	}
 	
 	override updateFiles(FileItem folder, Metadata metadata, Node source, ValueCallback<List<FileOperation>> cb) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		findConverter(source, cb.embed [ converter |
+			converter.updateFiles(folder, metadata, source, cb)
+		])
 	}
 	
 	override removeFiles(FileItem folder, Metadata metadata, ItemMetadata item, ValueCallback<List<FileOperation>> cb) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		findConverter(item, cb.embed [ converter |
+			converter.removeFiles(folder, metadata, item, cb)
+		])
 	}
 	
 }

@@ -166,16 +166,32 @@ public class ConverterCollection implements Converter {
   }
   
   public void createFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field cachedFile is undefined for the type ConverterCollection"
-      + "\nType mismatch: cannot convert from ValueCallback<List<FileOperation>> to ValueCallback<List<NetworkOperation>>");
+    final Closure<Converter> _function = new Closure<Converter>() {
+      public void apply(final Converter converter) {
+        converter.createFiles(folder, metadata, source, cb);
+      }
+    };
+    ValueCallback<Converter> _embed = Async.<Converter>embed(cb, _function);
+    this.findConverter(source, _embed);
   }
   
   public void updateFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
-    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+    final Closure<Converter> _function = new Closure<Converter>() {
+      public void apply(final Converter converter) {
+        converter.updateFiles(folder, metadata, source, cb);
+      }
+    };
+    ValueCallback<Converter> _embed = Async.<Converter>embed(cb, _function);
+    this.findConverter(source, _embed);
   }
   
   public void removeFiles(final FileItem folder, final Metadata metadata, final ItemMetadata item, final ValueCallback<List<FileOperation>> cb) {
-    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+    final Closure<Converter> _function = new Closure<Converter>() {
+      public void apply(final Converter converter) {
+        converter.removeFiles(folder, metadata, item, cb);
+      }
+    };
+    ValueCallback<Converter> _embed = Async.<Converter>embed(cb, _function);
+    this.findConverter(item, _embed);
   }
 }

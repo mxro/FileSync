@@ -33,6 +33,13 @@ class FileToTextNode implements Converter {
 		
 		val nameWithoutExtension = MxroGWTUtils.removeExtension(source.name)
 		
+		val ops = newArrayList([ ctx |
+			
+			newArrayList(ctx.parent.appendSafe(source.text, "./"+nameWithoutExtension))
+				
+		])
+		
+		cb.onSuccess(ops)
 		
 		
 		

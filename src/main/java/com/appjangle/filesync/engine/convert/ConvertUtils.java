@@ -83,10 +83,13 @@ public class ConvertUtils {
         Session _session = toNode.session();
         Link _link = _session.link("https://admin1.linnk.it/types/v01/isHtmlValue");
         toNode.appendSafe(_link);
+        Session _session_1 = toNode.session();
+        Link _link_1 = _session_1.link("https://u1.linnk.it/6wbnoq/Types/aTemplate");
+        toNode.appendSafe(_link_1);
       }
-      Session _session_1 = toNode.session();
-      Link _link_1 = _session_1.link("https://u1.linnk.it/6wbnoq/Types/aTextValue");
-      _xblockexpression = toNode.appendSafe(_link_1);
+      Session _session_2 = toNode.session();
+      Link _link_2 = _session_2.link("https://u1.linnk.it/6wbnoq/Types/aTextValue");
+      _xblockexpression = toNode.appendSafe(_link_2);
     }
     return _xblockexpression;
   }

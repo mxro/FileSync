@@ -103,6 +103,11 @@ public class ConverterCollection implements Converter {
     throw new RuntimeException(("Cannot find converter for " + forItem));
   }
   
+  private void findConverter(final Node forNode, final ValueCallback<Converter> cb) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nType mismatch: cannot convert from ValueCallback<Object> to ValueCallback<Boolean>");
+  }
+  
   public void createNodes(final Metadata metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {
     final Closure<Converter> _function = new Closure<Converter>() {
       public void apply(final Converter converter) {
@@ -134,7 +139,9 @@ public class ConverterCollection implements Converter {
   }
   
   public void createFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
-    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field cachedFile is undefined for the type ConverterCollection"
+      + "\nType mismatch: cannot convert from ValueCallback<List<FileOperation>> to ValueCallback<List<NetworkOperation>>");
   }
   
   public void updateFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {

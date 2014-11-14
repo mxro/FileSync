@@ -75,6 +75,21 @@ class ConverterCollection implements Converter {
 		throw new RuntimeException("Cannot find converter for "+forItem)
 	}
 	
+	def private findConverter(Node forNode, ValueCallback<Converter> cb) {
+		Async.forEach(converters, [c, itmcb |
+			c.worksOn(forNode, itmcb)
+			
+		], cb.embed [res |
+			for (item : res) {
+				if (item instanceof Converter) {
+					cb.onSuccess(item)
+					return;
+				}
+			}
+			cb.onFailure(new Exception("Cannot find converter for "+forNode))
+		])
+	}
+	
 	override createNodes(Metadata metadata, FileItem source, ValueCallback<List<NetworkOperation>> cb) {
 		findConverter(source, cb.embed [ converter |
 			converter.createNodes(metadata, source, cb)
@@ -94,7 +109,9 @@ class ConverterCollection implements Converter {
 	}
 	
 	override createFiles(FileItem folder, Metadata metadata, Node source, ValueCallback<List<FileOperation>> cb) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		findConverter(source, cb.embed [ converter |
+			converter.deleteNodes(metadata, cachedFile, cb)
+		])
 	}
 	
 	override updateFiles(FileItem folder, Metadata metadata, Node source, ValueCallback<List<FileOperation>> cb) {

@@ -10,7 +10,7 @@ interface Metadata {
 	
 	def ItemMetadata get(String name)
 	
-	def ItemMetadata getChild(Node forNode)
+	def ItemMetadata get(Node forNode)
 	
 	def Metadata add(ItemMetadata itemMetadata)
 	

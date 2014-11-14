@@ -10,7 +10,7 @@ public interface Metadata {
   
   public abstract ItemMetadata get(final String name);
   
-  public abstract ItemMetadata getChild(final Node forNode);
+  public abstract ItemMetadata get(final Node forNode);
   
   public abstract Metadata add(final ItemMetadata itemMetadata);
   

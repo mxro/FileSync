@@ -25,9 +25,14 @@ class ConvertUtils {
 			for (item: res) {
 				if (item instanceof String) {
 					cb.onSuccess(item)
+					return
 				}
 				
 			}
+
+			// when no label defined
+			cb.onSuccess(fromNode.uri().substring(fromNode.uri().lastIndexOf("/")))
+			
 		]));
 		
 		labelTypes.forEach [ labelType | 

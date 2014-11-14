@@ -38,8 +38,14 @@ public class ConvertUtils {
         for (final Object item : res) {
           if ((item instanceof String)) {
             cb.onSuccess(((String)item));
+            return;
           }
         }
+        String _uri = fromNode.uri();
+        String _uri_1 = fromNode.uri();
+        int _lastIndexOf = _uri_1.lastIndexOf("/");
+        String _substring = _uri.substring(_lastIndexOf);
+        cb.onSuccess(_substring);
       }
     };
     ValueCallback<List<Object>> _embed = Async.<List<Object>>embed(cb, _function);

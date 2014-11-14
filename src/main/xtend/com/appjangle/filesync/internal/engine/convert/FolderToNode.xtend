@@ -13,15 +13,15 @@ import java.util.List
 import mx.gwtutils.MxroGWTUtils
 
 class FolderToNode implements Converter {
-	
+
 	override worksOn(FileItem source) {
 		source.directory
 	}
-	
+
 	override worksOn(Node node, ValueCallback<Boolean> cb) {
 		cb.onSuccess(true)
 	}
-	
+
 	override createNodes(Metadata metadata, FileItem source, ValueCallback<List<NetworkOperation>> cb) {
 		val simpleName = MxroGWTUtils.getSimpleName(source.name)
 		val ops = new LinkedList<NetworkOperation>
@@ -36,13 +36,13 @@ class FolderToNode implements Converter {
 
 		cb.onSuccess(ops)
 	}
-	
-	override update(Metadata metadata, FileItem source, ValueCallback<List<NetworkOperation>> cb) {
-		// folders must not be updated		
 
+	override update(Metadata metadata, FileItem source, ValueCallback<List<NetworkOperation>> cb) {
+
+		// folders must not be updated		
 		cb.onSuccess(newArrayList)
 	}
-	
+
 	override deleteNodes(Metadata metadata, ItemMetadata cachedFile, ValueCallback<List<NetworkOperation>> cb) {
 		val address = cachedFile.uri
 
@@ -55,17 +55,52 @@ class FolderToNode implements Converter {
 
 		cb.onSuccess(ops)
 	}
-	
+
 	override createFiles(FileItem folder, Metadata metadata, Node source, ValueCallback<List<FileOperation>> cb) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		source.getFileName([fileName|
+			val ops = new LinkedList<FileOperation>
+			ops.add(
+				[ ctx |
+					val file = ctx.folder.createFile(fileName)
+					file.text = source.value(String)
+					ctx.metadata.add(
+						new ItemMetadata() {
+
+							override name() {
+								fileName
+							}
+
+							override lastModified() {
+								new Date() // TODO replace with last modified if available from node !!
+							}
+
+							override uri() {
+								source.uri()
+							}
+
+							override hash() {
+								file.hash
+							}
+
+							override converter() {
+								FileToTextNode.this.class.toString
+							}
+
+						})
+				]
+			)
+			
+			])
 	}
-	
+
 	override updateFiles(FileItem folder, Metadata metadata, Node source, ValueCallback<List<FileOperation>> cb) {
 		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
-	
+
 	override removeFiles(FileItem folder, Metadata metadata, ItemMetadata item, ValueCallback<List<FileOperation>> cb) {
 		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
-	
+
+	extension ConvertUtils utils = new ConvertUtils()
+
 }

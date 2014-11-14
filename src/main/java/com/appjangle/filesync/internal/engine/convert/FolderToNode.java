@@ -6,6 +6,7 @@ import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.NetworkOperation;
 import com.appjangle.filesync.NetworkOperationContext;
+import com.appjangle.filesync.internal.engine.convert.ConvertUtils;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
 import de.mxro.fn.Success;
@@ -20,6 +21,7 @@ import java.util.LinkedList;
 import java.util.List;
 import mx.gwtutils.MxroGWTUtils;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
+import org.eclipse.xtext.xbase.lib.Extension;
 
 @SuppressWarnings("all")
 public class FolderToNode implements Converter {
@@ -73,7 +75,11 @@ public class FolderToNode implements Converter {
   }
   
   public void createFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
-    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+    throw new Error("Unresolved compilation problems:"
+      + "\nDate cannot be resolved."
+      + "\nNo enclosing instance of the type FileToTextNode is accessible in scope"
+      + "\nType mismatch: cannot convert from (String)=>boolean to ValueCallback<String>"
+      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or use the closures in a more specific context.");
   }
   
   public void updateFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
@@ -83,4 +89,7 @@ public class FolderToNode implements Converter {
   public void removeFiles(final FileItem folder, final Metadata metadata, final ItemMetadata item, final ValueCallback<List<FileOperation>> cb) {
     throw new UnsupportedOperationException("TODO: auto-generated method stub");
   }
+  
+  @Extension
+  private ConvertUtils utils = new ConvertUtils();
 }

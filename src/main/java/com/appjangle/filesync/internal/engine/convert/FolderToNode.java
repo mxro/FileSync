@@ -125,7 +125,8 @@ public class FolderToNode implements Converter {
   }
   
   public void updateFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
-    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+    ArrayList<FileOperation> _newArrayList = CollectionLiterals.<FileOperation>newArrayList();
+    cb.onSuccess(_newArrayList);
   }
   
   public void removeFiles(final FileItem folder, final Metadata metadata, final ItemMetadata item, final ValueCallback<List<FileOperation>> cb) {

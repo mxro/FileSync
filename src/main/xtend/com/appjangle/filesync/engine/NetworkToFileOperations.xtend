@@ -2,14 +2,16 @@ package com.appjangle.filesync.engine
 
 import com.appjangle.filesync.Converter
 import com.appjangle.filesync.FileOperation
+import com.appjangle.filesync.engine.metadata.ItemMetadata
 import com.appjangle.filesync.engine.metadata.Metadata
+import de.mxro.async.Async
 import de.mxro.async.callbacks.ValueCallback
 import de.mxro.file.FileItem
+import de.mxro.fn.collections.CollectionsUtils
 import io.nextweb.Node
 import io.nextweb.NodeList
 import java.util.ArrayList
 import java.util.List
-import com.appjangle.filesync.engine.metadata.ItemMetadata
 
 /**
  * Determines operations to be performed on local files based on remote changes made in the cloud.
@@ -46,6 +48,21 @@ class NetworkToFileOperations {
 			
 		]
 		
+		
+	}
+	
+	def deduceOperations(List<Node> remotelyAdded, ValueCallback<List<FileOperation>> cb) {
+		
+		val agg = Async.collect(remotelyAdded.size, Async.embed(cb, [ res |
+			cb.onSuccess(CollectionsUtils.flatten(res))
+		]))
+		
+		for (newNode : remotelyAdded) {
+			
+			converter.createFiles(folder, metadata, newNode, agg.createCallback)
+			
+			
+		}
 		
 	}
 	

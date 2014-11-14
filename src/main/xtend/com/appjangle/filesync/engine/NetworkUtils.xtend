@@ -8,6 +8,8 @@ import de.mxro.fn.Success
 import io.nextweb.Node
 import java.util.List
 
+import static extension de.mxro.async.Async.embed
+
 class NetworkUtils {
 
 	def execute(List<NetworkOperation> ops, Node onNode, ValueCallback<Success> cb) {
@@ -27,13 +29,17 @@ class NetworkUtils {
 			})
 			
 			
-			Async.collect(qries.size)
+			val cbs = Async.collect(qries.size, cb.embed([
+				
+			]))
+			
 			
 			for ( qry: qries) {
+				val itmcb = cbs.createCallback
 				
 				val res = onNode.session().promise(qry)
 				
-				res.catchExceptions()
+				res.catchExceptions([er | itmcb.onFailure(er.exception) ])
 				
 				
 				

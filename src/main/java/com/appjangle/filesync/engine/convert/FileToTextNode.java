@@ -1,6 +1,7 @@
 package com.appjangle.filesync.engine.convert;
 
 import com.appjangle.filesync.Converter;
+import com.appjangle.filesync.FileOperation;
 import com.appjangle.filesync.NetworkOperation;
 import com.appjangle.filesync.NetworkOperationContext;
 import com.appjangle.filesync.engine.metadata.FileItemMetadata;
@@ -20,6 +21,28 @@ import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 
 @SuppressWarnings("all")
 public class FileToTextNode implements Converter {
+  public boolean worksOn(final FileItem source) {
+    boolean _xblockexpression = false;
+    {
+      final String name = source.getName();
+      boolean _or = false;
+      boolean _endsWith = name.endsWith(".txt");
+      if (_endsWith) {
+        _or = true;
+      } else {
+        boolean _endsWith_1 = name.endsWith(".xml");
+        _or = _endsWith_1;
+      }
+      _xblockexpression = _or;
+    }
+    return _xblockexpression;
+  }
+  
+  public void worksOn(final Node node, final ValueCallback<Boolean> cb) {
+    Object _value = node.value();
+    cb.onSuccess(Boolean.valueOf((_value instanceof String)));
+  }
+  
   public void createNodes(final NodesMetadata metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {
   }
   
@@ -57,25 +80,6 @@ public class FileToTextNode implements Converter {
     cb.onSuccess(ops);
   }
   
-  public boolean worksOn(final FileItem source) {
-    boolean _xblockexpression = false;
-    {
-      final String name = source.getName();
-      boolean _or = false;
-      boolean _endsWith = name.endsWith(".txt");
-      if (_endsWith) {
-        _or = true;
-      } else {
-        boolean _endsWith_1 = name.endsWith(".xml");
-        _or = _endsWith_1;
-      }
-      _xblockexpression = _or;
-    }
-    return _xblockexpression;
-  }
-  
-  public void worksOn(final Node node, final ValueCallback<Boolean> cb) {
-    Object _value = node.value();
-    cb.onSuccess(Boolean.valueOf((_value instanceof String)));
+  public void createFiles(final NodesMetadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
   }
 }

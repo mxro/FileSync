@@ -9,9 +9,24 @@ import java.util.LinkedList
 import java.util.List
 import com.appjangle.filesync.engine.metadata.FileItemMetadata
 import com.appjangle.filesync.Converter
+import com.appjangle.filesync.FileOperation
 
 class FileToTextNode implements Converter {
 
+
+	override worksOn(FileItem source) {
+		
+		val name = source.name
+		
+		name.endsWith('.txt') || name.endsWith('.xml')
+		
+	}
+	
+	override worksOn(Node node, ValueCallback<Boolean> cb) {
+		
+		cb.onSuccess(node.value() instanceof String)
+		
+	}
 
 	override createNodes(NodesMetadata metadata, FileItem source,  ValueCallback<List<NetworkOperation>> cb) {
 		
@@ -49,18 +64,11 @@ class FileToTextNode implements Converter {
 		cb.onSuccess(ops);
 	}
 	
-	override worksOn(FileItem source) {
-		
-		val name = source.name
-		
-		name.endsWith('.txt') || name.endsWith('.xml')
+	
+	
+	override createFiles(NodesMetadata metadata, Node source, ValueCallback<List<FileOperation>> cb) {
 		
 	}
 	
-	override worksOn(Node node, ValueCallback<Boolean> cb) {
-		
-		cb.onSuccess(node.value() instanceof String)
-		
-	}
 
 }

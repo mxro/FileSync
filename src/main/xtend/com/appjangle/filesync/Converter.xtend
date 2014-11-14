@@ -19,5 +19,5 @@ interface Converter {
 	
 	def void deleteNodes(NodesMetadata metadata, FileItemMetadata cachedFile, ValueCallback<List<NetworkOperation>> cb);
 	
-	
+	def void createFiles(Node source, ValueCallback<List<FileOperation>> cb);
 }

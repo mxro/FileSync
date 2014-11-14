@@ -2,7 +2,7 @@ package com.appjangle.filesync.engine.metadata
 
 import java.util.Date
 
-interface FileItemMetadata {
+interface ItemMetadata {
 	
 	def String name()
 	

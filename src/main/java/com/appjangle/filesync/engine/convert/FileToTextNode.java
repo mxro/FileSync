@@ -4,8 +4,8 @@ import com.appjangle.filesync.Converter;
 import com.appjangle.filesync.FileOperation;
 import com.appjangle.filesync.NetworkOperation;
 import com.appjangle.filesync.NetworkOperationContext;
-import com.appjangle.filesync.engine.metadata.FileItemMetadata;
-import com.appjangle.filesync.engine.metadata.NodesMetadata;
+import com.appjangle.filesync.engine.metadata.ItemMetadata;
+import com.appjangle.filesync.engine.metadata.Metadata;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
 import de.mxro.fn.Success;
@@ -43,13 +43,13 @@ public class FileToTextNode implements Converter {
     cb.onSuccess(Boolean.valueOf((_value instanceof String)));
   }
   
-  public void createNodes(final NodesMetadata metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {
+  public void createNodes(final Metadata metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {
   }
   
-  public void update(final NodesMetadata metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {
+  public void update(final Metadata metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {
     final String content = source.getText();
     String _name = source.getName();
-    FileItemMetadata _child = metadata.getChild(_name);
+    ItemMetadata _child = metadata.getChild(_name);
     final String address = _child.uri();
     final LinkedList<NetworkOperation> ops = new LinkedList<NetworkOperation>();
     final NetworkOperation _function = new NetworkOperation() {
@@ -64,7 +64,7 @@ public class FileToTextNode implements Converter {
     cb.onSuccess(ops);
   }
   
-  public void deleteNodes(final NodesMetadata metadata, final FileItemMetadata cachedFile, final ValueCallback<List<NetworkOperation>> cb) {
+  public void deleteNodes(final Metadata metadata, final ItemMetadata cachedFile, final ValueCallback<List<NetworkOperation>> cb) {
     final String address = cachedFile.uri();
     final LinkedList<NetworkOperation> ops = new LinkedList<NetworkOperation>();
     final NetworkOperation _function = new NetworkOperation() {
@@ -80,6 +80,6 @@ public class FileToTextNode implements Converter {
     cb.onSuccess(ops);
   }
   
-  public void createFiles(final NodesMetadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
+  public void createFiles(final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
   }
 }

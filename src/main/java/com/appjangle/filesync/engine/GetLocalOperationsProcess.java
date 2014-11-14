@@ -2,9 +2,9 @@ package com.appjangle.filesync.engine;
 
 import com.appjangle.filesync.Converter;
 import com.appjangle.filesync.NetworkOperation;
-import com.appjangle.filesync.engine.metadata.FileItemMetadata;
+import com.appjangle.filesync.engine.metadata.ItemMetadata;
+import com.appjangle.filesync.engine.metadata.Metadata;
 import com.appjangle.filesync.engine.metadata.MetadataUtilsJre;
-import com.appjangle.filesync.engine.metadata.NodesMetadata;
 import com.google.common.base.Objects;
 import de.mxro.async.Aggregator;
 import de.mxro.async.Async;
@@ -27,7 +27,7 @@ public class GetLocalOperationsProcess {
   
   private final FileItem folder = null;
   
-  private NodesMetadata nodes = null;
+  private Metadata nodes = null;
   
   public ArrayList<NetworkOperation> getLocalOperations(final ValueCallback<List<NetworkOperation>> cb) {
     try {
@@ -44,7 +44,7 @@ public class GetLocalOperationsProcess {
       final FileItem metadata = this.folder.assertFolder(".filesync-meta");
       metadata.setVisible(false);
       FileItem _child = metadata.getChild("nodes.xml");
-      NodesMetadata _readFromFile = MetadataUtilsJre.readFromFile(_child);
+      Metadata _readFromFile = MetadataUtilsJre.readFromFile(_child);
       this.nodes = _readFromFile;
       boolean _equals = Objects.equal(this.nodes, null);
       if (_equals) {
@@ -105,7 +105,7 @@ public class GetLocalOperationsProcess {
     final Aggregator<List<NetworkOperation>> agg = Async.<List<NetworkOperation>>collect(_size, _embed);
     final Consumer<String> _function_1 = new Consumer<String>() {
       public void accept(final String fileName) {
-        FileItemMetadata _child = GetLocalOperationsProcess.this.nodes.getChild(fileName);
+        ItemMetadata _child = GetLocalOperationsProcess.this.nodes.getChild(fileName);
         ValueCallback<List<NetworkOperation>> _createCallback = agg.createCallback();
         GetLocalOperationsProcess.this.convert.deleteNodes(GetLocalOperationsProcess.this.nodes, _child, _createCallback);
       }
@@ -133,12 +133,12 @@ public class GetLocalOperationsProcess {
     fileNames.forEach(_function_1);
   }
   
-  public static ArrayList<String> determineLocallyChangedFiles(final NodesMetadata metadata, final FileItem folder) {
+  public static ArrayList<String> determineLocallyChangedFiles(final Metadata metadata, final FileItem folder) {
     ArrayList<String> _xblockexpression = null;
     {
       final ArrayList<String> res = new ArrayList<String>(0);
-      List<FileItemMetadata> _children = metadata.getChildren();
-      for (final FileItemMetadata fileMetadata : _children) {
+      List<ItemMetadata> _children = metadata.getChildren();
+      for (final ItemMetadata fileMetadata : _children) {
         {
           String _name = fileMetadata.name();
           final FileItem item = folder.getChild(_name);
@@ -161,8 +161,8 @@ public class GetLocalOperationsProcess {
     return _xblockexpression;
   }
   
-  public static ArrayList<String> determineLocallyAddedFiles(final NodesMetadata metadata, final FileItem folder) {
-    List<FileItemMetadata> _children = metadata.getChildren();
+  public static ArrayList<String> determineLocallyAddedFiles(final Metadata metadata, final FileItem folder) {
+    List<ItemMetadata> _children = metadata.getChildren();
     final ArrayList<String> previousNames = GetLocalOperationsProcess.getNamesFromCache(_children);
     List<FileItem> _children_1 = folder.getChildren();
     final ArrayList<String> currentNames = GetLocalOperationsProcess.getNames(_children_1);
@@ -170,8 +170,8 @@ public class GetLocalOperationsProcess {
     return currentNames;
   }
   
-  public static ArrayList<String> determineLocallyRemovedFiles(final NodesMetadata metadata, final FileItem folder) {
-    List<FileItemMetadata> _children = metadata.getChildren();
+  public static ArrayList<String> determineLocallyRemovedFiles(final Metadata metadata, final FileItem folder) {
+    List<ItemMetadata> _children = metadata.getChildren();
     final ArrayList<String> previousNames = GetLocalOperationsProcess.getNamesFromCache(_children);
     List<FileItem> _children_1 = folder.getChildren();
     final ArrayList<String> currentNames = GetLocalOperationsProcess.getNames(_children_1);
@@ -179,10 +179,10 @@ public class GetLocalOperationsProcess {
     return previousNames;
   }
   
-  public static ArrayList<String> getNamesFromCache(final List<FileItemMetadata> cachedChildren) {
+  public static ArrayList<String> getNamesFromCache(final List<ItemMetadata> cachedChildren) {
     int _size = cachedChildren.size();
     final ArrayList<String> res = new ArrayList<String>(_size);
-    for (final FileItemMetadata fileItemMetaData : cachedChildren) {
+    for (final ItemMetadata fileItemMetaData : cachedChildren) {
       String _name = fileItemMetaData.name();
       res.add(_name);
     }

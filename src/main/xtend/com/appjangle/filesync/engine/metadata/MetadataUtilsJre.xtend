@@ -6,7 +6,7 @@ import de.mxro.file.Jre.JreFiles
 
 class MetadataUtilsJre {
 
-	def static NodesMetadata readFromFile(FileItem file) {
+	def static Metadata readFromFile(FileItem file) {
 
 		if (!file.exists) {
 			
@@ -16,7 +16,7 @@ class MetadataUtilsJre {
 
 		val xstream = new XStream
 
-		val NodesMetadata nodesMetadata = xstream.fromXML(JreFiles.getInputStream(file)) as NodesMetadata
+		val Metadata nodesMetadata = xstream.fromXML(JreFiles.getInputStream(file)) as Metadata
 
 		nodesMetadata
 

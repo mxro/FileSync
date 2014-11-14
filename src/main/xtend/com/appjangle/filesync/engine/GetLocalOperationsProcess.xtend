@@ -2,7 +2,6 @@ package com.appjangle.filesync.engine
 
 import com.appjangle.filesync.NetworkOperation
 import com.appjangle.filesync.engine.metadata.MetadataUtilsJre
-import com.appjangle.filesync.engine.metadata.NodesMetadata
 import de.mxro.async.Async
 import de.mxro.async.callbacks.ValueCallback
 import de.mxro.file.FileItem
@@ -10,8 +9,9 @@ import de.mxro.fn.collections.CollectionsUtils
 import io.nextweb.Node
 import java.util.ArrayList
 import java.util.List
-import com.appjangle.filesync.engine.metadata.FileItemMetadata
 import com.appjangle.filesync.Converter
+import com.appjangle.filesync.engine.metadata.Metadata
+import com.appjangle.filesync.engine.metadata.ItemMetadata
 
 class GetLocalOperationsProcess {
 
@@ -20,7 +20,7 @@ class GetLocalOperationsProcess {
 	val Node node = null;
 	val FileItem folder = null;
 	
-	var NodesMetadata nodes = null;
+	var Metadata nodes = null;
 
 	def getLocalOperations( ValueCallback<List<NetworkOperation>> cb) {
 
@@ -101,11 +101,11 @@ class GetLocalOperationsProcess {
 		
 	}
 
-	static def determineLocallyChangedFiles(NodesMetadata metadata, FileItem folder) {
+	static def determineLocallyChangedFiles(Metadata metadata, FileItem folder) {
 
 		val res = new ArrayList<String>(0)
 
-		for (FileItemMetadata fileMetadata : metadata.children) {
+		for (ItemMetadata fileMetadata : metadata.children) {
 
 			val item = folder.getChild(fileMetadata.name)
 
@@ -121,7 +121,7 @@ class GetLocalOperationsProcess {
 
 	}
 
-	static def determineLocallyAddedFiles(NodesMetadata metadata, FileItem folder) {
+	static def determineLocallyAddedFiles(Metadata metadata, FileItem folder) {
 
 		val previousNames = getNamesFromCache(metadata.children)
 
@@ -132,7 +132,7 @@ class GetLocalOperationsProcess {
 
 	}
 
-	static def determineLocallyRemovedFiles(NodesMetadata metadata, FileItem folder) {
+	static def determineLocallyRemovedFiles(Metadata metadata, FileItem folder) {
 
 		val previousNames = getNamesFromCache(metadata.children)
 
@@ -143,11 +143,11 @@ class GetLocalOperationsProcess {
 
 	}
 
-	static def getNamesFromCache(List<FileItemMetadata> cachedChildren) {
+	static def getNamesFromCache(List<ItemMetadata> cachedChildren) {
 
 		val res = new ArrayList<String>(cachedChildren.size)
 
-		for (FileItemMetadata fileItemMetaData : cachedChildren) {
+		for (ItemMetadata fileItemMetaData : cachedChildren) {
 			res.add(fileItemMetaData.name)
 		}
 

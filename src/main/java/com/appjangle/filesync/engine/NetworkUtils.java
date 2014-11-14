@@ -40,8 +40,9 @@ public class NetworkUtils {
         for (final Deferred<?> qry : qries) {
           {
             final ValueCallback<Success> itmcb = cbs.createCallback();
+            final NextwebPromise<Object> safeQry = ((NextwebPromise<Object>) qry);
             Session _session = onNode.session();
-            final NextwebPromise<?> res = _session.promise(qry);
+            final NextwebPromise<Object> res = _session.<Object>promise(safeQry);
             final ExceptionListener _function_1 = new ExceptionListener() {
               public void onFailure(final ExceptionResult er) {
                 Throwable _exception = er.exception();

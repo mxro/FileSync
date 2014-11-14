@@ -87,11 +87,7 @@ class FileToTextNode implements Converter {
 		source.getFileName(cb.embed([fileName |
 			
 		]))
-		}
-		
-		
-		
-		
 	}
+		
 
 }

@@ -1,7 +1,5 @@
 package com.appjangle.filesync
 
-import com.appjangle.filesync.internal.engine.metadata.ItemMetadata
-import com.appjangle.filesync.internal.engine.metadata.Metadata
 import de.mxro.async.callbacks.ValueCallback
 import de.mxro.file.FileItem
 import io.nextweb.Node

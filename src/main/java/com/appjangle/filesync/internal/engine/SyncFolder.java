@@ -2,12 +2,12 @@ package com.appjangle.filesync.internal.engine;
 
 import com.appjangle.filesync.Converter;
 import com.appjangle.filesync.FileOperation;
+import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.NetworkOperation;
 import com.appjangle.filesync.internal.engine.FileToNetworkOperations;
 import com.appjangle.filesync.internal.engine.FileUtils;
 import com.appjangle.filesync.internal.engine.NetworkToFileOperations;
 import com.appjangle.filesync.internal.engine.NetworkUtils;
-import com.appjangle.filesync.internal.engine.metadata.Metadata;
 import de.mxro.async.Async;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
@@ -31,7 +31,7 @@ public class SyncFolder {
     this.converter = converter;
   }
   
-  private Metadata metadata;
+  private /* Metadata */Object metadata;
   
   public void doIt(final ValueCallback<Success> cb) {
     boolean _hasMetadata = this.fileUtils.hasMetadata(this.folder);

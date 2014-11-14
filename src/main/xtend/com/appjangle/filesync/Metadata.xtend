@@ -1,4 +1,4 @@
-package com.appjangle.filesync.internal.engine.metadata
+package com.appjangle.filesync
 
 import io.nextweb.Node
 import java.util.List

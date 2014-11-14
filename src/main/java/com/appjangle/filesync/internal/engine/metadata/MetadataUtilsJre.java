@@ -1,6 +1,6 @@
 package com.appjangle.filesync.internal.engine.metadata;
 
-import com.appjangle.filesync.internal.engine.metadata.Metadata;
+import com.appjangle.filesync.Metadata;
 import com.thoughtworks.xstream.XStream;
 import de.mxro.file.FileItem;
 

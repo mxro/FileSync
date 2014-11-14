@@ -2,7 +2,7 @@ package com.appjangle.filesync.internal.engine;
 
 import com.appjangle.filesync.FileOperation;
 import com.appjangle.filesync.FileOperationContext;
-import com.appjangle.filesync.internal.engine.metadata.Metadata;
+import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.internal.engine.metadata.MetadataUtilsJre;
 import de.mxro.file.FileItem;
 import java.util.List;

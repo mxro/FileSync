@@ -4,6 +4,7 @@ import com.appjangle.filesync.Converter;
 import com.appjangle.filesync.FileOperation;
 import com.appjangle.filesync.NetworkOperation;
 import com.appjangle.filesync.NetworkOperationContext;
+import com.appjangle.filesync.engine.convert.ConvertUtils;
 import com.appjangle.filesync.engine.metadata.ItemMetadata;
 import com.appjangle.filesync.engine.metadata.Metadata;
 import de.mxro.async.callbacks.ValueCallback;
@@ -20,9 +21,13 @@ import java.util.LinkedList;
 import java.util.List;
 import mx.gwtutils.MxroGWTUtils;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
+import org.eclipse.xtext.xbase.lib.Extension;
 
 @SuppressWarnings("all")
 public class FileToTextNode implements Converter {
+  @Extension
+  private ConvertUtils utils = new ConvertUtils();
+  
   public boolean worksOn(final FileItem source) {
     boolean _xblockexpression = false;
     {
@@ -57,11 +62,8 @@ public class FileToTextNode implements Converter {
           Node _parent = ctx.parent();
           String _text = source.getText();
           final Query baseNode = _parent.appendSafe(_text, ("./" + simpleName));
-          Query _appendSafe = baseNode.appendSafe(nameWithoutExtension);
-          Session _session = ctx.session();
-          Link _link = _session.link("https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel");
-          Query _appendSafe_1 = _appendSafe.appendSafe(_link, "./label");
-          _xblockexpression = CollectionLiterals.<Deferred<?>>newArrayList(baseNode, _appendSafe_1);
+          Query _appendLabel = FileToTextNode.this.utils.appendLabel(baseNode, nameWithoutExtension);
+          _xblockexpression = CollectionLiterals.<Deferred<?>>newArrayList(baseNode, _appendLabel);
         }
         return _xblockexpression;
       }

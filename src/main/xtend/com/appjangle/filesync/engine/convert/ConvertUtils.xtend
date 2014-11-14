@@ -5,7 +5,7 @@ import io.nextweb.Query
 class ConvertUtils {
 	
 	
-	def static appendLabel(Query toNode, String label) {
+	def appendLabel(Query toNode, String label) {
 		toNode.appendSafe(label).appendSafe(
 						toNode.session().link('https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel'), "./label")
 	}

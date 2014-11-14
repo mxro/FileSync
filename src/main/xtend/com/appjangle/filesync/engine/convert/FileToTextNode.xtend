@@ -14,6 +14,8 @@ import mx.gwtutils.MxroGWTUtils
 
 class FileToTextNode implements Converter {
 
+	extension ConvertUtils utils = new ConvertUtils()
+
 	override worksOn(FileItem source) {
 
 		val name = source.name
@@ -41,8 +43,7 @@ class FileToTextNode implements Converter {
 				val baseNode = ctx.parent.appendSafe(source.text, "./" + simpleName)
 				newArrayList(
 					baseNode,
-					baseNode.appendSafe(nameWithoutExtension).appendSafe(
-						ctx.session.link('https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel'), "./label")
+					baseNode.appendLabel(nameWithoutExtension)
 				)
 			])
 

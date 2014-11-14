@@ -10,6 +10,7 @@ import com.appjangle.filesync.engine.metadata.ItemMetadata;
 import com.appjangle.filesync.engine.metadata.Metadata;
 import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
+import de.mxro.async.Aggregator;
 import de.mxro.async.Async;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
@@ -52,7 +53,15 @@ public class FileToTextNode implements Converter {
       }
     };
     ValueCallback<List<Object>> _embed = Async.<List<Object>>embed(cb, _function);
-    Async.<Object>collect(_size, _embed);
+    final Aggregator<Object> cbs = Async.<Object>collect(_size, _embed);
+    for (final String textType : textNodeTypes) {
+      {
+        final ValueCallback<Object> itmcb = cbs.createCallback();
+        Session _session = node.session();
+        Link _link = _session.link(textType);
+        final Query qry = node.select(_link);
+      }
+    }
   }
   
   public void createNodes(final Metadata metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {

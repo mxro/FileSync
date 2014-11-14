@@ -35,12 +35,21 @@ class FileToTextNode implements Converter {
 		val textNodeTypes = #["https://admin1.linnk.it/types/v01/isHtmlValue"]
 		
 		
-		Async.collect(textNodeTypes.size, cb.embed [res|
+		val cbs = Async.collect(textNodeTypes.size, cb.embed [res|
 			
 		])
 		
 		
-		
+		for (textType : textNodeTypes) {
+			
+			val itmcb = cbs.createCallback
+			
+			val qry = node.select(node.session().link(textType))
+			
+			
+			
+			
+		}
 		
 
 	}

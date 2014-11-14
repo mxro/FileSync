@@ -56,7 +56,16 @@ public class FileToNetworkOperations {
       final ArrayList<String> locallyChangedFiles = FileToNetworkOperations.determineLocallyChangedFiles(this.metadata, this.folder);
       final Function1<String, Boolean> _function = new Function1<String, Boolean>() {
         public Boolean apply(final String fileName) {
-          FileToNetworkOperations.this.folder.getChild(fileName);
+          boolean _startsWith = fileName.startsWith(".");
+          if (_startsWith) {
+            return Boolean.valueOf(false);
+          }
+          FileItem _child = FileToNetworkOperations.this.folder.getChild(fileName);
+          boolean _visible = _child.getVisible();
+          boolean _not = (!_visible);
+          if (_not) {
+            return Boolean.valueOf(false);
+          }
           return Boolean.valueOf(true);
         }
       };

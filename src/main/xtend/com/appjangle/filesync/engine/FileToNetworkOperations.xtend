@@ -46,7 +46,14 @@ class FileToNetworkOperations {
 		val locallyChangedFiles = determineLocallyChangedFiles(metadata, folder)
 
 		locallyAddedFiles = locallyAddedFiles.filter [ fileName |
-			folder.getChild(fileName)
+			if (fileName.startsWith(".")) {
+				return false;
+			}
+			
+			if (!folder.getChild(fileName).visible) {
+				return false;
+			}
+			
 			
 			return true
 		]

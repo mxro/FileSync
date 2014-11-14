@@ -57,7 +57,7 @@ class FileToTextNode implements Converter {
 
 		val content = source.text
 
-		val address = metadata.getChild(source.getName).uri
+		val address = metadata.get(source.getName).uri
 
 		val ops = new LinkedList<NetworkOperation>
 

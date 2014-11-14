@@ -8,7 +8,7 @@ import java.util.List;
 public interface Metadata {
   public abstract List<ItemMetadata> getChildren();
   
-  public abstract ItemMetadata getChild(final String name);
+  public abstract ItemMetadata get(final String name);
   
   public abstract ItemMetadata getChild(final Node forNode);
   

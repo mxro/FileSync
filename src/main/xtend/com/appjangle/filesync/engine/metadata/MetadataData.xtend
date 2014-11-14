@@ -8,7 +8,7 @@ class MetadataData implements Serializable, Metadata {
 		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
 	
-	override getChild(String name) {
+	override get(String name) {
 		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}
 	

@@ -11,7 +11,7 @@ public class MetadataData implements Serializable, Metadata {
     throw new UnsupportedOperationException("TODO: auto-generated method stub");
   }
   
-  public ItemMetadata getChild(final String name) {
+  public ItemMetadata get(final String name) {
     throw new UnsupportedOperationException("TODO: auto-generated method stub");
   }
 }

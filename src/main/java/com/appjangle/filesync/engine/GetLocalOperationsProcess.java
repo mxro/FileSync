@@ -105,9 +105,9 @@ public class GetLocalOperationsProcess {
     final Aggregator<List<NetworkOperation>> agg = Async.<List<NetworkOperation>>collect(_size, _embed);
     final Consumer<String> _function_1 = new Consumer<String>() {
       public void accept(final String fileName) {
-        ItemMetadata _child = GetLocalOperationsProcess.this.nodes.getChild(fileName);
+        ItemMetadata _get = GetLocalOperationsProcess.this.nodes.get(fileName);
         ValueCallback<List<NetworkOperation>> _createCallback = agg.createCallback();
-        GetLocalOperationsProcess.this.converter.deleteNodes(GetLocalOperationsProcess.this.nodes, _child, _createCallback);
+        GetLocalOperationsProcess.this.converter.deleteNodes(GetLocalOperationsProcess.this.nodes, _get, _createCallback);
       }
     };
     fileNames.forEach(_function_1);

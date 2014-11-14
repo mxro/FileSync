@@ -71,8 +71,8 @@ public class FileToTextNode implements Converter {
   public void update(final Metadata metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {
     final String content = source.getText();
     String _name = source.getName();
-    ItemMetadata _child = metadata.getChild(_name);
-    final String address = _child.uri();
+    ItemMetadata _get = metadata.get(_name);
+    final String address = _get.uri();
     final LinkedList<NetworkOperation> ops = new LinkedList<NetworkOperation>();
     final NetworkOperation _function = new NetworkOperation() {
       public List<Deferred<?>> apply(final NetworkOperationContext ctx) {

@@ -82,7 +82,7 @@ class GetLocalOperationsProcess {
 		]))
 
 		fileNames.forEach[ fileName | 
-			converter.deleteNodes(nodes, nodes.getChild(fileName),  agg.createCallback)
+			converter.deleteNodes(nodes, nodes.get(fileName),  agg.createCallback)
 		]
 		
 	}

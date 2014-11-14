@@ -8,7 +8,7 @@ interface Metadata {
 	
 	def List<ItemMetadata> getChildren()
 	
-	def ItemMetadata getChild(String name)
+	def ItemMetadata get(String name)
 	
 	def ItemMetadata getChild(Node forNode)
 	

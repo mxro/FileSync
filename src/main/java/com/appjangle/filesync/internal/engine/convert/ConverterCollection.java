@@ -82,6 +82,8 @@ public class ConverterCollection implements Converter {
             return;
           }
         }
+        Exception _exception = new Exception(("Cannot find converter for " + forFileItem));
+        cb.onFailure(_exception);
       }
     };
     ValueCallback<List<Object>> _embed = Async.<List<Object>>embed(cb, _function_1);
@@ -89,7 +91,12 @@ public class ConverterCollection implements Converter {
   }
   
   public void createNodes(final Metadata metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {
-    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+    final Closure<Converter> _function = new Closure<Converter>() {
+      public void apply(final Converter converter) {
+      }
+    };
+    ValueCallback<Converter> _embed = Async.<Converter>embed(cb, _function);
+    this.findConverter(source, _embed);
   }
   
   public void update(final Metadata metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {

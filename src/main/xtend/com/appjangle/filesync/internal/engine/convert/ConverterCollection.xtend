@@ -61,11 +61,14 @@ class ConverterCollection implements Converter {
 					return;
 				}
 			}
+			cb.onFailure(new Exception("Cannot find converter for "+forFileItem))
 		])
 	}
 	
 	override createNodes(Metadata metadata, FileItem source, ValueCallback<List<NetworkOperation>> cb) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		findConverter(source, cb.embed [ converter |
+			
+		])
 	}
 	
 	override update(Metadata metadata, FileItem source, ValueCallback<List<NetworkOperation>> cb) {

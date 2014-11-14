@@ -91,7 +91,10 @@ class FileToTextNode implements Converter {
 			
 			ops.add(
 				[ctx|
-					ctx.folder.createFile(fileName)
+					val file = ctx.folder.createFile(fileName)
+					
+					file.text = source.value(String)
+					
 				]
 			)
 			

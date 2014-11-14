@@ -116,7 +116,9 @@ public class FileToTextNode implements Converter {
         final FileOperation _function = new FileOperation() {
           public void apply(final FileOperationContext ctx) {
             FileItem _folder = ctx.folder();
-            _folder.createFile(fileName);
+            final FileItem file = _folder.createFile(fileName);
+            String _value = source.<String>value(String.class);
+            file.setText(_value);
           }
         };
         ops.add(_function);

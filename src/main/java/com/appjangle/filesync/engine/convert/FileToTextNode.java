@@ -9,7 +9,6 @@ import com.appjangle.filesync.engine.convert.ConvertUtils;
 import com.appjangle.filesync.engine.metadata.ItemMetadata;
 import com.appjangle.filesync.engine.metadata.Metadata;
 import com.google.common.base.Objects;
-import com.google.common.collect.Lists;
 import de.mxro.async.Async;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
@@ -22,7 +21,6 @@ import io.nextweb.Session;
 import io.nextweb.promise.Deferred;
 import io.nextweb.promise.NextwebPromise;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -45,9 +43,8 @@ public class FileToTextNode implements Converter {
   }
   
   public void worksOn(final Node node, final ValueCallback<Boolean> cb) {
-    final List<Object> textNodeTypes = Collections.<Object>unmodifiableList(Lists.<Object>newArrayList());
-    Object _value = node.value();
-    cb.onSuccess(Boolean.valueOf((_value instanceof String)));
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field jlkjlkj is undefined for the type FileToTextNode");
   }
   
   public void createNodes(final Metadata metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {

@@ -31,7 +31,7 @@ class FileToTextNode implements Converter {
 
 		// TODO change so that it applies only to text nodes, otherwise use a converter which converts nodes into folders
 		
-		val textNodeTypes = #[]
+		val textNodeTypes = #[] jlkjlkj
 		
 		cb.onSuccess(node.value() instanceof String)
 

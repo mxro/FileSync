@@ -1,12 +1,14 @@
 package com.appjangle.filesync.tests;
 
 import com.appjangle.filesync.engine.convert.ConvertUtils;
+import org.junit.Assert;
 import org.junit.Test;
 
 @SuppressWarnings("all")
 public class AddressesCanBeDerivedFromUris {
   @Test
   public void test() {
-    ConvertUtils.getNameFromUri("https://myuri.com/just/for/testing/name.xml");
+    String _nameFromUri = ConvertUtils.getNameFromUri("https://myuri.com/just/for/testing/name.xml");
+    Assert.assertEquals("name.xml", _nameFromUri);
   }
 }

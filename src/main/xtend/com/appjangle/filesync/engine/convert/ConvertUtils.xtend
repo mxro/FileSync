@@ -16,7 +16,6 @@ class ConvertUtils {
 						toNode.session().link(labelTypes.get(0)), "./label")
 	}
 	
-	
 	static val NO_LABEL = new Object()
 	
 	def getFileName(Node fromNode, ValueCallback<String> cb) {

@@ -9,5 +9,5 @@ public interface Metadata {
   
   public abstract ItemMetadata getChild(final String name);
   
-  public abstract Object add(final ItemMetadata itemMetadata);
+  public abstract Metadata add(final ItemMetadata itemMetadata);
 }

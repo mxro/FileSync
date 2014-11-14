@@ -9,6 +9,6 @@ interface Metadata {
 	
 	def ItemMetadata getChild(String name)
 	
-	def add(ItemMetadata itemMetadata)
+	def Metadata add(ItemMetadata itemMetadata)
 	
 }

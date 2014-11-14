@@ -25,6 +25,8 @@ class ConvertUtils {
 		
 		labelTypes.forEach [ labelType | 
 			
+			val qry = fromNode.select(fromNode.session().link(labelType))
+			
 		]
 		
 		

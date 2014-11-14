@@ -35,6 +35,9 @@ public class ConvertUtils {
     final Aggregator<Object> cbs = Async.<Object>collect(_size, _embed);
     final Consumer<String> _function_1 = new Consumer<String>() {
       public void accept(final String labelType) {
+        Session _session = fromNode.session();
+        Link _link = _session.link(labelType);
+        final Query qry = fromNode.select(_link);
       }
     };
     this.labelTypes.forEach(_function_1);

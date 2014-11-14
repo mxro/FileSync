@@ -6,6 +6,12 @@ import de.mxro.file.FileItem;
 
 @SuppressWarnings("all")
 public class FileUtils {
+  public boolean hasMetadata(final FileItem forFolder) {
+    FileItem _assertFolder = forFolder.assertFolder(".filesync-meta");
+    FileItem _child = _assertFolder.getChild("nodes.xml");
+    return _child.exists();
+  }
+  
   public Metadata assertMetadata(final FileItem forFolder) {
     Metadata _xblockexpression = null;
     {

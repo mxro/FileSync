@@ -1,13 +1,16 @@
 package com.appjangle.filesync.engine
 
-import com.appjangle.filesync.engine.metadata.Metadata
 import com.appjangle.filesync.engine.metadata.MetadataUtilsJre
 import de.mxro.file.FileItem
 
 class FileUtils {
 	
+	def hasMetadata(FileItem forFolder) {
+
+		forFolder.assertFolder(".filesync-meta").getChild("nodes.xml").exists
+	}
 	
-	def Metadata assertMetadata(FileItem forFolder) {
+	def assertMetadata(FileItem forFolder) {
 		val metadataFolder = forFolder.assertFolder(".filesync-meta")
 		
 		metadataFolder.visible = false;

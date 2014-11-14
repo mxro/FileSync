@@ -43,13 +43,11 @@ class NetworkToFileOperations {
 			val remotelyRemoved = children.determineRemotelyRemovedNodes
 			val remotelyUpdated = children.determineRemotelyUpdatedNodes
 			
-			
 			/*
 			 * Don't download nodes starting with '.'
-			 */
-			 
+			 */ 
 			remotelyAdded = remotelyAdded.filter [ node |
-				if (ConvertUtils.getNameFromUri(node.uri()).startsWith('.') {
+				if (ConvertUtils.getNameFromUri(node.uri()).startsWith('.')) {
 					return false;
 				}
 				

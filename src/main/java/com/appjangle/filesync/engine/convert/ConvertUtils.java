@@ -26,6 +26,8 @@ import org.eclipse.xtext.xbase.lib.Functions.Function0;
 
 @SuppressWarnings("all")
 public class ConvertUtils {
+  private final List<String> labelTypes = Collections.<String>unmodifiableList(Lists.<String>newArrayList("https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel"));
+  
   private final Map<String, String> extensions = new Function0<Map<String, String>>() {
     public Map<String, String> apply() {
       Map<String, String> _xsetliteral = null;
@@ -37,28 +39,15 @@ public class ConvertUtils {
   }.apply();
   
   public void getFileExtension(final Node forNode, final ValueCallback<String> cb) {
-    int _size = this.extensions.size();
-    final Closure<List<Object>> _function = new Closure<List<Object>>() {
-      public void apply(final List<Object> res) {
-        for (final Object entry : res) {
-          if ((entry instanceof String)) {
-            cb.onSuccess(((String)entry));
-            return;
-          }
-        }
-      }
-    };
-    ValueCallback<List<Object>> _embed = Async.<List<Object>>embed(cb, _function);
-    final Aggregator<Object> cbs = Async.<Object>collect(_size, _embed);
     final LinkListQuery qry = forNode.selectAllLinks();
-    final ExceptionListener _function_1 = new ExceptionListener() {
+    final ExceptionListener _function = new ExceptionListener() {
       public void onFailure(final ExceptionResult er) {
         Throwable _exception = er.exception();
         cb.onFailure(_exception);
       }
     };
-    qry.catchExceptions(_function_1);
-    final Closure<LinkList> _function_2 = new Closure<LinkList>() {
+    qry.catchExceptions(_function);
+    final Closure<LinkList> _function_1 = new Closure<LinkList>() {
       public void apply(final LinkList links) {
         Set<Map.Entry<String, String>> _entrySet = ConvertUtils.this.extensions.entrySet();
         for (final Map.Entry<String, String> mapping : _entrySet) {
@@ -72,10 +61,8 @@ public class ConvertUtils {
         }
       }
     };
-    qry.get(_function_2);
+    qry.get(_function_1);
   }
-  
-  private final List<String> labelTypes = Collections.<String>unmodifiableList(Lists.<String>newArrayList("https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel"));
   
   public Query appendLabel(final Query toNode, final String label) {
     Query _appendSafe = toNode.appendSafe(label);

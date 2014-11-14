@@ -10,23 +10,13 @@ import static extension de.mxro.async.Async.embed
 
 class ConvertUtils {
 
+	val labelTypes = #['https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel']
+
 	val extensions = #{
 		"" -> ".html"
 	}
 
 	def getFileExtension(Node forNode, ValueCallback<String> cb) {
-
-		val cbs = Async.collect(extensions.size,
-			cb.embed [ res |
-					
-					for (entry : res) {
-						if (entry instanceof String) {
-							cb.onSuccess(entry)
-							return
-						}
-					} 
-					
-				]);
 
 		val qry = forNode.selectAllLinks()
 
@@ -45,7 +35,7 @@ class ConvertUtils {
 
 	}
 
-	val labelTypes = #['https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel']
+	
 
 	def appendLabel(Query toNode, String label) {
 		toNode.appendSafe(label).appendSafe(toNode.session().link(labelTypes.get(0)), "./label")

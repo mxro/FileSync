@@ -21,5 +21,5 @@ public interface Converter {
   
   public abstract void deleteNodes(final NodesMetadata metadata, final FileItemMetadata cachedFile, final ValueCallback<List<NetworkOperation>> cb);
   
-  public abstract void createFiles(final Node source, final ValueCallback<List<FileOperation>> cb);
+  public abstract void createFiles(final NodesMetadata __unknown__, final /* metadata */Object __unknown___1, final Node source, final ValueCallback<List<FileOperation>> cb);
 }

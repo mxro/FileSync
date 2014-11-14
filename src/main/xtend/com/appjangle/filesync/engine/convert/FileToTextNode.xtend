@@ -13,9 +13,6 @@ import com.appjangle.filesync.Converter
 class FileToTextNode implements Converter {
 
 
-    
-
-
 	override createNodes(NodesMetadata metadata, FileItem source,  ValueCallback<List<NetworkOperation>> cb) {
 		
 	}

@@ -61,6 +61,6 @@ public class FileUtils {
   public String toFileSystemSafeName(final String name, final boolean dirSeparators, final int maxFileLength) {
     throw new Error("Unresolved compilation problems:"
       + "\nThe method or field i is undefined for the type FileUtils"
-      + "\n..< cannot be resolved");
+      + "\n.. cannot be resolved");
   }
 }

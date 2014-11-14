@@ -58,10 +58,10 @@ class FileUtils {
      * @param maxFileLength 
      * @return
      */
-    def  toFileSystemSafeName(String name,boolean dirSeparators,int maxFileLength) {
+    def toFileSystemSafeName(String name,boolean dirSeparators,int maxFileLength) {
         val size = name.length();
         val StringBuffer rc = new StringBuffer(size * 2);
-        for ( i : i ..< size) {
+        for ( i : i .. size) {
             val char c = name.charAt(i);
             var boolean valid = c >= 'a' && c <= 'z';
             valid = valid || (c >= 'A' && c <= 'Z');

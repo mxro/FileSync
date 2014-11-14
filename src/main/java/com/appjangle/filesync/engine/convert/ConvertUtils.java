@@ -62,6 +62,13 @@ public class ConvertUtils {
       public void apply(final LinkList links) {
         Set<Map.Entry<String, String>> _entrySet = ConvertUtils.this.extensions.entrySet();
         for (final Map.Entry<String, String> mapping : _entrySet) {
+          String _key = mapping.getKey();
+          boolean _contains = links.contains(_key);
+          if (_contains) {
+            String _value = mapping.getValue();
+            cb.onSuccess(_value);
+            return;
+          }
         }
       }
     };

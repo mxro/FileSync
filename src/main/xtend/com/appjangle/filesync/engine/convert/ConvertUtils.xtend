@@ -17,8 +17,7 @@ class ConvertUtils {
 	def getFileExtension(Node forNode, ValueCallback<String> cb) {
 
 		val cbs = Async.collect(extensions.size,
-			cb.embed(
-				[ res |
+			cb.embed [ res |
 					
 					for (entry : res) {
 						if (entry instanceof String) {
@@ -27,7 +26,7 @@ class ConvertUtils {
 						}
 					} 
 					
-				]));
+				]);
 
 		val qry = forNode.selectAllLinks()
 
@@ -35,6 +34,12 @@ class ConvertUtils {
 
 		qry.get [ links |
 			for (mapping : extensions.entrySet) {
+				
+				if (links.contains(mapping.key)) {
+					cb.onSuccess(mapping.value)
+					return
+				}
+				
 			}
 		]
 

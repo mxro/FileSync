@@ -15,11 +15,9 @@ import com.appjangle.filesync.engine.metadata.ItemMetadata
 
 class GetLocalOperationsProcess {
 
-	
 	val Node node;
 	val FileItem folder;
-	val Converter converter;
-	
+	val Converter converter;	
 	
 	new(Node node, FileItem folder, Converter converter) {
 		this.node = node

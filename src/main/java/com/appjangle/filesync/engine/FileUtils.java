@@ -1,8 +1,10 @@
 package com.appjangle.filesync.engine;
 
+import com.appjangle.filesync.FileOperation;
 import com.appjangle.filesync.engine.metadata.Metadata;
 import com.appjangle.filesync.engine.metadata.MetadataUtilsJre;
 import de.mxro.file.FileItem;
+import java.util.List;
 
 @SuppressWarnings("all")
 public class FileUtils {
@@ -27,5 +29,10 @@ public class FileUtils {
       _xblockexpression = MetadataUtilsJre.readFromFile(_child_1);
     }
     return _xblockexpression;
+  }
+  
+  public void execute(final List<FileOperation> operations) {
+    for (final FileOperation op : operations) {
+    }
   }
 }

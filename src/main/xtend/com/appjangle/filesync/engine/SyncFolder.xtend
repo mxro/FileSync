@@ -5,15 +5,30 @@ import io.nextweb.Node
 
 class SyncFolder {
 	
+	
+	val FileItem folder
+	val Node node
+	
+	
+	new(FileItem folder, Node node) {
+		this.folder = folder
+		this.node = node
+	}
+	
 	extension FileUtils fileUtils = new FileUtils()
 	
-	def doIt(FileItem folder, Node node) {
+	def doIt() {
 		
-		if (folder.hasMetadata) {
-			
+		if (!folder.hasMetadata) {
+			fullDownload
+			return;
 		}
 		
 		val metadata = folder.assertMetadata
+		
+	}
+	
+	def fullDownload() {
 		
 	}
 	

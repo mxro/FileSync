@@ -27,6 +27,12 @@ public class GetLocalOperationsProcess {
   
   private final Converter converter;
   
+  public GetLocalOperationsProcess(final Node node, final FileItem folder, final Converter converter) {
+    this.node = node;
+    this.folder = folder;
+    this.converter = converter;
+  }
+  
   private Metadata nodes = null;
   
   public ArrayList<NetworkOperation> getLocalOperations(final ValueCallback<List<NetworkOperation>> cb) {
@@ -197,8 +203,5 @@ public class GetLocalOperationsProcess {
       res.add(_name);
     }
     return res;
-  }
-  
-  public GetLocalOperationsProcess(final /* node */Object __unknown__, final /* folder */Object __unknown___1, final /* converter */Object __unknown___2) {
   }
 }

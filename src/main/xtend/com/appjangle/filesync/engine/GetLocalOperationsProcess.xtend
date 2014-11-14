@@ -20,6 +20,13 @@ class GetLocalOperationsProcess {
 	val FileItem folder;
 	val Converter converter;
 	
+	
+	new(Node node, FileItem folder, Converter converter) {
+		this.node = node
+		this.folder = folder
+		this.converter = converter
+	}
+	
 	var Metadata nodes = null;
 
 	def getLocalOperations( ValueCallback<List<NetworkOperation>> cb) {
@@ -168,8 +175,6 @@ class GetLocalOperationsProcess {
 	}
 
 	
-	new(node, folder, converter) {
-		
-	}
+	
 
 }

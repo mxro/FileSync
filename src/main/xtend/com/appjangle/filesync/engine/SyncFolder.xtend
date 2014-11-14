@@ -52,5 +52,6 @@ class SyncFolder {
 	}
 	
 	extension FileUtils fileUtils = new FileUtils()
+	extension NetworkUtils networkUtils = new NetworkUtils()
 	
 }

@@ -4,6 +4,7 @@ import com.appjangle.filesync.Converter;
 import com.appjangle.filesync.NetworkOperation;
 import com.appjangle.filesync.engine.FileToNetworkOperations;
 import com.appjangle.filesync.engine.FileUtils;
+import com.appjangle.filesync.engine.NetworkUtils;
 import com.appjangle.filesync.engine.metadata.Metadata;
 import de.mxro.async.callbacks.SimpleCallback;
 import de.mxro.async.callbacks.ValueCallback;
@@ -56,4 +57,7 @@ public class SyncFolder {
   
   @Extension
   private FileUtils fileUtils = new FileUtils();
+  
+  @Extension
+  private NetworkUtils networkUtils = new NetworkUtils();
 }

@@ -31,9 +31,11 @@ class NetworkToFileOperations {
 		
 		val qry = node.selectAll
 		
-		qry.catchExceptions(er | cb.onFailure(er.exception))
+		qry.catchExceptions [er | cb.onFailure(er.exception)]
 		
-		qry.get 
+		qry.get [children |
+			
+		]
 		
 		
 	}

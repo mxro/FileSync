@@ -5,6 +5,7 @@ import com.appjangle.filesync.FileOperation;
 import com.appjangle.filesync.engine.metadata.Metadata;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
+import de.mxro.fn.Closure;
 import io.nextweb.ListQuery;
 import io.nextweb.Node;
 import io.nextweb.NodeList;
@@ -32,19 +33,19 @@ public class NetworkToFileOperations {
     this.converter = converter;
   }
   
-  public NodeList determineOps(final ValueCallback<List<FileOperation>> cb) {
-    NodeList _xblockexpression = null;
-    {
-      final ListQuery qry = this.node.selectAll();
-      final ExceptionListener _function = new ExceptionListener() {
-        public void onFailure(final ExceptionResult er) {
-          Throwable _exception = er.exception();
-          cb.onFailure(_exception);
-        }
-      };
-      qry.catchExceptions(_function);
-      _xblockexpression = qry.get();
-    }
-    return _xblockexpression;
+  public void determineOps(final ValueCallback<List<FileOperation>> cb) {
+    final ListQuery qry = this.node.selectAll();
+    final ExceptionListener _function = new ExceptionListener() {
+      public void onFailure(final ExceptionResult er) {
+        Throwable _exception = er.exception();
+        cb.onFailure(_exception);
+      }
+    };
+    qry.catchExceptions(_function);
+    final Closure<NodeList> _function_1 = new Closure<NodeList>() {
+      public void apply(final NodeList children) {
+      }
+    };
+    qry.get(_function_1);
   }
 }

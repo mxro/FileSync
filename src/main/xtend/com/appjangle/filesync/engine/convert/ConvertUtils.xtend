@@ -13,7 +13,8 @@ class ConvertUtils {
 	val labelTypes = #['https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel']
 
 	val extensions = #{
-		"" -> ".html"
+		"https://admin1.linnk.it/types/v01/isHtmlValue" -> ".html",
+		"", ""
 	}
 
 	def getFileExtension(Node forNode, ValueCallback<String> cb) {

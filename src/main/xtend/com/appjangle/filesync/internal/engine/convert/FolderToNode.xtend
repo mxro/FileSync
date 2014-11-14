@@ -5,6 +5,7 @@ import com.appjangle.filesync.FileOperation
 import com.appjangle.filesync.ItemMetadata
 import com.appjangle.filesync.Metadata
 import com.appjangle.filesync.NetworkOperation
+import com.appjangle.filesync.internal.engine.FileUtils
 import de.mxro.async.callbacks.ValueCallback
 import de.mxro.file.FileItem
 import io.nextweb.Node
@@ -61,10 +62,11 @@ class FolderToNode implements Converter {
 
 	override createFiles(FileItem folder, Metadata metadata, Node source, ValueCallback<List<FileOperation>> cb) {
 		source.getFileName( cb.embed 
-			[ folderName |
+			[ rawFolderName |
 				val ops = new LinkedList<FileOperation>
 				ops.add(
 					[ ctx |
+						val folderName = rawFolderName.toFileSystemSafeName(false, 20)
 						val file = ctx.folder.assertFolder(folderName)
 						file.text = source.value(String)
 						ctx.metadata.add(
@@ -107,5 +109,6 @@ class FolderToNode implements Converter {
 	}
 
 	extension ConvertUtils utils = new ConvertUtils()
+	extension FileUtils futils = new FileUtils()
 
 }

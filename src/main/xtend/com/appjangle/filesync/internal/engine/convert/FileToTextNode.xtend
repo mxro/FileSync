@@ -113,7 +113,7 @@ class FileToTextNode implements Converter {
 		source.getFileExtension(cb.embed([ext |
 			source.getFileName(folder, ext, cb.embed([rawFileName |
 			
-			val fileName = rawFileName.toF
+			val fileName = rawFileName.toFileSystemSafeName(false, 20)
 			
 			val ops = new LinkedList<FileOperation>
 			

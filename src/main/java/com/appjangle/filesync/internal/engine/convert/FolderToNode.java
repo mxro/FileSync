@@ -7,6 +7,7 @@ import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.NetworkOperation;
 import com.appjangle.filesync.NetworkOperationContext;
+import com.appjangle.filesync.internal.engine.FileUtils;
 import com.appjangle.filesync.internal.engine.convert.ConvertUtils;
 import de.mxro.async.Async;
 import de.mxro.async.callbacks.ValueCallback;
@@ -80,10 +81,11 @@ public class FolderToNode implements Converter {
   
   public void createFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
     final Closure<String> _function = new Closure<String>() {
-      public void apply(final String folderName) {
+      public void apply(final String rawFolderName) {
         final LinkedList<FileOperation> ops = new LinkedList<FileOperation>();
         final FileOperation _function = new FileOperation() {
           public void apply(final FileOperationContext ctx) {
+            final String folderName = FolderToNode.this.futils.toFileSystemSafeName(rawFolderName, false, 20);
             FileItem _folder = ctx.folder();
             final FileItem file = _folder.assertFolder(folderName);
             String _value = source.<String>value(String.class);
@@ -132,4 +134,7 @@ public class FolderToNode implements Converter {
   
   @Extension
   private ConvertUtils utils = new ConvertUtils();
+  
+  @Extension
+  private FileUtils futils = new FileUtils();
 }

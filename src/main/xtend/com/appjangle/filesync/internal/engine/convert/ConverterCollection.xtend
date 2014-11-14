@@ -65,6 +65,16 @@ class ConverterCollection implements Converter {
 		])
 	}
 	
+	
+	def private findConverter(ItemMetadata forItem, ValueCallback<Converter> cb) {
+		for (c:converters) {
+			if (c.class.toString.equals(forItem.converter)) {
+				return c
+			}
+		}
+		throw new RuntimeException("Cannot find converter for "+forItem)
+	}
+	
 	override createNodes(Metadata metadata, FileItem source, ValueCallback<List<NetworkOperation>> cb) {
 		findConverter(source, cb.embed [ converter |
 			converter.createNodes(metadata, source, cb)

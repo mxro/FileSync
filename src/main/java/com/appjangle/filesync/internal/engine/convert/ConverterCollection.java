@@ -90,6 +90,19 @@ public class ConverterCollection implements Converter {
     Async.<Converter, Object>forEach(this.converters, _function, _embed);
   }
   
+  private Converter findConverter(final ItemMetadata forItem, final ValueCallback<Converter> cb) {
+    for (final Converter c : this.converters) {
+      Class<? extends Converter> _class = c.getClass();
+      String _string = _class.toString();
+      String _converter = forItem.converter();
+      boolean _equals = _string.equals(_converter);
+      if (_equals) {
+        return c;
+      }
+    }
+    throw new RuntimeException(("Cannot find converter for " + forItem));
+  }
+  
   public void createNodes(final Metadata metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {
     final Closure<Converter> _function = new Closure<Converter>() {
       public void apply(final Converter converter) {
@@ -111,8 +124,13 @@ public class ConverterCollection implements Converter {
   }
   
   public void deleteNodes(final Metadata metadata, final ItemMetadata cachedFile, final ValueCallback<List<NetworkOperation>> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from ItemMetadata to FileItem");
+    final Closure<Converter> _function = new Closure<Converter>() {
+      public void apply(final Converter converter) {
+        converter.deleteNodes(metadata, cachedFile, cb);
+      }
+    };
+    ValueCallback<Converter> _embed = Async.<Converter>embed(cb, _function);
+    this.findConverter(cachedFile, _embed);
   }
   
   public void createFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {

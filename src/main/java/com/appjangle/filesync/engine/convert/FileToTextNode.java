@@ -141,14 +141,52 @@ public class FileToTextNode implements Converter {
   }
   
   public void updateFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method getChild is undefined for the type FileToTextNode"
-      + "\nname cannot be resolved");
+    ItemMetadata _get = metadata.get(source);
+    final String fileName = _get.name();
+    final String content = source.<String>value(String.class);
+    final LinkedList<FileOperation> ops = new LinkedList<FileOperation>();
+    final FileOperation _function = new FileOperation() {
+      public void apply(final FileOperationContext ctx) {
+        FileItem _folder = ctx.folder();
+        final FileItem file = _folder.getChild(fileName);
+        file.setText(content);
+        Metadata _metadata = ctx.metadata();
+        _metadata.update(new ItemMetadata() {
+          public String name() {
+            return fileName;
+          }
+          
+          public Date lastModified() {
+            return new Date();
+          }
+          
+          public String uri() {
+            return source.uri();
+          }
+          
+          public String hash() {
+            return file.hash();
+          }
+        });
+      }
+    };
+    ops.add(_function);
+    cb.onSuccess(ops);
   }
   
   public void removeFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method getChild is undefined for the type FileToTextNode"
-      + "\nname cannot be resolved");
+    ItemMetadata _get = metadata.get(source);
+    final String fileName = _get.name();
+    final LinkedList<FileOperation> ops = new LinkedList<FileOperation>();
+    final FileOperation _function = new FileOperation() {
+      public void apply(final FileOperationContext ctx) {
+        FileItem _folder = ctx.folder();
+        _folder.deleteFile(fileName);
+        Metadata _metadata = ctx.metadata();
+        _metadata.remove(fileName);
+      }
+    };
+    ops.add(_function);
+    cb.onSuccess(ops);
   }
 }

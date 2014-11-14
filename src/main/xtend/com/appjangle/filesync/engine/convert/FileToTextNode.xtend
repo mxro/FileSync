@@ -125,7 +125,7 @@ class FileToTextNode implements Converter {
 	
 	override updateFiles(FileItem folder, Metadata metadata, Node source, ValueCallback<List<FileOperation>> cb) {
 		
-		val fileName = metadata.getChild(source).name
+		val fileName = metadata.get(source).name
 		
 		val content = source.value(String)
 		
@@ -166,7 +166,7 @@ class FileToTextNode implements Converter {
 	}
 	
 	override removeFiles(FileItem folder, Metadata metadata, Node source, ValueCallback<List<FileOperation>> cb) {
-		val fileName = metadata.getChild(source).name
+		val fileName = metadata.get(source).name
 		
 		val ops = new LinkedList<FileOperation>
 		

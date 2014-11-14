@@ -12,6 +12,9 @@ import io.nextweb.Node
 import java.util.ArrayList
 import java.util.List
 
+/**
+ * Determines operations performed on local files which need to be uploaded to the cloud.
+ */
 class FileToNetworkOperations {
 
 	val Node node;

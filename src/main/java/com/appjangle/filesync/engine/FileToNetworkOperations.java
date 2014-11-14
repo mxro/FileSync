@@ -17,6 +17,9 @@ import java.util.List;
 import java.util.function.Consumer;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 
+/**
+ * Determines operations performed on local files which need to be uploaded to the cloud.
+ */
 @SuppressWarnings("all")
 public class FileToNetworkOperations {
   private final Node node;

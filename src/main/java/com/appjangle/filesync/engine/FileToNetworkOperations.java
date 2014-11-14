@@ -34,7 +34,7 @@ public class FileToNetworkOperations {
     this.converter = converter;
   }
   
-  public void calculate(final ValueCallback<List<NetworkOperation>> cb) {
+  public void determineOps(final ValueCallback<List<NetworkOperation>> cb) {
     try {
       boolean _isDirectory = this.folder.isDirectory();
       boolean _not = (!_isDirectory);

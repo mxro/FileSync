@@ -26,8 +26,7 @@ public class SyncFolder {
   
   public void doIt(final SimpleCallback cb) {
     throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from new ValueCallback(){} to ValueCallback<List<NetworkOperation>>"
-      + "\nThe anonymous subclass of ValueCallback does not implement \n- onSuccess(Object)\n- onFailure(Throwable)");
+      + "\nThe anonymous subclass of ValueCallback<List<NetworkOperation>> does not implement \n- onSuccess(List<NetworkOperation>)\n- onFailure(Throwable)");
   }
   
   public Object fullDownload() {

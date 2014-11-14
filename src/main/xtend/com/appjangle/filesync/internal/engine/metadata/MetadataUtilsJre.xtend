@@ -5,7 +5,7 @@ import de.mxro.file.FileItem
 
 class MetadataUtilsJre {
 
-	def static com.appjangle.filesync.engine.metadata.Metadata readFromFile(FileItem file) {
+	def static Metadata readFromFile(FileItem file) {
 
 		if (!file.exists) {
 			
@@ -15,7 +15,7 @@ class MetadataUtilsJre {
 
 		val xstream = new XStream
 	
-		val com.appjangle.filesync.engine.metadata.Metadata nodesMetadata = xstream.fromXML(file.text) as com.appjangle.filesync.engine.metadata.Metadata
+		val Metadata nodesMetadata = xstream.fromXML(file.text) as Metadata
 
 		nodesMetadata
 

@@ -12,4 +12,5 @@ interface ItemMetadata {
 	
 	def String hash()
 	
+	
 }

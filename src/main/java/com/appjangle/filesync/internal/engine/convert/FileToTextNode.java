@@ -5,6 +5,8 @@ import com.appjangle.filesync.FileOperation;
 import com.appjangle.filesync.NetworkOperation;
 import com.appjangle.filesync.NetworkOperationContext;
 import com.appjangle.filesync.internal.engine.convert.ConvertUtils;
+import com.appjangle.filesync.internal.engine.metadata.ItemMetadata;
+import com.appjangle.filesync.internal.engine.metadata.Metadata;
 import com.google.common.collect.Lists;
 import de.mxro.async.Aggregator;
 import de.mxro.async.Async;
@@ -82,7 +84,7 @@ public class FileToTextNode implements Converter {
     }
   }
   
-  public void createNodes(final /* Metadata */Object metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {
+  public void createNodes(final Metadata metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {
     String _name = source.getName();
     final String nameWithoutExtension = MxroGWTUtils.removeExtension(_name);
     final String simpleName = MxroGWTUtils.getSimpleName(nameWithoutExtension);
@@ -105,20 +107,31 @@ public class FileToTextNode implements Converter {
     cb.onSuccess(ops);
   }
   
-  public void update(final /* Metadata */Object metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {
+  public void update(final Metadata metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {
+    final String content = source.getText();
+    String _name = source.getName();
+    ItemMetadata _get = metadata.get(_name);
+    final String address = _get.uri();
+    final LinkedList<NetworkOperation> ops = new LinkedList<NetworkOperation>();
+    final NetworkOperation _function = new NetworkOperation() {
+      public List<Deferred<?>> apply(final NetworkOperationContext ctx) {
+        Session _session = ctx.session();
+        Link _link = _session.link(address);
+        Query _setValueSafe = _link.setValueSafe(content);
+        return CollectionLiterals.<Deferred<?>>newArrayList(_setValueSafe);
+      }
+    };
+    ops.add(_function);
+    cb.onSuccess(ops);
+  }
+  
+  public void deleteNodes(final Metadata metadata, final /* ItemMetadata */Object cachedFile, final ValueCallback<List<NetworkOperation>> cb) {
     throw new Error("Unresolved compilation problems:"
       + "\nAmbiguous feature call.\nThe methods\n\tlink(Link) in SessionOperations,\n\tlink(Node) in SessionOperations and\n\tlink(String) in SessionOperations\nall match."
-      + "\nget cannot be resolved"
       + "\nuri cannot be resolved");
   }
   
-  public void deleteNodes(final /* Metadata */Object metadata, final /* ItemMetadata */Object cachedFile, final ValueCallback<List<NetworkOperation>> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAmbiguous feature call.\nThe methods\n\tlink(Link) in SessionOperations,\n\tlink(Node) in SessionOperations and\n\tlink(String) in SessionOperations\nall match."
-      + "\nuri cannot be resolved");
-  }
-  
-  public void createFiles(final FileItem folder, final /* Metadata */Object metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
+  public void createFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
     throw new Error("Unresolved compilation problems:"
       + "\nItemMetadata cannot be resolved."
       + "\nThe method name() of type new Object(){} must override a superclass method."
@@ -128,19 +141,17 @@ public class FileToTextNode implements Converter {
       + "\nadd cannot be resolved");
   }
   
-  public void updateFiles(final FileItem folder, final /* Metadata */Object metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
+  public void updateFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
     throw new Error("Unresolved compilation problems:"
       + "\nItemMetadata cannot be resolved."
       + "\nThe method name() of type new Object(){} must override a superclass method."
       + "\nThe method lastModified() of type new Object(){} must override a superclass method."
       + "\nThe method uri() of type new Object(){} must override a superclass method."
       + "\nThe method hash() of type new Object(){} must override a superclass method."
-      + "\nget cannot be resolved"
-      + "\nname cannot be resolved"
       + "\nupdate cannot be resolved");
   }
   
-  public void removeFiles(final FileItem folder, final /* Metadata */Object metadata, final /* ItemMetadata */Object item, final ValueCallback<List<FileOperation>> cb) {
+  public void removeFiles(final FileItem folder, final Metadata metadata, final /* ItemMetadata */Object item, final ValueCallback<List<FileOperation>> cb) {
     throw new Error("Unresolved compilation problems:"
       + "\nname cannot be resolved"
       + "\nremove cannot be resolved");

@@ -2,6 +2,7 @@ package com.appjangle.filesync.internal.engine;
 
 import com.appjangle.filesync.Converter;
 import com.appjangle.filesync.NetworkOperation;
+import com.appjangle.filesync.internal.engine.metadata.ItemMetadata;
 import com.appjangle.filesync.internal.engine.metadata.Metadata;
 import de.mxro.async.Aggregator;
 import de.mxro.async.Async;

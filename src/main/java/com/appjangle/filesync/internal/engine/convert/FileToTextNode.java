@@ -27,6 +27,7 @@ import io.nextweb.promise.exceptions.UndefinedListener;
 import io.nextweb.promise.exceptions.UndefinedResult;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import mx.gwtutils.MxroGWTUtils;
@@ -145,8 +146,52 @@ public class FileToTextNode implements Converter {
   }
   
   public void createFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe anonymous subclass of ItemMetadata does not implement converter()");
+    final Closure<String> _function = new Closure<String>() {
+      public void apply(final String ext) {
+        final Closure<String> _function = new Closure<String>() {
+          public void apply(final String fileName) {
+            final LinkedList<FileOperation> ops = new LinkedList<FileOperation>();
+            final FileOperation _function = new FileOperation() {
+              public void apply(final FileOperationContext ctx) {
+                FileItem _folder = ctx.folder();
+                final FileItem file = _folder.createFile(fileName);
+                String _value = source.<String>value(String.class);
+                file.setText(_value);
+                Metadata _metadata = ctx.metadata();
+                _metadata.add(new ItemMetadata() {
+                  public String name() {
+                    return fileName;
+                  }
+                  
+                  public Date lastModified() {
+                    return new Date();
+                  }
+                  
+                  public String uri() {
+                    return source.uri();
+                  }
+                  
+                  public String hash() {
+                    return file.hash();
+                  }
+                  
+                  public String converter() {
+                    Class<? extends FileToTextNode> _class = FileToTextNode.this.getClass();
+                    return _class.toString();
+                  }
+                });
+              }
+            };
+            ops.add(_function);
+            cb.onSuccess(ops);
+          }
+        };
+        ValueCallback<String> _embed = Async.<String>embed(cb, _function);
+        FileToTextNode.this.utils.getFileName(source, folder, ext, _embed);
+      }
+    };
+    ValueCallback<String> _embed = Async.<String>embed(cb, _function);
+    this.utils.getFileExtension(source, _embed);
   }
   
   public void updateFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {

@@ -2,7 +2,9 @@ package com.appjangle.filesync.engine;
 
 import com.appjangle.filesync.Converter;
 import com.appjangle.filesync.FileOperation;
+import com.appjangle.filesync.engine.metadata.ItemMetadata;
 import com.appjangle.filesync.engine.metadata.Metadata;
+import com.google.common.base.Objects;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
 import de.mxro.fn.Closure;
@@ -47,5 +49,22 @@ public class NetworkToFileOperations {
       }
     };
     qry.get(_function_1);
+  }
+  
+  public void determineRemotelyAddedFiles(final NodeList children) {
+    for (final Node child : children) {
+      ItemMetadata _get = this.metadata.get(child);
+      boolean _equals = Objects.equal(_get, null);
+      if (_equals) {
+      }
+    }
+  }
+  
+  public Object determineRemotelyRemovedFiles() {
+    return null;
+  }
+  
+  public Object determineRemotelyUpdatedFiles() {
+    return null;
   }
 }

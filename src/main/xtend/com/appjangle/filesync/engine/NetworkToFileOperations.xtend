@@ -6,6 +6,7 @@ import com.appjangle.filesync.engine.metadata.Metadata
 import de.mxro.async.callbacks.ValueCallback
 import de.mxro.file.FileItem
 import io.nextweb.Node
+import io.nextweb.NodeList
 import java.util.List
 
 /**
@@ -42,5 +43,28 @@ class NetworkToFileOperations {
 		
 		
 	}
+	
+	
+	def determineRemotelyAddedFiles(NodeList children) {
+		
+		for (child: children) {
+			if (metadata.get(child) == null) {
+				
+			}
+		}
+		
+		
+	}
+	
+	def determineRemotelyRemovedFiles() {
+		
+	}
+	
+	
+	
+	def determineRemotelyUpdatedFiles() {
+		
+	}
+	
 	
 }

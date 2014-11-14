@@ -2,13 +2,16 @@ package com.appjangle.filesync.internal.engine.convert;
 
 import com.appjangle.filesync.Converter;
 import com.appjangle.filesync.FileOperation;
+import com.appjangle.filesync.FileOperationContext;
 import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.NetworkOperation;
 import com.appjangle.filesync.NetworkOperationContext;
 import com.appjangle.filesync.internal.engine.convert.ConvertUtils;
+import de.mxro.async.Async;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
+import de.mxro.fn.Closure;
 import de.mxro.fn.Success;
 import io.nextweb.Link;
 import io.nextweb.Node;
@@ -17,6 +20,7 @@ import io.nextweb.Session;
 import io.nextweb.promise.Deferred;
 import io.nextweb.promise.NextwebPromise;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import mx.gwtutils.MxroGWTUtils;
@@ -75,8 +79,47 @@ public class FolderToNode implements Converter {
   }
   
   public void createFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nNo enclosing instance of the type FileToTextNode is accessible in scope");
+    final Closure<String> _function = new Closure<String>() {
+      public void apply(final String folderName) {
+        final LinkedList<FileOperation> ops = new LinkedList<FileOperation>();
+        final FileOperation _function = new FileOperation() {
+          public void apply(final FileOperationContext ctx) {
+            FileItem _folder = ctx.folder();
+            final FileItem file = _folder.assertFolder(folderName);
+            String _value = source.<String>value(String.class);
+            file.setText(_value);
+            Metadata _metadata = ctx.metadata();
+            _metadata.add(
+              new ItemMetadata() {
+                public String name() {
+                  return folderName;
+                }
+                
+                public Date lastModified() {
+                  return new Date();
+                }
+                
+                public String uri() {
+                  return source.uri();
+                }
+                
+                public String hash() {
+                  return file.hash();
+                }
+                
+                public String converter() {
+                  Class<? extends FolderToNode> _class = FolderToNode.this.getClass();
+                  return _class.toString();
+                }
+              });
+          }
+        };
+        ops.add(_function);
+        cb.onSuccess(ops);
+      }
+    };
+    ValueCallback<String> _embed = Async.<String>embed(cb, _function);
+    this.utils.getFileName(source, _embed);
   }
   
   public void updateFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {

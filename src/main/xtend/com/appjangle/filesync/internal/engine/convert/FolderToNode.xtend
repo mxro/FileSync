@@ -87,7 +87,7 @@ class FolderToNode implements Converter {
 								}
 
 								override converter() {
-									FileToTextNode.this.class.toString
+									FolderToNode.this.class.toString
 								}
 
 							})

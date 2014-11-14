@@ -8,9 +8,13 @@ import com.appjangle.filesync.NetworkOperation;
 import com.appjangle.filesync.NetworkOperationContext;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
+import de.mxro.fn.Success;
+import io.nextweb.Link;
 import io.nextweb.Node;
 import io.nextweb.Query;
+import io.nextweb.Session;
 import io.nextweb.promise.Deferred;
+import io.nextweb.promise.NextwebPromise;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -53,7 +57,19 @@ public class FolderToNode implements Converter {
   }
   
   public void deleteNodes(final Metadata metadata, final ItemMetadata cachedFile, final ValueCallback<List<NetworkOperation>> cb) {
-    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+    final String address = cachedFile.uri();
+    final LinkedList<NetworkOperation> ops = new LinkedList<NetworkOperation>();
+    final NetworkOperation _function = new NetworkOperation() {
+      public List<Deferred<?>> apply(final NetworkOperationContext ctx) {
+        Node _parent = ctx.parent();
+        Session _session = ctx.session();
+        Link _link = _session.link(address);
+        NextwebPromise<Success> _removeSafe = _parent.removeSafe(_link);
+        return CollectionLiterals.<Deferred<?>>newArrayList(_removeSafe);
+      }
+    };
+    ops.add(_function);
+    cb.onSuccess(ops);
   }
   
   public void createFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {

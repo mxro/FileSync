@@ -41,11 +41,19 @@ class FolderToNode implements Converter {
 		// folders must not be updated		
 
 		cb.onSuccess(newArrayList)
-
 	}
 	
 	override deleteNodes(Metadata metadata, ItemMetadata cachedFile, ValueCallback<List<NetworkOperation>> cb) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		val address = cachedFile.uri
+
+		val ops = new LinkedList<NetworkOperation>
+
+		ops.add(
+			[ ctx |
+				newArrayList(ctx.parent.removeSafe(ctx.session.link(address)))
+			])
+
+		cb.onSuccess(ops)
 	}
 	
 	override createFiles(FileItem folder, Metadata metadata, Node source, ValueCallback<List<FileOperation>> cb) {

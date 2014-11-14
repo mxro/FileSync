@@ -11,7 +11,7 @@ class SyncFolder {
 	val Node node
 	val Converter converter
 	
-	new(FileItem folder, Node node) {
+	new(FileItem folder, Node node, Converter converter) {
 		this.folder = folder
 		this.node = node
 		this.converter = converter
@@ -29,7 +29,7 @@ class SyncFolder {
 		
 		metadata = folder.assertMetadata
 		
-		new FileToNetworkOperations(node, folder, metadata)
+		new FileToNetworkOperations(node, folder, metadata, converter)
 		
 	}
 	

@@ -28,7 +28,7 @@ class FileToNetworkOperations {
 		
 	}
 
-	def fileToNetworkOperations( ValueCallback<List<NetworkOperation>> cb) {
+	def calculate( ValueCallback<List<NetworkOperation>> cb) {
 
 		if (!folder.directory)
 			throw new Exception('File passed and not directory. ' + folder)

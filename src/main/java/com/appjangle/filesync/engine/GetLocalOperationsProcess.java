@@ -21,11 +21,11 @@ import org.eclipse.xtext.xbase.lib.Exceptions;
 
 @SuppressWarnings("all")
 public class GetLocalOperationsProcess {
-  private final Converter converter = null;
+  private final Node node;
   
-  private final Node node = null;
+  private final FileItem folder;
   
-  private final FileItem folder = null;
+  private final Converter converter;
   
   private Metadata nodes = null;
   

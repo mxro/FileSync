@@ -120,7 +120,8 @@ public class FileToTextNode implements Converter {
             final FileItem file = _folder.createFile(fileName);
             String _value = source.<String>value(String.class);
             file.setText(_value);
-            metadata.add(new ItemMetadata() {
+            Metadata _metadata = ctx.metadata();
+            _metadata.add(new ItemMetadata() {
               public String name() {
                 return fileName;
               }

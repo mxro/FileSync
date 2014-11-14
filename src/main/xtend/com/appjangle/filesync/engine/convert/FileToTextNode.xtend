@@ -95,7 +95,7 @@ class FileToTextNode implements Converter {
 					
 					file.text = source.value(String)
 					
-					metadata.add(new ItemMetadata() {
+					ctx.metadata.add(new ItemMetadata() {
 						
 						override name() {
 							fileName

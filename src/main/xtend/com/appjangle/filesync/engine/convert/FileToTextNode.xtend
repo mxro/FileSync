@@ -46,7 +46,8 @@ class FileToTextNode implements Converter {
 				val baseNode = ctx.parent.appendSafe(source.text, "./" + simpleName)
 				newArrayList(
 					baseNode,
-					baseNode.appendLabel(nameWithoutExtension)
+					baseNode.appendLabel(nameWithoutExtension),
+					baseNode.appendTypes(source)
 				)
 			])
 

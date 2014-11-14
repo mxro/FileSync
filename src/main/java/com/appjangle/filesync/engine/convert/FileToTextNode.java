@@ -59,7 +59,8 @@ public class FileToTextNode implements Converter {
           String _text = source.getText();
           final Query baseNode = _parent.appendSafe(_text, ("./" + simpleName));
           Query _appendLabel = FileToTextNode.this.utils.appendLabel(baseNode, nameWithoutExtension);
-          _xblockexpression = CollectionLiterals.<Deferred<?>>newArrayList(baseNode, _appendLabel);
+          Query _appendTypes = FileToTextNode.this.utils.appendTypes(baseNode, source);
+          _xblockexpression = CollectionLiterals.<Deferred<?>>newArrayList(baseNode, _appendLabel, _appendTypes);
         }
         return _xblockexpression;
       }

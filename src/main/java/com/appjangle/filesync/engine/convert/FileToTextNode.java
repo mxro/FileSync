@@ -20,8 +20,8 @@ import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 
 @SuppressWarnings("all")
 public class FileToTextNode implements Convert {
-  public String fileNameToAddress(final String fileName) {
-    return fileName;
+  public Object createNodes(final NodesMetadata metadata, final FileItem source, final Node parent, final ValueCallback<List<NetworkOperation>> cb) {
+    return null;
   }
   
   public void update(final NodesMetadata metadata, final FileItem source, final Node parent, final ValueCallback<List<NetworkOperation>> cb) {
@@ -40,9 +40,6 @@ public class FileToTextNode implements Convert {
     };
     ops.add(_function);
     cb.onSuccess(ops);
-  }
-  
-  public void createNodes(final NodesMetadata metadata, final FileItem source, final Node parent, final ValueCallback<List<NetworkOperation>> cb) {
   }
   
   public void deleteNodes(final NodesMetadata metadata, final FileItemMetadata cachedFile, final Node parent, final ValueCallback<List<NetworkOperation>> cb) {

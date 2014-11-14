@@ -12,9 +12,11 @@ import com.appjangle.filesync.engine.metadata.FileItemMetadata
 
 class FileToTextNode implements Convert {
 
-	def fileNameToAddress(String fileName) {
-		return fileName
+
+	override createNodes(NodesMetadata metadata, FileItem source, Node parent, ValueCallback<List<NetworkOperation>> cb) {
+		
 	}
+	
 
 	override update(NodesMetadata metadata, FileItem source, Node parent, ValueCallback<List<NetworkOperation>> cb) {
 
@@ -33,9 +35,6 @@ class FileToTextNode implements Convert {
 
 	}
 	
-	override createNodes(NodesMetadata metadata, FileItem source, Node parent, ValueCallback<List<NetworkOperation>> cb) {
-		
-	}
 	
 	override deleteNodes(NodesMetadata metadata, FileItemMetadata cachedFile, Node parent, ValueCallback<List<NetworkOperation>> cb) {
 		val address = cachedFile.uri

@@ -80,8 +80,15 @@ class NetworkToFileOperations {
 	}
 	
 	def determineRemotelyUpdatedNodes(NodeList children) {
+		val res = new ArrayList<ItemMetadata>(0)
 		
+		for (item : metadata.children) {
+			
+			
+			
+		}
 		
+		res
 		
 	}
 	

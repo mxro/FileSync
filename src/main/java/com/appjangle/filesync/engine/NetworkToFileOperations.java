@@ -49,7 +49,7 @@ public class NetworkToFileOperations {
       public void apply(final NodeList children) {
         final ArrayList<Node> remotelyAdded = NetworkToFileOperations.this.determineRemotelyAddedNodes(children);
         final ArrayList<ItemMetadata> remotelyRemoved = NetworkToFileOperations.this.determineRemotelyRemovedNodes(children);
-        final Object remotelyUpdated = NetworkToFileOperations.this.determineRemotelyUpdatedNodes(children);
+        final ArrayList<ItemMetadata> remotelyUpdated = NetworkToFileOperations.this.determineRemotelyUpdatedNodes(children);
       }
     };
     qry.get(_function_1);
@@ -90,7 +90,15 @@ public class NetworkToFileOperations {
     return _xblockexpression;
   }
   
-  public Object determineRemotelyUpdatedNodes(final NodeList children) {
-    return null;
+  public ArrayList<ItemMetadata> determineRemotelyUpdatedNodes(final NodeList children) {
+    ArrayList<ItemMetadata> _xblockexpression = null;
+    {
+      final ArrayList<ItemMetadata> res = new ArrayList<ItemMetadata>(0);
+      List<ItemMetadata> _children = this.metadata.getChildren();
+      for (final ItemMetadata item : _children) {
+      }
+      _xblockexpression = res;
+    }
+    return _xblockexpression;
   }
 }

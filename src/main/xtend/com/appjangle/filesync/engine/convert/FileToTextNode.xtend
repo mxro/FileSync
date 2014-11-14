@@ -92,6 +92,8 @@ class FileToTextNode implements Converter {
 				idx++
 			}
 			
+			folder.createFile(fileName)
+			
 			
 		]))
 	}

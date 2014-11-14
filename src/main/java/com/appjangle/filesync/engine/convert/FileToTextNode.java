@@ -125,6 +125,7 @@ public class FileToTextNode implements Converter {
           boolean _exists_1 = _child_1.exists();
           _while = _exists_1;
         }
+        folder.createFile(fileName);
       }
     };
     ValueCallback<String> _embed = Async.<String>embed(cb, _function);

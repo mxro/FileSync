@@ -1,10 +1,11 @@
 package com.appjangle.filesync;
 
+import com.appjangle.filesync.internal.engine.metadata.Metadata;
 import de.mxro.file.FileItem;
 
 @SuppressWarnings("all")
 public interface FileOperationContext {
   public abstract FileItem folder();
   
-  public abstract /* Metadata */Object metadata();
+  public abstract Metadata metadata();
 }

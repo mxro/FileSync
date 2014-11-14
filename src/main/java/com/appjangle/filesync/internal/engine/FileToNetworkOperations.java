@@ -12,6 +12,7 @@ import de.mxro.fn.Closure;
 import de.mxro.fn.collections.CollectionsUtils;
 import io.nextweb.Node;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.function.Consumer;
 import org.eclipse.xtext.xbase.lib.Exceptions;
@@ -150,11 +151,31 @@ public class FileToNetworkOperations {
   }
   
   public static ArrayList<String> determineLocallyChangedFiles(final Metadata metadata, final FileItem folder) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nItemMetadata cannot be resolved to a type."
-      + "\nname cannot be resolved"
-      + "\nlastModified cannot be resolved"
-      + "\ntime cannot be resolved");
+    ArrayList<String> _xblockexpression = null;
+    {
+      final ArrayList<String> res = new ArrayList<String>(0);
+      List<ItemMetadata> _children = metadata.getChildren();
+      for (final ItemMetadata fileMetadata : _children) {
+        {
+          String _name = fileMetadata.name();
+          final FileItem item = folder.getChild(_name);
+          boolean _exists = item.exists();
+          if (_exists) {
+            Date _lastModified = item.lastModified();
+            long _time = _lastModified.getTime();
+            Date _lastModified_1 = fileMetadata.lastModified();
+            long _time_1 = _lastModified_1.getTime();
+            boolean _greaterThan = (_time > _time_1);
+            if (_greaterThan) {
+              String _name_1 = item.getName();
+              res.add(_name_1);
+            }
+          }
+        }
+      }
+      _xblockexpression = res;
+    }
+    return _xblockexpression;
   }
   
   public static ArrayList<String> determineLocallyAddedFiles(final Metadata metadata, final FileItem folder) {
@@ -175,10 +196,14 @@ public class FileToNetworkOperations {
     return previousNames;
   }
   
-  public static ArrayList<String> getNamesFromCache(final /* List<ItemMetadata> */Object cachedChildren) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nItemMetadata cannot be resolved to a type."
-      + "\nname cannot be resolved");
+  public static ArrayList<String> getNamesFromCache(final List<ItemMetadata> cachedChildren) {
+    int _size = cachedChildren.size();
+    final ArrayList<String> res = new ArrayList<String>(_size);
+    for (final ItemMetadata fileItemMetaData : cachedChildren) {
+      String _name = fileItemMetaData.name();
+      res.add(_name);
+    }
+    return res;
   }
   
   public static ArrayList<String> getNames(final List<FileItem> cachedChildren) {

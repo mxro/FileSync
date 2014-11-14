@@ -2,33 +2,26 @@ package com.appjangle.filesync.internal.engine.convert;
 
 import com.appjangle.filesync.Converter;
 import com.appjangle.filesync.FileOperation;
-import com.appjangle.filesync.FileOperationContext;
 import com.appjangle.filesync.NetworkOperation;
 import com.appjangle.filesync.NetworkOperationContext;
-import com.appjangle.filesync.engine.metadata.ItemMetadata;
-import com.appjangle.filesync.engine.metadata.Metadata;
 import com.appjangle.filesync.internal.engine.convert.ConvertUtils;
-import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
 import de.mxro.async.Aggregator;
 import de.mxro.async.Async;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
 import de.mxro.fn.Closure;
-import de.mxro.fn.Success;
 import io.nextweb.Link;
 import io.nextweb.Node;
 import io.nextweb.Query;
 import io.nextweb.Session;
 import io.nextweb.promise.Deferred;
-import io.nextweb.promise.NextwebPromise;
 import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
 import io.nextweb.promise.exceptions.UndefinedListener;
 import io.nextweb.promise.exceptions.UndefinedResult;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import mx.gwtutils.MxroGWTUtils;
@@ -89,7 +82,7 @@ public class FileToTextNode implements Converter {
     }
   }
   
-  public void createNodes(final Metadata metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {
+  public void createNodes(final /* Metadata */Object metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {
     String _name = source.getName();
     final String nameWithoutExtension = MxroGWTUtils.removeExtension(_name);
     final String simpleName = MxroGWTUtils.getSimpleName(nameWithoutExtension);
@@ -112,134 +105,44 @@ public class FileToTextNode implements Converter {
     cb.onSuccess(ops);
   }
   
-  public void update(final Metadata metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {
-    final String content = source.getText();
-    String _name = source.getName();
-    ItemMetadata _get = metadata.get(_name);
-    final String address = _get.uri();
-    final LinkedList<NetworkOperation> ops = new LinkedList<NetworkOperation>();
-    final NetworkOperation _function = new NetworkOperation() {
-      public List<Deferred<?>> apply(final NetworkOperationContext ctx) {
-        Session _session = ctx.session();
-        Link _link = _session.link(address);
-        Query _setValueSafe = _link.setValueSafe(content);
-        return CollectionLiterals.<Deferred<?>>newArrayList(_setValueSafe);
-      }
-    };
-    ops.add(_function);
-    cb.onSuccess(ops);
+  public void update(final /* Metadata */Object metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nAmbiguous feature call.\nThe methods\n\tlink(Link) in SessionOperations,\n\tlink(Node) in SessionOperations and\n\tlink(String) in SessionOperations\nall match."
+      + "\nget cannot be resolved"
+      + "\nuri cannot be resolved");
   }
   
-  public void deleteNodes(final Metadata metadata, final ItemMetadata cachedFile, final ValueCallback<List<NetworkOperation>> cb) {
-    final String address = cachedFile.uri();
-    final LinkedList<NetworkOperation> ops = new LinkedList<NetworkOperation>();
-    final NetworkOperation _function = new NetworkOperation() {
-      public List<Deferred<?>> apply(final NetworkOperationContext ctx) {
-        Node _parent = ctx.parent();
-        Session _session = ctx.session();
-        Link _link = _session.link(address);
-        NextwebPromise<Success> _removeSafe = _parent.removeSafe(_link);
-        return CollectionLiterals.<Deferred<?>>newArrayList(_removeSafe);
-      }
-    };
-    ops.add(_function);
-    cb.onSuccess(ops);
+  public void deleteNodes(final /* Metadata */Object metadata, final /* ItemMetadata */Object cachedFile, final ValueCallback<List<NetworkOperation>> cb) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nAmbiguous feature call.\nThe methods\n\tlink(Link) in SessionOperations,\n\tlink(Node) in SessionOperations and\n\tlink(String) in SessionOperations\nall match."
+      + "\nuri cannot be resolved");
   }
   
-  public void createFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
-    final Closure<String> _function = new Closure<String>() {
-      public void apply(final String ext) {
-        final Closure<String> _function = new Closure<String>() {
-          public void apply(final String fileName) {
-            final LinkedList<FileOperation> ops = new LinkedList<FileOperation>();
-            final FileOperation _function = new FileOperation() {
-              public void apply(final FileOperationContext ctx) {
-                FileItem _folder = ctx.folder();
-                final FileItem file = _folder.createFile(fileName);
-                String _value = source.<String>value(String.class);
-                file.setText(_value);
-                Metadata _metadata = ctx.metadata();
-                _metadata.add(new ItemMetadata() {
-                  public String name() {
-                    return fileName;
-                  }
-                  
-                  public Date lastModified() {
-                    return new Date();
-                  }
-                  
-                  public String uri() {
-                    return source.uri();
-                  }
-                  
-                  public String hash() {
-                    return file.hash();
-                  }
-                });
-              }
-            };
-            ops.add(_function);
-            cb.onSuccess(ops);
-          }
-        };
-        ValueCallback<String> _embed = Async.<String>embed(cb, _function);
-        FileToTextNode.this.utils.getFileName(source, folder, ext, _embed);
-      }
-    };
-    ValueCallback<String> _embed = Async.<String>embed(cb, _function);
-    this.utils.getFileExtension(source, _embed);
+  public void createFiles(final FileItem folder, final /* Metadata */Object metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nItemMetadata cannot be resolved."
+      + "\nThe method name() of type new Object(){} must override a superclass method."
+      + "\nThe method lastModified() of type new Object(){} must override a superclass method."
+      + "\nThe method uri() of type new Object(){} must override a superclass method."
+      + "\nThe method hash() of type new Object(){} must override a superclass method."
+      + "\nadd cannot be resolved");
   }
   
-  public void updateFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
-    ItemMetadata _get = metadata.get(source);
-    final String fileName = _get.name();
-    final String content = source.<String>value(String.class);
-    final LinkedList<FileOperation> ops = new LinkedList<FileOperation>();
-    final FileOperation _function = new FileOperation() {
-      public void apply(final FileOperationContext ctx) {
-        FileItem _folder = ctx.folder();
-        final FileItem file = _folder.getChild(fileName);
-        String _text = file.getText();
-        boolean _notEquals = (!Objects.equal(_text, content));
-        if (_notEquals) {
-          file.setText(content);
-          Metadata _metadata = ctx.metadata();
-          _metadata.update(new ItemMetadata() {
-            public String name() {
-              return fileName;
-            }
-            
-            public Date lastModified() {
-              return new Date();
-            }
-            
-            public String uri() {
-              return source.uri();
-            }
-            
-            public String hash() {
-              return file.hash();
-            }
-          });
-        }
-      }
-    };
-    ops.add(_function);
-    cb.onSuccess(ops);
+  public void updateFiles(final FileItem folder, final /* Metadata */Object metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nItemMetadata cannot be resolved."
+      + "\nThe method name() of type new Object(){} must override a superclass method."
+      + "\nThe method lastModified() of type new Object(){} must override a superclass method."
+      + "\nThe method uri() of type new Object(){} must override a superclass method."
+      + "\nThe method hash() of type new Object(){} must override a superclass method."
+      + "\nget cannot be resolved"
+      + "\nname cannot be resolved"
+      + "\nupdate cannot be resolved");
   }
   
-  public void removeFiles(final FileItem folder, final Metadata metadata, final ItemMetadata item, final ValueCallback<List<FileOperation>> cb) {
-    final String fileName = item.name();
-    final LinkedList<FileOperation> ops = new LinkedList<FileOperation>();
-    final FileOperation _function = new FileOperation() {
-      public void apply(final FileOperationContext ctx) {
-        FileItem _folder = ctx.folder();
-        _folder.deleteFile(fileName);
-        Metadata _metadata = ctx.metadata();
-        _metadata.remove(fileName);
-      }
-    };
-    ops.add(_function);
-    cb.onSuccess(ops);
+  public void removeFiles(final FileItem folder, final /* Metadata */Object metadata, final /* ItemMetadata */Object item, final ValueCallback<List<FileOperation>> cb) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nname cannot be resolved"
+      + "\nremove cannot be resolved");
   }
 }

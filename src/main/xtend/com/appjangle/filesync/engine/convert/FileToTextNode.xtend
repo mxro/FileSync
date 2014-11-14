@@ -14,46 +14,42 @@ import mx.gwtutils.MxroGWTUtils
 
 class FileToTextNode implements Converter {
 
-
 	override worksOn(FileItem source) {
-		
+
 		val name = source.name
-		
+
 		name.endsWith('.txt') || name.endsWith('.xml')
-		
+
 	}
-	
+
 	override worksOn(Node node, ValueCallback<Boolean> cb) {
-		
+
 		cb.onSuccess(node.value() instanceof String)
-		
+
 	}
 
-	override createNodes(Metadata metadata, FileItem source,  ValueCallback<List<NetworkOperation>> cb) {
-		
-		val nameWithoutExtension = MxroGWTUtils.removeExtension(source.name)
-		
-		val simpleName = MxroGWTUtils.getSimpleName(nameWithoutExtension)
-		
-		val ops = new LinkedList<NetworkOperation> 
-		
-		ops.add([ ctx |
-			
-			val baseNode = ctx.parent.appendSafe(source.text, "./"+simpleName)
+	override createNodes(Metadata metadata, FileItem source, ValueCallback<List<NetworkOperation>> cb) {
 
-			newArrayList(
-				baseNode,
-				baseNode.appendSafe(nameWithoutExtension).appendSafe(ctx.session.link('https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel'), "./label")
-				
-			)
-				
-		])
-		
+		val nameWithoutExtension = MxroGWTUtils.removeExtension(source.name)
+
+		val simpleName = MxroGWTUtils.getSimpleName(nameWithoutExtension)
+
+		val ops = new LinkedList<NetworkOperation>
+
+		ops.add(
+			[ ctx |
+				val baseNode = ctx.parent.appendSafe(source.text, "./" + simpleName)
+				newArrayList(
+					baseNode,
+					baseNode.appendSafe(nameWithoutExtension).appendSafe(
+						ctx.session.link('https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel'), "./label")
+				)
+			])
+
 		cb.onSuccess(ops)
 	}
-	
 
-	override update(Metadata metadata, FileItem source,  ValueCallback<List<NetworkOperation>> cb) {
+	override update(Metadata metadata, FileItem source, ValueCallback<List<NetworkOperation>> cb) {
 
 		val content = source.text
 
@@ -63,15 +59,14 @@ class FileToTextNode implements Converter {
 
 		ops.add(
 			[ ctx |
-				newArrayList(ctx.session.link(address).setValueSafe(content))			
+				newArrayList(ctx.session.link(address).setValueSafe(content))
 			])
 
 		cb.onSuccess(ops);
 
 	}
-	
-	
-	override deleteNodes(Metadata metadata, ItemMetadata cachedFile,  ValueCallback<List<NetworkOperation>> cb) {
+
+	override deleteNodes(Metadata metadata, ItemMetadata cachedFile, ValueCallback<List<NetworkOperation>> cb) {
 		val address = cachedFile.uri
 
 		val ops = new LinkedList<NetworkOperation>
@@ -83,12 +78,8 @@ class FileToTextNode implements Converter {
 
 		cb.onSuccess(ops);
 	}
-	
-	
-	
+
 	override createFiles(Metadata metadata, Node source, ValueCallback<List<FileOperation>> cb) {
-		
 	}
-	
 
 }

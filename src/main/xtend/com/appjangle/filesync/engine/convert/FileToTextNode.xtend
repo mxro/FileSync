@@ -166,7 +166,20 @@ class FileToTextNode implements Converter {
 	}
 	
 	override removeFiles(FileItem folder, Metadata metadata, Node source, ValueCallback<List<FileOperation>> cb) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		val fileName = metadata.getChild(source).name
+		
+		val ops = new LinkedList<FileOperation>
+		
+		ops.add([ctx|
+			
+			ctx.folder.deleteFile(fileName)
+			
+			ctx.metadata.remove(fileName)
+			
+			
+		])
+		
+		cb.onSuccess(ops)
 	}
 		
 

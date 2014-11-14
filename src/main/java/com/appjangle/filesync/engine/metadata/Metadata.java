@@ -15,4 +15,6 @@ public interface Metadata {
   public abstract Metadata add(final ItemMetadata itemMetadata);
   
   public abstract Metadata update(final ItemMetadata itemMetadata);
+  
+  public abstract Metadata remove(final String name);
 }

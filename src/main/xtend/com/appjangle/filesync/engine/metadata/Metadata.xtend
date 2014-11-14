@@ -16,4 +16,6 @@ interface Metadata {
 	
 	def Metadata update(ItemMetadata itemMetadata)
 	
+	def Metadata remove(String name)
+	
 }

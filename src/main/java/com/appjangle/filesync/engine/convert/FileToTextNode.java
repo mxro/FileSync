@@ -175,6 +175,18 @@ public class FileToTextNode implements Converter {
   }
   
   public void removeFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
-    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+    ItemMetadata _child = metadata.getChild(source);
+    final String fileName = _child.name();
+    final LinkedList<FileOperation> ops = new LinkedList<FileOperation>();
+    final FileOperation _function = new FileOperation() {
+      public void apply(final FileOperationContext ctx) {
+        FileItem _folder = ctx.folder();
+        _folder.deleteFile(fileName);
+        Metadata _metadata = ctx.metadata();
+        _metadata.remove(fileName);
+      }
+    };
+    ops.add(_function);
+    cb.onSuccess(ops);
   }
 }

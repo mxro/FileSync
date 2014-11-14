@@ -4,8 +4,10 @@ import com.appjangle.filesync.FileOperation;
 import com.appjangle.filesync.FileOperationContext;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.internal.engine.metadata.MetadataUtilsJre;
+import com.google.common.base.Objects;
 import de.mxro.file.FileItem;
 import java.util.List;
+import org.eclipse.xtext.xbase.lib.ExclusiveRange;
 
 @SuppressWarnings("all")
 public class FileUtils {
@@ -59,8 +61,81 @@ public class FileUtils {
    * @return
    */
   public String toFileSystemSafeName(final String name, final boolean dirSeparators, final int maxFileLength) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field i is undefined for the type FileUtils"
-      + "\n.. cannot be resolved");
+    final int size = name.length();
+    final StringBuffer rc = new StringBuffer((size * 2));
+    ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, size, true);
+    for (final Integer i : _doubleDotLessThan) {
+      {
+        final char c = name.charAt((i).intValue());
+        boolean valid = ((c >= 'a') && (c <= 'z'));
+        valid = (valid || ((c >= 'A') && (c <= 'Z')));
+        valid = (valid || ((c >= '0') && (c <= '9')));
+        boolean _or = false;
+        boolean _or_1 = false;
+        boolean _or_2 = false;
+        boolean _or_3 = false;
+        boolean _or_4 = false;
+        if (valid) {
+          _or_4 = true;
+        } else {
+          boolean _equals = Objects.equal(Character.valueOf(c), "_");
+          _or_4 = _equals;
+        }
+        if (_or_4) {
+          _or_3 = true;
+        } else {
+          boolean _equals_1 = Objects.equal(Character.valueOf(c), "-");
+          _or_3 = _equals_1;
+        }
+        if (_or_3) {
+          _or_2 = true;
+        } else {
+          boolean _equals_2 = Objects.equal(Character.valueOf(c), ".");
+          _or_2 = _equals_2;
+        }
+        if (_or_2) {
+          _or_1 = true;
+        } else {
+          boolean _equals_3 = Objects.equal(Character.valueOf(c), "#");
+          _or_1 = _equals_3;
+        }
+        if (_or_1) {
+          _or = true;
+        } else {
+          boolean _and = false;
+          if (!dirSeparators) {
+            _and = false;
+          } else {
+            boolean _or_5 = false;
+            boolean _equals_4 = Objects.equal(Character.valueOf(c), "/");
+            if (_equals_4) {
+              _or_5 = true;
+            } else {
+              boolean _equals_5 = Objects.equal(Character.valueOf(c), "\\");
+              _or_5 = _equals_5;
+            }
+            _and = _or_5;
+          }
+          _or = _and;
+        }
+        valid = _or;
+        if (valid) {
+          rc.append(c);
+        } else {
+          rc.append("_");
+        }
+      }
+    }
+    String result = rc.toString();
+    int _length = result.length();
+    boolean _greaterThan = (_length > maxFileLength);
+    if (_greaterThan) {
+      int _length_1 = result.length();
+      int _minus = (_length_1 - maxFileLength);
+      int _length_2 = result.length();
+      String _substring = result.substring(_minus, _length_2);
+      result = _substring;
+    }
+    return result;
   }
 }

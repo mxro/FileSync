@@ -1,6 +1,5 @@
 package com.appjangle.filesync.tests
 
-import com.appjangle.filesync.engine.convert.ConvertUtils
 import org.junit.Assert
 import org.junit.Test
 

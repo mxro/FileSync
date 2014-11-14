@@ -3,6 +3,7 @@ package com.appjangle.filesync.internal.engine.convert
 import com.appjangle.filesync.Converter
 import com.appjangle.filesync.FileOperation
 import com.appjangle.filesync.NetworkOperation
+import com.appjangle.filesync.internal.engine.metadata.ItemMetadata
 import com.appjangle.filesync.internal.engine.metadata.Metadata
 import de.mxro.async.Async
 import de.mxro.async.callbacks.ValueCallback

@@ -5,8 +5,11 @@ import com.appjangle.filesync.FileOperation;
 import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.NetworkOperation;
+import de.mxro.async.Aggregator;
+import de.mxro.async.Async;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
+import de.mxro.fn.Closure;
 import io.nextweb.Node;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +47,18 @@ public class ConverterCollection implements Converter {
   }
   
   public void worksOn(final Node node, final ValueCallback<Boolean> cb) {
-    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+    int _size = this.converters.size();
+    final Closure<List<Object>> _function = new Closure<List<Object>>() {
+      public void apply(final List<Object> res) {
+        boolean _contains = res.contains(Boolean.valueOf(true));
+        cb.onSuccess(Boolean.valueOf(_contains));
+      }
+    };
+    ValueCallback<List<Object>> _embed = Async.<List<Object>>embed(cb, _function);
+    final Aggregator<Object> cbs = Async.<Object>collect(_size, _embed);
+    for (final Converter c : this.converters) {
+      final ValueCallback<Object> itmcb = cbs.createCallback();
+    }
   }
   
   public void createNodes(final Metadata metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {

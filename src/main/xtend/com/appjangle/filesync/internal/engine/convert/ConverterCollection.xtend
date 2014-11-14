@@ -5,11 +5,14 @@ import com.appjangle.filesync.FileOperation
 import com.appjangle.filesync.ItemMetadata
 import com.appjangle.filesync.Metadata
 import com.appjangle.filesync.NetworkOperation
+import de.mxro.async.Async
 import de.mxro.async.callbacks.ValueCallback
 import de.mxro.file.FileItem
 import io.nextweb.Node
 import java.util.ArrayList
 import java.util.List
+
+import static extension de.mxro.async.Async.embed
 
 class ConverterCollection implements Converter {
 	
@@ -35,7 +38,17 @@ class ConverterCollection implements Converter {
 	}
 	
 	override worksOn(Node node, ValueCallback<Boolean> cb) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		
+		val cbs = Async.collect(converters.size, cb.embed [res |
+			cb.onSuccess(res.contains(true))
+		])
+		
+		for (c:converters) {
+			val itmcb = cbs.createCallback
+			
+			
+		}
+		
 	}
 	
 	override createNodes(Metadata metadata, FileItem source, ValueCallback<List<NetworkOperation>> cb) {

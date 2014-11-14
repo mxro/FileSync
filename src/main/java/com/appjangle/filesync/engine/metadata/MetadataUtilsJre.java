@@ -3,8 +3,6 @@ package com.appjangle.filesync.engine.metadata;
 import com.appjangle.filesync.engine.metadata.Metadata;
 import com.thoughtworks.xstream.XStream;
 import de.mxro.file.FileItem;
-import de.mxro.file.Jre.JreFiles;
-import java.io.InputStream;
 
 @SuppressWarnings("all")
 public class MetadataUtilsJre {
@@ -17,8 +15,8 @@ public class MetadataUtilsJre {
         return null;
       }
       final XStream xstream = new XStream();
-      InputStream _inputStream = JreFiles.getInputStream(file);
-      Object _fromXML = xstream.fromXML(_inputStream);
+      String _text = file.getText();
+      Object _fromXML = xstream.fromXML(_text);
       final Metadata nodesMetadata = ((Metadata) _fromXML);
       _xblockexpression = nodesMetadata;
     }

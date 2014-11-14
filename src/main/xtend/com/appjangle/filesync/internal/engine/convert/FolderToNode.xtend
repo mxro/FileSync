@@ -38,7 +38,10 @@ class FolderToNode implements Converter {
 	}
 	
 	override update(Metadata metadata, FileItem source, ValueCallback<List<NetworkOperation>> cb) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		// folders must not be updated		
+
+		cb.onSuccess(newArrayList)
+
 	}
 	
 	override deleteNodes(Metadata metadata, ItemMetadata cachedFile, ValueCallback<List<NetworkOperation>> cb) {

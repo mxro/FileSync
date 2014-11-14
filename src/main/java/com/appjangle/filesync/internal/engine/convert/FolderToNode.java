@@ -36,7 +36,8 @@ public class FolderToNode implements Converter {
         ArrayList<Deferred<?>> _xblockexpression = null;
         {
           Node _parent = ctx.parent();
-          final Query baseNode = _parent.appendSafe("", ("./" + simpleName));
+          String _name = source.getName();
+          final Query baseNode = _parent.appendSafe(_name, ("./" + simpleName));
           _xblockexpression = CollectionLiterals.<Deferred<?>>newArrayList(baseNode);
         }
         return _xblockexpression;
@@ -47,7 +48,8 @@ public class FolderToNode implements Converter {
   }
   
   public void update(final Metadata metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {
-    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+    ArrayList<NetworkOperation> _newArrayList = CollectionLiterals.<NetworkOperation>newArrayList();
+    cb.onSuccess(_newArrayList);
   }
   
   public void deleteNodes(final Metadata metadata, final ItemMetadata cachedFile, final ValueCallback<List<NetworkOperation>> cb) {

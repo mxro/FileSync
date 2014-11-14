@@ -11,4 +11,6 @@ public interface ItemMetadata {
   public abstract String uri();
   
   public abstract String hash();
+  
+  public abstract String converter();
 }

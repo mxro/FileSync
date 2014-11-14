@@ -12,5 +12,7 @@ interface ItemMetadata {
 	
 	def String hash()
 	
+	def String converter()
+	
 	
 }

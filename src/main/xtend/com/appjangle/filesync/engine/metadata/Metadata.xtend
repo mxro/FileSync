@@ -14,4 +14,6 @@ interface Metadata {
 	
 	def Metadata add(ItemMetadata itemMetadata)
 	
+	def Metadata update(ItemMetadata itemMetadata)
+	
 }

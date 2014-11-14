@@ -13,4 +13,6 @@ public interface Metadata {
   public abstract ItemMetadata getChild(final Node forNode);
   
   public abstract Metadata add(final ItemMetadata itemMetadata);
+  
+  public abstract Metadata update(final ItemMetadata itemMetadata);
 }

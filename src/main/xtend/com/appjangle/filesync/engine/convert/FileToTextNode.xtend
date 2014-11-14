@@ -127,9 +127,36 @@ class FileToTextNode implements Converter {
 		
 		val fileName = metadata.getChild(source).name
 		
+		val content = source.value(String)
+		
 		val ops = new LinkedList<FileOperation>
 		
 		ops.add([ctx|
+			
+			val file = ctx.folder.getChild(fileName)
+			
+			file.text = content
+			
+			ctx.metadata.update(new ItemMetadata() {
+						
+						override name() {
+							fileName
+						}
+						
+						override lastModified() {
+							new Date() // TODO replace with last modified if available from node !!
+						}
+						
+						override uri() {
+							source.uri()
+						}
+						
+						override hash() {
+							file.hash
+						}
+						
+					})
+			
 			
 		])
 		

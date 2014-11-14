@@ -3,6 +3,7 @@ package com.appjangle.filesync.internal.engine.convert;
 import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import de.mxro.async.Aggregator;
 import de.mxro.async.Async;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
@@ -15,10 +16,13 @@ import io.nextweb.Query;
 import io.nextweb.Session;
 import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
+import io.nextweb.promise.exceptions.UndefinedListener;
+import io.nextweb.promise.exceptions.UndefinedResult;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Consumer;
 import org.eclipse.xtext.xbase.lib.Functions.Function0;
 
 @SuppressWarnings("all")
@@ -117,14 +121,51 @@ public class ConvertUtils {
   }
   
   public void getFileName(final Node fromNode, final ValueCallback<String> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field com is undefined for the type ConvertUtils"
-      + "\nappjangle cannot be resolved"
-      + "\nfilesync cannot be resolved"
-      + "\nengine cannot be resolved"
-      + "\nconvert cannot be resolved"
-      + "\nConvertUtils cannot be resolved"
-      + "\nNO_VALUE cannot be resolved");
+    int _size = this.labelTypes.size();
+    final Closure<List<Object>> _function = new Closure<List<Object>>() {
+      public void apply(final List<Object> res) {
+        for (final Object item : res) {
+          if ((item instanceof String)) {
+            cb.onSuccess(((String)item));
+            return;
+          }
+        }
+        String _uri = fromNode.uri();
+        String _nameFromUri = ConvertUtils.getNameFromUri(_uri);
+        cb.onSuccess(_nameFromUri);
+      }
+    };
+    ValueCallback<List<Object>> _embed = Async.<List<Object>>embed(cb, _function);
+    final Aggregator<Object> cbs = Async.<Object>collect(_size, _embed);
+    final Consumer<String> _function_1 = new Consumer<String>() {
+      public void accept(final String labelType) {
+        Session _session = fromNode.session();
+        Link _link = _session.link(labelType);
+        final Query qry = fromNode.select(_link);
+        final ValueCallback<Object> itmcb = cbs.createCallback();
+        final UndefinedListener _function = new UndefinedListener() {
+          public void onUndefined(final UndefinedResult it) {
+            itmcb.onSuccess(ConvertUtils.NO_VALUE);
+          }
+        };
+        qry.catchUndefined(_function);
+        final ExceptionListener _function_1 = new ExceptionListener() {
+          public void onFailure(final ExceptionResult er) {
+            Throwable _exception = er.exception();
+            itmcb.onFailure(_exception);
+          }
+        };
+        qry.catchExceptions(_function_1);
+        final Closure<Node> _function_2 = new Closure<Node>() {
+          public void apply(final Node label) {
+            Object _value = label.value();
+            itmcb.onSuccess(_value);
+          }
+        };
+        qry.get(_function_2);
+      }
+    };
+    this.labelTypes.forEach(_function_1);
   }
   
   public static String getNameFromUri(final String uri) {

@@ -4,6 +4,7 @@ import com.appjangle.filesync.Converter
 import com.appjangle.filesync.FileOperation
 import com.appjangle.filesync.engine.metadata.ItemMetadata
 import com.appjangle.filesync.engine.metadata.Metadata
+import com.appjangle.filesync.internal.engine.convert.ConvertUtils
 import de.mxro.async.Async
 import de.mxro.async.callbacks.ValueCallback
 import de.mxro.file.FileItem
@@ -12,7 +13,6 @@ import io.nextweb.Node
 import io.nextweb.NodeList
 import java.util.ArrayList
 import java.util.List
-import com.appjangle.filesync.engine.convert.ConvertUtils
 
 /**
  * Determines operations to be performed on local files based on remote changes made in the cloud.

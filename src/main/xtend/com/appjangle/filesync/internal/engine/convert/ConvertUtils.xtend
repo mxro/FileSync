@@ -91,7 +91,7 @@ class ConvertUtils {
 		labelTypes.forEach [ labelType |
 			val qry = fromNode.select(fromNode.session().link(labelType))
 			val itmcb = cbs.createCallback
-			qry.catchUndefined([itmcb.onSuccess(com.appjangle.filesync.engine.convert.ConvertUtils.NO_VALUE)])
+			qry.catchUndefined([itmcb.onSuccess(ConvertUtils.NO_VALUE)])
 			qry.catchExceptions([er|itmcb.onFailure(er.exception)])
 			qry.get [ label |
 				itmcb.onSuccess(label.value())

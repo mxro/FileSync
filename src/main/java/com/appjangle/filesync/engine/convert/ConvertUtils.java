@@ -32,7 +32,7 @@ public class ConvertUtils {
   
   private final static Object NO_LABEL = new Object();
   
-  public void getFileName(final Node forNode, final String fileExtension, final FileItem inFolder, final ValueCallback<String> cb) {
+  public void getFileName(final Node forNode, final FileItem inFolder, final String fileExtension, final ValueCallback<String> cb) {
     final Closure<String> _function = new Closure<String>() {
       public void apply(final String fileNameFromNode) {
         String fileName = (fileNameFromNode + fileExtension);

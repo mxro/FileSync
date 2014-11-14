@@ -19,7 +19,7 @@ class ConvertUtils {
 	
 	static val NO_LABEL = new Object()
 	
-	def getFileName(Node forNode, String fileExtension, FileItem inFolder, ValueCallback<String> cb) {
+	def getFileName(Node forNode,  FileItem inFolder, String fileExtension, ValueCallback<String> cb) {
 		getFileName(forNode, cb.embed([ fileNameFromNode |
 			var fileName = fileNameFromNode + fileExtension
 			var idx = 1

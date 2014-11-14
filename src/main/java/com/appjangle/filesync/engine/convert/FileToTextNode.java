@@ -108,8 +108,6 @@ public class FileToTextNode implements Converter {
   
   public void createFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
     throw new Error("Unresolved compilation problems:"
-      + "\nThe method setText is undefined for the type FileToTextNode"
-      + "\nType mismatch: cannot convert from String to FileItem"
-      + "\nType mismatch: cannot convert from FileItem to String");
+      + "\nThe method setText is undefined for the type FileToTextNode");
   }
 }

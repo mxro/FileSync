@@ -17,15 +17,19 @@ class FileToNetworkOperations {
 
 	val Node node;
 	val FileItem folder;
+	val Metadata metadata;
 	val Converter converter;	
 	
-	new(Node node, FileItem folder, Converter converter) {
+	
+	new(Node node, FileItem folder, Metadata metadata, Converter converter) {
 		this.node = node
 		this.folder = folder
+		this.metadata = metadata
 		this.converter = converter
+		
 	}
 	
-	var Metadata nodes = null;
+
 
 	def fileToNetworkOperations( ValueCallback<List<NetworkOperation>> cb) {
 
@@ -35,21 +39,12 @@ class FileToNetworkOperations {
 		if (!folder.exists)
 			throw new Exception('File passed does not exist. ' + folder)
 
-		val metadata = folder.assertFolder(".filesync-meta")
 		
-		metadata.visible = false;
+		val locallyAddedFiles = determineLocallyAddedFiles(metadata, folder)
 
-		nodes = MetadataUtilsJre.readFromFile(metadata.getChild("nodes.xml"))
+		val locallyRemovedFiles = determineLocallyRemovedFiles(metadata, folder)
 
-		if (nodes == null) {
-			return new ArrayList<NetworkOperation>(0)
-		}
-
-		val locallyAddedFiles = determineLocallyAddedFiles(nodes, folder)
-
-		val locallyRemovedFiles = determineLocallyRemovedFiles(nodes, folder)
-
-		val locallyChangedFiles = determineLocallyChangedFiles(nodes, folder)
+		val locallyChangedFiles = determineLocallyChangedFiles(metadata, folder)
 
 		
 		val agg = Async.collect(3, Async.embed(cb, [res |
@@ -75,7 +70,7 @@ class FileToNetworkOperations {
 		]))
 
 		fileNames.forEach[ fileName | 
-			converter.update(nodes, folder.getChild(fileName),  agg.createCallback());
+			converter.update(metadata, folder.getChild(fileName),  agg.createCallback());
 		]
 		
 	}
@@ -88,7 +83,7 @@ class FileToNetworkOperations {
 		]))
 
 		fileNames.forEach[ fileName | 
-			converter.deleteNodes(nodes, nodes.get(fileName),  agg.createCallback)
+			converter.deleteNodes(metadata, metadata.get(fileName),  agg.createCallback)
 		]
 		
 	}
@@ -101,7 +96,7 @@ class FileToNetworkOperations {
 		]))
 		
 		fileNames.forEach[fileName |
-			converter.createNodes(nodes, folder.getChild(fileName), agg.createCallback());
+			converter.createNodes(metadata, folder.getChild(fileName), agg.createCallback());
 		]
 		
 	}

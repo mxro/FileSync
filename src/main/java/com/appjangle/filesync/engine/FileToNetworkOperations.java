@@ -4,8 +4,6 @@ import com.appjangle.filesync.Converter;
 import com.appjangle.filesync.NetworkOperation;
 import com.appjangle.filesync.engine.metadata.ItemMetadata;
 import com.appjangle.filesync.engine.metadata.Metadata;
-import com.appjangle.filesync.engine.metadata.MetadataUtilsJre;
-import com.google.common.base.Objects;
 import de.mxro.async.Aggregator;
 import de.mxro.async.Async;
 import de.mxro.async.callbacks.ValueCallback;
@@ -25,17 +23,18 @@ public class FileToNetworkOperations {
   
   private final FileItem folder;
   
+  private final Metadata metadata;
+  
   private final Converter converter;
   
-  public FileToNetworkOperations(final Node node, final FileItem folder, final Converter converter) {
+  public FileToNetworkOperations(final Node node, final FileItem folder, final Metadata metadata, final Converter converter) {
     this.node = node;
     this.folder = folder;
+    this.metadata = metadata;
     this.converter = converter;
   }
   
-  private Metadata nodes = null;
-  
-  public ArrayList<NetworkOperation> fileToNetworkOperations(final ValueCallback<List<NetworkOperation>> cb) {
+  public void fileToNetworkOperations(final ValueCallback<List<NetworkOperation>> cb) {
     try {
       boolean _isDirectory = this.folder.isDirectory();
       boolean _not = (!_isDirectory);
@@ -47,18 +46,9 @@ public class FileToNetworkOperations {
       if (_not_1) {
         throw new Exception(("File passed does not exist. " + this.folder));
       }
-      final FileItem metadata = this.folder.assertFolder(".filesync-meta");
-      metadata.setVisible(false);
-      FileItem _child = metadata.getChild("nodes.xml");
-      Metadata _readFromFile = MetadataUtilsJre.readFromFile(_child);
-      this.nodes = _readFromFile;
-      boolean _equals = Objects.equal(this.nodes, null);
-      if (_equals) {
-        return new ArrayList<NetworkOperation>(0);
-      }
-      final ArrayList<String> locallyAddedFiles = FileToNetworkOperations.determineLocallyAddedFiles(this.nodes, this.folder);
-      final ArrayList<String> locallyRemovedFiles = FileToNetworkOperations.determineLocallyRemovedFiles(this.nodes, this.folder);
-      final ArrayList<String> locallyChangedFiles = FileToNetworkOperations.determineLocallyChangedFiles(this.nodes, this.folder);
+      final ArrayList<String> locallyAddedFiles = FileToNetworkOperations.determineLocallyAddedFiles(this.metadata, this.folder);
+      final ArrayList<String> locallyRemovedFiles = FileToNetworkOperations.determineLocallyRemovedFiles(this.metadata, this.folder);
+      final ArrayList<String> locallyChangedFiles = FileToNetworkOperations.determineLocallyChangedFiles(this.metadata, this.folder);
       final Closure<List<List<NetworkOperation>>> _function = new Closure<List<List<NetworkOperation>>>() {
         public void apply(final List<List<NetworkOperation>> res) {
           final List<NetworkOperation> ops = CollectionsUtils.<NetworkOperation>flatten(res);
@@ -73,7 +63,6 @@ public class FileToNetworkOperations {
       this.createOperationsFromChangedFiles(locallyChangedFiles, _createCallback_1);
       ValueCallback<List<NetworkOperation>> _createCallback_2 = agg.createCallback();
       this.createOperationsFromCreatedFiles(locallyAddedFiles, _createCallback_2);
-      return null;
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -93,7 +82,7 @@ public class FileToNetworkOperations {
       public void accept(final String fileName) {
         FileItem _child = FileToNetworkOperations.this.folder.getChild(fileName);
         ValueCallback<List<NetworkOperation>> _createCallback = agg.createCallback();
-        FileToNetworkOperations.this.converter.update(FileToNetworkOperations.this.nodes, _child, _createCallback);
+        FileToNetworkOperations.this.converter.update(FileToNetworkOperations.this.metadata, _child, _createCallback);
       }
     };
     fileNames.forEach(_function_1);
@@ -111,9 +100,9 @@ public class FileToNetworkOperations {
     final Aggregator<List<NetworkOperation>> agg = Async.<List<NetworkOperation>>collect(_size, _embed);
     final Consumer<String> _function_1 = new Consumer<String>() {
       public void accept(final String fileName) {
-        ItemMetadata _get = FileToNetworkOperations.this.nodes.get(fileName);
+        ItemMetadata _get = FileToNetworkOperations.this.metadata.get(fileName);
         ValueCallback<List<NetworkOperation>> _createCallback = agg.createCallback();
-        FileToNetworkOperations.this.converter.deleteNodes(FileToNetworkOperations.this.nodes, _get, _createCallback);
+        FileToNetworkOperations.this.converter.deleteNodes(FileToNetworkOperations.this.metadata, _get, _createCallback);
       }
     };
     fileNames.forEach(_function_1);
@@ -133,7 +122,7 @@ public class FileToNetworkOperations {
       public void accept(final String fileName) {
         FileItem _child = FileToNetworkOperations.this.folder.getChild(fileName);
         ValueCallback<List<NetworkOperation>> _createCallback = agg.createCallback();
-        FileToNetworkOperations.this.converter.createNodes(FileToNetworkOperations.this.nodes, _child, _createCallback);
+        FileToNetworkOperations.this.converter.createNodes(FileToNetworkOperations.this.metadata, _child, _createCallback);
       }
     };
     fileNames.forEach(_function_1);

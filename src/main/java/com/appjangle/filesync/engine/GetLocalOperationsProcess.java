@@ -76,24 +76,24 @@ public class GetLocalOperationsProcess {
     throw new Error("Unresolved compilation problems:"
       + "\nInvalid number of arguments. The method update(NodesMetadata, FileItem, Node, ValueCallback<List<NetworkOperation>>) is not applicable for the arguments (FileItem,Node,ValueCallback<List<NetworkOperation>>)"
       + "\nType mismatch: cannot convert from FileItem to NodesMetadata"
-      + "\nType mismatch: cannot convert from Node to FileItem"
-      + "\nType mismatch: cannot convert from ValueCallback<List<NetworkOperation>> to Node");
+      + "\nType mismatch: cannot convert from ValueCallback<List<NetworkOperation>> to Node"
+      + "\nType mismatch: cannot convert from Node to FileItem");
   }
   
   public void createOperationsFromRemovedFiles(final List<String> fileNames, final ValueCallback<List<NetworkOperation>> cb) {
     throw new Error("Unresolved compilation problems:"
       + "\nInvalid number of arguments. The method deleteNodes(NodesMetadata, FileItemMetadata, Node, ValueCallback<List<NetworkOperation>>) is not applicable for the arguments (FileItemMetadata,Node,ValueCallback<List<NetworkOperation>>)"
+      + "\nType mismatch: cannot convert from FileItemMetadata to NodesMetadata"
       + "\nType mismatch: cannot convert from ValueCallback<List<NetworkOperation>> to Node"
-      + "\nType mismatch: cannot convert from Node to FileItemMetadata"
-      + "\nType mismatch: cannot convert from FileItemMetadata to NodesMetadata");
+      + "\nType mismatch: cannot convert from Node to FileItemMetadata");
   }
   
   public void createOperationsFromCreatedFiles(final List<String> fileNames, final ValueCallback<List<NetworkOperation>> cb) {
     throw new Error("Unresolved compilation problems:"
       + "\nInvalid number of arguments. The method createNodes(NodesMetadata, FileItem, Node, ValueCallback<List<NetworkOperation>>) is not applicable for the arguments (FileItem,Node,ValueCallback<List<NetworkOperation>>)"
       + "\nType mismatch: cannot convert from ValueCallback<List<NetworkOperation>> to Node"
-      + "\nType mismatch: cannot convert from FileItem to NodesMetadata"
-      + "\nType mismatch: cannot convert from Node to FileItem");
+      + "\nType mismatch: cannot convert from Node to FileItem"
+      + "\nType mismatch: cannot convert from FileItem to NodesMetadata");
   }
   
   public static ArrayList<String> determineLocallyChangedFiles(final NodesMetadata metadata, final FileItem folder) {

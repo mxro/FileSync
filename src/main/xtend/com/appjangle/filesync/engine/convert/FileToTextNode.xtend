@@ -27,8 +27,6 @@ class FileToTextNode implements Convert {
 		ops.add(
 			[ ctx |
 				newArrayList(ctx.session.link(address).setValueSafe(content))			
-					
-
 			])
 
 		cb.onSuccess(ops);
@@ -46,11 +44,7 @@ class FileToTextNode implements Convert {
 
 		ops.add(
 			[ ctx |
-				
-				ctx.node.removeSafe(ctx.session.link(address)).catchExceptions(
-					[ er |
-						cb.onFailure(er.exception())
-					])
+				newArrayList(ctx.node.removeSafe(ctx.session.link(address)))
 			])
 
 		cb.onSuccess(ops);

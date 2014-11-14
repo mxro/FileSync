@@ -15,8 +15,7 @@ import com.appjangle.filesync.engine.metadata.ItemMetadata
 
 class GetLocalOperationsProcess {
 
-	val Converter convert = null;
-
+	val Converter converter = null;
 	val Node node = null;
 	val FileItem folder = null;
 	
@@ -70,7 +69,7 @@ class GetLocalOperationsProcess {
 		]))
 
 		fileNames.forEach[ fileName | 
-			convert.update(nodes, folder.getChild(fileName),  agg.createCallback());
+			converter.update(nodes, folder.getChild(fileName),  agg.createCallback());
 		]
 		
 	}
@@ -83,7 +82,7 @@ class GetLocalOperationsProcess {
 		]))
 
 		fileNames.forEach[ fileName | 
-			convert.deleteNodes(nodes, nodes.getChild(fileName),  agg.createCallback)
+			converter.deleteNodes(nodes, nodes.getChild(fileName),  agg.createCallback)
 		]
 		
 	}
@@ -96,7 +95,7 @@ class GetLocalOperationsProcess {
 		]))
 		
 		fileNames.forEach[fileName |
-			convert.createNodes(nodes, folder.getChild(fileName), agg.createCallback());
+			converter.createNodes(nodes, folder.getChild(fileName), agg.createCallback());
 		]
 		
 	}

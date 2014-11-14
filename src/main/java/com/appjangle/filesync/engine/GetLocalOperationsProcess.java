@@ -21,7 +21,7 @@ import org.eclipse.xtext.xbase.lib.Exceptions;
 
 @SuppressWarnings("all")
 public class GetLocalOperationsProcess {
-  private final Converter convert = null;
+  private final Converter converter = null;
   
   private final Node node = null;
   
@@ -87,7 +87,7 @@ public class GetLocalOperationsProcess {
       public void accept(final String fileName) {
         FileItem _child = GetLocalOperationsProcess.this.folder.getChild(fileName);
         ValueCallback<List<NetworkOperation>> _createCallback = agg.createCallback();
-        GetLocalOperationsProcess.this.convert.update(GetLocalOperationsProcess.this.nodes, _child, _createCallback);
+        GetLocalOperationsProcess.this.converter.update(GetLocalOperationsProcess.this.nodes, _child, _createCallback);
       }
     };
     fileNames.forEach(_function_1);
@@ -107,7 +107,7 @@ public class GetLocalOperationsProcess {
       public void accept(final String fileName) {
         ItemMetadata _child = GetLocalOperationsProcess.this.nodes.getChild(fileName);
         ValueCallback<List<NetworkOperation>> _createCallback = agg.createCallback();
-        GetLocalOperationsProcess.this.convert.deleteNodes(GetLocalOperationsProcess.this.nodes, _child, _createCallback);
+        GetLocalOperationsProcess.this.converter.deleteNodes(GetLocalOperationsProcess.this.nodes, _child, _createCallback);
       }
     };
     fileNames.forEach(_function_1);
@@ -127,7 +127,7 @@ public class GetLocalOperationsProcess {
       public void accept(final String fileName) {
         FileItem _child = GetLocalOperationsProcess.this.folder.getChild(fileName);
         ValueCallback<List<NetworkOperation>> _createCallback = agg.createCallback();
-        GetLocalOperationsProcess.this.convert.createNodes(GetLocalOperationsProcess.this.nodes, _child, _createCallback);
+        GetLocalOperationsProcess.this.converter.createNodes(GetLocalOperationsProcess.this.nodes, _child, _createCallback);
       }
     };
     fileNames.forEach(_function_1);

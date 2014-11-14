@@ -7,10 +7,8 @@ import com.appjangle.filesync.NetworkOperationContext;
 import com.appjangle.filesync.engine.convert.ConvertUtils;
 import com.appjangle.filesync.engine.metadata.ItemMetadata;
 import com.appjangle.filesync.engine.metadata.Metadata;
-import de.mxro.async.Async;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
-import de.mxro.fn.Closure;
 import de.mxro.fn.Success;
 import io.nextweb.Link;
 import io.nextweb.Node;
@@ -109,13 +107,9 @@ public class FileToTextNode implements Converter {
   }
   
   public void createFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
-    final Closure<FileItem> _function = new Closure<FileItem>() {
-      public void apply(final FileItem file) {
-        String _value = source.<String>value(String.class);
-        file.setText(_value);
-      }
-    };
-    ValueCallback<FileItem> _embed = Async.<FileItem>embed(cb, _function);
-    this.utils.createFile(source, folder, _embed);
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method setText is undefined for the type FileToTextNode"
+      + "\nType mismatch: cannot convert from String to FileItem"
+      + "\nType mismatch: cannot convert from FileItem to String");
   }
 }

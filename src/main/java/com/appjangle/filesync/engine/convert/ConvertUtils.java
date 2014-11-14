@@ -32,25 +32,24 @@ public class ConvertUtils {
   
   private final static Object NO_LABEL = new Object();
   
-  public void createFile(final Node forNode, final FileItem inFolder, final ValueCallback<FileItem> cb) {
+  public void getFileName(final Node forNode, final String fileExtension, final FileItem inFolder, final ValueCallback<String> cb) {
     final Closure<String> _function = new Closure<String>() {
       public void apply(final String fileNameFromNode) {
-        String fileName = (fileNameFromNode + ".txt");
+        String fileName = (fileNameFromNode + fileExtension);
         int idx = 1;
         FileItem _child = inFolder.getChild(fileName);
         boolean _exists = _child.exists();
         boolean _while = _exists;
         while (_while) {
           {
-            fileName = ((fileNameFromNode + Integer.valueOf(idx)) + ".txt");
+            fileName = ((fileNameFromNode + Integer.valueOf(idx)) + fileExtension);
             idx++;
           }
           FileItem _child_1 = inFolder.getChild(fileName);
           boolean _exists_1 = _child_1.exists();
           _while = _exists_1;
         }
-        FileItem _createFile = inFolder.createFile(fileName);
-        cb.onSuccess(_createFile);
+        cb.onSuccess(fileName);
       }
     };
     ValueCallback<String> _embed = Async.<String>embed(cb, _function);

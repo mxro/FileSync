@@ -86,7 +86,7 @@ class FileToTextNode implements Converter {
 		
 		
 		
-		source.createFile(folder, cb.embed([file |
+		source.getFileName(folder, ".txt", cb.embed([file |
 			
 			file.setText(source.value(String))
 			

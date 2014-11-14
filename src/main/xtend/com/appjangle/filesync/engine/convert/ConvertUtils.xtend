@@ -19,16 +19,16 @@ class ConvertUtils {
 	
 	static val NO_LABEL = new Object()
 	
-	def createFile(Node forNode, FileItem inFolder, ValueCallback<FileItem> cb) {
+	def getFileName(Node forNode, String fileExtension, FileItem inFolder, ValueCallback<String> cb) {
 		getFileName(forNode, cb.embed([ fileNameFromNode |
-			var fileName = fileNameFromNode + ".txt"
+			var fileName = fileNameFromNode + fileExtension
 			var idx = 1
 			while (inFolder.getChild(fileName).exists) {
-				fileName = fileNameFromNode+idx+".txt"
+				fileName = fileNameFromNode+idx+fileExtension
 				idx++
 			}
 			
-			cb.onSuccess(inFolder.createFile(fileName))
+			cb.onSuccess(fileName)
 		]))
 	}
 	

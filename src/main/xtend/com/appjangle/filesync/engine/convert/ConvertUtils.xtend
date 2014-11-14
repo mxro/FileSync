@@ -12,9 +12,10 @@ class ConvertUtils {
 
 	val labelTypes = #['https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel']
 
-	val extensions = #{
+	val fileExtensions = #{
 		"https://admin1.linnk.it/types/v01/isHtmlValue" -> ".html",
-		"", ""
+		"" -> ""
+		
 	}
 
 	def getFileExtension(Node forNode, ValueCallback<String> cb) {
@@ -24,7 +25,7 @@ class ConvertUtils {
 		qry.catchExceptions([er|cb.onFailure(er.exception())])
 
 		qry.get [ links |
-			for (mapping : extensions.entrySet) {
+			for (mapping : fileExtensions.entrySet) {
 				
 				if (links.contains(mapping.key)) {
 					cb.onSuccess(mapping.value)

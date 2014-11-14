@@ -70,6 +70,16 @@ class NetworkToFileOperations {
 		}
 
 	}
+	
+	def deduceRemoveOperations(List<ItemMetadata> remotelyRemoved, ValueCallback<List<FileOperation>> cb) {
+		
+		val agg = Async.collect(remotelyRemoved.size,
+			Async.embed(cb,
+				[ res |
+					cb.onSuccess(CollectionsUtils.flatten(res))
+				]))
+		
+	}
 
 	def determineRemotelyAddedNodes(NodeList children) {
 

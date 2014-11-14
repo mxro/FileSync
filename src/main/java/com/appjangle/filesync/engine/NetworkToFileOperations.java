@@ -84,6 +84,18 @@ public class NetworkToFileOperations {
     }
   }
   
+  public void deduceRemoveOperations(final List<ItemMetadata> remotelyRemoved, final ValueCallback<List<FileOperation>> cb) {
+    int _size = remotelyRemoved.size();
+    final Closure<List<List<FileOperation>>> _function = new Closure<List<List<FileOperation>>>() {
+      public void apply(final List<List<FileOperation>> res) {
+        List<FileOperation> _flatten = CollectionsUtils.<FileOperation>flatten(res);
+        cb.onSuccess(_flatten);
+      }
+    };
+    ValueCallback<List<List<FileOperation>>> _embed = Async.<List<List<FileOperation>>>embed(cb, _function);
+    final Aggregator<List<FileOperation>> agg = Async.<List<FileOperation>>collect(_size, _embed);
+  }
+  
   public ArrayList<Node> determineRemotelyAddedNodes(final NodeList children) {
     ArrayList<Node> _xblockexpression = null;
     {

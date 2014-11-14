@@ -2,13 +2,16 @@ package com.appjangle.filesync.engine.convert;
 
 import com.appjangle.filesync.Converter;
 import com.appjangle.filesync.FileOperation;
+import com.appjangle.filesync.FileOperationContext;
 import com.appjangle.filesync.NetworkOperation;
 import com.appjangle.filesync.NetworkOperationContext;
 import com.appjangle.filesync.engine.convert.ConvertUtils;
 import com.appjangle.filesync.engine.metadata.ItemMetadata;
 import com.appjangle.filesync.engine.metadata.Metadata;
+import de.mxro.async.Async;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
+import de.mxro.fn.Closure;
 import de.mxro.fn.Success;
 import io.nextweb.Link;
 import io.nextweb.Node;
@@ -107,8 +110,20 @@ public class FileToTextNode implements Converter {
   }
   
   public void createFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method folder is undefined for the type FileToTextNode"
-      + "\ncreateFile cannot be resolved");
+    final Closure<String> _function = new Closure<String>() {
+      public void apply(final String fileName) {
+        final LinkedList<FileOperation> ops = new LinkedList<FileOperation>();
+        final FileOperation _function = new FileOperation() {
+          public Object apply(final FileOperationContext ctx) {
+            FileItem _folder = ctx.folder();
+            return _folder.createFile(fileName);
+          }
+        };
+        ops.add(_function);
+        cb.onSuccess(ops);
+      }
+    };
+    ValueCallback<String> _embed = Async.<String>embed(cb, _function);
+    this.utils.getFileName(source, folder, ".txt", _embed);
   }
 }

@@ -65,7 +65,7 @@ class FileToTextNode implements Converter {
 				newArrayList(ctx.session.link(address).setValueSafe(content))
 			])
 
-		cb.onSuccess(ops);
+		cb.onSuccess(ops)
 
 	}
 
@@ -79,7 +79,7 @@ class FileToTextNode implements Converter {
 				newArrayList(ctx.parent.removeSafe(ctx.session.link(address)))
 			])
 
-		cb.onSuccess(ops);
+		cb.onSuccess(ops)
 	}
 
 	override createFiles(FileItem folder, Metadata metadata, Node source, ValueCallback<List<FileOperation>> cb) {
@@ -87,11 +87,15 @@ class FileToTextNode implements Converter {
 		
 		source.getFileName(folder, '.txt', cb.embed([fileName |
 			
-			val ops = #[
+			val ops = new LinkedList<FileOperation>
+			
+			ops.add(
 				[ctx|
 					ctx.folder.createFile(fileName)
 				]
-			]
+			)
+			
+			cb.onSuccess(ops)
 			
 			
 		]))

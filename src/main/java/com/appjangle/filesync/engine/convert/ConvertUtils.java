@@ -9,6 +9,8 @@ import io.nextweb.Link;
 import io.nextweb.Node;
 import io.nextweb.Query;
 import io.nextweb.Session;
+import io.nextweb.promise.exceptions.ExceptionListener;
+import io.nextweb.promise.exceptions.ExceptionResult;
 import io.nextweb.promise.exceptions.UndefinedListener;
 import io.nextweb.promise.exceptions.UndefinedResult;
 import java.util.Collections;
@@ -42,11 +44,18 @@ public class ConvertUtils {
         final Query qry = fromNode.select(_link);
         final ValueCallback<Boolean> itmcb = cbs.createCallback();
         final UndefinedListener _function = new UndefinedListener() {
-          public void onUndefined(final UndefinedResult ur) {
+          public void onUndefined(final UndefinedResult it) {
             itmcb.onSuccess(Boolean.valueOf(false));
           }
         };
         qry.catchUndefined(_function);
+        final ExceptionListener _function_1 = new ExceptionListener() {
+          public void onFailure(final ExceptionResult er) {
+            Throwable _exception = er.exception();
+            itmcb.onFailure(_exception);
+          }
+        };
+        qry.catchExceptions(_function_1);
       }
     };
     this.labelTypes.forEach(_function_1);

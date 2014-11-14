@@ -29,7 +29,9 @@ class ConvertUtils {
 			
 			val itmcb = cbs.createCallback
 			
-			qry.catchUndefined([ur |itmcb.onSuccess(false)])
+			qry.catchUndefined([ itmcb.onSuccess(false) ])
+			
+			qry.catchExceptions([ er | itmcb.onFailure(er.exception)])
 			
 		]
 		

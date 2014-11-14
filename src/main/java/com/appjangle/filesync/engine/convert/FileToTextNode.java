@@ -108,7 +108,7 @@ public class FileToTextNode implements Converter {
     cb.onSuccess(ops);
   }
   
-  public void createFiles(final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
+  public void createFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
     final Closure<String> _function = new Closure<String>() {
       public void apply(final String fileName) {
       }

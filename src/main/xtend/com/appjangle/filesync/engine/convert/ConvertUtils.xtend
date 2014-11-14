@@ -19,6 +19,17 @@ class ConvertUtils {
 		
 		
 		
+		val cbs = Async.collect(extensions.size, cb.embed([ res |
+			
+			
+		]));
+		
+		
+		for (ext: extensions.entrySet) {
+			
+		}
+		
+		
 	}
 	
 	val labelTypes = #['https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel']

@@ -18,6 +18,7 @@ import io.nextweb.promise.exceptions.UndefinedResult;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Consumer;
 import org.eclipse.xtext.xbase.lib.Functions.Function0;
 
@@ -33,8 +34,17 @@ public class ConvertUtils {
     }
   }.apply();
   
-  public Object getFileExtension(final Node forNode, final ValueCallback<String> cb) {
-    return null;
+  public void getFileExtension(final Node forNode, final ValueCallback<String> cb) {
+    int _size = this.extensions.size();
+    final Closure<List<Object>> _function = new Closure<List<Object>>() {
+      public void apply(final List<Object> res) {
+      }
+    };
+    ValueCallback<List<Object>> _embed = Async.<List<Object>>embed(cb, _function);
+    final Aggregator<Object> cbs = Async.<Object>collect(_size, _embed);
+    Set<Map.Entry<String, String>> _entrySet = this.extensions.entrySet();
+    for (final Map.Entry<String, String> ext : _entrySet) {
+    }
   }
   
   private final List<String> labelTypes = Collections.<String>unmodifiableList(Lists.<String>newArrayList("https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel"));

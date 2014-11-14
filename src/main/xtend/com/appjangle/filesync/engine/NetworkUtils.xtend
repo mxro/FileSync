@@ -10,11 +10,9 @@ import java.util.List
 class NetworkUtils {
 
 	def execute(List<NetworkOperation> ops, Node onNode, ValueCallback<Success> cb) {
-		
-		
+	
 		for (NetworkOperation op : ops) {
-			
-			
+
 			val qries = op.apply(new NetworkOperationContext() {
 				
 				override session() {
@@ -28,6 +26,8 @@ class NetworkUtils {
 			})
 			
 			for ( qry: qries) {
+				
+					
 				
 			}
 			

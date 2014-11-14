@@ -5,6 +5,8 @@ import de.mxro.async.callbacks.ValueCallback
 import io.nextweb.Node
 import io.nextweb.Query
 
+import static extension de.mxro.async.Async.embed
+
 class ConvertUtils {
 	
 	val labelTypes = #['https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel']
@@ -17,8 +19,7 @@ class ConvertUtils {
 	
 	def getFileName(Node fromNode, ValueCallback<String> cb) {
 		
-		
-		Async.collect(labelTypes.size, Async.embed(cb, [ res |
+		Async.collect(labelTypes.size, cb.embed([ res |
 			
 		]));
 		

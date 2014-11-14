@@ -44,7 +44,7 @@ public class FileToTextNode implements Converter {
     boolean _xblockexpression = false;
     {
       final String name = source.getName();
-      _xblockexpression = name.endsWith(".txt");
+      _xblockexpression = name.endsWith(".html");
     }
     return _xblockexpression;
   }

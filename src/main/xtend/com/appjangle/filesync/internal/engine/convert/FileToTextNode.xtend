@@ -24,7 +24,7 @@ class FileToTextNode implements Converter {
 
 		val name = source.name
 
-		name.endsWith('.txt')
+		name.endsWith('.html')
 
 	}
 

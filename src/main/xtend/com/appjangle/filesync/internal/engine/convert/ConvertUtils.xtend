@@ -57,7 +57,7 @@ class ConvertUtils {
 	}
 	
 
-	static val NO_VALUE = new Object()
+	public static val NO_VALUE = new Object()
 
 	def getFileName(Node forNode, FileItem inFolder, String fileExtension, ValueCallback<String> cb) {
 		getFileName(forNode,

@@ -94,7 +94,7 @@ public class ConvertUtils {
     return _xblockexpression;
   }
   
-  private final static Object NO_VALUE = new Object();
+  public final static Object NO_VALUE = new Object();
   
   public void getFileName(final Node forNode, final FileItem inFolder, final String fileExtension, final ValueCallback<String> cb) {
     final Closure<String> _function = new Closure<String>() {

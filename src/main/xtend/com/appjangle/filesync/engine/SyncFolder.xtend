@@ -45,7 +45,9 @@ class SyncFolder {
 	}
 	
 	def download(ValueCallback<Success> cb) {
-		
+		new NetworkToFileOperations(node, folder, metadata, converter).determineOps(cb.embed([ ops |
+			cb.onSuccess(Success.INSTANCE)
+		]))
 	}
 	
 	extension FileUtils fileUtils = new FileUtils()

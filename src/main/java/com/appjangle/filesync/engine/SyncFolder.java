@@ -1,9 +1,11 @@
 package com.appjangle.filesync.engine;
 
 import com.appjangle.filesync.Converter;
+import com.appjangle.filesync.FileOperation;
 import com.appjangle.filesync.NetworkOperation;
 import com.appjangle.filesync.engine.FileToNetworkOperations;
 import com.appjangle.filesync.engine.FileUtils;
+import com.appjangle.filesync.engine.NetworkToFileOperations;
 import com.appjangle.filesync.engine.NetworkUtils;
 import com.appjangle.filesync.engine.metadata.Metadata;
 import de.mxro.async.Async;
@@ -58,8 +60,15 @@ public class SyncFolder {
     _fileToNetworkOperations.determineOps(_embed);
   }
   
-  public Object download(final ValueCallback<Success> cb) {
-    return null;
+  public void download(final ValueCallback<Success> cb) {
+    NetworkToFileOperations _networkToFileOperations = new NetworkToFileOperations(this.node, this.folder, this.metadata, this.converter);
+    final Closure<List<FileOperation>> _function = new Closure<List<FileOperation>>() {
+      public void apply(final List<FileOperation> ops) {
+        cb.onSuccess(Success.INSTANCE);
+      }
+    };
+    ValueCallback<List<FileOperation>> _embed = Async.<List<FileOperation>>embed(cb, _function);
+    _networkToFileOperations.determineOps(_embed);
   }
   
   @Extension

@@ -17,6 +17,7 @@ import io.nextweb.promise.Deferred;
 import io.nextweb.promise.NextwebPromise;
 import java.util.LinkedList;
 import java.util.List;
+import mx.gwtutils.MxroGWTUtils;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 
 @SuppressWarnings("all")
@@ -44,10 +45,20 @@ public class FileToTextNode implements Converter {
   }
   
   public void createNodes(final Metadata metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method parent is undefined for the type FileToTextNode"
-      + "\nType mismatch: cannot convert from ArrayList<(Object)=>ArrayList<Object>> to List<NetworkOperation>"
-      + "\nappendSafe cannot be resolved");
+    String _name = source.getName();
+    final String nameWithoutExtension = MxroGWTUtils.removeExtension(_name);
+    final String simpleName = MxroGWTUtils.getSimpleName(nameWithoutExtension);
+    final LinkedList<NetworkOperation> ops = new LinkedList<NetworkOperation>();
+    final NetworkOperation _function = new NetworkOperation() {
+      public List<Deferred<?>> apply(final NetworkOperationContext ctx) {
+        Node _parent = ctx.parent();
+        String _text = source.getText();
+        Query _appendSafe = _parent.appendSafe(_text, ("./" + simpleName));
+        return CollectionLiterals.<Deferred<?>>newArrayList(_appendSafe);
+      }
+    };
+    ops.add(_function);
+    cb.onSuccess(ops);
   }
   
   public void update(final Metadata metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {

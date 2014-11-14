@@ -9,16 +9,18 @@ import java.util.ArrayList
 
 class SyncFolder {
 	
+	extension FileUtils fileUtils = new FileUtils()
+	
 	def doIt(FileItem folder, Node node) {
 		val metadataFolder = folder.assertFolder(".filesync-meta")
 		
 		metadataFolder.visible = false;
-
+		
+		
+		
 		val metadata = MetadataUtilsJre.readFromFile(metadataFolder.getChild("nodes.xml"))
 
-		if (metadata == null) {
-			return new ArrayList<NetworkOperation>(0)
-		}
+		
 		
 	}
 	

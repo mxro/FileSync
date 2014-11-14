@@ -84,7 +84,7 @@ class NetworkToFileOperations {
 		
 		for (item : metadata.children) {
 			
-			
+			// TODO: not yet supported
 			
 		}
 		

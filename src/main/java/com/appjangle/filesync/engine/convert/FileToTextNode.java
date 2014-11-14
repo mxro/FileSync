@@ -139,4 +139,11 @@ public class FileToTextNode implements Converter {
     ValueCallback<String> _embed = Async.<String>embed(cb, _function);
     this.utils.getFileName(source, folder, ".txt", _embed);
   }
+  
+  public void updateFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
+  }
+  
+  public void removeFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
+    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+  }
 }

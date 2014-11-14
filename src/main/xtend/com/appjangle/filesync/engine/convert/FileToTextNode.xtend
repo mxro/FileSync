@@ -122,6 +122,14 @@ class FileToTextNode implements Converter {
 			
 		]))
 	}
+	
+	override updateFiles(FileItem folder, Metadata metadata, Node source, ValueCallback<List<FileOperation>> cb) {
+		
+	}
+	
+	override removeFiles(FileItem folder, Metadata metadata, Node source, ValueCallback<List<FileOperation>> cb) {
+		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	}
 		
 
 }

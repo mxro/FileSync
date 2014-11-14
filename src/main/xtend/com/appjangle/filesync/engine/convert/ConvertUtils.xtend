@@ -10,11 +10,13 @@ class ConvertUtils {
 	
 	def appendLabel(Query toNode, String label) {
 		toNode.appendSafe(label).appendSafe(
-						toNode.session().link(labelTypes[0]), "./label")
+						toNode.session().link(labelTypes.get(0)), "./label")
 	}
 	
 	
 	def getFileName(Node fromNode, ValueCallback<String> cb) {
+		
+		
 		
 	}
 	

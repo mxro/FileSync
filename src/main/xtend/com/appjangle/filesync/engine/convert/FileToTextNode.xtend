@@ -26,8 +26,8 @@ class FileToTextNode implements Convert {
 
 		ops.add(
 			[ ctx |
-				
-				ctx.session.link(address).setValueSafe(content)
+				newArrayList(ctx.session.link(address).setValueSafe(content))			
+					
 
 			])
 

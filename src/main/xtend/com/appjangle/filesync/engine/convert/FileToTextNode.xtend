@@ -29,7 +29,7 @@ class FileToTextNode implements Converter {
 
 	override worksOn(Node node, ValueCallback<Boolean> cb) {
 
-		// TODO change so that it applies only to text nodes
+		// TODO change so that it applies only to text nodes, otherwise use a converter which converts nodes into folders
 
 		cb.onSuccess(node.value() instanceof String)
 

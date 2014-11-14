@@ -47,6 +47,23 @@ class ConverterCollection implements Converter {
 		
 	}
 	
+	def private findConverter(FileItem forFileItem, ValueCallback<Converter> cb) {
+		Async.forEach(converters, [c, itmcb |
+			if (c.worksOn(forFileItem)) {
+				itmcb.onSuccess(c)
+			} else {
+				itmcb.onSuccess(ConvertUtils.NO_VALUE)
+			}
+		], cb.embed [res |
+			for (item : res) {
+				if (item instanceof Converter) {
+					cb.onSuccess(item)
+					return;
+				}
+			}
+		])
+	}
+	
 	override createNodes(Metadata metadata, FileItem source, ValueCallback<List<NetworkOperation>> cb) {
 		throw new UnsupportedOperationException("TODO: auto-generated method stub")
 	}

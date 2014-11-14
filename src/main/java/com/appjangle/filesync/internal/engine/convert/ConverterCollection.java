@@ -5,6 +5,7 @@ import com.appjangle.filesync.FileOperation;
 import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.NetworkOperation;
+import com.appjangle.filesync.internal.engine.convert.ConvertUtils;
 import de.mxro.async.Async;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
@@ -60,6 +61,31 @@ public class ConverterCollection implements Converter {
     };
     ValueCallback<List<Boolean>> _embed = Async.<List<Boolean>>embed(cb, _function_1);
     Async.<Converter, Boolean>forEach(this.converters, _function, _embed);
+  }
+  
+  private void findConverter(final FileItem forFileItem, final ValueCallback<Converter> cb) {
+    final Closure2<Converter, ValueCallback<Object>> _function = new Closure2<Converter, ValueCallback<Object>>() {
+      public void apply(final Converter c, final ValueCallback<Object> itmcb) {
+        boolean _worksOn = c.worksOn(forFileItem);
+        if (_worksOn) {
+          itmcb.onSuccess(c);
+        } else {
+          itmcb.onSuccess(ConvertUtils.NO_VALUE);
+        }
+      }
+    };
+    final Closure<List<Object>> _function_1 = new Closure<List<Object>>() {
+      public void apply(final List<Object> res) {
+        for (final Object item : res) {
+          if ((item instanceof Converter)) {
+            cb.onSuccess(((Converter)item));
+            return;
+          }
+        }
+      }
+    };
+    ValueCallback<List<Object>> _embed = Async.<List<Object>>embed(cb, _function_1);
+    Async.<Converter, Object>forEach(this.converters, _function, _embed);
   }
   
   public void createNodes(final Metadata metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {

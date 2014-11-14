@@ -1,8 +1,10 @@
 package com.appjangle.filesync;
 
 import com.appjangle.filesync.NetworkOperationContext;
-import de.mxro.fn.Closure;
+import de.mxro.fn.Function;
+import io.nextweb.Query;
+import java.util.List;
 
 @SuppressWarnings("all")
-public interface NetworkOperation extends Closure<NetworkOperationContext> {
+public interface NetworkOperation extends Function<NetworkOperationContext, List<Query>> {
 }

@@ -9,6 +9,7 @@ import io.nextweb.Node
 import io.nextweb.NodeList
 import java.util.ArrayList
 import java.util.List
+import com.appjangle.filesync.engine.metadata.ItemMetadata
 
 /**
  * Determines operations to be performed on local files based on remote changes made in the cloud.
@@ -61,16 +62,15 @@ class NetworkToFileOperations {
 	
 	def determineRemotelyRemovedNodes(NodeList children) {
 		
-		val res = new ArrayList<Node>(0)
+		val res = new ArrayList<ItemMetadata>(0)
 		
 		for (item: metadata.children) {
 			
 			if (!children.uris.contains(item.uri)) {
-				
+				res.add(item)
 			}
 			
 		}
-		
 		
 		res
 		

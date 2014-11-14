@@ -68,10 +68,10 @@ public class NetworkToFileOperations {
     return _xblockexpression;
   }
   
-  public ArrayList<Node> determineRemotelyRemovedNodes(final NodeList children) {
-    ArrayList<Node> _xblockexpression = null;
+  public ArrayList<ItemMetadata> determineRemotelyRemovedNodes(final NodeList children) {
+    ArrayList<ItemMetadata> _xblockexpression = null;
     {
-      final ArrayList<Node> res = new ArrayList<Node>(0);
+      final ArrayList<ItemMetadata> res = new ArrayList<ItemMetadata>(0);
       List<ItemMetadata> _children = this.metadata.getChildren();
       for (final ItemMetadata item : _children) {
         List<String> _uris = children.uris();
@@ -79,6 +79,7 @@ public class NetworkToFileOperations {
         boolean _contains = _uris.contains(_uri);
         boolean _not = (!_contains);
         if (_not) {
+          res.add(item);
         }
       }
       _xblockexpression = res;

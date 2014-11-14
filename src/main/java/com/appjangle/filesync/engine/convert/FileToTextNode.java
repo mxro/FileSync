@@ -15,6 +15,7 @@ import io.nextweb.Query;
 import io.nextweb.Session;
 import io.nextweb.promise.Deferred;
 import io.nextweb.promise.NextwebPromise;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import mx.gwtutils.MxroGWTUtils;
@@ -51,10 +52,18 @@ public class FileToTextNode implements Converter {
     final LinkedList<NetworkOperation> ops = new LinkedList<NetworkOperation>();
     final NetworkOperation _function = new NetworkOperation() {
       public List<Deferred<?>> apply(final NetworkOperationContext ctx) {
-        Node _parent = ctx.parent();
-        String _text = source.getText();
-        Query _appendSafe = _parent.appendSafe(_text, ("./" + simpleName));
-        return CollectionLiterals.<Deferred<?>>newArrayList(_appendSafe);
+        ArrayList<Deferred<?>> _xblockexpression = null;
+        {
+          Node _parent = ctx.parent();
+          String _text = source.getText();
+          final Query baseNode = _parent.appendSafe(_text, ("./" + simpleName));
+          Query _appendSafe = baseNode.appendSafe(nameWithoutExtension);
+          Session _session = ctx.session();
+          Link _link = _session.link("https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel");
+          Query _appendSafe_1 = _appendSafe.appendSafe(_link, "./label");
+          _xblockexpression = CollectionLiterals.<Deferred<?>>newArrayList(baseNode, _appendSafe_1);
+        }
+        return _xblockexpression;
       }
     };
     ops.add(_function);

@@ -39,7 +39,13 @@ class FileToTextNode implements Converter {
 		
 		ops.add([ ctx |
 			
-			newArrayList(ctx.parent.appendSafe(source.text, "./"+simpleName))
+			val baseNode = ctx.parent.appendSafe(source.text, "./"+simpleName)
+
+			newArrayList(
+				baseNode,
+				baseNode.appendSafe(nameWithoutExtension).appendSafe(ctx.session.link('https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel'), "./label")
+				
+			)
 				
 		])
 		

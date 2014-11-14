@@ -1,7 +1,10 @@
 package com.appjangle.filesync.engine.convert;
 
 import com.google.common.collect.Lists;
+import de.mxro.async.Aggregator;
+import de.mxro.async.Async;
 import de.mxro.async.callbacks.ValueCallback;
+import de.mxro.fn.Closure;
 import io.nextweb.Link;
 import io.nextweb.Node;
 import io.nextweb.Query;
@@ -21,7 +24,13 @@ public class ConvertUtils {
     return _appendSafe.appendSafe(_link, "./label");
   }
   
-  public Object getFileName(final Node fromNode, final ValueCallback<String> cb) {
-    return null;
+  public Aggregator<Object> getFileName(final Node fromNode, final ValueCallback<String> cb) {
+    int _size = this.labelTypes.size();
+    final Closure<List<Object>> _function = new Closure<List<Object>>() {
+      public void apply(final List<Object> res) {
+      }
+    };
+    ValueCallback<List<Object>> _embed = Async.<List<Object>>embed(cb, _function);
+    return Async.<Object>collect(_size, _embed);
   }
 }

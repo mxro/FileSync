@@ -1,5 +1,6 @@
 package com.appjangle.filesync.engine.convert
 
+import de.mxro.async.Async
 import de.mxro.async.callbacks.ValueCallback
 import io.nextweb.Node
 import io.nextweb.Query
@@ -16,6 +17,10 @@ class ConvertUtils {
 	
 	def getFileName(Node fromNode, ValueCallback<String> cb) {
 		
+		
+		Async.collect(labelTypes.size, Async.embed(cb, [ res |
+			
+		]));
 		
 		
 	}

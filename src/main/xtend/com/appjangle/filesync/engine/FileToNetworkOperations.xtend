@@ -39,12 +39,17 @@ class FileToNetworkOperations {
 			throw new Exception('File passed does not exist. ' + folder)
 
 		
-		val locallyAddedFiles = determineLocallyAddedFiles(metadata, folder)
+		var Iterable<String> locallyAddedFiles = determineLocallyAddedFiles(metadata, folder)
 
 		val locallyRemovedFiles = determineLocallyRemovedFiles(metadata, folder)
 
 		val locallyChangedFiles = determineLocallyChangedFiles(metadata, folder)
 
+		locallyAddedFiles = locallyAddedFiles.filter [ fileName |
+			folder.getChild(fileName)
+			
+			return true
+		]
 		
 		val agg = Async.collect(3, Async.embed(cb, [res |
 			val ops = CollectionsUtils.flatten(res)
@@ -88,7 +93,7 @@ class FileToNetworkOperations {
 	}
 
 
-	def createOperationsFromCreatedFiles(List<String> fileNames, ValueCallback<List<NetworkOperation>> cb) {
+	def createOperationsFromCreatedFiles(Iterable<String> fileNames, ValueCallback<List<NetworkOperation>> cb) {
 		
 		val agg = Async.collect(fileNames.size, Async.embed(cb, [ res |
 			cb.onSuccess(CollectionsUtils.flatten(res))

@@ -16,6 +16,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.function.Consumer;
 import org.eclipse.xtext.xbase.lib.Exceptions;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
 /**
  * Determines operations performed on local files which need to be uploaded to the cloud.
@@ -49,16 +51,24 @@ public class FileToNetworkOperations {
       if (_not_1) {
         throw new Exception(("File passed does not exist. " + this.folder));
       }
-      final ArrayList<String> locallyAddedFiles = FileToNetworkOperations.determineLocallyAddedFiles(this.metadata, this.folder);
+      Iterable<String> locallyAddedFiles = FileToNetworkOperations.determineLocallyAddedFiles(this.metadata, this.folder);
       final ArrayList<String> locallyRemovedFiles = FileToNetworkOperations.determineLocallyRemovedFiles(this.metadata, this.folder);
       final ArrayList<String> locallyChangedFiles = FileToNetworkOperations.determineLocallyChangedFiles(this.metadata, this.folder);
-      final Closure<List<List<NetworkOperation>>> _function = new Closure<List<List<NetworkOperation>>>() {
+      final Function1<String, Boolean> _function = new Function1<String, Boolean>() {
+        public Boolean apply(final String fileName) {
+          FileToNetworkOperations.this.folder.getChild(fileName);
+          return Boolean.valueOf(true);
+        }
+      };
+      Iterable<String> _filter = IterableExtensions.<String>filter(locallyAddedFiles, _function);
+      locallyAddedFiles = _filter;
+      final Closure<List<List<NetworkOperation>>> _function_1 = new Closure<List<List<NetworkOperation>>>() {
         public void apply(final List<List<NetworkOperation>> res) {
           final List<NetworkOperation> ops = CollectionsUtils.<NetworkOperation>flatten(res);
           cb.onSuccess(ops);
         }
       };
-      ValueCallback<List<List<NetworkOperation>>> _embed = Async.<List<List<NetworkOperation>>>embed(cb, _function);
+      ValueCallback<List<List<NetworkOperation>>> _embed = Async.<List<List<NetworkOperation>>>embed(cb, _function_1);
       final Aggregator<List<NetworkOperation>> agg = Async.<List<NetworkOperation>>collect(3, _embed);
       ValueCallback<List<NetworkOperation>> _createCallback = agg.createCallback();
       this.createOperationsFromRemovedFiles(locallyRemovedFiles, _createCallback);
@@ -111,8 +121,8 @@ public class FileToNetworkOperations {
     fileNames.forEach(_function_1);
   }
   
-  public void createOperationsFromCreatedFiles(final List<String> fileNames, final ValueCallback<List<NetworkOperation>> cb) {
-    int _size = fileNames.size();
+  public void createOperationsFromCreatedFiles(final Iterable<String> fileNames, final ValueCallback<List<NetworkOperation>> cb) {
+    int _size = IterableExtensions.size(fileNames);
     final Closure<List<List<NetworkOperation>>> _function = new Closure<List<List<NetworkOperation>>>() {
       public void apply(final List<List<NetworkOperation>> res) {
         List<NetworkOperation> _flatten = CollectionsUtils.<NetworkOperation>flatten(res);

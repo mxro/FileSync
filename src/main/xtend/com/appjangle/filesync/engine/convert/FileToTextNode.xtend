@@ -13,6 +13,9 @@ import com.appjangle.filesync.engine.metadata.FileItemMetadata
 class FileToTextNode implements Convert {
 
 
+    
+
+
 	override createNodes(NodesMetadata metadata, FileItem source,  ValueCallback<List<NetworkOperation>> cb) {
 		
 	}
@@ -47,6 +50,20 @@ class FileToTextNode implements Convert {
 			])
 
 		cb.onSuccess(ops);
+	}
+	
+	override worksOn(FileItem source) {
+		
+		val name = source.name
+		
+		name.endsWith('.txt') || name.endsWith('.xml')
+		
+	}
+	
+	override worksOn(Node node, ValueCallback<Boolean> cb) {
+		
+		cb.onSuccess(node.value() instanceof String)
+		
 	}
 
 }

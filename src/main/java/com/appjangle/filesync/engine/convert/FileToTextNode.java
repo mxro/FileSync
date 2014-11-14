@@ -56,4 +56,26 @@ public class FileToTextNode implements Convert {
     ops.add(_function);
     cb.onSuccess(ops);
   }
+  
+  public boolean worksOn(final FileItem source) {
+    boolean _xblockexpression = false;
+    {
+      final String name = source.getName();
+      boolean _or = false;
+      boolean _endsWith = name.endsWith(".txt");
+      if (_endsWith) {
+        _or = true;
+      } else {
+        boolean _endsWith_1 = name.endsWith(".xml");
+        _or = _endsWith_1;
+      }
+      _xblockexpression = _or;
+    }
+    return _xblockexpression;
+  }
+  
+  public void worksOn(final Node node, final ValueCallback<Boolean> cb) {
+    Object _value = node.value();
+    cb.onSuccess(Boolean.valueOf((_value instanceof String)));
+  }
 }

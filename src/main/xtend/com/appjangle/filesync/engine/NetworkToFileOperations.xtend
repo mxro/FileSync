@@ -29,6 +29,13 @@ class NetworkToFileOperations {
 	
 	def determineOps( ValueCallback<List<FileOperation>> cb) {
 		
+		val qry = node.selectAll
+		
+		qry.catchExceptions(er | cb.onFailure(er.exception))
+		
+		qry.get 
+		
+		
 	}
 	
 }

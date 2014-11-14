@@ -1,4 +1,4 @@
-package com.appjangle.filesync.engine.convert
+package com.appjangle.filesync.internal.engine.convert
 
 import de.mxro.async.Async
 import de.mxro.async.callbacks.ValueCallback

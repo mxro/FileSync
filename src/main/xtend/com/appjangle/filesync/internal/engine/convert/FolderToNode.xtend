@@ -13,7 +13,7 @@ import com.appjangle.filesync.FileOperation
 class FolderToNode implements Converter {
 	
 	override worksOn(FileItem source) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		return true
 	}
 	
 	override worksOn(Node node, ValueCallback<Boolean> cb) {

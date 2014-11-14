@@ -50,14 +50,16 @@ class NetworkToFileOperations {
 					
 			remotelyAdded.deduceCreateOperations(agg.createCallback)
 			remotelyRemoved.deduceRemoveOperations(agg.createCallback)
-			
+			remotelyUpdated.deduceUpdateOperations(agg.createCallback)
 					
 		]
 
 	}
 
 
-	def deduceUpdateOperations(List<ItemMetadata> )
+	def deduceUpdateOperations(List<NodeList> remotelyUpdated, ValueCallback<List<FileOperation>> cb ) {
+		
+	}
 
 	def deduceCreateOperations(List<Node> remotelyAdded, ValueCallback<List<FileOperation>> cb) {
 

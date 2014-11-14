@@ -65,12 +65,16 @@ public class NetworkToFileOperations {
         NetworkToFileOperations.this.deduceCreateOperations(remotelyAdded, _createCallback);
         ValueCallback<List<FileOperation>> _createCallback_1 = agg.createCallback();
         NetworkToFileOperations.this.deduceRemoveOperations(remotelyRemoved, _createCallback_1);
+        ValueCallback<List<FileOperation>> _createCallback_2 = agg.createCallback();
+        NetworkToFileOperations.this.deduceUpdateOperations(remotelyUpdated, _createCallback_2);
       }
     };
     qry.get(_function_1);
   }
   
-  public abstract Object deduceUpdateOperations(final List<ItemMetadata> __unknown__);
+  public Object deduceUpdateOperations(final List<NodeList> remotelyUpdated, final ValueCallback<List<FileOperation>> cb) {
+    return null;
+  }
   
   public void deduceCreateOperations(final List<Node> remotelyAdded, final ValueCallback<List<FileOperation>> cb) {
     int _size = remotelyAdded.size();

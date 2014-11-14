@@ -10,6 +10,12 @@ import static extension de.mxro.async.Async.embed
 
 class ConvertUtils {
 	
+	
+	
+	def getFileExtension(Node forNode, ValueCallback<String> cb) {
+		
+	}
+	
 	val labelTypes = #['https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel']
 	
 	def appendLabel(Query toNode, String label) {

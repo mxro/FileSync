@@ -20,6 +20,10 @@ import java.util.function.Consumer;
 
 @SuppressWarnings("all")
 public class ConvertUtils {
+  public Object getFileExtension(final Node forNode, final ValueCallback<String> cb) {
+    return null;
+  }
+  
   private final List<String> labelTypes = Collections.<String>unmodifiableList(Lists.<String>newArrayList("https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel"));
   
   public Query appendLabel(final Query toNode, final String label) {

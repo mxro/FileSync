@@ -57,39 +57,41 @@ class FolderToNode implements Converter {
 	}
 
 	override createFiles(FileItem folder, Metadata metadata, Node source, ValueCallback<List<FileOperation>> cb) {
-		source.getFileName([fileName|
-			val ops = new LinkedList<FileOperation>
-			ops.add(
-				[ ctx |
-					val file = ctx.folder.createFile(fileName)
-					file.text = source.value(String)
-					ctx.metadata.add(
-						new ItemMetadata() {
+		source.getFileName(
+			[ String fileName |
+				val ops = new LinkedList<FileOperation>
+				ops.add(
+					[ ctx |
+						val file = ctx.folder.createFile(fileName)
+						file.text = source.value(String)
+						ctx.metadata.add(
+							new ItemMetadata() {
 
-							override name() {
-								fileName
-							}
+								override name() {
+									fileName
+								}
 
-							override lastModified() {
-								new Date() // TODO replace with last modified if available from node !!
-							}
+								override lastModified() {
+									new Date() // TODO replace with last modified if available from node !!
+								}
 
-							override uri() {
-								source.uri()
-							}
+								override uri() {
+									source.uri()
+								}
 
-							override hash() {
-								file.hash
-							}
+								override hash() {
+									file.hash
+								}
 
-							override converter() {
-								FileToTextNode.this.class.toString
-							}
+								override converter() {
+									FileToTextNode.this.class.toString
+								}
 
-						})
-				]
-			)
-			
+							})
+					]
+				)
+				
+				cb.onSuccess(ops)
 			])
 	}
 

@@ -27,6 +27,10 @@ class ConvertUtils {
 			
 			val qry = fromNode.select(fromNode.session().link(labelType))
 			
+			val itmcb = cbs.createCallback
+			
+			qry.catchUndefined([ur |itmcb.onSuccess(false)])
+			
 		]
 		
 		

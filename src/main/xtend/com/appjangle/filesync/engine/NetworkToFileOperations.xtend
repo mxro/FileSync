@@ -12,6 +12,7 @@ import io.nextweb.Node
 import io.nextweb.NodeList
 import java.util.ArrayList
 import java.util.List
+import com.appjangle.filesync.engine.convert.ConvertUtils
 
 /**
  * Determines operations to be performed on local files based on remote changes made in the cloud.
@@ -48,7 +49,11 @@ class NetworkToFileOperations {
 			 */
 			 
 			remotelyAdded = remotelyAdded.filter [ node |
+				if (ConvertUtils.getNameFromUri(node.uri()).startsWith('.') {
+					return false;
+				}
 				
+				return true;
 			]
 			
 			val agg = Async.collect(3,

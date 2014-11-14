@@ -15,9 +15,7 @@ class NetworkUtils {
 
 	def execute(List<NetworkOperation> ops, Node onNode, ValueCallback<Success> cb) {
 	
-		for (NetworkOperation op : ops) {
-
-			val qries = op.apply(new NetworkOperationContext() {
+		val ctx = new NetworkOperationContext() {
 				
 				override session() {
 					onNode.session()
@@ -27,7 +25,11 @@ class NetworkUtils {
 					onNode
 				}
 				
-			})
+			};
+	
+		for (NetworkOperation op : ops) {
+
+			val qries = op.apply(ctx)
 			
 			val cbs = Async.collect(qries.size, cb.embed([
 				cb.onSuccess(Success.INSTANCE)

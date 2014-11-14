@@ -18,17 +18,18 @@ import java.util.List;
 @SuppressWarnings("all")
 public class NetworkUtils {
   public void execute(final List<NetworkOperation> ops, final Node onNode, final ValueCallback<Success> cb) {
+    final NetworkOperationContext ctx = new NetworkOperationContext() {
+      public Session session() {
+        return onNode.session();
+      }
+      
+      public Node parent() {
+        return onNode;
+      }
+    };
     for (final NetworkOperation op : ops) {
       {
-        final List<Deferred<?>> qries = op.apply(new NetworkOperationContext() {
-          public Session session() {
-            return onNode.session();
-          }
-          
-          public Node parent() {
-            return onNode;
-          }
-        });
+        final List<Deferred<?>> qries = op.apply(ctx);
         int _size = qries.size();
         final Closure<List<Success>> _function = new Closure<List<Success>>() {
           public void apply(final List<Success> it) {

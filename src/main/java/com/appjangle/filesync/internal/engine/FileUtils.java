@@ -46,4 +46,21 @@ public class FileUtils {
       op.apply(ctx);
     }
   }
+  
+  /**
+   * based on http://grepcode.com/file_/repository.springsource.com/org.apache.activemq/com.springsource.org.apache.kahadb/5.3.0/org/apache/kahadb/util/IOHelper.java/?v=source
+   * 
+   * Converts any string into a string that is safe to use as a file name.
+   * The result will only include ascii characters and numbers, and the "-","_", and "." characters.
+   * 
+   * @param name
+   * @param dirSeparators
+   * @param maxFileLength
+   * @return
+   */
+  public String toFileSystemSafeName(final String name, final boolean dirSeparators, final int maxFileLength) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field i is undefined for the type FileUtils"
+      + "\n..< cannot be resolved");
+  }
 }

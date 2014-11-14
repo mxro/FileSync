@@ -8,6 +8,7 @@ import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
 import de.mxro.fn.Closure;
 import io.nextweb.Link;
+import io.nextweb.LinkListQuery;
 import io.nextweb.Node;
 import io.nextweb.Query;
 import io.nextweb.Session;
@@ -42,6 +43,14 @@ public class ConvertUtils {
     };
     ValueCallback<List<Object>> _embed = Async.<List<Object>>embed(cb, _function);
     final Aggregator<Object> cbs = Async.<Object>collect(_size, _embed);
+    final LinkListQuery qry = forNode.selectAllLinks();
+    final ExceptionListener _function_1 = new ExceptionListener() {
+      public void onFailure(final ExceptionResult er) {
+        Throwable _exception = er.exception();
+        cb.onFailure(_exception);
+      }
+    };
+    qry.catchExceptions(_function_1);
     Set<Map.Entry<String, String>> _entrySet = this.extensions.entrySet();
     for (final Map.Entry<String, String> mapping : _entrySet) {
     }

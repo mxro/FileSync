@@ -23,6 +23,10 @@ class ConvertUtils {
 		]));
 		
 		
+		val qry = forNode.selectAllLinks()
+		
+		qry.catchExceptions([er|cb.onFailure(er.exception())])
+		
 		for (mapping: extensions.entrySet) {
 			
 			

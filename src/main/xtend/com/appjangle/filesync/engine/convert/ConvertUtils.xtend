@@ -17,10 +17,17 @@ class ConvertUtils {
 	}
 	
 	
+	static val NO_LABEL = new Object()
+	
 	def getFileName(Node fromNode, ValueCallback<String> cb) {
 		
 		val cbs = Async.collect(labelTypes.size, cb.embed([ res |
-			
+			for (item: res) {
+				if (item instanceof String) {
+					cb.onSuccess(item)
+				}
+				
+			}
 		]));
 		
 		labelTypes.forEach [ labelType | 
@@ -29,7 +36,7 @@ class ConvertUtils {
 			
 			val itmcb = cbs.createCallback
 			
-			qry.catchUndefined([ itmcb.onSuccess(null) ])
+			qry.catchUndefined([ itmcb.onSuccess(NO_LABEL) ])
 			
 			qry.catchExceptions([ er | itmcb.onFailure(er.exception)])
 			

@@ -5,6 +5,7 @@ import com.appjangle.filesync.FileOperation
 import com.appjangle.filesync.ItemMetadata
 import com.appjangle.filesync.Metadata
 import com.appjangle.filesync.NetworkOperation
+import com.appjangle.filesync.internal.engine.FileUtils
 import de.mxro.async.Async
 import de.mxro.async.callbacks.ValueCallback
 import de.mxro.file.FileItem
@@ -110,7 +111,9 @@ class FileToTextNode implements Converter {
 
 	override createFiles(FileItem folder, Metadata metadata, Node source, ValueCallback<List<FileOperation>> cb) {
 		source.getFileExtension(cb.embed([ext |
-			source.getFileName(folder, ext, cb.embed([fileName |
+			source.getFileName(folder, ext, cb.embed([rawFileName |
+			
+			val fileName = rawFileName.toF
 			
 			val ops = new LinkedList<FileOperation>
 			
@@ -223,6 +226,7 @@ class FileToTextNode implements Converter {
 	}
 		
 		
-		extension ConvertUtils utils = new ConvertUtils()
+		extension ConvertUtils cutils = new ConvertUtils()
+		extension FileUtils futils = new FileUtils()
 
 }

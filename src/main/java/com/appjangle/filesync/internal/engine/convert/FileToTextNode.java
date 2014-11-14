@@ -7,6 +7,7 @@ import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.NetworkOperation;
 import com.appjangle.filesync.NetworkOperationContext;
+import com.appjangle.filesync.internal.engine.FileUtils;
 import com.appjangle.filesync.internal.engine.convert.ConvertUtils;
 import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
@@ -98,8 +99,8 @@ public class FileToTextNode implements Converter {
           Node _parent = ctx.parent();
           String _text = source.getText();
           final Query baseNode = _parent.appendSafe(_text, ("./" + simpleName));
-          Query _appendLabel = FileToTextNode.this.utils.appendLabel(baseNode, nameWithoutExtension);
-          Query _appendTypes = FileToTextNode.this.utils.appendTypes(baseNode, source);
+          Query _appendLabel = FileToTextNode.this.cutils.appendLabel(baseNode, nameWithoutExtension);
+          Query _appendTypes = FileToTextNode.this.cutils.appendTypes(baseNode, source);
           _xblockexpression = CollectionLiterals.<Deferred<?>>newArrayList(baseNode, _appendLabel, _appendTypes);
         }
         return _xblockexpression;
@@ -144,52 +145,8 @@ public class FileToTextNode implements Converter {
   }
   
   public void createFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
-    final Closure<String> _function = new Closure<String>() {
-      public void apply(final String ext) {
-        final Closure<String> _function = new Closure<String>() {
-          public void apply(final String fileName) {
-            final LinkedList<FileOperation> ops = new LinkedList<FileOperation>();
-            final FileOperation _function = new FileOperation() {
-              public void apply(final FileOperationContext ctx) {
-                FileItem _folder = ctx.folder();
-                final FileItem file = _folder.createFile(fileName);
-                String _value = source.<String>value(String.class);
-                file.setText(_value);
-                Metadata _metadata = ctx.metadata();
-                _metadata.add(new ItemMetadata() {
-                  public String name() {
-                    return fileName;
-                  }
-                  
-                  public Date lastModified() {
-                    return new Date();
-                  }
-                  
-                  public String uri() {
-                    return source.uri();
-                  }
-                  
-                  public String hash() {
-                    return file.hash();
-                  }
-                  
-                  public String converter() {
-                    Class<? extends FileToTextNode> _class = FileToTextNode.this.getClass();
-                    return _class.toString();
-                  }
-                });
-              }
-            };
-            ops.add(_function);
-            cb.onSuccess(ops);
-          }
-        };
-        ValueCallback<String> _embed = Async.<String>embed(cb, _function);
-        FileToTextNode.this.utils.getFileName(source, folder, ext, _embed);
-      }
-    };
-    ValueCallback<String> _embed = Async.<String>embed(cb, _function);
-    this.utils.getFileExtension(source, _embed);
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method toF is undefined for the type FileToTextNode");
   }
   
   public void updateFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
@@ -251,5 +208,8 @@ public class FileToTextNode implements Converter {
   }
   
   @Extension
-  private ConvertUtils utils = new ConvertUtils();
+  private ConvertUtils cutils = new ConvertUtils();
+  
+  @Extension
+  private FileUtils futils = new FileUtils();
 }

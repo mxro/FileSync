@@ -7,8 +7,10 @@ import com.appjangle.filesync.NetworkOperationContext;
 import com.appjangle.filesync.engine.convert.ConvertUtils;
 import com.appjangle.filesync.engine.metadata.ItemMetadata;
 import com.appjangle.filesync.engine.metadata.Metadata;
+import de.mxro.async.Async;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
+import de.mxro.fn.Closure;
 import de.mxro.fn.Success;
 import io.nextweb.Link;
 import io.nextweb.Node;
@@ -107,5 +109,11 @@ public class FileToTextNode implements Converter {
   }
   
   public void createFiles(final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
+    final Closure<String> _function = new Closure<String>() {
+      public void apply(final String fileName) {
+      }
+    };
+    ValueCallback<String> _embed = Async.<String>embed(cb, _function);
+    this.utils.getFileName(source, _embed);
   }
 }

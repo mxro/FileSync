@@ -12,6 +12,8 @@ import com.appjangle.filesync.engine.metadata.Metadata
 import com.appjangle.filesync.engine.metadata.ItemMetadata
 import mx.gwtutils.MxroGWTUtils
 
+import static extension de.mxro.async.Async.embed
+
 class FileToTextNode implements Converter {
 
 	extension ConvertUtils utils = new ConvertUtils()
@@ -81,6 +83,12 @@ class FileToTextNode implements Converter {
 	}
 
 	override createFiles(Metadata metadata, Node source, ValueCallback<List<FileOperation>> cb) {
+		
+		source.getFileName(cb.embed([fileName |
+			
+		]))
+		}
+		
 		
 		
 		

@@ -1,5 +1,6 @@
 package com.appjangle.filesync.engine.convert;
 
+import com.google.common.base.Objects;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import de.mxro.async.Aggregator;
@@ -42,8 +43,18 @@ public class ConvertUtils {
     return _appendSafe.appendSafe(_link, "./label");
   }
   
-  public void appendTypes(final Query toNode, final FileItem source) {
-    final String ext = source.getExtension();
+  public Object appendTypes(final Query toNode, final FileItem source) {
+    Object _xblockexpression = null;
+    {
+      final String ext = source.getExtension();
+      Object _xifexpression = null;
+      boolean _equals = Objects.equal(ext, ".html");
+      if (_equals) {
+        _xifexpression = null;
+      }
+      _xblockexpression = _xifexpression;
+    }
+    return _xblockexpression;
   }
   
   private final static Object NO_VALUE = new Object();

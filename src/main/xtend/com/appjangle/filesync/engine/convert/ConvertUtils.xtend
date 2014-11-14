@@ -43,9 +43,12 @@ class ConvertUtils {
 	}
 
 	def appendTypes(Query toNode, FileItem source) {
-		
+
 		val ext = source.extension
 		
+		if (ext == ".html") {
+			
+		}
 		
 	}
 

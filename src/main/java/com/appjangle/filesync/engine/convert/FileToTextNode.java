@@ -36,15 +36,7 @@ public class FileToTextNode implements Converter {
     boolean _xblockexpression = false;
     {
       final String name = source.getName();
-      boolean _or = false;
-      boolean _endsWith = name.endsWith(".txt");
-      if (_endsWith) {
-        _or = true;
-      } else {
-        boolean _endsWith_1 = name.endsWith(".xml");
-        _or = _endsWith_1;
-      }
-      _xblockexpression = _or;
+      _xblockexpression = name.endsWith(".txt");
     }
     return _xblockexpression;
   }

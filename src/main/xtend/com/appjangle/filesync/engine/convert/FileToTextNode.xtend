@@ -85,8 +85,13 @@ class FileToTextNode implements Converter {
 	override createFiles(FileItem folder, Metadata metadata, Node source, ValueCallback<List<FileOperation>> cb) {
 
 		
-		source.getFileName(folder, '.txt', cb.embed([file |
+		source.getFileName(folder, '.txt', cb.embed([fileName |
 			
+			val ops = #[
+				[ctx|
+					ctx.folder.createFile(fileName)
+				]
+			]
 			
 			
 		]))

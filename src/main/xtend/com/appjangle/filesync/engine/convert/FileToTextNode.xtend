@@ -29,6 +29,8 @@ class FileToTextNode implements Converter {
 
 	override worksOn(Node node, ValueCallback<Boolean> cb) {
 
+		// TODO change so that it applies only to text nodes
+
 		cb.onSuccess(node.value() instanceof String)
 
 	}

@@ -31,7 +31,7 @@ class ConvertUtils {
 			}
 
 			// when no label defined
-			cb.onSuccess(fromNode.uri().substring(fromNode.uri().lastIndexOf("/")))
+			cb.onSuccess(fromNode.uri().substring(fromNode.uri().lastIndexOf("/")+1))
 			
 		]));
 		

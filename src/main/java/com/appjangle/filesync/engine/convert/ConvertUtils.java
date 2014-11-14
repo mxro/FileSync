@@ -44,7 +44,8 @@ public class ConvertUtils {
         String _uri = fromNode.uri();
         String _uri_1 = fromNode.uri();
         int _lastIndexOf = _uri_1.lastIndexOf("/");
-        String _substring = _uri.substring(_lastIndexOf);
+        int _plus = (_lastIndexOf + 1);
+        String _substring = _uri.substring(_plus);
         cb.onSuccess(_substring);
       }
     };

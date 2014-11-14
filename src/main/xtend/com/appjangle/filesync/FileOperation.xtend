@@ -1,5 +1,5 @@
 package com.appjangle.filesync
 
-interface FileOperation {
+interface FileOperation extends Function<FileOperationContext, Deferred<Void>> {
 	
 }

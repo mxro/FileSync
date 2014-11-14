@@ -36,11 +36,11 @@ class SyncFolder {
 		
 		metadata = folder.assertMetadata
 		
-		new FileToNetworkOperations(node, folder, metadata, converter).determineOps(cb.embed([ ops |
-			ops.execute(cb.embed([ 
+		new FileToNetworkOperations(node, folder, metadata, converter).determineOps(cb.embed [ ops |
+			ops.execute(cb.embed [ 
 				
-			]))
-		]))
+			])
+		])
 			
 			
 			

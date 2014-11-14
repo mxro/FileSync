@@ -1,14 +1,16 @@
 package com.appjangle.filesync.internal.engine.convert
 
 import com.appjangle.filesync.Converter
+import com.appjangle.filesync.FileOperation
+import com.appjangle.filesync.ItemMetadata
+import com.appjangle.filesync.Metadata
+import com.appjangle.filesync.NetworkOperation
+import de.mxro.async.callbacks.ValueCallback
 import de.mxro.file.FileItem
 import io.nextweb.Node
-import de.mxro.async.callbacks.ValueCallback
-import com.appjangle.filesync.Metadata
+import java.util.LinkedList
 import java.util.List
-import com.appjangle.filesync.NetworkOperation
-import com.appjangle.filesync.ItemMetadata
-import com.appjangle.filesync.FileOperation
+import mx.gwtutils.MxroGWTUtils
 
 class FolderToNode implements Converter {
 	
@@ -21,7 +23,18 @@ class FolderToNode implements Converter {
 	}
 	
 	override createNodes(Metadata metadata, FileItem source, ValueCallback<List<NetworkOperation>> cb) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		val simpleName = MxroGWTUtils.getSimpleName(source.name)
+		val ops = new LinkedList<NetworkOperation>
+
+		ops.add(
+			[ ctx |
+				val baseNode = ctx.parent.appendSafe(source.name, "./" + simpleName)
+				newArrayList(
+					baseNode
+				)
+			])
+
+		cb.onSuccess(ops)
 	}
 	
 	override update(Metadata metadata, FileItem source, ValueCallback<List<NetworkOperation>> cb) {

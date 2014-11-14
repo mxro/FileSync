@@ -46,6 +46,8 @@ class SyncFolder {
 	
 	def download(ValueCallback<Success> cb) {
 		new NetworkToFileOperations(node, folder, metadata, converter).determineOps(cb.embed([ ops |
+			ops.execute(folder, metadata)
+			
 			cb.onSuccess(Success.INSTANCE)
 		]))
 	}

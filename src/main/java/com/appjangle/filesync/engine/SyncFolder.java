@@ -64,6 +64,7 @@ public class SyncFolder {
     NetworkToFileOperations _networkToFileOperations = new NetworkToFileOperations(this.node, this.folder, this.metadata, this.converter);
     final Closure<List<FileOperation>> _function = new Closure<List<FileOperation>>() {
       public void apply(final List<FileOperation> ops) {
+        SyncFolder.this.fileUtils.execute(ops, SyncFolder.this.folder, SyncFolder.this.metadata);
         cb.onSuccess(Success.INSTANCE);
       }
     };

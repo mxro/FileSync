@@ -198,4 +198,7 @@ public class GetLocalOperationsProcess {
     }
     return res;
   }
+  
+  public GetLocalOperationsProcess(final /* node */Object __unknown__, final /* folder */Object __unknown___1, final /* converter */Object __unknown___2) {
+  }
 }

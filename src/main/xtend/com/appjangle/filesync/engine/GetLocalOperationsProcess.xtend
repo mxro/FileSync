@@ -168,6 +168,8 @@ class GetLocalOperationsProcess {
 	}
 
 	
-
+	new(node, folder, converter) {
+		
+	}
 
 }

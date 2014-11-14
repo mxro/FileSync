@@ -11,7 +11,7 @@ import io.nextweb.Node;
 import java.util.List;
 
 @SuppressWarnings("all")
-public class FileToFolderNode implements Converter {
+public class FolderToNode implements Converter {
   public boolean worksOn(final FileItem source) {
     throw new UnsupportedOperationException("TODO: auto-generated method stub");
   }

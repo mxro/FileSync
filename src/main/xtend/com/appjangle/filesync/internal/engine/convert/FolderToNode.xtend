@@ -10,7 +10,7 @@ import com.appjangle.filesync.NetworkOperation
 import com.appjangle.filesync.ItemMetadata
 import com.appjangle.filesync.FileOperation
 
-class FileToFolderNode implements Converter {
+class FolderToNode implements Converter {
 	
 	override worksOn(FileItem source) {
 		throw new UnsupportedOperationException("TODO: auto-generated method stub")

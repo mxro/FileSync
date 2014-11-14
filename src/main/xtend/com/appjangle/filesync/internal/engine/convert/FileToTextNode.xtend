@@ -188,6 +188,10 @@ class FileToTextNode implements Converter {
 							file.hash
 						}
 						
+						override converter() {
+							FileToTextNode.this.class.toString
+						}
+						
 					})
 			
 			}

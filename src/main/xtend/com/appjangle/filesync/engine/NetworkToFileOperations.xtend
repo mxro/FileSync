@@ -57,7 +57,19 @@ class NetworkToFileOperations {
 	}
 
 
-	def deduceUpdateOperations(List<NodeList> remotelyUpdated, ValueCallback<List<FileOperation>> cb ) {
+	def deduceUpdateOperations(List<Node> remotelyUpdated, ValueCallback<List<FileOperation>> cb ) {
+		
+		val agg = Async.collect(remotelyUpdated.size,
+			Async.embed(cb,
+				[ res |
+					cb.onSuccess(CollectionsUtils.flatten(res))
+				]))
+
+		for (updatedNode : remotelyUpdated) {
+
+			converter.updateFiles(folder, metadata, updatedNode, agg.createCallback)
+
+		}
 		
 	}
 

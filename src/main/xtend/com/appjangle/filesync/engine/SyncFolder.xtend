@@ -29,8 +29,8 @@ class SyncFolder {
 	def doIt(ValueCallback<Success> cb) {
 		
 		if (!folder.hasMetadata) {
-			metadata = folder.assertMetadata
-			download
+			
+			download(cb)
 			return;
 		}
 		
@@ -38,7 +38,7 @@ class SyncFolder {
 		
 		new FileToNetworkOperations(node, folder, metadata, converter).determineOps(cb.embed [ ops |
 			ops.execute(node, cb.embed [ 
-				
+				download(cb)
 			])
 		])
 			
@@ -47,8 +47,8 @@ class SyncFolder {
 		
 	}
 	
-	def download() {
-		
+	def download(ValueCallback<Success> cb) {
+		metadata = folder.assertMetadata
 	}
 	
 	extension FileUtils fileUtils = new FileUtils()

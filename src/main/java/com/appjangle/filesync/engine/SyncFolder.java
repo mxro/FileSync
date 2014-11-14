@@ -35,18 +35,17 @@ public class SyncFolder {
     boolean _hasMetadata = this.fileUtils.hasMetadata(this.folder);
     boolean _not = (!_hasMetadata);
     if (_not) {
-      Metadata _assertMetadata = this.fileUtils.assertMetadata(this.folder);
-      this.metadata = _assertMetadata;
-      this.download();
+      this.download(cb);
       return;
     }
-    Metadata _assertMetadata_1 = this.fileUtils.assertMetadata(this.folder);
-    this.metadata = _assertMetadata_1;
+    Metadata _assertMetadata = this.fileUtils.assertMetadata(this.folder);
+    this.metadata = _assertMetadata;
     FileToNetworkOperations _fileToNetworkOperations = new FileToNetworkOperations(this.node, this.folder, this.metadata, this.converter);
     final Closure<List<NetworkOperation>> _function = new Closure<List<NetworkOperation>>() {
       public void apply(final List<NetworkOperation> ops) {
         final Closure<Success> _function = new Closure<Success>() {
           public void apply(final Success it) {
+            SyncFolder.this.download(cb);
           }
         };
         ValueCallback<Success> _embed = Async.<Success>embed(cb, _function);
@@ -57,8 +56,9 @@ public class SyncFolder {
     _fileToNetworkOperations.determineOps(_embed);
   }
   
-  public Object download() {
-    return null;
+  public Metadata download(final ValueCallback<Success> cb) {
+    Metadata _assertMetadata = this.fileUtils.assertMetadata(this.folder);
+    return this.metadata = _assertMetadata;
   }
   
   @Extension

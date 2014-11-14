@@ -27,10 +27,8 @@ class FileToTextNode implements Convert {
 		ops.add(
 			[ ctx |
 				
-				ctx.session.link(address).setValueSafe(content).catchExceptions(
-					[ er |
-						cb.onFailure(er.exception())
-					])
+				ctx.session.link(address).setValueSafe(content)
+
 			])
 
 		cb.onSuccess(ops);

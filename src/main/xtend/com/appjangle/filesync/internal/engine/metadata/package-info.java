@@ -3,4 +3,4 @@
  * @author <a href="http://www.mxro.de">Max Rohde</a>
  *
  */
-package com.appjangle.filesync.engine.metadata;
+package com.appjangle.filesync.internal.engine.metadata;

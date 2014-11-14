@@ -1,4 +1,4 @@
-package com.appjangle.filesync.engine.metadata
+package com.appjangle.filesync.internal.engine.metadata
 
 import java.util.Date
 

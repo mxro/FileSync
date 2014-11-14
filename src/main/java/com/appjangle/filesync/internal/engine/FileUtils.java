@@ -1,9 +1,8 @@
 package com.appjangle.filesync.internal.engine;
 
 import com.appjangle.filesync.FileOperation;
-import com.appjangle.filesync.FileOperationContext;
 import com.appjangle.filesync.engine.metadata.Metadata;
-import com.appjangle.filesync.engine.metadata.MetadataUtilsJre;
+import com.appjangle.filesync.internal.engine.metadata.MetadataUtilsJre;
 import de.mxro.file.FileItem;
 import java.util.List;
 
@@ -32,18 +31,8 @@ public class FileUtils {
     return _xblockexpression;
   }
   
-  public void execute(final List<FileOperation> operations, final FileItem folder, final Metadata metadata) {
-    final FileOperationContext ctx = new FileOperationContext() {
-      public FileItem folder() {
-        return folder;
-      }
-      
-      public Metadata metadata() {
-        return metadata;
-      }
-    };
-    for (final FileOperation op : operations) {
-      op.apply(ctx);
-    }
+  public void execute(final List<FileOperation> operations, final FileItem folder, final com.appjangle.filesync.internal.engine.metadata.Metadata metadata) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nType mismatch: cannot convert from Metadata to Metadata");
   }
 }

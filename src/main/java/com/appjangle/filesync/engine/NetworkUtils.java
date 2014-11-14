@@ -32,6 +32,7 @@ public class NetworkUtils {
         int _size = qries.size();
         final Closure<List<Success>> _function = new Closure<List<Success>>() {
           public void apply(final List<Success> it) {
+            cb.onSuccess(Success.INSTANCE);
           }
         };
         ValueCallback<List<Success>> _embed = Async.<List<Success>>embed(cb, _function);

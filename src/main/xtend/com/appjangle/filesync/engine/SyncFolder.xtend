@@ -30,7 +30,7 @@ class SyncFolder {
 		
 		if (!folder.hasMetadata) {
 			metadata = folder.assertMetadata
-			fullDownload
+			download
 			return;
 		}
 		
@@ -47,7 +47,7 @@ class SyncFolder {
 		
 	}
 	
-	def fullDownload() {
+	def download() {
 		
 	}
 	

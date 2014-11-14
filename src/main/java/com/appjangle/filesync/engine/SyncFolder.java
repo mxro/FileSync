@@ -37,7 +37,7 @@ public class SyncFolder {
     if (_not) {
       Metadata _assertMetadata = this.fileUtils.assertMetadata(this.folder);
       this.metadata = _assertMetadata;
-      this.fullDownload();
+      this.download();
       return;
     }
     Metadata _assertMetadata_1 = this.fileUtils.assertMetadata(this.folder);
@@ -57,7 +57,7 @@ public class SyncFolder {
     _fileToNetworkOperations.determineOps(_embed);
   }
   
-  public Object fullDownload() {
+  public Object download() {
     return null;
   }
   

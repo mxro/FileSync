@@ -30,7 +30,7 @@ class NetworkUtils {
 			
 			
 			val cbs = Async.collect(qries.size, cb.embed([
-				
+				cb.onSuccess(Success.INSTANCE)
 			]))
 			
 			

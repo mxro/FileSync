@@ -12,6 +12,9 @@ public class SyncFolder {
   private FileUtils fileUtils = new FileUtils();
   
   public void doIt(final FileItem folder, final Node node) {
+    boolean _hasMetadata = this.fileUtils.hasMetadata(folder);
+    if (_hasMetadata) {
+    }
     final Metadata metadata = this.fileUtils.assertMetadata(folder);
   }
 }

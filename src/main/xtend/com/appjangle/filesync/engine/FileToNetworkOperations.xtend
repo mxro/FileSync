@@ -20,7 +20,6 @@ class FileToNetworkOperations {
 	val Metadata metadata;
 	val Converter converter;	
 	
-	
 	new(Node node, FileItem folder, Metadata metadata, Converter converter) {
 		this.node = node
 		this.folder = folder
@@ -28,8 +27,6 @@ class FileToNetworkOperations {
 		this.converter = converter
 		
 	}
-	
-
 
 	def fileToNetworkOperations( ValueCallback<List<NetworkOperation>> cb) {
 

@@ -24,7 +24,14 @@ class ConverterCollection implements Converter {
 	}
 	
 	override worksOn(FileItem source) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		
+		var res = false;
+
+		for (c: converters) {
+			res = res || (c.worksOn(source))
+		}
+
+		res
 	}
 	
 	override worksOn(Node node, ValueCallback<Boolean> cb) {

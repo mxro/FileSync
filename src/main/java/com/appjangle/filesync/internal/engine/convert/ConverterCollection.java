@@ -25,7 +25,22 @@ public class ConverterCollection implements Converter {
   }
   
   public boolean worksOn(final FileItem source) {
-    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+    boolean _xblockexpression = false;
+    {
+      boolean res = false;
+      for (final Converter c : this.converters) {
+        boolean _or = false;
+        if (res) {
+          _or = true;
+        } else {
+          boolean _worksOn = c.worksOn(source);
+          _or = _worksOn;
+        }
+        res = _or;
+      }
+      _xblockexpression = res;
+    }
+    return _xblockexpression;
   }
   
   public void worksOn(final Node node, final ValueCallback<Boolean> cb) {

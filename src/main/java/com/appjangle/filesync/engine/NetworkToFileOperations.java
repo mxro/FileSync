@@ -52,7 +52,7 @@ public class NetworkToFileOperations {
       public void apply(final NodeList children) {
         final ArrayList<Node> remotelyAdded = NetworkToFileOperations.this.determineRemotelyAddedNodes(children);
         final ArrayList<ItemMetadata> remotelyRemoved = NetworkToFileOperations.this.determineRemotelyRemovedNodes(children);
-        final ArrayList<ItemMetadata> remotelyUpdated = NetworkToFileOperations.this.determineRemotelyUpdatedNodes(children);
+        final ArrayList<NodeList> remotelyUpdated = NetworkToFileOperations.this.determineRemotelyUpdatedNodes(children);
         final Closure<List<List<FileOperation>>> _function = new Closure<List<List<FileOperation>>>() {
           public void apply(final List<List<FileOperation>> res) {
             List<FileOperation> _flatten = CollectionsUtils.<FileOperation>flatten(res);
@@ -69,6 +69,8 @@ public class NetworkToFileOperations {
     };
     qry.get(_function_1);
   }
+  
+  public abstract Object deduceUpdateOperations(final List<ItemMetadata> __unknown__);
   
   public void deduceCreateOperations(final List<Node> remotelyAdded, final ValueCallback<List<FileOperation>> cb) {
     int _size = remotelyAdded.size();
@@ -137,10 +139,10 @@ public class NetworkToFileOperations {
     return _xblockexpression;
   }
   
-  public ArrayList<ItemMetadata> determineRemotelyUpdatedNodes(final NodeList children) {
-    ArrayList<ItemMetadata> _xblockexpression = null;
+  public ArrayList<NodeList> determineRemotelyUpdatedNodes(final NodeList children) {
+    ArrayList<NodeList> _xblockexpression = null;
     {
-      final ArrayList<ItemMetadata> res = new ArrayList<ItemMetadata>(0);
+      final ArrayList<NodeList> res = new ArrayList<NodeList>(0);
       List<ItemMetadata> _children = this.metadata.getChildren();
       for (final ItemMetadata item : _children) {
       }

@@ -50,10 +50,14 @@ class NetworkToFileOperations {
 					
 			remotelyAdded.deduceCreateOperations(agg.createCallback)
 			remotelyRemoved.deduceRemoveOperations(agg.createCallback)
+			
 					
 		]
 
 	}
+
+
+	def deduceUpdateOperations(List<ItemMetadata> )
 
 	def deduceCreateOperations(List<Node> remotelyAdded, ValueCallback<List<FileOperation>> cb) {
 
@@ -117,7 +121,7 @@ class NetworkToFileOperations {
 	}
 
 	def determineRemotelyUpdatedNodes(NodeList children) {
-		val res = new ArrayList<ItemMetadata>(0)
+		val res = new ArrayList<NodeList>(0)
 
 		for (item : metadata.children) {
 			// TODO: not yet supported

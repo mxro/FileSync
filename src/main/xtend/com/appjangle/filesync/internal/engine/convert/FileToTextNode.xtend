@@ -18,7 +18,7 @@ import static extension de.mxro.async.Async.embed
 
 class FileToTextNode implements Converter {
 
-	extension ConvertUtils utils = new ConvertUtils()
+	
 
 	override worksOn(FileItem source) {
 
@@ -222,5 +222,7 @@ class FileToTextNode implements Converter {
 		cb.onSuccess(ops)
 	}
 		
+		
+		extension ConvertUtils utils = new ConvertUtils()
 
 }

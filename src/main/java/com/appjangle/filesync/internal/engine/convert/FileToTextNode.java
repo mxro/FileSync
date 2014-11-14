@@ -37,9 +37,6 @@ import org.eclipse.xtext.xbase.lib.Extension;
 
 @SuppressWarnings("all")
 public class FileToTextNode implements Converter {
-  @Extension
-  private ConvertUtils utils = new ConvertUtils();
-  
   public boolean worksOn(final FileItem source) {
     boolean _xblockexpression = false;
     {
@@ -252,4 +249,7 @@ public class FileToTextNode implements Converter {
     ops.add(_function);
     cb.onSuccess(ops);
   }
+  
+  @Extension
+  private ConvertUtils utils = new ConvertUtils();
 }

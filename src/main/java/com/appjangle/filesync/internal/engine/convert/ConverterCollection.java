@@ -5,11 +5,11 @@ import com.appjangle.filesync.FileOperation;
 import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.NetworkOperation;
-import de.mxro.async.Aggregator;
 import de.mxro.async.Async;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
 import de.mxro.fn.Closure;
+import de.mxro.fn.Closure2;
 import io.nextweb.Node;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,21 +47,19 @@ public class ConverterCollection implements Converter {
   }
   
   public void worksOn(final Node node, final ValueCallback<Boolean> cb) {
-    int _size = this.converters.size();
-    final Closure<List<Boolean>> _function = new Closure<List<Boolean>>() {
+    final Closure2<Converter, ValueCallback<Boolean>> _function = new Closure2<Converter, ValueCallback<Boolean>>() {
+      public void apply(final Converter c, final ValueCallback<Boolean> itmcb) {
+        c.worksOn(node, itmcb);
+      }
+    };
+    final Closure<List<Boolean>> _function_1 = new Closure<List<Boolean>>() {
       public void apply(final List<Boolean> res) {
         boolean _contains = res.contains(Boolean.valueOf(true));
         cb.onSuccess(Boolean.valueOf(_contains));
       }
     };
-    ValueCallback<List<Boolean>> _embed = Async.<List<Boolean>>embed(cb, _function);
-    final Aggregator<Boolean> cbs = Async.<Boolean>collect(_size, _embed);
-    for (final Converter c : this.converters) {
-      {
-        final ValueCallback<Boolean> itmcb = cbs.createCallback();
-        c.worksOn(node, itmcb);
-      }
-    }
+    ValueCallback<List<Boolean>> _embed = Async.<List<Boolean>>embed(cb, _function_1);
+    Async.<Converter, Boolean>forEach(this.converters, _function, _embed);
   }
   
   public void createNodes(final Metadata metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {

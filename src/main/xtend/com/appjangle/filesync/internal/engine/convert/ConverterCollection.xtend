@@ -39,15 +39,11 @@ class ConverterCollection implements Converter {
 	
 	override worksOn(Node node, ValueCallback<Boolean> cb) {
 		
-		val cbs = Async.collect(converters.size, cb.embed [res |
+		Async.forEach(converters, [c, itmcb |
+			c.worksOn(node, itmcb)
+		], cb.embed [res |
 			cb.onSuccess(res.contains(true))
 		])
-		
-		for (c:converters) {
-			val itmcb = cbs.createCallback
-			
-			c.worksOn(node, itmcb)
-		}
 		
 	}
 	

@@ -36,7 +36,7 @@ class FileToTextNode implements Converter {
 		
 		
 		val cbs = Async.collect(textNodeTypes.size, cb.embed [res|
-			
+			cb.onSuccess(res.contains(true))
 		])
 		
 		
@@ -50,7 +50,7 @@ class FileToTextNode implements Converter {
 			
 			qry.catchUndefined([ itmcb.onSuccess(false) ])
 			
-			qry.get( [itmcb.onSuccess(true) ])
+			qry.get( [ itmcb.onSuccess(true) ])
 			
 		}
 		

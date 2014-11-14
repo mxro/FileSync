@@ -54,6 +54,8 @@ public class FileToTextNode implements Converter {
     int _size = textNodeTypes.size();
     final Closure<List<Boolean>> _function = new Closure<List<Boolean>>() {
       public void apply(final List<Boolean> res) {
+        boolean _contains = res.contains(Boolean.valueOf(true));
+        cb.onSuccess(Boolean.valueOf(_contains));
       }
     };
     ValueCallback<List<Boolean>> _embed = Async.<List<Boolean>>embed(cb, _function);

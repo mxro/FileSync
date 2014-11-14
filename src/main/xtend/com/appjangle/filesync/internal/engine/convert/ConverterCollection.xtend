@@ -78,7 +78,9 @@ class ConverterCollection implements Converter {
 	}
 	
 	override deleteNodes(Metadata metadata, ItemMetadata cachedFile, ValueCallback<List<NetworkOperation>> cb) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		findConverter(cachedFile, cb.embed [ converter |
+			converter.deleteNodes(metadata, cachedFile, cb)
+		])
 	}
 	
 	override createFiles(FileItem folder, Metadata metadata, Node source, ValueCallback<List<FileOperation>> cb) {

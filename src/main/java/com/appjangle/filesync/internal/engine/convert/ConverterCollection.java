@@ -111,7 +111,8 @@ public class ConverterCollection implements Converter {
   }
   
   public void deleteNodes(final Metadata metadata, final ItemMetadata cachedFile, final ValueCallback<List<NetworkOperation>> cb) {
-    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+    throw new Error("Unresolved compilation problems:"
+      + "\nType mismatch: cannot convert from ItemMetadata to FileItem");
   }
   
   public void createFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {

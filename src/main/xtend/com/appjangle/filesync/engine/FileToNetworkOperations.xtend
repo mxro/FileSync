@@ -13,7 +13,7 @@ import com.appjangle.filesync.Converter
 import com.appjangle.filesync.engine.metadata.Metadata
 import com.appjangle.filesync.engine.metadata.ItemMetadata
 
-class GetLocalOperationsProcess {
+class FileToNetworkOperations {
 
 	val Node node;
 	val FileItem folder;
@@ -27,7 +27,7 @@ class GetLocalOperationsProcess {
 	
 	var Metadata nodes = null;
 
-	def getLocalOperations( ValueCallback<List<NetworkOperation>> cb) {
+	def fileToNetworkOperations( ValueCallback<List<NetworkOperation>> cb) {
 
 		if (!folder.directory)
 			throw new Exception('File passed and not directory. ' + folder)

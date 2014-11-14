@@ -20,14 +20,14 @@ import java.util.function.Consumer;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 
 @SuppressWarnings("all")
-public class GetLocalOperationsProcess {
+public class FileToNetworkOperations {
   private final Node node;
   
   private final FileItem folder;
   
   private final Converter converter;
   
-  public GetLocalOperationsProcess(final Node node, final FileItem folder, final Converter converter) {
+  public FileToNetworkOperations(final Node node, final FileItem folder, final Converter converter) {
     this.node = node;
     this.folder = folder;
     this.converter = converter;
@@ -35,7 +35,7 @@ public class GetLocalOperationsProcess {
   
   private Metadata nodes = null;
   
-  public ArrayList<NetworkOperation> getLocalOperations(final ValueCallback<List<NetworkOperation>> cb) {
+  public ArrayList<NetworkOperation> fileToNetworkOperations(final ValueCallback<List<NetworkOperation>> cb) {
     try {
       boolean _isDirectory = this.folder.isDirectory();
       boolean _not = (!_isDirectory);
@@ -56,9 +56,9 @@ public class GetLocalOperationsProcess {
       if (_equals) {
         return new ArrayList<NetworkOperation>(0);
       }
-      final ArrayList<String> locallyAddedFiles = GetLocalOperationsProcess.determineLocallyAddedFiles(this.nodes, this.folder);
-      final ArrayList<String> locallyRemovedFiles = GetLocalOperationsProcess.determineLocallyRemovedFiles(this.nodes, this.folder);
-      final ArrayList<String> locallyChangedFiles = GetLocalOperationsProcess.determineLocallyChangedFiles(this.nodes, this.folder);
+      final ArrayList<String> locallyAddedFiles = FileToNetworkOperations.determineLocallyAddedFiles(this.nodes, this.folder);
+      final ArrayList<String> locallyRemovedFiles = FileToNetworkOperations.determineLocallyRemovedFiles(this.nodes, this.folder);
+      final ArrayList<String> locallyChangedFiles = FileToNetworkOperations.determineLocallyChangedFiles(this.nodes, this.folder);
       final Closure<List<List<NetworkOperation>>> _function = new Closure<List<List<NetworkOperation>>>() {
         public void apply(final List<List<NetworkOperation>> res) {
           final List<NetworkOperation> ops = CollectionsUtils.<NetworkOperation>flatten(res);
@@ -91,9 +91,9 @@ public class GetLocalOperationsProcess {
     final Aggregator<List<NetworkOperation>> agg = Async.<List<NetworkOperation>>collect(_size, _embed);
     final Consumer<String> _function_1 = new Consumer<String>() {
       public void accept(final String fileName) {
-        FileItem _child = GetLocalOperationsProcess.this.folder.getChild(fileName);
+        FileItem _child = FileToNetworkOperations.this.folder.getChild(fileName);
         ValueCallback<List<NetworkOperation>> _createCallback = agg.createCallback();
-        GetLocalOperationsProcess.this.converter.update(GetLocalOperationsProcess.this.nodes, _child, _createCallback);
+        FileToNetworkOperations.this.converter.update(FileToNetworkOperations.this.nodes, _child, _createCallback);
       }
     };
     fileNames.forEach(_function_1);
@@ -111,9 +111,9 @@ public class GetLocalOperationsProcess {
     final Aggregator<List<NetworkOperation>> agg = Async.<List<NetworkOperation>>collect(_size, _embed);
     final Consumer<String> _function_1 = new Consumer<String>() {
       public void accept(final String fileName) {
-        ItemMetadata _get = GetLocalOperationsProcess.this.nodes.get(fileName);
+        ItemMetadata _get = FileToNetworkOperations.this.nodes.get(fileName);
         ValueCallback<List<NetworkOperation>> _createCallback = agg.createCallback();
-        GetLocalOperationsProcess.this.converter.deleteNodes(GetLocalOperationsProcess.this.nodes, _get, _createCallback);
+        FileToNetworkOperations.this.converter.deleteNodes(FileToNetworkOperations.this.nodes, _get, _createCallback);
       }
     };
     fileNames.forEach(_function_1);
@@ -131,9 +131,9 @@ public class GetLocalOperationsProcess {
     final Aggregator<List<NetworkOperation>> agg = Async.<List<NetworkOperation>>collect(_size, _embed);
     final Consumer<String> _function_1 = new Consumer<String>() {
       public void accept(final String fileName) {
-        FileItem _child = GetLocalOperationsProcess.this.folder.getChild(fileName);
+        FileItem _child = FileToNetworkOperations.this.folder.getChild(fileName);
         ValueCallback<List<NetworkOperation>> _createCallback = agg.createCallback();
-        GetLocalOperationsProcess.this.converter.createNodes(GetLocalOperationsProcess.this.nodes, _child, _createCallback);
+        FileToNetworkOperations.this.converter.createNodes(FileToNetworkOperations.this.nodes, _child, _createCallback);
       }
     };
     fileNames.forEach(_function_1);
@@ -169,18 +169,18 @@ public class GetLocalOperationsProcess {
   
   public static ArrayList<String> determineLocallyAddedFiles(final Metadata metadata, final FileItem folder) {
     List<ItemMetadata> _children = metadata.getChildren();
-    final ArrayList<String> previousNames = GetLocalOperationsProcess.getNamesFromCache(_children);
+    final ArrayList<String> previousNames = FileToNetworkOperations.getNamesFromCache(_children);
     List<FileItem> _children_1 = folder.getChildren();
-    final ArrayList<String> currentNames = GetLocalOperationsProcess.getNames(_children_1);
+    final ArrayList<String> currentNames = FileToNetworkOperations.getNames(_children_1);
     currentNames.removeAll(previousNames);
     return currentNames;
   }
   
   public static ArrayList<String> determineLocallyRemovedFiles(final Metadata metadata, final FileItem folder) {
     List<ItemMetadata> _children = metadata.getChildren();
-    final ArrayList<String> previousNames = GetLocalOperationsProcess.getNamesFromCache(_children);
+    final ArrayList<String> previousNames = FileToNetworkOperations.getNamesFromCache(_children);
     List<FileItem> _children_1 = folder.getChildren();
-    final ArrayList<String> currentNames = GetLocalOperationsProcess.getNames(_children_1);
+    final ArrayList<String> currentNames = FileToNetworkOperations.getNames(_children_1);
     previousNames.removeAll(currentNames);
     return previousNames;
   }

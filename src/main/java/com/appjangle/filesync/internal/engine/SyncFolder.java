@@ -31,7 +31,7 @@ public class SyncFolder {
     this.converter = converter;
   }
   
-  private /* Metadata */Object metadata;
+  private Metadata metadata;
   
   public void doIt(final ValueCallback<Success> cb) {
     boolean _hasMetadata = this.fileUtils.hasMetadata(this.folder);

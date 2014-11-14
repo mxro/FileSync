@@ -2,7 +2,10 @@ package com.appjangle.filesync.internal.engine;
 
 import com.appjangle.filesync.Converter;
 import com.appjangle.filesync.FileOperation;
+import com.appjangle.filesync.ItemMetadata;
+import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.internal.engine.convert.ConvertUtils;
+import com.google.common.base.Objects;
 import de.mxro.async.Aggregator;
 import de.mxro.async.Async;
 import de.mxro.async.callbacks.ValueCallback;
@@ -28,11 +31,11 @@ public class NetworkToFileOperations {
   
   private final FileItem folder;
   
-  private final /* Metadata */Object metadata;
+  private final Metadata metadata;
   
   private final Converter converter;
   
-  public NetworkToFileOperations(final Node node, final FileItem folder, final /* Metadata */Object metadata, final Converter converter) {
+  public NetworkToFileOperations(final Node node, final FileItem folder, final Metadata metadata, final Converter converter) {
     this.node = node;
     this.folder = folder;
     this.metadata = metadata;
@@ -117,7 +120,7 @@ public class NetworkToFileOperations {
     }
   }
   
-  public void deduceRemoveOperations(final /* List<ItemMetadata> */Object remotelyRemoved, final ValueCallback<List<FileOperation>> cb) {
+  public void deduceRemoveOperations(final List<ItemMetadata> remotelyRemoved, final ValueCallback<List<FileOperation>> cb) {
     int _size = remotelyRemoved.size();
     final Closure<List<List<FileOperation>>> _function = new Closure<List<List<FileOperation>>>() {
       public void apply(final List<List<FileOperation>> res) {
@@ -134,21 +137,53 @@ public class NetworkToFileOperations {
   }
   
   public ArrayList<Node> determineRemotelyAddedNodes(final NodeList children) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nget cannot be resolved"
-      + "\n== cannot be resolved");
+    ArrayList<Node> _xblockexpression = null;
+    {
+      final ArrayList<Node> res = new ArrayList<Node>(0);
+      for (final Node child : children) {
+        ItemMetadata _get = this.metadata.get(child);
+        boolean _equals = Objects.equal(_get, null);
+        if (_equals) {
+          res.add(child);
+        }
+      }
+      _xblockexpression = res;
+    }
+    return _xblockexpression;
   }
   
-  public /* ArrayList<ItemMetadata> */Object determineRemotelyRemovedNodes(final NodeList children) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nItemMetadata cannot be resolved to a type."
-      + "\nchildren cannot be resolved"
-      + "\nuri cannot be resolved");
+  public ArrayList<ItemMetadata> determineRemotelyRemovedNodes(final NodeList children) {
+    ArrayList<ItemMetadata> _xblockexpression = null;
+    {
+      final ArrayList<ItemMetadata> res = new ArrayList<ItemMetadata>(0);
+      List<ItemMetadata> _children = this.metadata.getChildren();
+      for (final ItemMetadata item : _children) {
+        List<String> _uris = children.uris();
+        String _uri = item.uri();
+        boolean _contains = _uris.contains(_uri);
+        boolean _not = (!_contains);
+        if (_not) {
+          res.add(item);
+        }
+      }
+      _xblockexpression = res;
+    }
+    return _xblockexpression;
   }
   
   public ArrayList<Node> determineRemotelyUpdatedNodes(final NodeList children) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nget cannot be resolved"
-      + "\n!= cannot be resolved");
+    ArrayList<Node> _xblockexpression = null;
+    {
+      final ArrayList<Node> res = new ArrayList<Node>(0);
+      for (final Node node : children) {
+        ItemMetadata _get = this.metadata.get(node);
+        boolean _notEquals = (!Objects.equal(_get, null));
+        if (_notEquals) {
+          res.add(node);
+        }
+      }
+      _xblockexpression = res;
+    }
+    return _xblockexpression;
   }
 }

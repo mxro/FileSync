@@ -10,9 +10,14 @@ import static extension de.mxro.async.Async.embed
 
 class ConvertUtils {
 	
+	val extensions = #{
+		""->".html"
+	}
 	
 	
 	def getFileExtension(Node forNode, ValueCallback<String> cb) {
+		
+		
 		
 	}
 	

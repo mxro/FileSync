@@ -1,6 +1,7 @@
 package com.appjangle.filesync.engine.convert;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import de.mxro.async.Aggregator;
 import de.mxro.async.Async;
 import de.mxro.async.callbacks.ValueCallback;
@@ -16,10 +17,22 @@ import io.nextweb.promise.exceptions.UndefinedListener;
 import io.nextweb.promise.exceptions.UndefinedResult;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Consumer;
+import org.eclipse.xtext.xbase.lib.Functions.Function0;
 
 @SuppressWarnings("all")
 public class ConvertUtils {
+  private final Map<String, String> extensions = new Function0<Map<String, String>>() {
+    public Map<String, String> apply() {
+      Map<String, String> _xsetliteral = null;
+      Map<String, String> _tempMap = Maps.<String, String>newHashMap();
+      _tempMap.put("", ".html");
+      _xsetliteral = Collections.<String, String>unmodifiableMap(_tempMap);
+      return _xsetliteral;
+    }
+  }.apply();
+  
   public Object getFileExtension(final Node forNode, final ValueCallback<String> cb) {
     return null;
   }

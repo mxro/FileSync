@@ -2,6 +2,7 @@ package com.appjangle.filesync.engine
 
 import com.appjangle.filesync.NetworkOperation
 import com.appjangle.filesync.NetworkOperationContext
+import de.mxro.async.Async
 import de.mxro.async.callbacks.ValueCallback
 import de.mxro.fn.Success
 import io.nextweb.Node
@@ -25,9 +26,16 @@ class NetworkUtils {
 				
 			})
 			
+			
+			Async.collect(qries.size)
+			
 			for ( qry: qries) {
 				
-					
+				val res = onNode.session().promise(qry)
+				
+				res.catchExceptions()
+				
+				
 				
 			}
 			

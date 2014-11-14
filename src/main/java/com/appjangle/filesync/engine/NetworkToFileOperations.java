@@ -47,6 +47,9 @@ public class NetworkToFileOperations {
     qry.catchExceptions(_function);
     final Closure<NodeList> _function_1 = new Closure<NodeList>() {
       public void apply(final NodeList children) {
+        final ArrayList<Node> remotelyAdded = NetworkToFileOperations.this.determineRemotelyAddedNodes(children);
+        final ArrayList<ItemMetadata> remotelyRemoved = NetworkToFileOperations.this.determineRemotelyRemovedNodes(children);
+        final Object remotelyUpdated = NetworkToFileOperations.this.determineRemotelyUpdatedNodes(children);
       }
     };
     qry.get(_function_1);
@@ -87,7 +90,7 @@ public class NetworkToFileOperations {
     return _xblockexpression;
   }
   
-  public Object determineRemotelyUpdatedNodes() {
+  public Object determineRemotelyUpdatedNodes(final NodeList children) {
     return null;
   }
 }

@@ -38,8 +38,11 @@ class NetworkToFileOperations {
 		
 		qry.get [children |
 			
+			val remotelyAdded = children.determineRemotelyAddedNodes
 			
+			val remotelyRemoved = children.determineRemotelyRemovedNodes
 			
+			val remotelyUpdated = children.determineRemotelyUpdatedNodes
 			
 		]
 		
@@ -76,9 +79,9 @@ class NetworkToFileOperations {
 		
 	}
 	
-	
-	
-	def determineRemotelyUpdatedNodes() {
+	def determineRemotelyUpdatedNodes(NodeList children) {
+		
+		
 		
 	}
 	

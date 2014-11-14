@@ -16,7 +16,7 @@ class SyncFolder {
 
 		val metadata = MetadataUtilsJre.readFromFile(metadataFolder.getChild("nodes.xml"))
 
-		if (nodes == null) {
+		if (metadata == null) {
 			return new ArrayList<NetworkOperation>(0)
 		}
 		

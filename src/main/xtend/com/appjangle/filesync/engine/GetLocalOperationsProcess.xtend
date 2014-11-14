@@ -70,7 +70,7 @@ class GetLocalOperationsProcess {
 		]))
 
 		fileNames.forEach[ fileName | 
-			convert.update(folder.getChild(fileName), node, agg.createCallback());
+			convert.update(nodes, folder.getChild(fileName),  agg.createCallback());
 		]
 		
 	}
@@ -83,7 +83,7 @@ class GetLocalOperationsProcess {
 		]))
 
 		fileNames.forEach[ fileName | 
-			convert.deleteNodes(nodes.getChild(fileName), node, agg.createCallback)
+			convert.deleteNodes(nodes, nodes.getChild(fileName),  agg.createCallback)
 		]
 		
 	}
@@ -96,7 +96,7 @@ class GetLocalOperationsProcess {
 		]))
 		
 		fileNames.forEach[fileName |
-			convert.createNodes(folder.getChild(fileName), node, agg.createCallback());
+			convert.createNodes(nodes, folder.getChild(fileName), agg.createCallback());
 		]
 		
 	}

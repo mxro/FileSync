@@ -16,6 +16,7 @@ import io.nextweb.Node;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.function.Consumer;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 
 @SuppressWarnings("all")
@@ -73,21 +74,63 @@ public class GetLocalOperationsProcess {
   }
   
   public void createOperationsFromChangedFiles(final List<String> fileNames, final ValueCallback<List<NetworkOperation>> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from Node to FileItem"
-      + "\nType mismatch: cannot convert from FileItem to NodesMetadata");
+    int _size = fileNames.size();
+    final Closure<List<List<NetworkOperation>>> _function = new Closure<List<List<NetworkOperation>>>() {
+      public void apply(final List<List<NetworkOperation>> res) {
+        List<NetworkOperation> _flatten = CollectionsUtils.<NetworkOperation>flatten(res);
+        cb.onSuccess(_flatten);
+      }
+    };
+    ValueCallback<List<List<NetworkOperation>>> _embed = Async.<List<List<NetworkOperation>>>embed(cb, _function);
+    final Aggregator<List<NetworkOperation>> agg = Async.<List<NetworkOperation>>collect(_size, _embed);
+    final Consumer<String> _function_1 = new Consumer<String>() {
+      public void accept(final String fileName) {
+        FileItem _child = GetLocalOperationsProcess.this.folder.getChild(fileName);
+        ValueCallback<List<NetworkOperation>> _createCallback = agg.createCallback();
+        GetLocalOperationsProcess.this.convert.update(GetLocalOperationsProcess.this.nodes, _child, _createCallback);
+      }
+    };
+    fileNames.forEach(_function_1);
   }
   
   public void createOperationsFromRemovedFiles(final List<String> fileNames, final ValueCallback<List<NetworkOperation>> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from Node to FileItemMetadata"
-      + "\nType mismatch: cannot convert from FileItemMetadata to NodesMetadata");
+    int _size = fileNames.size();
+    final Closure<List<List<NetworkOperation>>> _function = new Closure<List<List<NetworkOperation>>>() {
+      public void apply(final List<List<NetworkOperation>> res) {
+        List<NetworkOperation> _flatten = CollectionsUtils.<NetworkOperation>flatten(res);
+        cb.onSuccess(_flatten);
+      }
+    };
+    ValueCallback<List<List<NetworkOperation>>> _embed = Async.<List<List<NetworkOperation>>>embed(cb, _function);
+    final Aggregator<List<NetworkOperation>> agg = Async.<List<NetworkOperation>>collect(_size, _embed);
+    final Consumer<String> _function_1 = new Consumer<String>() {
+      public void accept(final String fileName) {
+        FileItemMetadata _child = GetLocalOperationsProcess.this.nodes.getChild(fileName);
+        ValueCallback<List<NetworkOperation>> _createCallback = agg.createCallback();
+        GetLocalOperationsProcess.this.convert.deleteNodes(GetLocalOperationsProcess.this.nodes, _child, _createCallback);
+      }
+    };
+    fileNames.forEach(_function_1);
   }
   
   public void createOperationsFromCreatedFiles(final List<String> fileNames, final ValueCallback<List<NetworkOperation>> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from FileItem to NodesMetadata"
-      + "\nType mismatch: cannot convert from Node to FileItem");
+    int _size = fileNames.size();
+    final Closure<List<List<NetworkOperation>>> _function = new Closure<List<List<NetworkOperation>>>() {
+      public void apply(final List<List<NetworkOperation>> res) {
+        List<NetworkOperation> _flatten = CollectionsUtils.<NetworkOperation>flatten(res);
+        cb.onSuccess(_flatten);
+      }
+    };
+    ValueCallback<List<List<NetworkOperation>>> _embed = Async.<List<List<NetworkOperation>>>embed(cb, _function);
+    final Aggregator<List<NetworkOperation>> agg = Async.<List<NetworkOperation>>collect(_size, _embed);
+    final Consumer<String> _function_1 = new Consumer<String>() {
+      public void accept(final String fileName) {
+        FileItem _child = GetLocalOperationsProcess.this.folder.getChild(fileName);
+        ValueCallback<List<NetworkOperation>> _createCallback = agg.createCallback();
+        GetLocalOperationsProcess.this.convert.createNodes(GetLocalOperationsProcess.this.nodes, _child, _createCallback);
+      }
+    };
+    fileNames.forEach(_function_1);
   }
   
   public static ArrayList<String> determineLocallyChangedFiles(final NodesMetadata metadata, final FileItem folder) {

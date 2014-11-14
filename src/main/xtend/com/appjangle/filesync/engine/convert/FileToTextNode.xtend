@@ -13,12 +13,12 @@ import com.appjangle.filesync.engine.metadata.FileItemMetadata
 class FileToTextNode implements Convert {
 
 
-	override createNodes(NodesMetadata metadata, FileItem source, Node parent, ValueCallback<List<NetworkOperation>> cb) {
+	override createNodes(NodesMetadata metadata, FileItem source,  ValueCallback<List<NetworkOperation>> cb) {
 		
 	}
 	
 
-	override update(NodesMetadata metadata, FileItem source, Node parent, ValueCallback<List<NetworkOperation>> cb) {
+	override update(NodesMetadata metadata, FileItem source,  ValueCallback<List<NetworkOperation>> cb) {
 
 		val content = source.text
 
@@ -36,7 +36,7 @@ class FileToTextNode implements Convert {
 	}
 	
 	
-	override deleteNodes(NodesMetadata metadata, FileItemMetadata cachedFile, Node parent, ValueCallback<List<NetworkOperation>> cb) {
+	override deleteNodes(NodesMetadata metadata, FileItemMetadata cachedFile,  ValueCallback<List<NetworkOperation>> cb) {
 		val address = cachedFile.uri
 
 		val ops = new LinkedList<NetworkOperation>

@@ -49,7 +49,11 @@ class ConvertUtils {
 		
 		if (ext == ".html") {
 			
+			toNode.appendSafe(toNode.session().link('https://admin1.linnk.it/types/v01/isHtmlValue'))
+			
 		}
+		
+		toNode.appendSafe(toNode.session().link('https://u1.linnk.it/6wbnoq/Types/aTextValue'))
 		
 	}
 

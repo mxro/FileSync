@@ -74,16 +74,19 @@ public class ConvertUtils {
     return _appendSafe.appendSafe(_link, "./label");
   }
   
-  public Object appendTypes(final Query toNode, final FileItem source) {
-    Object _xblockexpression = null;
+  public Query appendTypes(final Query toNode, final FileItem source) {
+    Query _xblockexpression = null;
     {
       final String ext = source.getExtension();
-      Object _xifexpression = null;
       boolean _equals = Objects.equal(ext, ".html");
       if (_equals) {
-        _xifexpression = null;
+        Session _session = toNode.session();
+        Link _link = _session.link("https://admin1.linnk.it/types/v01/isHtmlValue");
+        toNode.appendSafe(_link);
       }
-      _xblockexpression = _xifexpression;
+      Session _session_1 = toNode.session();
+      Link _link_1 = _session_1.link("https://u1.linnk.it/6wbnoq/Types/aTextValue");
+      _xblockexpression = toNode.appendSafe(_link_1);
     }
     return _xblockexpression;
   }

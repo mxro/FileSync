@@ -19,9 +19,13 @@ class ConvertUtils {
 	
 	def getFileName(Node fromNode, ValueCallback<String> cb) {
 		
-		Async.collect(labelTypes.size, cb.embed([ res |
+		val cbs = Async.collect(labelTypes.size, cb.embed([ res |
 			
 		]));
+		
+		labelTypes.forEach [ labelType | 
+			
+		]
 		
 		
 	}

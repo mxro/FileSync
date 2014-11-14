@@ -11,6 +11,7 @@ import io.nextweb.Query;
 import io.nextweb.Session;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Consumer;
 
 @SuppressWarnings("all")
 public class ConvertUtils {
@@ -24,13 +25,18 @@ public class ConvertUtils {
     return _appendSafe.appendSafe(_link, "./label");
   }
   
-  public Aggregator<Object> getFileName(final Node fromNode, final ValueCallback<String> cb) {
+  public void getFileName(final Node fromNode, final ValueCallback<String> cb) {
     int _size = this.labelTypes.size();
     final Closure<List<Object>> _function = new Closure<List<Object>>() {
       public void apply(final List<Object> res) {
       }
     };
     ValueCallback<List<Object>> _embed = Async.<List<Object>>embed(cb, _function);
-    return Async.<Object>collect(_size, _embed);
+    final Aggregator<Object> cbs = Async.<Object>collect(_size, _embed);
+    final Consumer<String> _function_1 = new Consumer<String>() {
+      public void accept(final String labelType) {
+      }
+    };
+    this.labelTypes.forEach(_function_1);
   }
 }

@@ -1,8 +1,8 @@
 package com.appjangle.filesync;
 
 import com.appjangle.filesync.FileOperationContext;
-import java.util.function.Function;
+import de.mxro.fn.Closure;
 
 @SuppressWarnings("all")
-public interface FileOperation extends Function<FileOperationContext, Object> {
+public interface FileOperation extends Closure<FileOperationContext> {
 }

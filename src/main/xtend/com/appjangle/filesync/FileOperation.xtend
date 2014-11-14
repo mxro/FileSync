@@ -1,7 +1,7 @@
 package com.appjangle.filesync
 
-import java.util.function.Function
+import de.mxro.fn.Closure
 
-interface FileOperation extends Function<FileOperationContext, Object> {
+interface FileOperation extends Closure<FileOperationContext> {
 	
 }

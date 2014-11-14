@@ -56,7 +56,7 @@ class NetworkToFileOperations {
 			}
 		}
 		
-		
+		res
 	}
 	
 	def determineRemotelyRemovedNodes() {

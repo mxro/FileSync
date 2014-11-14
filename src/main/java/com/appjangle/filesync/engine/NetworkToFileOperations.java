@@ -52,15 +52,20 @@ public class NetworkToFileOperations {
     qry.get(_function_1);
   }
   
-  public void determineRemotelyAddedNodes(final NodeList children) {
-    final ArrayList<Node> res = new ArrayList<Node>(0);
-    for (final Node child : children) {
-      ItemMetadata _get = this.metadata.get(child);
-      boolean _equals = Objects.equal(_get, null);
-      if (_equals) {
-        res.add(child);
+  public ArrayList<Node> determineRemotelyAddedNodes(final NodeList children) {
+    ArrayList<Node> _xblockexpression = null;
+    {
+      final ArrayList<Node> res = new ArrayList<Node>(0);
+      for (final Node child : children) {
+        ItemMetadata _get = this.metadata.get(child);
+        boolean _equals = Objects.equal(_get, null);
+        if (_equals) {
+          res.add(child);
+        }
       }
+      _xblockexpression = res;
     }
+    return _xblockexpression;
   }
   
   public Object determineRemotelyRemovedNodes() {

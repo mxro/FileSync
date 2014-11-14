@@ -29,7 +29,7 @@ class SyncFolder {
 	def doIt(ValueCallback<Success> cb) {
 		
 		if (!folder.hasMetadata) {
-			
+			metadata = folder.assertMetadata
 			download(cb)
 			return;
 		}
@@ -48,7 +48,7 @@ class SyncFolder {
 	}
 	
 	def download(ValueCallback<Success> cb) {
-		metadata = folder.assertMetadata
+		
 	}
 	
 	extension FileUtils fileUtils = new FileUtils()

@@ -81,6 +81,9 @@ class FileToTextNode implements Converter {
 	}
 
 	override createFiles(Metadata metadata, Node source, ValueCallback<List<FileOperation>> cb) {
+		
+		
+		
 	}
 
 }

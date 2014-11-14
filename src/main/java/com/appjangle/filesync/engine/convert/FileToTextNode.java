@@ -110,7 +110,21 @@ public class FileToTextNode implements Converter {
   
   public void createFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
     final Closure<String> _function = new Closure<String>() {
-      public void apply(final String fileName) {
+      public void apply(final String fileNameFromNode) {
+        String fileName = (fileNameFromNode + ".txt");
+        int idx = 1;
+        FileItem _child = folder.getChild(fileName);
+        boolean _exists = _child.exists();
+        boolean _while = _exists;
+        while (_while) {
+          {
+            fileName = ((fileNameFromNode + Integer.valueOf(idx)) + ".txt");
+            idx++;
+          }
+          FileItem _child_1 = folder.getChild(fileName);
+          boolean _exists_1 = _child_1.exists();
+          _while = _exists_1;
+        }
       }
     };
     ValueCallback<String> _embed = Async.<String>embed(cb, _function);

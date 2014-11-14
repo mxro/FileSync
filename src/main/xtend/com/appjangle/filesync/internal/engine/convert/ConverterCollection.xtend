@@ -77,7 +77,13 @@ class ConverterCollection implements Converter {
 	
 	def private findConverter(Node forNode, ValueCallback<Converter> cb) {
 		Async.forEach(converters, [c, itmcb |
-			c.worksOn(forNode, itmcb)
+			c.worksOn(forNode, itmcb.embed [res |
+				if (res) {
+					itmcb.onSuccess(c)
+				} else {
+					itmcb.onSuccess(ConvertUtils.NO_VALUE)
+				}
+			])
 			
 		], cb.embed [res |
 			for (item : res) {

@@ -104,8 +104,35 @@ public class ConverterCollection implements Converter {
   }
   
   private void findConverter(final Node forNode, final ValueCallback<Converter> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from ValueCallback<Object> to ValueCallback<Boolean>");
+    final Closure2<Converter, ValueCallback<Object>> _function = new Closure2<Converter, ValueCallback<Object>>() {
+      public void apply(final Converter c, final ValueCallback<Object> itmcb) {
+        final Closure<Boolean> _function = new Closure<Boolean>() {
+          public void apply(final Boolean res) {
+            if ((res).booleanValue()) {
+              itmcb.onSuccess(c);
+            } else {
+              itmcb.onSuccess(ConvertUtils.NO_VALUE);
+            }
+          }
+        };
+        ValueCallback<Boolean> _embed = Async.<Boolean>embed(itmcb, _function);
+        c.worksOn(forNode, _embed);
+      }
+    };
+    final Closure<List<Object>> _function_1 = new Closure<List<Object>>() {
+      public void apply(final List<Object> res) {
+        for (final Object item : res) {
+          if ((item instanceof Converter)) {
+            cb.onSuccess(((Converter)item));
+            return;
+          }
+        }
+        Exception _exception = new Exception(("Cannot find converter for " + forNode));
+        cb.onFailure(_exception);
+      }
+    };
+    ValueCallback<List<Object>> _embed = Async.<List<Object>>embed(cb, _function_1);
+    Async.<Converter, Object>forEach(this.converters, _function, _embed);
   }
   
   public void createNodes(final Metadata metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {

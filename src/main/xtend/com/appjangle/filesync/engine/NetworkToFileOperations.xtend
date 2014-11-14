@@ -48,7 +48,7 @@ class NetworkToFileOperations {
 	
 	def determineRemotelyAddedNodes(NodeList children) {
 		
-		val res = new ArrayList<Node>(0); 
+		val res = new ArrayList<Node>(0)
 		
 		for (child: children) {
 			if (metadata.get(child) == null) {
@@ -59,7 +59,20 @@ class NetworkToFileOperations {
 		res
 	}
 	
-	def determineRemotelyRemovedNodes() {
+	def determineRemotelyRemovedNodes(NodeList children) {
+		
+		val res = new ArrayList<Node>(0)
+		
+		for (item: metadata.children) {
+			
+			if (!children.uris.contains(item.uri)) {
+				
+			}
+			
+		}
+		
+		
+		res
 		
 	}
 	

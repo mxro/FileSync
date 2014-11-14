@@ -68,8 +68,22 @@ public class NetworkToFileOperations {
     return _xblockexpression;
   }
   
-  public Object determineRemotelyRemovedNodes() {
-    return null;
+  public ArrayList<Node> determineRemotelyRemovedNodes(final NodeList children) {
+    ArrayList<Node> _xblockexpression = null;
+    {
+      final ArrayList<Node> res = new ArrayList<Node>(0);
+      List<ItemMetadata> _children = this.metadata.getChildren();
+      for (final ItemMetadata item : _children) {
+        List<String> _uris = children.uris();
+        String _uri = item.uri();
+        boolean _contains = _uris.contains(_uri);
+        boolean _not = (!_contains);
+        if (_not) {
+        }
+      }
+      _xblockexpression = res;
+    }
+    return _xblockexpression;
   }
   
   public Object determineRemotelyUpdatedNodes() {

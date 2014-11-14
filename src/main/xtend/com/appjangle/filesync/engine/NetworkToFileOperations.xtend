@@ -35,6 +35,9 @@ class NetworkToFileOperations {
 		
 		qry.get [children |
 			
+			
+			
+			
 		]
 		
 		

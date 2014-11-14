@@ -31,21 +31,21 @@ public class ConvertUtils {
   
   public void getFileName(final Node fromNode, final ValueCallback<String> cb) {
     int _size = this.labelTypes.size();
-    final Closure<List<Boolean>> _function = new Closure<List<Boolean>>() {
-      public void apply(final List<Boolean> res) {
+    final Closure<List<Object>> _function = new Closure<List<Object>>() {
+      public void apply(final List<Object> res) {
       }
     };
-    ValueCallback<List<Boolean>> _embed = Async.<List<Boolean>>embed(cb, _function);
-    final Aggregator<Boolean> cbs = Async.<Boolean>collect(_size, _embed);
+    ValueCallback<List<Object>> _embed = Async.<List<Object>>embed(cb, _function);
+    final Aggregator<Object> cbs = Async.<Object>collect(_size, _embed);
     final Consumer<String> _function_1 = new Consumer<String>() {
       public void accept(final String labelType) {
         Session _session = fromNode.session();
         Link _link = _session.link(labelType);
         final Query qry = fromNode.select(_link);
-        final ValueCallback<Boolean> itmcb = cbs.createCallback();
+        final ValueCallback<Object> itmcb = cbs.createCallback();
         final UndefinedListener _function = new UndefinedListener() {
           public void onUndefined(final UndefinedResult it) {
-            itmcb.onSuccess(Boolean.valueOf(false));
+            itmcb.onSuccess(null);
           }
         };
         qry.catchUndefined(_function);
@@ -56,6 +56,13 @@ public class ConvertUtils {
           }
         };
         qry.catchExceptions(_function_1);
+        final Closure<Node> _function_2 = new Closure<Node>() {
+          public void apply(final Node label) {
+            Object _value = label.value();
+            itmcb.onSuccess(_value);
+          }
+        };
+        qry.get(_function_2);
       }
     };
     this.labelTypes.forEach(_function_1);

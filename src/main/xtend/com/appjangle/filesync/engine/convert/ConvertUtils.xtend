@@ -16,16 +16,16 @@ class ConvertUtils {
 	
 	
 	def getFileExtension(Node forNode, ValueCallback<String> cb) {
-		
-		
-		
+
 		val cbs = Async.collect(extensions.size, cb.embed([ res |
 			
 			
 		]));
 		
 		
-		for (ext: extensions.entrySet) {
+		for (mapping: extensions.entrySet) {
+			
+			
 			
 		}
 		

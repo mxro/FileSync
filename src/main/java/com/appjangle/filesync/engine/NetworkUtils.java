@@ -50,7 +50,7 @@ public class NetworkUtils {
             };
             res.catchExceptions(_function_1);
             final Closure<Object> _function_2 = new Closure<Object>() {
-              public void apply(final Object it) {
+              public void apply(final Object succ) {
                 itmcb.onSuccess(Success.INSTANCE);
               }
             };

@@ -28,7 +28,6 @@ class NetworkUtils {
 				
 			})
 			
-			
 			val cbs = Async.collect(qries.size, cb.embed([
 				cb.onSuccess(Success.INSTANCE)
 			]))
@@ -41,7 +40,7 @@ class NetworkUtils {
 				
 				res.catchExceptions([er | itmcb.onFailure(er.exception) ])
 				
-				res.get([ itmcb.onSuccess(Success.INSTANCE) ])
+				res.get([ succ | itmcb.onSuccess(Success.INSTANCE) ])
 				
 			}
 			

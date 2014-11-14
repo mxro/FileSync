@@ -27,6 +27,10 @@ class NetworkUtils {
 				
 			})
 			
+			for ( qry: qries) {
+				
+			}
+			
 			
 			
 		}

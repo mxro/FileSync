@@ -13,15 +13,19 @@ import java.util.List;
 public class NetworkUtils {
   public void execute(final List<NetworkOperation> ops, final Node onNode, final ValueCallback<Success> cb) {
     for (final NetworkOperation op : ops) {
-      final List<Deferred<?>> qries = op.apply(new NetworkOperationContext() {
-        public Session session() {
-          return onNode.session();
+      {
+        final List<Deferred<?>> qries = op.apply(new NetworkOperationContext() {
+          public Session session() {
+            return onNode.session();
+          }
+          
+          public Node parent() {
+            return onNode;
+          }
+        });
+        for (final Deferred<?> qry : qries) {
         }
-        
-        public Node parent() {
-          return onNode;
-        }
-      });
+      }
     }
   }
 }

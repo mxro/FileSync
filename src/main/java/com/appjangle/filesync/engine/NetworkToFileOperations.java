@@ -63,6 +63,8 @@ public class NetworkToFileOperations {
         final Aggregator<List<FileOperation>> agg = Async.<List<FileOperation>>collect(3, _embed);
         ValueCallback<List<FileOperation>> _createCallback = agg.createCallback();
         NetworkToFileOperations.this.deduceCreateOperations(remotelyAdded, _createCallback);
+        ValueCallback<List<FileOperation>> _createCallback_1 = agg.createCallback();
+        NetworkToFileOperations.this.deduceRemoveOperations(remotelyRemoved, _createCallback_1);
       }
     };
     qry.get(_function_1);
@@ -94,6 +96,10 @@ public class NetworkToFileOperations {
     };
     ValueCallback<List<List<FileOperation>>> _embed = Async.<List<List<FileOperation>>>embed(cb, _function);
     final Aggregator<List<FileOperation>> agg = Async.<List<FileOperation>>collect(_size, _embed);
+    for (final ItemMetadata removedNode : remotelyRemoved) {
+      ValueCallback<List<FileOperation>> _createCallback = agg.createCallback();
+      this.converter.removeFiles(this.folder, this.metadata, removedNode, _createCallback);
+    }
   }
   
   public ArrayList<Node> determineRemotelyAddedNodes(final NodeList children) {

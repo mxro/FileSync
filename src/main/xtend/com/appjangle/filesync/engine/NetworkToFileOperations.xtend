@@ -49,7 +49,7 @@ class NetworkToFileOperations {
 					]))
 					
 			remotelyAdded.deduceCreateOperations(agg.createCallback)
-			
+			remotelyRemoved.deduceRemoveOperations(agg.createCallback)
 					
 		]
 
@@ -78,6 +78,12 @@ class NetworkToFileOperations {
 				[ res |
 					cb.onSuccess(CollectionsUtils.flatten(res))
 				]))
+				
+		for (removedNode : remotelyRemoved) {
+
+			converter.removeFiles(folder, metadata, removedNode, agg.createCallback)
+
+		}
 		
 	}
 

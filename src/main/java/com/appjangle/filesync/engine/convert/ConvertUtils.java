@@ -42,11 +42,8 @@ public class ConvertUtils {
           }
         }
         String _uri = fromNode.uri();
-        String _uri_1 = fromNode.uri();
-        int _lastIndexOf = _uri_1.lastIndexOf("/");
-        int _plus = (_lastIndexOf + 1);
-        String _substring = _uri.substring(_plus);
-        cb.onSuccess(_substring);
+        String _nameFromUri = ConvertUtils.getNameFromUri(_uri);
+        cb.onSuccess(_nameFromUri);
       }
     };
     ValueCallback<List<Object>> _embed = Async.<List<Object>>embed(cb, _function);
@@ -80,5 +77,11 @@ public class ConvertUtils {
       }
     };
     this.labelTypes.forEach(_function_1);
+  }
+  
+  public static String getNameFromUri(final String uri) {
+    int _lastIndexOf = uri.lastIndexOf("/");
+    int _plus = (_lastIndexOf + 1);
+    return uri.substring(_plus);
   }
 }

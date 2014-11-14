@@ -30,7 +30,7 @@ class ConvertUtils {
 			}
 
 			// when no label defined
-			cb.onSuccess(fromNode.uri().substring(fromNode.uri().lastIndexOf("/")+1))
+			cb.onSuccess(getNameFromUri(fromNode.uri()))
 			
 		]));
 		
@@ -51,6 +51,10 @@ class ConvertUtils {
 		]
 		
 		
+	}
+	
+	def static getNameFromUri(String uri) {
+		uri.substring(uri.lastIndexOf("/")+1)
 	}
 	
 }

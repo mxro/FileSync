@@ -141,6 +141,15 @@ public class FileToTextNode implements Converter {
   }
   
   public void updateFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
+    ItemMetadata _child = metadata.getChild(source);
+    final String fileName = _child.name();
+    final LinkedList<FileOperation> ops = new LinkedList<FileOperation>();
+    final FileOperation _function = new FileOperation() {
+      public void apply(final FileOperationContext ctx) {
+      }
+    };
+    ops.add(_function);
+    cb.onSuccess(ops);
   }
   
   public void removeFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {

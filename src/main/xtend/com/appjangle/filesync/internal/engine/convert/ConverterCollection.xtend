@@ -46,7 +46,7 @@ class ConverterCollection implements Converter {
 		for (c:converters) {
 			val itmcb = cbs.createCallback
 			
-			
+			c.worksOn(node, itmcb)
 		}
 		
 	}

@@ -48,16 +48,19 @@ public class ConverterCollection implements Converter {
   
   public void worksOn(final Node node, final ValueCallback<Boolean> cb) {
     int _size = this.converters.size();
-    final Closure<List<Object>> _function = new Closure<List<Object>>() {
-      public void apply(final List<Object> res) {
+    final Closure<List<Boolean>> _function = new Closure<List<Boolean>>() {
+      public void apply(final List<Boolean> res) {
         boolean _contains = res.contains(Boolean.valueOf(true));
         cb.onSuccess(Boolean.valueOf(_contains));
       }
     };
-    ValueCallback<List<Object>> _embed = Async.<List<Object>>embed(cb, _function);
-    final Aggregator<Object> cbs = Async.<Object>collect(_size, _embed);
+    ValueCallback<List<Boolean>> _embed = Async.<List<Boolean>>embed(cb, _function);
+    final Aggregator<Boolean> cbs = Async.<Boolean>collect(_size, _embed);
     for (final Converter c : this.converters) {
-      final ValueCallback<Object> itmcb = cbs.createCallback();
+      {
+        final ValueCallback<Boolean> itmcb = cbs.createCallback();
+        c.worksOn(node, itmcb);
+      }
     }
   }
   

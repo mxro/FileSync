@@ -8,6 +8,7 @@ import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
 import de.mxro.fn.Closure;
 import io.nextweb.Link;
+import io.nextweb.LinkList;
 import io.nextweb.LinkListQuery;
 import io.nextweb.Node;
 import io.nextweb.Query;
@@ -51,9 +52,14 @@ public class ConvertUtils {
       }
     };
     qry.catchExceptions(_function_1);
-    Set<Map.Entry<String, String>> _entrySet = this.extensions.entrySet();
-    for (final Map.Entry<String, String> mapping : _entrySet) {
-    }
+    final Closure<LinkList> _function_2 = new Closure<LinkList>() {
+      public void apply(final LinkList links) {
+        Set<Map.Entry<String, String>> _entrySet = ConvertUtils.this.extensions.entrySet();
+        for (final Map.Entry<String, String> mapping : _entrySet) {
+        }
+      }
+    };
+    qry.get(_function_2);
   }
   
   private final List<String> labelTypes = Collections.<String>unmodifiableList(Lists.<String>newArrayList("https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel"));

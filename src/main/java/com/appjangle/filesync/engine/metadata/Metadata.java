@@ -8,4 +8,6 @@ public interface Metadata {
   public abstract List<ItemMetadata> getChildren();
   
   public abstract ItemMetadata getChild(final String name);
+  
+  public abstract Object add(final ItemMetadata itemMetadata);
 }

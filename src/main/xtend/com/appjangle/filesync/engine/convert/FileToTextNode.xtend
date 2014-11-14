@@ -10,6 +10,7 @@ import com.appjangle.filesync.Converter
 import com.appjangle.filesync.FileOperation
 import com.appjangle.filesync.engine.metadata.Metadata
 import com.appjangle.filesync.engine.metadata.ItemMetadata
+import mx.gwtutils.MxroGWTUtils
 
 class FileToTextNode implements Converter {
 
@@ -29,6 +30,11 @@ class FileToTextNode implements Converter {
 	}
 
 	override createNodes(Metadata metadata, FileItem source,  ValueCallback<List<NetworkOperation>> cb) {
+		
+		val nameWithoutExtension = MxroGWTUtils.removeExtension(source.name)
+		
+		
+		
 		
 	}
 	

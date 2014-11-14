@@ -9,4 +9,6 @@ public interface ItemMetadata {
   public abstract Date lastModified();
   
   public abstract String uri();
+  
+  public abstract String hash();
 }

@@ -10,4 +10,6 @@ interface ItemMetadata {
 	
 	def String uri()
 	
+	def String hash()
+	
 }

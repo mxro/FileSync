@@ -159,8 +159,12 @@ public class NetworkToFileOperations {
     ArrayList<Node> _xblockexpression = null;
     {
       final ArrayList<Node> res = new ArrayList<Node>(0);
-      List<ItemMetadata> _children = this.metadata.getChildren();
-      for (final ItemMetadata item : _children) {
+      for (final Node node : children) {
+        ItemMetadata _get = this.metadata.get(node);
+        boolean _notEquals = (!Objects.equal(_get, null));
+        if (_notEquals) {
+          res.add(node);
+        }
       }
       _xblockexpression = res;
     }

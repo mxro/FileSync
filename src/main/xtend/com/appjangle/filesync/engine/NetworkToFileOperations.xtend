@@ -137,8 +137,12 @@ class NetworkToFileOperations {
 	def determineRemotelyUpdatedNodes(NodeList children) {
 		val res = new ArrayList<Node>(0)
 
-		for (item : metadata.children) {
+		for (node : children) {
 			// TODO: not yet supported, just update all
+			if (metadata.get(node) != null) {
+				res.add(node)
+			}
+			
 		}
 
 		res

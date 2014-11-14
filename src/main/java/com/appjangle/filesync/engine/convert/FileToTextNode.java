@@ -22,6 +22,10 @@ import io.nextweb.Query;
 import io.nextweb.Session;
 import io.nextweb.promise.Deferred;
 import io.nextweb.promise.NextwebPromise;
+import io.nextweb.promise.exceptions.ExceptionListener;
+import io.nextweb.promise.exceptions.ExceptionResult;
+import io.nextweb.promise.exceptions.UndefinedListener;
+import io.nextweb.promise.exceptions.UndefinedResult;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -48,18 +52,37 @@ public class FileToTextNode implements Converter {
   public void worksOn(final Node node, final ValueCallback<Boolean> cb) {
     final List<String> textNodeTypes = Collections.<String>unmodifiableList(Lists.<String>newArrayList("https://admin1.linnk.it/types/v01/isHtmlValue"));
     int _size = textNodeTypes.size();
-    final Closure<List<Object>> _function = new Closure<List<Object>>() {
-      public void apply(final List<Object> res) {
+    final Closure<List<Boolean>> _function = new Closure<List<Boolean>>() {
+      public void apply(final List<Boolean> res) {
       }
     };
-    ValueCallback<List<Object>> _embed = Async.<List<Object>>embed(cb, _function);
-    final Aggregator<Object> cbs = Async.<Object>collect(_size, _embed);
+    ValueCallback<List<Boolean>> _embed = Async.<List<Boolean>>embed(cb, _function);
+    final Aggregator<Boolean> cbs = Async.<Boolean>collect(_size, _embed);
     for (final String textType : textNodeTypes) {
       {
-        final ValueCallback<Object> itmcb = cbs.createCallback();
+        final ValueCallback<Boolean> itmcb = cbs.createCallback();
         Session _session = node.session();
         Link _link = _session.link(textType);
         final Query qry = node.select(_link);
+        final ExceptionListener _function_1 = new ExceptionListener() {
+          public void onFailure(final ExceptionResult er) {
+            Throwable _exception = er.exception();
+            itmcb.onFailure(_exception);
+          }
+        };
+        qry.catchExceptions(_function_1);
+        final UndefinedListener _function_2 = new UndefinedListener() {
+          public void onUndefined(final UndefinedResult it) {
+            itmcb.onSuccess(Boolean.valueOf(false));
+          }
+        };
+        qry.catchUndefined(_function_2);
+        final Closure<Node> _function_3 = new Closure<Node>() {
+          public void apply(final Node it) {
+            itmcb.onSuccess(Boolean.valueOf(true));
+          }
+        };
+        qry.get(_function_3);
       }
     }
   }

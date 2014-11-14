@@ -46,8 +46,11 @@ class FileToTextNode implements Converter {
 			
 			val qry = node.select(node.session().link(textType))
 			
+			qry.catchExceptions([er | itmcb.onFailure(er.exception)])
 			
+			qry.catchUndefined([ itmcb.onSuccess(false) ])
 			
+			qry.get( [itmcb.onSuccess(true) ])
 			
 		}
 		

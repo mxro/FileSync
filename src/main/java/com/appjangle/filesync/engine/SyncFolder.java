@@ -17,9 +17,6 @@ public class SyncFolder {
     this.node = node;
   }
   
-  @Extension
-  private FileUtils fileUtils = new FileUtils();
-  
   public void doIt() {
     boolean _hasMetadata = this.fileUtils.hasMetadata(this.folder);
     boolean _not = (!_hasMetadata);
@@ -33,4 +30,7 @@ public class SyncFolder {
   public Object fullDownload() {
     return null;
   }
+  
+  @Extension
+  private FileUtils fileUtils = new FileUtils();
 }

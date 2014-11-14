@@ -5,17 +5,15 @@ import io.nextweb.Node
 
 class SyncFolder {
 	
-	
 	val FileItem folder
 	val Node node
-	
 	
 	new(FileItem folder, Node node) {
 		this.folder = folder
 		this.node = node
 	}
 	
-	extension FileUtils fileUtils = new FileUtils()
+	
 	
 	def doIt() {
 		
@@ -31,5 +29,7 @@ class SyncFolder {
 	def fullDownload() {
 		
 	}
+	
+	extension FileUtils fileUtils = new FileUtils()
 	
 }

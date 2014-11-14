@@ -53,8 +53,6 @@ class ConvertUtils {
 			toNode.appendSafe(toNode.session().link('https://u1.linnk.it/6wbnoq/Types/aTemplate'))	
 		}
 		
-		
-		
 		toNode.appendSafe(toNode.session().link('https://u1.linnk.it/6wbnoq/Types/aTextValue'))
 		
 	}

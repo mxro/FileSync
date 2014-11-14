@@ -5,7 +5,6 @@ import java.util.List
 
 interface Metadata {
 	
-	
 	def List<ItemMetadata> getChildren()
 	
 	def ItemMetadata get(String name)

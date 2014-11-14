@@ -7,7 +7,7 @@ import de.mxro.file.FileItem
 import io.nextweb.Node
 import java.util.List
 
-interface Convert {
+interface Converter {
 
 	def boolean worksOn(FileItem source)
 	

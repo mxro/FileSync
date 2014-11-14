@@ -1,6 +1,5 @@
 package com.appjangle.filesync.engine.convert
 
-import com.appjangle.filesync.Convert
 import com.appjangle.filesync.NetworkOperation
 import com.appjangle.filesync.engine.metadata.NodesMetadata
 import de.mxro.async.callbacks.ValueCallback
@@ -9,8 +8,9 @@ import io.nextweb.Node
 import java.util.LinkedList
 import java.util.List
 import com.appjangle.filesync.engine.metadata.FileItemMetadata
+import com.appjangle.filesync.Converter
 
-class FileToTextNode implements Convert {
+class FileToTextNode implements Converter {
 
 
     

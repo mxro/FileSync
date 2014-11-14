@@ -1,6 +1,5 @@
 package com.appjangle.filesync.engine
 
-import com.appjangle.filesync.Convert
 import com.appjangle.filesync.NetworkOperation
 import com.appjangle.filesync.engine.metadata.MetadataUtilsJre
 import com.appjangle.filesync.engine.metadata.NodesMetadata
@@ -12,10 +11,11 @@ import io.nextweb.Node
 import java.util.ArrayList
 import java.util.List
 import com.appjangle.filesync.engine.metadata.FileItemMetadata
+import com.appjangle.filesync.Converter
 
 class GetLocalOperationsProcess {
 
-	val Convert convert = null;
+	val Converter convert = null;
 
 	val Node node = null;
 	val FileItem folder = null;

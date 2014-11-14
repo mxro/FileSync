@@ -9,7 +9,7 @@ import io.nextweb.Node;
 import java.util.List;
 
 @SuppressWarnings("all")
-public interface Convert {
+public interface Converter {
   public abstract boolean worksOn(final FileItem source);
   
   public abstract void worksOn(final Node node, final ValueCallback<Boolean> cb);

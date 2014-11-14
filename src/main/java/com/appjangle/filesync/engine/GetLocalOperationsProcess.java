@@ -1,6 +1,6 @@
 package com.appjangle.filesync.engine;
 
-import com.appjangle.filesync.Convert;
+import com.appjangle.filesync.Converter;
 import com.appjangle.filesync.NetworkOperation;
 import com.appjangle.filesync.engine.metadata.FileItemMetadata;
 import com.appjangle.filesync.engine.metadata.MetadataUtilsJre;
@@ -21,7 +21,7 @@ import org.eclipse.xtext.xbase.lib.Exceptions;
 
 @SuppressWarnings("all")
 public class GetLocalOperationsProcess {
-  private final Convert convert = null;
+  private final Converter convert = null;
   
   private final Node node = null;
   

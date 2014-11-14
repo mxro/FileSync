@@ -1,6 +1,6 @@
 package com.appjangle.filesync.engine.convert;
 
-import com.appjangle.filesync.Convert;
+import com.appjangle.filesync.Converter;
 import com.appjangle.filesync.NetworkOperation;
 import com.appjangle.filesync.NetworkOperationContext;
 import com.appjangle.filesync.engine.metadata.FileItemMetadata;
@@ -19,7 +19,7 @@ import java.util.List;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 
 @SuppressWarnings("all")
-public class FileToTextNode implements Convert {
+public class FileToTextNode implements Converter {
   public void createNodes(final NodesMetadata metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {
   }
   

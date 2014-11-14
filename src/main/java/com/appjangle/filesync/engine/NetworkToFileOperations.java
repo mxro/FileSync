@@ -13,6 +13,7 @@ import io.nextweb.Node;
 import io.nextweb.NodeList;
 import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -51,20 +52,22 @@ public class NetworkToFileOperations {
     qry.get(_function_1);
   }
   
-  public void determineRemotelyAddedFiles(final NodeList children) {
+  public void determineRemotelyAddedNodes(final NodeList children) {
+    final ArrayList<Node> res = new ArrayList<Node>(0);
     for (final Node child : children) {
       ItemMetadata _get = this.metadata.get(child);
       boolean _equals = Objects.equal(_get, null);
       if (_equals) {
+        res.add(child);
       }
     }
   }
   
-  public Object determineRemotelyRemovedFiles() {
+  public Object determineRemotelyRemovedNodes() {
     return null;
   }
   
-  public Object determineRemotelyUpdatedFiles() {
+  public Object determineRemotelyUpdatedNodes() {
     return null;
   }
 }

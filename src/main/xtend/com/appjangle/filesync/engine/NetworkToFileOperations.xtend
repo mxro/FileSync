@@ -7,6 +7,7 @@ import de.mxro.async.callbacks.ValueCallback
 import de.mxro.file.FileItem
 import io.nextweb.Node
 import io.nextweb.NodeList
+import java.util.ArrayList
 import java.util.List
 
 /**
@@ -45,24 +46,26 @@ class NetworkToFileOperations {
 	}
 	
 	
-	def determineRemotelyAddedFiles(NodeList children) {
+	def determineRemotelyAddedNodes(NodeList children) {
+		
+		val res = new ArrayList<Node>(0); 
 		
 		for (child: children) {
 			if (metadata.get(child) == null) {
-				
+				res.add(child)
 			}
 		}
 		
 		
 	}
 	
-	def determineRemotelyRemovedFiles() {
+	def determineRemotelyRemovedNodes() {
 		
 	}
 	
 	
 	
-	def determineRemotelyUpdatedFiles() {
+	def determineRemotelyUpdatedNodes() {
 		
 	}
 	

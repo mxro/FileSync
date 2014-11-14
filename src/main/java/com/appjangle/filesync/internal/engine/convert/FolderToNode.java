@@ -130,7 +130,18 @@ public class FolderToNode implements Converter {
   }
   
   public void removeFiles(final FileItem folder, final Metadata metadata, final ItemMetadata item, final ValueCallback<List<FileOperation>> cb) {
-    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+    final String folderName = item.name();
+    final LinkedList<FileOperation> ops = new LinkedList<FileOperation>();
+    final FileOperation _function = new FileOperation() {
+      public void apply(final FileOperationContext ctx) {
+        FileItem _folder = ctx.folder();
+        _folder.deleteFolder(folderName);
+        Metadata _metadata = ctx.metadata();
+        _metadata.remove(folderName);
+      }
+    };
+    ops.add(_function);
+    cb.onSuccess(ops);
   }
   
   @Extension

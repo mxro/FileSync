@@ -106,7 +106,20 @@ class FolderToNode implements Converter {
 	}
 
 	override removeFiles(FileItem folder, Metadata metadata, ItemMetadata item, ValueCallback<List<FileOperation>> cb) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		val folderName = item.name
+		
+		val ops = new LinkedList<FileOperation>
+		
+		ops.add([ctx|
+			
+			ctx.folder.deleteFolder(folderName)
+			
+			ctx.metadata.remove(folderName)
+			
+			
+		])
+		
+		cb.onSuccess(ops)
 	}
 
 	extension ConvertUtils utils = new ConvertUtils()

@@ -6,5 +6,5 @@ import io.nextweb.promise.Deferred;
 import java.util.List;
 
 @SuppressWarnings("all")
-public interface NetworkOperation extends Function<NetworkOperationContext, List<Deferred<Object>>> {
+public interface NetworkOperation extends Function<NetworkOperationContext, List<Deferred<?>>> {
 }

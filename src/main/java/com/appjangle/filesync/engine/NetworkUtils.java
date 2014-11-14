@@ -20,7 +20,7 @@ public class NetworkUtils {
   public void execute(final List<NetworkOperation> ops, final Node onNode, final ValueCallback<Success> cb) {
     for (final NetworkOperation op : ops) {
       {
-        final List<Deferred<Object>> qries = op.apply(new NetworkOperationContext() {
+        final List<Deferred<?>> qries = op.apply(new NetworkOperationContext() {
           public Session session() {
             return onNode.session();
           }
@@ -37,11 +37,11 @@ public class NetworkUtils {
         };
         ValueCallback<List<Success>> _embed = Async.<List<Success>>embed(cb, _function);
         final Aggregator<Success> cbs = Async.<Success>collect(_size, _embed);
-        for (final Deferred<Object> qry : qries) {
+        for (final Deferred<?> qry : qries) {
           {
             final ValueCallback<Success> itmcb = cbs.createCallback();
             Session _session = onNode.session();
-            final NextwebPromise<Object> res = _session.<Object>promise(qry);
+            final NextwebPromise<?> res = _session.promise(qry);
             final ExceptionListener _function_1 = new ExceptionListener() {
               public void onFailure(final ExceptionResult er) {
                 Throwable _exception = er.exception();

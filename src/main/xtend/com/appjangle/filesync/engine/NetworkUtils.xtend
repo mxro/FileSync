@@ -40,7 +40,8 @@ class NetworkUtils {
 				
 				res.catchExceptions([er | itmcb.onFailure(er.exception) ])
 				
-				res.get([ succ | itmcb.onSuccess(Success.INSTANCE) ])
+				
+				res.get([ Object succ | itmcb.onSuccess(Success.INSTANCE) ])
 				
 			}
 			

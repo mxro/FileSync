@@ -4,6 +4,7 @@ import com.appjangle.filesync.Converter;
 import com.appjangle.filesync.FileOperation;
 import com.appjangle.filesync.FileOperationContext;
 import com.appjangle.filesync.NetworkOperation;
+import com.appjangle.filesync.NetworkOperationContext;
 import com.appjangle.filesync.engine.convert.ConvertUtils;
 import com.appjangle.filesync.engine.metadata.ItemMetadata;
 import com.appjangle.filesync.engine.metadata.Metadata;
@@ -11,10 +12,19 @@ import de.mxro.async.Async;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
 import de.mxro.fn.Closure;
+import de.mxro.fn.Success;
+import io.nextweb.Link;
 import io.nextweb.Node;
+import io.nextweb.Query;
+import io.nextweb.Session;
+import io.nextweb.promise.Deferred;
+import io.nextweb.promise.NextwebPromise;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import mx.gwtutils.MxroGWTUtils;
+import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Extension;
 
 @SuppressWarnings("all")
@@ -37,20 +47,60 @@ public class FileToTextNode implements Converter {
   }
   
   public void createNodes(final Metadata metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from Query to Deferred<Object>"
-      + "\nType mismatch: cannot convert from Query to Deferred<Object>"
-      + "\nType mismatch: cannot convert from Query to Deferred<Object>");
+    String _name = source.getName();
+    final String nameWithoutExtension = MxroGWTUtils.removeExtension(_name);
+    final String simpleName = MxroGWTUtils.getSimpleName(nameWithoutExtension);
+    final LinkedList<NetworkOperation> ops = new LinkedList<NetworkOperation>();
+    final NetworkOperation _function = new NetworkOperation() {
+      public List<Deferred<?>> apply(final NetworkOperationContext ctx) {
+        ArrayList<Deferred<?>> _xblockexpression = null;
+        {
+          Node _parent = ctx.parent();
+          String _text = source.getText();
+          final Query baseNode = _parent.appendSafe(_text, ("./" + simpleName));
+          Query _appendLabel = FileToTextNode.this.utils.appendLabel(baseNode, nameWithoutExtension);
+          Query _appendTypes = FileToTextNode.this.utils.appendTypes(baseNode, source);
+          _xblockexpression = CollectionLiterals.<Deferred<?>>newArrayList(baseNode, _appendLabel, _appendTypes);
+        }
+        return _xblockexpression;
+      }
+    };
+    ops.add(_function);
+    cb.onSuccess(ops);
   }
   
   public void update(final Metadata metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from Query to Deferred<Object>[]");
+    final String content = source.getText();
+    String _name = source.getName();
+    ItemMetadata _get = metadata.get(_name);
+    final String address = _get.uri();
+    final LinkedList<NetworkOperation> ops = new LinkedList<NetworkOperation>();
+    final NetworkOperation _function = new NetworkOperation() {
+      public List<Deferred<?>> apply(final NetworkOperationContext ctx) {
+        Session _session = ctx.session();
+        Link _link = _session.link(address);
+        Query _setValueSafe = _link.setValueSafe(content);
+        return CollectionLiterals.<Deferred<?>>newArrayList(_setValueSafe);
+      }
+    };
+    ops.add(_function);
+    cb.onSuccess(ops);
   }
   
   public void deleteNodes(final Metadata metadata, final ItemMetadata cachedFile, final ValueCallback<List<NetworkOperation>> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from NextwebPromise<Success> to Deferred<Object>[]");
+    final String address = cachedFile.uri();
+    final LinkedList<NetworkOperation> ops = new LinkedList<NetworkOperation>();
+    final NetworkOperation _function = new NetworkOperation() {
+      public List<Deferred<?>> apply(final NetworkOperationContext ctx) {
+        Node _parent = ctx.parent();
+        Session _session = ctx.session();
+        Link _link = _session.link(address);
+        NextwebPromise<Success> _removeSafe = _parent.removeSafe(_link);
+        return CollectionLiterals.<Deferred<?>>newArrayList(_removeSafe);
+      }
+    };
+    ops.add(_function);
+    cb.onSuccess(ops);
   }
   
   public void createFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {

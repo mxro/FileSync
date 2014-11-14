@@ -38,9 +38,18 @@ class NetworkToFileOperations {
 		qry.catchExceptions[er|cb.onFailure(er.exception)]
 
 		qry.get [ children |
-			val remotelyAdded = children.determineRemotelyAddedNodes
+			var Iterable<Node> remotelyAdded = children.determineRemotelyAddedNodes
 			val remotelyRemoved = children.determineRemotelyRemovedNodes
 			val remotelyUpdated = children.determineRemotelyUpdatedNodes
+			
+			
+			/*
+			 * Don't download nodes starting with '.'
+			 */
+			 
+			remotelyAdded = remotelyAdded.filter [ node |
+				
+			]
 			
 			val agg = Async.collect(3,
 				Async.embed(cb,
@@ -57,7 +66,7 @@ class NetworkToFileOperations {
 	}
 
 
-	def deduceUpdateOperations(List<Node> remotelyUpdated, ValueCallback<List<FileOperation>> cb ) {
+	def deduceUpdateOperations(Iterable<Node> remotelyUpdated, ValueCallback<List<FileOperation>> cb ) {
 		
 		val agg = Async.collect(remotelyUpdated.size,
 			Async.embed(cb,
@@ -73,7 +82,7 @@ class NetworkToFileOperations {
 		
 	}
 
-	def deduceCreateOperations(List<Node> remotelyAdded, ValueCallback<List<FileOperation>> cb) {
+	def deduceCreateOperations(Iterable<Node> remotelyAdded, ValueCallback<List<FileOperation>> cb) {
 
 		val agg = Async.collect(remotelyAdded.size,
 			Async.embed(cb,

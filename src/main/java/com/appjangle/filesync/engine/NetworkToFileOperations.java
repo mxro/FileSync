@@ -18,6 +18,8 @@ import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
 import java.util.ArrayList;
 import java.util.List;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
 /**
  * Determines operations to be performed on local files based on remote changes made in the cloud.
@@ -50,16 +52,23 @@ public class NetworkToFileOperations {
     qry.catchExceptions(_function);
     final Closure<NodeList> _function_1 = new Closure<NodeList>() {
       public void apply(final NodeList children) {
-        final ArrayList<Node> remotelyAdded = NetworkToFileOperations.this.determineRemotelyAddedNodes(children);
+        Iterable<Node> remotelyAdded = NetworkToFileOperations.this.determineRemotelyAddedNodes(children);
         final ArrayList<ItemMetadata> remotelyRemoved = NetworkToFileOperations.this.determineRemotelyRemovedNodes(children);
         final ArrayList<Node> remotelyUpdated = NetworkToFileOperations.this.determineRemotelyUpdatedNodes(children);
-        final Closure<List<List<FileOperation>>> _function = new Closure<List<List<FileOperation>>>() {
+        final Function1<Node, Boolean> _function = new Function1<Node, Boolean>() {
+          public Boolean apply(final Node node) {
+            return null;
+          }
+        };
+        Iterable<Node> _filter = IterableExtensions.<Node>filter(remotelyAdded, _function);
+        remotelyAdded = _filter;
+        final Closure<List<List<FileOperation>>> _function_1 = new Closure<List<List<FileOperation>>>() {
           public void apply(final List<List<FileOperation>> res) {
             List<FileOperation> _flatten = CollectionsUtils.<FileOperation>flatten(res);
             cb.onSuccess(_flatten);
           }
         };
-        ValueCallback<List<List<FileOperation>>> _embed = Async.<List<List<FileOperation>>>embed(cb, _function);
+        ValueCallback<List<List<FileOperation>>> _embed = Async.<List<List<FileOperation>>>embed(cb, _function_1);
         final Aggregator<List<FileOperation>> agg = Async.<List<FileOperation>>collect(3, _embed);
         ValueCallback<List<FileOperation>> _createCallback = agg.createCallback();
         NetworkToFileOperations.this.deduceCreateOperations(remotelyAdded, _createCallback);
@@ -72,8 +81,8 @@ public class NetworkToFileOperations {
     qry.get(_function_1);
   }
   
-  public void deduceUpdateOperations(final List<Node> remotelyUpdated, final ValueCallback<List<FileOperation>> cb) {
-    int _size = remotelyUpdated.size();
+  public void deduceUpdateOperations(final Iterable<Node> remotelyUpdated, final ValueCallback<List<FileOperation>> cb) {
+    int _size = IterableExtensions.size(remotelyUpdated);
     final Closure<List<List<FileOperation>>> _function = new Closure<List<List<FileOperation>>>() {
       public void apply(final List<List<FileOperation>> res) {
         List<FileOperation> _flatten = CollectionsUtils.<FileOperation>flatten(res);
@@ -88,8 +97,8 @@ public class NetworkToFileOperations {
     }
   }
   
-  public void deduceCreateOperations(final List<Node> remotelyAdded, final ValueCallback<List<FileOperation>> cb) {
-    int _size = remotelyAdded.size();
+  public void deduceCreateOperations(final Iterable<Node> remotelyAdded, final ValueCallback<List<FileOperation>> cb) {
+    int _size = IterableExtensions.size(remotelyAdded);
     final Closure<List<List<FileOperation>>> _function = new Closure<List<List<FileOperation>>>() {
       public void apply(final List<List<FileOperation>> res) {
         List<FileOperation> _flatten = CollectionsUtils.<FileOperation>flatten(res);

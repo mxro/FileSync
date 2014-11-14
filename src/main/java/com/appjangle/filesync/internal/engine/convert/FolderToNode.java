@@ -17,7 +17,7 @@ public class FolderToNode implements Converter {
   }
   
   public void worksOn(final Node node, final ValueCallback<Boolean> cb) {
-    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+    cb.onSuccess(Boolean.valueOf(true));
   }
   
   public void createNodes(final Metadata metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {

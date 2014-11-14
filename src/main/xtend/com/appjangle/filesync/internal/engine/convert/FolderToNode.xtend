@@ -17,7 +17,7 @@ class FolderToNode implements Converter {
 	}
 	
 	override worksOn(Node node, ValueCallback<Boolean> cb) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		cb.onSuccess(true)
 	}
 	
 	override createNodes(Metadata metadata, FileItem source, ValueCallback<List<NetworkOperation>> cb) {

@@ -35,8 +35,8 @@ class SyncFolder {
 		
 		new FileToNetworkOperations(node, folder, metadata, converter).determineOps(new ValueCallback<List<NetworkOperation>>() {
 			
-			override onSuccess(List<NetworkOperation> value) {
-				
+			override onSuccess(List<NetworkOperation> ops) {
+				ops.execute
 			}
 			
 			override onFailure(Throwable t) {

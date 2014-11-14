@@ -42,7 +42,8 @@ public class SyncFolder {
     this.metadata = _assertMetadata_1;
     FileToNetworkOperations _fileToNetworkOperations = new FileToNetworkOperations(this.node, this.folder, this.metadata, this.converter);
     _fileToNetworkOperations.determineOps(new ValueCallback<List<NetworkOperation>>() {
-      public void onSuccess(final List<NetworkOperation> value) {
+      public void onSuccess(final List<NetworkOperation> ops) {
+        SyncFolder.this.networkUtils.execute(ops);
       }
       
       public void onFailure(final Throwable t) {

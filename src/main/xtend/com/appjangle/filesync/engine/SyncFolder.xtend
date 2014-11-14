@@ -3,11 +3,14 @@ package com.appjangle.filesync.engine
 import com.appjangle.filesync.Converter
 import com.appjangle.filesync.NetworkOperation
 import com.appjangle.filesync.engine.metadata.Metadata
-import de.mxro.async.callbacks.SimpleCallback
 import de.mxro.async.callbacks.ValueCallback
 import de.mxro.file.FileItem
+import de.mxro.fn.Success
 import io.nextweb.Node
 import java.util.List
+
+
+import static extension de.mxro.async.Async.embed
 
 class SyncFolder {
 	
@@ -23,7 +26,7 @@ class SyncFolder {
 	
 	var Metadata metadata 
 
-	def doIt(SimpleCallback cb) {
+	def doIt(ValueCallback<Success> cb) {
 		
 		if (!folder.hasMetadata) {
 			metadata = folder.assertMetadata
@@ -33,17 +36,12 @@ class SyncFolder {
 		
 		metadata = folder.assertMetadata
 		
-		new FileToNetworkOperations(node, folder, metadata, converter).determineOps(new ValueCallback<List<NetworkOperation>>() {
+		new FileToNetworkOperations(node, folder, metadata, converter).determineOps(cb.embed([ ops |
+			ops.execute
+		])
 			
-			override onSuccess(List<NetworkOperation> ops) {
-				ops.execute
-			}
 			
-			override onFailure(Throwable t) {
-				cb.onFailure(t)
-			}
 			
-		})
 		
 	}
 	

@@ -30,15 +30,15 @@ public class NetworkUtils {
           }
         });
         int _size = qries.size();
-        final Closure<List<Object>> _function = new Closure<List<Object>>() {
-          public void apply(final List<Object> it) {
+        final Closure<List<Success>> _function = new Closure<List<Success>>() {
+          public void apply(final List<Success> it) {
           }
         };
-        ValueCallback<List<Object>> _embed = Async.<List<Object>>embed(cb, _function);
-        final Aggregator<Object> cbs = Async.<Object>collect(_size, _embed);
+        ValueCallback<List<Success>> _embed = Async.<List<Success>>embed(cb, _function);
+        final Aggregator<Success> cbs = Async.<Success>collect(_size, _embed);
         for (final Deferred<?> qry : qries) {
           {
-            final ValueCallback<Object> itmcb = cbs.createCallback();
+            final ValueCallback<Success> itmcb = cbs.createCallback();
             Session _session = onNode.session();
             final NextwebPromise<?> res = _session.promise(qry);
             final ExceptionListener _function_1 = new ExceptionListener() {
@@ -48,6 +48,12 @@ public class NetworkUtils {
               }
             };
             res.catchExceptions(_function_1);
+            final Closure<Object> _function_2 = new Closure<Object>() {
+              public void apply(final Object it) {
+                itmcb.onSuccess(Success.INSTANCE);
+              }
+            };
+            res.get(_function_2);
           }
         }
       }

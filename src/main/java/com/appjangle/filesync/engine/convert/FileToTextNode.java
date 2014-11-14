@@ -8,6 +8,7 @@ import com.appjangle.filesync.NetworkOperationContext;
 import com.appjangle.filesync.engine.convert.ConvertUtils;
 import com.appjangle.filesync.engine.metadata.ItemMetadata;
 import com.appjangle.filesync.engine.metadata.Metadata;
+import com.google.common.base.Objects;
 import de.mxro.async.Async;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
@@ -150,25 +151,29 @@ public class FileToTextNode implements Converter {
       public void apply(final FileOperationContext ctx) {
         FileItem _folder = ctx.folder();
         final FileItem file = _folder.getChild(fileName);
-        file.setText(content);
-        Metadata _metadata = ctx.metadata();
-        _metadata.update(new ItemMetadata() {
-          public String name() {
-            return fileName;
-          }
-          
-          public Date lastModified() {
-            return new Date();
-          }
-          
-          public String uri() {
-            return source.uri();
-          }
-          
-          public String hash() {
-            return file.hash();
-          }
-        });
+        String _text = file.getText();
+        boolean _notEquals = (!Objects.equal(_text, content));
+        if (_notEquals) {
+          file.setText(content);
+          Metadata _metadata = ctx.metadata();
+          _metadata.update(new ItemMetadata() {
+            public String name() {
+              return fileName;
+            }
+            
+            public Date lastModified() {
+              return new Date();
+            }
+            
+            public String uri() {
+              return source.uri();
+            }
+            
+            public String hash() {
+              return file.hash();
+            }
+          });
+        }
       }
     };
     ops.add(_function);

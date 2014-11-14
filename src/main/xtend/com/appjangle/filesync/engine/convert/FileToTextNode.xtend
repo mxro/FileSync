@@ -136,9 +136,11 @@ class FileToTextNode implements Converter {
 			
 			val file = ctx.folder.getChild(fileName)
 			
-			file.text = content
+			if (file.text != content) {
 			
-			ctx.metadata.update(new ItemMetadata() {
+				file.text = content
+				
+				ctx.metadata.update(new ItemMetadata() {
 						
 						override name() {
 							fileName
@@ -157,6 +159,9 @@ class FileToTextNode implements Converter {
 						}
 						
 					})
+			
+			}
+			
 			
 			
 		])

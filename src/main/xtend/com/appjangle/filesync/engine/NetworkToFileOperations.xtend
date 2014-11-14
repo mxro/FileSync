@@ -17,97 +17,98 @@ import java.util.List
  * Determines operations to be performed on local files based on remote changes made in the cloud.
  */
 class NetworkToFileOperations {
-	
+
 	val Node node;
 	val FileItem folder;
 	val Metadata metadata;
 	val Converter converter;
-	
+
 	new(Node node, FileItem folder, Metadata metadata, Converter converter) {
 		this.node = node
 		this.folder = folder
 		this.metadata = metadata
 		this.converter = converter
-		
+
 	}
-	
-	
-	def determineOps( ValueCallback<List<FileOperation>> cb) {
-		
+
+	def determineOps(ValueCallback<List<FileOperation>> cb) {
+
 		val qry = node.selectAll
-		
-		qry.catchExceptions [er | cb.onFailure(er.exception)]
-		
-		qry.get [children |
-			
+
+		qry.catchExceptions[er|cb.onFailure(er.exception)]
+
+		qry.get [ children |
 			val remotelyAdded = children.determineRemotelyAddedNodes
-			
 			val remotelyRemoved = children.determineRemotelyRemovedNodes
-			
 			val remotelyUpdated = children.determineRemotelyUpdatedNodes
 			
+			val agg = Async.collect(3,
+				Async.embed(cb,
+					[ res |
+						cb.onSuccess(CollectionsUtils.flatten(res))
+					]))
+					
+			remotelyAdded.deduceCreateOperations(agg.createCallback)
+			
+					
 		]
-		
-		
+
 	}
-	
-	def deduceOperations(List<Node> remotelyAdded, ValueCallback<List<FileOperation>> cb) {
-		
-		val agg = Async.collect(remotelyAdded.size, Async.embed(cb, [ res |
-			cb.onSuccess(CollectionsUtils.flatten(res))
-		]))
-		
+
+	def deduceCreateOperations(List<Node> remotelyAdded, ValueCallback<List<FileOperation>> cb) {
+
+		val agg = Async.collect(remotelyAdded.size,
+			Async.embed(cb,
+				[ res |
+					cb.onSuccess(CollectionsUtils.flatten(res))
+				]))
+
 		for (newNode : remotelyAdded) {
-			
+
 			converter.createFiles(folder, metadata, newNode, agg.createCallback)
-			
-			
+
 		}
-		
+
 	}
-	
-	
+
 	def determineRemotelyAddedNodes(NodeList children) {
-		
+
 		val res = new ArrayList<Node>(0)
-		
-		for (child: children) {
+
+		for (child : children) {
 			if (metadata.get(child) == null) {
 				res.add(child)
 			}
 		}
-		
+
 		res
 	}
-	
+
 	def determineRemotelyRemovedNodes(NodeList children) {
-		
+
 		val res = new ArrayList<ItemMetadata>(0)
-		
-		for (item: metadata.children) {
-			
+
+		for (item : metadata.children) {
+
 			if (!children.uris.contains(item.uri)) {
 				res.add(item)
 			}
-			
+
 		}
-		
+
 		res
-		
+
 	}
-	
+
 	def determineRemotelyUpdatedNodes(NodeList children) {
 		val res = new ArrayList<ItemMetadata>(0)
-		
+
 		for (item : metadata.children) {
-			
 			// TODO: not yet supported
-			
 		}
-		
+
 		res
-		
+
 	}
-	
-	
+
 }

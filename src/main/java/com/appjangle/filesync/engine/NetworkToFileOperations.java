@@ -53,12 +53,22 @@ public class NetworkToFileOperations {
         final ArrayList<Node> remotelyAdded = NetworkToFileOperations.this.determineRemotelyAddedNodes(children);
         final ArrayList<ItemMetadata> remotelyRemoved = NetworkToFileOperations.this.determineRemotelyRemovedNodes(children);
         final ArrayList<ItemMetadata> remotelyUpdated = NetworkToFileOperations.this.determineRemotelyUpdatedNodes(children);
+        final Closure<List<List<FileOperation>>> _function = new Closure<List<List<FileOperation>>>() {
+          public void apply(final List<List<FileOperation>> res) {
+            List<FileOperation> _flatten = CollectionsUtils.<FileOperation>flatten(res);
+            cb.onSuccess(_flatten);
+          }
+        };
+        ValueCallback<List<List<FileOperation>>> _embed = Async.<List<List<FileOperation>>>embed(cb, _function);
+        final Aggregator<List<FileOperation>> agg = Async.<List<FileOperation>>collect(3, _embed);
+        ValueCallback<List<FileOperation>> _createCallback = agg.createCallback();
+        NetworkToFileOperations.this.deduceCreateOperations(remotelyAdded, _createCallback);
       }
     };
     qry.get(_function_1);
   }
   
-  public void deduceOperations(final List<Node> remotelyAdded, final ValueCallback<List<FileOperation>> cb) {
+  public void deduceCreateOperations(final List<Node> remotelyAdded, final ValueCallback<List<FileOperation>> cb) {
     int _size = remotelyAdded.size();
     final Closure<List<List<FileOperation>>> _function = new Closure<List<List<FileOperation>>>() {
       public void apply(final List<List<FileOperation>> res) {

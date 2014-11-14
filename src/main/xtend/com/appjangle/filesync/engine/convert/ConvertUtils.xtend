@@ -20,6 +20,13 @@ class ConvertUtils {
 			cb.embed(
 				[ res |
 					
+					for (entry : res) {
+						if (entry instanceof String) {
+							cb.onSuccess(entry)
+							return
+						}
+					} 
+					
 				]));
 
 		val qry = forNode.selectAllLinks()
@@ -39,7 +46,7 @@ class ConvertUtils {
 		toNode.appendSafe(label).appendSafe(toNode.session().link(labelTypes.get(0)), "./label")
 	}
 
-	static val NO_LABEL = new Object()
+	static val NO_VALUE = new Object()
 
 	def getFileName(Node forNode, FileItem inFolder, String fileExtension, ValueCallback<String> cb) {
 		getFileName(forNode,
@@ -74,7 +81,7 @@ class ConvertUtils {
 		labelTypes.forEach [ labelType |
 			val qry = fromNode.select(fromNode.session().link(labelType))
 			val itmcb = cbs.createCallback
-			qry.catchUndefined([itmcb.onSuccess(NO_LABEL)])
+			qry.catchUndefined([itmcb.onSuccess(com.appjangle.filesync.engine.convert.ConvertUtils.NO_VALUE)])
 			qry.catchExceptions([er|itmcb.onFailure(er.exception)])
 			qry.get [ label |
 				itmcb.onSuccess(label.value())

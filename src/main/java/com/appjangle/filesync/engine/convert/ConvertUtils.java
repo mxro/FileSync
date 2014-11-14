@@ -40,6 +40,12 @@ public class ConvertUtils {
     int _size = this.extensions.size();
     final Closure<List<Object>> _function = new Closure<List<Object>>() {
       public void apply(final List<Object> res) {
+        for (final Object entry : res) {
+          if ((entry instanceof String)) {
+            cb.onSuccess(((String)entry));
+            return;
+          }
+        }
       }
     };
     ValueCallback<List<Object>> _embed = Async.<List<Object>>embed(cb, _function);
@@ -72,7 +78,7 @@ public class ConvertUtils {
     return _appendSafe.appendSafe(_link, "./label");
   }
   
-  private final static Object NO_LABEL = new Object();
+  private final static Object NO_VALUE = new Object();
   
   public void getFileName(final Node forNode, final FileItem inFolder, final String fileExtension, final ValueCallback<String> cb) {
     final Closure<String> _function = new Closure<String>() {
@@ -123,7 +129,7 @@ public class ConvertUtils {
         final ValueCallback<Object> itmcb = cbs.createCallback();
         final UndefinedListener _function = new UndefinedListener() {
           public void onUndefined(final UndefinedResult it) {
-            itmcb.onSuccess(ConvertUtils.NO_LABEL);
+            itmcb.onSuccess(ConvertUtils.NO_VALUE);
           }
         };
         qry.catchUndefined(_function);

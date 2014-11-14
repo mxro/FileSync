@@ -106,11 +106,11 @@ class FileToTextNode implements Converter {
 						}
 						
 						override uri() {
-							source.uri
+							source.uri()
 						}
 						
 						override hash() {
-							source.hash
+							file.hash
 						}
 						
 					})

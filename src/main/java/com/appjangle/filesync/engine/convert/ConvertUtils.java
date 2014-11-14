@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import de.mxro.async.Aggregator;
 import de.mxro.async.Async;
 import de.mxro.async.callbacks.ValueCallback;
+import de.mxro.file.FileItem;
 import de.mxro.fn.Closure;
 import io.nextweb.Link;
 import io.nextweb.Node;
@@ -30,6 +31,31 @@ public class ConvertUtils {
   }
   
   private final static Object NO_LABEL = new Object();
+  
+  public void createFile(final Node forNode, final FileItem inFolder, final ValueCallback<FileItem> cb) {
+    final Closure<String> _function = new Closure<String>() {
+      public void apply(final String fileNameFromNode) {
+        String fileName = (fileNameFromNode + ".txt");
+        int idx = 1;
+        FileItem _child = inFolder.getChild(fileName);
+        boolean _exists = _child.exists();
+        boolean _while = _exists;
+        while (_while) {
+          {
+            fileName = ((fileNameFromNode + Integer.valueOf(idx)) + ".txt");
+            idx++;
+          }
+          FileItem _child_1 = inFolder.getChild(fileName);
+          boolean _exists_1 = _child_1.exists();
+          _while = _exists_1;
+        }
+        FileItem _createFile = inFolder.createFile(fileName);
+        cb.onSuccess(_createFile);
+      }
+    };
+    ValueCallback<String> _embed = Async.<String>embed(cb, _function);
+    this.getFileName(forNode, _embed);
+  }
   
   public void getFileName(final Node fromNode, final ValueCallback<String> cb) {
     int _size = this.labelTypes.size();

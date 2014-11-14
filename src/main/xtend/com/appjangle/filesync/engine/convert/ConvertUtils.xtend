@@ -2,6 +2,7 @@ package com.appjangle.filesync.engine.convert
 
 import de.mxro.async.Async
 import de.mxro.async.callbacks.ValueCallback
+import de.mxro.file.FileItem
 import io.nextweb.Node
 import io.nextweb.Query
 
@@ -17,6 +18,19 @@ class ConvertUtils {
 	}
 	
 	static val NO_LABEL = new Object()
+	
+	def createFile(Node forNode, FileItem inFolder, ValueCallback<FileItem> cb) {
+		getFileName(forNode, cb.embed([ fileNameFromNode |
+			var fileName = fileNameFromNode + ".txt"
+			var idx = 1
+			while (inFolder.getChild(fileName).exists) {
+				fileName = fileNameFromNode+idx+".txt"
+				idx++
+			}
+			
+			cb.onSuccess(inFolder.createFile(fileName))
+		]))
+	}
 	
 	def getFileName(Node fromNode, ValueCallback<String> cb) {
 		

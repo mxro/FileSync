@@ -8,8 +8,7 @@ import io.nextweb.Node
 import java.util.List
 
 interface Convert {
-	
-	
+
 	def boolean worksOn(FileItem source)
 	
 	def void worksOn(Node node, ValueCallback<Boolean> cb)
@@ -17,7 +16,6 @@ interface Convert {
 	def void createNodes(NodesMetadata metadata, FileItem source, ValueCallback<List<NetworkOperation>> cb)
 	
 	def void update(NodesMetadata metadata, FileItem source,  ValueCallback<List<NetworkOperation>> cb)
-	
 	
 	def void deleteNodes(NodesMetadata metadata, FileItemMetadata cachedFile, ValueCallback<List<NetworkOperation>> cb);
 	

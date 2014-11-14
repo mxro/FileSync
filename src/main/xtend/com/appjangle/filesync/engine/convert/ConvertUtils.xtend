@@ -42,6 +42,13 @@ class ConvertUtils {
 		toNode.appendSafe(label).appendSafe(toNode.session().link(labelTypes.get(0)), "./label")
 	}
 
+	def appendTypes(Query toNode, FileItem source) {
+		
+		val ext = source.extension
+		
+		
+	}
+
 	static val NO_VALUE = new Object()
 
 	def getFileName(Node forNode, FileItem inFolder, String fileExtension, ValueCallback<String> cb) {

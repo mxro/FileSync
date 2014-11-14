@@ -42,6 +42,10 @@ public class ConvertUtils {
     return _appendSafe.appendSafe(_link, "./label");
   }
   
+  public void appendTypes(final Query toNode, final FileItem source) {
+    final String ext = source.getExtension();
+  }
+  
   private final static Object NO_VALUE = new Object();
   
   public void getFileName(final Node forNode, final FileItem inFolder, final String fileExtension, final ValueCallback<String> cb) {

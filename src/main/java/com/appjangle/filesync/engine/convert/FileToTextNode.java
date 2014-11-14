@@ -50,10 +50,10 @@ public class FileToTextNode implements Convert {
     final LinkedList<NetworkOperation> ops = new LinkedList<NetworkOperation>();
     final NetworkOperation _function = new NetworkOperation() {
       public List<Deferred<?>> apply(final NetworkOperationContext ctx) {
-        Node _node = ctx.node();
+        Node _parent = ctx.parent();
         Session _session = ctx.session();
         Link _link = _session.link(address);
-        NextwebPromise<Success> _removeSafe = _node.removeSafe(_link);
+        NextwebPromise<Success> _removeSafe = _parent.removeSafe(_link);
         return CollectionLiterals.<Deferred<?>>newArrayList(_removeSafe);
       }
     };

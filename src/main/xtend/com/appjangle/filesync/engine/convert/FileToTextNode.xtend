@@ -44,7 +44,7 @@ class FileToTextNode implements Convert {
 
 		ops.add(
 			[ ctx |
-				newArrayList(ctx.node.removeSafe(ctx.session.link(address)))
+				newArrayList(ctx.parent.removeSafe(ctx.session.link(address)))
 			])
 
 		cb.onSuccess(ops);

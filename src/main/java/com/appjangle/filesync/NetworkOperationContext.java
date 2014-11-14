@@ -7,5 +7,5 @@ import io.nextweb.Session;
 public interface NetworkOperationContext {
   public abstract Session session();
   
-  public abstract Node node();
+  public abstract Node parent();
 }

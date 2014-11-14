@@ -13,7 +13,7 @@ import com.appjangle.filesync.FileOperation
 class FolderToNode implements Converter {
 	
 	override worksOn(FileItem source) {
-		return true
+		return source.directory
 	}
 	
 	override worksOn(Node node, ValueCallback<Boolean> cb) {

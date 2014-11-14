@@ -13,7 +13,7 @@ import java.util.List;
 @SuppressWarnings("all")
 public class FolderToNode implements Converter {
   public boolean worksOn(final FileItem source) {
-    return true;
+    return source.isDirectory();
   }
   
   public void worksOn(final Node node, final ValueCallback<Boolean> cb) {

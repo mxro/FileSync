@@ -34,7 +34,9 @@ public class ConvertUtils {
       Map<String, String> _xsetliteral = null;
       Map<String, String> _tempMap = Maps.<String, String>newHashMap();
       _tempMap.put("https://admin1.linnk.it/types/v01/isHtmlValue", ".html");
-      _tempMap.put("", "");
+      _tempMap.put("", ".type");
+      _tempMap.put("", ".css");
+      _tempMap.put("", ".js");
       _xsetliteral = Collections.<String, String>unmodifiableMap(_tempMap);
       return _xsetliteral;
     }

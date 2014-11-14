@@ -9,6 +9,7 @@ import com.appjangle.filesync.engine.convert.ConvertUtils;
 import com.appjangle.filesync.engine.metadata.ItemMetadata;
 import com.appjangle.filesync.engine.metadata.Metadata;
 import com.google.common.base.Objects;
+import com.google.common.collect.Lists;
 import de.mxro.async.Async;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
@@ -21,6 +22,7 @@ import io.nextweb.Session;
 import io.nextweb.promise.Deferred;
 import io.nextweb.promise.NextwebPromise;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -43,6 +45,7 @@ public class FileToTextNode implements Converter {
   }
   
   public void worksOn(final Node node, final ValueCallback<Boolean> cb) {
+    final List<Object> textNodeTypes = Collections.<Object>unmodifiableList(Lists.<Object>newArrayList());
     Object _value = node.value();
     cb.onSuccess(Boolean.valueOf((_value instanceof String)));
   }
@@ -106,40 +109,46 @@ public class FileToTextNode implements Converter {
   
   public void createFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
     final Closure<String> _function = new Closure<String>() {
-      public void apply(final String fileName) {
-        final LinkedList<FileOperation> ops = new LinkedList<FileOperation>();
-        final FileOperation _function = new FileOperation() {
-          public void apply(final FileOperationContext ctx) {
-            FileItem _folder = ctx.folder();
-            final FileItem file = _folder.createFile(fileName);
-            String _value = source.<String>value(String.class);
-            file.setText(_value);
-            Metadata _metadata = ctx.metadata();
-            _metadata.add(new ItemMetadata() {
-              public String name() {
-                return fileName;
+      public void apply(final String ext) {
+        final Closure<String> _function = new Closure<String>() {
+          public void apply(final String fileName) {
+            final LinkedList<FileOperation> ops = new LinkedList<FileOperation>();
+            final FileOperation _function = new FileOperation() {
+              public void apply(final FileOperationContext ctx) {
+                FileItem _folder = ctx.folder();
+                final FileItem file = _folder.createFile(fileName);
+                String _value = source.<String>value(String.class);
+                file.setText(_value);
+                Metadata _metadata = ctx.metadata();
+                _metadata.add(new ItemMetadata() {
+                  public String name() {
+                    return fileName;
+                  }
+                  
+                  public Date lastModified() {
+                    return new Date();
+                  }
+                  
+                  public String uri() {
+                    return source.uri();
+                  }
+                  
+                  public String hash() {
+                    return file.hash();
+                  }
+                });
               }
-              
-              public Date lastModified() {
-                return new Date();
-              }
-              
-              public String uri() {
-                return source.uri();
-              }
-              
-              public String hash() {
-                return file.hash();
-              }
-            });
+            };
+            ops.add(_function);
+            cb.onSuccess(ops);
           }
         };
-        ops.add(_function);
-        cb.onSuccess(ops);
+        ValueCallback<String> _embed = Async.<String>embed(cb, _function);
+        FileToTextNode.this.utils.getFileName(source, folder, ext, _embed);
       }
     };
     ValueCallback<String> _embed = Async.<String>embed(cb, _function);
-    this.utils.getFileName(source, folder, ".txt", _embed);
+    this.utils.getFileExtension(source, _embed);
   }
   
   public void updateFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {

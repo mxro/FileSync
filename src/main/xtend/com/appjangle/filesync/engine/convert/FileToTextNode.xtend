@@ -30,7 +30,9 @@ class FileToTextNode implements Converter {
 	override worksOn(Node node, ValueCallback<Boolean> cb) {
 
 		// TODO change so that it applies only to text nodes, otherwise use a converter which converts nodes into folders
-
+		
+		val textNodeTypes = #[]
+		
 		cb.onSuccess(node.value() instanceof String)
 
 	}
@@ -87,8 +89,8 @@ class FileToTextNode implements Converter {
 	}
 
 	override createFiles(FileItem folder, Metadata metadata, Node source, ValueCallback<List<FileOperation>> cb) {
-
-		source.getFileName(folder, '.txt', cb.embed([fileName |
+		source.getFileExtension(cb.embed([ext |
+			source.getFileName(folder, ext, cb.embed([fileName |
 			
 			val ops = new LinkedList<FileOperation>
 			
@@ -124,6 +126,8 @@ class FileToTextNode implements Converter {
 			cb.onSuccess(ops)
 			
 		]))
+		]))
+		
 	}
 	
 	override updateFiles(FileItem folder, Metadata metadata, Node source, ValueCallback<List<FileOperation>> cb) {

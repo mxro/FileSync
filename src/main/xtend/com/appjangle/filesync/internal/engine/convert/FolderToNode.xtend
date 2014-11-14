@@ -8,9 +8,12 @@ import com.appjangle.filesync.NetworkOperation
 import de.mxro.async.callbacks.ValueCallback
 import de.mxro.file.FileItem
 import io.nextweb.Node
+import java.util.Date
 import java.util.LinkedList
 import java.util.List
 import mx.gwtutils.MxroGWTUtils
+
+import static extension de.mxro.async.Async.embed
 
 class FolderToNode implements Converter {
 
@@ -57,18 +60,18 @@ class FolderToNode implements Converter {
 	}
 
 	override createFiles(FileItem folder, Metadata metadata, Node source, ValueCallback<List<FileOperation>> cb) {
-		source.getFileName(
-			[ String fileName |
+		source.getFileName( cb.embed 
+			[ folderName |
 				val ops = new LinkedList<FileOperation>
 				ops.add(
 					[ ctx |
-						val file = ctx.folder.createFile(fileName)
+						val file = ctx.folder.assertFolder(folderName)
 						file.text = source.value(String)
 						ctx.metadata.add(
 							new ItemMetadata() {
 
 								override name() {
-									fileName
+									folderName
 								}
 
 								override lastModified() {

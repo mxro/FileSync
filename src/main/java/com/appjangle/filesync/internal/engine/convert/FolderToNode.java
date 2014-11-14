@@ -76,9 +76,7 @@ public class FolderToNode implements Converter {
   
   public void createFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
     throw new Error("Unresolved compilation problems:"
-      + "\nDate cannot be resolved."
-      + "\nNo enclosing instance of the type FileToTextNode is accessible in scope"
-      + "\nType mismatch: cannot convert from (String)=>void to ValueCallback<String>");
+      + "\nNo enclosing instance of the type FileToTextNode is accessible in scope");
   }
   
   public void updateFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {

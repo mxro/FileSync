@@ -23,5 +23,5 @@ interface Converter {
 	
 	def void updateFiles(FileItem folder, Metadata metadata, Node source, ValueCallback<List<FileOperation>> cb)
 	
-	def void removeFiles(FileItem folder, Metadata metadata, Node source, ValueCallback<List<FileOperation>> cb)
+	def void removeFiles(FileItem folder, Metadata metadata, ItemMetadata item, ValueCallback<List<FileOperation>> cb)
 }

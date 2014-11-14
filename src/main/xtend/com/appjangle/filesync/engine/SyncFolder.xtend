@@ -2,8 +2,10 @@ package com.appjangle.filesync.engine
 
 import com.appjangle.filesync.Converter
 import com.appjangle.filesync.engine.metadata.Metadata
+import de.mxro.async.callbacks.SimpleCallback
 import de.mxro.file.FileItem
 import io.nextweb.Node
+import de.mxro.async.callbacks.ValueCallback
 
 class SyncFolder {
 	
@@ -19,7 +21,7 @@ class SyncFolder {
 	
 	var Metadata metadata 
 
-	def doIt() {
+	def doIt(SimpleCallback cb) {
 		
 		if (!folder.hasMetadata) {
 			metadata = folder.assertMetadata
@@ -29,7 +31,9 @@ class SyncFolder {
 		
 		metadata = folder.assertMetadata
 		
-		new FileToNetworkOperations(node, folder, metadata, converter)
+		new FileToNetworkOperations(node, folder, metadata, converter).calculate(new ValueCallback() {
+			
+		})
 		
 	}
 	

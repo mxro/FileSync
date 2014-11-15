@@ -16,19 +16,19 @@ class TestHtmlFileUpdate extends CheckUpdatesTemplate {
 		result.getChild("doc.html").text => "<p>Hello 1</p>"
 	}
 	
-	override protected updateNodes() {
+	override protected step3_updateNodes() {
 		source.select("./html").setValue("<p>Hello 1 and Hello 2 are an amazing team.</p>")
 	}
 	
-	override protected assertFilesAfterUpdate() {
+	override protected step4_assertFilesAfterUpdate() {
 		result.getChild("doc.html").text => "<p>Hello 1 and Hello 2 are an amazing team.</p>"
 	}
 	
-	override protected updateFiles() {
+	override protected step5_updateFiles() {
 		result.getChild("doc.html").text = "And now for something different"
 	}
 	
-	override protected assertNodesAfterUpdate() {
+	override protected step6_assertNodesAfterUpdate() {
 		source.select("./html").get.value() => "And now for something different"
 	}
 	

@@ -6,13 +6,13 @@ import org.junit.Test
 
 abstract class CheckUpdatesTemplate extends CheckNodesToFilesTemplate {
 	
-	protected abstract def void updateNodes()
+	protected abstract def void step3_updateNodes()
 	
-	protected abstract def void assertFilesAfterUpdate()
+	protected abstract def void step4_assertFilesAfterUpdate()
 	
-	protected abstract def void updateFiles()
+	protected abstract def void step5_updateFiles()
 	
-	protected abstract def void assertNodesAfterUpdate()
+	protected abstract def void step6_assertNodesAfterUpdate()
 	
 	@Test
 	override test() {
@@ -25,7 +25,7 @@ abstract class CheckUpdatesTemplate extends CheckNodesToFilesTemplate {
 		
 		step2_assertFiles
 		
-		updateNodes
+		step3_updateNodes
 		
 		session.commit.get
 		
@@ -33,15 +33,15 @@ abstract class CheckUpdatesTemplate extends CheckNodesToFilesTemplate {
 			FileSync.sync(target, source, cb)
 		]
 		
-		assertFilesAfterUpdate
+		step4_assertFilesAfterUpdate
 		
-		updateFiles
+		step5_updateFiles
 		
 		AsyncJre.waitFor [cb |
 			FileSync.sync(target, source, cb)
 		]
 		
-		assertNodesAfterUpdate
+		step6_assertNodesAfterUpdate
 	}
 	
 }

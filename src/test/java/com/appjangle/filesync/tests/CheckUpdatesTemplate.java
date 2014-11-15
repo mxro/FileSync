@@ -11,13 +11,13 @@ import org.junit.Test;
 
 @SuppressWarnings("all")
 public abstract class CheckUpdatesTemplate extends CheckNodesToFilesTemplate {
-  protected abstract void updateNodes();
+  protected abstract void step3_updateNodes();
   
-  protected abstract void assertFilesAfterUpdate();
+  protected abstract void step4_assertFilesAfterUpdate();
   
-  protected abstract void updateFiles();
+  protected abstract void step5_updateFiles();
   
-  protected abstract void assertNodesAfterUpdate();
+  protected abstract void step6_assertNodesAfterUpdate();
   
   @Test
   public void test() {
@@ -31,7 +31,7 @@ public abstract class CheckUpdatesTemplate extends CheckNodesToFilesTemplate {
     };
     AsyncJre.<Success>waitFor(_function);
     this.step2_assertFiles();
-    this.updateNodes();
+    this.step3_updateNodes();
     NextwebPromise<Success> _commit_1 = this.session.commit();
     _commit_1.get();
     final Deferred<Success> _function_1 = new Deferred<Success>() {
@@ -40,14 +40,14 @@ public abstract class CheckUpdatesTemplate extends CheckNodesToFilesTemplate {
       }
     };
     AsyncJre.<Success>waitFor(_function_1);
-    this.assertFilesAfterUpdate();
-    this.updateFiles();
+    this.step4_assertFilesAfterUpdate();
+    this.step5_updateFiles();
     final Deferred<Success> _function_2 = new Deferred<Success>() {
       public void get(final ValueCallback<Success> cb) {
         FileSync.sync(CheckUpdatesTemplate.this.target, CheckUpdatesTemplate.this.source, cb);
       }
     };
     AsyncJre.<Success>waitFor(_function_2);
-    this.assertNodesAfterUpdate();
+    this.step6_assertNodesAfterUpdate();
   }
 }

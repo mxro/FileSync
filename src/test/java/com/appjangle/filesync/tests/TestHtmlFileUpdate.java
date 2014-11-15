@@ -29,23 +29,23 @@ public class TestHtmlFileUpdate extends CheckUpdatesTemplate {
     TestHtmlFileUpdate.<String, String>operator_doubleArrow(_text, "<p>Hello 1</p>");
   }
   
-  protected void updateNodes() {
+  protected void step3_updateNodes() {
     Query _select = this.source.select("./html");
     _select.setValue("<p>Hello 1 and Hello 2 are an amazing team.</p>");
   }
   
-  protected void assertFilesAfterUpdate() {
+  protected void step4_assertFilesAfterUpdate() {
     FileItem _child = this.result.getChild("doc.html");
     String _text = _child.getText();
     TestHtmlFileUpdate.<String, String>operator_doubleArrow(_text, "<p>Hello 1 and Hello 2 are an amazing team.</p>");
   }
   
-  protected void updateFiles() {
+  protected void step5_updateFiles() {
     FileItem _child = this.result.getChild("doc.html");
     _child.setText("And now for something different");
   }
   
-  protected void assertNodesAfterUpdate() {
+  protected void step6_assertNodesAfterUpdate() {
     Query _select = this.source.select("./html");
     Node _get = _select.get();
     Object _value = _get.value();

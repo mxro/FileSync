@@ -1,6 +1,7 @@
 package com.appjangle.filesync.internal.engine.metadata
 
 import com.appjangle.filesync.Metadata
+import com.appjangle.filesync.internal.engine.metadata.v01.NodesXml
 import com.thoughtworks.xstream.XStream
 import de.mxro.file.FileItem
 
@@ -18,8 +19,13 @@ class MetadataUtilsJre {
 	
 		val NodesXml nodesXml = xstream.fromXML(file.text) as NodesXml
 
-		nodesMetadata
+		readFromNodesXml(nodesMetadata)
 
+	}
+	
+	
+	def static Metadata readFromNodesXml(NodesXml nodesXml) {
+		
 	}
 
 }

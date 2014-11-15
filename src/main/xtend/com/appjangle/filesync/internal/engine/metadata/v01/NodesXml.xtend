@@ -1,4 +1,4 @@
-package com.appjangle.filesync.internal.engine.metadata
+package com.appjangle.filesync.internal.engine.metadata.v01
 
 import java.io.Serializable
 

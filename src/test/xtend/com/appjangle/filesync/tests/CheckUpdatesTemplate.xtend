@@ -35,6 +35,7 @@ abstract class CheckUpdatesTemplate extends CheckNodesToFilesTemplate {
 		
 		step4_assertFilesAfterUpdate
 		
+		// required because of file lastModified impreciseness
 		Thread.sleep(2000)
 		
 		step5_updateFiles

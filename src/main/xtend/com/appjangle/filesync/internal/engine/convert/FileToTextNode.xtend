@@ -6,7 +6,6 @@ import com.appjangle.filesync.ItemMetadata
 import com.appjangle.filesync.Metadata
 import com.appjangle.filesync.NetworkOperation
 import com.appjangle.filesync.internal.engine.FileUtils
-import de.mxro.async.Async
 import de.mxro.async.callbacks.ValueCallback
 import de.mxro.file.FileItem
 import io.nextweb.Node
@@ -31,7 +30,6 @@ class FileToTextNode implements Converter {
 
 	override worksOn(Node node, ValueCallback<Boolean> cb) {
 
-		println ("testin "+node)
 		val textNodeTypes = #["https://admin1.linnk.it/types/v01/isHtmlValue"]
 		
 		val qry = node.selectAllLinks
@@ -47,27 +45,6 @@ class FileToTextNode implements Converter {
 			}
 			cb.onSuccess(false)
 		]
-		
-		
-		/*val cbs = Async.collect(textNodeTypes.size, cb.embed [res|
-			cb.onSuccess(res.contains(true))
-		])
-		
-		
-		for (textType : textNodeTypes) {
-			
-			val itmcb = cbs.createCallback
-			
-			val qry = node.select(node.session().link(textType))
-			
-			qry.catchExceptions([er | itmcb.onFailure(er.exception)])
-			
-			qry.catchUndefined([ itmcb.onSuccess(false) ])
-			
-			qry.get( [ itmcb.onSuccess(true) ])
-			
-		}*/
-		
 
 	}
 

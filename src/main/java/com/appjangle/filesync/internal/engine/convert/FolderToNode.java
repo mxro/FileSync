@@ -68,11 +68,17 @@ public class FolderToNode implements Converter {
     final LinkedList<NetworkOperation> ops = new LinkedList<NetworkOperation>();
     final NetworkOperation _function = new NetworkOperation() {
       public List<Deferred<?>> apply(final NetworkOperationContext ctx) {
-        Node _parent = ctx.parent();
-        Session _session = ctx.session();
-        Link _link = _session.link(address);
-        NextwebPromise<Success> _removeSafe = _parent.removeSafe(_link);
-        return CollectionLiterals.<Deferred<?>>newArrayList(_removeSafe);
+        ArrayList<Deferred<?>> _xblockexpression = null;
+        {
+          String _name = cachedFile.name();
+          metadata.remove(_name);
+          Node _parent = ctx.parent();
+          Session _session = ctx.session();
+          Link _link = _session.link(address);
+          NextwebPromise<Success> _removeSafe = _parent.removeSafe(_link);
+          _xblockexpression = CollectionLiterals.<Deferred<?>>newArrayList(_removeSafe);
+        }
+        return _xblockexpression;
       }
     };
     ops.add(_function);

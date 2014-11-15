@@ -92,7 +92,7 @@ class FileToTextNode implements Converter {
 
 		ops.add(
 			[ ctx |
-				println('EXECUTE REMOVE')
+				
 				metadata.remove(cachedFile.name)
 				newArrayList(ctx.parent.removeSafe(ctx.session.link(address)))
 			])
@@ -207,7 +207,7 @@ class FileToTextNode implements Converter {
 		val ops = new LinkedList<FileOperation>
 		
 		ops.add([ctx|
-			println('remove files '+fileName)
+			
 			ctx.folder.deleteFile(fileName)
 			
 			ctx.metadata.remove(fileName)

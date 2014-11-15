@@ -92,6 +92,7 @@ class FileToTextNode implements Converter {
 
 		ops.add(
 			[ ctx |
+				metadata.remove(cachedFile.name)
 				newArrayList(ctx.parent.removeSafe(ctx.session.link(address)))
 			])
 

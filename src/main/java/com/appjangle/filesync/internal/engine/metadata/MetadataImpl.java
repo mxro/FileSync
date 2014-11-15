@@ -62,12 +62,7 @@ public class MetadataImpl implements Metadata {
   public ItemXml toXml(final ItemMetadata itemMetadata) {
     throw new Error("Unresolved compilation problems:"
       + "\nThe method or field lastModified is undefined for the type MetadataImpl"
-      + "\nInvalid number of arguments. The constructor ItemXml(String, String, String, String) is not applicable without arguments"
-      + "\nThe field name is not visible"
       + "\nThe field uri is not visible"
-      + "\nThe field hash is not visible"
-      + "\nAssignment to final field"
-      + "\nAssignment to final field"
-      + "\nAssignment to final field");
+      + "\nThe field hash is not visible");
   }
 }

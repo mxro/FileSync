@@ -10,21 +10,28 @@ class MetadataUtilsJre {
 	def static Metadata readFromFile(FileItem file) {
 
 		if (!file.exists) {
-			
+
 			return null
-			
-			} 
+
+		}
 
 		val xstream = new XStream
-	
+
 		val NodesXml nodesXml = xstream.fromXML(file.text) as NodesXml
 
 		nodesXml.toMetadata
 
 	}
-	
-	
+
 	def static Metadata toMetadata(NodesXml nodesXml) {
+		
+		val metadata = new MetadataImpl
+		
+		for ( item:nodesXml.items) {
+			metadata.add(item)
+		}
+		
+		metadata
 		
 	}
 

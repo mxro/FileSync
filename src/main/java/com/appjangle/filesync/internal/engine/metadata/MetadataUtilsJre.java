@@ -1,6 +1,8 @@
 package com.appjangle.filesync.internal.engine.metadata;
 
 import com.appjangle.filesync.Metadata;
+import com.appjangle.filesync.internal.engine.metadata.MetadataImpl;
+import com.appjangle.filesync.internal.engine.metadata.v01.ItemXml;
 import com.appjangle.filesync.internal.engine.metadata.v01.NodesXml;
 import com.thoughtworks.xstream.XStream;
 import de.mxro.file.FileItem;
@@ -25,6 +27,14 @@ public class MetadataUtilsJre {
   }
   
   public static Metadata toMetadata(final NodesXml nodesXml) {
-    return null;
+    MetadataImpl _xblockexpression = null;
+    {
+      final MetadataImpl metadata = new MetadataImpl();
+      for (final ItemXml item : nodesXml.items) {
+        metadata.add(item);
+      }
+      _xblockexpression = metadata;
+    }
+    return _xblockexpression;
   }
 }

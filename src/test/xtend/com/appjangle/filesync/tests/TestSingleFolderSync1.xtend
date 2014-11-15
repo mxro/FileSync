@@ -22,7 +22,7 @@ class TestSingleFolderSync1 {
 
 		val data = session.seed(server)
 
-		data.append("Just a node")
+		data.append("A Folder")
 
 		session.commit.get
 

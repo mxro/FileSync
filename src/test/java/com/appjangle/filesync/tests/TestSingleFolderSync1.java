@@ -30,7 +30,7 @@ public class TestSingleFolderSync1 {
     final LocalServer server = AppjangleJre.startServer();
     final Session session = AppjangleJre.createSession(server);
     final Query data = session.seed(server);
-    data.append("Just a node");
+    data.append("A Folder");
     NextwebPromise<Success> _commit = session.commit();
     _commit.get();
     final File testFolder = this.folder.newFolder("sync1");

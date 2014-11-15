@@ -18,6 +18,5 @@ class TestNodeWithLabel extends CheckNodesToFilesTemplate {
 		
 		result.contains("Labelled Node") => true
 		
-		
 	}
 }

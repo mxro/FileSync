@@ -129,6 +129,14 @@ public class FileUtils {
           _or = _and;
         }
         valid = _or;
+        boolean _or_6 = false;
+        if (valid) {
+          _or_6 = true;
+        } else {
+          boolean _equals_6 = Objects.equal(Character.valueOf(c), " ");
+          _or_6 = _equals_6;
+        }
+        valid = _or_6;
         if (valid) {
           rc.append(c);
         } else {

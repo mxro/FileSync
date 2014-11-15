@@ -20,6 +20,7 @@ import io.nextweb.promise.exceptions.ExceptionResult;
 import java.util.ArrayList;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
 /**
@@ -77,6 +78,7 @@ public class NetworkToFileOperations {
         };
         ValueCallback<List<List<FileOperation>>> _embed = Async.<List<List<FileOperation>>>embed(cb, _function_1);
         final Aggregator<List<FileOperation>> agg = Async.<List<FileOperation>>collect(3, _embed);
+        InputOutput.<ArrayList<Node>>println(remotelyUpdated);
         ValueCallback<List<FileOperation>> _createCallback = agg.createCallback();
         NetworkToFileOperations.this.deduceCreateOperations(remotelyAdded, _createCallback);
         ValueCallback<List<FileOperation>> _createCallback_1 = agg.createCallback();

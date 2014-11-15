@@ -138,6 +138,14 @@ public class FileUtils {
           _or_6 = _equals_6;
         }
         valid = _or_6;
+        boolean _or_7 = false;
+        if (valid) {
+          _or_7 = true;
+        } else {
+          boolean _equals_7 = Objects.equal(Character.valueOf(c), " ");
+          _or_7 = _equals_7;
+        }
+        valid = _or_7;
         InputOutput.<String>println(((("[" + Character.valueOf(c)) + "]=>") + Boolean.valueOf(valid)));
         if (valid) {
           rc.append(c);

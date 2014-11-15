@@ -5,6 +5,7 @@ import com.appjangle.jre.AppjangleJre;
 import de.mxro.async.Deferred;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.async.jre.AsyncJre;
+import de.mxro.file.Jre.FilesJre;
 import de.mxro.fn.Success;
 import io.nextweb.Node;
 import io.nextweb.Query;
@@ -29,14 +30,15 @@ public class TestSingleFolderSync1 {
     data.append("Just a node");
     NextwebPromise<Success> _commit = session.commit();
     _commit.get();
+    final File testFolder = this.folder.newFolder("sync1");
     final Deferred<Success> _function = new Deferred<Success>() {
       public void get(final ValueCallback<Success> cb) {
-        File _newFolder = TestSingleFolderSync1.this.folder.newFolder("sync1");
         Node _get = data.get();
-        FileSync.sync(_newFolder, _get, cb);
+        FileSync.sync(testFolder, _get, cb);
       }
     };
     AsyncJre.<Success>waitFor(_function);
+    FilesJre.wrap(testFolder);
     NextwebPromise<Success> _close = session.close();
     _close.get();
     NextwebPromise<Success> _shutdown = server.shutdown();

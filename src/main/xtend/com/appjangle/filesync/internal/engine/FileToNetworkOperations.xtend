@@ -67,6 +67,8 @@ class FileToNetworkOperations {
 			
 		]));
 		
+		
+		
 		createOperationsFromRemovedFiles(locallyRemovedFiles, agg.createCallback)
 		createOperationsFromChangedFiles(locallyChangedFiles, agg.createCallback)		
 		createOperationsFromCreatedFiles(locallyAddedFiles, agg.createCallback)

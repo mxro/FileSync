@@ -1,6 +1,8 @@
 package com.appjangle.filesync.internal.engine.metadata
 
+import com.appjangle.filesync.ItemMetadata
 import com.appjangle.filesync.Metadata
+import com.appjangle.filesync.internal.engine.metadata.v01.ItemXml
 import com.appjangle.filesync.internal.engine.metadata.v01.NodesXml
 import com.thoughtworks.xstream.XStream
 import de.mxro.file.FileItem
@@ -51,10 +53,23 @@ class MetadataUtilsJre {
 		
 		for (item: metadata.children) {
 			
+			
 		}
 		
 		nodesXml
 		
+	}
+	
+	def static ItemXml toItemXml(ItemMetadata item) {
+		val itemXml = new ItemXml
+		
+		itemXml.converter = item.converter
+		itemXml.lastModified = item.lastModified
+		itemXml.hash = item.hash
+		itemXml.name = item.name
+		itemXml.uri = item.uri
+		
+		itemXml
 	}
 
 }

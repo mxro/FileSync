@@ -7,6 +7,7 @@ import com.appjangle.filesync.internal.engine.metadata.v01.ItemXml;
 import com.appjangle.filesync.internal.engine.metadata.v01.NodesXml;
 import com.thoughtworks.xstream.XStream;
 import de.mxro.file.FileItem;
+import java.util.Date;
 import java.util.List;
 
 @SuppressWarnings("all")
@@ -57,6 +58,25 @@ public class MetadataUtilsJre {
       for (final ItemMetadata item : _children) {
       }
       _xblockexpression = nodesXml;
+    }
+    return _xblockexpression;
+  }
+  
+  public static ItemXml toItemXml(final ItemMetadata item) {
+    ItemXml _xblockexpression = null;
+    {
+      final ItemXml itemXml = new ItemXml();
+      String _converter = item.converter();
+      itemXml.converter = _converter;
+      Date _lastModified = item.lastModified();
+      itemXml.lastModified = _lastModified;
+      String _hash = item.hash();
+      itemXml.hash = _hash;
+      String _name = item.name();
+      itemXml.name = _name;
+      String _uri = item.uri();
+      itemXml.uri = _uri;
+      _xblockexpression = itemXml;
     }
     return _xblockexpression;
   }

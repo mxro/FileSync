@@ -1,8 +1,6 @@
 package com.appjangle.filesync.internal.engine.convert;
 
 import com.google.common.base.Objects;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import de.mxro.async.Aggregator;
 import de.mxro.async.Async;
 import de.mxro.async.callbacks.ValueCallback;
@@ -23,24 +21,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
-import org.eclipse.xtext.xbase.lib.Functions.Function0;
+import org.eclipse.xtext.xbase.lib.CollectionLiterals;
+import org.eclipse.xtext.xbase.lib.Pair;
 
 @SuppressWarnings("all")
 public class ConvertUtils {
-  private final List<String> labelTypes = Collections.<String>unmodifiableList(Lists.<String>newArrayList("https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel"));
+  private final List<String> labelTypes = Collections.<String>unmodifiableList(CollectionLiterals.<String>newArrayList("https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel"));
   
-  private final Map<String, String> fileExtensions = new Function0<Map<String, String>>() {
-    public Map<String, String> apply() {
-      Map<String, String> _xsetliteral = null;
-      Map<String, String> _tempMap = Maps.<String, String>newHashMap();
-      _tempMap.put("https://admin1.linnk.it/types/v01/isHtmlValue", ".html");
-      _tempMap.put("", ".type");
-      _tempMap.put("", ".css");
-      _tempMap.put("", ".js");
-      _xsetliteral = Collections.<String, String>unmodifiableMap(_tempMap);
-      return _xsetliteral;
-    }
-  }.apply();
+  private final Map<String, String> fileExtensions = Collections.<String, String>unmodifiableMap(CollectionLiterals.<String, String>newHashMap(Pair.<String, String>of("https://admin1.linnk.it/types/v01/isHtmlValue", ".html"), Pair.<String, String>of("", ".type"), Pair.<String, String>of("", ".css"), Pair.<String, String>of("", ".js")));
   
   public void getFileExtension(final Node forNode, final ValueCallback<String> cb) {
     final LinkListQuery qry = forNode.selectAllLinks();
@@ -103,17 +91,11 @@ public class ConvertUtils {
       public void apply(final String fileNameFromNode) {
         String fileName = (fileNameFromNode + fileExtension);
         int idx = 1;
-        FileItem _child = inFolder.getChild(fileName);
-        boolean _exists = _child.exists();
-        boolean _while = _exists;
-        while (_while) {
+        while (inFolder.getChild(fileName).exists()) {
           {
             fileName = ((fileNameFromNode + Integer.valueOf(idx)) + fileExtension);
             idx++;
           }
-          FileItem _child_1 = inFolder.getChild(fileName);
-          boolean _exists_1 = _child_1.exists();
-          _while = _exists_1;
         }
         cb.onSuccess(fileName);
       }

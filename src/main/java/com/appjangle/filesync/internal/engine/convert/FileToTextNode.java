@@ -10,7 +10,6 @@ import com.appjangle.filesync.NetworkOperationContext;
 import com.appjangle.filesync.internal.engine.FileUtils;
 import com.appjangle.filesync.internal.engine.convert.ConvertUtils;
 import com.google.common.base.Objects;
-import com.google.common.collect.Lists;
 import de.mxro.async.Aggregator;
 import de.mxro.async.Async;
 import de.mxro.async.callbacks.ValueCallback;
@@ -48,7 +47,7 @@ public class FileToTextNode implements Converter {
   }
   
   public void worksOn(final Node node, final ValueCallback<Boolean> cb) {
-    final List<String> textNodeTypes = Collections.<String>unmodifiableList(Lists.<String>newArrayList("https://admin1.linnk.it/types/v01/isHtmlValue"));
+    final List<String> textNodeTypes = Collections.<String>unmodifiableList(CollectionLiterals.<String>newArrayList("https://admin1.linnk.it/types/v01/isHtmlValue"));
     int _size = textNodeTypes.size();
     final Closure<List<Boolean>> _function = new Closure<List<Boolean>>() {
       public void apply(final List<Boolean> res) {

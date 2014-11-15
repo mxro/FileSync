@@ -37,11 +37,11 @@ public class FileUtils {
   public void execute(final List<FileOperation> operations, final FileItem folder, final Metadata metadata) {
     final FileOperationContext ctx = new FileOperationContext() {
       public FileItem folder() {
-        return folder;
+        return this.folder();
       }
       
       public Metadata metadata() {
-        return metadata;
+        return this.metadata();
       }
     };
     for (final FileOperation op : operations) {

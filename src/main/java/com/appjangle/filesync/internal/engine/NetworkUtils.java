@@ -72,9 +72,10 @@ public class NetworkUtils {
               };
               res.get(_function_3);
             } else {
-              final NextwebPromise<Success> safeQry_1 = ((NextwebPromise<Success>) qry);
+              InputOutput.<String>println("here here");
+              final NextwebPromise<Object> safeQry_1 = ((NextwebPromise<Object>) qry);
               Session _session_1 = onNode.session();
-              final NextwebPromise<Success> res_1 = _session_1.<Success>promise(safeQry_1);
+              final NextwebPromise<Object> res_1 = _session_1.<Object>promise(safeQry_1);
               final ExceptionListener _function_4 = new ExceptionListener() {
                 public void onFailure(final ExceptionResult er) {
                   Throwable _exception = er.exception();
@@ -82,8 +83,8 @@ public class NetworkUtils {
                 }
               };
               res_1.catchExceptions(_function_4);
-              final Closure<Success> _function_5 = new Closure<Success>() {
-                public void apply(final Success succ) {
+              final Closure<Object> _function_5 = new Closure<Object>() {
+                public void apply(final Object succ) {
                   itmcb.onSuccess(Success.INSTANCE);
                 }
               };

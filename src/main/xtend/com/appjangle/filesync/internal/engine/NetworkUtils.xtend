@@ -59,7 +59,8 @@ class NetworkUtils {
 					res.get([succ|itmcb.onSuccess(Success.INSTANCE)])
 
 				} else {
-					val safeQry = qry as NextwebPromise<Success>
+					println("here here")
+					val safeQry = qry as NextwebPromise<Object>
 					val res = onNode.session().promise(safeQry)
 					res.catchExceptions([er|itmcb.onFailure(er.exception)])
 					res.get([succ|itmcb.onSuccess(Success.INSTANCE)])

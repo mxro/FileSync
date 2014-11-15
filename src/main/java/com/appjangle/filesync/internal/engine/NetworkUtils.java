@@ -15,14 +15,12 @@ import io.nextweb.promise.NextwebPromise;
 import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
 import java.util.List;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
 public class NetworkUtils {
   public NextwebPromise<Success> execute(final List<NetworkOperation> ops, final Node onNode, final ValueCallback<Success> cb) {
     NextwebPromise<Success> _xblockexpression = null;
     {
-      InputOutput.<String>println(("run " + ops));
       final NetworkOperationContext ctx = new NetworkOperationContext() {
         public Session session() {
           return onNode.session();
@@ -35,7 +33,6 @@ public class NetworkUtils {
       int _size = ops.size();
       final Closure<List<Success>> _function = new Closure<List<Success>>() {
         public void apply(final List<Success> it) {
-          InputOutput.<String>println("Done!");
           cb.onSuccess(Success.INSTANCE);
         }
       };

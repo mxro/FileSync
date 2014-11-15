@@ -16,8 +16,6 @@ class NetworkUtils {
 
 	def execute(List<NetworkOperation> ops, Node onNode, ValueCallback<Success> cb) {
 		
-		println("run "+ops)
-		
 		val ctx = new NetworkOperationContext() {
 
 			override session() {
@@ -33,7 +31,6 @@ class NetworkUtils {
 		val opscbs = Async.collect(ops.size,
 			cb.embed(
 				[
-					println("Done!")
 					cb.onSuccess(Success.INSTANCE)
 				]))
 

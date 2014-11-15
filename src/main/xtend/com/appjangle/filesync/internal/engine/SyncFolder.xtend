@@ -37,6 +37,7 @@ class SyncFolder {
 		
 		new FileToNetworkOperations(node, folder, metadata, converter).determineOps(cb.embed [ ops |
 			ops.execute(node, cb.embed [ 
+				println("local ops executed")
 				download(cb.embed [
 					
 					metadata.saveForFolder(folder)

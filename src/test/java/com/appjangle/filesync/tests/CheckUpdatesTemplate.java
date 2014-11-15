@@ -7,7 +7,6 @@ import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.async.jre.AsyncJre;
 import de.mxro.fn.Success;
 import io.nextweb.promise.NextwebPromise;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.junit.Test;
 
 @SuppressWarnings("all")
@@ -35,7 +34,6 @@ public abstract class CheckUpdatesTemplate extends CheckNodesToFilesTemplate {
     this.updateNodes();
     NextwebPromise<Success> _commit_1 = this.session.commit();
     _commit_1.get();
-    InputOutput.<String>println("SECOND SYNCCCCCCC");
     final Deferred<Success> _function_1 = new Deferred<Success>() {
       public void get(final ValueCallback<Success> cb) {
         FileSync.sync(CheckUpdatesTemplate.this.target, CheckUpdatesTemplate.this.source, cb);

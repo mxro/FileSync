@@ -29,8 +29,6 @@ abstract class CheckUpdatesTemplate extends CheckNodesToFilesTemplate {
 		
 		session.commit.get
 		
-		println("SECOND SYNCCCCCCC")
-		
 		AsyncJre.waitFor [cb |
 			FileSync.sync(target, source, cb)
 		]

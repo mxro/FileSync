@@ -73,12 +73,9 @@ class FileUtils {
 			var boolean valid = c >= 'a' && c <= 'z';
 			valid = valid || (c >= 'A' && c <= 'Z');
 			valid = valid || (c >= '0' && c <= '9');
-			valid = valid || (c == '_') || (c == '-') || (c == '.') || (c == '#') ||
-				(dirSeparators && ( (c == '/') || (c == '\\')));
-			valid = valid || (c == ' ');
+			valid = valid || (c == '_'.charAt(0)) || (c == '-'.charAt(0)) || (c == '.'.charAt(0)) || (c == '#'.charAt(0)) ||
+				(dirSeparators && ( (c == '/'.charAt(0)) || (c == '\\'.charAt(0))));
 			valid = valid || (c == ' '.charAt(0));
-
-			println('['+c+']=>'+valid)
 
 			if (valid) {
 				rc.append(c);

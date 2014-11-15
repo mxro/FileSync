@@ -5,11 +5,9 @@ import com.appjangle.filesync.FileOperationContext;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.internal.engine.metadata.MetadataImpl;
 import com.appjangle.filesync.internal.engine.metadata.MetadataUtilsJre;
-import com.google.common.base.Objects;
 import de.mxro.file.FileItem;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.ExclusiveRange;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
 public class FileUtils {
@@ -89,25 +87,29 @@ public class FileUtils {
         if (valid) {
           _or_4 = true;
         } else {
-          boolean _equals = Objects.equal(Character.valueOf(c), "_");
+          char _charAt = "_".charAt(0);
+          boolean _equals = (c == _charAt);
           _or_4 = _equals;
         }
         if (_or_4) {
           _or_3 = true;
         } else {
-          boolean _equals_1 = Objects.equal(Character.valueOf(c), "-");
+          char _charAt_1 = "-".charAt(0);
+          boolean _equals_1 = (c == _charAt_1);
           _or_3 = _equals_1;
         }
         if (_or_3) {
           _or_2 = true;
         } else {
-          boolean _equals_2 = Objects.equal(Character.valueOf(c), ".");
+          char _charAt_2 = ".".charAt(0);
+          boolean _equals_2 = (c == _charAt_2);
           _or_2 = _equals_2;
         }
         if (_or_2) {
           _or_1 = true;
         } else {
-          boolean _equals_3 = Objects.equal(Character.valueOf(c), "#");
+          char _charAt_3 = "#".charAt(0);
+          boolean _equals_3 = (c == _charAt_3);
           _or_1 = _equals_3;
         }
         if (_or_1) {
@@ -118,11 +120,13 @@ public class FileUtils {
             _and = false;
           } else {
             boolean _or_5 = false;
-            boolean _equals_4 = Objects.equal(Character.valueOf(c), "/");
+            char _charAt_4 = "/".charAt(0);
+            boolean _equals_4 = (c == _charAt_4);
             if (_equals_4) {
               _or_5 = true;
             } else {
-              boolean _equals_5 = Objects.equal(Character.valueOf(c), "\\");
+              char _charAt_5 = "\\".charAt(0);
+              boolean _equals_5 = (c == _charAt_5);
               _or_5 = _equals_5;
             }
             _and = _or_5;
@@ -134,20 +138,11 @@ public class FileUtils {
         if (valid) {
           _or_6 = true;
         } else {
-          boolean _equals_6 = Objects.equal(Character.valueOf(c), " ");
+          char _charAt_6 = " ".charAt(0);
+          boolean _equals_6 = (c == _charAt_6);
           _or_6 = _equals_6;
         }
         valid = _or_6;
-        boolean _or_7 = false;
-        if (valid) {
-          _or_7 = true;
-        } else {
-          char _charAt = " ".charAt(0);
-          boolean _equals_7 = (c == _charAt);
-          _or_7 = _equals_7;
-        }
-        valid = _or_7;
-        InputOutput.<String>println(((("[" + Character.valueOf(c)) + "]=>") + Boolean.valueOf(valid)));
         if (valid) {
           rc.append(c);
         } else {

@@ -16,6 +16,7 @@ import de.mxro.fn.Success;
 import io.nextweb.Node;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.Extension;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
 public class SyncFolder {
@@ -49,6 +50,7 @@ public class SyncFolder {
       public void apply(final List<NetworkOperation> ops) {
         final Closure<Success> _function = new Closure<Success>() {
           public void apply(final Success it) {
+            InputOutput.<String>println("executed network ops");
             SyncFolder.this.download(cb);
           }
         };
@@ -64,6 +66,7 @@ public class SyncFolder {
     NetworkToFileOperations _networkToFileOperations = new NetworkToFileOperations(this.node, this.folder, this.metadata, this.converter);
     final Closure<List<FileOperation>> _function = new Closure<List<FileOperation>>() {
       public void apply(final List<FileOperation> ops) {
+        InputOutput.<String>println("about to execute file ops");
         SyncFolder.this.fileUtils.execute(ops, SyncFolder.this.folder, SyncFolder.this.metadata);
         SyncFolder.this.fileUtils.saveForFolder(SyncFolder.this.metadata, SyncFolder.this.folder);
         cb.onSuccess(Success.INSTANCE);

@@ -2,7 +2,6 @@ package com.appjangle.filesync.tests;
 
 import com.appjangle.filesync.tests.CheckNodesToFilesTemplate;
 import de.mxro.file.FileItem;
-import de.mxro.file.Jre.FilesJre;
 import de.oehme.xtend.junit.JUnit;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
@@ -18,13 +17,13 @@ public class TestSimpleNode extends CheckNodesToFilesTemplate {
   }
   
   protected void assertFiles() {
-    final FileItem folder = FilesJre.wrap(this.target);
-    final List<FileItem> children = folder.getChildren();
-    int _size = children.size();
+    List<FileItem> _children = this.result.getChildren();
+    int _size = _children.size();
     TestSimpleNode.<Integer, Integer>operator_doubleArrow(Integer.valueOf(_size), Integer.valueOf(2));
-    boolean _contains = folder.contains(".filesync-meta");
+    boolean _contains = this.result.contains(".filesync-meta");
     TestSimpleNode.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_contains), Boolean.valueOf(true));
-    String _string = children.toString();
+    List<FileItem> _children_1 = this.result.getChildren();
+    String _string = _children_1.toString();
     boolean _contains_1 = _string.contains("Folder");
     TestSimpleNode.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_contains_1), Boolean.valueOf(true));
   }

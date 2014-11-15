@@ -1,6 +1,5 @@
 package com.appjangle.filesync.tests
 
-import de.mxro.file.Jre.FilesJre
 import de.oehme.xtend.junit.JUnit
 
 @JUnit
@@ -11,14 +10,12 @@ class TestSimpleNode extends CheckNodesToFilesTemplate {
 	}
 	
 	protected override assertFiles() {
-		val folder = FilesJre.wrap(target)
-		val children = folder.children
+
+		result.children.size => 2
 		
-		children.size => 2
+		result.contains(".filesync-meta") => true
 		
-		folder.contains(".filesync-meta") => true
-		
-		children.toString.contains("Folder") => true
+		result.children.toString.contains("Folder") => true
 		
 	}
 

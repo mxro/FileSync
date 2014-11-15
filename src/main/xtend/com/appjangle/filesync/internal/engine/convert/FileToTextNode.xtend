@@ -163,11 +163,11 @@ class FileToTextNode implements Converter {
 			
 			if (file.text != content) {
 			
-				println("before "+file.lastModified.time)
+				//println("before "+file.lastModified.time)
 			
 				file.text = content
 				
-				println("after  "+file.lastModified.time)
+				//println("after  "+file.lastModified.time)
 				
 				ctx.metadata.update(new ItemMetadata() {
 						

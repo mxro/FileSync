@@ -2,6 +2,8 @@ package com.appjangle.filesync.tests;
 
 import com.appjangle.filesync.tests.CheckUpdatesTemplate;
 import de.oehme.xtend.junit.JUnit;
+import io.nextweb.Link;
+import io.nextweb.Query;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
 import org.hamcrest.Matcher;
 import org.junit.Assert;
@@ -9,7 +11,20 @@ import org.junit.internal.ArrayComparisonFailure;
 
 @JUnit
 @SuppressWarnings("all")
-public class TestSimpleUpdate extends CheckUpdatesTemplate {
+public class TestHtmlFileUpdate extends CheckUpdatesTemplate {
+  protected void defineData() {
+    final Query html = this.source.append("<p>Hello 1</p>", "./html");
+    Query _append = html.append("The Doc For.this");
+    Link _link = this.session.link("https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel");
+    _append.append(_link);
+    Link _link_1 = this.session.link("https://admin1.linnk.it/types/v01/isHtmlValue");
+    html.append(_link_1);
+  }
+  
+  protected void assertFiles() {
+    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+  }
+  
   protected void updateNodes() {
     throw new UnsupportedOperationException("TODO: auto-generated method stub");
   }
@@ -23,14 +38,6 @@ public class TestSimpleUpdate extends CheckUpdatesTemplate {
   }
   
   protected void assertNodesAfterUpdate() {
-    throw new UnsupportedOperationException("TODO: auto-generated method stub");
-  }
-  
-  protected void defineData() {
-    throw new UnsupportedOperationException("TODO: auto-generated method stub");
-  }
-  
-  protected void assertFiles() {
     throw new UnsupportedOperationException("TODO: auto-generated method stub");
   }
   

@@ -6,11 +6,11 @@ import de.oehme.xtend.junit.JUnit
 @JUnit
 class TestSimpleNode extends CheckFilesTempalte {
 
-	override defineData() {
+	protected override defineData() {
 		source.append("A Folder")
 	}
 	
-	override assertFiles() {
+	protected override assertFiles() {
 		val children = FilesJre.wrap(target).children
 		
 		children.size => 2

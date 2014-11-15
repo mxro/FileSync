@@ -9,19 +9,16 @@ import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
 import org.hamcrest.Matcher;
 import org.junit.Assert;
-import org.junit.Test;
 import org.junit.internal.ArrayComparisonFailure;
 
 @JUnit
 @SuppressWarnings("all")
 public class TestSimpleNode extends CheckFilesTempalte {
-  @Test
-  public void defineData() {
+  protected void defineData() {
     this.source.append("A Folder");
   }
   
-  @Test
-  public void assertFiles() {
+  protected void assertFiles() {
     FileItem _wrap = FilesJre.wrap(this.target);
     final List<FileItem> children = _wrap.getChildren();
     int _size = children.size();

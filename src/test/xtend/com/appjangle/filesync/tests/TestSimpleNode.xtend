@@ -2,9 +2,8 @@ package com.appjangle.filesync.tests
 
 import de.mxro.file.Jre.FilesJre
 
-class TestSingleFolderSync1 extends CheckFilesTempalte {
+class TestSimpleNode extends CheckFilesTempalte {
 
-	
 	override defineData() {
 		source.append("A Folder")
 	}

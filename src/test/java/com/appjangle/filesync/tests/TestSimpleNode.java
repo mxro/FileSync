@@ -7,7 +7,7 @@ import java.util.List;
 import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
-public class TestSingleFolderSync1 extends CheckFilesTempalte {
+public class TestSimpleNode extends CheckFilesTempalte {
   public void defineData() {
     this.source.append("A Folder");
   }

@@ -10,11 +10,11 @@ class MetadataImpl implements Metadata {
 	List<ItemMetadata> items;
 	
 	override getChildren() {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		items
 	}
 	
 	override get(String name) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		items.findFirst[ it.name == name ]
 	}
 	
 	override get(Node forNode) {

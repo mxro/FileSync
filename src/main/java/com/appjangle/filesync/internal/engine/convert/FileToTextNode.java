@@ -198,7 +198,7 @@ public class FileToTextNode implements Converter {
             }
             
             public Date lastModified() {
-              return new Date();
+              return file.lastModified();
             }
             
             public String uri() {

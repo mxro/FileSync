@@ -35,6 +35,8 @@ abstract class CheckUpdatesTemplate extends CheckNodesToFilesTemplate {
 		
 		step4_assertFilesAfterUpdate
 		
+		Thread.sleep(400)
+		
 		step5_updateFiles
 		
 		AsyncJre.waitFor [cb |

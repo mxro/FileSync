@@ -20,7 +20,7 @@ import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
 @SuppressWarnings("all")
-public abstract class CheckFilesTempalte {
+public abstract class CheckNodesToFilesTempalte {
   protected LocalServer server;
   
   protected Session session;
@@ -60,7 +60,7 @@ public abstract class CheckFilesTempalte {
     _commit.get();
     final Deferred<Success> _function = new Deferred<Success>() {
       public void get(final ValueCallback<Success> cb) {
-        FileSync.sync(CheckFilesTempalte.this.target, CheckFilesTempalte.this.source, cb);
+        FileSync.sync(CheckNodesToFilesTempalte.this.target, CheckNodesToFilesTempalte.this.source, cb);
       }
     };
     AsyncJre.<Success>waitFor(_function);

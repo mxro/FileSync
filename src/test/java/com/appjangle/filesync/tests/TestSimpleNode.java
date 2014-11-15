@@ -1,11 +1,10 @@
 package com.appjangle.filesync.tests;
 
-import com.appjangle.filesync.tests.CheckFilesTempalte;
+import com.appjangle.filesync.tests.CheckNodesToFilesTempalte;
 import de.mxro.file.FileItem;
 import de.mxro.file.Jre.FilesJre;
 import de.oehme.xtend.junit.JUnit;
 import java.util.List;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
 import org.hamcrest.Matcher;
 import org.junit.Assert;
@@ -13,17 +12,21 @@ import org.junit.internal.ArrayComparisonFailure;
 
 @JUnit
 @SuppressWarnings("all")
-public class TestSimpleNode extends CheckFilesTempalte {
+public class TestSimpleNode extends CheckNodesToFilesTempalte {
   protected void defineData() {
     this.source.append("A Folder");
   }
   
   protected void assertFiles() {
-    FileItem _wrap = FilesJre.wrap(this.target);
-    final List<FileItem> children = _wrap.getChildren();
+    final FileItem folder = FilesJre.wrap(this.target);
+    final List<FileItem> children = folder.getChildren();
     int _size = children.size();
     TestSimpleNode.<Integer, Integer>operator_doubleArrow(Integer.valueOf(_size), Integer.valueOf(2));
-    InputOutput.<String>println("donnit");
+    boolean _contains = folder.contains(".filesync-meta");
+    TestSimpleNode.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_contains), Boolean.valueOf(true));
+    String _string = children.toString();
+    boolean _contains_1 = _string.contains("Folder");
+    TestSimpleNode.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_contains_1), Boolean.valueOf(true));
   }
   
   private static void assertArrayEquals(final Object[] expecteds, final Object[] actuals) {

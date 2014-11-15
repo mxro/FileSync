@@ -4,22 +4,22 @@ import de.mxro.file.Jre.FilesJre
 import de.oehme.xtend.junit.JUnit
 
 @JUnit
-class TestSimpleNode extends CheckFilesTempalte {
+class TestSimpleNode extends CheckNodesToFilesTempalte {
 
 	protected override defineData() {
 		source.append("A Folder")
 	}
 	
 	protected override assertFiles() {
-		val children = FilesJre.wrap(target).children
+		val folder = FilesJre.wrap(target)
+		val children = folder.children
 		
 		children.size => 2
 		
-		// children.contains(".filesync-meta") => true
+		folder.contains(".filesync-meta") => true
 		
-		// children.toString.contains("Folder") => true
+		children.toString.contains("Folder") => true
 		
-		println("donnit")
 	}
 
 }

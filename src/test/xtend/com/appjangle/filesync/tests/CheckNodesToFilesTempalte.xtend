@@ -13,7 +13,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TemporaryFolder
 
-abstract class CheckFilesTempalte {
+abstract class CheckNodesToFilesTempalte {
 	
 	protected LocalServer server
 	protected Session session

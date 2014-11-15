@@ -34,5 +34,13 @@ class MetadataUtilsJre {
 		metadata
 		
 	}
+	
+	def static void saveToFile(FileItem file) {
+		if (!file.exists) {
+			throw new RuntimeException("File doesn't exist.")
+		}
+		
+		
+	}
 
 }

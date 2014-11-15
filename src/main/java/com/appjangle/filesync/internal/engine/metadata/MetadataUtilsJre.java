@@ -37,4 +37,12 @@ public class MetadataUtilsJre {
     }
     return _xblockexpression;
   }
+  
+  public static void saveToFile(final FileItem file) {
+    boolean _exists = file.exists();
+    boolean _not = (!_exists);
+    if (_not) {
+      throw new RuntimeException("File doesn\'t exist.");
+    }
+  }
 }

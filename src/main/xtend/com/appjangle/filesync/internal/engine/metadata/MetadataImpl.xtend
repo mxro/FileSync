@@ -33,9 +33,15 @@ class MetadataImpl implements Metadata {
 	}
 	
 	override update(ItemMetadata itemMetadata) {
-		remove(itemMetadata.name)
+		val foundIdx = indexOfChild(itemMetadata.name)
 		
+		if (foundIdx == -1) {
+			throw new RuntimeException("Cannot update child which is not defined: "+itemMetadata.name);
+		}
 		
+		items.set(foundIdx, itemMetadata.toXml)
+		
+		this
 	}
 	
 	override remove(String name) {

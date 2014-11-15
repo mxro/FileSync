@@ -58,8 +58,20 @@ public class MetadataImpl implements Metadata {
   }
   
   public Metadata update(final ItemMetadata itemMetadata) {
-    String _name = itemMetadata.name();
-    return this.remove(_name);
+    MetadataImpl _xblockexpression = null;
+    {
+      String _name = itemMetadata.name();
+      final int foundIdx = this.indexOfChild(_name);
+      if ((foundIdx == (-1))) {
+        String _name_1 = itemMetadata.name();
+        String _plus = ("Cannot update child which is not defined: " + _name_1);
+        throw new RuntimeException(_plus);
+      }
+      ItemXml _xml = this.toXml(itemMetadata);
+      this.items.set(foundIdx, _xml);
+      _xblockexpression = this;
+    }
+    return _xblockexpression;
   }
   
   public Metadata remove(final String name) {

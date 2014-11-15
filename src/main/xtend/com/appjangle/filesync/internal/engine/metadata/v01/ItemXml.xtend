@@ -1,17 +1,19 @@
 package com.appjangle.filesync.internal.engine.metadata.v01
 
+import com.appjangle.filesync.ItemMetadata
+import java.util.Date
 import org.eclipse.xtend.lib.annotations.Accessors
 
-class ItemXml  {
+class ItemXml implements ItemMetadata {
 	
 	
 	@Accessors String name
-	//Date lastModified
-	String uri
-	String hash
-	String converter
+	@Accessors Date lastModified
+	@Accessors String uri
+	@Accessors String hash
+	@Accessors String converter
 	
-	/*override name() {
+	override name() {
 		name
 	}
 	
@@ -29,7 +31,7 @@ class ItemXml  {
 	
 	override converter() {
 		converter
-	}*/
+	}
 	
 	
 	

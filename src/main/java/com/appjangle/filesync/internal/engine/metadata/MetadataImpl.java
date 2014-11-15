@@ -70,13 +70,13 @@ public class MetadataImpl implements Metadata {
     {
       final ItemXml item = new ItemXml();
       String _name = itemMetadata.name();
-      item.setName(_name);
+      item.name = _name;
       String _uri = itemMetadata.uri();
-      item.setUri(_uri);
+      item.uri = _uri;
       Date _lastModified = itemMetadata.lastModified();
-      item.setLastModified(_lastModified);
+      item.lastModified = _lastModified;
       String _hash = itemMetadata.hash();
-      item.setHash(_hash);
+      item.hash = _hash;
       _xblockexpression = item;
     }
     return _xblockexpression;

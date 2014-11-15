@@ -1,6 +1,7 @@
 package com.appjangle.filesync.internal.engine.metadata.v01;
 
 import com.appjangle.filesync.ItemMetadata;
+import java.io.Serializable;
 import java.util.Date;
 import org.eclipse.xtend.lib.annotations.Accessors;
 import org.eclipse.xtend.lib.annotations.EqualsHashCode;
@@ -8,21 +9,21 @@ import org.eclipse.xtext.xbase.lib.Pure;
 
 @EqualsHashCode
 @SuppressWarnings("all")
-public class ItemXml implements ItemMetadata {
+public class ItemXml implements ItemMetadata, Serializable {
   @Accessors
-  private String name;
+  public String name;
   
   @Accessors
-  private Date lastModified;
+  public Date lastModified;
   
   @Accessors
-  private String uri;
+  public String uri;
   
   @Accessors
-  private String hash;
+  public String hash;
   
   @Accessors
-  private String converter;
+  public String converter;
   
   public String name() {
     return this.name;

@@ -4,7 +4,7 @@ import de.mxro.file.Jre.FilesJre
 import de.oehme.xtend.junit.JUnit
 
 @JUnit
-class TestSimpleNode extends CheckNodesToFilesTempalte {
+class TestSimpleNode extends CheckNodesToFilesTemplate {
 
 	protected override defineData() {
 		source.append("A Folder")

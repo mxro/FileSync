@@ -1,6 +1,6 @@
 package com.appjangle.filesync.tests;
 
-import com.appjangle.filesync.tests.CheckNodesToFilesTempalte;
+import com.appjangle.filesync.tests.CheckNodesToFilesTemplate;
 import de.mxro.file.FileItem;
 import de.mxro.file.Jre.FilesJre;
 import de.oehme.xtend.junit.JUnit;
@@ -12,7 +12,7 @@ import org.junit.internal.ArrayComparisonFailure;
 
 @JUnit
 @SuppressWarnings("all")
-public class TestSimpleNode extends CheckNodesToFilesTempalte {
+public class TestSimpleNode extends CheckNodesToFilesTemplate {
   protected void defineData() {
     this.source.append("A Folder");
   }

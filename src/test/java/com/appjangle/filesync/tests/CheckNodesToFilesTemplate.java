@@ -5,6 +5,8 @@ import com.appjangle.jre.AppjangleJre;
 import de.mxro.async.Deferred;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.async.jre.AsyncJre;
+import de.mxro.file.FileItem;
+import de.mxro.file.Jre.FilesJre;
 import de.mxro.fn.Success;
 import io.nextweb.Node;
 import io.nextweb.Query;
@@ -20,7 +22,7 @@ import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
 @SuppressWarnings("all")
-public abstract class CheckNodesToFilesTempalte {
+public abstract class CheckNodesToFilesTemplate {
   protected LocalServer server;
   
   protected Session session;
@@ -28,6 +30,8 @@ public abstract class CheckNodesToFilesTempalte {
   protected Node source;
   
   protected File target;
+  
+  protected FileItem result;
   
   @Rule
   public TemporaryFolder tempFolder = new TemporaryFolder();
@@ -44,6 +48,8 @@ public abstract class CheckNodesToFilesTempalte {
       this.source = _get;
       File _newFolder = this.tempFolder.newFolder("sync1");
       this.target = _newFolder;
+      FileItem _wrap = FilesJre.wrap(this.target);
+      this.result = _wrap;
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -60,7 +66,7 @@ public abstract class CheckNodesToFilesTempalte {
     _commit.get();
     final Deferred<Success> _function = new Deferred<Success>() {
       public void get(final ValueCallback<Success> cb) {
-        FileSync.sync(CheckNodesToFilesTempalte.this.target, CheckNodesToFilesTempalte.this.source, cb);
+        FileSync.sync(CheckNodesToFilesTemplate.this.target, CheckNodesToFilesTemplate.this.source, cb);
       }
     };
     AsyncJre.<Success>waitFor(_function);

@@ -33,18 +33,13 @@ class MetadataImpl implements Metadata {
 	}
 	
 	override update(ItemMetadata itemMetadata) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		remove(itemMetadata.name)
+		
+		
 	}
 	
 	override remove(String name) {
-		var foundIdx = -1;
-		for (i:0..<items.size) {
-			val item = items.get(i)
-			
-			if (item.name == name) {
-				foundIdx = i
-			}
-		}
+		val foundIdx = indexOfChild(name)
 		
 		if (foundIdx == -1) {
 			throw new RuntimeException("Cannot remove child which is not defined: "+name);
@@ -55,7 +50,7 @@ class MetadataImpl implements Metadata {
 		this
 	}
 	
-	def toXml(ItemMetadata itemMetadata) {
+	private def toXml(ItemMetadata itemMetadata) {
 		val item = new ItemXml
 		item.name = itemMetadata.name
 		item.uri = itemMetadata.uri
@@ -64,5 +59,16 @@ class MetadataImpl implements Metadata {
 		item
 	}
 	
-	
+	private def indexOfChild(String name) {
+		var foundIdx = -1;
+		for (i:0..<items.size) {
+			val item = items.get(i)
+			
+			if (item.name == name) {
+				foundIdx = i
+			}
+		}
+		
+		foundIdx
+	} 
 }

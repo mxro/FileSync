@@ -58,11 +58,42 @@ public class MetadataImpl implements Metadata {
   }
   
   public Metadata update(final ItemMetadata itemMetadata) {
-    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+    String _name = itemMetadata.name();
+    return this.remove(_name);
   }
   
   public Metadata remove(final String name) {
     MetadataImpl _xblockexpression = null;
+    {
+      final int foundIdx = this.indexOfChild(name);
+      if ((foundIdx == (-1))) {
+        throw new RuntimeException(("Cannot remove child which is not defined: " + name));
+      }
+      this.items.remove(foundIdx);
+      _xblockexpression = this;
+    }
+    return _xblockexpression;
+  }
+  
+  private ItemXml toXml(final ItemMetadata itemMetadata) {
+    ItemXml _xblockexpression = null;
+    {
+      final ItemXml item = new ItemXml();
+      String _name = itemMetadata.name();
+      item.name = _name;
+      String _uri = itemMetadata.uri();
+      item.uri = _uri;
+      Date _lastModified = itemMetadata.lastModified();
+      item.lastModified = _lastModified;
+      String _hash = itemMetadata.hash();
+      item.hash = _hash;
+      _xblockexpression = item;
+    }
+    return _xblockexpression;
+  }
+  
+  private int indexOfChild(final String name) {
+    int _xblockexpression = (int) 0;
     {
       int foundIdx = (-1);
       int _size = this.items.size();
@@ -77,28 +108,7 @@ public class MetadataImpl implements Metadata {
           }
         }
       }
-      if ((foundIdx == (-1))) {
-        throw new RuntimeException(("Cannot remove child which is not defined: " + name));
-      }
-      this.items.remove(foundIdx);
-      _xblockexpression = this;
-    }
-    return _xblockexpression;
-  }
-  
-  public ItemXml toXml(final ItemMetadata itemMetadata) {
-    ItemXml _xblockexpression = null;
-    {
-      final ItemXml item = new ItemXml();
-      String _name = itemMetadata.name();
-      item.name = _name;
-      String _uri = itemMetadata.uri();
-      item.uri = _uri;
-      Date _lastModified = itemMetadata.lastModified();
-      item.lastModified = _lastModified;
-      String _hash = itemMetadata.hash();
-      item.hash = _hash;
-      _xblockexpression = item;
+      _xblockexpression = foundIdx;
     }
     return _xblockexpression;
   }

@@ -1,9 +1,12 @@
 package com.appjangle.filesync;
 
+import com.appjangle.filesync.internal.engine.SyncFolder;
 import com.appjangle.filesync.internal.engine.convert.ConverterCollection;
 import com.appjangle.filesync.internal.engine.convert.FileToTextNode;
 import com.appjangle.filesync.internal.engine.convert.FolderToNode;
 import de.mxro.async.callbacks.ValueCallback;
+import de.mxro.file.FileItem;
+import de.mxro.file.Jre.FilesJre;
 import de.mxro.fn.Success;
 import io.nextweb.Node;
 import java.io.File;
@@ -11,8 +14,10 @@ import java.io.File;
 @SuppressWarnings("all")
 public class FileSync {
   public static void sync(final File folder, final Node node, final ValueCallback<Success> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method wrap is undefined for the type FileSync");
+    FileItem _wrap = FilesJre.wrap(folder);
+    ConverterCollection _createDefaultConverter = FileSync.createDefaultConverter();
+    SyncFolder _syncFolder = new SyncFolder(_wrap, node, _createDefaultConverter);
+    _syncFolder.doIt(cb);
   }
   
   public static ConverterCollection createDefaultConverter() {

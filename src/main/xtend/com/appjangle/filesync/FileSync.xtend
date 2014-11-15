@@ -18,7 +18,6 @@ class FileSync {
 		
 	}
 	
-	
 	def static createDefaultConverter() {
 		
 		val coll = new ConverterCollection

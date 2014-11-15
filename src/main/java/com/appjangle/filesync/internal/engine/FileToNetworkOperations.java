@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.function.Consumer;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
 /**
@@ -71,6 +72,7 @@ public class FileToNetworkOperations {
       };
       Iterable<String> _filter = IterableExtensions.<String>filter(locallyAddedFiles, _function);
       locallyAddedFiles = _filter;
+      InputOutput.<String>println("HERE ");
       final Closure<List<List<NetworkOperation>>> _function_1 = new Closure<List<List<NetworkOperation>>>() {
         public void apply(final List<List<NetworkOperation>> res) {
           final List<NetworkOperation> ops = CollectionsUtils.<NetworkOperation>flatten(res);

@@ -40,7 +40,7 @@ class SyncFolder {
 
 				download(cb.embed [
 					
-					metadata.saveForFolder(folder)
+					
 					cb.onSuccess(Success.INSTANCE)
 					
 				])
@@ -55,7 +55,7 @@ class SyncFolder {
 	def download(ValueCallback<Success> cb) {
 		new NetworkToFileOperations(node, folder, metadata, converter).determineOps(cb.embed([ ops |
 			ops.execute(folder, metadata)
-			
+			metadata.saveForFolder(folder)
 			cb.onSuccess(Success.INSTANCE)
 		]))
 	}

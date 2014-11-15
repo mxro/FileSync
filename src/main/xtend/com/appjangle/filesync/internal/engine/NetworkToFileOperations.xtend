@@ -59,6 +59,8 @@ class NetworkToFileOperations {
 					[ res |
 						cb.onSuccess(CollectionsUtils.flatten(res))
 					]))
+			
+			println("here")
 					
 			remotelyAdded.deduceCreateOperations(agg.createCallback)
 			remotelyRemoved.deduceRemoveOperations(agg.createCallback)
@@ -147,7 +149,7 @@ class NetworkToFileOperations {
 	}
 
 	def determineRemotelyUpdatedNodes(NodeList children) {
-		val res = new ArrayList<Node>(0)
+		val res = new ArrayList<Node>(children.size)
 
 		for (node : children) {
 			// TODO: not yet supported, just update all

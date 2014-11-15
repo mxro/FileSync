@@ -20,6 +20,7 @@ import io.nextweb.promise.exceptions.ExceptionResult;
 import java.util.ArrayList;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
 /**
@@ -77,6 +78,7 @@ public class NetworkToFileOperations {
         };
         ValueCallback<List<List<FileOperation>>> _embed = Async.<List<List<FileOperation>>>embed(cb, _function_1);
         final Aggregator<List<FileOperation>> agg = Async.<List<FileOperation>>collect(3, _embed);
+        InputOutput.<String>println("here");
         ValueCallback<List<FileOperation>> _createCallback = agg.createCallback();
         NetworkToFileOperations.this.deduceCreateOperations(remotelyAdded, _createCallback);
         ValueCallback<List<FileOperation>> _createCallback_1 = agg.createCallback();
@@ -174,7 +176,8 @@ public class NetworkToFileOperations {
   public ArrayList<Node> determineRemotelyUpdatedNodes(final NodeList children) {
     ArrayList<Node> _xblockexpression = null;
     {
-      final ArrayList<Node> res = new ArrayList<Node>(0);
+      int _size = children.size();
+      final ArrayList<Node> res = new ArrayList<Node>(_size);
       for (final Node node : children) {
         ItemMetadata _get = this.metadata.get(node);
         boolean _notEquals = (!Objects.equal(_get, null));

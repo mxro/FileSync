@@ -1,6 +1,7 @@
 package com.appjangle.filesync.tests;
 
 import com.appjangle.filesync.tests.CheckUpdatesTemplate;
+import de.mxro.file.FileItem;
 import de.oehme.xtend.junit.JUnit;
 import io.nextweb.Link;
 import io.nextweb.Query;
@@ -22,11 +23,12 @@ public class TestHtmlFileUpdate extends CheckUpdatesTemplate {
   }
   
   protected void assertFiles() {
-    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+    FileItem _child = this.result.getChild("The Doc For.this.html");
+    String _text = _child.getText();
+    TestHtmlFileUpdate.<String, String>operator_doubleArrow(_text, "<p>Hello 1</p>");
   }
   
   protected void updateNodes() {
-    throw new UnsupportedOperationException("TODO: auto-generated method stub");
   }
   
   protected void assertFilesAfterUpdate() {

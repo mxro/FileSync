@@ -12,11 +12,11 @@ class TestHtmlFileUpdate extends CheckUpdatesTemplate {
 	}
 	
 	override protected assertFiles() {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		result.getChild("The Doc For.this.html").text => "<p>Hello 1</p>"
 	}
 	
 	override protected updateNodes() {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		
 	}
 	
 	override protected assertFilesAfterUpdate() {

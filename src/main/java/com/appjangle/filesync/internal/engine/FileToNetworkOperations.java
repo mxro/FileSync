@@ -164,18 +164,19 @@ public class FileToNetworkOperations {
           if (_exists) {
             String _plus = (item + " ");
             Date _lastModified = item.lastModified();
-            String _plus_1 = (_plus + _lastModified);
+            long _time = _lastModified.getTime();
+            String _plus_1 = (_plus + Long.valueOf(_time));
             String _plus_2 = (_plus_1 + " ");
             Date _lastModified_1 = fileMetadata.lastModified();
-            long _time = _lastModified_1.getTime();
-            String _plus_3 = (_plus_2 + Long.valueOf(_time));
+            long _time_1 = _lastModified_1.getTime();
+            String _plus_3 = (_plus_2 + Long.valueOf(_time_1));
             InputOutput.<String>println(_plus_3);
             Date _lastModified_2 = item.lastModified();
-            long _time_1 = _lastModified_2.getTime();
+            long _time_2 = _lastModified_2.getTime();
             Date _lastModified_3 = fileMetadata.lastModified();
-            long _time_2 = _lastModified_3.getTime();
-            boolean _greaterThan = (_time_1 > _time_2);
-            if (_greaterThan) {
+            long _time_3 = _lastModified_3.getTime();
+            boolean _lessThan = (_time_2 < _time_3);
+            if (_lessThan) {
               String _name_1 = item.getName();
               res.add(_name_1);
             }

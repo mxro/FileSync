@@ -125,8 +125,8 @@ class FileToNetworkOperations {
 			val item = folder.getChild(fileMetadata.name)
 
 			if (item.exists) {
-				println(item+" "+item.lastModified+" "+fileMetadata.lastModified.time)
-				if (item.lastModified.time > fileMetadata.lastModified.time) {
+				println(item+" "+item.lastModified.time+" "+fileMetadata.lastModified.time)
+				if (item.lastModified.time < fileMetadata.lastModified.time) {
 					res.add(item.name)
 				}
 			}

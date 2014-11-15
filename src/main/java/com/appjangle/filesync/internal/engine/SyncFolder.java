@@ -49,7 +49,14 @@ public class SyncFolder {
       public void apply(final List<NetworkOperation> ops) {
         final Closure<Success> _function = new Closure<Success>() {
           public void apply(final Success it) {
-            SyncFolder.this.download(cb);
+            final Closure<Success> _function = new Closure<Success>() {
+              public void apply(final Success it) {
+                SyncFolder.this.save(SyncFolder.this.metadata);
+                cb.onSuccess(Success.INSTANCE);
+              }
+            };
+            ValueCallback<Success> _embed = Async.<Success>embed(cb, _function);
+            SyncFolder.this.download(_embed);
           }
         };
         ValueCallback<Success> _embed = Async.<Success>embed(cb, _function);
@@ -58,6 +65,11 @@ public class SyncFolder {
     };
     ValueCallback<List<NetworkOperation>> _embed = Async.<List<NetworkOperation>>embed(cb, _function);
     _fileToNetworkOperations.determineOps(_embed);
+  }
+  
+  public Object save(final Metadata metadata) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field nkjkjnhk is undefined for the type SyncFolder");
   }
   
   public void download(final ValueCallback<Success> cb) {

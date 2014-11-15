@@ -35,13 +35,22 @@ class SyncFolder {
 		
 		new FileToNetworkOperations(node, folder, metadata, converter).determineOps(cb.embed [ ops |
 			ops.execute(node, cb.embed [ 
-				download(cb)
+				download(cb.embed [
+					
+					metadata.save
+					cb.onSuccess(Success.INSTANCE)
+					
+				])
 			])
 		])
 			
 			
 			
 		
+	}
+	
+	def save(Metadata metadata) {
+		nkjkjnhk
 	}
 	
 	def download(ValueCallback<Success> cb) {

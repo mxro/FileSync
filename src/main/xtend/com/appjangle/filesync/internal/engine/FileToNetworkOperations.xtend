@@ -125,7 +125,7 @@ class FileToNetworkOperations {
 			val itemNow = folder.getChild(fileMetadata.name)
 
 			if (itemNow.exists) {
-				println(itemNow+" now:"+itemNow.lastModified.time+" cache:"+fileMetadata.lastModified.time)
+				//println(itemNow+" now:"+itemNow.lastModified.time+" cache:"+fileMetadata.lastModified.time)
 				if (itemNow.lastModified.time > fileMetadata.lastModified.time) {
 					res.add(itemNow.name)
 				}

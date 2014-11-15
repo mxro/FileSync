@@ -43,7 +43,7 @@ public abstract class CheckUpdatesTemplate extends CheckNodesToFilesTemplate {
       };
       AsyncJre.<Success>waitFor(_function_1);
       this.step4_assertFilesAfterUpdate();
-      Thread.sleep(400);
+      Thread.sleep(2000);
       this.step5_updateFiles();
       final Deferred<Success> _function_2 = new Deferred<Success>() {
         public void get(final ValueCallback<Success> cb) {

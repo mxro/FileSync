@@ -35,7 +35,7 @@ abstract class CheckUpdatesTemplate extends CheckNodesToFilesTemplate {
 		
 		step4_assertFilesAfterUpdate
 		
-		Thread.sleep(400)
+		Thread.sleep(2000)
 		
 		step5_updateFiles
 		

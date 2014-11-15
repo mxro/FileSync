@@ -131,6 +131,7 @@ class ConverterCollection implements Converter {
 	}
 	
 	override removeFiles(FileItem folder, Metadata metadata, ItemMetadata item, ValueCallback<List<FileOperation>> cb) {
+		println('try it')
 		findConverter(item, cb.embed [ converter |
 			converter.removeFiles(folder, metadata, item, cb)
 		])

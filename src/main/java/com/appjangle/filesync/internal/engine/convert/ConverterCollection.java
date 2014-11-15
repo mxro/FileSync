@@ -14,6 +14,7 @@ import de.mxro.fn.Closure2;
 import io.nextweb.Node;
 import java.util.ArrayList;
 import java.util.List;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
 public class ConverterCollection implements Converter {
@@ -193,6 +194,7 @@ public class ConverterCollection implements Converter {
   }
   
   public void removeFiles(final FileItem folder, final Metadata metadata, final ItemMetadata item, final ValueCallback<List<FileOperation>> cb) {
+    InputOutput.<String>println("try it");
     final Closure<Converter> _function = new Closure<Converter>() {
       public void apply(final Converter converter) {
         converter.removeFiles(folder, metadata, item, cb);

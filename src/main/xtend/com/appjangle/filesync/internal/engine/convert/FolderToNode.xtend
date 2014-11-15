@@ -110,8 +110,10 @@ class FolderToNode implements Converter {
 		val folderName = item.name
 		
 		val ops = new LinkedList<FileOperation>
-		
+		println('schedule it')
 		ops.add([ctx|
+			
+			println("do it")
 			
 			ctx.folder.deleteFolder(folderName)
 			

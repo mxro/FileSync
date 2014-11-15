@@ -1,16 +1,19 @@
 package com.appjangle.filesync.tests
 
+import com.appjangle.filesync.FileSync
 import com.appjangle.jre.AppjangleJre
+import de.mxro.async.jre.AsyncJre
 import io.nextweb.Node
 import io.nextweb.Session
 import io.nextweb.common.LocalServer
 import java.io.File
+import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TemporaryFolder
 
-abstract class Tempalte {
+abstract class CheckFilesTempalte {
 	
 	LocalServer server
 	Session session
@@ -37,9 +40,23 @@ abstract class Tempalte {
 	
 	@Test
 	def void test() {
-		defineData()
+		defineData
+		session.commit.get
+
+		AsyncJre.waitFor [cb |
+			FileSync.sync(target, source, cb)
+		]
 		
+		assertFiles
 		
+	}
+	
+	
+	@After
+	def void tearDown() {
+		session.close.get
+
+		server.shutdown.get
 	}
 	
 }

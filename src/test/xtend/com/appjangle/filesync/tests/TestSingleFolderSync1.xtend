@@ -19,19 +19,11 @@ class TestSingleFolderSync1 {
 
 		data.append("A Folder")
 
-		session.commit.get
-
 		
-
-		AsyncJre.waitFor [cb |
-			FileSync.sync(testFolder, data.get, cb)
-		]
 
 		println ( FilesJre.wrap(testFolder).children )
 
-		session.close.get
-
-		server.shutdown.get
+		
 
 	}
 

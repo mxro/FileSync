@@ -120,7 +120,7 @@ class FileToTextNode implements Converter {
 						}
 						
 						override lastModified() {
-							new Date() // TODO replace with last modified if available from node !!
+							file.lastModified // TODO replace with last modified if available from node !!
 						}
 						
 						override uri() {

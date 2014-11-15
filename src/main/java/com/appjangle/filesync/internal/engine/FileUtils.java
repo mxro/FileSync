@@ -142,7 +142,8 @@ public class FileUtils {
         if (valid) {
           _or_7 = true;
         } else {
-          boolean _equals_7 = Objects.equal(Character.valueOf(c), " ");
+          char _charAt = " ".charAt(0);
+          boolean _equals_7 = (c == _charAt);
           _or_7 = _equals_7;
         }
         valid = _or_7;

@@ -76,7 +76,7 @@ class FileUtils {
 			valid = valid || (c == '_') || (c == '-') || (c == '.') || (c == '#') ||
 				(dirSeparators && ( (c == '/') || (c == '\\')));
 			valid = valid || (c == ' ');
-			valid = valid || (c == '\u0020')
+			valid = valid || (c == ' '.charAt(0));
 
 			println('['+c+']=>'+valid)
 

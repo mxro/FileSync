@@ -80,6 +80,7 @@ public class MetadataImpl implements Metadata {
       if ((foundIdx == (-1))) {
         throw new RuntimeException(("Cannot remove child which is not defined: " + name));
       }
+      this.items.remove(foundIdx);
       _xblockexpression = this;
     }
     return _xblockexpression;

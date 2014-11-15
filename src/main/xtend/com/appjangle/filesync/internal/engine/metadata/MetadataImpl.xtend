@@ -50,6 +50,8 @@ class MetadataImpl implements Metadata {
 			throw new RuntimeException("Cannot remove child which is not defined: "+name);
 		}
 		
+		items.remove(foundIdx)
+		
 		this
 	}
 	

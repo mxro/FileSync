@@ -25,11 +25,6 @@ public class TestSimpleNode extends CheckFilesTempalte {
     final List<FileItem> children = _wrap.getChildren();
     int _size = children.size();
     TestSimpleNode.<Integer, Integer>operator_doubleArrow(Integer.valueOf(_size), Integer.valueOf(2));
-    boolean _contains = children.contains(".filesync-meta");
-    TestSimpleNode.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_contains), Boolean.valueOf(true));
-    String _string = children.toString();
-    boolean _contains_1 = _string.contains("Folder");
-    TestSimpleNode.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_contains_1), Boolean.valueOf(true));
   }
   
   private static void assertArrayEquals(final Object[] expecteds, final Object[] actuals) {

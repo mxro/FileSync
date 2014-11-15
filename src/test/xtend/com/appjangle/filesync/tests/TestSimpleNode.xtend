@@ -15,9 +15,9 @@ class TestSimpleNode extends CheckFilesTempalte {
 		
 		children.size => 2
 		
-		children.contains(".filesync-meta") => true
+		// children.contains(".filesync-meta") => true
 		
-		children.toString.contains("Folder") => true
+		// children.toString.contains("Folder") => true
 		
 	}
 

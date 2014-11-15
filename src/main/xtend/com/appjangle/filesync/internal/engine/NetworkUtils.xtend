@@ -27,12 +27,19 @@ class NetworkUtils {
 				
 			};
 	
+		val opscbs = Async.collect(ops.size, cb.embed([
+				cb.onSuccess(Success.INSTANCE)
+			]))
+			
+	
 		for (NetworkOperation op : ops) {
 
 			val qries = op.apply(ctx)
 			
+			val opscbsitem = opscbs.createCallback
+			
 			val cbs = Async.collect(qries.size, cb.embed([
-				cb.onSuccess(Success.INSTANCE)
+				opscbsitem.onSuccess(Success.INSTANCE)
 			]))
 			
 			

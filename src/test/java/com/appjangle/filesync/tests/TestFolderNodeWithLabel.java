@@ -103,8 +103,8 @@ public class TestFolderNodeWithLabel extends CheckNodesToFilesTemplate {
     Assert.assertEquals(expected, actual);
   }
   
-  private static void assertEquals(final String arg0, final Object arg1, final Object arg2) {
-    Assert.assertEquals(arg0, arg1, arg2);
+  private static void assertEquals(final String message, final Object expected, final Object actual) {
+    Assert.assertEquals(message, expected, actual);
   }
   
   private static void assertEquals(final String message, final long expected, final long actual) {

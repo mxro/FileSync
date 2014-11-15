@@ -4,6 +4,7 @@ import de.oehme.xtend.junit.JUnit
 
 @JUnit
 class TestMultipleNodes  extends CheckNodesToFilesTemplate {
+	
 	protected override defineData() {
 		val html = source.append("<html></html>", "./html")
 		html.append("Html Document").append(session.link('https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel'))
@@ -19,11 +20,12 @@ class TestMultipleNodes  extends CheckNodesToFilesTemplate {
 		result.children.size => 4
 		
 		result.contains(".filesync-meta") => true
-		
-		
+
 		result.contains("Html Document.html") => true
 		
 		result.getChild("Html Document.html").text => "<html></html>"
+		
+		result.children.toString.contains("Folder") => true
 		
 	}
 }

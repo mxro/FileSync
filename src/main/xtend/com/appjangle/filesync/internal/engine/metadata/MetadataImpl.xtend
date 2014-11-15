@@ -27,7 +27,6 @@ class MetadataImpl implements Metadata {
 	}
 	
 	override add(ItemMetadata itemMetadata) {
-		
 		items.add(itemMetadata.toXml)
 		
 		this
@@ -38,7 +37,11 @@ class MetadataImpl implements Metadata {
 	}
 	
 	override remove(String name) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		val item = get(name)
+		
+		
+		
+		this
 	}
 	
 	def toXml(ItemMetadata itemMetadata) {

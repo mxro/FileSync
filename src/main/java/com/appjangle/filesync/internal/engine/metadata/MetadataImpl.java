@@ -61,7 +61,12 @@ public class MetadataImpl implements Metadata {
   }
   
   public Metadata remove(final String name) {
-    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+    MetadataImpl _xblockexpression = null;
+    {
+      final ItemMetadata item = this.get(name);
+      _xblockexpression = this;
+    }
+    return _xblockexpression;
   }
   
   public ItemXml toXml(final ItemMetadata itemMetadata) {

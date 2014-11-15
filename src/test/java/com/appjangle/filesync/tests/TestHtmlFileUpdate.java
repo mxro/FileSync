@@ -15,7 +15,7 @@ import org.junit.internal.ArrayComparisonFailure;
 public class TestHtmlFileUpdate extends CheckUpdatesTemplate {
   protected void defineData() {
     final Query html = this.source.append("<p>Hello 1</p>", "./html");
-    Query _append = html.append("The Doc For.this");
+    Query _append = html.append("doc");
     Link _link = this.session.link("https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel");
     _append.append(_link);
     Link _link_1 = this.session.link("https://admin1.linnk.it/types/v01/isHtmlValue");
@@ -23,7 +23,7 @@ public class TestHtmlFileUpdate extends CheckUpdatesTemplate {
   }
   
   protected void assertFiles() {
-    FileItem _child = this.result.getChild("The Doc For.this.html");
+    FileItem _child = this.result.getChild("doc.html");
     String _text = _child.getText();
     TestHtmlFileUpdate.<String, String>operator_doubleArrow(_text, "<p>Hello 1</p>");
   }
@@ -34,11 +34,12 @@ public class TestHtmlFileUpdate extends CheckUpdatesTemplate {
   }
   
   protected void assertFilesAfterUpdate() {
-    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+    FileItem _child = this.result.getChild("doc.html");
+    String _text = _child.getText();
+    TestHtmlFileUpdate.<String, String>operator_doubleArrow(_text, "<p>Hello 1 and Hello 2 are an amazing team.</p>");
   }
   
   protected void updateFiles() {
-    throw new UnsupportedOperationException("TODO: auto-generated method stub");
   }
   
   protected void assertNodesAfterUpdate() {

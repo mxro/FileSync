@@ -38,7 +38,7 @@ class SyncFolder {
 			ops.execute(node, cb.embed [ 
 				download(cb.embed [
 					
-					metadata.save
+					metadata.saveMetadata(folder)
 					cb.onSuccess(Success.INSTANCE)
 					
 				])
@@ -50,9 +50,7 @@ class SyncFolder {
 		
 	}
 	
-	def save(Metadata metadata) {
-		MetadataUtilsJre.saveToFile(metadata)
-	}
+	
 	
 	def download(ValueCallback<Success> cb) {
 		new NetworkToFileOperations(node, folder, metadata, converter).determineOps(cb.embed([ ops |

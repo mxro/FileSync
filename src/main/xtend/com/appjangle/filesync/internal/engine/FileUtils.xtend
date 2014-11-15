@@ -10,6 +10,10 @@ import com.appjangle.filesync.internal.engine.metadata.MetadataImpl
 
 class FileUtils {
 
+	def saveMetadata(Metadata metadata, FileItem forFolder) {
+		MetadataUtilsJre.saveToFile(metadata, forFolder.getChild(".filesync-meta").getChild("nodes.xml"))
+	}
+
 	def hasMetadata(FileItem forFolder) {
 
 		forFolder.assertFolder(".filesync-meta").getChild("nodes.xml").exists

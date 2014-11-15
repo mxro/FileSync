@@ -51,7 +51,7 @@ public class SyncFolder {
           public void apply(final Success it) {
             final Closure<Success> _function = new Closure<Success>() {
               public void apply(final Success it) {
-                SyncFolder.this.save(SyncFolder.this.metadata);
+                SyncFolder.this.fileUtils.saveMetadata(SyncFolder.this.metadata, SyncFolder.this.folder);
                 cb.onSuccess(Success.INSTANCE);
               }
             };
@@ -65,11 +65,6 @@ public class SyncFolder {
     };
     ValueCallback<List<NetworkOperation>> _embed = Async.<List<NetworkOperation>>embed(cb, _function);
     _fileToNetworkOperations.determineOps(_embed);
-  }
-  
-  public void save(final Metadata metadata) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nInvalid number of arguments. The method saveToFile(Metadata, FileItem) is not applicable for the arguments (Metadata)");
   }
   
   public void download(final ValueCallback<Success> cb) {

@@ -6,7 +6,7 @@ import de.mxro.async.Async
 import de.mxro.async.callbacks.ValueCallback
 import de.mxro.fn.Success
 import io.nextweb.Node
-import io.nextweb.promise.NextwebPromise
+import io.nextweb.Query
 import java.util.List
 
 import static extension de.mxro.async.Async.embed
@@ -46,13 +46,13 @@ class NetworkUtils {
 			for ( qry: qries) {
 				val itmcb = cbs.createCallback
 				
-				val safeQry = qry as NextwebPromise<Object>
+				val safeQry = qry as Query
 				
 				val res = onNode.session().promise(safeQry)
 				
 				res.catchExceptions([er | itmcb.onFailure(er.exception) ])
 
-				res.get([ Object succ | itmcb.onSuccess(Success.INSTANCE) ])
+				res.get([ succ | itmcb.onSuccess(Success.INSTANCE) ])
 				
 			}
 			

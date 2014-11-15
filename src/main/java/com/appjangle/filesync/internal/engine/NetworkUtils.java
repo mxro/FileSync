@@ -8,6 +8,7 @@ import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.fn.Closure;
 import de.mxro.fn.Success;
 import io.nextweb.Node;
+import io.nextweb.Query;
 import io.nextweb.Session;
 import io.nextweb.promise.Deferred;
 import io.nextweb.promise.NextwebPromise;
@@ -50,9 +51,9 @@ public class NetworkUtils {
         for (final Deferred<?> qry : qries) {
           {
             final ValueCallback<Success> itmcb = cbs.createCallback();
-            final NextwebPromise<Object> safeQry = ((NextwebPromise<Object>) qry);
+            final Query safeQry = ((Query) qry);
             Session _session = onNode.session();
-            final NextwebPromise<Object> res = _session.<Object>promise(safeQry);
+            final NextwebPromise<Node> res = _session.<Node>promise(safeQry);
             final ExceptionListener _function_2 = new ExceptionListener() {
               public void onFailure(final ExceptionResult er) {
                 Throwable _exception = er.exception();
@@ -60,8 +61,8 @@ public class NetworkUtils {
               }
             };
             res.catchExceptions(_function_2);
-            final Closure<Object> _function_3 = new Closure<Object>() {
-              public void apply(final Object succ) {
+            final Closure<Node> _function_3 = new Closure<Node>() {
+              public void apply(final Node succ) {
                 itmcb.onSuccess(Success.INSTANCE);
               }
             };

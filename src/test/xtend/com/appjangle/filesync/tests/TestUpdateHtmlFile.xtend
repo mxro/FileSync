@@ -5,7 +5,6 @@ import de.oehme.xtend.junit.JUnit
 @JUnit
 class TestUpdateHtmlFile extends CheckUpdatesTemplate {
 	
-	
 	override protected step1_defineData() {
 		val html = source.append("<p>Hello 1</p>", "./html")
 		html.append("doc").append(session.link('https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel'))
@@ -31,7 +30,5 @@ class TestUpdateHtmlFile extends CheckUpdatesTemplate {
 	override protected step6_assertNodesAfterUpdate() {
 		source.select("./html").get.value() => "And now for something different"
 	}
-	
-	
 	
 }

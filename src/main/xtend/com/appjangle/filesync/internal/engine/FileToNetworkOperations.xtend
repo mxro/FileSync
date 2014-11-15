@@ -60,8 +60,6 @@ class FileToNetworkOperations {
 			return true
 		]
 		
-		println("HERE ")
-		
 		val agg = Async.collect(3, Async.embed(cb, [res |
 			val ops = CollectionsUtils.flatten(res)
 			

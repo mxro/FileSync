@@ -11,7 +11,6 @@ import java.util.List;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.ExclusiveRange;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
 @SuppressWarnings("all")
@@ -38,26 +37,14 @@ public class MetadataImpl implements Metadata {
   }
   
   public ItemMetadata get(final Node forNode) {
-    ItemMetadata _xblockexpression = null;
-    {
-      InputOutput.<String>println("heresens");
-      final Function1<ItemMetadata, Boolean> _function = new Function1<ItemMetadata, Boolean>() {
-        public Boolean apply(final ItemMetadata it) {
-          boolean _xblockexpression = false;
-          {
-            String _uri = it.uri();
-            String _plus = ("uri " + _uri);
-            InputOutput.<String>println(_plus);
-            String _uri_1 = it.uri();
-            String _uri_2 = forNode.uri();
-            _xblockexpression = Objects.equal(_uri_1, _uri_2);
-          }
-          return Boolean.valueOf(_xblockexpression);
-        }
-      };
-      _xblockexpression = IterableExtensions.<ItemMetadata>findFirst(this.items, _function);
-    }
-    return _xblockexpression;
+    final Function1<ItemMetadata, Boolean> _function = new Function1<ItemMetadata, Boolean>() {
+      public Boolean apply(final ItemMetadata it) {
+        String _uri = it.uri();
+        String _uri_1 = forNode.uri();
+        return Boolean.valueOf(Objects.equal(_uri, _uri_1));
+      }
+    };
+    return IterableExtensions.<ItemMetadata>findFirst(this.items, _function);
   }
   
   public Metadata add(final ItemMetadata itemMetadata) {

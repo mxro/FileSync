@@ -23,8 +23,8 @@ class MetadataImpl implements Metadata {
 	}
 	
 	override get(Node forNode) {
-		println("heresens")
-		items.findFirst[ println("uri "+it.uri); it.uri == forNode.uri() ]
+		//println(items)
+		items.findFirst[  it.uri == forNode.uri() ]
 	}
 	
 	override add(ItemMetadata itemMetadata) {

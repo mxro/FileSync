@@ -51,6 +51,7 @@ class SyncFolder {
 		new NetworkToFileOperations(node, folder, metadata, converter).determineOps(cb.embed([ ops |
 			println('about to execute file ops')
 			ops.execute(folder, metadata)
+			println('fileops executed')
 			metadata.saveForFolder(folder)
 			cb.onSuccess(Success.INSTANCE)
 		]))

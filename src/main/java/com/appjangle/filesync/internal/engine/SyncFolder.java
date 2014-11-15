@@ -68,6 +68,7 @@ public class SyncFolder {
       public void apply(final List<FileOperation> ops) {
         InputOutput.<String>println("about to execute file ops");
         SyncFolder.this.fileUtils.execute(ops, SyncFolder.this.folder, SyncFolder.this.metadata);
+        InputOutput.<String>println("fileops executed");
         SyncFolder.this.fileUtils.saveForFolder(SyncFolder.this.metadata, SyncFolder.this.folder);
         cb.onSuccess(Success.INSTANCE);
       }

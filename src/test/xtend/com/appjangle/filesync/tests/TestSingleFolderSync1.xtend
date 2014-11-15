@@ -32,7 +32,7 @@ class TestSingleFolderSync1 {
 			FileSync.sync(testFolder, data.get, cb)
 		]
 
-		FilesJre.wrap(testFolder)
+		println ( FilesJre.wrap(testFolder).children )
 
 		session.close.get
 

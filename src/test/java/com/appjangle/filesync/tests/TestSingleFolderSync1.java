@@ -5,6 +5,7 @@ import com.appjangle.jre.AppjangleJre;
 import de.mxro.async.Deferred;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.async.jre.AsyncJre;
+import de.mxro.file.FileItem;
 import de.mxro.file.Jre.FilesJre;
 import de.mxro.fn.Success;
 import io.nextweb.Node;
@@ -13,6 +14,8 @@ import io.nextweb.Session;
 import io.nextweb.common.LocalServer;
 import io.nextweb.promise.NextwebPromise;
 import java.io.File;
+import java.util.List;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
@@ -38,7 +41,9 @@ public class TestSingleFolderSync1 {
       }
     };
     AsyncJre.<Success>waitFor(_function);
-    FilesJre.wrap(testFolder);
+    FileItem _wrap = FilesJre.wrap(testFolder);
+    List<FileItem> _children = _wrap.getChildren();
+    InputOutput.<List<FileItem>>println(_children);
     NextwebPromise<Success> _close = session.close();
     _close.get();
     NextwebPromise<Success> _shutdown = server.shutdown();

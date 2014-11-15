@@ -1,6 +1,8 @@
 package com.appjangle.filesync.tests
 
+import com.appjangle.filesync.FileSync
 import com.appjangle.jre.AppjangleJre
+import de.mxro.async.Async
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TemporaryFolder
@@ -22,6 +24,9 @@ class TestSingleFolderSync1 {
 		data.append("Just a node")
 
 		session.commit.get
+
+		FileSync.sync(folder.newFolder("sync1"), data.get, Async.wrap([]))
+
 
 		session.close.get
 

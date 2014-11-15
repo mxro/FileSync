@@ -56,8 +56,8 @@ class FolderToNode implements Converter {
 			[ ctx |
 				
 				metadata.remove(cachedFile.name)
-				println('remvoe '+address)
-				newArrayList(ctx.parent.removeSafe(ctx.session.link(address)))
+				//println('remvoe '+address)
+				newArrayList(ctx.parent.remove(ctx.session.link(address)))
 			])
 
 		cb.onSuccess(ops)

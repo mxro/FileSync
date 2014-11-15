@@ -19,6 +19,7 @@ class TestSimpleNode extends CheckFilesTempalte {
 		
 		// children.toString.contains("Folder") => true
 		
+		println("donnit")
 	}
 
 }

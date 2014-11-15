@@ -5,6 +5,7 @@ import de.mxro.file.FileItem;
 import de.mxro.file.Jre.FilesJre;
 import de.oehme.xtend.junit.JUnit;
 import java.util.List;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
 import org.hamcrest.Matcher;
 import org.junit.Assert;
@@ -25,6 +26,7 @@ public class TestSimpleNode extends CheckFilesTempalte {
     final List<FileItem> children = _wrap.getChildren();
     int _size = children.size();
     TestSimpleNode.<Integer, Integer>operator_doubleArrow(Integer.valueOf(_size), Integer.valueOf(2));
+    InputOutput.<String>println("donnit");
   }
   
   private static void assertArrayEquals(final Object[] expecteds, final Object[] actuals) {

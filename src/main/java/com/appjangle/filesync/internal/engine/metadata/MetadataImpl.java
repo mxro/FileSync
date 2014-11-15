@@ -55,12 +55,8 @@ public class MetadataImpl implements Metadata {
   }
   
   public Metadata remove(final String name) {
-    MetadataImpl _xblockexpression = null;
-    {
-      final ItemMetadata item = this.get(name);
-      _xblockexpression = this;
-    }
-    return _xblockexpression;
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method re is undefined for the type MetadataImpl");
   }
   
   public ItemXml toXml(final ItemMetadata itemMetadata) {

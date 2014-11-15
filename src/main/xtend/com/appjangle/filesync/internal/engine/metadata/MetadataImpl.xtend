@@ -39,7 +39,7 @@ class MetadataImpl implements Metadata {
 	override remove(String name) {
 		val item = get(name)
 		
-		
+		items.re
 		
 		this
 	}

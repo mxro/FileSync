@@ -17,7 +17,11 @@ class TestHtmlNode extends CheckNodesToFilesTemplate {
 		
 		result.contains(".filesync-meta") => true
 		
+		println(result.children)
+		
 		result.contains("Html Document.html") => true
+		
+		result.getChild("Html Document.html").text => "<html></html>"
 		
 	}
 	

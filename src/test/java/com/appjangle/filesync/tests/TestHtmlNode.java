@@ -6,6 +6,7 @@ import de.oehme.xtend.junit.JUnit;
 import io.nextweb.Link;
 import io.nextweb.Query;
 import java.util.List;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
 import org.hamcrest.Matcher;
 import org.junit.Assert;
@@ -29,8 +30,13 @@ public class TestHtmlNode extends CheckNodesToFilesTemplate {
     TestHtmlNode.<Integer, Integer>operator_doubleArrow(Integer.valueOf(_size), Integer.valueOf(2));
     boolean _contains = this.result.contains(".filesync-meta");
     TestHtmlNode.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_contains), Boolean.valueOf(true));
+    List<FileItem> _children_1 = this.result.getChildren();
+    InputOutput.<List<FileItem>>println(_children_1);
     boolean _contains_1 = this.result.contains("Html Document.html");
     TestHtmlNode.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_contains_1), Boolean.valueOf(true));
+    FileItem _child = this.result.getChild("Html Document.html");
+    String _text = _child.getText();
+    TestHtmlNode.<String, String>operator_doubleArrow(_text, "<html></html>");
   }
   
   private static void assertArrayEquals(final Object[] expecteds, final Object[] actuals) {

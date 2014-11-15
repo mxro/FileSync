@@ -99,6 +99,8 @@ public class MetadataImpl implements Metadata {
       item.lastModified = _lastModified;
       String _hash = itemMetadata.hash();
       item.hash = _hash;
+      String _converter = itemMetadata.converter();
+      item.converter = _converter;
       _xblockexpression = item;
     }
     return _xblockexpression;

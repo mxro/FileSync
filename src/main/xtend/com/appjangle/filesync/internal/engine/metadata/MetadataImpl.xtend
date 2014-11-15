@@ -63,6 +63,7 @@ class MetadataImpl implements Metadata {
 		item.uri = itemMetadata.uri
 		item.lastModified =itemMetadata.lastModified
 		item.hash = itemMetadata.hash
+		item.converter = itemMetadata.converter
 		item
 	}
 	

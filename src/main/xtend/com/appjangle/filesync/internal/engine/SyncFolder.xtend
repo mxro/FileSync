@@ -24,9 +24,10 @@ class SyncFolder {
 	var Metadata metadata 
 
 	def doIt(ValueCallback<Success> cb) {
-		
+		println('here')
 		if (!folder.hasMetadata) {
 			metadata = folder.assertMetadata
+			println ('here')
 			download(cb)
 			return;
 		}

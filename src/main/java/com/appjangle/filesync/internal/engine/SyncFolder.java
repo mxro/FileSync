@@ -16,6 +16,7 @@ import de.mxro.fn.Success;
 import io.nextweb.Node;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.Extension;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
 public class SyncFolder {
@@ -34,11 +35,13 @@ public class SyncFolder {
   private Metadata metadata;
   
   public void doIt(final ValueCallback<Success> cb) {
+    InputOutput.<String>println("here");
     boolean _hasMetadata = this.fileUtils.hasMetadata(this.folder);
     boolean _not = (!_hasMetadata);
     if (_not) {
       Metadata _assertMetadata = this.fileUtils.assertMetadata(this.folder);
       this.metadata = _assertMetadata;
+      InputOutput.<String>println("here");
       this.download(cb);
       return;
     }

@@ -155,6 +155,8 @@ class FileToTextNode implements Converter {
 		
 		val ops = new LinkedList<FileOperation>
 		
+		println("here!")
+		
 		ops.add([ctx|
 			
 			val file = ctx.folder.getChild(fileName)

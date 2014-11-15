@@ -30,6 +30,8 @@ public abstract class CheckUpdatesTemplate extends CheckNodesToFilesTemplate {
     AsyncJre.<Success>waitFor(_function);
     this.assertFiles();
     this.updateNodes();
+    NextwebPromise<Success> _commit_1 = this.session.commit();
+    _commit_1.get();
     final Deferred<Success> _function_1 = new Deferred<Success>() {
       public void get(final ValueCallback<Success> cb) {
         FileSync.sync(CheckUpdatesTemplate.this.target, CheckUpdatesTemplate.this.source, cb);

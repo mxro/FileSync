@@ -29,6 +29,8 @@ public class TestHtmlFileUpdate extends CheckUpdatesTemplate {
   }
   
   protected void updateNodes() {
+    Query _select = this.source.select("./html");
+    _select.setValue("<p>Hello 1 and Hello 2 are an amazing team.</p>");
   }
   
   protected void assertFilesAfterUpdate() {

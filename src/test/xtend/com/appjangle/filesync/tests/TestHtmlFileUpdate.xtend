@@ -16,7 +16,7 @@ class TestHtmlFileUpdate extends CheckUpdatesTemplate {
 	}
 	
 	override protected updateNodes() {
-		
+		source.select("./html").setValue("<p>Hello 1 and Hello 2 are an amazing team.</p>")
 	}
 	
 	override protected assertFilesAfterUpdate() {

@@ -197,6 +197,7 @@ public class ConverterCollection implements Converter {
     InputOutput.<String>println("try it");
     final Closure<Converter> _function = new Closure<Converter>() {
       public void apply(final Converter converter) {
+        InputOutput.<String>println("found conv");
         converter.removeFiles(folder, metadata, item, cb);
       }
     };

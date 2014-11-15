@@ -21,6 +21,8 @@ class MetadataUtilsJre {
 
 		val NodesXml nodesXml = xstream.fromXML(file.text) as NodesXml
 
+		//println(file.text)
+
 		nodesXml.toMetadata
 
 	}

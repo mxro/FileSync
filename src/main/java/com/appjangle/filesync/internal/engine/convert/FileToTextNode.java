@@ -34,6 +34,7 @@ import java.util.List;
 import mx.gwtutils.MxroGWTUtils;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Extension;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
 public class FileToTextNode implements Converter {
@@ -47,6 +48,7 @@ public class FileToTextNode implements Converter {
   }
   
   public void worksOn(final Node node, final ValueCallback<Boolean> cb) {
+    InputOutput.<String>println(("testin " + node));
     final List<String> textNodeTypes = Collections.<String>unmodifiableList(CollectionLiterals.<String>newArrayList("https://admin1.linnk.it/types/v01/isHtmlValue"));
     int _size = textNodeTypes.size();
     final Closure<List<Boolean>> _function = new Closure<List<Boolean>>() {

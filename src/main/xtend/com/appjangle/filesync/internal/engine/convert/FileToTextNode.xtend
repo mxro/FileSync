@@ -31,8 +31,7 @@ class FileToTextNode implements Converter {
 
 	override worksOn(Node node, ValueCallback<Boolean> cb) {
 
-		// TODO change so that it applies only to text nodes, otherwise use a converter which converts nodes into folders
-		
+		println ("testin "+node)
 		val textNodeTypes = #["https://admin1.linnk.it/types/v01/isHtmlValue"]
 		
 		

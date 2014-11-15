@@ -27,6 +27,7 @@ import java.util.List;
 import mx.gwtutils.MxroGWTUtils;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Extension;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
 public class FolderToNode implements Converter {
@@ -72,11 +73,12 @@ public class FolderToNode implements Converter {
         {
           String _name = cachedFile.name();
           metadata.remove(_name);
+          InputOutput.<String>println(("remvoe " + address));
           Node _parent = ctx.parent();
           Session _session = ctx.session();
           Link _link = _session.link(address);
-          NextwebPromise<Success> _remove = _parent.remove(_link);
-          _xblockexpression = CollectionLiterals.<Deferred<?>>newArrayList(_remove);
+          NextwebPromise<Success> _removeSafe = _parent.removeSafe(_link);
+          _xblockexpression = CollectionLiterals.<Deferred<?>>newArrayList(_removeSafe);
         }
         return _xblockexpression;
       }

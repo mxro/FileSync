@@ -19,12 +19,12 @@ class MetadataUtilsJre {
 	
 		val NodesXml nodesXml = xstream.fromXML(file.text) as NodesXml
 
-		readFromNodesXml(nodesMetadata)
+		nodesXml.toMetadata
 
 	}
 	
 	
-	def static Metadata readFromNodesXml(NodesXml nodesXml) {
+	def static Metadata toMetadata(NodesXml nodesXml) {
 		
 	}
 

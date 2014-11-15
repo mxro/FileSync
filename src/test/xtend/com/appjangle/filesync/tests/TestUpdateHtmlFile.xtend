@@ -3,7 +3,7 @@ package com.appjangle.filesync.tests
 import de.oehme.xtend.junit.JUnit
 
 @JUnit
-class TestHtmlFileUpdate extends CheckUpdatesTemplate {
+class TestUpdateHtmlFile extends CheckUpdatesTemplate {
 	
 	
 	override protected step1_defineData() {

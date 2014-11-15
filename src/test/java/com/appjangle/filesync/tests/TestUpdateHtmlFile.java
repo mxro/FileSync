@@ -13,7 +13,7 @@ import org.junit.internal.ArrayComparisonFailure;
 
 @JUnit
 @SuppressWarnings("all")
-public class TestHtmlFileUpdate extends CheckUpdatesTemplate {
+public class TestUpdateHtmlFile extends CheckUpdatesTemplate {
   protected void step1_defineData() {
     final Query html = this.source.append("<p>Hello 1</p>", "./html");
     Query _append = html.append("doc");
@@ -26,7 +26,7 @@ public class TestHtmlFileUpdate extends CheckUpdatesTemplate {
   protected void step2_assertFiles() {
     FileItem _child = this.result.getChild("doc.html");
     String _text = _child.getText();
-    TestHtmlFileUpdate.<String, String>operator_doubleArrow(_text, "<p>Hello 1</p>");
+    TestUpdateHtmlFile.<String, String>operator_doubleArrow(_text, "<p>Hello 1</p>");
   }
   
   protected void step3_updateNodes() {
@@ -37,7 +37,7 @@ public class TestHtmlFileUpdate extends CheckUpdatesTemplate {
   protected void step4_assertFilesAfterUpdate() {
     FileItem _child = this.result.getChild("doc.html");
     String _text = _child.getText();
-    TestHtmlFileUpdate.<String, String>operator_doubleArrow(_text, "<p>Hello 1 and Hello 2 are an amazing team.</p>");
+    TestUpdateHtmlFile.<String, String>operator_doubleArrow(_text, "<p>Hello 1 and Hello 2 are an amazing team.</p>");
   }
   
   protected void step5_updateFiles() {
@@ -49,7 +49,7 @@ public class TestHtmlFileUpdate extends CheckUpdatesTemplate {
     Query _select = this.source.select("./html");
     Node _get = _select.get();
     Object _value = _get.value();
-    TestHtmlFileUpdate.<Object, String>operator_doubleArrow(_value, "And now for something different");
+    TestUpdateHtmlFile.<Object, String>operator_doubleArrow(_value, "And now for something different");
   }
   
   private static void assertArrayEquals(final Object[] expecteds, final Object[] actuals) {

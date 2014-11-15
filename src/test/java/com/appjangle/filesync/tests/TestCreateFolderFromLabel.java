@@ -13,33 +13,22 @@ import org.junit.internal.ArrayComparisonFailure;
 
 @JUnit
 @SuppressWarnings("all")
-public class TestMultipleNodes extends CheckNodesToFilesTemplate {
+public class TestCreateFolderFromLabel extends CheckNodesToFilesTemplate {
   protected void step1_defineData() {
-    final Query html = this.source.append("<html></html>", "./html");
-    Query _append = html.append("Html Document");
+    Query _append = this.source.append("No value", "./value");
+    Query _append_1 = _append.append("Labelled Node");
     Link _link = this.session.link("https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel");
-    _append.append(_link);
-    Link _link_1 = this.session.link("https://admin1.linnk.it/types/v01/isHtmlValue");
-    html.append(_link_1);
-    this.source.append("Folder 1");
-    this.source.append("Folder 2");
+    _append_1.append(_link);
   }
   
   protected void step2_assertFiles() {
     List<FileItem> _children = this.result.getChildren();
     int _size = _children.size();
-    TestMultipleNodes.<Integer, Integer>operator_doubleArrow(Integer.valueOf(_size), Integer.valueOf(4));
+    TestCreateFolderFromLabel.<Integer, Integer>operator_doubleArrow(Integer.valueOf(_size), Integer.valueOf(2));
     boolean _contains = this.result.contains(".filesync-meta");
-    TestMultipleNodes.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_contains), Boolean.valueOf(true));
-    boolean _contains_1 = this.result.contains("Html Document.html");
-    TestMultipleNodes.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_contains_1), Boolean.valueOf(true));
-    FileItem _child = this.result.getChild("Html Document.html");
-    String _text = _child.getText();
-    TestMultipleNodes.<String, String>operator_doubleArrow(_text, "<html></html>");
-    List<FileItem> _children_1 = this.result.getChildren();
-    String _string = _children_1.toString();
-    boolean _contains_2 = _string.contains("Folder");
-    TestMultipleNodes.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_contains_2), Boolean.valueOf(true));
+    TestCreateFolderFromLabel.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_contains), Boolean.valueOf(true));
+    boolean _contains_1 = this.result.contains("Labelled Node");
+    TestCreateFolderFromLabel.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_contains_1), Boolean.valueOf(true));
   }
   
   private static void assertArrayEquals(final Object[] expecteds, final Object[] actuals) {

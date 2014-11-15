@@ -3,7 +3,7 @@ package com.appjangle.filesync.tests
 import de.oehme.xtend.junit.JUnit
 
 @JUnit
-class TestMultipleNodes  extends CheckNodesToFilesTemplate {
+class TestCreateMultipleNodes  extends CheckNodesToFilesTemplate {
 	
 	protected override step1_defineData() {
 		val html = source.append("<html></html>", "./html")

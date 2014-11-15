@@ -126,7 +126,7 @@ class FileToNetworkOperations {
 
 			if (item.exists) {
 				println(item+" "+item.lastModified.time+" "+fileMetadata.lastModified.time)
-				if (item.lastModified.time < fileMetadata.lastModified.time) {
+				if (item.lastModified.time > fileMetadata.lastModified.time) {
 					res.add(item.name)
 				}
 			}

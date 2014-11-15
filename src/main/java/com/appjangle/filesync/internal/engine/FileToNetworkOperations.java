@@ -175,8 +175,8 @@ public class FileToNetworkOperations {
             long _time_2 = _lastModified_2.getTime();
             Date _lastModified_3 = fileMetadata.lastModified();
             long _time_3 = _lastModified_3.getTime();
-            boolean _lessThan = (_time_2 < _time_3);
-            if (_lessThan) {
+            boolean _greaterThan = (_time_2 > _time_3);
+            if (_greaterThan) {
               String _name_1 = item.getName();
               res.add(_name_1);
             }

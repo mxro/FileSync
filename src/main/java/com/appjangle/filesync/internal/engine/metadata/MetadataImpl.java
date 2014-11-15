@@ -6,6 +6,7 @@ import com.appjangle.filesync.internal.engine.metadata.v01.ItemXml;
 import com.google.common.base.Objects;
 import io.nextweb.Node;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
@@ -49,6 +50,14 @@ public class MetadataImpl implements Metadata {
     MetadataImpl _xblockexpression = null;
     {
       final ItemXml item = new ItemXml();
+      String _name = itemMetadata.name();
+      item.name = _name;
+      String _uri = itemMetadata.uri();
+      item.uri = _uri;
+      Date _lastModified = itemMetadata.lastModified();
+      item.lastModified = _lastModified;
+      String _hash = itemMetadata.hash();
+      item.hash = _hash;
       this.items.add(item);
       _xblockexpression = this;
     }

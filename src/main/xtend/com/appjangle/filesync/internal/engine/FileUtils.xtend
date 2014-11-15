@@ -52,7 +52,6 @@ class FileUtils {
 			op.apply(ctx)
 
 		}
-
 	}
 
 	/**

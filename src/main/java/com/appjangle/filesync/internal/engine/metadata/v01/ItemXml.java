@@ -1,26 +1,26 @@
 package com.appjangle.filesync.internal.engine.metadata.v01;
 
-import org.eclipse.xtend.lib.Data;
+import org.eclipse.xtend.lib.annotations.Data;
 import org.eclipse.xtext.xbase.lib.Pure;
-import org.eclipse.xtext.xbase.lib.util.ToStringHelper;
+import org.eclipse.xtext.xbase.lib.util.ToStringBuilder;
 
 @Data
 @SuppressWarnings("all")
 public class ItemXml {
-  private final String _name;
+  private final String name;
   
-  private final String _uri;
+  private final String uri;
   
-  private final String _hash;
+  private final String hash;
   
-  private final String _converter;
+  private final String converter;
   
   public ItemXml(final String name, final String uri, final String hash, final String converter) {
     super();
-    this._name = name;
-    this._uri = uri;
-    this._hash = hash;
-    this._converter = converter;
+    this.name = name;
+    this.uri = uri;
+    this.hash = hash;
+    this.converter = converter;
   }
   
   @Override
@@ -28,10 +28,10 @@ public class ItemXml {
   public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = prime * result + ((this._name== null) ? 0 : this._name.hashCode());
-    result = prime * result + ((this._uri== null) ? 0 : this._uri.hashCode());
-    result = prime * result + ((this._hash== null) ? 0 : this._hash.hashCode());
-    result = prime * result + ((this._converter== null) ? 0 : this._converter.hashCode());
+    result = prime * result + ((this.name== null) ? 0 : this.name.hashCode());
+    result = prime * result + ((this.uri== null) ? 0 : this.uri.hashCode());
+    result = prime * result + ((this.hash== null) ? 0 : this.hash.hashCode());
+    result = prime * result + ((this.converter== null) ? 0 : this.converter.hashCode());
     return result;
   }
   
@@ -45,25 +45,25 @@ public class ItemXml {
     if (getClass() != obj.getClass())
       return false;
     ItemXml other = (ItemXml) obj;
-    if (this._name == null) {
-      if (other._name != null)
+    if (this.name == null) {
+      if (other.name != null)
         return false;
-    } else if (!this._name.equals(other._name))
+    } else if (!this.name.equals(other.name))
       return false;
-    if (this._uri == null) {
-      if (other._uri != null)
+    if (this.uri == null) {
+      if (other.uri != null)
         return false;
-    } else if (!this._uri.equals(other._uri))
+    } else if (!this.uri.equals(other.uri))
       return false;
-    if (this._hash == null) {
-      if (other._hash != null)
+    if (this.hash == null) {
+      if (other.hash != null)
         return false;
-    } else if (!this._hash.equals(other._hash))
+    } else if (!this.hash.equals(other.hash))
       return false;
-    if (this._converter == null) {
-      if (other._converter != null)
+    if (this.converter == null) {
+      if (other.converter != null)
         return false;
-    } else if (!this._converter.equals(other._converter))
+    } else if (!this.converter.equals(other.converter))
       return false;
     return true;
   }
@@ -71,27 +71,31 @@ public class ItemXml {
   @Override
   @Pure
   public String toString() {
-    String result = new ToStringHelper().toString(this);
-    return result;
+    ToStringBuilder b = new ToStringBuilder(this);
+    b.add("name", this.name);
+    b.add("uri", this.uri);
+    b.add("hash", this.hash);
+    b.add("converter", this.converter);
+    return b.toString();
   }
   
   @Pure
   public String getName() {
-    return this._name;
+    return this.name;
   }
   
   @Pure
   public String getUri() {
-    return this._uri;
+    return this.uri;
   }
   
   @Pure
   public String getHash() {
-    return this._hash;
+    return this.hash;
   }
   
   @Pure
   public String getConverter() {
-    return this._converter;
+    return this.converter;
   }
 }

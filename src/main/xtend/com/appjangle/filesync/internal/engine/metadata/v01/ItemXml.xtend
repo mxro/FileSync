@@ -1,6 +1,6 @@
 package com.appjangle.filesync.internal.engine.metadata.v01
 
-@Data
+@org.eclipse.xtend.lib.annotations.Data
 class ItemXml  {
 	
 	

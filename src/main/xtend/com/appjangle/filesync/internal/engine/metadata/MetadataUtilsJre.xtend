@@ -50,6 +50,8 @@ class MetadataUtilsJre {
 		
 		file.text = xstream.toXML(nodesXml)
 		
+		println("Load!"+file.text)
+		
 	}
 
 	def static NodesXml toNodesXml(Metadata metadata) {

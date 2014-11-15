@@ -9,6 +9,7 @@ import com.thoughtworks.xstream.XStream;
 import de.mxro.file.FileItem;
 import java.util.Date;
 import java.util.List;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
 public class MetadataUtilsJre {
@@ -51,6 +52,9 @@ public class MetadataUtilsJre {
     final NodesXml nodesXml = MetadataUtilsJre.toNodesXml(metadata);
     String _xML = xstream.toXML(nodesXml);
     file.setText(_xML);
+    String _text = file.getText();
+    String _plus = ("Load!" + _text);
+    InputOutput.<String>println(_plus);
   }
   
   public static NodesXml toNodesXml(final Metadata metadata) {

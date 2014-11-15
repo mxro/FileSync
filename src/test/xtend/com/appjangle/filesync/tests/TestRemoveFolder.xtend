@@ -1,5 +1,6 @@
 package com.appjangle.filesync.tests
 
+import de.mxro.async.jre.AsyncJre
 import de.oehme.xtend.junit.JUnit
 
 @JUnit
@@ -29,7 +30,13 @@ class TestRemoveFolder extends CheckUpdatesTemplate {
 	}
 	
 	override protected step6_assertNodesAfterUpdate() {
-		source.select("./html").get.value() => "And now for something different"
+		AsyncJre.waitFor([cb |
+			val qry = source.select("./folder2")
+			
+			qry.catchExceptions(er|cb.onFailure(er.exception))
+			
+			qry.get([ cb.onFailure(new Exception("Node should have been removed.")) ])
+		])
 	}
 	
 }

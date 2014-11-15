@@ -1,10 +1,16 @@
 package com.appjangle.filesync.tests;
 
 import com.appjangle.filesync.tests.CheckUpdatesTemplate;
+import de.mxro.async.Deferred;
+import de.mxro.async.callbacks.ValueCallback;
+import de.mxro.async.jre.AsyncJre;
 import de.mxro.file.FileItem;
+import de.mxro.fn.Closure;
 import de.oehme.xtend.junit.JUnit;
 import io.nextweb.Node;
 import io.nextweb.Query;
+import io.nextweb.promise.exceptions.ExceptionListener;
+import io.nextweb.promise.exceptions.ExceptionResult;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
 import org.hamcrest.Matcher;
@@ -45,10 +51,26 @@ public class TestRemoveFolder extends CheckUpdatesTemplate {
   }
   
   protected void step6_assertNodesAfterUpdate() {
-    Query _select = this.source.select("./html");
-    Node _get = _select.get();
-    Object _value = _get.value();
-    TestRemoveFolder.<Object, String>operator_doubleArrow(_value, "And now for something different");
+    final Deferred<Object> _function = new Deferred<Object>() {
+      public void get(final ValueCallback<Object> cb) {
+        final Query qry = TestRemoveFolder.this.source.select("./folder2");
+        final ExceptionListener _function = new ExceptionListener() {
+          public void onFailure(final ExceptionResult er) {
+            Throwable _exception = er.exception();
+            cb.onFailure(_exception);
+          }
+        };
+        qry.catchExceptions(_function);
+        final Closure<Node> _function_1 = new Closure<Node>() {
+          public void apply(final Node it) {
+            Exception _exception = new Exception("Node should have been removed.");
+            cb.onFailure(_exception);
+          }
+        };
+        qry.get(_function_1);
+      }
+    };
+    AsyncJre.<Object>waitFor(_function);
   }
   
   private static void assertArrayEquals(final Object[] expecteds, final Object[] actuals) {

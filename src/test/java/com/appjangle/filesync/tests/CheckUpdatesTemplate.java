@@ -7,6 +7,7 @@ import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.async.jre.AsyncJre;
 import de.mxro.fn.Success;
 import io.nextweb.promise.NextwebPromise;
+import org.junit.Test;
 
 @SuppressWarnings("all")
 public abstract class CheckUpdatesTemplate extends CheckNodesToFilesTemplate {
@@ -18,6 +19,7 @@ public abstract class CheckUpdatesTemplate extends CheckNodesToFilesTemplate {
   
   protected abstract void assertNodesAfterUpdate();
   
+  @Test
   public void test() {
     this.defineData();
     NextwebPromise<Success> _commit = this.session.commit();

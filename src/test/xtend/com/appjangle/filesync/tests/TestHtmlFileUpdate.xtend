@@ -5,6 +5,7 @@ import de.oehme.xtend.junit.JUnit
 @JUnit
 class TestHtmlFileUpdate extends CheckUpdatesTemplate {
 	
+	
 	override protected defineData() {
 		val html = source.append("<p>Hello 1</p>", "./html")
 		html.append("doc").append(session.link('https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel'))

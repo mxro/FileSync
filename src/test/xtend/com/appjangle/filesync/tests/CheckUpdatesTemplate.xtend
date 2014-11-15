@@ -2,6 +2,7 @@ package com.appjangle.filesync.tests
 
 import com.appjangle.filesync.FileSync
 import de.mxro.async.jre.AsyncJre
+import org.junit.Test
 
 abstract class CheckUpdatesTemplate extends CheckNodesToFilesTemplate {
 	
@@ -13,6 +14,7 @@ abstract class CheckUpdatesTemplate extends CheckNodesToFilesTemplate {
 	
 	protected abstract def void assertNodesAfterUpdate()
 	
+	@Test
 	override test() {
 		defineData
 		session.commit.get

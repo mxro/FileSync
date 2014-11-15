@@ -33,6 +33,7 @@ import java.util.List;
 import mx.gwtutils.MxroGWTUtils;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Extension;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
 public class FileToTextNode implements Converter {
@@ -190,7 +191,15 @@ public class FileToTextNode implements Converter {
         String _text = file.getText();
         boolean _notEquals = (!Objects.equal(_text, content));
         if (_notEquals) {
+          Date _lastModified = file.lastModified();
+          long _time = _lastModified.getTime();
+          String _plus = ("before " + Long.valueOf(_time));
+          InputOutput.<String>println(_plus);
           file.setText(content);
+          Date _lastModified_1 = file.lastModified();
+          long _time_1 = _lastModified_1.getTime();
+          String _plus_1 = ("after  " + Long.valueOf(_time_1));
+          InputOutput.<String>println(_plus_1);
           Metadata _metadata = ctx.metadata();
           _metadata.update(new ItemMetadata() {
             public String name() {

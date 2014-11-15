@@ -1,7 +1,9 @@
 package com.appjangle.filesync.tests
 
 import de.mxro.file.Jre.FilesJre
+import de.oehme.xtend.junit.JUnit
 
+@JUnit
 class TestSimpleNode extends CheckFilesTempalte {
 
 	override defineData() {
@@ -13,7 +15,6 @@ class TestSimpleNode extends CheckFilesTempalte {
 		
 		assertThat(children.size(), 2)
 		
-		 
 	}
 
 }

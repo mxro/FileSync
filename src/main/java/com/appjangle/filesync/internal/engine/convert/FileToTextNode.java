@@ -33,6 +33,7 @@ import java.util.List;
 import mx.gwtutils.MxroGWTUtils;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Extension;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
 public class FileToTextNode implements Converter {
@@ -119,6 +120,7 @@ public class FileToTextNode implements Converter {
       public List<Deferred<?>> apply(final NetworkOperationContext ctx) {
         ArrayList<Deferred<?>> _xblockexpression = null;
         {
+          InputOutput.<String>println("EXECUTE REMOVE");
           String _name = cachedFile.name();
           metadata.remove(_name);
           Node _parent = ctx.parent();
@@ -232,6 +234,7 @@ public class FileToTextNode implements Converter {
     final LinkedList<FileOperation> ops = new LinkedList<FileOperation>();
     final FileOperation _function = new FileOperation() {
       public void apply(final FileOperationContext ctx) {
+        InputOutput.<String>println(("remove files " + fileName));
         FileItem _folder = ctx.folder();
         _folder.deleteFile(fileName);
         Metadata _metadata = ctx.metadata();

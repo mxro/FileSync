@@ -27,7 +27,14 @@ public class MetadataImpl implements Metadata {
   }
   
   public ItemMetadata get(final Node forNode) {
-    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+    final Function1<ItemMetadata, Boolean> _function = new Function1<ItemMetadata, Boolean>() {
+      public Boolean apply(final ItemMetadata it) {
+        String _uri = it.uri();
+        String _uri_1 = forNode.uri();
+        return Boolean.valueOf(Objects.equal(_uri, _uri_1));
+      }
+    };
+    return IterableExtensions.<ItemMetadata>findFirst(this.items, _function);
   }
   
   public Metadata add(final ItemMetadata itemMetadata) {

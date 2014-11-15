@@ -18,7 +18,7 @@ class MetadataImpl implements Metadata {
 	}
 	
 	override get(Node forNode) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		items.findFirst[ it.uri == forNode.uri() ]
 	}
 	
 	override add(ItemMetadata itemMetadata) {

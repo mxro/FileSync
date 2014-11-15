@@ -100,7 +100,14 @@ public class ConverterCollection implements Converter {
         return c;
       }
     }
-    throw new RuntimeException(("Cannot find converter for " + forItem));
+    String _converter_1 = forItem.converter();
+    String _plus = (((("Cannot find converter for [" + forItem) + "].\n") + 
+      "  Required Converter: ") + _converter_1);
+    String _plus_1 = (_plus + "\n");
+    String _plus_2 = (_plus_1 + 
+      "  Defined Converters: ");
+    String _plus_3 = (_plus_2 + this.converters);
+    throw new RuntimeException(_plus_3);
   }
   
   private void findConverter(final Node forNode, final ValueCallback<Converter> cb) {

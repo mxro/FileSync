@@ -72,7 +72,10 @@ class ConverterCollection implements Converter {
 				return c
 			}
 		}
-		throw new RuntimeException("Cannot find converter for "+forItem)
+		throw new RuntimeException("Cannot find converter for ["+forItem+"].\n"+
+			"  Required Converter: "+forItem.converter+"\n"+
+			"  Defined Converters: "+converters
+		)
 	}
 	
 	def private findConverter(Node forNode, ValueCallback<Converter> cb) {

@@ -3,21 +3,16 @@ package com.appjangle.filesync.internal.engine.metadata;
 import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.internal.engine.metadata.v01.ItemXml;
-import com.google.common.base.Objects;
 import io.nextweb.Node;
-import java.util.ArrayList;
 import java.util.List;
-import org.eclipse.xtext.xbase.lib.CollectionLiterals;
-import org.eclipse.xtext.xbase.lib.Functions.Function1;
-import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
 @SuppressWarnings("all")
 public class MetadataImpl implements Metadata {
   private final List<ItemMetadata> items;
   
   public MetadataImpl() {
-    ArrayList<ItemMetadata> _newArrayList = CollectionLiterals.<ItemMetadata>newArrayList();
-    this.items = _newArrayList;
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field newArrayList is undefined for the type MetadataImpl");
   }
   
   public List<ItemMetadata> getChildren() {
@@ -25,24 +20,17 @@ public class MetadataImpl implements Metadata {
   }
   
   public ItemMetadata get(final String name) {
-    final Function1<ItemMetadata, Boolean> _function = new Function1<ItemMetadata, Boolean>() {
-      public Boolean apply(final ItemMetadata it) {
-        String _name = it.name();
-        return Boolean.valueOf(Objects.equal(_name, name));
-      }
-    };
-    return IterableExtensions.<ItemMetadata>findFirst(this.items, _function);
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method findFirst is undefined for the type MetadataImpl"
+      + "\nname cannot be resolved"
+      + "\n== cannot be resolved");
   }
   
   public ItemMetadata get(final Node forNode) {
-    final Function1<ItemMetadata, Boolean> _function = new Function1<ItemMetadata, Boolean>() {
-      public Boolean apply(final ItemMetadata it) {
-        String _uri = it.uri();
-        String _uri_1 = forNode.uri();
-        return Boolean.valueOf(Objects.equal(_uri, _uri_1));
-      }
-    };
-    return IterableExtensions.<ItemMetadata>findFirst(this.items, _function);
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method findFirst is undefined for the type MetadataImpl"
+      + "\nuri cannot be resolved"
+      + "\n== cannot be resolved");
   }
   
   public Metadata add(final ItemMetadata itemMetadata) {
@@ -61,10 +49,9 @@ public class MetadataImpl implements Metadata {
   
   public ItemXml toXml(final ItemMetadata itemMetadata) {
     throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field name is undefined for the type MetadataImpl"
-      + "\nThe method or field uri is undefined for the type MetadataImpl"
       + "\nThe method or field lastModified is undefined for the type MetadataImpl"
-      + "\nThe method or field hash is undefined for the type MetadataImpl"
-      + "\nInvalid number of arguments. The constructor ItemXml(String, String, String, String) is not applicable without arguments");
+      + "\nThe field name is not visible"
+      + "\nThe field uri is not visible"
+      + "\nThe field hash is not visible");
   }
 }

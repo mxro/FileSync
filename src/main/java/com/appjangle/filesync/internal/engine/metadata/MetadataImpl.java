@@ -49,16 +49,8 @@ public class MetadataImpl implements Metadata {
   public Metadata add(final ItemMetadata itemMetadata) {
     MetadataImpl _xblockexpression = null;
     {
-      final ItemXml item = new ItemXml();
-      String _name = itemMetadata.name();
-      item.name = _name;
-      String _uri = itemMetadata.uri();
-      item.uri = _uri;
-      Date _lastModified = itemMetadata.lastModified();
-      item.lastModified = _lastModified;
-      String _hash = itemMetadata.hash();
-      item.hash = _hash;
-      this.items.add(item);
+      ItemXml _xml = this.toXml(itemMetadata);
+      this.items.add(_xml);
       _xblockexpression = this;
     }
     return _xblockexpression;
@@ -70,5 +62,22 @@ public class MetadataImpl implements Metadata {
   
   public Metadata remove(final String name) {
     throw new UnsupportedOperationException("TODO: auto-generated method stub");
+  }
+  
+  public ItemXml toXml(final ItemMetadata itemMetadata) {
+    ItemXml _xblockexpression = null;
+    {
+      final ItemXml item = new ItemXml();
+      String _name = itemMetadata.name();
+      item.name = _name;
+      String _uri = itemMetadata.uri();
+      item.uri = _uri;
+      Date _lastModified = itemMetadata.lastModified();
+      item.lastModified = _lastModified;
+      String _hash = itemMetadata.hash();
+      item.hash = _hash;
+      _xblockexpression = item;
+    }
+    return _xblockexpression;
   }
 }

@@ -4,10 +4,15 @@ import com.appjangle.filesync.ItemMetadata
 import com.appjangle.filesync.Metadata
 import io.nextweb.Node
 import java.util.List
+import com.appjangle.filesync.internal.engine.metadata.v01.ItemXml
 
 class MetadataImpl implements Metadata {
 	
-	List<ItemMetadata> items;
+	val List<ItemMetadata> items
+	
+	new() {
+		items = newArrayList
+	}
 	
 	override getChildren() {
 		items
@@ -22,7 +27,11 @@ class MetadataImpl implements Metadata {
 	}
 	
 	override add(ItemMetadata itemMetadata) {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		val item = new ItemXml
+		
+		items.add(item)
+		
+		this
 	}
 	
 	override update(ItemMetadata itemMetadata) {

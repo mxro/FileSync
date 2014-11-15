@@ -68,7 +68,7 @@ class FolderToNode implements Converter {
 					[ ctx |
 						val folderName = rawFolderName.toFileSystemSafeName(false, 20)
 						val file = ctx.folder.assertFolder(folderName)
-						file.text = source.value(String)
+						//file.text = source.value(String)
 						ctx.metadata.add(
 							new ItemMetadata() {
 

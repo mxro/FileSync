@@ -88,8 +88,6 @@ public class FolderToNode implements Converter {
             final String folderName = FolderToNode.this.futils.toFileSystemSafeName(rawFolderName, false, 20);
             FileItem _folder = ctx.folder();
             final FileItem file = _folder.assertFolder(folderName);
-            String _value = source.<String>value(String.class);
-            file.setText(_value);
             Metadata _metadata = ctx.metadata();
             _metadata.add(
               new ItemMetadata() {

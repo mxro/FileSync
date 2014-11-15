@@ -39,6 +39,7 @@ public class SyncFolder {
     boolean _hasMetadata = this.fileUtils.hasMetadata(this.folder);
     boolean _not = (!_hasMetadata);
     if (_not) {
+      InputOutput.<String>println("and here!");
       Metadata _assertMetadata = this.fileUtils.assertMetadata(this.folder);
       this.metadata = _assertMetadata;
       InputOutput.<String>println("here");

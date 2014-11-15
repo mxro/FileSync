@@ -51,22 +51,41 @@ public class NetworkUtils {
         for (final Deferred<?> qry : qries) {
           {
             final ValueCallback<Success> itmcb = cbs.createCallback();
-            final Query safeQry = ((Query) qry);
-            Session _session = onNode.session();
-            final NextwebPromise<Node> res = _session.<Node>promise(safeQry);
-            final ExceptionListener _function_2 = new ExceptionListener() {
-              public void onFailure(final ExceptionResult er) {
-                Throwable _exception = er.exception();
-                itmcb.onFailure(_exception);
-              }
-            };
-            res.catchExceptions(_function_2);
-            final Closure<Node> _function_3 = new Closure<Node>() {
-              public void apply(final Node succ) {
-                itmcb.onSuccess(Success.INSTANCE);
-              }
-            };
-            res.get(_function_3);
+            if ((qry instanceof Query)) {
+              final Query safeQry = ((Query) qry);
+              Session _session = onNode.session();
+              final NextwebPromise<Node> res = _session.<Node>promise(safeQry);
+              final ExceptionListener _function_2 = new ExceptionListener() {
+                public void onFailure(final ExceptionResult er) {
+                  Throwable _exception = er.exception();
+                  itmcb.onFailure(_exception);
+                }
+              };
+              res.catchExceptions(_function_2);
+              final Closure<Node> _function_3 = new Closure<Node>() {
+                public void apply(final Node succ) {
+                  itmcb.onSuccess(Success.INSTANCE);
+                }
+              };
+              res.get(_function_3);
+            } else {
+              final NextwebPromise<Object> safeQry_1 = ((NextwebPromise<Object>) qry);
+              Session _session_1 = onNode.session();
+              final NextwebPromise<Object> res_1 = _session_1.<Object>promise(safeQry_1);
+              final ExceptionListener _function_4 = new ExceptionListener() {
+                public void onFailure(final ExceptionResult er) {
+                  Throwable _exception = er.exception();
+                  itmcb.onFailure(_exception);
+                }
+              };
+              res_1.catchExceptions(_function_4);
+              final Closure<Object> _function_5 = new Closure<Object>() {
+                public void apply(final Object succ) {
+                  itmcb.onSuccess(Success.INSTANCE);
+                }
+              };
+              res_1.get(_function_5);
+            }
           }
         }
       }

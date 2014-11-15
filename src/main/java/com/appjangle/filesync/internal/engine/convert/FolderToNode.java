@@ -27,7 +27,6 @@ import java.util.List;
 import mx.gwtutils.MxroGWTUtils;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Extension;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
 public class FolderToNode implements Converter {
@@ -132,10 +131,8 @@ public class FolderToNode implements Converter {
   public void removeFiles(final FileItem folder, final Metadata metadata, final ItemMetadata item, final ValueCallback<List<FileOperation>> cb) {
     final String folderName = item.name();
     final LinkedList<FileOperation> ops = new LinkedList<FileOperation>();
-    InputOutput.<String>println("schedule it");
     final FileOperation _function = new FileOperation() {
       public void apply(final FileOperationContext ctx) {
-        InputOutput.<String>println("do it");
         FileItem _folder = ctx.folder();
         _folder.deleteFolder(folderName);
         Metadata _metadata = ctx.metadata();

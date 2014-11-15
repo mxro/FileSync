@@ -69,7 +69,8 @@ class ConverterCollection implements Converter {
 	def private findConverter(ItemMetadata forItem, ValueCallback<Converter> cb) {
 		for (c:converters) {
 			if (c.class.toString.equals(forItem.converter)) {
-				return c
+				cb.onSuccess(c)
+				return
 			}
 		}
 		throw new RuntimeException("Cannot find converter for ["+forItem+"].\n"+
@@ -131,9 +132,7 @@ class ConverterCollection implements Converter {
 	}
 	
 	override removeFiles(FileItem folder, Metadata metadata, ItemMetadata item, ValueCallback<List<FileOperation>> cb) {
-		println('try it')
 		findConverter(item, cb.embed [ converter |
-			println('found conv')
 			converter.removeFiles(folder, metadata, item, cb)
 		])
 	}

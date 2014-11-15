@@ -14,7 +14,6 @@ import de.mxro.fn.Closure2;
 import io.nextweb.Node;
 import java.util.ArrayList;
 import java.util.List;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
 public class ConverterCollection implements Converter {
@@ -91,14 +90,15 @@ public class ConverterCollection implements Converter {
     Async.<Converter, Object>forEach(this.converters, _function, _embed);
   }
   
-  private Converter findConverter(final ItemMetadata forItem, final ValueCallback<Converter> cb) {
+  private void findConverter(final ItemMetadata forItem, final ValueCallback<Converter> cb) {
     for (final Converter c : this.converters) {
       Class<? extends Converter> _class = c.getClass();
       String _string = _class.toString();
       String _converter = forItem.converter();
       boolean _equals = _string.equals(_converter);
       if (_equals) {
-        return c;
+        cb.onSuccess(c);
+        return;
       }
     }
     String _converter_1 = forItem.converter();
@@ -194,10 +194,8 @@ public class ConverterCollection implements Converter {
   }
   
   public void removeFiles(final FileItem folder, final Metadata metadata, final ItemMetadata item, final ValueCallback<List<FileOperation>> cb) {
-    InputOutput.<String>println("try it");
     final Closure<Converter> _function = new Closure<Converter>() {
       public void apply(final Converter converter) {
-        InputOutput.<String>println("found conv");
         converter.removeFiles(folder, metadata, item, cb);
       }
     };

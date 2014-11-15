@@ -121,6 +121,7 @@ class ConverterCollection implements Converter {
 	}
 	
 	override updateFiles(FileItem folder, Metadata metadata, Node source, ValueCallback<List<FileOperation>> cb) {
+		
 		findConverter(source, cb.embed [ converter |
 			converter.updateFiles(folder, metadata, source, cb)
 		])

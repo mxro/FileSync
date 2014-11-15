@@ -33,7 +33,6 @@ import java.util.List;
 import mx.gwtutils.MxroGWTUtils;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Extension;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
 public class FileToTextNode implements Converter {
@@ -184,7 +183,6 @@ public class FileToTextNode implements Converter {
     final String fileName = _get.name();
     final String content = source.<String>value(String.class);
     final LinkedList<FileOperation> ops = new LinkedList<FileOperation>();
-    InputOutput.<String>println("here!");
     final FileOperation _function = new FileOperation() {
       public void apply(final FileOperationContext ctx) {
         FileItem _folder = ctx.folder();

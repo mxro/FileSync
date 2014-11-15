@@ -155,7 +155,7 @@ class FileToTextNode implements Converter {
 		
 		val ops = new LinkedList<FileOperation>
 		
-		println("here!")
+		
 		
 		ops.add([ctx|
 			

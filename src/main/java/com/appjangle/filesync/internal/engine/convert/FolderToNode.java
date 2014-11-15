@@ -27,6 +27,7 @@ import java.util.List;
 import mx.gwtutils.MxroGWTUtils;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Extension;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
 public class FolderToNode implements Converter {
@@ -70,6 +71,7 @@ public class FolderToNode implements Converter {
       public List<Deferred<?>> apply(final NetworkOperationContext ctx) {
         ArrayList<Deferred<?>> _xblockexpression = null;
         {
+          InputOutput.<String>println("remove nodes");
           String _name = cachedFile.name();
           metadata.remove(_name);
           Node _parent = ctx.parent();

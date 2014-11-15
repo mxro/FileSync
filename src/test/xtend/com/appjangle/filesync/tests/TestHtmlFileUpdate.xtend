@@ -24,11 +24,11 @@ class TestHtmlFileUpdate extends CheckUpdatesTemplate {
 	}
 	
 	override protected updateFiles() {
-		
+		result.getChild("doc.html").text = "And now for something different"
 	}
 	
 	override protected assertNodesAfterUpdate() {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		source.select("./html").get.value() => "And now for something different"
 	}
 	
 	

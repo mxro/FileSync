@@ -4,6 +4,7 @@ import com.appjangle.filesync.tests.CheckUpdatesTemplate;
 import de.mxro.file.FileItem;
 import de.oehme.xtend.junit.JUnit;
 import io.nextweb.Link;
+import io.nextweb.Node;
 import io.nextweb.Query;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
 import org.hamcrest.Matcher;
@@ -40,10 +41,15 @@ public class TestHtmlFileUpdate extends CheckUpdatesTemplate {
   }
   
   protected void updateFiles() {
+    FileItem _child = this.result.getChild("doc.html");
+    _child.setText("And now for something different");
   }
   
   protected void assertNodesAfterUpdate() {
-    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+    Query _select = this.source.select("./html");
+    Node _get = _select.get();
+    Object _value = _get.value();
+    TestHtmlFileUpdate.<Object, String>operator_doubleArrow(_value, "And now for something different");
   }
   
   private static void assertArrayEquals(final Object[] expecteds, final Object[] actuals) {

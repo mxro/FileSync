@@ -6,7 +6,6 @@ import com.appjangle.filesync.internal.engine.metadata.v01.ItemXml;
 import com.google.common.base.Objects;
 import io.nextweb.Node;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
@@ -47,13 +46,8 @@ public class MetadataImpl implements Metadata {
   }
   
   public Metadata add(final ItemMetadata itemMetadata) {
-    MetadataImpl _xblockexpression = null;
-    {
-      ItemXml _xml = this.toXml(itemMetadata);
-      this.items.add(_xml);
-      _xblockexpression = this;
-    }
-    return _xblockexpression;
+    throw new Error("Unresolved compilation problems:"
+      + "\nType mismatch: cannot convert from ItemXml to ItemMetadata");
   }
   
   public Metadata update(final ItemMetadata itemMetadata) {
@@ -70,19 +64,11 @@ public class MetadataImpl implements Metadata {
   }
   
   public ItemXml toXml(final ItemMetadata itemMetadata) {
-    ItemXml _xblockexpression = null;
-    {
-      final ItemXml item = new ItemXml();
-      String _name = itemMetadata.name();
-      item.name = _name;
-      String _uri = itemMetadata.uri();
-      item.uri = _uri;
-      Date _lastModified = itemMetadata.lastModified();
-      item.lastModified = _lastModified;
-      String _hash = itemMetadata.hash();
-      item.hash = _hash;
-      _xblockexpression = item;
-    }
-    return _xblockexpression;
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field name is undefined for the type MetadataImpl"
+      + "\nThe method or field uri is undefined for the type MetadataImpl"
+      + "\nThe method or field lastModified is undefined for the type MetadataImpl"
+      + "\nThe method or field hash is undefined for the type MetadataImpl"
+      + "\nInvalid number of arguments. The constructor ItemXml(String, Date, String, String, String) is not applicable for the arguments ");
   }
 }

@@ -3,7 +3,8 @@ package com.appjangle.filesync.internal.engine.metadata.v01
 import com.appjangle.filesync.ItemMetadata
 import java.util.Date
 
-class ItemXml implements ItemMetadata {
+@Data
+class ItemXml  {
 	
 	public var String name;
 	public var Date lastModified;
@@ -11,7 +12,7 @@ class ItemXml implements ItemMetadata {
 	public var String hash;
 	public var String converter;
 	
-	override name() {
+	/*override name() {
 		name
 	}
 	
@@ -29,6 +30,9 @@ class ItemXml implements ItemMetadata {
 	
 	override converter() {
 		converter
-	}
+	}*/
+	
+	
+	
 	
 }

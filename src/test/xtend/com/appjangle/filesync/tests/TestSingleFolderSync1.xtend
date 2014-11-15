@@ -3,6 +3,7 @@ package com.appjangle.filesync.tests
 import com.appjangle.filesync.FileSync
 import com.appjangle.jre.AppjangleJre
 import de.mxro.async.Async
+import de.mxro.async.jre.AsyncJre
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TemporaryFolder
@@ -25,8 +26,9 @@ class TestSingleFolderSync1 {
 
 		session.commit.get
 
-		FileSync.sync(folder.newFolder("sync1"), data.get, Async.wrap([]))
-
+		AsyncJre.waitFor [cb |
+			FileSync.sync(folder.newFolder("sync1"), data.get, cb)
+		]
 
 		session.close.get
 

@@ -1,5 +1,17 @@
 package com.appjangle.filesync.tests;
 
+import com.appjangle.filesync.FileSync;
+import com.appjangle.jre.AppjangleJre;
+import de.mxro.async.Deferred;
+import de.mxro.async.callbacks.ValueCallback;
+import de.mxro.async.jre.AsyncJre;
+import de.mxro.fn.Success;
+import io.nextweb.Node;
+import io.nextweb.Query;
+import io.nextweb.Session;
+import io.nextweb.common.LocalServer;
+import io.nextweb.promise.NextwebPromise;
+import java.io.File;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
@@ -11,8 +23,23 @@ public class TestSingleFolderSync1 {
   
   @Test
   public void test() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from (Object)=>Object to ValueCallback<Success>"
-      + "\nType mismatch: cannot convert from SimpleCallback to ValueCallback<Success>");
+    final LocalServer server = AppjangleJre.startServer();
+    final Session session = AppjangleJre.createSession(server);
+    final Query data = session.seed(server);
+    data.append("Just a node");
+    NextwebPromise<Success> _commit = session.commit();
+    _commit.get();
+    final Deferred<Success> _function = new Deferred<Success>() {
+      public void get(final ValueCallback<Success> cb) {
+        File _newFolder = TestSingleFolderSync1.this.folder.newFolder("sync1");
+        Node _get = data.get();
+        FileSync.sync(_newFolder, _get, cb);
+      }
+    };
+    AsyncJre.<Success>waitFor(_function);
+    NextwebPromise<Success> _close = session.close();
+    _close.get();
+    NextwebPromise<Success> _shutdown = server.shutdown();
+    _shutdown.get();
   }
 }

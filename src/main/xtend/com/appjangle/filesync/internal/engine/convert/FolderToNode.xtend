@@ -67,7 +67,7 @@ class FolderToNode implements Converter {
 				ops.add(
 					[ ctx |
 						val folderName = rawFolderName.toFileSystemSafeName(false, 20)
-						val file = ctx.folder.assertFolder(folderName)
+						ctx.folder.assertFolder(folderName)
 						//file.text = source.value(String)
 						ctx.metadata.add(
 							new ItemMetadata() {
@@ -85,7 +85,7 @@ class FolderToNode implements Converter {
 								}
 
 								override hash() {
-									file.hash
+									folderName.hashCode.toString
 								}
 
 								override converter() {

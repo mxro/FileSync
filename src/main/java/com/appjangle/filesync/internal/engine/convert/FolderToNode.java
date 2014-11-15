@@ -87,7 +87,7 @@ public class FolderToNode implements Converter {
           public void apply(final FileOperationContext ctx) {
             final String folderName = FolderToNode.this.futils.toFileSystemSafeName(rawFolderName, false, 20);
             FileItem _folder = ctx.folder();
-            final FileItem file = _folder.assertFolder(folderName);
+            _folder.assertFolder(folderName);
             Metadata _metadata = ctx.metadata();
             _metadata.add(
               new ItemMetadata() {
@@ -104,7 +104,8 @@ public class FolderToNode implements Converter {
                 }
                 
                 public String hash() {
-                  return file.hash();
+                  int _hashCode = folderName.hashCode();
+                  return Integer.valueOf(_hashCode).toString();
                 }
                 
                 public String converter() {

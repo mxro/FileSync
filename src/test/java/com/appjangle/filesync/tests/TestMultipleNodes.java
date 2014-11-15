@@ -13,7 +13,7 @@ import org.junit.internal.ArrayComparisonFailure;
 
 @JUnit
 @SuppressWarnings("all")
-public class TestHtmlNode extends CheckNodesToFilesTemplate {
+public class TestMultipleNodes extends CheckNodesToFilesTemplate {
   protected void defineData() {
     final Query html = this.source.append("<html></html>", "./html");
     Query _append = html.append("Html Document");
@@ -21,19 +21,21 @@ public class TestHtmlNode extends CheckNodesToFilesTemplate {
     _append.append(_link);
     Link _link_1 = this.session.link("https://admin1.linnk.it/types/v01/isHtmlValue");
     html.append(_link_1);
+    this.source.append("Folder 1");
+    this.source.append("Folder 2");
   }
   
   protected void assertFiles() {
     List<FileItem> _children = this.result.getChildren();
     int _size = _children.size();
-    TestHtmlNode.<Integer, Integer>operator_doubleArrow(Integer.valueOf(_size), Integer.valueOf(2));
+    TestMultipleNodes.<Integer, Integer>operator_doubleArrow(Integer.valueOf(_size), Integer.valueOf(4));
     boolean _contains = this.result.contains(".filesync-meta");
-    TestHtmlNode.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_contains), Boolean.valueOf(true));
+    TestMultipleNodes.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_contains), Boolean.valueOf(true));
     boolean _contains_1 = this.result.contains("Html Document.html");
-    TestHtmlNode.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_contains_1), Boolean.valueOf(true));
+    TestMultipleNodes.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_contains_1), Boolean.valueOf(true));
     FileItem _child = this.result.getChild("Html Document.html");
     String _text = _child.getText();
-    TestHtmlNode.<String, String>operator_doubleArrow(_text, "<html></html>");
+    TestMultipleNodes.<String, String>operator_doubleArrow(_text, "<html></html>");
   }
   
   private static void assertArrayEquals(final Object[] expecteds, final Object[] actuals) {

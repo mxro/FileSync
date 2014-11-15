@@ -1,14 +1,20 @@
 package com.appjangle.filesync.tests;
 
-import org.junit.Test;
+import com.appjangle.filesync.tests.CheckFilesTempalte;
+import de.mxro.file.FileItem;
+import de.mxro.file.Jre.FilesJre;
+import java.util.List;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
-public class TestSingleFolderSync1 {
-  @Test
-  public void test() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field data is undefined for the type TestSingleFolderSync1"
-      + "\nThe method or field testFolder is undefined for the type TestSingleFolderSync1"
-      + "\nappend cannot be resolved");
+public class TestSingleFolderSync1 extends CheckFilesTempalte {
+  public void defineData() {
+    this.source.append("A Folder");
+  }
+  
+  public void assertFiles() {
+    FileItem _wrap = FilesJre.wrap(this.target);
+    List<FileItem> _children = _wrap.getChildren();
+    InputOutput.<List<FileItem>>println(_children);
   }
 }

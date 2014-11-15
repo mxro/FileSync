@@ -20,13 +20,13 @@ import org.junit.rules.TemporaryFolder;
 
 @SuppressWarnings("all")
 public abstract class CheckFilesTempalte {
-  private LocalServer server;
+  protected LocalServer server;
   
-  private Session session;
+  protected Session session;
   
-  private Node source;
+  protected Node source;
   
-  private File target;
+  protected File target;
   
   @Rule
   public TemporaryFolder tempFolder = new TemporaryFolder();

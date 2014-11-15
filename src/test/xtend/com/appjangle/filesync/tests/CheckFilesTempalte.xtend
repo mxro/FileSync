@@ -15,10 +15,10 @@ import org.junit.rules.TemporaryFolder
 
 abstract class CheckFilesTempalte {
 	
-	LocalServer server
-	Session session
-	Node source
-	File target
+	protected LocalServer server
+	protected Session session
+	protected Node source
+	protected File target
 	
 	@Rule
 	public TemporaryFolder tempFolder = new TemporaryFolder();

@@ -1,30 +1,16 @@
 package com.appjangle.filesync.tests
 
-import com.appjangle.filesync.FileSync
-import com.appjangle.jre.AppjangleJre
-import de.mxro.async.jre.AsyncJre
 import de.mxro.file.Jre.FilesJre
-import org.junit.Rule
-import org.junit.Test
-import org.junit.rules.TemporaryFolder
 
-class TestSingleFolderSync1 {
+class TestSingleFolderSync1 extends CheckFilesTempalte {
 
 	
-
-	@Test
-	def void test() {
-
-		
-
-		data.append("A Folder")
-
-		
-
-		println ( FilesJre.wrap(testFolder).children )
-
-		
-
+	override defineData() {
+		source.append("A Folder")
+	}
+	
+	override assertFiles() {
+		println ( FilesJre.wrap(target).children )
 	}
 
 }

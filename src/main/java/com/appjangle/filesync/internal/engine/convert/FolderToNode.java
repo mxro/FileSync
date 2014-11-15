@@ -75,8 +75,8 @@ public class FolderToNode implements Converter {
           Node _parent = ctx.parent();
           Session _session = ctx.session();
           Link _link = _session.link(address);
-          NextwebPromise<Success> _removeSafe = _parent.removeSafe(_link);
-          _xblockexpression = CollectionLiterals.<Deferred<?>>newArrayList(_removeSafe);
+          NextwebPromise<Success> _remove = _parent.remove(_link);
+          _xblockexpression = CollectionLiterals.<Deferred<?>>newArrayList(_remove);
         }
         return _xblockexpression;
       }

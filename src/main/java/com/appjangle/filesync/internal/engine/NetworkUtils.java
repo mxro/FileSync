@@ -85,6 +85,7 @@ public class NetworkUtils {
               res_1.catchExceptions(_function_4);
               final Closure<Object> _function_5 = new Closure<Object>() {
                 public void apply(final Object succ) {
+                  InputOutput.<String>println("got it");
                   itmcb.onSuccess(Success.INSTANCE);
                 }
               };

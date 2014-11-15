@@ -15,10 +15,12 @@ import io.nextweb.promise.NextwebPromise;
 import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
 import java.util.List;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
 public class NetworkUtils {
   public void execute(final List<NetworkOperation> ops, final Node onNode, final ValueCallback<Success> cb) {
+    InputOutput.<String>println(("run " + ops));
     final NetworkOperationContext ctx = new NetworkOperationContext() {
       public Session session() {
         return onNode.session();
@@ -31,6 +33,7 @@ public class NetworkUtils {
     int _size = ops.size();
     final Closure<List<Success>> _function = new Closure<List<Success>>() {
       public void apply(final List<Success> it) {
+        InputOutput.<String>println("Done!");
         cb.onSuccess(Success.INSTANCE);
       }
     };
@@ -69,9 +72,9 @@ public class NetworkUtils {
               };
               res.get(_function_3);
             } else {
-              final NextwebPromise<Object> safeQry_1 = ((NextwebPromise<Object>) qry);
+              final NextwebPromise<Success> safeQry_1 = ((NextwebPromise<Success>) qry);
               Session _session_1 = onNode.session();
-              final NextwebPromise<Object> res_1 = _session_1.<Object>promise(safeQry_1);
+              final NextwebPromise<Success> res_1 = _session_1.<Success>promise(safeQry_1);
               final ExceptionListener _function_4 = new ExceptionListener() {
                 public void onFailure(final ExceptionResult er) {
                   Throwable _exception = er.exception();
@@ -79,8 +82,8 @@ public class NetworkUtils {
                 }
               };
               res_1.catchExceptions(_function_4);
-              final Closure<Object> _function_5 = new Closure<Object>() {
-                public void apply(final Object succ) {
+              final Closure<Success> _function_5 = new Closure<Success>() {
+                public void apply(final Success succ) {
                   itmcb.onSuccess(Success.INSTANCE);
                 }
               };

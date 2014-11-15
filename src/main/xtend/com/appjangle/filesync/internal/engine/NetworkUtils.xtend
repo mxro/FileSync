@@ -15,7 +15,9 @@ import static extension de.mxro.async.Async.embed
 class NetworkUtils {
 
 	def execute(List<NetworkOperation> ops, Node onNode, ValueCallback<Success> cb) {
-
+		
+		println("run "+ops)
+		
 		val ctx = new NetworkOperationContext() {
 
 			override session() {
@@ -31,6 +33,7 @@ class NetworkUtils {
 		val opscbs = Async.collect(ops.size,
 			cb.embed(
 				[
+					println("Done!")
 					cb.onSuccess(Success.INSTANCE)
 				]))
 
@@ -56,7 +59,7 @@ class NetworkUtils {
 					res.get([succ|itmcb.onSuccess(Success.INSTANCE)])
 
 				} else {
-					val safeQry = qry as NextwebPromise<Object>
+					val safeQry = qry as NextwebPromise<Success>
 					val res = onNode.session().promise(safeQry)
 					res.catchExceptions([er|itmcb.onFailure(er.exception)])
 					res.get([succ|itmcb.onSuccess(Success.INSTANCE)])

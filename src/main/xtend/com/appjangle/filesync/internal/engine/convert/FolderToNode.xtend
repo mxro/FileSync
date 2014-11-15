@@ -54,7 +54,7 @@ class FolderToNode implements Converter {
 
 		ops.add(
 			[ ctx |
-				println('remove nodes')
+				
 				metadata.remove(cachedFile.name)
 				newArrayList(ctx.parent.removeSafe(ctx.session.link(address)))
 			])
@@ -113,7 +113,7 @@ class FolderToNode implements Converter {
 		
 		val ops = new LinkedList<FileOperation>
 		ops.add([ctx|
-			println('remove files')
+			
 			ctx.folder.deleteFolder(folderName)
 			
 			ctx.metadata.remove(folderName)

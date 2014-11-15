@@ -10,13 +10,14 @@ import com.appjangle.filesync.NetworkOperationContext;
 import com.appjangle.filesync.internal.engine.FileUtils;
 import com.appjangle.filesync.internal.engine.convert.ConvertUtils;
 import com.google.common.base.Objects;
-import de.mxro.async.Aggregator;
 import de.mxro.async.Async;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
 import de.mxro.fn.Closure;
 import de.mxro.fn.Success;
 import io.nextweb.Link;
+import io.nextweb.LinkList;
+import io.nextweb.LinkListQuery;
 import io.nextweb.Node;
 import io.nextweb.Query;
 import io.nextweb.Session;
@@ -24,8 +25,6 @@ import io.nextweb.promise.Deferred;
 import io.nextweb.promise.NextwebPromise;
 import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
-import io.nextweb.promise.exceptions.UndefinedListener;
-import io.nextweb.promise.exceptions.UndefinedResult;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -50,42 +49,28 @@ public class FileToTextNode implements Converter {
   public void worksOn(final Node node, final ValueCallback<Boolean> cb) {
     InputOutput.<String>println(("testin " + node));
     final List<String> textNodeTypes = Collections.<String>unmodifiableList(CollectionLiterals.<String>newArrayList("https://admin1.linnk.it/types/v01/isHtmlValue"));
-    int _size = textNodeTypes.size();
-    final Closure<List<Boolean>> _function = new Closure<List<Boolean>>() {
-      public void apply(final List<Boolean> res) {
-        boolean _contains = res.contains(Boolean.valueOf(true));
-        cb.onSuccess(Boolean.valueOf(_contains));
+    final LinkListQuery qry = node.selectAllLinks();
+    final ExceptionListener _function = new ExceptionListener() {
+      public void onFailure(final ExceptionResult er) {
+        Throwable _exception = er.exception();
+        cb.onFailure(_exception);
       }
     };
-    ValueCallback<List<Boolean>> _embed = Async.<List<Boolean>>embed(cb, _function);
-    final Aggregator<Boolean> cbs = Async.<Boolean>collect(_size, _embed);
-    for (final String textType : textNodeTypes) {
-      {
-        final ValueCallback<Boolean> itmcb = cbs.createCallback();
-        Session _session = node.session();
-        Link _link = _session.link(textType);
-        final Query qry = node.select(_link);
-        final ExceptionListener _function_1 = new ExceptionListener() {
-          public void onFailure(final ExceptionResult er) {
-            Throwable _exception = er.exception();
-            itmcb.onFailure(_exception);
+    qry.catchExceptions(_function);
+    final Closure<LinkList> _function_1 = new Closure<LinkList>() {
+      public void apply(final LinkList links) {
+        for (final Link link : links) {
+          String _uri = link.uri();
+          boolean _contains = textNodeTypes.contains(_uri);
+          if (_contains) {
+            cb.onSuccess(Boolean.valueOf(true));
+            return;
           }
-        };
-        qry.catchExceptions(_function_1);
-        final UndefinedListener _function_2 = new UndefinedListener() {
-          public void onUndefined(final UndefinedResult it) {
-            itmcb.onSuccess(Boolean.valueOf(false));
-          }
-        };
-        qry.catchUndefined(_function_2);
-        final Closure<Node> _function_3 = new Closure<Node>() {
-          public void apply(final Node it) {
-            itmcb.onSuccess(Boolean.valueOf(true));
-          }
-        };
-        qry.get(_function_3);
+        }
+        cb.onSuccess(Boolean.valueOf(false));
       }
-    }
+    };
+    qry.get(_function_1);
   }
   
   public void createNodes(final Metadata metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {

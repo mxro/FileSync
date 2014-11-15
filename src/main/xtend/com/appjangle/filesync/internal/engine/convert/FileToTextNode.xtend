@@ -34,8 +34,22 @@ class FileToTextNode implements Converter {
 		println ("testin "+node)
 		val textNodeTypes = #["https://admin1.linnk.it/types/v01/isHtmlValue"]
 		
+		val qry = node.selectAllLinks
 		
-		val cbs = Async.collect(textNodeTypes.size, cb.embed [res|
+		qry.catchExceptions([er | cb.onFailure(er.exception)])
+		
+		qry.get [links |
+			for (link: links) {
+				if (textNodeTypes.contains(link.uri())) {
+					cb.onSuccess(true)
+					return
+				}
+			}
+			cb.onSuccess(false)
+		]
+		
+		
+		/*val cbs = Async.collect(textNodeTypes.size, cb.embed [res|
 			cb.onSuccess(res.contains(true))
 		])
 		
@@ -52,7 +66,7 @@ class FileToTextNode implements Converter {
 			
 			qry.get( [ itmcb.onSuccess(true) ])
 			
-		}
+		}*/
 		
 
 	}

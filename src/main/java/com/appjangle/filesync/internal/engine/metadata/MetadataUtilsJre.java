@@ -44,5 +44,15 @@ public class MetadataUtilsJre {
     if (_not) {
       throw new RuntimeException("File doesn\'t exist.");
     }
+    final XStream xstream = new XStream();
+  }
+  
+  public static NodesXml toNodesXml(final Metadata metadata) {
+    NodesXml _xblockexpression = null;
+    {
+      NodesXml nodesXml = new NodesXml();
+      _xblockexpression = nodesXml;
+    }
+    return _xblockexpression;
   }
 }

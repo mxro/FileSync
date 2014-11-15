@@ -40,6 +40,17 @@ class MetadataUtilsJre {
 			throw new RuntimeException("File doesn't exist.")
 		}
 		
+		val xstream = new XStream
+		
+		
+	}
+
+	def static NodesXml toNodesXml(Metadata metadata) {
+		var nodesXml = new NodesXml
+		
+		
+		
+		nodesXml
 		
 	}
 

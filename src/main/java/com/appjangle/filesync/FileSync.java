@@ -4,14 +4,17 @@ import com.appjangle.filesync.internal.engine.SyncFolder;
 import com.appjangle.filesync.internal.engine.convert.ConverterCollection;
 import com.appjangle.filesync.internal.engine.convert.FileToTextNode;
 import com.appjangle.filesync.internal.engine.convert.FolderToNode;
+import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
+import de.mxro.fn.Success;
 import io.nextweb.Node;
 
 @SuppressWarnings("all")
 public class FileSync {
-  public static SyncFolder sync(final FileItem folder, final Node node) {
+  public static void sync(final FileItem folder, final Node node, final ValueCallback<Success> cb) {
     ConverterCollection _createDefaultConverter = FileSync.createDefaultConverter();
-    return new SyncFolder(folder, node, _createDefaultConverter);
+    SyncFolder _syncFolder = new SyncFolder(folder, node, _createDefaultConverter);
+    _syncFolder.doIt(cb);
   }
   
   public static ConverterCollection createDefaultConverter() {

@@ -34,16 +34,16 @@ class FileUtils {
 		MetadataUtilsJre.readFromFile(metadataFolder.getChild("nodes.xml"))
 	}
 
-	def execute(List<FileOperation> operations, FileItem folder, Metadata metadata) {
+	def execute(List<FileOperation> operations, FileItem withFolder, Metadata withMetadata) {
 
 		val ctx = new FileOperationContext() {
 
 			override folder() {
-				folder
+				withFolder
 			}
 
 			override metadata() {
-				metadata
+				withMetadata
 			}
 
 		}

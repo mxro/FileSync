@@ -44,14 +44,14 @@ public class FileUtils {
     return _xblockexpression;
   }
   
-  public void execute(final List<FileOperation> operations, final FileItem folder, final Metadata metadata) {
+  public void execute(final List<FileOperation> operations, final FileItem withFolder, final Metadata withMetadata) {
     final FileOperationContext ctx = new FileOperationContext() {
       public FileItem folder() {
-        return this.folder();
+        return withFolder;
       }
       
       public Metadata metadata() {
-        return this.metadata();
+        return withMetadata;
       }
     };
     for (final FileOperation op : operations) {

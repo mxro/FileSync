@@ -3,8 +3,6 @@ package com.appjangle.filesync.tests;
 import com.appjangle.filesync.tests.CheckNodesToFilesTemplate;
 import de.mxro.file.FileItem;
 import de.oehme.xtend.junit.JUnit;
-import io.nextweb.Link;
-import io.nextweb.Query;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
 import org.hamcrest.Matcher;
@@ -13,27 +11,21 @@ import org.junit.internal.ArrayComparisonFailure;
 
 @JUnit
 @SuppressWarnings("all")
-public class TestHtmlNode extends CheckNodesToFilesTemplate {
+public class TestCreateFolder extends CheckNodesToFilesTemplate {
   protected void step1_defineData() {
-    final Query html = this.source.append("<html></html>", "./html");
-    Query _append = html.append("Html Document");
-    Link _link = this.session.link("https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel");
-    _append.append(_link);
-    Link _link_1 = this.session.link("https://admin1.linnk.it/types/v01/isHtmlValue");
-    html.append(_link_1);
+    this.source.append("A Folder");
   }
   
   protected void step2_assertFiles() {
     List<FileItem> _children = this.result.getChildren();
     int _size = _children.size();
-    TestHtmlNode.<Integer, Integer>operator_doubleArrow(Integer.valueOf(_size), Integer.valueOf(2));
+    TestCreateFolder.<Integer, Integer>operator_doubleArrow(Integer.valueOf(_size), Integer.valueOf(2));
     boolean _contains = this.result.contains(".filesync-meta");
-    TestHtmlNode.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_contains), Boolean.valueOf(true));
-    boolean _contains_1 = this.result.contains("Html Document.html");
-    TestHtmlNode.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_contains_1), Boolean.valueOf(true));
-    FileItem _child = this.result.getChild("Html Document.html");
-    String _text = _child.getText();
-    TestHtmlNode.<String, String>operator_doubleArrow(_text, "<html></html>");
+    TestCreateFolder.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_contains), Boolean.valueOf(true));
+    List<FileItem> _children_1 = this.result.getChildren();
+    String _string = _children_1.toString();
+    boolean _contains_1 = _string.contains("Folder");
+    TestCreateFolder.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_contains_1), Boolean.valueOf(true));
   }
   
   private static void assertArrayEquals(final Object[] expecteds, final Object[] actuals) {

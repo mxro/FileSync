@@ -3,7 +3,7 @@ package com.appjangle.filesync.tests
 import de.oehme.xtend.junit.JUnit
 
 @JUnit
-class TestFolderNode extends CheckNodesToFilesTemplate {
+class TestCreateFolder extends CheckNodesToFilesTemplate {
 
 	protected override step1_defineData() {
 		source.append("A Folder")

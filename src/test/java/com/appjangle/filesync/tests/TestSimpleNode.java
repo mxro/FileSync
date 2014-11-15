@@ -1,9 +1,6 @@
 package com.appjangle.filesync.tests;
 
 import com.appjangle.filesync.tests.CheckFilesTempalte;
-import de.mxro.file.FileItem;
-import de.mxro.file.Jre.FilesJre;
-import java.util.List;
 
 @SuppressWarnings("all")
 public class TestSimpleNode extends CheckFilesTempalte {
@@ -12,7 +9,7 @@ public class TestSimpleNode extends CheckFilesTempalte {
   }
   
   public void assertFiles() {
-    FileItem _wrap = FilesJre.wrap(this.target);
-    final List<FileItem> children = _wrap.getChildren();
+    throw new Error("Unresolved compilation problems:"
+      + "\nType mismatch: cannot convert from int to Procedure1<? super Integer>");
   }
 }

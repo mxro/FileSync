@@ -11,6 +11,8 @@ class TestSimpleNode extends CheckFilesTempalte {
 	override assertFiles() {
 		val children = FilesJre.wrap(target).children
 		
+		4 => 2
+		
 		 
 	}
 

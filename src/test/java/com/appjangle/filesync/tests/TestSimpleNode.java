@@ -10,6 +10,7 @@ public class TestSimpleNode extends CheckFilesTempalte {
   
   public void assertFiles() {
     throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from int to Procedure1<? super Integer>");
+      + "\nThe method assertThat(T, Matcher<T>) is not visible"
+      + "\nType mismatch: cannot convert from int to Matcher<Integer>");
   }
 }

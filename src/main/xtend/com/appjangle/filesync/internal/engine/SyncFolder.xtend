@@ -8,6 +8,7 @@ import de.mxro.fn.Success
 import io.nextweb.Node
 
 import static extension de.mxro.async.Async.embed
+import com.appjangle.filesync.internal.engine.metadata.MetadataUtilsJre
 
 class SyncFolder {
 	
@@ -50,7 +51,7 @@ class SyncFolder {
 	}
 	
 	def save(Metadata metadata) {
-		nkjkjnhk
+		MetadataUtilsJre.saveToFile(metadata)
 	}
 	
 	def download(ValueCallback<Success> cb) {

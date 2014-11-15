@@ -6,6 +6,7 @@ import com.appjangle.filesync.Metadata
 import com.appjangle.filesync.internal.engine.metadata.MetadataUtilsJre
 import de.mxro.file.FileItem
 import java.util.List
+import com.appjangle.filesync.internal.engine.metadata.MetadataImpl
 
 class FileUtils {
 
@@ -20,7 +21,10 @@ class FileUtils {
 		metadataFolder.visible = false;
 
 		if (!metadataFolder.getChild("nodes.xml").exists) {
-			metadataFolder.createFile("nodes.xml")
+			val metadataFile = metadataFolder.createFile("nodes.xml")
+			val metadata = new MetadataImpl
+			MetadataUtilsJre.saveToFile(metadata, metadataFile)
+			return metadata
 		}
 
 		MetadataUtilsJre.readFromFile(metadataFolder.getChild("nodes.xml"))

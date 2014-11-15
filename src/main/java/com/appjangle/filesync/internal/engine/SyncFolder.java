@@ -67,9 +67,9 @@ public class SyncFolder {
     _fileToNetworkOperations.determineOps(_embed);
   }
   
-  public Object save(final Metadata metadata) {
+  public void save(final Metadata metadata) {
     throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field nkjkjnhk is undefined for the type SyncFolder");
+      + "\nInvalid number of arguments. The method saveToFile(Metadata, FileItem) is not applicable for the arguments (Metadata)");
   }
   
   public void download(final ValueCallback<Success> cb) {

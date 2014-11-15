@@ -3,6 +3,7 @@ package com.appjangle.filesync.internal.engine;
 import com.appjangle.filesync.FileOperation;
 import com.appjangle.filesync.FileOperationContext;
 import com.appjangle.filesync.Metadata;
+import com.appjangle.filesync.internal.engine.metadata.MetadataImpl;
 import com.appjangle.filesync.internal.engine.metadata.MetadataUtilsJre;
 import com.google.common.base.Objects;
 import de.mxro.file.FileItem;
@@ -26,7 +27,10 @@ public class FileUtils {
       boolean _exists = _child.exists();
       boolean _not = (!_exists);
       if (_not) {
-        metadataFolder.createFile("nodes.xml");
+        final FileItem metadataFile = metadataFolder.createFile("nodes.xml");
+        final MetadataImpl metadata = new MetadataImpl();
+        MetadataUtilsJre.saveToFile(metadata, metadataFile);
+        return metadata;
       }
       FileItem _child_1 = metadataFolder.getChild("nodes.xml");
       _xblockexpression = MetadataUtilsJre.readFromFile(_child_1);

@@ -12,6 +12,7 @@ import io.nextweb.Session;
 import io.nextweb.common.LocalServer;
 import io.nextweb.promise.NextwebPromise;
 import java.io.File;
+import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -33,15 +34,19 @@ public abstract class CheckFilesTempalte {
   
   @Before
   public void setUp() {
-    LocalServer _startServer = AppjangleJre.startServer();
-    this.server = _startServer;
-    Session _createSession = AppjangleJre.createSession(this.server);
-    this.session = _createSession;
-    Query _seed = this.session.seed(this.server);
-    Node _get = _seed.get();
-    this.source = _get;
-    File _newFolder = this.tempFolder.newFolder("sync1");
-    this.target = _newFolder;
+    try {
+      LocalServer _startServer = AppjangleJre.startServer();
+      this.server = _startServer;
+      Session _createSession = AppjangleJre.createSession(this.server);
+      this.session = _createSession;
+      Query _seed = this.session.seed(this.server);
+      Node _get = _seed.get();
+      this.source = _get;
+      File _newFolder = this.tempFolder.newFolder("sync1");
+      this.target = _newFolder;
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
   
   protected abstract void defineData();

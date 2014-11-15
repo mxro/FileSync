@@ -110,7 +110,15 @@ public class TestSimpleNode extends CheckFilesTempalte {
     Assert.assertEquals(expected, actual, delta);
   }
   
+  private static void assertEquals(final float expected, final float actual, final float delta) {
+    Assert.assertEquals(expected, actual, delta);
+  }
+  
   private static void assertEquals(final String message, final double expected, final double actual, final double delta) {
+    Assert.assertEquals(message, expected, actual, delta);
+  }
+  
+  private static void assertEquals(final String message, final float expected, final float actual, final float delta) {
     Assert.assertEquals(message, expected, actual, delta);
   }
   
@@ -120,6 +128,30 @@ public class TestSimpleNode extends CheckFilesTempalte {
   
   private static void assertFalse(final String message, final boolean condition) {
     Assert.assertFalse(message, condition);
+  }
+  
+  private static void assertNotEquals(final Object first, final Object second) {
+    Assert.assertNotEquals(first, second);
+  }
+  
+  private static void assertNotEquals(final long first, final long second) {
+    Assert.assertNotEquals(first, second);
+  }
+  
+  private static void assertNotEquals(final String message, final Object first, final Object second) {
+    Assert.assertNotEquals(message, first, second);
+  }
+  
+  private static void assertNotEquals(final String message, final long first, final long second) {
+    Assert.assertNotEquals(message, first, second);
+  }
+  
+  private static void assertNotEquals(final double first, final double second, final double delta) {
+    Assert.assertNotEquals(first, second, delta);
+  }
+  
+  private static void assertNotEquals(final String message, final double first, final double second, final double delta) {
+    Assert.assertNotEquals(message, first, second, delta);
   }
   
   private static void assertNotNull(final Object object) {
@@ -154,12 +186,12 @@ public class TestSimpleNode extends CheckFilesTempalte {
     Assert.assertSame(message, expected, actual);
   }
   
-  private static <T extends Object> void assertThat(final T actual, final Matcher<T> matcher) {
+  private static <T extends Object> void assertThat(final T actual, final Matcher<? super T> matcher) {
     Assert.<T>assertThat(actual, matcher);
   }
   
-  private static <T extends Object> void assertThat(final String arg0, final T arg1, final Matcher<T> arg2) {
-    Assert.<T>assertThat(arg0, arg1, arg2);
+  private static <T extends Object> void assertThat(final String reason, final T actual, final Matcher<? super T> matcher) {
+    Assert.<T>assertThat(reason, actual, matcher);
   }
   
   private static void assertTrue(final boolean condition) {

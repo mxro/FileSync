@@ -28,8 +28,8 @@ public class TestNodeWithLabel extends CheckNodesToFilesTemplate {
     TestNodeWithLabel.<Integer, Integer>operator_doubleArrow(Integer.valueOf(_size), Integer.valueOf(2));
     boolean _contains = this.result.contains(".filesync-meta");
     TestNodeWithLabel.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_contains), Boolean.valueOf(true));
-    InputOutput.println();
-    this.result.getChildren();
+    List<FileItem> _children_1 = this.result.getChildren();
+    InputOutput.<List<FileItem>>println(_children_1);
     boolean _contains_1 = this.result.contains("Labelled Node");
     TestNodeWithLabel.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_contains_1), Boolean.valueOf(true));
   }

@@ -13,7 +13,11 @@ class TestSimpleNode extends CheckFilesTempalte {
 	override assertFiles() {
 		val children = FilesJre.wrap(target).children
 		
-		assertThat(children.size(), 2)
+		children.size => 2
+		
+		children.contains(".filesync-meta") => true
+		
+		children.toString.contains("Folder") => true
 		
 	}
 

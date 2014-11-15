@@ -1,7 +1,10 @@
 package com.appjangle.filesync.tests;
 
 import com.appjangle.filesync.tests.CheckFilesTempalte;
+import de.mxro.file.FileItem;
+import de.mxro.file.Jre.FilesJre;
 import de.oehme.xtend.junit.JUnit;
+import java.util.List;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
 import org.hamcrest.Matcher;
 import org.junit.Assert;
@@ -18,8 +21,15 @@ public class TestSimpleNode extends CheckFilesTempalte {
   
   @Test
   public void assertFiles() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from int to Matcher<Integer>");
+    FileItem _wrap = FilesJre.wrap(this.target);
+    final List<FileItem> children = _wrap.getChildren();
+    int _size = children.size();
+    TestSimpleNode.<Integer, Integer>operator_doubleArrow(Integer.valueOf(_size), Integer.valueOf(2));
+    boolean _contains = children.contains(".filesync-meta");
+    TestSimpleNode.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_contains), Boolean.valueOf(true));
+    String _string = children.toString();
+    boolean _contains_1 = _string.contains("Folder");
+    TestSimpleNode.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_contains_1), Boolean.valueOf(true));
   }
   
   private static void assertArrayEquals(final Object[] expecteds, final Object[] actuals) {

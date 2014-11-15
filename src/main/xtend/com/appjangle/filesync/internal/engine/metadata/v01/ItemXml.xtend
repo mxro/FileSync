@@ -5,7 +5,6 @@ import java.util.Date
 
 class ItemXml implements ItemMetadata {
 	
-	
 	public var String name;
 	public var Date lastModified;
 	public var String uri;
@@ -13,23 +12,23 @@ class ItemXml implements ItemMetadata {
 	public var String converter;
 	
 	override name() {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		name
 	}
 	
 	override lastModified() {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		lastModified
 	}
 	
 	override uri() {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		uri
 	}
 	
 	override hash() {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		hash
 	}
 	
 	override converter() {
-		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+		converter
 	}
 	
 }

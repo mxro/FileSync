@@ -16,22 +16,22 @@ public class ItemXml implements ItemMetadata {
   public String converter;
   
   public String name() {
-    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+    return this.name;
   }
   
   public Date lastModified() {
-    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+    return this.lastModified;
   }
   
   public String uri() {
-    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+    return this.uri;
   }
   
   public String hash() {
-    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+    return this.hash;
   }
   
   public String converter() {
-    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+    return this.converter;
   }
 }

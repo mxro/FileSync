@@ -1,46 +1,38 @@
 package com.appjangle.filesync.internal.engine.metadata.v01;
 
-import java.util.Date;
 import org.eclipse.xtend.lib.Data;
 import org.eclipse.xtext.xbase.lib.util.ToStringHelper;
 
 /* @Data
  */@SuppressWarnings("all")
 public class ItemXml {
-  public final String _name;
+  private final String _name;
   
   public String getName() {
     return this._name;
   }
   
-  public final Date _lastModified;
-  
-  public Date getLastModified() {
-    return this._lastModified;
-  }
-  
-  public final String _uri;
+  private final String _uri;
   
   public String getUri() {
     return this._uri;
   }
   
-  public final String _hash;
+  private final String _hash;
   
   public String getHash() {
     return this._hash;
   }
   
-  public final String _converter;
+  private final String _converter;
   
   public String getConverter() {
     return this._converter;
   }
   
-  public ItemXml(final String name, final Date lastModified, final String uri, final String hash, final String converter) {
+  public ItemXml(final String name, final String uri, final String hash, final String converter) {
     super();
     this._name = name;
-    this._lastModified = lastModified;
     this._uri = uri;
     this._hash = hash;
     this._converter = converter;
@@ -51,7 +43,6 @@ public class ItemXml {
     final int prime = 31;
     int result = 1;
     result = prime * result + ((_name== null) ? 0 : _name.hashCode());
-    result = prime * result + ((_lastModified== null) ? 0 : _lastModified.hashCode());
     result = prime * result + ((_uri== null) ? 0 : _uri.hashCode());
     result = prime * result + ((_hash== null) ? 0 : _hash.hashCode());
     result = prime * result + ((_converter== null) ? 0 : _converter.hashCode());
@@ -71,11 +62,6 @@ public class ItemXml {
       if (other._name != null)
         return false;
     } else if (!_name.equals(other._name))
-      return false;
-    if (_lastModified == null) {
-      if (other._lastModified != null)
-        return false;
-    } else if (!_lastModified.equals(other._lastModified))
       return false;
     if (_uri == null) {
       if (other._uri != null)

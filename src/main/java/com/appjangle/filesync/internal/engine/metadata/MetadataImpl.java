@@ -69,6 +69,6 @@ public class MetadataImpl implements Metadata {
       + "\nThe method or field uri is undefined for the type MetadataImpl"
       + "\nThe method or field lastModified is undefined for the type MetadataImpl"
       + "\nThe method or field hash is undefined for the type MetadataImpl"
-      + "\nInvalid number of arguments. The constructor ItemXml(String, Date, String, String, String) is not applicable for the arguments ");
+      + "\nInvalid number of arguments. The constructor ItemXml(String, String, String, String) is not applicable for the arguments ");
   }
 }

@@ -1,16 +1,13 @@
 package com.appjangle.filesync.internal.engine.metadata.v01
 
-import com.appjangle.filesync.ItemMetadata
-import java.util.Date
-
 @Data
 class ItemXml  {
 	
-	public var String name;
-	public var Date lastModified;
-	public var String uri;
-	public var String hash;
-	public var String converter;
+	String name
+	//Date lastModified
+	String uri
+	String hash
+	String converter
 	
 	/*override name() {
 		name

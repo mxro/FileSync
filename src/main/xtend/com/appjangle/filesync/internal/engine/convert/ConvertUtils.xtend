@@ -14,9 +14,9 @@ class ConvertUtils {
 
 	val fileExtensions = #{
 		"https://admin1.linnk.it/types/v01/isHtmlValue" -> ".html",
-		"" -> ".type",
-		"" -> ".css",
-		"" -> ".js"	
+		"1" -> ".type",
+		"2" -> ".css",
+		"3" -> ".js"	
 	}
 
 	def getFileExtension(Node forNode, ValueCallback<String> cb) {

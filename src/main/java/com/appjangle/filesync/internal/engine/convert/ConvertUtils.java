@@ -28,7 +28,7 @@ import org.eclipse.xtext.xbase.lib.Pair;
 public class ConvertUtils {
   private final List<String> labelTypes = Collections.<String>unmodifiableList(CollectionLiterals.<String>newArrayList("https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel"));
   
-  private final Map<String, String> fileExtensions = Collections.<String, String>unmodifiableMap(CollectionLiterals.<String, String>newHashMap(Pair.<String, String>of("https://admin1.linnk.it/types/v01/isHtmlValue", ".html"), Pair.<String, String>of("", ".type"), Pair.<String, String>of("", ".css"), Pair.<String, String>of("", ".js")));
+  private final Map<String, String> fileExtensions = Collections.<String, String>unmodifiableMap(CollectionLiterals.<String, String>newHashMap(Pair.<String, String>of("https://admin1.linnk.it/types/v01/isHtmlValue", ".html"), Pair.<String, String>of("1", ".type"), Pair.<String, String>of("2", ".css"), Pair.<String, String>of("3", ".js")));
   
   public void getFileExtension(final Node forNode, final ValueCallback<String> cb) {
     final LinkListQuery qry = forNode.selectAllLinks();

@@ -9,7 +9,6 @@ import com.thoughtworks.xstream.XStream;
 import de.mxro.file.FileItem;
 import java.util.Date;
 import java.util.List;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
 public class MetadataUtilsJre {
@@ -25,9 +24,6 @@ public class MetadataUtilsJre {
       String _text = file.getText();
       Object _fromXML = xstream.fromXML(_text);
       final NodesXml nodesXml = ((NodesXml) _fromXML);
-      String _text_1 = file.getText();
-      String _plus = ("LOAD! " + _text_1);
-      InputOutput.<String>println(_plus);
       _xblockexpression = MetadataUtilsJre.toMetadata(nodesXml);
     }
     return _xblockexpression;
@@ -55,9 +51,6 @@ public class MetadataUtilsJre {
     final NodesXml nodesXml = MetadataUtilsJre.toNodesXml(metadata);
     String _xML = xstream.toXML(nodesXml);
     file.setText(_xML);
-    String _text = file.getText();
-    String _plus = ("Save !\n" + _text);
-    InputOutput.<String>println(_plus);
   }
   
   public static NodesXml toNodesXml(final Metadata metadata) {

@@ -21,8 +21,6 @@ class MetadataUtilsJre {
 
 		val NodesXml nodesXml = xstream.fromXML(file.text) as NodesXml
 
-		println("LOAD! "+file.text)
-
 		nodesXml.toMetadata
 
 	}
@@ -49,8 +47,7 @@ class MetadataUtilsJre {
 		val nodesXml = metadata.toNodesXml
 		
 		file.text = xstream.toXML(nodesXml)
-		
-		println("Save !\n"+file.text)
+
 		
 	}
 

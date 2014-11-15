@@ -38,12 +38,7 @@ class SyncFolder {
 		new FileToNetworkOperations(node, folder, metadata, converter).determineOps(cb.embed [ ops |
 			ops.execute(node, cb.embed [ 
 
-				download(cb.embed [
-					
-					
-					cb.onSuccess(Success.INSTANCE)
-					
-				])
+				download(cb)
 			])
 		])
 

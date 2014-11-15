@@ -49,13 +49,7 @@ public class SyncFolder {
       public void apply(final List<NetworkOperation> ops) {
         final Closure<Success> _function = new Closure<Success>() {
           public void apply(final Success it) {
-            final Closure<Success> _function = new Closure<Success>() {
-              public void apply(final Success it) {
-                cb.onSuccess(Success.INSTANCE);
-              }
-            };
-            ValueCallback<Success> _embed = Async.<Success>embed(cb, _function);
-            SyncFolder.this.download(_embed);
+            SyncFolder.this.download(cb);
           }
         };
         ValueCallback<Success> _embed = Async.<Success>embed(cb, _function);

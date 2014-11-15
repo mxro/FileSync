@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
+import org.eclipse.xtext.xbase.lib.ExclusiveRange;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
@@ -61,8 +62,27 @@ public class MetadataImpl implements Metadata {
   }
   
   public Metadata remove(final String name) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method re is undefined for the type MetadataImpl");
+    MetadataImpl _xblockexpression = null;
+    {
+      int foundIdx = (-1);
+      int _size = this.items.size();
+      ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, _size, true);
+      for (final Integer i : _doubleDotLessThan) {
+        {
+          final ItemMetadata item = this.items.get((i).intValue());
+          String _name = item.name();
+          boolean _equals = Objects.equal(_name, name);
+          if (_equals) {
+            foundIdx = (i).intValue();
+          }
+        }
+      }
+      if ((foundIdx == (-1))) {
+        throw new RuntimeException(("Cannot remove child which is not defined: " + name));
+      }
+      _xblockexpression = this;
+    }
+    return _xblockexpression;
   }
   
   public ItemXml toXml(final ItemMetadata itemMetadata) {

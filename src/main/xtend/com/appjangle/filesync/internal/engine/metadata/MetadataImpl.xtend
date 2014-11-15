@@ -37,9 +37,18 @@ class MetadataImpl implements Metadata {
 	}
 	
 	override remove(String name) {
-		val item = get(name)
+		var foundIdx = -1;
+		for (i:0..<items.size) {
+			val item = items.get(i)
+			
+			if (item.name == name) {
+				foundIdx = i
+			}
+		}
 		
-		items.re
+		if (foundIdx == -1) {
+			throw new RuntimeException("Cannot remove child which is not defined: "+name);
+		}
 		
 		this
 	}

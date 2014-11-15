@@ -141,6 +141,7 @@ public class FolderToNode implements Converter {
     final LinkedList<FileOperation> ops = new LinkedList<FileOperation>();
     final FileOperation _function = new FileOperation() {
       public void apply(final FileOperationContext ctx) {
+        InputOutput.<String>println("remove files");
         FileItem _folder = ctx.folder();
         _folder.deleteFolder(folderName);
         Metadata _metadata = ctx.metadata();

@@ -3,6 +3,7 @@ package com.appjangle.filesync.internal.engine.metadata.v01
 @Data
 class ItemXml  {
 	
+	
 	String name
 	//Date lastModified
 	String uri

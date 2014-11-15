@@ -41,8 +41,7 @@ public class TestRemoveFolder extends CheckUpdatesTemplate {
   }
   
   protected void step5_updateFiles() {
-    FileItem _child = this.result.getChild("doc.html");
-    _child.setText("And now for something different");
+    this.result.deleteFolder("folder2");
   }
   
   protected void step6_assertNodesAfterUpdate() {

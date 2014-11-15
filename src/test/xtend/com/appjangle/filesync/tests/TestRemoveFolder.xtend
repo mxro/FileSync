@@ -25,7 +25,7 @@ class TestRemoveFolder extends CheckUpdatesTemplate {
 	}
 	
 	override protected step5_updateFiles() {
-		result.getChild("doc.html").text = "And now for something different"
+		result.deleteFolder("folder2")
 	}
 	
 	override protected step6_assertNodesAfterUpdate() {

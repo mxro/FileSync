@@ -51,7 +51,10 @@ public class NetworkUtils {
               }
             };
             res.catchExceptions(_function_1);
-            final Object _function_2 = new Object() {
+            final Closure<Object> _function_2 = new Closure<Object>() {
+              public void apply(final Object succ) {
+                itmcb.onSuccess(Success.INSTANCE);
+              }
             };
             res.get(_function_2);
           }

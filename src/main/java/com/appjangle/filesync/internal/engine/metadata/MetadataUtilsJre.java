@@ -25,6 +25,9 @@ public class MetadataUtilsJre {
       String _text = file.getText();
       Object _fromXML = xstream.fromXML(_text);
       final NodesXml nodesXml = ((NodesXml) _fromXML);
+      String _text_1 = file.getText();
+      String _plus = ("LOAD! " + _text_1);
+      InputOutput.<String>println(_plus);
       _xblockexpression = MetadataUtilsJre.toMetadata(nodesXml);
     }
     return _xblockexpression;
@@ -53,7 +56,7 @@ public class MetadataUtilsJre {
     String _xML = xstream.toXML(nodesXml);
     file.setText(_xML);
     String _text = file.getText();
-    String _plus = ("Load!" + _text);
+    String _plus = ("Save !\n" + _text);
     InputOutput.<String>println(_plus);
   }
   

@@ -9,7 +9,6 @@ import com.appjangle.filesync.internal.engine.FileUtils
 import de.mxro.async.callbacks.ValueCallback
 import de.mxro.file.FileItem
 import io.nextweb.Node
-import java.util.Date
 import java.util.LinkedList
 import java.util.List
 import mx.gwtutils.MxroGWTUtils
@@ -163,11 +162,7 @@ class FileToTextNode implements Converter {
 			
 			if (file.text != content) {
 			
-				//println("before "+file.lastModified.time)
-			
 				file.text = content
-				
-				//println("after  "+file.lastModified.time)
 				
 				ctx.metadata.update(new ItemMetadata() {
 						

@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.function.Consumer;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
 /**
@@ -161,11 +162,19 @@ public class FileToNetworkOperations {
           final FileItem item = folder.getChild(_name);
           boolean _exists = item.exists();
           if (_exists) {
+            String _plus = (item + " ");
             Date _lastModified = item.lastModified();
-            long _time = _lastModified.getTime();
+            String _plus_1 = (_plus + _lastModified);
+            String _plus_2 = (_plus_1 + " ");
             Date _lastModified_1 = fileMetadata.lastModified();
-            long _time_1 = _lastModified_1.getTime();
-            boolean _greaterThan = (_time > _time_1);
+            long _time = _lastModified_1.getTime();
+            String _plus_3 = (_plus_2 + Long.valueOf(_time));
+            InputOutput.<String>println(_plus_3);
+            Date _lastModified_2 = item.lastModified();
+            long _time_1 = _lastModified_2.getTime();
+            Date _lastModified_3 = fileMetadata.lastModified();
+            long _time_2 = _lastModified_3.getTime();
+            boolean _greaterThan = (_time_1 > _time_2);
             if (_greaterThan) {
               String _name_1 = item.getName();
               res.add(_name_1);

@@ -13,7 +13,7 @@ import org.junit.internal.ArrayComparisonFailure;
 
 @JUnit
 @SuppressWarnings("all")
-public class TestNodeWithLabel extends CheckNodesToFilesTemplate {
+public class TestFolderNodeWithLabel extends CheckNodesToFilesTemplate {
   protected void defineData() {
     Query _append = this.source.append("No value", "./value");
     Query _append_1 = _append.append("Labelled Node");
@@ -24,11 +24,11 @@ public class TestNodeWithLabel extends CheckNodesToFilesTemplate {
   protected void assertFiles() {
     List<FileItem> _children = this.result.getChildren();
     int _size = _children.size();
-    TestNodeWithLabel.<Integer, Integer>operator_doubleArrow(Integer.valueOf(_size), Integer.valueOf(2));
+    TestFolderNodeWithLabel.<Integer, Integer>operator_doubleArrow(Integer.valueOf(_size), Integer.valueOf(2));
     boolean _contains = this.result.contains(".filesync-meta");
-    TestNodeWithLabel.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_contains), Boolean.valueOf(true));
+    TestFolderNodeWithLabel.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_contains), Boolean.valueOf(true));
     boolean _contains_1 = this.result.contains("Labelled Node");
-    TestNodeWithLabel.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_contains_1), Boolean.valueOf(true));
+    TestFolderNodeWithLabel.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_contains_1), Boolean.valueOf(true));
   }
   
   private static void assertArrayEquals(final Object[] expecteds, final Object[] actuals) {

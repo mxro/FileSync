@@ -8,11 +8,17 @@ class TestSingleFolderSync1 {
 	@Test
 	def void test() {
 		
-		val testServer = AppjangleJre.startServer()
+		val server = AppjangleJre.startServer()
+		
+		
+		val session = AppjangleJre.createSession(server)
 		
 		
 		
-		testServer.shutdown.get
+		
+		session.close.get
+		
+		server.shutdown.get
 		
 	}
 	

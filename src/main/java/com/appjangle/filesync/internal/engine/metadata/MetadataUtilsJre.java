@@ -59,6 +59,8 @@ public class MetadataUtilsJre {
       NodesXml nodesXml = new NodesXml();
       List<ItemMetadata> _children = metadata.getChildren();
       for (final ItemMetadata item : _children) {
+        ItemXml _itemXml = MetadataUtilsJre.toItemXml(item);
+        nodesXml.items.add(_itemXml);
       }
       _xblockexpression = nodesXml;
     }

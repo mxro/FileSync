@@ -55,6 +55,7 @@ class MetadataUtilsJre {
 		
 		for (item: metadata.children) {
 			
+			nodesXml.items.add(item.toItemXml)
 			
 		}
 		

@@ -44,7 +44,9 @@ class MetadataUtilsJre {
 		
 		val xstream = new XStream
 		
+		val nodesXml = metadata.toNodesXml
 		
+		file.text = xstream.toXML(nodesXml)
 		
 	}
 

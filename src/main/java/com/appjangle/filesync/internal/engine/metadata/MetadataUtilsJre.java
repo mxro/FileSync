@@ -48,6 +48,9 @@ public class MetadataUtilsJre {
       throw new RuntimeException("File doesn\'t exist.");
     }
     final XStream xstream = new XStream();
+    final NodesXml nodesXml = MetadataUtilsJre.toNodesXml(metadata);
+    String _xML = xstream.toXML(nodesXml);
+    file.setText(_xML);
   }
   
   public static NodesXml toNodesXml(final Metadata metadata) {

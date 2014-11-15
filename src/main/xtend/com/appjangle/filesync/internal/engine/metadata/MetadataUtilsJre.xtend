@@ -35,7 +35,7 @@ class MetadataUtilsJre {
 		
 	}
 	
-	def static void saveToFile(FileItem file) {
+	def static void saveToFile(Metadata metadata, FileItem file) {
 		if (!file.exists) {
 			throw new RuntimeException("File doesn't exist.")
 		}
@@ -43,12 +43,15 @@ class MetadataUtilsJre {
 		val xstream = new XStream
 		
 		
+		
 	}
 
 	def static NodesXml toNodesXml(Metadata metadata) {
 		var nodesXml = new NodesXml
 		
-		
+		for (item: metadata.children) {
+			
+		}
 		
 		nodesXml
 		

@@ -1,11 +1,13 @@
 package com.appjangle.filesync.internal.engine.metadata;
 
+import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.internal.engine.metadata.MetadataImpl;
 import com.appjangle.filesync.internal.engine.metadata.v01.ItemXml;
 import com.appjangle.filesync.internal.engine.metadata.v01.NodesXml;
 import com.thoughtworks.xstream.XStream;
 import de.mxro.file.FileItem;
+import java.util.List;
 
 @SuppressWarnings("all")
 public class MetadataUtilsJre {
@@ -38,7 +40,7 @@ public class MetadataUtilsJre {
     return _xblockexpression;
   }
   
-  public static void saveToFile(final FileItem file) {
+  public static void saveToFile(final Metadata metadata, final FileItem file) {
     boolean _exists = file.exists();
     boolean _not = (!_exists);
     if (_not) {
@@ -51,6 +53,9 @@ public class MetadataUtilsJre {
     NodesXml _xblockexpression = null;
     {
       NodesXml nodesXml = new NodesXml();
+      List<ItemMetadata> _children = metadata.getChildren();
+      for (final ItemMetadata item : _children) {
+      }
       _xblockexpression = nodesXml;
     }
     return _xblockexpression;

@@ -43,6 +43,11 @@
 			<groupId>com.github.oehme.xtend</groupId>
 			<artifactId>xtend-contrib</artifactId>
 			<version>0.5.1</version>
+			<exclusions>
+			<exclusion><groupId>org.eclipse.xtend</groupId>
+			<artifactId>org.eclipse.xtend.lib</artifactId></exclusion>
+			
+			</exclusions>
 		</dependency>
 
 		<dependency>

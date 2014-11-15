@@ -60,7 +60,7 @@ class NetworkToFileOperations {
 						cb.onSuccess(CollectionsUtils.flatten(res))
 					]))
 			
-			println("here")
+			
 					
 			remotelyAdded.deduceCreateOperations(agg.createCallback)
 			remotelyRemoved.deduceRemoveOperations(agg.createCallback)

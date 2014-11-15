@@ -16,14 +16,14 @@ abstract class CheckUpdatesTemplate extends CheckNodesToFilesTemplate {
 	
 	@Test
 	override test() {
-		defineData
+		step1_defineData
 		session.commit.get
 
 		AsyncJre.waitFor [cb |
 			FileSync.sync(target, source, cb)
 		]
 		
-		assertFiles
+		step2_assertFiles
 		
 		updateNodes
 		

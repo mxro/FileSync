@@ -39,20 +39,20 @@ abstract class CheckNodesToFilesTemplate {
 		result = FilesJre.wrap(target)
 	}
 	
-	def protected abstract void defineData()
+	def protected abstract void step1_defineData()
 	
-	def protected abstract void assertFiles()
+	def protected abstract void step2_assertFiles()
 	
 	@Test
 	def void test() {
-		defineData
+		step1_defineData
 		session.commit.get
 
 		AsyncJre.waitFor [cb |
 			FileSync.sync(target, source, cb)
 		]
 		
-		assertFiles
+		step2_assertFiles
 		
 	}
 	

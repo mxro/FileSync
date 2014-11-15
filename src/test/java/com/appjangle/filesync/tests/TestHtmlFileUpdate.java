@@ -14,7 +14,7 @@ import org.junit.internal.ArrayComparisonFailure;
 @JUnit
 @SuppressWarnings("all")
 public class TestHtmlFileUpdate extends CheckUpdatesTemplate {
-  protected void defineData() {
+  protected void step1_defineData() {
     final Query html = this.source.append("<p>Hello 1</p>", "./html");
     Query _append = html.append("doc");
     Link _link = this.session.link("https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel");
@@ -23,7 +23,7 @@ public class TestHtmlFileUpdate extends CheckUpdatesTemplate {
     html.append(_link_1);
   }
   
-  protected void assertFiles() {
+  protected void step2_assertFiles() {
     FileItem _child = this.result.getChild("doc.html");
     String _text = _child.getText();
     TestHtmlFileUpdate.<String, String>operator_doubleArrow(_text, "<p>Hello 1</p>");

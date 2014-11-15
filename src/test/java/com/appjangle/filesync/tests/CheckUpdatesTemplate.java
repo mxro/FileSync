@@ -21,7 +21,7 @@ public abstract class CheckUpdatesTemplate extends CheckNodesToFilesTemplate {
   
   @Test
   public void test() {
-    this.defineData();
+    this.step1_defineData();
     NextwebPromise<Success> _commit = this.session.commit();
     _commit.get();
     final Deferred<Success> _function = new Deferred<Success>() {
@@ -30,7 +30,7 @@ public abstract class CheckUpdatesTemplate extends CheckNodesToFilesTemplate {
       }
     };
     AsyncJre.<Success>waitFor(_function);
-    this.assertFiles();
+    this.step2_assertFiles();
     this.updateNodes();
     NextwebPromise<Success> _commit_1 = this.session.commit();
     _commit_1.get();

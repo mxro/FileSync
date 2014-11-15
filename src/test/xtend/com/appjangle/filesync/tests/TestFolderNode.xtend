@@ -5,11 +5,11 @@ import de.oehme.xtend.junit.JUnit
 @JUnit
 class TestFolderNode extends CheckNodesToFilesTemplate {
 
-	protected override defineData() {
+	protected override step1_defineData() {
 		source.append("A Folder")
 	}
 	
-	protected override assertFiles() {
+	protected override step2_assertFiles() {
 
 		result.children.size => 2
 		

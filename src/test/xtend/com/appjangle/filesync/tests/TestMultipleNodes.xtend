@@ -5,7 +5,7 @@ import de.oehme.xtend.junit.JUnit
 @JUnit
 class TestMultipleNodes  extends CheckNodesToFilesTemplate {
 	
-	protected override defineData() {
+	protected override step1_defineData() {
 		val html = source.append("<html></html>", "./html")
 		html.append("Html Document").append(session.link('https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel'))
 		html.append(session.link('https://admin1.linnk.it/types/v01/isHtmlValue'))
@@ -15,7 +15,7 @@ class TestMultipleNodes  extends CheckNodesToFilesTemplate {
 		source.append("Folder 2")
 	}
 	
-	protected override assertFiles() {
+	protected override step2_assertFiles() {
 
 		result.children.size => 4
 		

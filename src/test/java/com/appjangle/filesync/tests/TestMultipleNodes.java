@@ -14,7 +14,7 @@ import org.junit.internal.ArrayComparisonFailure;
 @JUnit
 @SuppressWarnings("all")
 public class TestMultipleNodes extends CheckNodesToFilesTemplate {
-  protected void defineData() {
+  protected void step1_defineData() {
     final Query html = this.source.append("<html></html>", "./html");
     Query _append = html.append("Html Document");
     Link _link = this.session.link("https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel");
@@ -25,7 +25,7 @@ public class TestMultipleNodes extends CheckNodesToFilesTemplate {
     this.source.append("Folder 2");
   }
   
-  protected void assertFiles() {
+  protected void step2_assertFiles() {
     List<FileItem> _children = this.result.getChildren();
     int _size = _children.size();
     TestMultipleNodes.<Integer, Integer>operator_doubleArrow(Integer.valueOf(_size), Integer.valueOf(4));

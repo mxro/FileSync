@@ -55,13 +55,13 @@ public abstract class CheckNodesToFilesTemplate {
     }
   }
   
-  protected abstract void defineData();
+  protected abstract void step1_defineData();
   
-  protected abstract void assertFiles();
+  protected abstract void step2_assertFiles();
   
   @Test
   public void test() {
-    this.defineData();
+    this.step1_defineData();
     NextwebPromise<Success> _commit = this.session.commit();
     _commit.get();
     final Deferred<Success> _function = new Deferred<Success>() {
@@ -70,7 +70,7 @@ public abstract class CheckNodesToFilesTemplate {
       }
     };
     AsyncJre.<Success>waitFor(_function);
-    this.assertFiles();
+    this.step2_assertFiles();
   }
   
   @After

@@ -8,7 +8,7 @@ class TestMultipleNodes  extends CheckNodesToFilesTemplate {
 	protected override defineData() {
 		val html = source.append("<html></html>", "./html")
 		html.append("Html Document").append(session.link('https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel'))
-		html.append(session.link("https://admin1.linnk.it/types/v01/isHtmlValue"))
+		html.append(session.link('https://admin1.linnk.it/types/v01/isHtmlValue'))
 		
 		source.append("Folder 1")
 		

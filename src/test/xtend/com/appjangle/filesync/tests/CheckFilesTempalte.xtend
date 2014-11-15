@@ -3,6 +3,7 @@ package com.appjangle.filesync.tests
 import com.appjangle.filesync.FileSync
 import com.appjangle.jre.AppjangleJre
 import de.mxro.async.jre.AsyncJre
+import de.oehme.xtend.junit.JUnit
 import io.nextweb.Node
 import io.nextweb.Session
 import io.nextweb.common.LocalServer
@@ -13,6 +14,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TemporaryFolder
 
+@JUnit
 abstract class CheckFilesTempalte {
 	
 	protected LocalServer server

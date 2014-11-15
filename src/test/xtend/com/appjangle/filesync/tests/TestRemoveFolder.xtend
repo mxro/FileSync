@@ -6,13 +6,14 @@ import de.oehme.xtend.junit.JUnit
 class TestRemoveFolder extends CheckUpdatesTemplate {
 	
 	override protected step1_defineData() {
-		source.append("Folder 1", "./folder1")
-		source.append("Folder 2", "./folder2")
-		source.append("Folder 3", "./folder3")
+		source.append("folder1", "./folder1")
+		source.append("folder2", "./folder2")
+		source.append("folder3", "./folder3")
 	}
 	
 	override protected step2_assertFiles() {
 		result.children.size => 4
+		result.getChild("folder1").exists => true
 	}
 	
 	override protected step3_updateNodes() {
@@ -20,7 +21,7 @@ class TestRemoveFolder extends CheckUpdatesTemplate {
 	}
 	
 	override protected step4_assertFilesAfterUpdate() {
-		result.getChild("doc.html").text => "<p>Hello 1 and Hello 2 are an amazing team.</p>"
+		result.getChild("folder1").exists => false
 	}
 	
 	override protected step5_updateFiles() {

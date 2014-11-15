@@ -15,15 +15,18 @@ import org.junit.internal.ArrayComparisonFailure;
 @SuppressWarnings("all")
 public class TestRemoveFolder extends CheckUpdatesTemplate {
   protected void step1_defineData() {
-    this.source.append("Folder 1", "./folder1");
-    this.source.append("Folder 2", "./folder2");
-    this.source.append("Folder 3", "./folder3");
+    this.source.append("folder1", "./folder1");
+    this.source.append("folder2", "./folder2");
+    this.source.append("folder3", "./folder3");
   }
   
   protected void step2_assertFiles() {
     List<FileItem> _children = this.result.getChildren();
     int _size = _children.size();
     TestRemoveFolder.<Integer, Integer>operator_doubleArrow(Integer.valueOf(_size), Integer.valueOf(4));
+    FileItem _child = this.result.getChild("folder1");
+    boolean _exists = _child.exists();
+    TestRemoveFolder.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_exists), Boolean.valueOf(true));
   }
   
   protected void step3_updateNodes() {
@@ -32,9 +35,9 @@ public class TestRemoveFolder extends CheckUpdatesTemplate {
   }
   
   protected void step4_assertFilesAfterUpdate() {
-    FileItem _child = this.result.getChild("doc.html");
-    String _text = _child.getText();
-    TestRemoveFolder.<String, String>operator_doubleArrow(_text, "<p>Hello 1 and Hello 2 are an amazing team.</p>");
+    FileItem _child = this.result.getChild("folder1");
+    boolean _exists = _child.exists();
+    TestRemoveFolder.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_exists), Boolean.valueOf(false));
   }
   
   protected void step5_updateFiles() {

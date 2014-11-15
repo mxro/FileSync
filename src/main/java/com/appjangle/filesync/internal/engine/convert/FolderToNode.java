@@ -27,7 +27,6 @@ import java.util.List;
 import mx.gwtutils.MxroGWTUtils;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Extension;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
 public class FolderToNode implements Converter {
@@ -87,8 +86,6 @@ public class FolderToNode implements Converter {
         final FileOperation _function = new FileOperation() {
           public void apply(final FileOperationContext ctx) {
             final String folderName = FolderToNode.this.futils.toFileSystemSafeName(rawFolderName, false, 20);
-            InputOutput.<String>println(("from name " + rawFolderName));
-            InputOutput.<String>println(("use name " + folderName));
             FileItem _folder = ctx.folder();
             _folder.assertFolder(folderName);
             Metadata _metadata = ctx.metadata();

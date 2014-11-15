@@ -14,8 +14,6 @@ class TestNodeWithLabel extends CheckNodesToFilesTemplate {
 		
 		result.contains(".filesync-meta") => true
 		
-		println(result.children)
-		
 		result.contains("Labelled Node") => true
 		
 	}

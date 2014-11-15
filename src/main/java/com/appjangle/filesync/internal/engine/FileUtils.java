@@ -9,6 +9,7 @@ import com.google.common.base.Objects;
 import de.mxro.file.FileItem;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.ExclusiveRange;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
 public class FileUtils {
@@ -137,6 +138,7 @@ public class FileUtils {
           _or_6 = _equals_6;
         }
         valid = _or_6;
+        InputOutput.<String>println(((("[" + Character.valueOf(c)) + "]=>") + Boolean.valueOf(valid)));
         if (valid) {
           rc.append(c);
         } else {

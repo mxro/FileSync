@@ -75,7 +75,7 @@ class FileUtils {
 			valid = valid || (c >= '0' && c <= '9');
 			valid = valid || (c == '_') || (c == '-') || (c == '.') || (c == '#') ||
 				(dirSeparators && ( (c == '/') || (c == '\\')));
-			valid = valid || c == ' '
+			valid = valid || c == ' ';
 
 			if (valid) {
 				rc.append(c);

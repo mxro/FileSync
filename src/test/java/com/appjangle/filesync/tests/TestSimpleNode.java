@@ -4,7 +4,6 @@ import com.appjangle.filesync.tests.CheckFilesTempalte;
 import de.mxro.file.FileItem;
 import de.mxro.file.Jre.FilesJre;
 import java.util.List;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
 public class TestSimpleNode extends CheckFilesTempalte {
@@ -14,7 +13,6 @@ public class TestSimpleNode extends CheckFilesTempalte {
   
   public void assertFiles() {
     FileItem _wrap = FilesJre.wrap(this.target);
-    List<FileItem> _children = _wrap.getChildren();
-    InputOutput.<List<FileItem>>println(_children);
+    final List<FileItem> children = _wrap.getChildren();
   }
 }

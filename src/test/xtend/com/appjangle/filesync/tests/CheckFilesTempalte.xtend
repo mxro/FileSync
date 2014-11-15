@@ -34,9 +34,9 @@ abstract class CheckFilesTempalte {
 		target = tempFolder.newFolder("sync1")
 	}
 	
-	def abstract void defineData()
+	def protected abstract void defineData()
 	
-	def abstract void assertFiles()
+	def protected abstract void assertFiles()
 	
 	@Test
 	def void test() {

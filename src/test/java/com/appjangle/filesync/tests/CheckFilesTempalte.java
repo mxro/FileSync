@@ -44,9 +44,9 @@ public abstract class CheckFilesTempalte {
     this.target = _newFolder;
   }
   
-  public abstract void defineData();
+  protected abstract void defineData();
   
-  public abstract void assertFiles();
+  protected abstract void assertFiles();
   
   @Test
   public void test() {

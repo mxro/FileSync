@@ -12,7 +12,7 @@ import org.eclipse.xtext.xbase.lib.ExclusiveRange;
 
 @SuppressWarnings("all")
 public class FileUtils {
-  public void saveMetadata(final Metadata metadata, final FileItem forFolder) {
+  public void saveForFolder(final Metadata metadata, final FileItem forFolder) {
     FileItem _child = forFolder.getChild(".filesync-meta");
     FileItem _child_1 = _child.getChild("nodes.xml");
     MetadataUtilsJre.saveToFile(metadata, _child_1);

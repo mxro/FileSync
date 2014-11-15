@@ -51,7 +51,7 @@ public class SyncFolder {
           public void apply(final Success it) {
             final Closure<Success> _function = new Closure<Success>() {
               public void apply(final Success it) {
-                SyncFolder.this.fileUtils.saveMetadata(SyncFolder.this.metadata, SyncFolder.this.folder);
+                SyncFolder.this.fileUtils.saveForFolder(SyncFolder.this.metadata, SyncFolder.this.folder);
                 cb.onSuccess(Success.INSTANCE);
               }
             };

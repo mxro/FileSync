@@ -8,7 +8,6 @@ import de.mxro.fn.Success
 import io.nextweb.Node
 
 import static extension de.mxro.async.Async.embed
-import com.appjangle.filesync.internal.engine.metadata.MetadataUtilsJre
 
 class SyncFolder {
 	
@@ -38,15 +37,13 @@ class SyncFolder {
 			ops.execute(node, cb.embed [ 
 				download(cb.embed [
 					
-					metadata.saveMetadata(folder)
+					metadata.saveForFolder(folder)
 					cb.onSuccess(Success.INSTANCE)
 					
 				])
 			])
 		])
-			
-			
-			
+
 		
 	}
 	

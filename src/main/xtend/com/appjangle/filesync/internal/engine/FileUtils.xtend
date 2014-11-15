@@ -10,7 +10,7 @@ import com.appjangle.filesync.internal.engine.metadata.MetadataImpl
 
 class FileUtils {
 
-	def saveMetadata(Metadata metadata, FileItem forFolder) {
+	def saveForFolder(Metadata metadata, FileItem forFolder) {
 		MetadataUtilsJre.saveToFile(metadata, forFolder.getChild(".filesync-meta").getChild("nodes.xml"))
 	}
 

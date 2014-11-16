@@ -72,10 +72,12 @@ public class ConvertUtils {
       boolean _equals = Objects.equal(ext, ".html");
       if (_equals) {
         Session _session = toNode.session();
-        Link _link = _session.link("https://admin1.linnk.it/types/v01/isHtmlValue");
+        String _HTML_VALUE = T.HTML_VALUE();
+        Link _link = _session.link(_HTML_VALUE);
         toNode.appendSafe(_link);
         Session _session_1 = toNode.session();
-        Link _link_1 = _session_1.link("https://u1.linnk.it/6wbnoq/Types/aTemplate");
+        String _TEMPLATE = T.TEMPLATE();
+        Link _link_1 = _session_1.link(_TEMPLATE);
         toNode.appendSafe(_link_1);
       }
       Session _session_2 = toNode.session();

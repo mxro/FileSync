@@ -24,4 +24,8 @@ class N {
 		return "https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel"
 	}
 	
+	def LABEL(Session session) {
+		return session.link("https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel")
+	}
+	
 }

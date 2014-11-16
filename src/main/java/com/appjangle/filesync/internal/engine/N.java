@@ -24,4 +24,8 @@ public class N {
   public static String LABEL() {
     return "https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel";
   }
+  
+  public Link LABEL(final Session session) {
+    return session.link("https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel");
+  }
 }

@@ -29,9 +29,8 @@ public class TestRemoveFolder extends CheckUpdatesTemplate {
   protected void step1_defineData() {
     final Query file1 = this.source.append("<p>file1</p>", "./file1");
     Query _append = file1.append("Html Document");
-    String _LABEL = N.LABEL();
-    Link _link = this.session.link(_LABEL);
-    _append.append(_link);
+    Link _LABEL = this.n.LABEL(this.session);
+    _append.append(_LABEL);
     Link _HTML_VALUE = this.n.HTML_VALUE(this.session);
     file1.append(_HTML_VALUE);
     final Query file2 = this.source.append("file2", "./file2");

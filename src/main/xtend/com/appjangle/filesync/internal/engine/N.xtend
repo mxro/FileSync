@@ -1,9 +1,15 @@
 package com.appjangle.filesync.internal.engine
 
+import io.nextweb.Session
+
 class N {
 	
 	def static HTML_VALUE() {
 		return "https://admin1.linnk.it/types/v01/isHtmlValue"
+	}
+	
+	def  HTML_VALUE(Session session) {
+		return session.link("https://admin1.linnk.it/types/v01/isHtmlValue")
 	}
 	
 	def static TEMPLATE() {

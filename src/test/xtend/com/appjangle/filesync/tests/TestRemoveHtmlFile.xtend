@@ -11,7 +11,7 @@ class TestRemoveFolder extends CheckUpdatesTemplate {
 	override protected step1_defineData() {
 		val file1 = source.append("<p>file1</p>", "./file1")
 		file1.append("Html Document").append(session.link(N.LABEL))
-		file1.append(session.link(N.HTML_VALUE))
+		file1.append(session.HTML_VALUE)
 		
 		val file2 = source.append("file2", "./file2")
 		val file3 =source.append("file3", "./file3")
@@ -46,5 +46,7 @@ class TestRemoveFolder extends CheckUpdatesTemplate {
 
 		])
 	}
+	
+	extension N n = new N()
 	
 }

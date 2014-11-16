@@ -1,9 +1,16 @@
 package com.appjangle.filesync.internal.engine;
 
+import io.nextweb.Link;
+import io.nextweb.Session;
+
 @SuppressWarnings("all")
 public class N {
   public static String HTML_VALUE() {
     return "https://admin1.linnk.it/types/v01/isHtmlValue";
+  }
+  
+  public Link HTML_VALUE(final Session session) {
+    return session.link("https://admin1.linnk.it/types/v01/isHtmlValue");
   }
   
   public static String TEMPLATE() {

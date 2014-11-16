@@ -17,6 +17,7 @@ import io.nextweb.promise.exceptions.ExceptionResult;
 import io.nextweb.promise.exceptions.UndefinedListener;
 import io.nextweb.promise.exceptions.UndefinedResult;
 import java.util.List;
+import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
 import org.hamcrest.Matcher;
 import org.junit.Assert;
@@ -31,9 +32,8 @@ public class TestRemoveFolder extends CheckUpdatesTemplate {
     String _LABEL = N.LABEL();
     Link _link = this.session.link(_LABEL);
     _append.append(_link);
-    String _HTML_VALUE = N.HTML_VALUE();
-    Link _link_1 = this.session.link(_HTML_VALUE);
-    file1.append(_link_1);
+    Link _HTML_VALUE = this.n.HTML_VALUE(this.session);
+    file1.append(_HTML_VALUE);
     final Query file2 = this.source.append("file2", "./file2");
     final Query file3 = this.source.append("file3", "./file3");
   }
@@ -90,6 +90,9 @@ public class TestRemoveFolder extends CheckUpdatesTemplate {
     };
     AsyncJre.<Success>waitFor(_function);
   }
+  
+  @Extension
+  private N n = new N();
   
   private static void assertArrayEquals(final Object[] expecteds, final Object[] actuals) {
     Assert.assertArrayEquals(expecteds, actuals);

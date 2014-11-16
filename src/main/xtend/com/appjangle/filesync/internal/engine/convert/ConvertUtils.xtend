@@ -11,7 +11,7 @@ import static extension de.mxro.async.Async.embed
 
 class ConvertUtils {
 
-	val labelTypes = #['https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel']
+	val labelTypes = #[T.LABEL]
 
 	val fileExtensions = #{
 		T.HTML_VALUE -> ".html",

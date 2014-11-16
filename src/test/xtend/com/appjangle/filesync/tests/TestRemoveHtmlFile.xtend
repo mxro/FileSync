@@ -10,7 +10,7 @@ class TestRemoveFolder extends CheckUpdatesTemplate {
 	
 	override protected step1_defineData() {
 		val file1 = source.append("<p>file1</p>", "./file1")
-		file1.append("html1").append(session.LABEL)
+		file1.append("html1", "./label").append(session.LABEL)
 		file1.append(session.HTML_VALUE)
 		
 		val file2 = source.append("file2", "./file2")
@@ -28,7 +28,11 @@ class TestRemoveFolder extends CheckUpdatesTemplate {
 	}
 	
 	override protected step3_updateNodes() {
-		source.remove(source.select("./file1"))
+		val html = source.select("./file1")
+		html.select("./label").remove(session.LABEL)
+		html.remove(html.select("./label"))
+		html.remove(session.HTML_VALUE)
+		source.remove(html)
 	}
 	
 	override protected step4_assertFilesAfterUpdate() {

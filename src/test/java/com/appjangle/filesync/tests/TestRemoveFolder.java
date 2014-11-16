@@ -28,7 +28,7 @@ import org.junit.internal.ArrayComparisonFailure;
 public class TestRemoveFolder extends CheckUpdatesTemplate {
   protected void step1_defineData() {
     final Query file1 = this.source.append("<p>file1</p>", "./file1");
-    Query _append = file1.append("html1");
+    Query _append = file1.append("html1", "./label");
     Link _LABEL = this.n.LABEL(this.session);
     _append.append(_LABEL);
     Link _HTML_VALUE = this.n.HTML_VALUE(this.session);
@@ -57,8 +57,15 @@ public class TestRemoveFolder extends CheckUpdatesTemplate {
   }
   
   protected void step3_updateNodes() {
-    Query _select = this.source.select("./file1");
-    this.source.remove(_select);
+    final Query html = this.source.select("./file1");
+    Query _select = html.select("./label");
+    Link _LABEL = this.n.LABEL(this.session);
+    _select.remove(_LABEL);
+    Query _select_1 = html.select("./label");
+    html.remove(_select_1);
+    Link _HTML_VALUE = this.n.HTML_VALUE(this.session);
+    html.remove(_HTML_VALUE);
+    this.source.remove(html);
   }
   
   protected void step4_assertFilesAfterUpdate() {

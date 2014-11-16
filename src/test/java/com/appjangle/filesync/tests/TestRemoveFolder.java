@@ -24,9 +24,9 @@ import org.junit.internal.ArrayComparisonFailure;
 @SuppressWarnings("all")
 public class TestRemoveFolder extends CheckUpdatesTemplate {
   protected void step1_defineData() {
-    this.source.append("folder1", "./folder1");
-    this.source.append("folder2", "./folder2");
-    this.source.append("folder3", "./folder3");
+    this.source.append("file1", "./file1");
+    this.source.append("file2", "./file2");
+    this.source.append("file3", "./file3");
   }
   
   protected void step2_assertFiles() {

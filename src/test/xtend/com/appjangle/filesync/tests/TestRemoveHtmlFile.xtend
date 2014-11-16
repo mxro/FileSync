@@ -8,9 +8,9 @@ import de.mxro.fn.Success
 class TestRemoveFolder extends CheckUpdatesTemplate {
 	
 	override protected step1_defineData() {
-		source.append("folder1", "./folder1")
-		source.append("folder2", "./folder2")
-		source.append("folder3", "./folder3")
+		source.append("file1", "./file1")
+		source.append("file2", "./file2")
+		source.append("file3", "./file3")
 	}
 	
 	override protected step2_assertFiles() {

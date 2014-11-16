@@ -24,7 +24,7 @@ class TestRemoveFolder extends CheckUpdatesTemplate {
 	
 	override protected step2_assertFiles() {
 		result.children.size => 4
-		result.getChild("html1").exists => true
+		result.getChild("html1.html").exists => true
 	}
 	
 	override protected step3_updateNodes() {
@@ -32,13 +32,13 @@ class TestRemoveFolder extends CheckUpdatesTemplate {
 	}
 	
 	override protected step4_assertFilesAfterUpdate() {
-		result.getChild("html1").exists => false
+		result.getChild("html1.html").exists => false
 		
 		source.select("./file2").get() // asserts that it exists
 	}
 	
 	override protected step5_updateFiles() {
-		result.deleteFile("file2")
+		result.deleteFile("html2.html")
 	}
 	
 	override protected step6_assertNodesAfterUpdate() {

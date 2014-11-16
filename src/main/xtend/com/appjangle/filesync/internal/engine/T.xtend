@@ -14,4 +14,8 @@ class T {
 		return "https://u1.linnk.it/6wbnoq/Types/aTextValue"
 	}
 	
+	def static LABEL() {
+		return "https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel"
+	}
+	
 }

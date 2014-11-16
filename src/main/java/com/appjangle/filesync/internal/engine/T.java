@@ -13,4 +13,8 @@ public class T {
   public static String TEXT_VALUE() {
     return "https://u1.linnk.it/6wbnoq/Types/aTextValue";
   }
+  
+  public static String LABEL() {
+    return "https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel";
+  }
 }

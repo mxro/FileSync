@@ -55,7 +55,7 @@ class ConvertUtils {
 			toNode.appendSafe(toNode.session().link(T.TEMPLATE))	
 		}
 		
-		toNode.appendSafe(toNode.session().link('https://u1.linnk.it/6wbnoq/Types/aTextValue'))
+		toNode.appendSafe(toNode.session().link(T.TEXT_VALUE))
 		
 	}
 	

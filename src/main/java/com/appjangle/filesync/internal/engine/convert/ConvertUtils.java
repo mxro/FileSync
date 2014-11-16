@@ -81,7 +81,8 @@ public class ConvertUtils {
         toNode.appendSafe(_link_1);
       }
       Session _session_2 = toNode.session();
-      Link _link_2 = _session_2.link("https://u1.linnk.it/6wbnoq/Types/aTextValue");
+      String _TEXT_VALUE = T.TEXT_VALUE();
+      Link _link_2 = _session_2.link(_TEXT_VALUE);
       _xblockexpression = toNode.appendSafe(_link_2);
     }
     return _xblockexpression;

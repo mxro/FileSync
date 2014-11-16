@@ -18,8 +18,6 @@ import static extension de.mxro.async.Async.embed
 
 class FileToTextNode implements Converter {
 
-	
-
 	override worksOn(FileItem source) {
 
 		val name = source.name

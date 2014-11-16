@@ -1,6 +1,5 @@
 package com.appjangle.filesync.tests;
 
-import com.appjangle.filesync.internal.engine.N;
 import com.appjangle.filesync.tests.CheckUpdatesTemplate;
 import de.mxro.async.Deferred;
 import de.mxro.async.callbacks.ValueCallback;
@@ -9,7 +8,6 @@ import de.mxro.file.FileItem;
 import de.mxro.fn.Closure;
 import de.mxro.fn.Success;
 import de.oehme.xtend.junit.JUnit;
-import io.nextweb.Link;
 import io.nextweb.Node;
 import io.nextweb.Query;
 import io.nextweb.promise.exceptions.ExceptionListener;
@@ -17,7 +15,6 @@ import io.nextweb.promise.exceptions.ExceptionResult;
 import io.nextweb.promise.exceptions.UndefinedListener;
 import io.nextweb.promise.exceptions.UndefinedResult;
 import java.util.List;
-import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
 import org.hamcrest.Matcher;
 import org.junit.Assert;
@@ -27,63 +24,39 @@ import org.junit.internal.ArrayComparisonFailure;
 @SuppressWarnings("all")
 public class TestRemoveFolder extends CheckUpdatesTemplate {
   protected void step1_defineData() {
-    final Query file1 = this.source.append("<p>file1</p>", "./file1");
-    Query _append = file1.append("html1", "./label");
-    Link _LABEL = this.n.LABEL(this.session);
-    _append.append(_LABEL);
-    Link _HTML_VALUE = this.n.HTML_VALUE(this.session);
-    file1.append(_HTML_VALUE);
-    final Query file2 = this.source.append("file2", "./file2");
-    Query _append_1 = file2.append("html2");
-    Link _LABEL_1 = this.n.LABEL(this.session);
-    _append_1.append(_LABEL_1);
-    Link _HTML_VALUE_1 = this.n.HTML_VALUE(this.session);
-    file2.append(_HTML_VALUE_1);
-    final Query file3 = this.source.append("file3", "./file3");
-    Query _append_2 = file3.append("html3");
-    Link _LABEL_2 = this.n.LABEL(this.session);
-    _append_2.append(_LABEL_2);
-    Link _HTML_VALUE_2 = this.n.HTML_VALUE(this.session);
-    file3.append(_HTML_VALUE_2);
+    this.source.append("folder1", "./folder1");
+    this.source.append("folder2", "./folder2");
+    this.source.append("folder3", "./folder3");
   }
   
   protected void step2_assertFiles() {
     List<FileItem> _children = this.result.getChildren();
     int _size = _children.size();
     TestRemoveFolder.<Integer, Integer>operator_doubleArrow(Integer.valueOf(_size), Integer.valueOf(4));
-    FileItem _child = this.result.getChild("html1.html");
+    FileItem _child = this.result.getChild("folder1");
     boolean _exists = _child.exists();
     TestRemoveFolder.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_exists), Boolean.valueOf(true));
   }
   
   protected void step3_updateNodes() {
-    final Query html = this.source.select("./file1");
-    Query _select = html.select("./label");
-    Link _LABEL = this.n.LABEL(this.session);
-    _select.remove(_LABEL);
-    Query _select_1 = html.select("./label");
-    html.remove(_select_1);
-    Link _HTML_VALUE = this.n.HTML_VALUE(this.session);
-    html.remove(_HTML_VALUE);
-    this.source.remove(html);
+    Query _select = this.source.select("./folder1");
+    this.source.remove(_select);
   }
   
   protected void step4_assertFilesAfterUpdate() {
-    FileItem _child = this.result.getChild("html1.html");
+    FileItem _child = this.result.getChild("folder1");
     boolean _exists = _child.exists();
     TestRemoveFolder.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_exists), Boolean.valueOf(false));
-    Query _select = this.source.select("./file2");
-    _select.get();
   }
   
   protected void step5_updateFiles() {
-    this.result.deleteFile("html2.html");
+    this.result.deleteFolder("folder2");
   }
   
   protected void step6_assertNodesAfterUpdate() {
     final Deferred<Success> _function = new Deferred<Success>() {
       public void get(final ValueCallback<Success> cb) {
-        final Query qry = TestRemoveFolder.this.source.select("./file2");
+        final Query qry = TestRemoveFolder.this.source.select("./folder2");
         final ExceptionListener _function = new ExceptionListener() {
           public void onFailure(final ExceptionResult er) {
             Throwable _exception = er.exception();
@@ -108,9 +81,6 @@ public class TestRemoveFolder extends CheckUpdatesTemplate {
     };
     AsyncJre.<Success>waitFor(_function);
   }
-  
-  @Extension
-  private N n = new N();
   
   private static void assertArrayEquals(final Object[] expecteds, final Object[] actuals) {
     Assert.assertArrayEquals(expecteds, actuals);

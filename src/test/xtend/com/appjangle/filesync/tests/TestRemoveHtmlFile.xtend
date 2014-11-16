@@ -33,6 +33,8 @@ class TestRemoveFolder extends CheckUpdatesTemplate {
 	
 	override protected step4_assertFilesAfterUpdate() {
 		result.getChild("html1").exists => false
+		
+		source.select("./file2").get() // asserts that it exists
 	}
 	
 	override protected step5_updateFiles() {

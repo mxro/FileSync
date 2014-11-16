@@ -65,6 +65,8 @@ public class TestRemoveFolder extends CheckUpdatesTemplate {
     FileItem _child = this.result.getChild("html1");
     boolean _exists = _child.exists();
     TestRemoveFolder.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_exists), Boolean.valueOf(false));
+    Query _select = this.source.select("./file2");
+    _select.get();
   }
   
   protected void step5_updateFiles() {

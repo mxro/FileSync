@@ -28,43 +28,53 @@ import org.junit.internal.ArrayComparisonFailure;
 public class TestRemoveFolder extends CheckUpdatesTemplate {
   protected void step1_defineData() {
     final Query file1 = this.source.append("<p>file1</p>", "./file1");
-    Query _append = file1.append("Html Document");
+    Query _append = file1.append("html1");
     Link _LABEL = this.n.LABEL(this.session);
     _append.append(_LABEL);
     Link _HTML_VALUE = this.n.HTML_VALUE(this.session);
     file1.append(_HTML_VALUE);
     final Query file2 = this.source.append("file2", "./file2");
+    Query _append_1 = file2.append("html2");
+    Link _LABEL_1 = this.n.LABEL(this.session);
+    _append_1.append(_LABEL_1);
+    Link _HTML_VALUE_1 = this.n.HTML_VALUE(this.session);
+    file2.append(_HTML_VALUE_1);
     final Query file3 = this.source.append("file3", "./file3");
+    Query _append_2 = file3.append("html3");
+    Link _LABEL_2 = this.n.LABEL(this.session);
+    _append_2.append(_LABEL_2);
+    Link _HTML_VALUE_2 = this.n.HTML_VALUE(this.session);
+    file3.append(_HTML_VALUE_2);
   }
   
   protected void step2_assertFiles() {
     List<FileItem> _children = this.result.getChildren();
     int _size = _children.size();
     TestRemoveFolder.<Integer, Integer>operator_doubleArrow(Integer.valueOf(_size), Integer.valueOf(4));
-    FileItem _child = this.result.getChild("folder1");
+    FileItem _child = this.result.getChild("html1");
     boolean _exists = _child.exists();
     TestRemoveFolder.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_exists), Boolean.valueOf(true));
   }
   
   protected void step3_updateNodes() {
-    Query _select = this.source.select("./folder1");
+    Query _select = this.source.select("./file1");
     this.source.remove(_select);
   }
   
   protected void step4_assertFilesAfterUpdate() {
-    FileItem _child = this.result.getChild("folder1");
+    FileItem _child = this.result.getChild("html1");
     boolean _exists = _child.exists();
     TestRemoveFolder.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_exists), Boolean.valueOf(false));
   }
   
   protected void step5_updateFiles() {
-    this.result.deleteFolder("folder2");
+    this.result.deleteFile("file2");
   }
   
   protected void step6_assertNodesAfterUpdate() {
     final Deferred<Success> _function = new Deferred<Success>() {
       public void get(final ValueCallback<Success> cb) {
-        final Query qry = TestRemoveFolder.this.source.select("./folder2");
+        final Query qry = TestRemoveFolder.this.source.select("./file2");
         final ExceptionListener _function = new ExceptionListener() {
           public void onFailure(final ExceptionResult er) {
             Throwable _exception = er.exception();

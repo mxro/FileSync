@@ -1,6 +1,5 @@
 package com.appjangle.filesync.internal.engine.convert
 
-import com.appjangle.filesync.internal.engine.T
 import de.mxro.async.Async
 import de.mxro.async.callbacks.ValueCallback
 import de.mxro.file.FileItem
@@ -8,13 +7,14 @@ import io.nextweb.Node
 import io.nextweb.Query
 
 import static extension de.mxro.async.Async.embed
+import com.appjangle.filesync.internal.engine.N
 
 class ConvertUtils {
 
-	val labelTypes = #[T.LABEL]
+	val labelTypes = #[N.LABEL]
 
 	val fileExtensions = #{
-		T.HTML_VALUE -> ".html",
+		N.HTML_VALUE -> ".html",
 		"1" -> ".type",
 		"2" -> ".css",
 		"3" -> ".js"	
@@ -51,11 +51,11 @@ class ConvertUtils {
 		
 		if (ext == ".html") {
 			
-			toNode.appendSafe(toNode.session().link(T.HTML_VALUE))
-			toNode.appendSafe(toNode.session().link(T.TEMPLATE))	
+			toNode.appendSafe(toNode.session().link(N.HTML_VALUE))
+			toNode.appendSafe(toNode.session().link(N.TEMPLATE))	
 		}
 		
-		toNode.appendSafe(toNode.session().link(T.TEXT_VALUE))
+		toNode.appendSafe(toNode.session().link(N.TEXT_VALUE))
 		
 	}
 	

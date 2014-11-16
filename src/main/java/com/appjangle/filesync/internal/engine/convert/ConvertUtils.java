@@ -1,6 +1,6 @@
 package com.appjangle.filesync.internal.engine.convert;
 
-import com.appjangle.filesync.internal.engine.T;
+import com.appjangle.filesync.internal.engine.N;
 import com.google.common.base.Objects;
 import de.mxro.async.Aggregator;
 import de.mxro.async.Async;
@@ -27,9 +27,9 @@ import org.eclipse.xtext.xbase.lib.Pair;
 
 @SuppressWarnings("all")
 public class ConvertUtils {
-  private final List<String> labelTypes = Collections.<String>unmodifiableList(CollectionLiterals.<String>newArrayList(T.LABEL()));
+  private final List<String> labelTypes = Collections.<String>unmodifiableList(CollectionLiterals.<String>newArrayList(N.LABEL()));
   
-  private final Map<String, String> fileExtensions = Collections.<String, String>unmodifiableMap(CollectionLiterals.<String, String>newHashMap(Pair.<String, String>of(T.HTML_VALUE(), ".html"), Pair.<String, String>of("1", ".type"), Pair.<String, String>of("2", ".css"), Pair.<String, String>of("3", ".js")));
+  private final Map<String, String> fileExtensions = Collections.<String, String>unmodifiableMap(CollectionLiterals.<String, String>newHashMap(Pair.<String, String>of(N.HTML_VALUE(), ".html"), Pair.<String, String>of("1", ".type"), Pair.<String, String>of("2", ".css"), Pair.<String, String>of("3", ".js")));
   
   public void getFileExtension(final Node forNode, final ValueCallback<String> cb) {
     final LinkListQuery qry = forNode.selectAllLinks();
@@ -72,16 +72,16 @@ public class ConvertUtils {
       boolean _equals = Objects.equal(ext, ".html");
       if (_equals) {
         Session _session = toNode.session();
-        String _HTML_VALUE = T.HTML_VALUE();
+        String _HTML_VALUE = N.HTML_VALUE();
         Link _link = _session.link(_HTML_VALUE);
         toNode.appendSafe(_link);
         Session _session_1 = toNode.session();
-        String _TEMPLATE = T.TEMPLATE();
+        String _TEMPLATE = N.TEMPLATE();
         Link _link_1 = _session_1.link(_TEMPLATE);
         toNode.appendSafe(_link_1);
       }
       Session _session_2 = toNode.session();
-      String _TEXT_VALUE = T.TEXT_VALUE();
+      String _TEXT_VALUE = N.TEXT_VALUE();
       Link _link_2 = _session_2.link(_TEXT_VALUE);
       _xblockexpression = toNode.appendSafe(_link_2);
     }

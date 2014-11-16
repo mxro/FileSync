@@ -1,5 +1,6 @@
 package com.appjangle.filesync.tests;
 
+import com.appjangle.filesync.internal.engine.N;
 import com.appjangle.filesync.tests.CheckNodesToFilesTemplate;
 import de.mxro.file.FileItem;
 import de.oehme.xtend.junit.JUnit;
@@ -17,9 +18,11 @@ public class TestCreateHtmlFile extends CheckNodesToFilesTemplate {
   protected void step1_defineData() {
     final Query html = this.source.append("<html></html>", "./html");
     Query _append = html.append("Html Document");
-    Link _link = this.session.link("https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel");
+    String _LABEL = N.LABEL();
+    Link _link = this.session.link(_LABEL);
     _append.append(_link);
-    Link _link_1 = this.session.link("https://admin1.linnk.it/types/v01/isHtmlValue");
+    String _HTML_VALUE = N.HTML_VALUE();
+    Link _link_1 = this.session.link(_HTML_VALUE);
     html.append(_link_1);
   }
   

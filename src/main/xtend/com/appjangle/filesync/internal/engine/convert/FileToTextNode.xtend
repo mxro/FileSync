@@ -6,7 +6,6 @@ import com.appjangle.filesync.ItemMetadata
 import com.appjangle.filesync.Metadata
 import com.appjangle.filesync.NetworkOperation
 import com.appjangle.filesync.internal.engine.FileUtils
-import com.appjangle.filesync.internal.engine.T
 import de.mxro.async.callbacks.ValueCallback
 import de.mxro.file.FileItem
 import io.nextweb.Node
@@ -15,6 +14,7 @@ import java.util.List
 import mx.gwtutils.MxroGWTUtils
 
 import static extension de.mxro.async.Async.embed
+import com.appjangle.filesync.internal.engine.N
 
 class FileToTextNode implements Converter {
 
@@ -30,7 +30,7 @@ class FileToTextNode implements Converter {
 
 	override worksOn(Node node, ValueCallback<Boolean> cb) {
 
-		val textNodeTypes = #[T.HTML_VALUE]
+		val textNodeTypes = #[com.appjangle.filesync.internal.engine.N.HTML_VALUE]
 		
 		val qry = node.selectAllLinks
 		

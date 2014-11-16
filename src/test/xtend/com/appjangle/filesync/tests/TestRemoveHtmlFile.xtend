@@ -1,16 +1,20 @@
 package com.appjangle.filesync.tests
 
+import com.appjangle.filesync.internal.engine.N
 import de.mxro.async.jre.AsyncJre
-import de.oehme.xtend.junit.JUnit
 import de.mxro.fn.Success
+import de.oehme.xtend.junit.JUnit
 
 @JUnit
 class TestRemoveFolder extends CheckUpdatesTemplate {
 	
 	override protected step1_defineData() {
-		source.append("file1", "./file1")
-		source.append("file2", "./file2")
-		source.append("file3", "./file3")
+		val file1 = source.append("<p>file1</p>", "./file1")
+		file1.append("Html Document").append(session.link(N.LABEL))
+		file1.append(session.link(N.HTML_VALUE))
+		
+		val file2 = source.append("file2", "./file2")
+		val file3 =source.append("file3", "./file3")
 	}
 	
 	override protected step2_assertFiles() {

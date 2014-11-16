@@ -1,5 +1,6 @@
 package com.appjangle.filesync.tests;
 
+import com.appjangle.filesync.internal.engine.N;
 import com.appjangle.filesync.tests.CheckUpdatesTemplate;
 import de.mxro.async.Deferred;
 import de.mxro.async.callbacks.ValueCallback;
@@ -8,6 +9,7 @@ import de.mxro.file.FileItem;
 import de.mxro.fn.Closure;
 import de.mxro.fn.Success;
 import de.oehme.xtend.junit.JUnit;
+import io.nextweb.Link;
 import io.nextweb.Node;
 import io.nextweb.Query;
 import io.nextweb.promise.exceptions.ExceptionListener;
@@ -24,9 +26,16 @@ import org.junit.internal.ArrayComparisonFailure;
 @SuppressWarnings("all")
 public class TestRemoveFolder extends CheckUpdatesTemplate {
   protected void step1_defineData() {
-    this.source.append("file1", "./file1");
-    this.source.append("file2", "./file2");
-    this.source.append("file3", "./file3");
+    final Query file1 = this.source.append("<p>file1</p>", "./file1");
+    Query _append = file1.append("Html Document");
+    String _LABEL = N.LABEL();
+    Link _link = this.session.link(_LABEL);
+    _append.append(_link);
+    String _HTML_VALUE = N.HTML_VALUE();
+    Link _link_1 = this.session.link(_HTML_VALUE);
+    file1.append(_link_1);
+    final Query file2 = this.source.append("file2", "./file2");
+    final Query file3 = this.source.append("file3", "./file3");
   }
   
   protected void step2_assertFiles() {

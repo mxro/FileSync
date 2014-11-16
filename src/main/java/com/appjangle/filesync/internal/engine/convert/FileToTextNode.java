@@ -8,6 +8,7 @@ import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.NetworkOperation;
 import com.appjangle.filesync.NetworkOperationContext;
 import com.appjangle.filesync.internal.engine.FileUtils;
+import com.appjangle.filesync.internal.engine.T;
 import com.appjangle.filesync.internal.engine.convert.ConvertUtils;
 import com.google.common.base.Objects;
 import de.mxro.async.Async;
@@ -46,7 +47,8 @@ public class FileToTextNode implements Converter {
   }
   
   public void worksOn(final Node node, final ValueCallback<Boolean> cb) {
-    final List<String> textNodeTypes = Collections.<String>unmodifiableList(CollectionLiterals.<String>newArrayList("https://admin1.linnk.it/types/v01/isHtmlValue"));
+    String _HTML_VALUE = T.HTML_VALUE();
+    final List<String> textNodeTypes = Collections.<String>unmodifiableList(CollectionLiterals.<String>newArrayList(_HTML_VALUE));
     final LinkListQuery qry = node.selectAllLinks();
     final ExceptionListener _function = new ExceptionListener() {
       public void onFailure(final ExceptionResult er) {

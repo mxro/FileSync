@@ -1,5 +1,6 @@
 package com.appjangle.filesync.internal.engine.convert
 
+import com.appjangle.filesync.internal.engine.T
 import de.mxro.async.Async
 import de.mxro.async.callbacks.ValueCallback
 import de.mxro.file.FileItem
@@ -13,7 +14,7 @@ class ConvertUtils {
 	val labelTypes = #['https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel']
 
 	val fileExtensions = #{
-		"https://admin1.linnk.it/types/v01/isHtmlValue" -> ".html",
+		T.HTML_VALUE -> ".html",
 		"1" -> ".type",
 		"2" -> ".css",
 		"3" -> ".js"	

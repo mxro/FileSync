@@ -61,13 +61,19 @@ public abstract class CheckFilesToNodesTemplate {
   
   @Test
   public void test() {
-    this.step1_defineFiles();
     final Deferred<Success> _function = new Deferred<Success>() {
       public void get(final ValueCallback<Success> cb) {
         FileSync.sync(CheckFilesToNodesTemplate.this.sourceFolder, CheckFilesToNodesTemplate.this.result, cb);
       }
     };
     AsyncJre.<Success>waitFor(_function);
+    this.step1_defineFiles();
+    final Deferred<Success> _function_1 = new Deferred<Success>() {
+      public void get(final ValueCallback<Success> cb) {
+        FileSync.sync(CheckFilesToNodesTemplate.this.sourceFolder, CheckFilesToNodesTemplate.this.result, cb);
+      }
+    };
+    AsyncJre.<Success>waitFor(_function_1);
     NextwebPromise<Success> _commit = this.session.commit();
     _commit.get();
     this.step2_assertNodes();

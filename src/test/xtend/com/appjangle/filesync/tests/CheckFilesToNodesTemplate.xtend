@@ -45,6 +45,10 @@ abstract class CheckFilesToNodesTemplate {
 	
 	@Test
 	def void test() {
+		AsyncJre.waitFor [cb |
+			FileSync.sync(sourceFolder, result, cb)
+		]
+		
 		step1_defineFiles
 		
 		AsyncJre.waitFor [cb |

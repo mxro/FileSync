@@ -40,7 +40,7 @@ abstract class CheckNodesToFilesTemplate {
 	}
 
 	def protected doRecursiveSync() {
-		return false;
+		false
 	}
 
 	def protected abstract void step1_defineData()

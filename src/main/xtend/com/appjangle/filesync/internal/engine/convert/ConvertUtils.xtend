@@ -8,6 +8,7 @@ import io.nextweb.Node
 import io.nextweb.Query
 
 import static extension de.mxro.async.Async.embed
+import mx.gwtutils.MxroGWTUtils
 
 class ConvertUtils {
 
@@ -22,9 +23,9 @@ class ConvertUtils {
 	}
 
 	def isTextValue(String fileName) {
-		
-		
-		textValueExtensions.keySet.contains(fileName)
+		val ext = MxroGWTUtils.getExtension(fileName)
+		println(ext)
+		textValueExtensions.keySet.contains('.'+ext)
 	}
 
 	def textNodeTypes() {

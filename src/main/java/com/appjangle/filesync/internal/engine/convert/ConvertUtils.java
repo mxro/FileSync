@@ -22,8 +22,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
+import mx.gwtutils.MxroGWTUtils;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Extension;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.Pair;
 
 @SuppressWarnings("all")
@@ -33,8 +35,14 @@ public class ConvertUtils {
   private final Map<String, String> textValueExtensions = Collections.<String, String>unmodifiableMap(CollectionLiterals.<String, String>newHashMap(Pair.<String, String>of(N.HTML_VALUE(), ".html"), Pair.<String, String>of(N.TYPE(), ".type"), Pair.<String, String>of(N.CSS(), ".css"), Pair.<String, String>of(N.JAVASCRIPT(), ".js"), Pair.<String, String>of(N.COFFEESCRIPT(), ".coffee")));
   
   public boolean isTextValue(final String fileName) {
-    Set<String> _keySet = this.textValueExtensions.keySet();
-    return _keySet.contains(fileName);
+    boolean _xblockexpression = false;
+    {
+      final String ext = MxroGWTUtils.getExtension(fileName);
+      InputOutput.<String>println(ext);
+      Set<String> _keySet = this.textValueExtensions.keySet();
+      _xblockexpression = _keySet.contains(("." + ext));
+    }
+    return _xblockexpression;
   }
   
   public Set<String> textNodeTypes() {

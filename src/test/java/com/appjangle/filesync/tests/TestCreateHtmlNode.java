@@ -30,7 +30,7 @@ public class TestCreateHtmlNode extends CheckFilesToNodesTemplate {
   }
   
   protected void step2_assertNodes() {
-    Query _select = this.result.select("./My_Document");
+    Query _select = this.result.select("./.n/My_Document");
     final Node node = _select.get();
     Object _value = node.value();
     Matcher<Object> _equalTo = TestCreateHtmlNode.<Object>equalTo("<html></html>");

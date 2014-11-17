@@ -55,7 +55,7 @@ class FolderToNode implements Converter {
 						}
 
 						override converter() {
-							FolderToNode.this.toString
+							FolderToNode.this.class.toString
 						}
 
 					})

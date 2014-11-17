@@ -97,7 +97,8 @@ public class FileToTextNode implements Converter {
           }
           
           public String converter() {
-            return FileToTextNode.this.toString();
+            Class<? extends FileToTextNode> _class = FileToTextNode.this.getClass();
+            return _class.toString();
           }
         });
         Query _appendLabel = FileToTextNode.this.cutils.appendLabel(baseNode, nameWithoutExtension);

@@ -71,7 +71,8 @@ public class FolderToNode implements Converter {
             }
             
             public String converter() {
-              return FolderToNode.this.toString();
+              Class<? extends FolderToNode> _class = FolderToNode.this.getClass();
+              return _class.toString();
             }
           });
         String _name_1 = source.getName();

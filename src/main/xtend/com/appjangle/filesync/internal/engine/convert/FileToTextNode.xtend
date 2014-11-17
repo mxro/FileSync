@@ -75,7 +75,7 @@ class FileToTextNode implements Converter {
 					}
 					
 					override converter() {
-						FileToTextNode.this.toString
+						FileToTextNode.this.class.toString
 					}
 					
 				})

@@ -88,7 +88,7 @@ class FileToTextNode implements Converter {
 				opscb.onSuccess(newArrayList(
 					baseNode,
 					baseNode.appendLabel(nameWithoutExtension),
-					baseNode.appendTypes(source)
+					baseNode.appendTypesAndIcon(source)
 				))
 			])
 

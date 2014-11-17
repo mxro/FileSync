@@ -10,9 +10,7 @@ import io.nextweb.ListQuery;
 import io.nextweb.Node;
 import io.nextweb.NodeList;
 import io.nextweb.Query;
-import io.nextweb.Session;
 import org.eclipse.xtext.xbase.lib.Extension;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.Matcher;
@@ -33,24 +31,18 @@ public class TestCreateVariousNodeTypes extends CheckFilesToNodesTemplate {
   }
   
   protected void step2_assertNodes() {
-    Query _select = this.result.select("./.n/My_Document");
-    _select.get();
-    ListQuery _selectAll = this.result.selectAll();
+    Link _CSS = this.n.CSS(this.session);
+    ListQuery _selectAll = this.result.selectAll(_CSS);
     NodeList _get = _selectAll.get();
-    InputOutput.<NodeList>println(_get);
-    Link _HTML_VALUE = this.n.HTML_VALUE(this.session);
-    Query _select_1 = this.result.select(_HTML_VALUE);
-    final Node node = _select_1.get();
-    Object _value = node.value();
-    Matcher<Object> _equalTo = TestCreateVariousNodeTypes.<Object>equalTo("<html></html>");
-    this.<Object>operator_doubleArrow(_value, _equalTo);
-    Session _session = node.session();
-    Link _LABEL = this.n.LABEL(_session);
-    Query _select_2 = node.select(_LABEL);
-    Node _get_1 = _select_2.get();
-    Object _value_1 = _get_1.value();
-    Matcher<Object> _equalTo_1 = TestCreateVariousNodeTypes.<Object>equalTo("My Document");
-    this.<Object>operator_doubleArrow(_value_1, _equalTo_1);
+    int _size = _get.size();
+    Matcher<Integer> _equalTo = TestCreateVariousNodeTypes.<Integer>equalTo(Integer.valueOf(1));
+    this.<Integer>operator_doubleArrow(Integer.valueOf(_size), _equalTo);
+    Link _CSS_1 = this.n.CSS(this.session);
+    Query _select = this.result.select(_CSS_1);
+    Node _get_1 = _select.get();
+    Object _value = _get_1.value();
+    Matcher<Object> _equalTo_1 = TestCreateVariousNodeTypes.<Object>equalTo(".class {}");
+    this.<Object>operator_doubleArrow(_value, _equalTo_1);
   }
   
   @Extension

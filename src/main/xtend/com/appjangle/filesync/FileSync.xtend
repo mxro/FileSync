@@ -31,7 +31,8 @@ class FileSync {
 
 		syncSingleFolder(folder, node,
 			cb.embed [
-				val toSync = FilesJre.wrap(folder).children.filter[isDirectory && visible && !name.startsWith('.')]
+				val toSync = FilesJre.wrap(folder).children.filter[
+					isDirectory && visible && !name.startsWith('.') && hasMetadata]
 				Async.forEach(
 					toSync.toList,
 					[ item, itmcb |
@@ -54,4 +55,7 @@ class FileSync {
 		}
 
 	}
+	
+	
+
 	

@@ -56,6 +56,7 @@ class FileToTextNode implements Converter {
 				val assertNodes = ctx.parent.select("./.n", "nodes")
 				val baseNode = assertNodes.appendSafe(source.text, "./" + simpleName)
 				
+				println('do it!')
 				val appendToParent = ctx.parent.appendSafe(baseNode)
 				
 				metadata.add(

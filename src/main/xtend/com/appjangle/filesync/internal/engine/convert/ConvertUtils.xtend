@@ -4,11 +4,12 @@ import com.appjangle.filesync.internal.engine.N
 import de.mxro.async.Async
 import de.mxro.async.callbacks.ValueCallback
 import de.mxro.file.FileItem
+import io.nextweb.Link
 import io.nextweb.Node
 import io.nextweb.Query
+import mx.gwtutils.MxroGWTUtils
 
 import static extension de.mxro.async.Async.embed
-import mx.gwtutils.MxroGWTUtils
 
 class ConvertUtils {
 
@@ -28,8 +29,8 @@ class ConvertUtils {
 		textValueExtensions.containsValue('.'+ext)
 	}
 
-	def textNodeTypes() {
-		textValueExtensions.keySet
+	def isTextType(Link link) {
+		textValueExtensions.keySet.contains(link.uri())
 	}
 
 	def getFileExtension(Node forNode, ValueCallback<String> cb) {

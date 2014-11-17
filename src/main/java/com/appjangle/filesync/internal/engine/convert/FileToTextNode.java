@@ -30,7 +30,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 import mx.gwtutils.MxroGWTUtils;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Extension;
@@ -54,10 +53,8 @@ public class FileToTextNode implements Converter {
     final Closure<LinkList> _function_1 = new Closure<LinkList>() {
       public void apply(final LinkList links) {
         for (final Link link : links) {
-          Set<String> _textNodeTypes = FileToTextNode.this.cutils.textNodeTypes();
-          String _uri = link.uri();
-          boolean _contains = _textNodeTypes.contains(_uri);
-          if (_contains) {
+          boolean _isTextType = FileToTextNode.this.cutils.isTextType(link);
+          if (_isTextType) {
             cb.onSuccess(Boolean.valueOf(true));
             return;
           }

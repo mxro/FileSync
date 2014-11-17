@@ -42,8 +42,10 @@ public class ConvertUtils {
     return _xblockexpression;
   }
   
-  public Set<String> textNodeTypes() {
-    return this.textValueExtensions.keySet();
+  public boolean isTextType(final Link link) {
+    Set<String> _keySet = this.textValueExtensions.keySet();
+    String _uri = link.uri();
+    return _keySet.contains(_uri);
   }
   
   public void getFileExtension(final Node forNode, final ValueCallback<String> cb) {

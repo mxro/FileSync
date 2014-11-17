@@ -34,7 +34,7 @@ class FileToTextNode implements Converter {
 		
 		qry.get [links |
 			for (link: links) {
-				if (textNodeTypes.contains(link.uri())) {
+				if (link.isTextType) {
 					cb.onSuccess(true)
 					return
 				}

@@ -27,13 +27,12 @@ class FileToTextNode implements Converter {
 
 	override worksOn(Node node, ValueCallback<Boolean> cb) {
 
-		
 		val qry = node.selectAllLinks
-		
-		qry.catchExceptions([er | cb.onFailure(er.exception)])
-		
-		qry.get [links |
-			for (link: links) {
+
+		qry.catchExceptions([er|cb.onFailure(er.exception)])
+
+		qry.get [ links |
+			for (link : links) {
 				if (link.isTextType) {
 					cb.onSuccess(true)
 					return
@@ -55,36 +54,36 @@ class FileToTextNode implements Converter {
 		ops.add(
 			[ ctx, opscb |
 				val baseNode = ctx.parent.select("./.n", "nodes").appendSafe(source.text, "./" + simpleName)
-				
-				metadata.add(new ItemMetadata() {
-					
-					override name() {
-						source.name
-					}
-					
-					override lastModified() {
-						source.lastModified
-					}
-					
-					override uri() {
-						ctx.parent.uri()+"/"+simpleName
-					}
-					
-					override hash() {
-						source.hash
-					}
-					
-					override converter() {
-						FileToTextNode.this.class.toString
-					}
-					
-				})
-				
-				opscb.onSuccess(newArrayList(
-					baseNode,
-					baseNode.appendLabel(nameWithoutExtension),
-					baseNode.appendTypesAndIcon(source)
-				))
+				metadata.add(
+					new ItemMetadata() {
+
+						override name() {
+							source.name
+						}
+
+						override lastModified() {
+							source.lastModified
+						}
+
+						override uri() {
+							ctx.parent.uri() + "/" + simpleName
+						}
+
+						override hash() {
+							source.hash
+						}
+
+						override converter() {
+							FileToTextNode.this.class.toString
+						}
+
+					})
+				opscb.onSuccess(
+					newArrayList(
+						baseNode,
+						baseNode.appendLabel(nameWithoutExtension),
+						baseNode.appendTypesAndIcon(source)
+					))
 			])
 
 		cb.onSuccess(ops)
@@ -114,140 +113,126 @@ class FileToTextNode implements Converter {
 
 		ops.add(
 			[ ctx, opscb |
-				
 				metadata.remove(cachedFile.name)
-				ctx.parent.removeSafeRecursive(ctx.session.link(address), opscb.embed [res|
-					val list = new ArrayList<Deferred<?>>
-					list.addAll(res)
-					opscb.onSuccess(list)
-				])
-				
+				ctx.parent.removeSafeRecursive(ctx.session.link(address),
+					opscb.embed [ res |
+						val list = new ArrayList<Deferred<?>>
+						list.addAll(res)
+						opscb.onSuccess(list)
+					])
 			])
 
 		cb.onSuccess(ops)
 	}
 
 	override createFiles(FileItem folder, Metadata metadata, Node source, ValueCallback<List<FileOperation>> cb) {
-		source.getFileExtension(cb.embed([ext |
-			source.getFileName(folder, ext, cb.embed([rawFileName |
-			
-			val fileName = rawFileName.toFileSystemSafeName(false, 100)
-			
-			val ops = new LinkedList<FileOperation>
-			
-			ops.add(
-				[ctx|
-					val file = ctx.folder.createFile(fileName)
-					
-					file.text = source.value(String)
-					
-					ctx.metadata.add(new ItemMetadata() {
-						
-						override name() {
-							fileName
-						}
-						
-						override lastModified() {
-							file.lastModified // TODO replace with last modified if available from node !!
-						}
-						
-						override uri() {
-							source.uri()
-						}
-						
-						override hash() {
-							file.hash
-						}
-						
-						override converter() {
-							FileToTextNode.this.class.toString
-						}
-						
-					})
-					
-				]
-			)
-			
-			cb.onSuccess(ops)
-			
-		]))
-		]))
-		
+		source.getFileExtension(
+			cb.embed(
+				[ ext |
+					source.getFileName(folder, ext,
+						cb.embed(
+							[ rawFileName |
+								val fileName = rawFileName.toFileSystemSafeName(false, 100)
+								val ops = new LinkedList<FileOperation>
+								ops.add(
+									[ ctx |
+										val file = ctx.folder.createFile(fileName)
+										file.text = source.value(String)
+										ctx.metadata.add(
+											new ItemMetadata() {
+
+												override name() {
+													fileName
+												}
+
+												override lastModified() {
+													file.lastModified // TODO replace with last modified if available from node !!
+												}
+
+												override uri() {
+													source.uri()
+												}
+
+												override hash() {
+													file.hash
+												}
+
+												override converter() {
+													FileToTextNode.this.class.toString
+												}
+
+											})
+									]
+								)
+								cb.onSuccess(ops)
+							]))
+				]))
+
 	}
-	
+
 	override updateFiles(FileItem folder, Metadata metadata, Node source, ValueCallback<List<FileOperation>> cb) {
-		
+
 		val fileName = metadata.get(source).name
-		
+
 		val content = source.value(String)
-		
+
 		val ops = new LinkedList<FileOperation>
-		
-		
-		
-		ops.add([ctx|
-			
-			val file = ctx.folder.get(fileName)
-			
-			if (file.text != content) {
-			
-				file.text = content
-				
-				ctx.metadata.update(new ItemMetadata() {
-						
-						override name() {
-							fileName
-						}
-						
-						override lastModified() {
-							file.lastModified // TODO replace with last modified if available from node !!
-						}
-						
-						override uri() {
-							source.uri()
-						}
-						
-						override hash() {
-							file.hash
-						}
-						
-						override converter() {
-							FileToTextNode.this.class.toString
-						}
-						
-					})
-			
-			}
-			
-			
-			
-		])
-		
+
+		ops.add(
+			[ ctx |
+				val file = ctx.folder.get(fileName)
+				if (file.text != content) {
+
+					file.text = content
+
+					ctx.metadata.update(
+						new ItemMetadata() {
+
+							override name() {
+								fileName
+							}
+
+							override lastModified() {
+								file.lastModified // TODO replace with last modified if available from node !!
+							}
+
+							override uri() {
+								source.uri()
+							}
+
+							override hash() {
+								file.hash
+							}
+
+							override converter() {
+								FileToTextNode.this.class.toString
+							}
+
+						})
+
+				}
+			])
+
 		cb.onSuccess(ops)
-		
-		
+
 	}
-	
+
 	override removeFiles(FileItem folder, Metadata metadata, ItemMetadata item, ValueCallback<List<FileOperation>> cb) {
 		val fileName = item.name
-		
+
 		val ops = new LinkedList<FileOperation>
-		
-		ops.add([ctx|
-			
-			ctx.folder.deleteFile(fileName)
-			
-			ctx.metadata.remove(fileName)
-			
-			
-		])
-		
+
+		ops.add(
+			[ ctx |
+				ctx.folder.deleteFile(fileName)
+				ctx.metadata.remove(fileName)
+			])
+
 		cb.onSuccess(ops)
 	}
-		
-		
-		extension ConvertUtils cutils = new ConvertUtils
-		extension FileUtils futils = new FileUtils
-		extension NextwebDataExtension nutils = new NextwebDataExtension
+
+	extension ConvertUtils cutils = new ConvertUtils
+	extension FileUtils futils = new FileUtils
+	extension NextwebDataExtension nutils = new NextwebDataExtension
 
 }

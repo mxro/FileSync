@@ -76,31 +76,32 @@ public class FileToTextNode implements Converter {
         Query _select = _parent.select("./.n", "nodes");
         String _text = source.getText();
         final Query baseNode = _select.appendSafe(_text, ("./" + simpleName));
-        metadata.add(new ItemMetadata() {
-          public String name() {
-            return source.getName();
-          }
-          
-          public Date lastModified() {
-            return source.lastModified();
-          }
-          
-          public String uri() {
-            Node _parent = ctx.parent();
-            String _uri = _parent.uri();
-            String _plus = (_uri + "/");
-            return (_plus + simpleName);
-          }
-          
-          public String hash() {
-            return source.hash();
-          }
-          
-          public String converter() {
-            Class<? extends FileToTextNode> _class = FileToTextNode.this.getClass();
-            return _class.toString();
-          }
-        });
+        metadata.add(
+          new ItemMetadata() {
+            public String name() {
+              return source.getName();
+            }
+            
+            public Date lastModified() {
+              return source.lastModified();
+            }
+            
+            public String uri() {
+              Node _parent = ctx.parent();
+              String _uri = _parent.uri();
+              String _plus = (_uri + "/");
+              return (_plus + simpleName);
+            }
+            
+            public String hash() {
+              return source.hash();
+            }
+            
+            public String converter() {
+              Class<? extends FileToTextNode> _class = FileToTextNode.this.getClass();
+              return _class.toString();
+            }
+          });
         Query _appendLabel = FileToTextNode.this.cutils.appendLabel(baseNode, nameWithoutExtension);
         Query _appendTypesAndIcon = FileToTextNode.this.cutils.appendTypesAndIcon(baseNode, source);
         ArrayList<Deferred<?>> _newArrayList = CollectionLiterals.<Deferred<?>>newArrayList(baseNode, _appendLabel, _appendTypesAndIcon);
@@ -169,28 +170,29 @@ public class FileToTextNode implements Converter {
                 String _value = source.<String>value(String.class);
                 file.setText(_value);
                 Metadata _metadata = ctx.metadata();
-                _metadata.add(new ItemMetadata() {
-                  public String name() {
-                    return fileName;
-                  }
-                  
-                  public Date lastModified() {
-                    return file.lastModified();
-                  }
-                  
-                  public String uri() {
-                    return source.uri();
-                  }
-                  
-                  public String hash() {
-                    return file.hash();
-                  }
-                  
-                  public String converter() {
-                    Class<? extends FileToTextNode> _class = FileToTextNode.this.getClass();
-                    return _class.toString();
-                  }
-                });
+                _metadata.add(
+                  new ItemMetadata() {
+                    public String name() {
+                      return fileName;
+                    }
+                    
+                    public Date lastModified() {
+                      return file.lastModified();
+                    }
+                    
+                    public String uri() {
+                      return source.uri();
+                    }
+                    
+                    public String hash() {
+                      return file.hash();
+                    }
+                    
+                    public String converter() {
+                      Class<? extends FileToTextNode> _class = FileToTextNode.this.getClass();
+                      return _class.toString();
+                    }
+                  });
               }
             };
             ops.add(_function);
@@ -219,28 +221,29 @@ public class FileToTextNode implements Converter {
         if (_notEquals) {
           file.setText(content);
           Metadata _metadata = ctx.metadata();
-          _metadata.update(new ItemMetadata() {
-            public String name() {
-              return fileName;
-            }
-            
-            public Date lastModified() {
-              return file.lastModified();
-            }
-            
-            public String uri() {
-              return source.uri();
-            }
-            
-            public String hash() {
-              return file.hash();
-            }
-            
-            public String converter() {
-              Class<? extends FileToTextNode> _class = FileToTextNode.this.getClass();
-              return _class.toString();
-            }
-          });
+          _metadata.update(
+            new ItemMetadata() {
+              public String name() {
+                return fileName;
+              }
+              
+              public Date lastModified() {
+                return file.lastModified();
+              }
+              
+              public String uri() {
+                return source.uri();
+              }
+              
+              public String hash() {
+                return file.hash();
+              }
+              
+              public String converter() {
+                Class<? extends FileToTextNode> _class = FileToTextNode.this.getClass();
+                return _class.toString();
+              }
+            });
         }
       }
     };

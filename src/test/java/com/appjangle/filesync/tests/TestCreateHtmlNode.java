@@ -31,14 +31,17 @@ public class TestCreateHtmlNode extends CheckFilesToNodesTemplate {
   
   protected void step2_assertNodes() {
     Query _select = this.result.select("./.n/My_Document");
-    final Node node = _select.get();
+    _select.get();
+    Link _HTML_VALUE = this.n.HTML_VALUE(this.session);
+    Query _select_1 = this.result.select(_HTML_VALUE);
+    final Node node = _select_1.get();
     Object _value = node.value();
     Matcher<Object> _equalTo = TestCreateHtmlNode.<Object>equalTo("<html></html>");
     this.<Object>operator_doubleArrow(_value, _equalTo);
     Session _session = node.session();
     Link _LABEL = this.n.LABEL(_session);
-    Query _select_1 = node.select(_LABEL);
-    Node _get = _select_1.get();
+    Query _select_2 = node.select(_LABEL);
+    Node _get = _select_2.get();
     Object _value_1 = _get.value();
     Matcher<Object> _equalTo_1 = TestCreateHtmlNode.<Object>equalTo("My Document");
     this.<Object>operator_doubleArrow(_value_1, _equalTo_1);

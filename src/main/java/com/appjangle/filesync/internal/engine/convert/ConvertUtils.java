@@ -25,7 +25,6 @@ import java.util.function.Consumer;
 import mx.gwtutils.MxroGWTUtils;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Extension;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.Pair;
 
 @SuppressWarnings("all")
@@ -38,7 +37,6 @@ public class ConvertUtils {
     boolean _xblockexpression = false;
     {
       final String ext = MxroGWTUtils.getExtension(fileName);
-      InputOutput.<String>println(ext);
       _xblockexpression = this.textValueExtensions.containsValue(("." + ext));
     }
     return _xblockexpression;

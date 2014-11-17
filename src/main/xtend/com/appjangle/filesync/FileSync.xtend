@@ -55,13 +55,13 @@ class FileSync {
 						
 						qry.catchExceptions [er|cb.onFailure(er.exception)]
 							
+						qry.get [childNode |
+							syncSingleFolder(childFolder, node, itmcb)
+						
+						]
 						
 						
-						syncSingleFolder(childFolder, node, itmcb)
-						
-						],
-						cb.embed[cb.onSuccess(Success.INSTANCE)]
-					)
+					cb.embed[cb.onSuccess(Success.INSTANCE)])
 				])
 
 		}

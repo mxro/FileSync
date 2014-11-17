@@ -39,8 +39,7 @@ public class ConvertUtils {
     {
       final String ext = MxroGWTUtils.getExtension(fileName);
       InputOutput.<String>println(ext);
-      Set<String> _keySet = this.textValueExtensions.keySet();
-      _xblockexpression = _keySet.contains(("." + ext));
+      _xblockexpression = this.textValueExtensions.containsValue(("." + ext));
     }
     return _xblockexpression;
   }

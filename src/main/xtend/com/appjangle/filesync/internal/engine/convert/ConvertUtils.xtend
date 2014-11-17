@@ -25,7 +25,7 @@ class ConvertUtils {
 	def isTextValue(String fileName) {
 		val ext = MxroGWTUtils.getExtension(fileName)
 		println(ext)
-		textValueExtensions.keySet.contains('.'+ext)
+		textValueExtensions.containsValue('.'+ext)
 	}
 
 	def textNodeTypes() {

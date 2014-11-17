@@ -26,6 +26,7 @@ import io.nextweb.promise.Deferred;
 import io.nextweb.promise.NextwebPromise;
 import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
+import io.nextweb.utils.data.NextwebDataExtension;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -249,4 +250,7 @@ public class FileToTextNode implements Converter {
   
   @Extension
   private FileUtils futils = new FileUtils();
+  
+  @Extension
+  private NextwebDataExtension nutils = new NextwebDataExtension();
 }

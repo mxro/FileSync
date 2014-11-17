@@ -15,6 +15,7 @@ import java.util.List
 import mx.gwtutils.MxroGWTUtils
 
 import static extension de.mxro.async.Async.embed
+import io.nextweb.utils.data.NextwebDataExtension
 
 class FileToTextNode implements Converter {
 
@@ -218,7 +219,8 @@ class FileToTextNode implements Converter {
 	}
 		
 		
-		extension ConvertUtils cutils = new ConvertUtils()
-		extension FileUtils futils = new FileUtils()
+		extension ConvertUtils cutils = new ConvertUtils
+		extension FileUtils futils = new FileUtils
+		extension NextwebDataExtension nutils = new NextwebDataExtension
 
 }

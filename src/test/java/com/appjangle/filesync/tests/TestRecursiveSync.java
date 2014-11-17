@@ -25,7 +25,7 @@ public class TestRecursiveSync extends CheckNodesToFilesTemplate {
     _append_1.append("Any another foder");
     final Query node3 = this.source.append("node3", "./node3");
     Query _append_2 = node3.append("child1", "./child1");
-    _append_2.append("b", "./b");
+    _append_2.append("b", "./inThere");
     Query _append_3 = node3.append("child2");
     _append_3.append("c");
   }
@@ -43,7 +43,7 @@ public class TestRecursiveSync extends CheckNodesToFilesTemplate {
     TestRecursiveSync.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_exists_1), Boolean.valueOf(true));
     FileItem _get_4 = this.result.get("node3");
     FileItem _get_5 = _get_4.get("child1");
-    FileItem _get_6 = _get_5.get("b");
+    FileItem _get_6 = _get_5.get("inThere");
     boolean _exists_2 = _get_6.exists();
     TestRecursiveSync.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_exists_2), Boolean.valueOf(true));
     FileItem _get_7 = this.result.get("node3");

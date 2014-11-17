@@ -23,9 +23,9 @@ public class TestRecursiveSync extends CheckNodesToFilesTemplate {
     _append.append("And in the subfolder", "./sub");
     Query _append_1 = this.source.append("Hello");
     _append_1.append("Any another foder");
-    final Query node3 = this.source.append("node3");
-    Query _append_2 = node3.append("child1");
-    _append_2.append("b");
+    final Query node3 = this.source.append("node3", "./node3");
+    Query _append_2 = node3.append("child1", "./child1");
+    _append_2.append("b", "./b");
     Query _append_3 = node3.append("child2");
     _append_3.append("c");
   }
@@ -41,13 +41,15 @@ public class TestRecursiveSync extends CheckNodesToFilesTemplate {
     FileItem _get_3 = _get_2.get("sub");
     boolean _exists_1 = _get_3.exists();
     TestRecursiveSync.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_exists_1), Boolean.valueOf(true));
-    FileItem _get_4 = this.result.get("child1");
-    FileItem _get_5 = _get_4.get("b");
-    boolean _exists_2 = _get_5.exists();
+    FileItem _get_4 = this.result.get("node3");
+    FileItem _get_5 = _get_4.get("child1");
+    FileItem _get_6 = _get_5.get("b");
+    boolean _exists_2 = _get_6.exists();
     TestRecursiveSync.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_exists_2), Boolean.valueOf(true));
-    FileItem _get_6 = this.result.get("child2");
-    FileItem _get_7 = _get_6.get("b");
-    boolean _isDirectory = _get_7.isDirectory();
+    FileItem _get_7 = this.result.get("node3");
+    FileItem _get_8 = _get_7.get("child1");
+    FileItem _get_9 = _get_8.get("b");
+    boolean _isDirectory = _get_9.isDirectory();
     TestRecursiveSync.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_isDirectory), Boolean.valueOf(true));
   }
   

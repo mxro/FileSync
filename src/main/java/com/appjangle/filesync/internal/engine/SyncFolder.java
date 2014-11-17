@@ -1,10 +1,12 @@
 package com.appjangle.filesync.internal.engine;
 
 import com.appjangle.filesync.Converter;
+import com.appjangle.filesync.FileOperation;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.NetworkOperation;
 import com.appjangle.filesync.internal.engine.FileToNetworkOperations;
 import com.appjangle.filesync.internal.engine.FileUtils;
+import com.appjangle.filesync.internal.engine.NetworkToFileOperations;
 import com.appjangle.filesync.internal.engine.NetworkUtils;
 import de.mxro.async.Async;
 import de.mxro.async.callbacks.ValueCallback;
@@ -59,9 +61,16 @@ public class SyncFolder {
   }
   
   public void download(final ValueCallback<Success> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from Metadata to FileItem"
-      + "\nType mismatch: cannot convert from FileItem to Metadata");
+    NetworkToFileOperations _networkToFileOperations = new NetworkToFileOperations(this.node, this.folder, this.metadata, this.converter);
+    final Closure<List<FileOperation>> _function = new Closure<List<FileOperation>>() {
+      public void apply(final List<FileOperation> ops) {
+        SyncFolder.this.fileUtils.execute(ops, SyncFolder.this.folder, SyncFolder.this.metadata);
+        SyncFolder.this.fileUtils.saveMetadata(SyncFolder.this.folder, SyncFolder.this.metadata);
+        cb.onSuccess(Success.INSTANCE);
+      }
+    };
+    ValueCallback<List<FileOperation>> _embed = Async.<List<FileOperation>>embed(cb, _function);
+    _networkToFileOperations.determineOps(_embed);
   }
   
   @Extension

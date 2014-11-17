@@ -28,6 +28,10 @@ public class TestCreateVariousNodeTypes extends CheckFilesToNodesTemplate {
   protected void step1_defineFiles() {
     FileItem _createFile = this.source.createFile("My Document.css");
     _createFile.setText(".class {}");
+    FileItem _createFile_1 = this.source.createFile("My Script.js");
+    _createFile_1.setText("window.alert(\'nothing much\');");
+    FileItem _createFile_2 = this.source.createFile("My Script.coffee");
+    _createFile_2.setText("window.alert \'nothing much\'");
   }
   
   protected void step2_assertNodes() {
@@ -43,6 +47,30 @@ public class TestCreateVariousNodeTypes extends CheckFilesToNodesTemplate {
     Object _value = _get_1.value();
     Matcher<Object> _equalTo_1 = TestCreateVariousNodeTypes.<Object>equalTo(".class {}");
     this.<Object>operator_doubleArrow(_value, _equalTo_1);
+    Link _JAVASCRIPT = this.n.JAVASCRIPT(this.session);
+    ListQuery _selectAll_1 = this.result.selectAll(_JAVASCRIPT);
+    NodeList _get_2 = _selectAll_1.get();
+    int _size_1 = _get_2.size();
+    Matcher<Integer> _equalTo_2 = TestCreateVariousNodeTypes.<Integer>equalTo(Integer.valueOf(1));
+    this.<Integer>operator_doubleArrow(Integer.valueOf(_size_1), _equalTo_2);
+    Link _JAVASCRIPT_1 = this.n.JAVASCRIPT(this.session);
+    Query _select_1 = this.result.select(_JAVASCRIPT_1);
+    Node _get_3 = _select_1.get();
+    Object _value_1 = _get_3.value();
+    Matcher<Object> _equalTo_3 = TestCreateVariousNodeTypes.<Object>equalTo("window.alert(\'nothing much\');");
+    this.<Object>operator_doubleArrow(_value_1, _equalTo_3);
+    Link _COFFEESCRIPT = this.n.COFFEESCRIPT(this.session);
+    ListQuery _selectAll_2 = this.result.selectAll(_COFFEESCRIPT);
+    NodeList _get_4 = _selectAll_2.get();
+    int _size_2 = _get_4.size();
+    Matcher<Integer> _equalTo_4 = TestCreateVariousNodeTypes.<Integer>equalTo(Integer.valueOf(1));
+    this.<Integer>operator_doubleArrow(Integer.valueOf(_size_2), _equalTo_4);
+    Link _COFFEESCRIPT_1 = this.n.COFFEESCRIPT(this.session);
+    Query _select_2 = this.result.select(_COFFEESCRIPT_1);
+    Node _get_5 = _select_2.get();
+    Object _value_2 = _get_5.value();
+    Matcher<Object> _equalTo_5 = TestCreateVariousNodeTypes.<Object>equalTo("window.alert \'nothing much\'");
+    this.<Object>operator_doubleArrow(_value_2, _equalTo_5);
   }
   
   @Extension

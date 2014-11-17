@@ -10,6 +10,12 @@ class TestCreateVariousNodeTypes extends CheckFilesToNodesTemplate {
 	
 	override protected step1_defineFiles() {
 		source.createFile("My Document.css").text = ".class {}"
+		
+		source.createFile("My Script.js").text = "window.alert('nothing much');"
+		
+		source.createFile("My Script.coffee").text = "window.alert 'nothing much'"
+		
+		
 	}
 	
 	override protected step2_assertNodes() {
@@ -17,6 +23,14 @@ class TestCreateVariousNodeTypes extends CheckFilesToNodesTemplate {
 		result.selectAll(session.CSS).get.size => equalTo(1)
 		
 		result.select(session.CSS).get.value() => equalTo(".class {}")
+		
+		result.selectAll(session.JAVASCRIPT).get.size => equalTo(1)
+		
+		result.select(session.JAVASCRIPT).get.value() => equalTo("window.alert('nothing much');")
+		
+		result.selectAll(session.COFFEESCRIPT).get.size => equalTo(1)
+		
+		result.select(session.COFFEESCRIPT).get.value() => equalTo("window.alert 'nothing much'")
 		
 		
 	}

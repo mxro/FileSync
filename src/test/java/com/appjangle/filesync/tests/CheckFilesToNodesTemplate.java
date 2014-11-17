@@ -29,7 +29,7 @@ public abstract class CheckFilesToNodesTemplate {
   
   protected Node result;
   
-  protected File target;
+  protected File sourceFolder;
   
   protected FileItem source;
   
@@ -47,8 +47,8 @@ public abstract class CheckFilesToNodesTemplate {
       Node _get = _seed.get();
       this.result = _get;
       File _newFolder = this.tempFolder.newFolder("sync1");
-      this.target = _newFolder;
-      FileItem _wrap = FilesJre.wrap(this.target);
+      this.sourceFolder = _newFolder;
+      FileItem _wrap = FilesJre.wrap(this.sourceFolder);
       this.source = _wrap;
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
@@ -64,7 +64,7 @@ public abstract class CheckFilesToNodesTemplate {
     this.step1_defineFiles();
     final Deferred<Success> _function = new Deferred<Success>() {
       public void get(final ValueCallback<Success> cb) {
-        FileSync.sync(CheckFilesToNodesTemplate.this.target, CheckFilesToNodesTemplate.this.result, cb);
+        FileSync.sync(CheckFilesToNodesTemplate.this.sourceFolder, CheckFilesToNodesTemplate.this.result, cb);
       }
     };
     AsyncJre.<Success>waitFor(_function);

@@ -20,7 +20,7 @@ abstract class CheckFilesToNodesTemplate {
 	protected LocalServer server
 	protected Session session
 	protected Node result
-	protected File target
+	protected File sourceFolder
 	protected FileItem source
 	
 	@Rule
@@ -34,9 +34,9 @@ abstract class CheckFilesToNodesTemplate {
 
 		result = session.seed(server).get
 		
-		target = tempFolder.newFolder("sync1")
+		sourceFolder = tempFolder.newFolder("sync1")
 		
-		source = FilesJre.wrap(target)
+		source = FilesJre.wrap(sourceFolder)
 	}
 	
 	def protected abstract void step1_defineFiles()
@@ -48,8 +48,9 @@ abstract class CheckFilesToNodesTemplate {
 		step1_defineFiles
 		
 		AsyncJre.waitFor [cb |
-			FileSync.sync(target, result, cb)
+			FileSync.sync(sourceFolder, result, cb)
 		]
+		
 		
 		session.commit.get
 				

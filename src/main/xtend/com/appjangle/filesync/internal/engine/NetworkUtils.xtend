@@ -52,10 +52,9 @@ class NetworkUtils {
 
 						if (qry instanceof Query) {
 							
-							println('exec '+qry)
-							qry.catchExceptions([er|itmcb.onFailure(er.exception)])
+							qry.catchExceptions [er|itmcb.onFailure(er.exception)]
 							qry.get([succ|
-								println('success '+qry)
+								
 								itmcb.onSuccess(Success.INSTANCE)
 							])
 
@@ -63,7 +62,7 @@ class NetworkUtils {
 							
 							val safeQry = qry as NextwebPromise<Object>
 							//val res = onNode.session().promise(safeQry)
-							safeQry.catchExceptions([er|itmcb.onFailure(er.exception)])
+							safeQry.catchExceptions [er|itmcb.onFailure(er.exception)]
 							safeQry.get([succ|itmcb.onSuccess(Success.INSTANCE)])
 						} else {
 							

@@ -15,7 +15,6 @@ import io.nextweb.promise.NextwebPromise;
 import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
 import java.util.List;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
 public class NetworkUtils {
@@ -55,7 +54,6 @@ public class NetworkUtils {
               {
                 final ValueCallback<Success> itmcb = cbs.createCallback();
                 if ((qry instanceof Query)) {
-                  InputOutput.<String>println(("exec " + qry));
                   final ExceptionListener _function_1 = new ExceptionListener() {
                     public void onFailure(final ExceptionResult er) {
                       Throwable _exception = er.exception();
@@ -65,7 +63,6 @@ public class NetworkUtils {
                   ((Query)qry).catchExceptions(_function_1);
                   final Closure<Node> _function_2 = new Closure<Node>() {
                     public void apply(final Node succ) {
-                      InputOutput.<String>println(("success " + qry));
                       itmcb.onSuccess(Success.INSTANCE);
                     }
                   };

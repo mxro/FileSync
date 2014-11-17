@@ -54,9 +54,9 @@ abstract class CheckNodesToFilesTemplate {
 
 		AsyncJre.waitFor [ cb |
 			if (!doRecursiveSync) {
-				FileSync.syncSingleFolder(target, source, cb)
+				FileSync.syncSingleFolder(result, source, cb)
 			} else {
-				FileSync.sync(target, source, cb);
+				FileSync.sync(result, source, cb);
 			}
 		]
 

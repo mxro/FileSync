@@ -24,7 +24,7 @@ class FileSync {
 		syncSingleFolder(FilesJre.wrap(folder), node, cb)
 
 	}
-	
+
 	/**
 	 * <p>Synchronized the contents of a folder and a node without synchronizing sub-folders.
 	 */
@@ -41,43 +41,32 @@ class FileSync {
 
 		syncSingleFolder(folder, node,
 			cb.embed [
-				val toSync = folder.children.filter[
-					isDirectory && visible && !name.startsWith('.')  ]
-				Async.forEach(
-					toSync.toList,
+				val toSync = folder.children.filter[isDirectory && visible && !name.startsWith('.')]
+				Async.forEach(toSync.toList,
 					[ childFolder, itmcb |
-						
 						val metadata = folder.loadMetadata
-						
 						val itmmetadata = metadata.get(childFolder.name)
-						
 						val qry = node.session().link(itmmetadata.uri)
-						
-						qry.catchExceptions [er|cb.onFailure(er.exception)]
-							
-						qry.get [childNode |
-							syncSingleFolder(childFolder, node, itmcb)
-						
+						qry.catchExceptions[er|cb.onFailure(er.exception)]
+						qry.get [ childNode |
+							syncSingleFolder(childFolder, childNode, itmcb)
 						]
-						
-						
-					cb.embed[cb.onSuccess(Success.INSTANCE)])
-				])
-
-		}
-
-		def static createDefaultConverter() {
-
-			val coll = new ConverterCollection
-
-			coll.addConverter(new FileToTextNode)
-			coll.addConverter(new FolderToNode)
-
-			coll
-
-		}
-
-static extension FileUtils fileUtils = new FileUtils
+					], cb.embed[cb.onSuccess(Success.INSTANCE)])
+			])
 
 	}
-	
+
+	def static createDefaultConverter() {
+
+		val coll = new ConverterCollection
+
+		coll.addConverter(new FileToTextNode)
+		coll.addConverter(new FolderToNode)
+
+		coll
+
+	}
+
+	static extension FileUtils fileUtils = new FileUtils
+
+}

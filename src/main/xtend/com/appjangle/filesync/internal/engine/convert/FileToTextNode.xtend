@@ -86,8 +86,8 @@ class FileToTextNode implements Converter {
 					newArrayList(
 						baseNode,
 						baseNode.appendLabel(nameWithoutExtension),
-						baseNode.appendTypesAndIcon(source)//,
-						//appendToParent
+						baseNode.appendTypesAndIcon(source),
+						appendToParent
 					))
 			])
 

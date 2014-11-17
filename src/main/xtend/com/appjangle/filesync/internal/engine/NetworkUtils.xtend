@@ -38,12 +38,15 @@ class NetworkUtils {
 
 			op.apply(ctx,
 				cb.embed [ qries |
+
 					val opscbsitem = opscbs.createCallback
+					
 					val cbs = Async.collect(qries.size,
 						cb.embed(
 							[
 								opscbsitem.onSuccess(Success.INSTANCE)
 							]))
+					
 					for (qry : qries) {
 						val itmcb = cbs.createCallback
 

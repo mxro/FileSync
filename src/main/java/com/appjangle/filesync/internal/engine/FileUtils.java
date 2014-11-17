@@ -11,7 +11,7 @@ import org.eclipse.xtext.xbase.lib.ExclusiveRange;
 
 @SuppressWarnings("all")
 public class FileUtils {
-  public void saveForFolder(final Metadata metadata, final FileItem forFolder) {
+  public void saveMetadata(final FileItem forFolder, final Metadata metadata) {
     FileItem _child = forFolder.getChild(".filesync-meta");
     FileItem _child_1 = _child.getChild("nodes.xml");
     MetadataUtilsJre.saveToFile(metadata, _child_1);
@@ -37,10 +37,15 @@ public class FileUtils {
         MetadataUtilsJre.saveToFile(metadata, metadataFile);
         return metadata;
       }
-      FileItem _child_1 = metadataFolder.getChild("nodes.xml");
-      _xblockexpression = MetadataUtilsJre.readFromFile(_child_1);
+      _xblockexpression = this.loadMetadata(forFolder);
     }
     return _xblockexpression;
+  }
+  
+  public Metadata loadMetadata(final FileItem forFolder) {
+    FileItem _child = forFolder.getChild(".filesync-meta");
+    FileItem _child_1 = _child.getChild("nodes.xml");
+    return MetadataUtilsJre.readFromFile(_child_1);
   }
   
   public void execute(final List<FileOperation> operations, final FileItem withFolder, final Metadata withMetadata) {

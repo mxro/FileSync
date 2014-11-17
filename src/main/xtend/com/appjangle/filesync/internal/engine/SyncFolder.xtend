@@ -52,7 +52,7 @@ class SyncFolder {
 			
 			ops.execute(folder, metadata)
 			
-			metadata.saveForFolder(folder)
+			metadata.saveMetadata(folder)
 			cb.onSuccess(Success.INSTANCE)
 		]))
 	}

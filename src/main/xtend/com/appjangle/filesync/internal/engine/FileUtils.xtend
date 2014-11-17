@@ -10,7 +10,7 @@ import com.appjangle.filesync.internal.engine.metadata.MetadataImpl
 
 class FileUtils {
 
-	def saveForFolder(Metadata metadata, FileItem forFolder) {
+	def saveMetadata(FileItem forFolder, Metadata metadata) {
 		MetadataUtilsJre.saveToFile(metadata, forFolder.getChild(".filesync-meta").getChild("nodes.xml"))
 	}
 
@@ -31,7 +31,11 @@ class FileUtils {
 			return metadata
 		}
 
-		MetadataUtilsJre.readFromFile(metadataFolder.getChild("nodes.xml"))
+		loadMetadata(forFolder)
+	}
+	
+	def loadMetadata(FileItem forFolder) {
+		MetadataUtilsJre.readFromFile(forFolder.getChild(".filesync-meta").getChild("nodes.xml"))
 	}
 
 	def execute(List<FileOperation> operations, FileItem withFolder, Metadata withMetadata) {

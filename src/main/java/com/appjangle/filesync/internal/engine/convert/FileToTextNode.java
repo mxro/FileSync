@@ -116,7 +116,9 @@ public class FileToTextNode implements Converter {
   public void deleteNodes(final Metadata metadata, final ItemMetadata cachedFile, final ValueCallback<List<NetworkOperation>> cb) {
     final String address = cachedFile.uri();
     final LinkedList<NetworkOperation> ops = new LinkedList<NetworkOperation>();
-    Exception _exception = new Exception("triggered by");
+    String _name = cachedFile.name();
+    String _plus = ("triggered by" + _name);
+    Exception _exception = new Exception(_plus);
     _exception.printStackTrace();
     final NetworkOperation _function = new NetworkOperation() {
       public void apply(final NetworkOperationContext ctx, final ValueCallback<List<Deferred<?>>> opscb) {

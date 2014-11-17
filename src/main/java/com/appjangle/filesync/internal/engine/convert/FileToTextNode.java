@@ -84,6 +84,30 @@ public class FileToTextNode implements Converter {
         Node _parent = ctx.parent();
         String _text = source.getText();
         final Query baseNode = _parent.appendSafe(_text, ("./" + simpleName));
+        metadata.add(new ItemMetadata() {
+          public String name() {
+            return source.getName();
+          }
+          
+          public Date lastModified() {
+            return source.lastModified();
+          }
+          
+          public String uri() {
+            Node _parent = ctx.parent();
+            String _uri = _parent.uri();
+            String _plus = (_uri + "/");
+            return (_plus + simpleName);
+          }
+          
+          public String hash() {
+            return source.hash();
+          }
+          
+          public String converter() {
+            return FileToTextNode.this.toString();
+          }
+        });
         Query _appendLabel = FileToTextNode.this.cutils.appendLabel(baseNode, nameWithoutExtension);
         Query _appendTypes = FileToTextNode.this.cutils.appendTypes(baseNode, source);
         ArrayList<Deferred<?>> _newArrayList = CollectionLiterals.<Deferred<?>>newArrayList(baseNode, _appendLabel, _appendTypes);

@@ -61,6 +61,30 @@ class FileToTextNode implements Converter {
 			[ ctx, opscb |
 				val baseNode = ctx.parent.appendSafe(source.text, "./" + simpleName)
 				
+				metadata.add(new ItemMetadata() {
+					
+					override name() {
+						source.name
+					}
+					
+					override lastModified() {
+						source.lastModified
+					}
+					
+					override uri() {
+						ctx.parent.uri()+"/"+simpleName
+					}
+					
+					override hash() {
+						source.hash
+					}
+					
+					override converter() {
+						FileToTextNode.this.toString
+					}
+					
+				})
+				
 				opscb.onSuccess(newArrayList(
 					baseNode,
 					baseNode.appendLabel(nameWithoutExtension),

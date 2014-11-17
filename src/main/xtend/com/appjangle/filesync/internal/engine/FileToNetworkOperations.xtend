@@ -17,7 +17,7 @@ import java.util.List
  */
 class FileToNetworkOperations {
 
-	val static boolean ENABLE_LOG = false;
+	val static boolean ENABLE_LOG = true;
 
 	val Node node;
 	val FileItem folder;

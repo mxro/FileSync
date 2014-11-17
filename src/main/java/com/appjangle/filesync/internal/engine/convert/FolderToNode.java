@@ -27,7 +27,6 @@ import java.util.List;
 import mx.gwtutils.MxroGWTUtils;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Extension;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
 public class FolderToNode implements Converter {
@@ -43,7 +42,6 @@ public class FolderToNode implements Converter {
     String _name = source.getName();
     final String simpleName = MxroGWTUtils.getSimpleName(_name);
     final LinkedList<NetworkOperation> ops = new LinkedList<NetworkOperation>();
-    InputOutput.<String>println("here!!!");
     final NetworkOperation _function = new NetworkOperation() {
       public void apply(final NetworkOperationContext ctx, final ValueCallback<List<Deferred<?>>> opscb) {
         Node _parent = ctx.parent();

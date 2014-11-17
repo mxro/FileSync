@@ -92,7 +92,7 @@ public class FileSync {
             qry.catchExceptions(_function);
             final Closure<Node> _function_1 = new Closure<Node>() {
               public void apply(final Node childNode) {
-                FileSync.syncSingleFolder(childFolder, childNode, itmcb);
+                FileSync.sync(childFolder, childNode, itmcb);
               }
             };
             qry.get(_function_1);

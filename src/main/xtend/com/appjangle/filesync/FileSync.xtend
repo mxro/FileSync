@@ -37,7 +37,7 @@ class FileSync {
 	/**
 	 * <p>Synchronized the contents of the specified folder with the specified nodes and does the same for all sub-folders and child nodes.
 	 */
-	def static sync(FileItem folder, Node node, ValueCallback<Success> cb) {
+	def static void sync(FileItem folder, Node node, ValueCallback<Success> cb) {
 
 		syncSingleFolder(folder, node,
 			cb.embed [
@@ -49,7 +49,8 @@ class FileSync {
 						val qry = node.session().link(itmmetadata.uri)
 						qry.catchExceptions[er|cb.onFailure(er.exception)]
 						qry.get [ childNode |
-							syncSingleFolder(childFolder, childNode, itmcb)
+							
+							sync(childFolder, childNode, itmcb)
 						]
 					], cb.embed[cb.onSuccess(Success.INSTANCE)])
 			])

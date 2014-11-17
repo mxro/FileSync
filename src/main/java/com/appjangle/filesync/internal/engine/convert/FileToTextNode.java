@@ -78,8 +78,9 @@ public class FileToTextNode implements Converter {
     final NetworkOperation _function = new NetworkOperation() {
       public void apply(final NetworkOperationContext ctx, final ValueCallback<List<Deferred<?>>> opscb) {
         Node _parent = ctx.parent();
+        Query _select = _parent.select("./.n", "nodes");
         String _text = source.getText();
-        final Query baseNode = _parent.appendSafe(_text, ("./" + simpleName));
+        final Query baseNode = _select.appendSafe(_text, ("./" + simpleName));
         metadata.add(new ItemMetadata() {
           public String name() {
             return source.getName();

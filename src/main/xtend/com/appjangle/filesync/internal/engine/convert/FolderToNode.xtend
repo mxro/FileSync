@@ -51,7 +51,9 @@ class FolderToNode implements Converter {
 		val address = cachedFile.uri
 
 		val ops = new LinkedList<NetworkOperation>
-
+		
+		new Exception('triggered by').printStackTrace
+		
 		ops.add(
 			[ ctx, opscb |
 				metadata.remove(cachedFile.name)

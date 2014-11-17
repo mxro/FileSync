@@ -93,6 +93,8 @@ class FileToTextNode implements Converter {
 
 		val ops = new LinkedList<NetworkOperation>
 
+new Exception('triggered by').printStackTrace
+
 		ops.add(
 			[ ctx, opscb |
 				

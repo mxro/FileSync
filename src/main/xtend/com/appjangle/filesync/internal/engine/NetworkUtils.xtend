@@ -38,7 +38,7 @@ class NetworkUtils {
 
 			op.apply(ctx,
 				cb.embed [ qries |
-					println('exec '+qries)
+					//println('exec '+qries)
 					val opscbsitem = opscbs.createCallback
 					
 					val cbs = Async.collect(qries.size,
@@ -51,10 +51,15 @@ class NetworkUtils {
 						val itmcb = cbs.createCallback
 
 						if (qry instanceof Query) {
+							
+							println('exec '+qry)
 							val safeQry = qry as Query
 							val res = onNode.session().promise(safeQry)
 							res.catchExceptions([er|itmcb.onFailure(er.exception)])
-							res.get([succ|itmcb.onSuccess(Success.INSTANCE)])
+							res.get([succ|
+								println('success '+qry)
+								itmcb.onSuccess(Success.INSTANCE)
+							])
 
 						} else {
 

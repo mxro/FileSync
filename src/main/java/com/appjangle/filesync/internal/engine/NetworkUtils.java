@@ -42,7 +42,6 @@ public class NetworkUtils {
       for (final NetworkOperation op : ops) {
         final Closure<List<Deferred<?>>> _function_1 = new Closure<List<Deferred<?>>>() {
           public void apply(final List<Deferred<?>> qries) {
-            InputOutput.<String>println(("exec " + qries));
             final ValueCallback<Success> opscbsitem = opscbs.createCallback();
             int _size = qries.size();
             final Closure<List<Success>> _function = new Closure<List<Success>>() {
@@ -56,6 +55,7 @@ public class NetworkUtils {
               {
                 final ValueCallback<Success> itmcb = cbs.createCallback();
                 if ((qry instanceof Query)) {
+                  InputOutput.<String>println(("exec " + qry));
                   final Query safeQry = ((Query) qry);
                   Session _session = onNode.session();
                   final NextwebPromise<Node> res = _session.<Node>promise(safeQry);
@@ -68,6 +68,7 @@ public class NetworkUtils {
                   res.catchExceptions(_function_1);
                   final Closure<Node> _function_2 = new Closure<Node>() {
                     public void apply(final Node succ) {
+                      InputOutput.<String>println(("success " + qry));
                       itmcb.onSuccess(Success.INSTANCE);
                     }
                   };

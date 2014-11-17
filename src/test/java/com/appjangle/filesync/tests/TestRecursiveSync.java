@@ -4,6 +4,8 @@ import com.appjangle.filesync.tests.CheckNodesToFilesTemplate;
 import de.mxro.file.FileItem;
 import de.oehme.xtend.junit.JUnit;
 import io.nextweb.Query;
+import java.util.List;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
 import org.hamcrest.Matcher;
 import org.junit.Assert;
@@ -29,9 +31,23 @@ public class TestRecursiveSync extends CheckNodesToFilesTemplate {
   }
   
   protected void step2_assertFiles() {
+    List<FileItem> _children = this.result.getChildren();
+    InputOutput.<List<FileItem>>println(_children);
     FileItem _child = this.result.getChild("oh_my");
     boolean _exists = _child.exists();
     TestRecursiveSync.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_exists), Boolean.valueOf(true));
+    FileItem _child_1 = this.result.getChild("oh_my");
+    FileItem _child_2 = _child_1.getChild("And_in_the_subfolder");
+    boolean _exists_1 = _child_2.exists();
+    TestRecursiveSync.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_exists_1), Boolean.valueOf(true));
+    FileItem _child_3 = this.result.getChild("child1");
+    FileItem _child_4 = _child_3.getChild("b");
+    boolean _exists_2 = _child_4.exists();
+    TestRecursiveSync.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_exists_2), Boolean.valueOf(true));
+    FileItem _child_5 = this.result.getChild("child2");
+    FileItem _child_6 = _child_5.getChild("b");
+    boolean _isDirectory = _child_6.isDirectory();
+    TestRecursiveSync.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_isDirectory), Boolean.valueOf(true));
   }
   
   private static void assertArrayEquals(final Object[] expecteds, final Object[] actuals) {

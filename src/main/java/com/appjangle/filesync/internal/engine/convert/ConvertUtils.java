@@ -32,9 +32,9 @@ public class ConvertUtils {
   
   private final Map<String, String> textValueExtensions = Collections.<String, String>unmodifiableMap(CollectionLiterals.<String, String>newHashMap(Pair.<String, String>of(N.HTML_VALUE(), ".html"), Pair.<String, String>of(N.TYPE(), ".type"), Pair.<String, String>of(N.CSS(), ".css"), Pair.<String, String>of(N.JAVASCRIPT(), ".js"), Pair.<String, String>of(N.COFFEESCRIPT(), ".coffee")));
   
-  public boolean isTextValue(final String ext) {
+  public boolean isTextValue(final String fileName) {
     Set<String> _keySet = this.textValueExtensions.keySet();
-    return _keySet.contains(ext);
+    return _keySet.contains(fileName);
   }
   
   public Set<String> textNodeTypes() {

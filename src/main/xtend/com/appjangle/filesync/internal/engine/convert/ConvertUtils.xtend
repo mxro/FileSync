@@ -21,8 +21,10 @@ class ConvertUtils {
 		N.COFFEESCRIPT -> '.coffee'	
 	}
 
-	def isTextValue(String ext) {
-		textValueExtensions.keySet.contains(ext)
+	def isTextValue(String fileName) {
+		
+		
+		textValueExtensions.keySet.contains(fileName)
 	}
 
 	def textNodeTypes() {

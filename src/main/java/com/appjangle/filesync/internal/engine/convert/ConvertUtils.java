@@ -1,7 +1,6 @@
 package com.appjangle.filesync.internal.engine.convert;
 
 import com.appjangle.filesync.internal.engine.N;
-import com.google.common.base.Objects;
 import de.mxro.async.Aggregator;
 import de.mxro.async.Async;
 import de.mxro.async.callbacks.ValueCallback;
@@ -71,25 +70,8 @@ public class ConvertUtils {
   }
   
   public Query appendTypesAndIcon(final Query toNode, final FileItem source) {
-    Query _xblockexpression = null;
-    {
-      final Session session = toNode.session();
-      final String ext = source.getExtension();
-      boolean _equals = Objects.equal(ext, ".html");
-      if (_equals) {
-        Link _HTML_VALUE = this.n.HTML_VALUE(session);
-        toNode.appendSafe(_HTML_VALUE);
-        Link _TEMPLATE = this.n.TEMPLATE(session);
-        toNode.appendSafe(_TEMPLATE);
-        Query _appendSafe = toNode.appendSafe("https://docs.google.com/drawings/d/1AOVTMvvcdKAh3Y8aZP4kTx_c6oTMuNKkSdmgSAnPnr0/pub?w=70&h=70", "./.icon");
-        Link _ICON = this.n.ICON(session);
-        _appendSafe.appendSafe(_ICON);
-      }
-      String _TEXT_VALUE = N.TEXT_VALUE();
-      Link _link = session.link(_TEXT_VALUE);
-      _xblockexpression = toNode.appendSafe(_link);
-    }
-    return _xblockexpression;
+    throw new Error("Unresolved compilation problems:"
+      + "\nInvalid number of arguments. The method appendSafe(Object) is not applicable without arguments");
   }
   
   public final static Object NO_VALUE = new Object();

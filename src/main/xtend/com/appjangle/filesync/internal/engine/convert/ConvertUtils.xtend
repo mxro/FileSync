@@ -61,9 +61,16 @@ class ConvertUtils {
 			toNode.appendSafe(session.HTML_VALUE)
 			toNode.appendSafe(session.TEMPLATE)
 			
-			toNode.appendSafe("https://docs.google.com/drawings/d/1AOVTMvvcdKAh3Y8aZP4kTx_c6oTMuNKkSdmgSAnPnr0/pub?w=70&h=70", "./.icon")
+			toNode.appendSafe("https://appjangle.com/files/img/20141029/HTML.png", "./.icon")
 			.appendSafe(session.ICON)
 				
+		} else if (ext == ".js") {
+			
+			toNode.appendSafe(session.JAVASCRIPT)
+			toNode.appendSafe(session.TEMPLATE)
+			
+			toNode.appendSafe()
+			
 		}
 		
 		toNode.appendSafe(session.link(N.TEXT_VALUE))

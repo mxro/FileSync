@@ -13,11 +13,12 @@ class ConvertUtils {
 
 	val labelTypes = #[N.LABEL]
 
-	val fileExtensions = #{
-		N.HTML_VALUE -> ".html",
-		"1" -> ".type",
-		"2" -> ".css",
-		"3" -> ".js"	
+	val textValueExtensions = #{
+		N.HTML_VALUE -> '.html',
+		"1" -> '.type',
+		"2" -> '.css',
+		"3" -> '.js',
+		N.COFFEESCRIPT -> '.coffee'	
 	}
 
 	def getFileExtension(Node forNode, ValueCallback<String> cb) {
@@ -27,7 +28,7 @@ class ConvertUtils {
 		qry.catchExceptions([er|cb.onFailure(er.exception())])
 
 		qry.get [ links |
-			for (mapping : fileExtensions.entrySet) {
+			for (mapping : textValueExtensions.entrySet) {
 				
 				if (links.contains(mapping.key)) {
 					cb.onSuccess(mapping.value)

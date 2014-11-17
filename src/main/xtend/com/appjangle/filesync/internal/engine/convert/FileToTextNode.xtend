@@ -25,7 +25,9 @@ class FileToTextNode implements Converter {
 
 		val it = source.name
 
-		endsWith('.html') || endsWith('.js')
+		endsWith('.html') || 
+		endsWith('.js') ||
+		endsWith('.coffee')
 
 	}
 

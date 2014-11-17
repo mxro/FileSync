@@ -43,12 +43,19 @@ public class FileToTextNode implements Converter {
     {
       final String it = source.getName();
       boolean _or = false;
+      boolean _or_1 = false;
       boolean _endsWith = it.endsWith(".html");
       if (_endsWith) {
-        _or = true;
+        _or_1 = true;
       } else {
         boolean _endsWith_1 = it.endsWith(".js");
-        _or = _endsWith_1;
+        _or_1 = _endsWith_1;
+      }
+      if (_or_1) {
+        _or = true;
+      } else {
+        boolean _endsWith_2 = it.endsWith(".coffee");
+        _or = _endsWith_2;
       }
       _xblockexpression = _or;
     }

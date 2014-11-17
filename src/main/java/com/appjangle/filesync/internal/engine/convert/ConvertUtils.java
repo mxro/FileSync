@@ -30,7 +30,7 @@ import org.eclipse.xtext.xbase.lib.Pair;
 public class ConvertUtils {
   private final List<String> labelTypes = Collections.<String>unmodifiableList(CollectionLiterals.<String>newArrayList(N.LABEL()));
   
-  private final Map<String, String> fileExtensions = Collections.<String, String>unmodifiableMap(CollectionLiterals.<String, String>newHashMap(Pair.<String, String>of(N.HTML_VALUE(), ".html"), Pair.<String, String>of("1", ".type"), Pair.<String, String>of("2", ".css"), Pair.<String, String>of("3", ".js")));
+  private final Map<String, String> textValueExtensions = Collections.<String, String>unmodifiableMap(CollectionLiterals.<String, String>newHashMap(Pair.<String, String>of(N.HTML_VALUE(), ".html"), Pair.<String, String>of("1", ".type"), Pair.<String, String>of("2", ".css"), Pair.<String, String>of("3", ".js"), Pair.<String, String>of(N.COFFEESCRIPT(), ".coffee")));
   
   public void getFileExtension(final Node forNode, final ValueCallback<String> cb) {
     final LinkListQuery qry = forNode.selectAllLinks();
@@ -43,7 +43,7 @@ public class ConvertUtils {
     qry.catchExceptions(_function);
     final Closure<LinkList> _function_1 = new Closure<LinkList>() {
       public void apply(final LinkList links) {
-        Set<Map.Entry<String, String>> _entrySet = ConvertUtils.this.fileExtensions.entrySet();
+        Set<Map.Entry<String, String>> _entrySet = ConvertUtils.this.textValueExtensions.entrySet();
         for (final Map.Entry<String, String> mapping : _entrySet) {
           String _key = mapping.getKey();
           boolean _contains = links.contains(_key);

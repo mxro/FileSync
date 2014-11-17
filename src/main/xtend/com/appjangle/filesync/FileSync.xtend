@@ -47,8 +47,14 @@ class FileSync {
 					toSync.toList,
 					[ childFolder, itmcb |
 						
-						val metdatada = folder.loadMetadata
+						val metadata = folder.loadMetadata
 						
+						val itmmetadata = metadata.get(childFolder.name)
+						
+						val qry = node.session().link(itmmetadata.uri)
+						
+						qry.catchExceptions [er|cb.onFailure(er.exception)]
+							
 						
 						
 						syncSingleFolder(childFolder, node, itmcb)

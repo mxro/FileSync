@@ -1,5 +1,6 @@
 package com.appjangle.filesync;
 
+import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.internal.engine.FileUtils;
 import com.appjangle.filesync.internal.engine.SyncFolder;
@@ -13,7 +14,11 @@ import de.mxro.file.Jre.FilesJre;
 import de.mxro.fn.Closure;
 import de.mxro.fn.Closure2;
 import de.mxro.fn.Success;
+import io.nextweb.Link;
 import io.nextweb.Node;
+import io.nextweb.Session;
+import io.nextweb.promise.exceptions.ExceptionListener;
+import io.nextweb.promise.exceptions.ExceptionResult;
 import java.io.File;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.Extension;
@@ -72,7 +77,19 @@ public class FileSync {
         List<FileItem> _list = IterableExtensions.<FileItem>toList(toSync);
         final Closure2<FileItem, ValueCallback<Success>> _function_1 = new Closure2<FileItem, ValueCallback<Success>>() {
           public void apply(final FileItem childFolder, final ValueCallback<Success> itmcb) {
-            final Metadata metdatada = FileSync.fileUtils.loadMetadata(folder);
+            final Metadata metadata = FileSync.fileUtils.loadMetadata(folder);
+            String _name = childFolder.getName();
+            final ItemMetadata itmmetadata = metadata.get(_name);
+            Session _session = node.session();
+            String _uri = itmmetadata.uri();
+            final Link qry = _session.link(_uri);
+            final ExceptionListener _function = new ExceptionListener() {
+              public void onFailure(final ExceptionResult er) {
+                Throwable _exception = er.exception();
+                cb.onFailure(_exception);
+              }
+            };
+            qry.catchExceptions(_function);
             FileSync.syncSingleFolder(childFolder, node, itmcb);
           }
         };

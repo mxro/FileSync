@@ -13,7 +13,7 @@ class TestCreateVariousNodeTypes extends CheckFilesToNodesTemplate {
 		
 		source.createFile("My Script.js").text = "window.alert('nothing much');"
 		
-		source.createFile("My Script.coffee").text = "window.alert 'nothing much'"
+		source.createFile("My CoffeeScript.coffee").text = "window.alert 'nothing much'"
 		
 		
 	}

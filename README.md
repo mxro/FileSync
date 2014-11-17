@@ -9,3 +9,5 @@ A Desktop App for Synchronizing Files with Appjangle Data
 a new file is inserted and use the URI of the file if a matching hash exists.
 
 - Store value of folder nodes in children metadata.
+
+- Add support for two files with identical names (but different extensions) in one folder.

@@ -30,7 +30,7 @@ public class TestCreateVariousNodeTypes extends CheckFilesToNodesTemplate {
     _createFile.setText(".class {}");
     FileItem _createFile_1 = this.source.createFile("My Script.js");
     _createFile_1.setText("window.alert(\'nothing much\');");
-    FileItem _createFile_2 = this.source.createFile("My Script.coffee");
+    FileItem _createFile_2 = this.source.createFile("My CoffeeScript.coffee");
     _createFile_2.setText("window.alert \'nothing much\'");
   }
   

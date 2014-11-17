@@ -51,8 +51,11 @@ class ConvertUtils {
 		
 		if (ext == ".html") {
 			
-			toNode.appendSafe(toNode.session().link(N.HTML_VALUE))
-			toNode.appendSafe(toNode.session().link(N.TEMPLATE))	
+			toNode.appendSafe(toNode.session().HTML_VALUE)
+			toNode.appendSafe(toNode.session().TEMPLATE)
+			
+			toNode.appendSafe()
+				
 		}
 		
 		toNode.appendSafe(toNode.session().link(N.TEXT_VALUE))

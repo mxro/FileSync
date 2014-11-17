@@ -17,6 +17,11 @@ public class N {
     return "https://u1.linnk.it/6wbnoq/Types/aTemplate";
   }
   
+  public Link TEMPLATE(final Session session) {
+    String _TEMPLATE = N.TEMPLATE();
+    return session.link(_TEMPLATE);
+  }
+  
   public static String TEXT_VALUE() {
     return "https://u1.linnk.it/6wbnoq/Types/aTextValue";
   }

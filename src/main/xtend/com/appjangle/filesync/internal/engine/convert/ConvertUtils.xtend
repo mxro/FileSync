@@ -1,13 +1,11 @@
 package com.appjangle.filesync.internal.engine.convert
 
+import com.appjangle.filesync.internal.engine.N
 import de.mxro.async.Async
 import de.mxro.async.callbacks.ValueCallback
 import de.mxro.file.FileItem
 import io.nextweb.Node
 import io.nextweb.Query
-
-import static extension de.mxro.async.Async.embed
-import com.appjangle.filesync.internal.engine.N
 
 class ConvertUtils {
 
@@ -42,7 +40,7 @@ class ConvertUtils {
 	
 
 	def appendLabel(Query toNode, String label) {
-		toNode.appendSafe(label).appendSafe(toNode.session().link(labelTypes.get(0)), "./label")
+		toNode.appendSafe(label, "./.label").appendSafe(toNode.session().LABEL)
 	}
 
 	def appendTypes(Query toNode, FileItem source) {
@@ -107,5 +105,7 @@ class ConvertUtils {
 	def static getNameFromUri(String uri) {
 		uri.substring(uri.lastIndexOf("/") + 1)
 	}
+	
+	extension N n = new N
 
 }

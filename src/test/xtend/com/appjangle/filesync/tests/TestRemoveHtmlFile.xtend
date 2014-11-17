@@ -51,7 +51,7 @@ class TestRemoveFolder extends CheckUpdatesTemplate {
 			
 			qry.catchExceptions(er|cb.onFailure(er.exception))
 			
-			qry.catchUndefined([println('yep'); cb.onSuccess(Success.INSTANCE)])
+			qry.catchUndefined([ cb.onSuccess(Success.INSTANCE)])
 			
 			qry.get([ cb.onFailure(new Exception("Node should have been removed.")) ])
 

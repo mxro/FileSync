@@ -18,7 +18,6 @@ import io.nextweb.promise.exceptions.UndefinedListener;
 import io.nextweb.promise.exceptions.UndefinedResult;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.Extension;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
 import org.hamcrest.Matcher;
 import org.junit.Assert;
@@ -94,7 +93,6 @@ public class TestRemoveFolder extends CheckUpdatesTemplate {
         qry.catchExceptions(_function);
         final UndefinedListener _function_1 = new UndefinedListener() {
           public void onUndefined(final UndefinedResult it) {
-            InputOutput.<String>println("yep");
             cb.onSuccess(Success.INSTANCE);
           }
         };

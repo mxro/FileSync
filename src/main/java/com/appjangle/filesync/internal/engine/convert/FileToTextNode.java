@@ -33,7 +33,6 @@ import java.util.List;
 import mx.gwtutils.MxroGWTUtils;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Extension;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
 public class FileToTextNode implements Converter {
@@ -77,7 +76,6 @@ public class FileToTextNode implements Converter {
         final Query assertNodes = _parent.select("./.n", "nodes");
         String _text = source.getText();
         final Query baseNode = assertNodes.appendSafe(_text, ("./" + simpleName));
-        InputOutput.<String>println("do it!");
         Node _parent_1 = ctx.parent();
         final Query appendToParent = _parent_1.appendSafe(baseNode);
         metadata.add(

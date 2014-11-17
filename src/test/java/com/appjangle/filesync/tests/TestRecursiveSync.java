@@ -1,11 +1,13 @@
 package com.appjangle.filesync.tests;
 
+import com.appjangle.filesync.internal.engine.N;
 import com.appjangle.filesync.tests.CheckNodesToFilesTemplate;
 import de.mxro.file.FileItem;
 import de.oehme.xtend.junit.JUnit;
+import io.nextweb.Link;
 import io.nextweb.Query;
-import java.util.List;
-import org.eclipse.xtext.xbase.lib.InputOutput;
+import io.nextweb.Session;
+import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
 import org.hamcrest.Matcher;
 import org.junit.Assert;
@@ -29,6 +31,11 @@ public class TestRecursiveSync extends CheckNodesToFilesTemplate {
     _append_3.get();
     Query _append_4 = node3.append("child2");
     _append_4.append("c");
+    final Query html = node3.append("<html></html>", "./html");
+    html.append("My Html Document", "./.label");
+    Session _session = this.source.session();
+    Link _HTML_VALUE = this.n.HTML_VALUE(_session);
+    html.append(_HTML_VALUE);
   }
   
   protected void step2_assertFiles() {
@@ -48,19 +55,22 @@ public class TestRecursiveSync extends CheckNodesToFilesTemplate {
     TestRecursiveSync.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_exists_3), Boolean.valueOf(true));
     FileItem _get_6 = this.result.get("node3");
     FileItem _get_7 = _get_6.get("child1");
-    List<FileItem> _children = _get_7.getChildren();
-    InputOutput.<List<FileItem>>println(_children);
-    FileItem _get_8 = this.result.get("node3");
-    FileItem _get_9 = _get_8.get("child1");
-    FileItem _get_10 = _get_9.get("inThere");
-    boolean _exists_4 = _get_10.exists();
+    FileItem _get_8 = _get_7.get("inThere");
+    boolean _exists_4 = _get_8.exists();
     TestRecursiveSync.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_exists_4), Boolean.valueOf(true));
-    FileItem _get_11 = this.result.get("node3");
-    FileItem _get_12 = _get_11.get("child1");
-    FileItem _get_13 = _get_12.get("inThere");
-    boolean _isDirectory = _get_13.isDirectory();
+    FileItem _get_9 = this.result.get("node3");
+    FileItem _get_10 = _get_9.get("child1");
+    FileItem _get_11 = _get_10.get("inThere");
+    boolean _isDirectory = _get_11.isDirectory();
     TestRecursiveSync.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_isDirectory), Boolean.valueOf(true));
+    FileItem _get_12 = this.result.get("node3");
+    FileItem _get_13 = _get_12.get("My Html Document.html");
+    String _text = _get_13.getText();
+    TestRecursiveSync.<String, String>operator_doubleArrow(_text, "<html></html>");
   }
+  
+  @Extension
+  private N n = new N();
   
   private static void assertArrayEquals(final Object[] expecteds, final Object[] actuals) {
     Assert.assertArrayEquals(expecteds, actuals);

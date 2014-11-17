@@ -1,5 +1,6 @@
 package com.appjangle.filesync.tests
 
+import com.appjangle.filesync.internal.engine.N
 import de.oehme.xtend.junit.JUnit
 
 @JUnit
@@ -16,6 +17,14 @@ class TestRecursiveSync extends CheckNodesToFilesTemplate{
 		val node3 = source.append("node3", "./node3")
 		node3.append("child1", "./child1").append("b", "./inThere").get
 		node3.append("child2").append("c")
+		
+		
+		val html = node3.append("<html></html>", "./html")
+		
+		html.append("My Html Document", "./.label")
+		
+		html.append(source.session().HTML_VALUE)
+		
 	}
 	
 	override protected step2_assertFiles() {
@@ -28,11 +37,16 @@ class TestRecursiveSync extends CheckNodesToFilesTemplate{
 		
 		result.get("node3").get("child1").exists => true
 		
-		println(result.get("node3").get("child1").children)
-		
 		result.get("node3").get("child1").get("inThere").exists => true
 		
 		result.get("node3").get("child1").get("inThere").isDirectory => true
+		
+		// checking files
+		
+		result.get("node3").get("My Html Document.html").text => "<html></html>"
+		
 	}
+	
+	extension N n = new N
 	
 }

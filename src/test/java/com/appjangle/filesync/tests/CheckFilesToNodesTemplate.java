@@ -27,11 +27,11 @@ public abstract class CheckFilesToNodesTemplate {
   
   protected Session session;
   
-  protected Node source;
+  protected Node result;
   
   protected File target;
   
-  protected FileItem result;
+  protected FileItem source;
   
   @Rule
   public TemporaryFolder tempFolder = new TemporaryFolder();
@@ -45,32 +45,32 @@ public abstract class CheckFilesToNodesTemplate {
       this.session = _createSession;
       Query _seed = this.session.seed(this.server);
       Node _get = _seed.get();
-      this.source = _get;
+      this.result = _get;
       File _newFolder = this.tempFolder.newFolder("sync1");
       this.target = _newFolder;
       FileItem _wrap = FilesJre.wrap(this.target);
-      this.result = _wrap;
+      this.source = _wrap;
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
   
-  protected abstract void step1_defineData();
+  protected abstract void step1_defineFiles();
   
-  protected abstract void step2_assertFiles();
+  protected abstract void step2_assertNodes();
   
   @Test
   public void test() {
-    this.step1_defineData();
-    NextwebPromise<Success> _commit = this.session.commit();
-    _commit.get();
+    this.step1_defineFiles();
     final Deferred<Success> _function = new Deferred<Success>() {
       public void get(final ValueCallback<Success> cb) {
-        FileSync.sync(CheckFilesToNodesTemplate.this.target, CheckFilesToNodesTemplate.this.source, cb);
+        FileSync.sync(CheckFilesToNodesTemplate.this.target, CheckFilesToNodesTemplate.this.result, cb);
       }
     };
     AsyncJre.<Success>waitFor(_function);
-    this.step2_assertFiles();
+    NextwebPromise<Success> _commit = this.session.commit();
+    _commit.get();
+    this.step2_assertNodes();
   }
   
   @After

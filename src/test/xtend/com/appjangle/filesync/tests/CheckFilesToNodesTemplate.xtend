@@ -19,9 +19,9 @@ abstract class CheckFilesToNodesTemplate {
 	
 	protected LocalServer server
 	protected Session session
-	protected Node source
+	protected Node result
 	protected File target
-	protected FileItem result
+	protected FileItem source
 	
 	@Rule
 	public TemporaryFolder tempFolder = new TemporaryFolder();
@@ -32,27 +32,29 @@ abstract class CheckFilesToNodesTemplate {
 
 		session = AppjangleJre.createSession(server)
 
-		source = session.seed(server).get
+		result = session.seed(server).get
 		
 		target = tempFolder.newFolder("sync1")
 		
-		result = FilesJre.wrap(target)
+		source = FilesJre.wrap(target)
 	}
 	
-	def protected abstract void step1_defineData()
+	def protected abstract void step1_defineFiles()
 	
-	def protected abstract void step2_assertFiles()
+	def protected abstract void step2_assertNodes()
 	
 	@Test
 	def void test() {
-		step1_defineData
-		session.commit.get
+		step1_defineFiles
+		
 
 		AsyncJre.waitFor [cb |
-			FileSync.sync(target, source, cb)
+			FileSync.sync(target, result, cb)
 		]
 		
-		step2_assertFiles
+		session.commit.get
+				
+		step2_assertNodes
 		
 	}
 	

@@ -62,16 +62,14 @@ class NetworkUtils {
 							])
 
 						} else if (qry instanceof NextwebPromise<?>) {
-
+							println('run promise '+qry)
 							val safeQry = qry as NextwebPromise<Object>
 							//val res = onNode.session().promise(safeQry)
 							safeQry.catchExceptions([er|itmcb.onFailure(er.exception)])
 							safeQry.get([succ|itmcb.onSuccess(Success.INSTANCE)])
 						} else {
 							
-							qry.get(itmcb.embed [ obj|
-								itmcb.onSuccess(Success.INSTANCE)
-							])
+							throw new RuntimeException('Unsupported pending query: '+qry.class)
 							
 						}
 					}

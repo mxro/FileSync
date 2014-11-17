@@ -6,6 +6,7 @@ import com.appjangle.filesync.FileOperationContext;
 import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.NetworkOperation;
+import com.appjangle.filesync.NetworkOperationContext;
 import com.appjangle.filesync.internal.engine.FileUtils;
 import com.appjangle.filesync.internal.engine.convert.ConvertUtils;
 import de.mxro.async.Async;
@@ -13,10 +14,13 @@ import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
 import de.mxro.fn.Closure;
 import io.nextweb.Node;
+import io.nextweb.Query;
+import io.nextweb.promise.Deferred;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import mx.gwtutils.MxroGWTUtils;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Extension;
 
@@ -31,10 +35,20 @@ public class FolderToNode implements Converter {
   }
   
   public void createNodes(final Metadata metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method parent is undefined for the type FolderToNode"
-      + "\nType mismatch: cannot convert from (Object)=>ArrayList<Object> to NetworkOperation"
-      + "\nappendSafe cannot be resolved");
+    String _name = source.getName();
+    final String simpleName = MxroGWTUtils.getSimpleName(_name);
+    final LinkedList<NetworkOperation> ops = new LinkedList<NetworkOperation>();
+    final NetworkOperation _function = new NetworkOperation() {
+      public void apply(final NetworkOperationContext ctx, final ValueCallback<List<Deferred<?>>> opscb) {
+        Node _parent = ctx.parent();
+        String _name = source.getName();
+        final Query baseNode = _parent.appendSafe(_name, ("./" + simpleName));
+        ArrayList<Deferred<?>> _newArrayList = CollectionLiterals.<Deferred<?>>newArrayList(baseNode);
+        opscb.onSuccess(_newArrayList);
+      }
+    };
+    ops.add(_function);
+    cb.onSuccess(ops);
   }
   
   public void update(final Metadata metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {

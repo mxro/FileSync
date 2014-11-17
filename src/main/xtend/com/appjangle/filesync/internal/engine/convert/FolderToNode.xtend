@@ -31,11 +31,11 @@ class FolderToNode implements Converter {
 		val ops = new LinkedList<NetworkOperation>
 
 		ops.add(
-			[ ctx |
+			[ ctx, opscb |
 				val baseNode = ctx.parent.appendSafe(source.name, "./" + simpleName)
-				newArrayList(
+				opscb.onSuccess(newArrayList(
 					baseNode
-				)
+				))
 			])
 
 		cb.onSuccess(ops)

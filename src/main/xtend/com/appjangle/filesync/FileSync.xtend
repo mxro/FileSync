@@ -10,6 +10,8 @@ import de.mxro.fn.Success
 import io.nextweb.Node
 import java.io.File
 
+import static extension de.mxro.async.Async.embed
+
 class FileSync {
 
 	/**
@@ -25,6 +27,12 @@ class FileSync {
 	 * <p>Synchronized the contents of the specified folder with the specified nodes and does the same for all sub-folders and child nodes.
 	 */
 	def static sync(File folder, Node node, ValueCallback<Success> cb) {
+		
+		syncSingleFolder(folder, node, cb.embed [
+			
+		])
+		
+		
 	}
 
 	def static createDefaultConverter() {

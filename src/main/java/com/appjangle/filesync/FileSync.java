@@ -4,9 +4,11 @@ import com.appjangle.filesync.internal.engine.SyncFolder;
 import com.appjangle.filesync.internal.engine.convert.ConverterCollection;
 import com.appjangle.filesync.internal.engine.convert.FileToTextNode;
 import com.appjangle.filesync.internal.engine.convert.FolderToNode;
+import de.mxro.async.Async;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
 import de.mxro.file.Jre.FilesJre;
+import de.mxro.fn.Closure;
 import de.mxro.fn.Success;
 import io.nextweb.Node;
 import java.io.File;
@@ -26,8 +28,13 @@ public class FileSync {
   /**
    * <p>Synchronized the contents of the specified folder with the specified nodes and does the same for all sub-folders and child nodes.
    */
-  public static Object sync(final File folder, final Node node, final ValueCallback<Success> cb) {
-    return null;
+  public static void sync(final File folder, final Node node, final ValueCallback<Success> cb) {
+    final Closure<Success> _function = new Closure<Success>() {
+      public void apply(final Success it) {
+      }
+    };
+    ValueCallback<Success> _embed = Async.<Success>embed(cb, _function);
+    FileSync.syncSingleFolder(folder, node, _embed);
   }
   
   public static ConverterCollection createDefaultConverter() {

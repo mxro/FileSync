@@ -2,6 +2,9 @@ package com.appjangle.filesync.tests;
 
 import com.appjangle.filesync.tests.CheckFilesToNodesTemplate;
 import de.oehme.xtend.junit.JUnit;
+import io.nextweb.ListQuery;
+import io.nextweb.NodeList;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
 import org.hamcrest.Matcher;
 import org.junit.Assert;
@@ -11,9 +14,13 @@ import org.junit.internal.ArrayComparisonFailure;
 @SuppressWarnings("all")
 public class TestCreateNode extends CheckFilesToNodesTemplate {
   protected void step1_defineFiles() {
+    this.source.assertFolder("Oh my test");
   }
   
   protected void step2_assertNodes() {
+    ListQuery _selectAll = this.result.selectAll();
+    NodeList _get = _selectAll.get();
+    InputOutput.<NodeList>println(_get);
   }
   
   private static void assertArrayEquals(final Object[] expecteds, final Object[] actuals) {

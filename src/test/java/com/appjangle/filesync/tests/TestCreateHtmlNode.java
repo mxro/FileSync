@@ -33,7 +33,7 @@ public class TestCreateHtmlNode extends CheckFilesToNodesTemplate {
   }
   
   protected void step2_assertNodes() {
-    Query _select = this.result.select("./.n/My_Document");
+    Query _select = this.result.select("./My_Document");
     _select.get();
     ListQuery _selectAll = this.result.selectAll();
     NodeList _get = _selectAll.get();

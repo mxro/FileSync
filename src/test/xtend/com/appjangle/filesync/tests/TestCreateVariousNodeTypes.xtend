@@ -1,9 +1,15 @@
 package com.appjangle.filesync.tests
 
-class TestCreateVariousNodeTypes {
+import com.appjangle.filesync.internal.engine.N
+import de.oehme.xtend.junit.Hamcrest
+import de.oehme.xtend.junit.JUnit
+
+@JUnit
+@Hamcrest
+class TestCreateVariousNodeTypes extends CheckFilesToNodesTemplate {
 	
 	override protected step1_defineFiles() {
-		source.createFile("My Document.html").text = "<html></html>"
+		source.createFile("My Document.css").text = ".html {}"
 	}
 	
 	override protected step2_assertNodes() {

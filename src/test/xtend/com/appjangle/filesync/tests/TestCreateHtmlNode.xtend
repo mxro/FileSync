@@ -13,7 +13,7 @@ class TestCreateHtmlNode extends CheckFilesToNodesTemplate {
 	}
 	
 	override protected step2_assertNodes() {
-		result.select("./.n/My_Document").get
+		result.select("./My_Document").get
 		
 		println (result.selectAll.get)
 		

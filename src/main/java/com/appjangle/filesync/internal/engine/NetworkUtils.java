@@ -11,6 +11,6 @@ import java.util.List;
 public class NetworkUtils {
   public NextwebPromise<Success> execute(final List<NetworkOperation> ops, final Node onNode, final ValueCallback<Success> cb) {
     throw new Error("Unresolved compilation problems:"
-      + "\nThis expression is not allowed in this context, since it doesn\'t cause any side effects.");
+      + "\nType mismatch: cannot convert from ValueCallback<Object> to Callback<?>");
   }
 }

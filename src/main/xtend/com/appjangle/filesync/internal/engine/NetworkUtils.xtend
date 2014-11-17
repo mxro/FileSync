@@ -69,7 +69,9 @@ class NetworkUtils {
 							safeQry.get([succ|itmcb.onSuccess(Success.INSTANCE)])
 						} else {
 							
-							qry
+							qry.get(itmcb.embed [ obj|
+								itmcb.onSuccess(Success.INSTANCE)
+							])
 							
 						}
 					}

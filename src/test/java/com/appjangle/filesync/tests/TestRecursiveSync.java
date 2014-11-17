@@ -7,7 +7,9 @@ import de.oehme.xtend.junit.JUnit;
 import io.nextweb.Link;
 import io.nextweb.Query;
 import io.nextweb.Session;
+import java.util.List;
 import org.eclipse.xtext.xbase.lib.Extension;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
 import org.hamcrest.Matcher;
 import org.junit.Assert;
@@ -32,9 +34,12 @@ public class TestRecursiveSync extends CheckNodesToFilesTemplate {
     Query _append_4 = node3.append("child2");
     _append_4.append("c");
     final Query html = node3.append("<html></html>", "./html");
-    html.append("My Html Document", "./.label");
+    Query _append_5 = html.append("My Html Document", "./.label");
     Session _session = this.source.session();
-    Link _HTML_VALUE = this.n.HTML_VALUE(_session);
+    Link _LABEL = this.n.LABEL(_session);
+    _append_5.append(_LABEL);
+    Session _session_1 = this.source.session();
+    Link _HTML_VALUE = this.n.HTML_VALUE(_session_1);
     html.append(_HTML_VALUE);
   }
   
@@ -64,8 +69,11 @@ public class TestRecursiveSync extends CheckNodesToFilesTemplate {
     boolean _isDirectory = _get_11.isDirectory();
     TestRecursiveSync.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_isDirectory), Boolean.valueOf(true));
     FileItem _get_12 = this.result.get("node3");
-    FileItem _get_13 = _get_12.get("My Html Document.html");
-    String _text = _get_13.getText();
+    List<FileItem> _children = _get_12.getChildren();
+    InputOutput.<List<FileItem>>println(_children);
+    FileItem _get_13 = this.result.get("node3");
+    FileItem _get_14 = _get_13.get("My Html Document.html");
+    String _text = _get_14.getText();
     TestRecursiveSync.<String, String>operator_doubleArrow(_text, "<html></html>");
   }
   

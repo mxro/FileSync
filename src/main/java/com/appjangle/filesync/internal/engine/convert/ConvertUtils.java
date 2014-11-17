@@ -104,6 +104,17 @@ public class ConvertUtils {
             Query _appendSafe_2 = toNode.appendSafe("https://appjangle.com/files/img/20141118/Coffeescript.png", "./.icon");
             Link _ICON_2 = this.n.ICON(session);
             _appendSafe_2.appendSafe(_ICON_2);
+          } else {
+            boolean _equals_3 = Objects.equal(ext, ".css");
+            if (_equals_3) {
+              Link _CSS = this.n.CSS(session);
+              toNode.appendSafe(_CSS);
+              Link _TEMPLATE_3 = this.n.TEMPLATE(session);
+              toNode.appendSafe(_TEMPLATE_3);
+              Query _appendSafe_3 = toNode.appendSafe("https://appjangle.com/files/img/20141118/CSS.png", "./.icon");
+              Link _ICON_3 = this.n.ICON(session);
+              _appendSafe_3.appendSafe(_ICON_3);
+            }
           }
         }
       }

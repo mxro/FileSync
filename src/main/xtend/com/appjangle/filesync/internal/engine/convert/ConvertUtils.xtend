@@ -78,6 +78,14 @@ class ConvertUtils {
 			
 			toNode.appendSafe("https://appjangle.com/files/img/20141118/Coffeescript.png", "./.icon").appendSafe(session.ICON)
 			
+		} else if (ext == ".css") {
+			
+			toNode.appendSafe(session.CSS)
+			
+			toNode.appendSafe(session.TEMPLATE)
+			
+			toNode.appendSafe("https://appjangle.com/files/img/20141118/CSS.png", "./.icon").appendSafe(session.ICON)
+			
 		}
 		
 		toNode.appendSafe(session.link(N.TEXT_VALUE))

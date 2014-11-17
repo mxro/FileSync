@@ -16,16 +16,16 @@ import org.junit.Test
 import org.junit.rules.TemporaryFolder
 
 abstract class CheckNodesToFilesTemplate {
-	
+
 	protected LocalServer server
 	protected Session session
 	protected Node source
 	protected File target
 	protected FileItem result
-	
+
 	@Rule
 	public TemporaryFolder tempFolder = new TemporaryFolder();
-	
+
 	@Before
 	def void setUp() {
 		server = AppjangleJre.startServer()
@@ -33,39 +33,42 @@ abstract class CheckNodesToFilesTemplate {
 		session = AppjangleJre.createSession(server)
 
 		source = session.seed(server).get
-		
+
 		target = tempFolder.newFolder("sync1")
-		
+
 		result = FilesJre.wrap(target)
 	}
-	
+
 	def protected doRecursiveSync() {
 		return false;
 	}
-	
+
 	def protected abstract void step1_defineData()
-	
+
 	def protected abstract void step2_assertFiles()
-	
+
 	@Test
 	def void test() {
 		step1_defineData
 		session.commit.get
 
-		AsyncJre.waitFor [cb |
-			FileSync.syncSingleFolder(target, source, cb)
+		AsyncJre.waitFor [ cb |
+			if (!doRecursiveSync) {
+				FileSync.syncSingleFolder(target, source, cb)
+			} else {
+				FileSync.sync(target, source, cb);
+			}
 		]
-		
+
 		step2_assertFiles
-		
+
 	}
-	
-	
+
 	@After
 	def void tearDown() {
 		session.close.get
 
 		server.shutdown.get
 	}
-	
+
 }

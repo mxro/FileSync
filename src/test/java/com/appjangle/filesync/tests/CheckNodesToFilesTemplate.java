@@ -70,7 +70,13 @@ public abstract class CheckNodesToFilesTemplate {
     _commit.get();
     final Deferred<Success> _function = new Deferred<Success>() {
       public void get(final ValueCallback<Success> cb) {
-        FileSync.syncSingleFolder(CheckNodesToFilesTemplate.this.target, CheckNodesToFilesTemplate.this.source, cb);
+        boolean _doRecursiveSync = CheckNodesToFilesTemplate.this.doRecursiveSync();
+        boolean _not = (!_doRecursiveSync);
+        if (_not) {
+          FileSync.syncSingleFolder(CheckNodesToFilesTemplate.this.target, CheckNodesToFilesTemplate.this.source, cb);
+        } else {
+          FileSync.sync(CheckNodesToFilesTemplate.this.target, CheckNodesToFilesTemplate.this.source, cb);
+        }
       }
     };
     AsyncJre.<Success>waitFor(_function);

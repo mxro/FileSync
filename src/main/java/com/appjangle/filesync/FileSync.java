@@ -9,11 +9,11 @@ import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
 import de.mxro.file.Jre.FilesJre;
 import de.mxro.fn.Closure;
+import de.mxro.fn.Closure2;
 import de.mxro.fn.Success;
 import io.nextweb.Node;
 import java.io.File;
 import java.util.List;
-import java.util.function.Consumer;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
@@ -59,12 +59,19 @@ public class FileSync {
             return Boolean.valueOf(_and);
           }
         };
-        Iterable<FileItem> _filter = IterableExtensions.<FileItem>filter(_children, _function);
-        final Consumer<FileItem> _function_1 = new Consumer<FileItem>() {
-          public void accept(final FileItem it) {
+        final Iterable<FileItem> toSync = IterableExtensions.<FileItem>filter(_children, _function);
+        List<FileItem> _list = IterableExtensions.<FileItem>toList(toSync);
+        final Closure2<FileItem, ValueCallback<Object>> _function_1 = new Closure2<FileItem, ValueCallback<Object>>() {
+          public void apply(final FileItem item, final ValueCallback<Object> itmcb) {
           }
         };
-        _filter.forEach(_function_1);
+        final Closure<List<Object>> _function_2 = new Closure<List<Object>>() {
+          public void apply(final List<Object> it) {
+            cb.onSuccess(Success.INSTANCE);
+          }
+        };
+        ValueCallback<List<Object>> _embed = Async.<List<Object>>embed(cb, _function_2);
+        Async.<FileItem, Object>forEach(_list, _function_1, _embed);
       }
     };
     ValueCallback<Success> _embed = Async.<Success>embed(cb, _function);

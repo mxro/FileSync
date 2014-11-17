@@ -4,6 +4,7 @@ import com.appjangle.filesync.internal.engine.SyncFolder
 import com.appjangle.filesync.internal.engine.convert.ConverterCollection
 import com.appjangle.filesync.internal.engine.convert.FileToTextNode
 import com.appjangle.filesync.internal.engine.convert.FolderToNode
+import de.mxro.async.Async
 import de.mxro.async.callbacks.ValueCallback
 import de.mxro.file.Jre.FilesJre
 import de.mxro.fn.Success
@@ -30,22 +31,27 @@ class FileSync {
 
 		syncSingleFolder(folder, node,
 			cb.embed [
-				FilesJre.wrap(folder).children.filter[isDirectory && visible && !name.startsWith('.')].forEach[
-					
-				]
-			])
+				val toSync = FilesJre.wrap(folder).children.filter[isDirectory && visible && !name.startsWith('.')]
+				Async.forEach(
+					toSync.toList,
+					[ item, itmcb |
+						],
+						cb.embed[cb.onSuccess(Success.INSTANCE)]
+					)
+				])
+
+		}
+
+		def static createDefaultConverter() {
+
+			val coll = new ConverterCollection
+
+			coll.addConverter(new FileToTextNode)
+			coll.addConverter(new FolderToNode)
+
+			coll
+
+		}
 
 	}
-
-	def static createDefaultConverter() {
-
-		val coll = new ConverterCollection
-
-		coll.addConverter(new FileToTextNode)
-		coll.addConverter(new FolderToNode)
-
-		coll
-
-	}
-
-}
+	

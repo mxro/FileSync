@@ -64,7 +64,7 @@ class ConvertUtils {
 
 		val session = toNode.session()
 
-		val ext = "."+source.extension
+		val ext = '.'+source.extension
 		
 		if (ext == ".html") {
 			

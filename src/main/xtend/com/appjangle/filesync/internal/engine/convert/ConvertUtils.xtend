@@ -7,6 +7,8 @@ import de.mxro.file.FileItem
 import io.nextweb.Node
 import io.nextweb.Query
 
+import static extension de.mxro.async.Async.embed
+
 class ConvertUtils {
 
 	val labelTypes = #[N.LABEL]

@@ -1,6 +1,5 @@
 package com.appjangle.filesync;
 
-import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.internal.engine.FileUtils;
 import com.appjangle.filesync.internal.engine.SyncFolder;
 import com.appjangle.filesync.internal.engine.convert.ConverterCollection;
@@ -27,8 +26,15 @@ public class FileSync {
    */
   public static void syncSingleFolder(final File folder, final Node node, final ValueCallback<Success> cb) {
     FileItem _wrap = FilesJre.wrap(folder);
+    FileSync.syncSingleFolder(_wrap, node, cb);
+  }
+  
+  /**
+   * <p>Synchronized the contents of a folder and a node without synchronizing sub-folders.
+   */
+  public static void syncSingleFolder(final FileItem folder, final Node node, final ValueCallback<Success> cb) {
     ConverterCollection _createDefaultConverter = FileSync.createDefaultConverter();
-    SyncFolder _syncFolder = new SyncFolder(_wrap, node, _createDefaultConverter);
+    SyncFolder _syncFolder = new SyncFolder(folder, node, _createDefaultConverter);
     _syncFolder.doIt(cb);
   }
   
@@ -64,18 +70,18 @@ public class FileSync {
         };
         final Iterable<FileItem> toSync = IterableExtensions.<FileItem>filter(_children, _function);
         List<FileItem> _list = IterableExtensions.<FileItem>toList(toSync);
-        final Closure2<FileItem, ValueCallback<Object>> _function_1 = new Closure2<FileItem, ValueCallback<Object>>() {
-          public void apply(final FileItem childFolder, final ValueCallback<Object> itmcb) {
-            final Metadata metadata = FileSync.fileUtils.assertMetadata(childFolder);
+        final Closure2<FileItem, ValueCallback<Success>> _function_1 = new Closure2<FileItem, ValueCallback<Success>>() {
+          public void apply(final FileItem childFolder, final ValueCallback<Success> itmcb) {
+            FileSync.syncSingleFolder(childFolder, node, itmcb);
           }
         };
-        final Closure<List<Object>> _function_2 = new Closure<List<Object>>() {
-          public void apply(final List<Object> it) {
+        final Closure<List<Success>> _function_2 = new Closure<List<Success>>() {
+          public void apply(final List<Success> it) {
             cb.onSuccess(Success.INSTANCE);
           }
         };
-        ValueCallback<List<Object>> _embed = Async.<List<Object>>embed(cb, _function_2);
-        Async.<FileItem, Object>forEach(_list, _function_1, _embed);
+        ValueCallback<List<Success>> _embed = Async.<List<Success>>embed(cb, _function_2);
+        Async.<FileItem, Success>forEach(_list, _function_1, _embed);
       }
     };
     ValueCallback<Success> _embed = Async.<Success>embed(cb, _function);

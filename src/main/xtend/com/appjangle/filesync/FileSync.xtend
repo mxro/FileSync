@@ -7,6 +7,7 @@ import com.appjangle.filesync.internal.engine.convert.FileToTextNode
 import com.appjangle.filesync.internal.engine.convert.FolderToNode
 import de.mxro.async.Async
 import de.mxro.async.callbacks.ValueCallback
+import de.mxro.file.FileItem
 import de.mxro.file.Jre.FilesJre
 import de.mxro.fn.Success
 import io.nextweb.Node
@@ -20,8 +21,16 @@ class FileSync {
 	 * <p>Synchronized the contents of a folder and a node without synchronizing sub-folders.
 	 */
 	def static syncSingleFolder(File folder, Node node, ValueCallback<Success> cb) {
+		syncSingleFolder(FilesJre.wrap(folder), node, cb)
 
-		new SyncFolder(FilesJre.wrap(folder), node, createDefaultConverter).doIt(cb)
+	}
+	
+	/**
+	 * <p>Synchronized the contents of a folder and a node without synchronizing sub-folders.
+	 */
+	def static syncSingleFolder(FileItem folder, Node node, ValueCallback<Success> cb) {
+
+		new SyncFolder(folder, node, createDefaultConverter).doIt(cb)
 
 	}
 
@@ -38,9 +47,7 @@ class FileSync {
 					toSync.toList,
 					[ childFolder, itmcb |
 						
-						val metadata = childFolder.assertMetadata
-						
-						
+						syncSingleFolder(childFolder, node, itmcb)
 						
 						],
 						cb.embed[cb.onSuccess(Success.INSTANCE)]

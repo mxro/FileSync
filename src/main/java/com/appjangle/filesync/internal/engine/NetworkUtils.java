@@ -72,7 +72,6 @@ public class NetworkUtils {
                   ((Query)qry).get(_function_2);
                 } else {
                   if ((qry instanceof NextwebPromise<?>)) {
-                    InputOutput.<String>println(("run promise " + qry));
                     final NextwebPromise<Object> safeQry = ((NextwebPromise<Object>) qry);
                     final ExceptionListener _function_3 = new ExceptionListener() {
                       public void onFailure(final ExceptionResult er) {

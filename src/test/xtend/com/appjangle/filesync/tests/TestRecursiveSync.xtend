@@ -14,7 +14,7 @@ class TestRecursiveSync extends CheckNodesToFilesTemplate{
 		source.append('Hello').append("Any another foder")
 		
 		val node3 = source.append("node3", "./node3")
-		node3.append("child1", "./child1").append("b", "./inThere")
+		node3.append("child1", "./child1").append("b", "./inThere").get
 		node3.append("child2").append("c")
 	}
 	
@@ -22,13 +22,15 @@ class TestRecursiveSync extends CheckNodesToFilesTemplate{
 		
 		result.get("node1").exists => true
 		
-		println(result.get("node1").children)
+		
 		
 		result.get("node1").get("sub").exists => true
 		
 		result.get("node3").exists => true
 		
 		result.get("node3").get("child1").exists => true
+		
+		println(result.get("node3").get("child1").children)
 		
 		result.get("node3").get("child1").get("inThere").exists => true
 		

@@ -6,6 +6,7 @@ import com.appjangle.filesync.FileOperationContext;
 import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.NetworkOperation;
+import com.appjangle.filesync.NetworkOperationContext;
 import com.appjangle.filesync.internal.engine.FileUtils;
 import com.appjangle.filesync.internal.engine.N;
 import com.appjangle.filesync.internal.engine.convert.ConvertUtils;
@@ -18,9 +19,13 @@ import io.nextweb.Link;
 import io.nextweb.LinkList;
 import io.nextweb.LinkListQuery;
 import io.nextweb.Node;
+import io.nextweb.Query;
+import io.nextweb.Session;
+import io.nextweb.promise.Deferred;
 import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
 import io.nextweb.utils.data.NextwebDataExtension;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedList;
@@ -76,16 +81,26 @@ public class FileToTextNode implements Converter {
   }
   
   public void update(final Metadata metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method session is undefined for the type FileToTextNode"
-      + "\nType mismatch: cannot convert from (Object)=>ArrayList<Object> to NetworkOperation"
-      + "\nlink cannot be resolved"
-      + "\nsetValueSafe cannot be resolved");
+    final String content = source.getText();
+    String _name = source.getName();
+    ItemMetadata _get = metadata.get(_name);
+    final String address = _get.uri();
+    final LinkedList<NetworkOperation> ops = new LinkedList<NetworkOperation>();
+    final NetworkOperation _function = new NetworkOperation() {
+      public void apply(final NetworkOperationContext ctx, final ValueCallback<List<Deferred<?>>> opscb) {
+        Session _session = ctx.session();
+        Link _link = _session.link(address);
+        Query _setValueSafe = _link.setValueSafe(content);
+        ArrayList<Deferred<?>> _newArrayList = CollectionLiterals.<Deferred<?>>newArrayList(_setValueSafe);
+        opscb.onSuccess(_newArrayList);
+      }
+    };
+    ops.add(_function);
+    cb.onSuccess(ops);
   }
   
   public void deleteNodes(final Metadata metadata, final ItemMetadata cachedFile, final ValueCallback<List<NetworkOperation>> cb) {
     throw new Error("Unresolved compilation problems:"
-      + "\nDuplicate local variable cb"
       + "\nType mismatch: cannot convert from ValueCallback<List<Deferred<?>>> to ValueCallback<List<NextwebPromise<Success>>>");
   }
   

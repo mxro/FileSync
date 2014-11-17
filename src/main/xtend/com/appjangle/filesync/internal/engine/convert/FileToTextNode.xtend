@@ -77,8 +77,8 @@ class FileToTextNode implements Converter {
 		val ops = new LinkedList<NetworkOperation>
 
 		ops.add(
-			[ ctx |
-				newArrayList(ctx.session.link(address).setValueSafe(content))
+			[ ctx, opscb |
+				opscb.onSuccess(newArrayList(ctx.session.link(address).setValueSafe(content)))
 			])
 
 		cb.onSuccess(ops)
@@ -91,10 +91,10 @@ class FileToTextNode implements Converter {
 		val ops = new LinkedList<NetworkOperation>
 
 		ops.add(
-			[ ctx, cb |
+			[ ctx, opscb |
 				
 				metadata.remove(cachedFile.name)
-				ctx.parent.removeSafeRecursive(ctx.session.link(address), cb)
+				ctx.parent.removeSafeRecursive(ctx.session.link(address), opscb)
 				
 			])
 

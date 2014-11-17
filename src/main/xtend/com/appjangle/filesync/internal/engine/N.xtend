@@ -16,6 +16,10 @@ class N {
 		return "https://u1.linnk.it/6wbnoq/Types/aTemplate"
 	}
 	
+	def TEMPLATE(Session session) {
+		return session.link(TEMPLATE)
+	}
+	
 	def static TEXT_VALUE() {
 		return "https://u1.linnk.it/6wbnoq/Types/aTextValue"
 	}

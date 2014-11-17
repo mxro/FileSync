@@ -48,4 +48,12 @@ class N {
 		return session.link(COFFEESCRIPT)
 	}
 	
+	def static JAVASCRIPT() {
+		return "https://u1.linnk.it/qc8sbw/usr/apps/textsync/upload/java-script-document"
+	}
+	
+	def JAVASCRIPT(Session session) {
+		return session.link(JAVASCRIPT)
+	}
+	
 }

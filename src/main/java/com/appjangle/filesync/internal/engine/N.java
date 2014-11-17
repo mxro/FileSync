@@ -52,4 +52,13 @@ public class N {
     String _COFFEESCRIPT = N.COFFEESCRIPT();
     return session.link(_COFFEESCRIPT);
   }
+  
+  public static String JAVASCRIPT() {
+    return "https://u1.linnk.it/qc8sbw/usr/apps/textsync/upload/java-script-document";
+  }
+  
+  public Link JAVASCRIPT(final Session session) {
+    String _JAVASCRIPT = N.JAVASCRIPT();
+    return session.link(_JAVASCRIPT);
+  }
 }

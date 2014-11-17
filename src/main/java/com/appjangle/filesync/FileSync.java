@@ -12,6 +12,10 @@ import de.mxro.fn.Closure;
 import de.mxro.fn.Success;
 import io.nextweb.Node;
 import java.io.File;
+import java.util.List;
+import java.util.function.Consumer;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
 @SuppressWarnings("all")
 public class FileSync {
@@ -31,6 +35,36 @@ public class FileSync {
   public static void sync(final File folder, final Node node, final ValueCallback<Success> cb) {
     final Closure<Success> _function = new Closure<Success>() {
       public void apply(final Success it) {
+        FileItem _wrap = FilesJre.wrap(folder);
+        List<FileItem> _children = _wrap.getChildren();
+        final Function1<FileItem, Boolean> _function = new Function1<FileItem, Boolean>() {
+          public Boolean apply(final FileItem it) {
+            boolean _and = false;
+            boolean _and_1 = false;
+            boolean _isDirectory = it.isDirectory();
+            if (!_isDirectory) {
+              _and_1 = false;
+            } else {
+              boolean _visible = it.getVisible();
+              _and_1 = _visible;
+            }
+            if (!_and_1) {
+              _and = false;
+            } else {
+              String _name = it.getName();
+              boolean _startsWith = _name.startsWith(".");
+              boolean _not = (!_startsWith);
+              _and = _not;
+            }
+            return Boolean.valueOf(_and);
+          }
+        };
+        Iterable<FileItem> _filter = IterableExtensions.<FileItem>filter(_children, _function);
+        final Consumer<FileItem> _function_1 = new Consumer<FileItem>() {
+          public void accept(final FileItem it) {
+          }
+        };
+        _filter.forEach(_function_1);
       }
     };
     ValueCallback<Success> _embed = Async.<Success>embed(cb, _function);

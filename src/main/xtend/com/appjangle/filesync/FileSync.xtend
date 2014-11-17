@@ -27,12 +27,14 @@ class FileSync {
 	 * <p>Synchronized the contents of the specified folder with the specified nodes and does the same for all sub-folders and child nodes.
 	 */
 	def static sync(File folder, Node node, ValueCallback<Success> cb) {
-		
-		syncSingleFolder(folder, node, cb.embed [
-			
-		])
-		
-		
+
+		syncSingleFolder(folder, node,
+			cb.embed [
+				FilesJre.wrap(folder).children.filter[isDirectory && visible && !name.startsWith('.')].forEach[
+					
+				]
+			])
+
 	}
 
 	def static createDefaultConverter() {

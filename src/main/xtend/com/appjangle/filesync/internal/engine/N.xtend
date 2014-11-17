@@ -56,4 +56,12 @@ class N {
 		return session.link(JAVASCRIPT)
 	}
 	
+	def static CSS() {
+		return "https://u1.linnk.it/qc8sbw/usr/apps/textsync/upload/CSSDocument"
+	}
+	
+	def  CSS(Session session) {
+		return session.link(CSS)
+	}
+	
 }

@@ -61,4 +61,13 @@ public class N {
     String _JAVASCRIPT = N.JAVASCRIPT();
     return session.link(_JAVASCRIPT);
   }
+  
+  public static String CSS() {
+    return "https://u1.linnk.it/qc8sbw/usr/apps/textsync/upload/CSSDocument";
+  }
+  
+  public Link CSS(final Session session) {
+    String _CSS = N.CSS();
+    return session.link(_CSS);
+  }
 }

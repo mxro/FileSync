@@ -1,9 +1,11 @@
 package com.appjangle.filesync.tests;
 
 import com.appjangle.filesync.tests.CheckFilesToNodesTemplate;
+import de.mxro.file.FileItem;
 import de.oehme.xtend.junit.JUnit;
 import io.nextweb.ListQuery;
 import io.nextweb.NodeList;
+import java.util.List;
 import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
 import org.hamcrest.Matcher;
@@ -18,6 +20,8 @@ public class TestCreateNode extends CheckFilesToNodesTemplate {
   }
   
   protected void step2_assertNodes() {
+    List<FileItem> _children = this.source.getChildren();
+    InputOutput.<List<FileItem>>println(_children);
     ListQuery _selectAll = this.result.selectAll();
     NodeList _get = _selectAll.get();
     InputOutput.<NodeList>println(_get);

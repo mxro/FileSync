@@ -10,7 +10,7 @@ class TestCreateNode extends CheckFilesToNodesTemplate {
 	}
 	
 	override protected step2_assertNodes() {
-		
+		println(source.children)
 		println(result.selectAll().get)
 		
 	}

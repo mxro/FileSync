@@ -109,7 +109,7 @@ public class FileToTextNode implements Converter {
           }
         });
         Query _appendLabel = FileToTextNode.this.cutils.appendLabel(baseNode, nameWithoutExtension);
-        Query _appendTypes = FileToTextNode.this.cutils.appendTypes(baseNode, source);
+        Query _appendTypes = FileToTextNode.this.cutils.appendTypesAndIcon(baseNode, source);
         ArrayList<Deferred<?>> _newArrayList = CollectionLiterals.<Deferred<?>>newArrayList(baseNode, _appendLabel, _appendTypes);
         opscb.onSuccess(_newArrayList);
       }

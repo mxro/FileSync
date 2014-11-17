@@ -7,6 +7,8 @@ import de.mxro.file.FileItem
 import io.nextweb.Node
 import io.nextweb.Query
 
+import static extension de.mxro.async.Async.embed
+
 class ConvertUtils {
 
 	val labelTypes = #[N.LABEL]
@@ -43,7 +45,7 @@ class ConvertUtils {
 		toNode.appendSafe(label, "./.label").appendSafe(toNode.session().LABEL)
 	}
 
-	def appendTypes(Query toNode, FileItem source) {
+	def appendTypesAndIcon(Query toNode, FileItem source) {
 
 		val ext = source.extension
 		

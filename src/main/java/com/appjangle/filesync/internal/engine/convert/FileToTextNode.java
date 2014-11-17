@@ -15,6 +15,7 @@ import de.mxro.async.Async;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
 import de.mxro.fn.Closure;
+import de.mxro.fn.Success;
 import io.nextweb.Link;
 import io.nextweb.LinkList;
 import io.nextweb.LinkListQuery;
@@ -22,6 +23,7 @@ import io.nextweb.Node;
 import io.nextweb.Query;
 import io.nextweb.Session;
 import io.nextweb.promise.Deferred;
+import io.nextweb.promise.NextwebPromise;
 import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
 import io.nextweb.utils.data.NextwebDataExtension;
@@ -30,6 +32,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import mx.gwtutils.MxroGWTUtils;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Extension;
 
@@ -72,12 +75,23 @@ public class FileToTextNode implements Converter {
   }
   
   public void createNodes(final Metadata metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method parent is undefined for the type FileToTextNode"
-      + "\nType mismatch: cannot convert from (Object)=>ArrayList<Object> to NetworkOperation"
-      + "\nappendSafe cannot be resolved"
-      + "\nappendLabel cannot be resolved"
-      + "\nappendTypes cannot be resolved");
+    String _name = source.getName();
+    final String nameWithoutExtension = MxroGWTUtils.removeExtension(_name);
+    final String simpleName = MxroGWTUtils.getSimpleName(nameWithoutExtension);
+    final LinkedList<NetworkOperation> ops = new LinkedList<NetworkOperation>();
+    final NetworkOperation _function = new NetworkOperation() {
+      public void apply(final NetworkOperationContext ctx, final ValueCallback<List<Deferred<?>>> opscb) {
+        Node _parent = ctx.parent();
+        String _text = source.getText();
+        final Query baseNode = _parent.appendSafe(_text, ("./" + simpleName));
+        Query _appendLabel = FileToTextNode.this.cutils.appendLabel(baseNode, nameWithoutExtension);
+        Query _appendTypes = FileToTextNode.this.cutils.appendTypes(baseNode, source);
+        ArrayList<Deferred<?>> _newArrayList = CollectionLiterals.<Deferred<?>>newArrayList(baseNode, _appendLabel, _appendTypes);
+        opscb.onSuccess(_newArrayList);
+      }
+    };
+    ops.add(_function);
+    cb.onSuccess(ops);
   }
   
   public void update(final Metadata metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {
@@ -100,8 +114,28 @@ public class FileToTextNode implements Converter {
   }
   
   public void deleteNodes(final Metadata metadata, final ItemMetadata cachedFile, final ValueCallback<List<NetworkOperation>> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from ValueCallback<List<Deferred<?>>> to ValueCallback<List<NextwebPromise<Success>>>");
+    final String address = cachedFile.uri();
+    final LinkedList<NetworkOperation> ops = new LinkedList<NetworkOperation>();
+    final NetworkOperation _function = new NetworkOperation() {
+      public void apply(final NetworkOperationContext ctx, final ValueCallback<List<Deferred<?>>> opscb) {
+        String _name = cachedFile.name();
+        metadata.remove(_name);
+        Node _parent = ctx.parent();
+        Session _session = ctx.session();
+        Link _link = _session.link(address);
+        final Closure<List<NextwebPromise<Success>>> _function = new Closure<List<NextwebPromise<Success>>>() {
+          public void apply(final List<NextwebPromise<Success>> res) {
+            final ArrayList<Deferred<?>> list = new ArrayList<Deferred<?>>();
+            list.addAll(res);
+            opscb.onSuccess(list);
+          }
+        };
+        ValueCallback<List<NextwebPromise<Success>>> _embed = Async.<List<NextwebPromise<Success>>>embed(opscb, _function);
+        FileToTextNode.this.nutils.removeSafeRecursive(_parent, _link, _embed);
+      }
+    };
+    ops.add(_function);
+    cb.onSuccess(ops);
   }
   
   public void createFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {

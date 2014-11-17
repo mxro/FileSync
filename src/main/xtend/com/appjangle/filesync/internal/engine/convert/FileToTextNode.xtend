@@ -10,12 +10,14 @@ import com.appjangle.filesync.internal.engine.N
 import de.mxro.async.callbacks.ValueCallback
 import de.mxro.file.FileItem
 import io.nextweb.Node
+import io.nextweb.promise.Deferred
+import io.nextweb.utils.data.NextwebDataExtension
+import java.util.ArrayList
 import java.util.LinkedList
 import java.util.List
 import mx.gwtutils.MxroGWTUtils
 
 import static extension de.mxro.async.Async.embed
-import io.nextweb.utils.data.NextwebDataExtension
 
 class FileToTextNode implements Converter {
 
@@ -56,13 +58,14 @@ class FileToTextNode implements Converter {
 		val ops = new LinkedList<NetworkOperation>
 
 		ops.add(
-			[ ctx |
+			[ ctx, opscb |
 				val baseNode = ctx.parent.appendSafe(source.text, "./" + simpleName)
-				newArrayList(
+				
+				opscb.onSuccess(newArrayList(
 					baseNode,
 					baseNode.appendLabel(nameWithoutExtension),
 					baseNode.appendTypes(source)
-				)
+				))
 			])
 
 		cb.onSuccess(ops)
@@ -94,7 +97,11 @@ class FileToTextNode implements Converter {
 			[ ctx, opscb |
 				
 				metadata.remove(cachedFile.name)
-				ctx.parent.removeSafeRecursive(ctx.session.link(address), opscb)
+				ctx.parent.removeSafeRecursive(ctx.session.link(address), opscb.embed [res|
+					val list = new ArrayList<Deferred<?>>
+					list.addAll(res)
+					opscb.onSuccess(list)
+				])
 				
 			])
 

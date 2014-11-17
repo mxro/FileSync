@@ -1,11 +1,14 @@
 package com.appjangle.filesync.tests;
 
+import com.appjangle.filesync.internal.engine.N;
 import com.appjangle.filesync.tests.CheckFilesToNodesTemplate;
 import de.mxro.file.FileItem;
 import de.oehme.xtend.junit.Hamcrest;
 import de.oehme.xtend.junit.JUnit;
+import io.nextweb.Link;
 import io.nextweb.Node;
 import io.nextweb.Query;
+import io.nextweb.Session;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
 import org.hamcrest.CoreMatchers;
@@ -29,9 +32,20 @@ public class TestCreateHtmlNode extends CheckFilesToNodesTemplate {
   protected void step2_assertNodes() {
     Query _select = this.result.select("./My_Document");
     final Node node = _select.get();
-    Matcher<Object> _notNullValue = TestCreateHtmlNode.notNullValue();
-    this.<Node>operator_doubleArrow(node, _notNullValue);
+    Object _value = node.value();
+    Matcher<Object> _equalTo = TestCreateHtmlNode.<Object>equalTo("<html></html>");
+    this.<Object>operator_doubleArrow(_value, _equalTo);
+    Session _session = node.session();
+    Link _LABEL = this.n.LABEL(_session);
+    Query _select_1 = node.select(_LABEL);
+    Node _get = _select_1.get();
+    Object _value_1 = _get.value();
+    Matcher<Object> _equalTo_1 = TestCreateHtmlNode.<Object>equalTo("My Document");
+    this.<Object>operator_doubleArrow(_value_1, _equalTo_1);
   }
+  
+  @Extension
+  private N n = new N();
   
   private static void assertArrayEquals(final Object[] expecteds, final Object[] actuals) {
     Assert.assertArrayEquals(expecteds, actuals);

@@ -14,7 +14,7 @@ import java.io.File;
 @SuppressWarnings("all")
 public class FileSync {
   /**
-   * Synchronized the contents of a folder and a node, without synchronizing sub-folders.
+   * <p>Synchronized the contents of a folder and a node without synchronizing sub-folders.
    */
   public static void syncSingleFolder(final File folder, final Node node, final ValueCallback<Success> cb) {
     FileItem _wrap = FilesJre.wrap(folder);
@@ -23,6 +23,9 @@ public class FileSync {
     _syncFolder.doIt(cb);
   }
   
+  /**
+   * <p>Synchronized the contents of the specified folder with the specified nodes and does the same for all sub-folders and child nodes.
+   */
   public static Object sync(final File folder, final Node node, final ValueCallback<Success> cb) {
     return null;
   }

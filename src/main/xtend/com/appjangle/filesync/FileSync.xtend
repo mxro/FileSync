@@ -11,31 +11,31 @@ import io.nextweb.Node
 import java.io.File
 
 class FileSync {
-	
+
 	/**
-	 * Synchronized the contents of a folder and a node, without synchronizing sub-folders.
+	 * <p>Synchronized the contents of a folder and a node without synchronizing sub-folders.
 	 */
 	def static syncSingleFolder(File folder, Node node, ValueCallback<Success> cb) {
-		
+
 		new SyncFolder(FilesJre.wrap(folder), node, createDefaultConverter).doIt(cb)
-		
+
 	}
-	
+
+	/**
+	 * <p>Synchronized the contents of the specified folder with the specified nodes and does the same for all sub-folders and child nodes.
+	 */
 	def static sync(File folder, Node node, ValueCallback<Success> cb) {
-		
-		
-		
 	}
-	
+
 	def static createDefaultConverter() {
-		
+
 		val coll = new ConverterCollection
-		
+
 		coll.addConverter(new FileToTextNode)
 		coll.addConverter(new FolderToNode)
-		
+
 		coll
-		
+
 	}
-	
+
 }

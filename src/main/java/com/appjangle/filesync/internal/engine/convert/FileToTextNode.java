@@ -77,9 +77,7 @@ public class FileToTextNode implements Converter {
         String _text = source.getText();
         final Query baseNode = assertNodes.appendSafe(_text, ("./" + simpleName));
         Node _parent_1 = ctx.parent();
-        Node _parent_2 = ctx.parent();
-        Query _select = _parent_2.select(("./.n/" + simpleName));
-        final Query appendToParent = _parent_1.appendSafe(_select);
+        final Query appendToParent = _parent_1.appendSafe(baseNode);
         metadata.add(
           new ItemMetadata() {
             public String name() {

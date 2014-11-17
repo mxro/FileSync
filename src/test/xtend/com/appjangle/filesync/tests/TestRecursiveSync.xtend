@@ -20,16 +20,15 @@ class TestRecursiveSync extends CheckNodesToFilesTemplate{
 	
 	override protected step2_assertFiles() {
 		
+		result.get("node1").exists => true
 		
-		result.getChild("node1").exists => true
+		println(result.get("node1").children)
 		
-		println(result.getChild("node1").children)
+		result.get("node1").get("sub").exists => true
 		
-		result.getChild("node1").getChild("sub").exists => true
+		result.get("child1").get("b").exists => true
 		
-		result.getChild("child1").getChild("b").exists => true
-		
-		result.getChild("child2").getChild('b').isDirectory => true
+		result.get("child2").get('b').isDirectory => true
 	}
 	
 }

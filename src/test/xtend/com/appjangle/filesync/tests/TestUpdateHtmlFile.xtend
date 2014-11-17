@@ -12,7 +12,7 @@ class TestUpdateHtmlFile extends CheckUpdatesTemplate {
 	}
 	
 	override protected step2_assertFiles() {
-		result.getChild("doc.html").text => "<p>Hello 1</p>"
+		result.get("doc.html").text => "<p>Hello 1</p>"
 	}
 	
 	override protected step3_updateNodes() {
@@ -20,11 +20,11 @@ class TestUpdateHtmlFile extends CheckUpdatesTemplate {
 	}
 	
 	override protected step4_assertFilesAfterUpdate() {
-		result.getChild("doc.html").text => "<p>Hello 1 and Hello 2 are an amazing team.</p>"
+		result.get("doc.html").text => "<p>Hello 1 and Hello 2 are an amazing team.</p>"
 	}
 	
 	override protected step5_updateFiles() {
-		result.getChild("doc.html").text = "And now for something different"
+		result.get("doc.html").text = "And now for something different"
 	}
 	
 	override protected step6_assertNodesAfterUpdate() {

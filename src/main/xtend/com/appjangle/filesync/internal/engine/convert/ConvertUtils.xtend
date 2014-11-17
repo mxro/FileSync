@@ -74,7 +74,7 @@ class ConvertUtils {
 				[ fileNameFromNode |
 					var fileName = fileNameFromNode + fileExtension
 					var idx = 1
-					while (inFolder.getChild(fileName).exists) {
+					while (inFolder.get(fileName).exists) {
 						fileName = fileNameFromNode + idx + fileExtension
 						idx++
 					}

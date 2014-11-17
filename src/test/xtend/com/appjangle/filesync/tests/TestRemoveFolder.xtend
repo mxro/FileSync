@@ -15,7 +15,7 @@ class TestRemoveFolder extends CheckUpdatesTemplate {
 	
 	override protected step2_assertFiles() {
 		result.children.size => 4
-		result.getChild("folder1").exists => true
+		result.get("folder1").exists => true
 	}
 	
 	override protected step3_updateNodes() {
@@ -23,7 +23,7 @@ class TestRemoveFolder extends CheckUpdatesTemplate {
 	}
 	
 	override protected step4_assertFilesAfterUpdate() {
-		result.getChild("folder1").exists => false
+		result.get("folder1").exists => false
 	}
 	
 	override protected step5_updateFiles() {

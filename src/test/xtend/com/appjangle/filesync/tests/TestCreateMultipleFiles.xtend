@@ -23,7 +23,7 @@ class TestCreateMultipleFiles  extends CheckNodesToFilesTemplate {
 
 		result.contains("Html Document.html") => true
 		
-		result.getChild("Html Document.html").text => "<html></html>"
+		result.get("Html Document.html").text => "<html></html>"
 		
 		result.children.toString.contains("Folder") => true
 		

@@ -220,7 +220,7 @@ public class FileToTextNode implements Converter {
     final FileOperation _function = new FileOperation() {
       public void apply(final FileOperationContext ctx) {
         FileItem _folder = ctx.folder();
-        final FileItem file = _folder.getChild(fileName);
+        final FileItem file = _folder.get(fileName);
         String _text = file.getText();
         boolean _notEquals = (!Objects.equal(_text, content));
         if (_notEquals) {

@@ -24,8 +24,8 @@ public class TestUpdateHtmlFile extends CheckUpdatesTemplate {
   }
   
   protected void step2_assertFiles() {
-    FileItem _child = this.result.getChild("doc.html");
-    String _text = _child.getText();
+    FileItem _get = this.result.get("doc.html");
+    String _text = _get.getText();
     TestUpdateHtmlFile.<String, String>operator_doubleArrow(_text, "<p>Hello 1</p>");
   }
   
@@ -35,14 +35,14 @@ public class TestUpdateHtmlFile extends CheckUpdatesTemplate {
   }
   
   protected void step4_assertFilesAfterUpdate() {
-    FileItem _child = this.result.getChild("doc.html");
-    String _text = _child.getText();
+    FileItem _get = this.result.get("doc.html");
+    String _text = _get.getText();
     TestUpdateHtmlFile.<String, String>operator_doubleArrow(_text, "<p>Hello 1 and Hello 2 are an amazing team.</p>");
   }
   
   protected void step5_updateFiles() {
-    FileItem _child = this.result.getChild("doc.html");
-    _child.setText("And now for something different");
+    FileItem _get = this.result.get("doc.html");
+    _get.setText("And now for something different");
   }
   
   protected void step6_assertNodesAfterUpdate() {

@@ -24,7 +24,7 @@ class TestRemoveHtmlFile extends CheckUpdatesTemplate {
 	
 	override protected step2_assertFiles() {
 		result.children.size => 4
-		result.getChild("html1.html").exists => true
+		result.get("html1.html").exists => true
 	}
 	
 	override protected step3_updateNodes() {
@@ -36,7 +36,7 @@ class TestRemoveHtmlFile extends CheckUpdatesTemplate {
 	}
 	
 	override protected step4_assertFilesAfterUpdate() {
-		result.getChild("html1.html").exists => false
+		result.get("html1.html").exists => false
 		
 		source.select("./file2").get() // asserts that it exists
 	}

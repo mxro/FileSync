@@ -94,7 +94,7 @@ public class ConvertUtils {
       public void apply(final String fileNameFromNode) {
         String fileName = (fileNameFromNode + fileExtension);
         int idx = 1;
-        while (inFolder.getChild(fileName).exists()) {
+        while (inFolder.get(fileName).exists()) {
           {
             fileName = ((fileNameFromNode + Integer.valueOf(idx)) + fileExtension);
             idx++;

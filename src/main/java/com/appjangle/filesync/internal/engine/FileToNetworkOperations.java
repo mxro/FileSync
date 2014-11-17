@@ -60,8 +60,8 @@ public class FileToNetworkOperations {
           if (_startsWith) {
             return Boolean.valueOf(false);
           }
-          FileItem _child = FileToNetworkOperations.this.folder.getChild(fileName);
-          boolean _visible = _child.getVisible();
+          FileItem _get = FileToNetworkOperations.this.folder.get(fileName);
+          boolean _visible = _get.getVisible();
           boolean _not = (!_visible);
           if (_not) {
             return Boolean.valueOf(false);
@@ -102,9 +102,9 @@ public class FileToNetworkOperations {
     final Aggregator<List<NetworkOperation>> agg = Async.<List<NetworkOperation>>collect(_size, _embed);
     final Consumer<String> _function_1 = new Consumer<String>() {
       public void accept(final String fileName) {
-        FileItem _child = FileToNetworkOperations.this.folder.getChild(fileName);
+        FileItem _get = FileToNetworkOperations.this.folder.get(fileName);
         ValueCallback<List<NetworkOperation>> _createCallback = agg.createCallback();
-        FileToNetworkOperations.this.converter.update(FileToNetworkOperations.this.metadata, _child, _createCallback);
+        FileToNetworkOperations.this.converter.update(FileToNetworkOperations.this.metadata, _get, _createCallback);
       }
     };
     fileNames.forEach(_function_1);
@@ -142,9 +142,9 @@ public class FileToNetworkOperations {
     final Aggregator<List<NetworkOperation>> agg = Async.<List<NetworkOperation>>collect(_size, _embed);
     final Consumer<String> _function_1 = new Consumer<String>() {
       public void accept(final String fileName) {
-        FileItem _child = FileToNetworkOperations.this.folder.getChild(fileName);
+        FileItem _get = FileToNetworkOperations.this.folder.get(fileName);
         ValueCallback<List<NetworkOperation>> _createCallback = agg.createCallback();
-        FileToNetworkOperations.this.converter.createNodes(FileToNetworkOperations.this.metadata, _child, _createCallback);
+        FileToNetworkOperations.this.converter.createNodes(FileToNetworkOperations.this.metadata, _get, _createCallback);
       }
     };
     fileNames.forEach(_function_1);
@@ -158,7 +158,7 @@ public class FileToNetworkOperations {
       for (final ItemMetadata fileMetadata : _children) {
         {
           String _name = fileMetadata.name();
-          final FileItem itemNow = folder.getChild(_name);
+          final FileItem itemNow = folder.get(_name);
           boolean _exists = itemNow.exists();
           if (_exists) {
             Date _lastModified = itemNow.lastModified();

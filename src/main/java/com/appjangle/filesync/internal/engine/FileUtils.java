@@ -12,14 +12,14 @@ import org.eclipse.xtext.xbase.lib.ExclusiveRange;
 @SuppressWarnings("all")
 public class FileUtils {
   public void saveMetadata(final FileItem forFolder, final Metadata metadata) {
-    FileItem _child = forFolder.getChild(".filesync-meta");
-    FileItem _child_1 = _child.getChild("nodes.xml");
+    FileItem _child = forFolder.get(".filesync-meta");
+    FileItem _child_1 = _child.get("nodes.xml");
     MetadataUtilsJre.saveToFile(metadata, _child_1);
   }
   
   public boolean hasMetadata(final FileItem forFolder) {
     FileItem _assertFolder = forFolder.assertFolder(".filesync-meta");
-    FileItem _child = _assertFolder.getChild("nodes.xml");
+    FileItem _child = _assertFolder.get("nodes.xml");
     return _child.exists();
   }
   
@@ -28,7 +28,7 @@ public class FileUtils {
     {
       final FileItem metadataFolder = forFolder.assertFolder(".filesync-meta");
       metadataFolder.setVisible(false);
-      FileItem _child = metadataFolder.getChild("nodes.xml");
+      FileItem _child = metadataFolder.get("nodes.xml");
       boolean _exists = _child.exists();
       boolean _not = (!_exists);
       if (_not) {
@@ -43,8 +43,8 @@ public class FileUtils {
   }
   
   public Metadata loadMetadata(final FileItem forFolder) {
-    FileItem _child = forFolder.getChild(".filesync-meta");
-    FileItem _child_1 = _child.getChild("nodes.xml");
+    FileItem _child = forFolder.get(".filesync-meta");
+    FileItem _child_1 = _child.get("nodes.xml");
     return MetadataUtilsJre.readFromFile(_child_1);
   }
   

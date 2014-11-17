@@ -33,8 +33,8 @@ public class TestRemoveFolder extends CheckUpdatesTemplate {
     List<FileItem> _children = this.result.getChildren();
     int _size = _children.size();
     TestRemoveFolder.<Integer, Integer>operator_doubleArrow(Integer.valueOf(_size), Integer.valueOf(4));
-    FileItem _child = this.result.getChild("folder1");
-    boolean _exists = _child.exists();
+    FileItem _get = this.result.get("folder1");
+    boolean _exists = _get.exists();
     TestRemoveFolder.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_exists), Boolean.valueOf(true));
   }
   
@@ -44,8 +44,8 @@ public class TestRemoveFolder extends CheckUpdatesTemplate {
   }
   
   protected void step4_assertFilesAfterUpdate() {
-    FileItem _child = this.result.getChild("folder1");
-    boolean _exists = _child.exists();
+    FileItem _get = this.result.get("folder1");
+    boolean _exists = _get.exists();
     TestRemoveFolder.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_exists), Boolean.valueOf(false));
   }
   

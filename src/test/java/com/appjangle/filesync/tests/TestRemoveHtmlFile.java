@@ -51,8 +51,8 @@ public class TestRemoveHtmlFile extends CheckUpdatesTemplate {
     List<FileItem> _children = this.result.getChildren();
     int _size = _children.size();
     TestRemoveHtmlFile.<Integer, Integer>operator_doubleArrow(Integer.valueOf(_size), Integer.valueOf(4));
-    FileItem _child = this.result.getChild("html1.html");
-    boolean _exists = _child.exists();
+    FileItem _get = this.result.get("html1.html");
+    boolean _exists = _get.exists();
     TestRemoveHtmlFile.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_exists), Boolean.valueOf(true));
   }
   
@@ -69,8 +69,8 @@ public class TestRemoveHtmlFile extends CheckUpdatesTemplate {
   }
   
   protected void step4_assertFilesAfterUpdate() {
-    FileItem _child = this.result.getChild("html1.html");
-    boolean _exists = _child.exists();
+    FileItem _get = this.result.get("html1.html");
+    boolean _exists = _get.exists();
     TestRemoveHtmlFile.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_exists), Boolean.valueOf(false));
     Query _select = this.source.select("./file2");
     _select.get();

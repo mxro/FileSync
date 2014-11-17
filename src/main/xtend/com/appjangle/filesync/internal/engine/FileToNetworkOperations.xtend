@@ -51,7 +51,7 @@ class FileToNetworkOperations {
 			if (fileName.startsWith(".")) {
 				return false;
 			}
-			if (!folder.getChild(fileName).visible) {
+			if (!folder.get(fileName).visible) {
 				return false;
 			}
 			return true
@@ -81,7 +81,7 @@ class FileToNetworkOperations {
 				]))
 
 		fileNames.forEach [ fileName |
-			converter.update(metadata, folder.getChild(fileName), agg.createCallback());
+			converter.update(metadata, folder.get(fileName), agg.createCallback());
 		]
 
 	}
@@ -109,7 +109,7 @@ class FileToNetworkOperations {
 				]))
 
 		fileNames.forEach [ fileName |
-			converter.createNodes(metadata, folder.getChild(fileName), agg.createCallback());
+			converter.createNodes(metadata, folder.get(fileName), agg.createCallback());
 		]
 
 	}
@@ -120,7 +120,7 @@ class FileToNetworkOperations {
 
 		for (ItemMetadata fileMetadata : metadata.children) {
 
-			val itemNow = folder.getChild(fileMetadata.name)
+			val itemNow = folder.get(fileMetadata.name)
 
 			if (itemNow.exists) {
 

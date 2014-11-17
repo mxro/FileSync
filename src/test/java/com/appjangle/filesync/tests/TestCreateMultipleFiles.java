@@ -33,8 +33,8 @@ public class TestCreateMultipleFiles extends CheckNodesToFilesTemplate {
     TestCreateMultipleFiles.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_contains), Boolean.valueOf(true));
     boolean _contains_1 = this.result.contains("Html Document.html");
     TestCreateMultipleFiles.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_contains_1), Boolean.valueOf(true));
-    FileItem _child = this.result.getChild("Html Document.html");
-    String _text = _child.getText();
+    FileItem _get = this.result.get("Html Document.html");
+    String _text = _get.getText();
     TestCreateMultipleFiles.<String, String>operator_doubleArrow(_text, "<html></html>");
     List<FileItem> _children_1 = this.result.getChildren();
     String _string = _children_1.toString();

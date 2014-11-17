@@ -31,23 +31,23 @@ public class TestRecursiveSync extends CheckNodesToFilesTemplate {
   }
   
   protected void step2_assertFiles() {
-    FileItem _child = this.result.getChild("node1");
-    boolean _exists = _child.exists();
+    FileItem _get = this.result.get("node1");
+    boolean _exists = _get.exists();
     TestRecursiveSync.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_exists), Boolean.valueOf(true));
-    FileItem _child_1 = this.result.getChild("node1");
-    List<FileItem> _children = _child_1.getChildren();
+    FileItem _get_1 = this.result.get("node1");
+    List<FileItem> _children = _get_1.getChildren();
     InputOutput.<List<FileItem>>println(_children);
-    FileItem _child_2 = this.result.getChild("node1");
-    FileItem _child_3 = _child_2.getChild("sub");
-    boolean _exists_1 = _child_3.exists();
+    FileItem _get_2 = this.result.get("node1");
+    FileItem _get_3 = _get_2.get("sub");
+    boolean _exists_1 = _get_3.exists();
     TestRecursiveSync.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_exists_1), Boolean.valueOf(true));
-    FileItem _child_4 = this.result.getChild("child1");
-    FileItem _child_5 = _child_4.getChild("b");
-    boolean _exists_2 = _child_5.exists();
+    FileItem _get_4 = this.result.get("child1");
+    FileItem _get_5 = _get_4.get("b");
+    boolean _exists_2 = _get_5.exists();
     TestRecursiveSync.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_exists_2), Boolean.valueOf(true));
-    FileItem _child_6 = this.result.getChild("child2");
-    FileItem _child_7 = _child_6.getChild("b");
-    boolean _isDirectory = _child_7.isDirectory();
+    FileItem _get_6 = this.result.get("child2");
+    FileItem _get_7 = _get_6.get("b");
+    boolean _isDirectory = _get_7.isDirectory();
     TestRecursiveSync.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_isDirectory), Boolean.valueOf(true));
   }
   

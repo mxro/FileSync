@@ -37,15 +37,19 @@ class FileSync {
 	/**
 	 * <p>Synchronized the contents of the specified folder with the specified nodes and does the same for all sub-folders and child nodes.
 	 */
-	def static sync(File folder, Node node, ValueCallback<Success> cb) {
+	def static sync(FileItem folder, Node node, ValueCallback<Success> cb) {
 
 		syncSingleFolder(folder, node,
 			cb.embed [
-				val toSync = FilesJre.wrap(folder).children.filter[
-					isDirectory && visible && !name.startsWith('.') ]
+				val toSync = folder.children.filter[
+					isDirectory && visible && !name.startsWith('.')  ]
 				Async.forEach(
 					toSync.toList,
 					[ childFolder, itmcb |
+						
+						val metdatada = folder.loadMetadata
+						
+						
 						
 						syncSingleFolder(childFolder, node, itmcb)
 						

@@ -1,5 +1,6 @@
 package com.appjangle.filesync;
 
+import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.internal.engine.FileUtils;
 import com.appjangle.filesync.internal.engine.SyncFolder;
 import com.appjangle.filesync.internal.engine.convert.ConverterCollection;
@@ -41,11 +42,10 @@ public class FileSync {
   /**
    * <p>Synchronized the contents of the specified folder with the specified nodes and does the same for all sub-folders and child nodes.
    */
-  public static void sync(final File folder, final Node node, final ValueCallback<Success> cb) {
+  public static void sync(final FileItem folder, final Node node, final ValueCallback<Success> cb) {
     final Closure<Success> _function = new Closure<Success>() {
       public void apply(final Success it) {
-        FileItem _wrap = FilesJre.wrap(folder);
-        List<FileItem> _children = _wrap.getChildren();
+        List<FileItem> _children = folder.getChildren();
         final Function1<FileItem, Boolean> _function = new Function1<FileItem, Boolean>() {
           public Boolean apply(final FileItem it) {
             boolean _and = false;
@@ -72,6 +72,7 @@ public class FileSync {
         List<FileItem> _list = IterableExtensions.<FileItem>toList(toSync);
         final Closure2<FileItem, ValueCallback<Success>> _function_1 = new Closure2<FileItem, ValueCallback<Success>>() {
           public void apply(final FileItem childFolder, final ValueCallback<Success> itmcb) {
+            final Metadata metdatada = FileSync.fileUtils.loadMetadata(folder);
             FileSync.syncSingleFolder(childFolder, node, itmcb);
           }
         };

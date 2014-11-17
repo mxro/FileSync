@@ -1,6 +1,11 @@
 package com.appjangle.filesync.internal.engine.convert
 
 import com.appjangle.filesync.internal.engine.N
+import de.mxro.async.Async
+import de.mxro.async.callbacks.ValueCallback
+import de.mxro.file.FileItem
+import io.nextweb.Node
+import io.nextweb.Query
 
 class ConvertUtils {
 
@@ -18,7 +23,7 @@ class ConvertUtils {
 		textValueExtensions.keySet.contains(ext)
 	}
 
-	def textNodeTypes {
+	def textNodeTypes() {
 		textValueExtensions.keySet
 	}
 

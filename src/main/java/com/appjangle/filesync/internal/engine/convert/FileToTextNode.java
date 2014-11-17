@@ -76,8 +76,6 @@ public class FileToTextNode implements Converter {
         final Query assertNodes = _parent.select("./.n", "nodes");
         String _text = source.getText();
         final Query baseNode = assertNodes.appendSafe(_text, ("./" + simpleName));
-        Node _parent_1 = ctx.parent();
-        final Query appendToParent = _parent_1.appendSafe(baseNode);
         metadata.add(
           new ItemMetadata() {
             public String name() {
@@ -106,7 +104,7 @@ public class FileToTextNode implements Converter {
           });
         Query _appendLabel = FileToTextNode.this.cutils.appendLabel(baseNode, nameWithoutExtension);
         Query _appendTypesAndIcon = FileToTextNode.this.cutils.appendTypesAndIcon(baseNode, source);
-        ArrayList<Deferred<?>> _newArrayList = CollectionLiterals.<Deferred<?>>newArrayList(baseNode, _appendLabel, _appendTypesAndIcon, appendToParent);
+        ArrayList<Deferred<?>> _newArrayList = CollectionLiterals.<Deferred<?>>newArrayList(baseNode, _appendLabel, _appendTypesAndIcon);
         opscb.onSuccess(_newArrayList);
       }
     };

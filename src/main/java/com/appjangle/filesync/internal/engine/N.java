@@ -70,4 +70,13 @@ public class N {
     String _CSS = N.CSS();
     return session.link(_CSS);
   }
+  
+  public static String TYPE() {
+    return "http://slicnet.com/mxrogm/mxrogm/data/stream/2013/12/11/n5";
+  }
+  
+  public Link TYPE(final Session session) {
+    String _TYPE = N.TYPE();
+    return session.link(_TYPE);
+  }
 }

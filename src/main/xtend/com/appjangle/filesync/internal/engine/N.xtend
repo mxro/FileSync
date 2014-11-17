@@ -5,63 +5,71 @@ import io.nextweb.Session
 class N {
 	
 	def static HTML_VALUE() {
-		return "https://admin1.linnk.it/types/v01/isHtmlValue"
+		"https://admin1.linnk.it/types/v01/isHtmlValue"
 	}
 	
 	def  HTML_VALUE(Session session) {
-		return session.link("https://admin1.linnk.it/types/v01/isHtmlValue")
+		session.link("https://admin1.linnk.it/types/v01/isHtmlValue")
 	}
 	
 	def static TEMPLATE() {
-		return "https://u1.linnk.it/6wbnoq/Types/aTemplate"
+		"https://u1.linnk.it/6wbnoq/Types/aTemplate"
 	}
 	
 	def TEMPLATE(Session session) {
-		return session.link(TEMPLATE)
+		 session.link(TEMPLATE)
 	}
 	
 	def static TEXT_VALUE() {
-		return "https://u1.linnk.it/6wbnoq/Types/aTextValue"
+		"https://u1.linnk.it/6wbnoq/Types/aTextValue"
 	}
 	
 	def static LABEL() {
-		return "https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel"
+		"https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel"
 	}
 	
 	def LABEL(Session session) {
-		return session.link(LABEL)
+		session.link(LABEL)
 	}
 	
 	def static ICON() {
-		return "https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/icon32"
+		"https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/icon32"
 	}
 	
 	def ICON(Session session) {
-		return session.link(ICON)
+		 session.link(ICON)
 	}
 	
 	def static COFFEESCRIPT() {
-		return "http://slicnet.com/mxrogm/mxrogm/data/stream/2014/1/10/n3"
+		"http://slicnet.com/mxrogm/mxrogm/data/stream/2014/1/10/n3"
 	}
 	
 	def COFFEESCRIPT(Session session) {
-		return session.link(COFFEESCRIPT)
+		session.link(COFFEESCRIPT)
 	}
 	
 	def static JAVASCRIPT() {
-		return "https://u1.linnk.it/qc8sbw/usr/apps/textsync/upload/java-script-document"
+		"https://u1.linnk.it/qc8sbw/usr/apps/textsync/upload/java-script-document"
 	}
 	
 	def JAVASCRIPT(Session session) {
-		return session.link(JAVASCRIPT)
+		session.link(JAVASCRIPT)
 	}
 	
 	def static CSS() {
-		return "https://u1.linnk.it/qc8sbw/usr/apps/textsync/upload/CSSDocument"
+		"https://u1.linnk.it/qc8sbw/usr/apps/textsync/upload/CSSDocument"
 	}
 	
 	def  CSS(Session session) {
-		return session.link(CSS)
+		session.link(CSS)
+	}
+	
+	def static TYPE() {
+		"http://slicnet.com/mxrogm/mxrogm/data/stream/2013/12/11/n5"
+	}
+	
+	def TYPE(Session session) {
+		session.link(TYPE)
 	}
 	
 }

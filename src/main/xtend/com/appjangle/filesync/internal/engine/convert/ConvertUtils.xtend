@@ -15,7 +15,7 @@ class ConvertUtils {
 
 	val textValueExtensions = #{
 		N.HTML_VALUE -> '.html',
-		"1" -> '.type',
+		N.TYPE -> '.type',
 		N.CSS -> '.css',
 		N.JAVASCRIPT -> '.js',
 		N.COFFEESCRIPT -> '.coffee'	
@@ -85,6 +85,14 @@ class ConvertUtils {
 			toNode.appendSafe(session.TEMPLATE)
 			
 			toNode.appendSafe("https://appjangle.com/files/img/20141118/CSS.png", "./.icon").appendSafe(session.ICON)
+			
+		} else if (ext == ".type") {
+			
+			toNode.appendSafe(session.TYPE)
+			
+			toNode.appendSafe("https://appjangle.com/files/img/20141118/Type.png", "./.icon").appendSafe(session.ICON)
+			
+			toNode.appendSafe("").appendSafe(session.link("http://slicnet.com/mxrogm/mxrogm/data/stream/2013/12/11/n9"));
 			
 		}
 		

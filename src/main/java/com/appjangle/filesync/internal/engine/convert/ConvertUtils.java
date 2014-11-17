@@ -30,7 +30,7 @@ import org.eclipse.xtext.xbase.lib.Pair;
 public class ConvertUtils {
   private final List<String> labelTypes = Collections.<String>unmodifiableList(CollectionLiterals.<String>newArrayList(N.LABEL()));
   
-  private final Map<String, String> textValueExtensions = Collections.<String, String>unmodifiableMap(CollectionLiterals.<String, String>newHashMap(Pair.<String, String>of(N.HTML_VALUE(), ".html"), Pair.<String, String>of("1", ".type"), Pair.<String, String>of(N.CSS(), ".css"), Pair.<String, String>of(N.JAVASCRIPT(), ".js"), Pair.<String, String>of(N.COFFEESCRIPT(), ".coffee")));
+  private final Map<String, String> textValueExtensions = Collections.<String, String>unmodifiableMap(CollectionLiterals.<String, String>newHashMap(Pair.<String, String>of(N.HTML_VALUE(), ".html"), Pair.<String, String>of(N.TYPE(), ".type"), Pair.<String, String>of(N.CSS(), ".css"), Pair.<String, String>of(N.JAVASCRIPT(), ".js"), Pair.<String, String>of(N.COFFEESCRIPT(), ".coffee")));
   
   public boolean isTextValue(final String ext) {
     Set<String> _keySet = this.textValueExtensions.keySet();
@@ -114,13 +114,25 @@ public class ConvertUtils {
               Query _appendSafe_3 = toNode.appendSafe("https://appjangle.com/files/img/20141118/CSS.png", "./.icon");
               Link _ICON_3 = this.n.ICON(session);
               _appendSafe_3.appendSafe(_ICON_3);
+            } else {
+              boolean _equals_4 = Objects.equal(ext, ".type");
+              if (_equals_4) {
+                Link _TYPE = this.n.TYPE(session);
+                toNode.appendSafe(_TYPE);
+                Query _appendSafe_4 = toNode.appendSafe("https://appjangle.com/files/img/20141118/Type.png", "./.icon");
+                Link _ICON_4 = this.n.ICON(session);
+                _appendSafe_4.appendSafe(_ICON_4);
+                Query _appendSafe_5 = toNode.appendSafe("");
+                Link _link = session.link("http://slicnet.com/mxrogm/mxrogm/data/stream/2013/12/11/n9");
+                _appendSafe_5.appendSafe(_link);
+              }
             }
           }
         }
       }
       String _TEXT_VALUE = N.TEXT_VALUE();
-      Link _link = session.link(_TEXT_VALUE);
-      _xblockexpression = toNode.appendSafe(_link);
+      Link _link_1 = session.link(_TEXT_VALUE);
+      _xblockexpression = toNode.appendSafe(_link_1);
     }
     return _xblockexpression;
   }

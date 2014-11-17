@@ -69,7 +69,7 @@ class ConvertUtils {
 			toNode.appendSafe(session.JAVASCRIPT)
 			toNode.appendSafe(session.TEMPLATE)
 			
-			toNode.appendSafe()
+			toNode.appendSafe("https://appjangle.com/files/img/20141029/JavaScript.png", "./.icon").appendSafe(session.ICON)
 			
 		}
 		

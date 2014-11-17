@@ -1,6 +1,7 @@
 package com.appjangle.filesync.internal.engine.convert;
 
 import com.appjangle.filesync.internal.engine.N;
+import com.google.common.base.Objects;
 import de.mxro.async.Aggregator;
 import de.mxro.async.Async;
 import de.mxro.async.callbacks.ValueCallback;
@@ -70,8 +71,36 @@ public class ConvertUtils {
   }
   
   public Query appendTypesAndIcon(final Query toNode, final FileItem source) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nInvalid number of arguments. The method appendSafe(Object) is not applicable without arguments");
+    Query _xblockexpression = null;
+    {
+      final Session session = toNode.session();
+      final String ext = source.getExtension();
+      boolean _equals = Objects.equal(ext, ".html");
+      if (_equals) {
+        Link _HTML_VALUE = this.n.HTML_VALUE(session);
+        toNode.appendSafe(_HTML_VALUE);
+        Link _TEMPLATE = this.n.TEMPLATE(session);
+        toNode.appendSafe(_TEMPLATE);
+        Query _appendSafe = toNode.appendSafe("https://appjangle.com/files/img/20141029/HTML.png", "./.icon");
+        Link _ICON = this.n.ICON(session);
+        _appendSafe.appendSafe(_ICON);
+      } else {
+        boolean _equals_1 = Objects.equal(ext, ".js");
+        if (_equals_1) {
+          Link _JAVASCRIPT = this.n.JAVASCRIPT(session);
+          toNode.appendSafe(_JAVASCRIPT);
+          Link _TEMPLATE_1 = this.n.TEMPLATE(session);
+          toNode.appendSafe(_TEMPLATE_1);
+          Query _appendSafe_1 = toNode.appendSafe("https://appjangle.com/files/img/20141029/JavaScript.png", "./.icon");
+          Link _ICON_1 = this.n.ICON(session);
+          _appendSafe_1.appendSafe(_ICON_1);
+        }
+      }
+      String _TEXT_VALUE = N.TEXT_VALUE();
+      Link _link = session.link(_TEXT_VALUE);
+      _xblockexpression = toNode.appendSafe(_link);
+    }
+    return _xblockexpression;
   }
   
   public final static Object NO_VALUE = new Object();

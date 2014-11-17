@@ -154,8 +154,10 @@ public class FileToNetworkOperations {
     };
     ValueCallback<List<List<NetworkOperation>>> _embed = Async.<List<List<NetworkOperation>>>embed(cb, _function);
     final Aggregator<List<NetworkOperation>> agg = Async.<List<NetworkOperation>>collect(_size, _embed);
+    InputOutput.<String>println(("here " + fileNames));
     final Consumer<String> _function_1 = new Consumer<String>() {
       public void accept(final String fileName) {
+        InputOutput.<String>println("here");
         FileItem _child = FileToNetworkOperations.this.folder.getChild(fileName);
         ValueCallback<List<NetworkOperation>> _createCallback = agg.createCallback();
         FileToNetworkOperations.this.converter.createNodes(FileToNetworkOperations.this.metadata, _child, _createCallback);

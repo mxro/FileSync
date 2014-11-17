@@ -113,8 +113,9 @@ class FileToNetworkOperations {
 				[ res |
 					cb.onSuccess(CollectionsUtils.flatten(res))
 				]))
-
+println('here '+fileNames)
 		fileNames.forEach [ fileName |
+			println('here')
 			converter.createNodes(metadata, folder.getChild(fileName), agg.createCallback());
 		]
 

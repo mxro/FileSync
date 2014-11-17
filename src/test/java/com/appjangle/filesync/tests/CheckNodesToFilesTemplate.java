@@ -55,6 +55,10 @@ public abstract class CheckNodesToFilesTemplate {
     }
   }
   
+  protected boolean doRecursiveSync() {
+    return false;
+  }
+  
   protected abstract void step1_defineData();
   
   protected abstract void step2_assertFiles();

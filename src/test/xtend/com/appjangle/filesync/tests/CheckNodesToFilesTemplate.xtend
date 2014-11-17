@@ -39,6 +39,10 @@ abstract class CheckNodesToFilesTemplate {
 		result = FilesJre.wrap(target)
 	}
 	
+	def protected doRecursiveSync() {
+		return false;
+	}
+	
 	def protected abstract void step1_defineData()
 	
 	def protected abstract void step2_assertFiles()

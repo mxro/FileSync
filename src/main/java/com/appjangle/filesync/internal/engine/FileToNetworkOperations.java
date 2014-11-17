@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.function.Consumer;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
 /**
@@ -24,6 +25,8 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
  */
 @SuppressWarnings("all")
 public class FileToNetworkOperations {
+  private final static boolean ENABLE_LOG = true;
+  
   private final Node node;
   
   private final FileItem folder;
@@ -54,6 +57,7 @@ public class FileToNetworkOperations {
       Iterable<String> locallyAddedFiles = FileToNetworkOperations.determineLocallyAddedFiles(this.metadata, this.folder);
       final ArrayList<String> locallyRemovedFiles = FileToNetworkOperations.determineLocallyRemovedFiles(this.metadata, this.folder);
       final ArrayList<String> locallyChangedFiles = FileToNetworkOperations.determineLocallyChangedFiles(this.metadata, this.folder);
+      InputOutput.<Iterable<String>>println(locallyAddedFiles);
       final Function1<String, Boolean> _function = new Function1<String, Boolean>() {
         public Boolean apply(final String fileName) {
           boolean _startsWith = fileName.startsWith(".");

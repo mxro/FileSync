@@ -17,6 +17,8 @@ import java.util.List
  */
 class FileToNetworkOperations {
 
+	val static boolean ENABLE_LOG = true;
+
 	val Node node;
 	val FileItem folder;
 	val Metadata metadata;
@@ -44,6 +46,8 @@ class FileToNetworkOperations {
 		val locallyRemovedFiles = determineLocallyRemovedFiles(metadata, folder)
 
 		val locallyChangedFiles = determineLocallyChangedFiles(metadata, folder)
+
+		println(locallyAddedFiles)
 
 		/*
 		 * Don't add hidden files.

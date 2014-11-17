@@ -15,6 +15,9 @@ class TestCreateHtmlNode extends CheckFilesToNodesTemplate {
 		
 		val node = result.select("./My_Document").get()
 		
+		node => notNullValue
+		
+		
 		
 		
 	}

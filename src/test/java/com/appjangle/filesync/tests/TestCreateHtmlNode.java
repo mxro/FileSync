@@ -29,6 +29,8 @@ public class TestCreateHtmlNode extends CheckFilesToNodesTemplate {
   protected void step2_assertNodes() {
     Query _select = this.result.select("./My_Document");
     final Node node = _select.get();
+    Matcher<Object> _notNullValue = TestCreateHtmlNode.notNullValue();
+    this.<Node>operator_doubleArrow(node, _notNullValue);
   }
   
   private static void assertArrayEquals(final Object[] expecteds, final Object[] actuals) {

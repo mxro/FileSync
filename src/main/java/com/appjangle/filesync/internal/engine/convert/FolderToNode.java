@@ -64,7 +64,8 @@ public class FolderToNode implements Converter {
           }
           
           public String hash() {
-            return source.hash();
+            int _hashCode = simpleName.hashCode();
+            return Integer.valueOf(_hashCode).toString();
           }
           
           public String converter() {

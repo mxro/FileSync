@@ -50,7 +50,7 @@ class FolderToNode implements Converter {
 					}
 					
 					override hash() {
-						source.hash
+						simpleName.hashCode.toString
 					}
 					
 					override converter() {

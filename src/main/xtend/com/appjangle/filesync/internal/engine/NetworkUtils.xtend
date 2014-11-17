@@ -53,10 +53,10 @@ class NetworkUtils {
 						if (qry instanceof Query) {
 							
 							println('exec '+qry)
-							val safeQry = qry as Query
-							val res = onNode.session().promise(safeQry)
-							res.catchExceptions([er|itmcb.onFailure(er.exception)])
-							res.get([succ|
+							//val safeQry = qry as Query
+							//val res = onNode.session().promise(safeQry)
+							qry.catchExceptions([er|itmcb.onFailure(er.exception)])
+							qry.get([succ|
 								println('success '+qry)
 								itmcb.onSuccess(Success.INSTANCE)
 							])

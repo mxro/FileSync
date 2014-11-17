@@ -56,40 +56,37 @@ public class NetworkUtils {
                 final ValueCallback<Success> itmcb = cbs.createCallback();
                 if ((qry instanceof Query)) {
                   InputOutput.<String>println(("exec " + qry));
-                  final Query safeQry = ((Query) qry);
-                  Session _session = onNode.session();
-                  final NextwebPromise<Node> res = _session.<Node>promise(safeQry);
                   final ExceptionListener _function_1 = new ExceptionListener() {
                     public void onFailure(final ExceptionResult er) {
                       Throwable _exception = er.exception();
                       itmcb.onFailure(_exception);
                     }
                   };
-                  res.catchExceptions(_function_1);
+                  ((Query)qry).catchExceptions(_function_1);
                   final Closure<Node> _function_2 = new Closure<Node>() {
                     public void apply(final Node succ) {
                       InputOutput.<String>println(("success " + qry));
                       itmcb.onSuccess(Success.INSTANCE);
                     }
                   };
-                  res.get(_function_2);
+                  ((Query)qry).get(_function_2);
                 } else {
-                  final NextwebPromise<Object> safeQry_1 = ((NextwebPromise<Object>) qry);
-                  Session _session_1 = onNode.session();
-                  final NextwebPromise<Object> res_1 = _session_1.<Object>promise(safeQry_1);
+                  final NextwebPromise<Object> safeQry = ((NextwebPromise<Object>) qry);
+                  Session _session = onNode.session();
+                  final NextwebPromise<Object> res = _session.<Object>promise(safeQry);
                   final ExceptionListener _function_3 = new ExceptionListener() {
                     public void onFailure(final ExceptionResult er) {
                       Throwable _exception = er.exception();
                       itmcb.onFailure(_exception);
                     }
                   };
-                  res_1.catchExceptions(_function_3);
+                  res.catchExceptions(_function_3);
                   final Closure<Object> _function_4 = new Closure<Object>() {
                     public void apply(final Object succ) {
                       itmcb.onSuccess(Success.INSTANCE);
                     }
                   };
-                  res_1.get(_function_4);
+                  res.get(_function_4);
                 }
               }
             }

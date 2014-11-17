@@ -61,11 +61,7 @@ class FileToNetworkOperations {
 			return true
 		]
 
-		if (ENABLE_LOG) {
-			println(this + ": Locally Added: " + locallyAddedFiles)
-			println(this + ": Locally Removed: " + locallyRemovedFiles)
-			println(this + ": Locally Changed: " + locallyChangedFiles)
-		}
+		
 
 		val agg = Async.collect(3,
 			Async.embed(cb,
@@ -115,9 +111,8 @@ class FileToNetworkOperations {
 				[ res |
 					cb.onSuccess(CollectionsUtils.flatten(res))
 				]))
-println('here '+fileNames)
+
 		fileNames.forEach [ fileName |
-			println('here')
 			converter.createNodes(metadata, folder.getChild(fileName), agg.createCallback());
 		]
 

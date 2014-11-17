@@ -17,7 +17,6 @@ import java.util.List;
 import java.util.function.Consumer;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
 /**
@@ -74,17 +73,6 @@ public class FileToNetworkOperations {
       };
       Iterable<String> _filter = IterableExtensions.<String>filter(locallyAddedFiles, _function);
       locallyAddedFiles = _filter;
-      if (FileToNetworkOperations.ENABLE_LOG) {
-        String _plus = (this + ": Locally Added: ");
-        String _plus_1 = (_plus + locallyAddedFiles);
-        InputOutput.<String>println(_plus_1);
-        String _plus_2 = (this + ": Locally Removed: ");
-        String _plus_3 = (_plus_2 + locallyRemovedFiles);
-        InputOutput.<String>println(_plus_3);
-        String _plus_4 = (this + ": Locally Changed: ");
-        String _plus_5 = (_plus_4 + locallyChangedFiles);
-        InputOutput.<String>println(_plus_5);
-      }
       final Closure<List<List<NetworkOperation>>> _function_1 = new Closure<List<List<NetworkOperation>>>() {
         public void apply(final List<List<NetworkOperation>> res) {
           final List<NetworkOperation> ops = CollectionsUtils.<NetworkOperation>flatten(res);
@@ -154,10 +142,8 @@ public class FileToNetworkOperations {
     };
     ValueCallback<List<List<NetworkOperation>>> _embed = Async.<List<List<NetworkOperation>>>embed(cb, _function);
     final Aggregator<List<NetworkOperation>> agg = Async.<List<NetworkOperation>>collect(_size, _embed);
-    InputOutput.<String>println(("here " + fileNames));
     final Consumer<String> _function_1 = new Consumer<String>() {
       public void accept(final String fileName) {
-        InputOutput.<String>println("here");
         FileItem _child = FileToNetworkOperations.this.folder.getChild(fileName);
         ValueCallback<List<NetworkOperation>> _createCallback = agg.createCallback();
         FileToNetworkOperations.this.converter.createNodes(FileToNetworkOperations.this.metadata, _child, _createCallback);

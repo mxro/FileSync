@@ -30,7 +30,6 @@ class FolderToNode implements Converter {
 		val simpleName = MxroGWTUtils.getSimpleName(source.name)
 		val ops = new LinkedList<NetworkOperation>
 
-
 		ops.add(
 			[ ctx, opscb |
 				val baseNode = ctx.parent.appendSafe(source.name, "./" + simpleName)

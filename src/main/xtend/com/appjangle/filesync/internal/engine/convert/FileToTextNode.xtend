@@ -53,10 +53,8 @@ class FileToTextNode implements Converter {
 
 		ops.add(
 			[ ctx, opscb |
-				//val assertNodes = ctx.parent.select("./.n", "nodes")
+				
 				val baseNode = ctx.parent.appendSafe(source.text, "./" + simpleName)
-
-				//val appendToParent = ctx.parent.appendSafe(baseNode)
 				
 				metadata.add(
 					new ItemMetadata() {
@@ -87,7 +85,6 @@ class FileToTextNode implements Converter {
 						baseNode,
 						baseNode.appendLabel(nameWithoutExtension),
 						baseNode.appendTypesAndIcon(source)
-						//appendToParent
 					))
 			])
 

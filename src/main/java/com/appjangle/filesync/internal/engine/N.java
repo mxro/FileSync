@@ -43,4 +43,13 @@ public class N {
     String _ICON = N.ICON();
     return session.link(_ICON);
   }
+  
+  public static String COFFEESCRIPT() {
+    return "http://slicnet.com/mxrogm/mxrogm/data/stream/2014/1/10/n3";
+  }
+  
+  public Link COFFEESCRIPT(final Session session) {
+    String _COFFEESCRIPT = N.COFFEESCRIPT();
+    return session.link(_COFFEESCRIPT);
+  }
 }

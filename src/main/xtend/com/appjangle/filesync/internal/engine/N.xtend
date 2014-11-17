@@ -40,4 +40,12 @@ class N {
 		return session.link(ICON)
 	}
 	
+	def static COFFEESCRIPT() {
+		return "http://slicnet.com/mxrogm/mxrogm/data/stream/2014/1/10/n3"
+	}
+	
+	def COFFEESCRIPT(Session session) {
+		return session.link(COFFEESCRIPT)
+	}
+	
 }

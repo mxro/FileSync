@@ -13,7 +13,7 @@ import java.io.File;
 
 @SuppressWarnings("all")
 public class FileSync {
-  public static void sync(final File folder, final Node node, final ValueCallback<Success> cb) {
+  public static void syncSingleFolder(final File folder, final Node node, final ValueCallback<Success> cb) {
     FileItem _wrap = FilesJre.wrap(folder);
     ConverterCollection _createDefaultConverter = FileSync.createDefaultConverter();
     SyncFolder _syncFolder = new SyncFolder(_wrap, node, _createDefaultConverter);

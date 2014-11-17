@@ -28,7 +28,7 @@ public abstract class CheckUpdatesTemplate extends CheckNodesToFilesTemplate {
       _commit.get();
       final Deferred<Success> _function = new Deferred<Success>() {
         public void get(final ValueCallback<Success> cb) {
-          FileSync.sync(CheckUpdatesTemplate.this.target, CheckUpdatesTemplate.this.source, cb);
+          FileSync.syncSingleFolder(CheckUpdatesTemplate.this.target, CheckUpdatesTemplate.this.source, cb);
         }
       };
       AsyncJre.<Success>waitFor(_function);
@@ -38,7 +38,7 @@ public abstract class CheckUpdatesTemplate extends CheckNodesToFilesTemplate {
       _commit_1.get();
       final Deferred<Success> _function_1 = new Deferred<Success>() {
         public void get(final ValueCallback<Success> cb) {
-          FileSync.sync(CheckUpdatesTemplate.this.target, CheckUpdatesTemplate.this.source, cb);
+          FileSync.syncSingleFolder(CheckUpdatesTemplate.this.target, CheckUpdatesTemplate.this.source, cb);
         }
       };
       AsyncJre.<Success>waitFor(_function_1);
@@ -47,7 +47,7 @@ public abstract class CheckUpdatesTemplate extends CheckNodesToFilesTemplate {
       this.step5_updateFiles();
       final Deferred<Success> _function_2 = new Deferred<Success>() {
         public void get(final ValueCallback<Success> cb) {
-          FileSync.sync(CheckUpdatesTemplate.this.target, CheckUpdatesTemplate.this.source, cb);
+          FileSync.syncSingleFolder(CheckUpdatesTemplate.this.target, CheckUpdatesTemplate.this.source, cb);
         }
       };
       AsyncJre.<Success>waitFor(_function_2);

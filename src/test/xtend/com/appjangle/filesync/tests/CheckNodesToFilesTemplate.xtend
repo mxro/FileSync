@@ -49,7 +49,7 @@ abstract class CheckNodesToFilesTemplate {
 		session.commit.get
 
 		AsyncJre.waitFor [cb |
-			FileSync.sync(target, source, cb)
+			FileSync.syncSingleFolder(target, source, cb)
 		]
 		
 		step2_assertFiles

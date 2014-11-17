@@ -63,14 +63,14 @@ public abstract class CheckFilesToNodesTemplate {
   public void test() {
     final Deferred<Success> _function = new Deferred<Success>() {
       public void get(final ValueCallback<Success> cb) {
-        FileSync.sync(CheckFilesToNodesTemplate.this.sourceFolder, CheckFilesToNodesTemplate.this.result, cb);
+        FileSync.syncSingleFolder(CheckFilesToNodesTemplate.this.sourceFolder, CheckFilesToNodesTemplate.this.result, cb);
       }
     };
     AsyncJre.<Success>waitFor(_function);
     this.step1_defineFiles();
     final Deferred<Success> _function_1 = new Deferred<Success>() {
       public void get(final ValueCallback<Success> cb) {
-        FileSync.sync(CheckFilesToNodesTemplate.this.sourceFolder, CheckFilesToNodesTemplate.this.result, cb);
+        FileSync.syncSingleFolder(CheckFilesToNodesTemplate.this.sourceFolder, CheckFilesToNodesTemplate.this.result, cb);
       }
     };
     AsyncJre.<Success>waitFor(_function_1);

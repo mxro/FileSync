@@ -12,7 +12,7 @@ import java.io.File
 
 class FileSync {
 	
-	def static sync(File folder, Node node, ValueCallback<Success> cb) {
+	def static syncSingleFolder(File folder, Node node, ValueCallback<Success> cb) {
 		
 		new SyncFolder(FilesJre.wrap(folder), node, createDefaultConverter).doIt(cb)
 		

@@ -20,7 +20,7 @@ abstract class CheckUpdatesTemplate extends CheckNodesToFilesTemplate {
 		session.commit.get
 
 		AsyncJre.waitFor [cb |
-			FileSync.sync(target, source, cb)
+			FileSync.syncSingleFolder(target, source, cb)
 		]
 		
 		step2_assertFiles
@@ -30,7 +30,7 @@ abstract class CheckUpdatesTemplate extends CheckNodesToFilesTemplate {
 		session.commit.get
 		
 		AsyncJre.waitFor [cb |
-			FileSync.sync(target, source, cb)
+			FileSync.syncSingleFolder(target, source, cb)
 		]
 		
 		step4_assertFilesAfterUpdate
@@ -41,7 +41,7 @@ abstract class CheckUpdatesTemplate extends CheckNodesToFilesTemplate {
 		step5_updateFiles
 		
 		AsyncJre.waitFor [cb |
-			FileSync.sync(target, source, cb)
+			FileSync.syncSingleFolder(target, source, cb)
 		]
 		
 		step6_assertNodesAfterUpdate

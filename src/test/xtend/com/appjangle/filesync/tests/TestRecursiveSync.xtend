@@ -1,5 +1,8 @@
 package com.appjangle.filesync.tests
 
+import de.oehme.xtend.junit.JUnit
+
+@JUnit
 class TestRecursiveSync extends CheckNodesToFilesTemplate{
 	
 	override protected doRecursiveSync() {
@@ -16,7 +19,7 @@ class TestRecursiveSync extends CheckNodesToFilesTemplate{
 	}
 	
 	override protected step2_assertFiles() {
-		
+		result.getChild("oh_my").exists => true
 	}
 	
 }

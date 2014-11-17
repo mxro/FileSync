@@ -54,7 +54,6 @@ class FolderToNode implements Converter {
 
 		ops.add(
 			[ ctx, opscb |
-				
 				metadata.remove(cachedFile.name)
 				opscb.onSuccess(newArrayList(ctx.parent.removeSafe(ctx.session.link(address))))
 			])

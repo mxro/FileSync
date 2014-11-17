@@ -24,7 +24,6 @@ class FileToTextNode implements Converter {
 	override worksOn(FileItem source) {
 
 		source.name.isTextValue
-
 	}
 
 	override worksOn(Node node, ValueCallback<Boolean> cb) {

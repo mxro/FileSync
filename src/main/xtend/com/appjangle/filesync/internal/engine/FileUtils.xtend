@@ -92,7 +92,7 @@ class FileUtils {
 		}
 		var result = rc.toString();
 		if (result.length() > maxFileLength) {
-			result = result.substring(result.length() - maxFileLength, result.length());
+			result = result.substring(0, maxFileLength-1);
 		}
 		return result;
 	}

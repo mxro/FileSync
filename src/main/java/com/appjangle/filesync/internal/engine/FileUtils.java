@@ -3,8 +3,6 @@ package com.appjangle.filesync.internal.engine;
 import com.appjangle.filesync.FileOperation;
 import com.appjangle.filesync.FileOperationContext;
 import com.appjangle.filesync.Metadata;
-import com.appjangle.filesync.internal.engine.metadata.MetadataImpl;
-import com.appjangle.filesync.internal.engine.metadata.MetadataUtilsJre;
 import de.mxro.file.FileItem;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.ExclusiveRange;
@@ -12,40 +10,28 @@ import org.eclipse.xtext.xbase.lib.ExclusiveRange;
 @SuppressWarnings("all")
 public class FileUtils {
   public void saveMetadata(final FileItem forFolder, final Metadata metadata) {
-    FileItem _child = forFolder.get(".filesync-meta");
-    FileItem _child_1 = _child.get("nodes.xml");
-    MetadataUtilsJre.saveToFile(metadata, _child_1);
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method getChild is undefined for the type FileUtils"
+      + "\ngetChild cannot be resolved");
   }
   
-  public boolean hasMetadata(final FileItem forFolder) {
-    FileItem _assertFolder = forFolder.assertFolder(".filesync-meta");
-    FileItem _child = _assertFolder.get("nodes.xml");
-    return _child.exists();
+  public Object hasMetadata(final FileItem forFolder) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method getChild is undefined for the type FileUtils"
+      + "\nexists cannot be resolved");
   }
   
   public Metadata assertMetadata(final FileItem forFolder) {
-    Metadata _xblockexpression = null;
-    {
-      final FileItem metadataFolder = forFolder.assertFolder(".filesync-meta");
-      metadataFolder.setVisible(false);
-      FileItem _child = metadataFolder.get("nodes.xml");
-      boolean _exists = _child.exists();
-      boolean _not = (!_exists);
-      if (_not) {
-        final FileItem metadataFile = metadataFolder.createFile("nodes.xml");
-        final MetadataImpl metadata = new MetadataImpl();
-        MetadataUtilsJre.saveToFile(metadata, metadataFile);
-        return metadata;
-      }
-      _xblockexpression = this.loadMetadata(forFolder);
-    }
-    return _xblockexpression;
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method getChild is undefined for the type FileUtils"
+      + "\nexists cannot be resolved"
+      + "\n! cannot be resolved");
   }
   
   public Metadata loadMetadata(final FileItem forFolder) {
-    FileItem _child = forFolder.get(".filesync-meta");
-    FileItem _child_1 = _child.get("nodes.xml");
-    return MetadataUtilsJre.readFromFile(_child_1);
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method getChild is undefined for the type FileUtils"
+      + "\ngetChild cannot be resolved");
   }
   
   public void execute(final List<FileOperation> operations, final FileItem withFolder, final Metadata withMetadata) {
@@ -159,10 +145,7 @@ public class FileUtils {
     int _length = result.length();
     boolean _greaterThan = (_length > maxFileLength);
     if (_greaterThan) {
-      int _length_1 = result.length();
-      int _minus = (_length_1 - maxFileLength);
-      int _length_2 = result.length();
-      String _substring = result.substring(_minus, _length_2);
+      String _substring = result.substring(0, (maxFileLength - 1));
       result = _substring;
     }
     return result;

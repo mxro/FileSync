@@ -17,22 +17,22 @@ import java.util.List
  */
 class FileToNetworkOperations {
 
-	val static boolean ENABLE_LOG = true;
+	val static boolean ENABLE_LOG = false;
 
 	val Node node;
 	val FileItem folder;
 	val Metadata metadata;
-	val Converter converter;	
-	
+	val Converter converter;
+
 	new(Node node, FileItem folder, Metadata metadata, Converter converter) {
 		this.node = node
 		this.folder = folder
 		this.metadata = metadata
 		this.converter = converter
-		
+
 	}
 
-	def determineOps( ValueCallback<List<NetworkOperation>> cb) {
+	def determineOps(ValueCallback<List<NetworkOperation>> cb) {
 
 		if (!folder.directory)
 			throw new Exception('File passed and not directory. ' + folder)
@@ -40,14 +40,17 @@ class FileToNetworkOperations {
 		if (!folder.exists)
 			throw new Exception('File passed does not exist. ' + folder)
 
-		
 		var Iterable<String> locallyAddedFiles = determineLocallyAddedFiles(metadata, folder)
 
 		val locallyRemovedFiles = determineLocallyRemovedFiles(metadata, folder)
 
 		val locallyChangedFiles = determineLocallyChangedFiles(metadata, folder)
 
-		println(locallyAddedFiles)
+		if (ENABLE_LOG) {
+			println(this + ": Locally Added: " + locallyAddedFiles)
+			println(this + ": Locally Removed: " + locallyRemovedFiles)
+			println(this + ": Locally Changed: " + locallyChangedFiles)
+		}
 
 		/*
 		 * Don't add hidden files.
@@ -56,68 +59,65 @@ class FileToNetworkOperations {
 			if (fileName.startsWith(".")) {
 				return false;
 			}
-			
 			if (!folder.getChild(fileName).visible) {
 				return false;
 			}
-			
 			return true
 		]
-		
-		val agg = Async.collect(3, Async.embed(cb, [res |
-			val ops = CollectionsUtils.flatten(res)
-			
-			cb.onSuccess(ops)
-			
-		]));
-		
-		
-		
-		createOperationsFromRemovedFiles(locallyRemovedFiles, agg.createCallback)
-		createOperationsFromChangedFiles(locallyChangedFiles, agg.createCallback)		
-		createOperationsFromCreatedFiles(locallyAddedFiles, agg.createCallback)
-		
-	}
 
-   
+		val agg = Async.collect(3,
+			Async.embed(cb,
+				[ res |
+					val ops = CollectionsUtils.flatten(res)
+					cb.onSuccess(ops)
+				]));
+
+		createOperationsFromRemovedFiles(locallyRemovedFiles, agg.createCallback)
+		createOperationsFromChangedFiles(locallyChangedFiles, agg.createCallback)
+		createOperationsFromCreatedFiles(locallyAddedFiles, agg.createCallback)
+
+	}
 
 	def createOperationsFromChangedFiles(List<String> fileNames, ValueCallback<List<NetworkOperation>> cb) {
 
+		val agg = Async.collect(fileNames.size,
+			Async.embed(cb,
+				[ res |
+					cb.onSuccess(CollectionsUtils.flatten(res))
+				]))
 
-		val agg = Async.collect(fileNames.size, Async.embed(cb, [ res |
-			cb.onSuccess(CollectionsUtils.flatten(res))
-		]))
-
-		fileNames.forEach[ fileName | 
-			converter.update(metadata, folder.getChild(fileName),  agg.createCallback());
+		fileNames.forEach [ fileName |
+			converter.update(metadata, folder.getChild(fileName), agg.createCallback());
 		]
-		
+
 	}
 
 	def createOperationsFromRemovedFiles(List<String> fileNames, ValueCallback<List<NetworkOperation>> cb) {
 
+		val agg = Async.collect(fileNames.size,
+			Async.embed(cb,
+				[ res |
+					cb.onSuccess(CollectionsUtils.flatten(res))
+				]))
 
-		val agg = Async.collect(fileNames.size, Async.embed(cb, [ res |
-			cb.onSuccess(CollectionsUtils.flatten(res))
-		]))
-
-		fileNames.forEach[ fileName | 
-			converter.deleteNodes(metadata, metadata.get(fileName),  agg.createCallback)
+		fileNames.forEach [ fileName |
+			converter.deleteNodes(metadata, metadata.get(fileName), agg.createCallback)
 		]
-		
+
 	}
 
-
 	def createOperationsFromCreatedFiles(Iterable<String> fileNames, ValueCallback<List<NetworkOperation>> cb) {
-		
-		val agg = Async.collect(fileNames.size, Async.embed(cb, [ res |
-			cb.onSuccess(CollectionsUtils.flatten(res))
-		]))
-		
-		fileNames.forEach[fileName |
+
+		val agg = Async.collect(fileNames.size,
+			Async.embed(cb,
+				[ res |
+					cb.onSuccess(CollectionsUtils.flatten(res))
+				]))
+
+		fileNames.forEach [ fileName |
 			converter.createNodes(metadata, folder.getChild(fileName), agg.createCallback());
 		]
-		
+
 	}
 
 	static def determineLocallyChangedFiles(Metadata metadata, FileItem folder) {
@@ -129,6 +129,7 @@ class FileToNetworkOperations {
 			val itemNow = folder.getChild(fileMetadata.name)
 
 			if (itemNow.exists) {
+
 				//println(itemNow+" now:"+itemNow.lastModified.time+" cache:"+fileMetadata.lastModified.time)
 				if (itemNow.lastModified.time > fileMetadata.lastModified.time) {
 					res.add(itemNow.name)
@@ -186,8 +187,5 @@ class FileToNetworkOperations {
 		return res
 
 	}
-
-	
-	
 
 }

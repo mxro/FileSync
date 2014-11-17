@@ -25,7 +25,7 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
  */
 @SuppressWarnings("all")
 public class FileToNetworkOperations {
-  private final static boolean ENABLE_LOG = true;
+  private final static boolean ENABLE_LOG = false;
   
   private final Node node;
   
@@ -57,7 +57,17 @@ public class FileToNetworkOperations {
       Iterable<String> locallyAddedFiles = FileToNetworkOperations.determineLocallyAddedFiles(this.metadata, this.folder);
       final ArrayList<String> locallyRemovedFiles = FileToNetworkOperations.determineLocallyRemovedFiles(this.metadata, this.folder);
       final ArrayList<String> locallyChangedFiles = FileToNetworkOperations.determineLocallyChangedFiles(this.metadata, this.folder);
-      InputOutput.<Iterable<String>>println(locallyAddedFiles);
+      if (FileToNetworkOperations.ENABLE_LOG) {
+        String _plus = (this + ": Locally Added: ");
+        String _plus_1 = (_plus + locallyAddedFiles);
+        InputOutput.<String>println(_plus_1);
+        String _plus_2 = (this + ": Locally Removed: ");
+        String _plus_3 = (_plus_2 + locallyRemovedFiles);
+        InputOutput.<String>println(_plus_3);
+        String _plus_4 = (this + ": Locally Changed: ");
+        String _plus_5 = (_plus_4 + locallyChangedFiles);
+        InputOutput.<String>println(_plus_5);
+      }
       final Function1<String, Boolean> _function = new Function1<String, Boolean>() {
         public Boolean apply(final String fileName) {
           boolean _startsWith = fileName.startsWith(".");

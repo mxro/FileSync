@@ -39,27 +39,8 @@ import org.eclipse.xtext.xbase.lib.Extension;
 @SuppressWarnings("all")
 public class FileToTextNode implements Converter {
   public boolean worksOn(final FileItem source) {
-    boolean _xblockexpression = false;
-    {
-      final String it = source.getName();
-      boolean _or = false;
-      boolean _or_1 = false;
-      boolean _endsWith = it.endsWith(".html");
-      if (_endsWith) {
-        _or_1 = true;
-      } else {
-        boolean _endsWith_1 = it.endsWith(".js");
-        _or_1 = _endsWith_1;
-      }
-      if (_or_1) {
-        _or = true;
-      } else {
-        boolean _endsWith_2 = it.endsWith(".coffee");
-        _or = _endsWith_2;
-      }
-      _xblockexpression = _or;
-    }
-    return _xblockexpression;
+    String _name = source.getName();
+    return this.cutils.isTextValue(_name);
   }
   
   public void worksOn(final Node node, final ValueCallback<Boolean> cb) {

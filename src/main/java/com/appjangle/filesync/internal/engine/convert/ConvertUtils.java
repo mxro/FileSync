@@ -32,6 +32,11 @@ public class ConvertUtils {
   
   private final Map<String, String> textValueExtensions = Collections.<String, String>unmodifiableMap(CollectionLiterals.<String, String>newHashMap(Pair.<String, String>of(N.HTML_VALUE(), ".html"), Pair.<String, String>of("1", ".type"), Pair.<String, String>of("2", ".css"), Pair.<String, String>of("3", ".js"), Pair.<String, String>of(N.COFFEESCRIPT(), ".coffee")));
   
+  public boolean isTextValue(final String ext) {
+    Set<String> _keySet = this.textValueExtensions.keySet();
+    return _keySet.contains(ext);
+  }
+  
   public void getFileExtension(final Node forNode, final ValueCallback<String> cb) {
     final LinkListQuery qry = forNode.selectAllLinks();
     final ExceptionListener _function = new ExceptionListener() {

@@ -21,6 +21,10 @@ class ConvertUtils {
 		N.COFFEESCRIPT -> '.coffee'	
 	}
 
+	def isTextValue(String ext) {
+		textValueExtensions.keySet.contains(ext)
+	}
+
 	def getFileExtension(Node forNode, ValueCallback<String> cb) {
 
 		val qry = forNode.selectAllLinks()

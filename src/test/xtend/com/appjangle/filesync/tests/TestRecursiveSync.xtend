@@ -22,8 +22,6 @@ class TestRecursiveSync extends CheckNodesToFilesTemplate{
 		
 		result.get("node1").exists => true
 		
-		
-		
 		result.get("node1").get("sub").exists => true
 		
 		result.get("node3").exists => true
@@ -34,7 +32,7 @@ class TestRecursiveSync extends CheckNodesToFilesTemplate{
 		
 		result.get("node3").get("child1").get("inThere").exists => true
 		
-		result.get("node3").get("child1").get("b").isDirectory => true
+		result.get("node3").get("child1").get("inThere").isDirectory => true
 	}
 	
 }

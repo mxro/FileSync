@@ -57,7 +57,7 @@ public class TestRecursiveSync extends CheckNodesToFilesTemplate {
     TestRecursiveSync.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_exists_4), Boolean.valueOf(true));
     FileItem _get_11 = this.result.get("node3");
     FileItem _get_12 = _get_11.get("child1");
-    FileItem _get_13 = _get_12.get("b");
+    FileItem _get_13 = _get_12.get("inThere");
     boolean _isDirectory = _get_13.isDirectory();
     TestRecursiveSync.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_isDirectory), Boolean.valueOf(true));
   }

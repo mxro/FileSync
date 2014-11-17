@@ -47,18 +47,21 @@ class ConvertUtils {
 
 	def appendTypesAndIcon(Query toNode, FileItem source) {
 
+		val session = toNode.session()
+
 		val ext = source.extension
 		
 		if (ext == ".html") {
 			
-			toNode.appendSafe(toNode.session().HTML_VALUE)
-			toNode.appendSafe(toNode.session().TEMPLATE)
+			toNode.appendSafe(session.HTML_VALUE)
+			toNode.appendSafe(session.TEMPLATE)
 			
-			toNode.appendSafe()
+			toNode.appendSafe("https://docs.google.com/drawings/d/1AOVTMvvcdKAh3Y8aZP4kTx_c6oTMuNKkSdmgSAnPnr0/pub?w=70&h=70", "./.icon")
+			.appendSafe(session.ICON)
 				
 		}
 		
-		toNode.appendSafe(toNode.session().link(N.TEXT_VALUE))
+		toNode.appendSafe(session.link(N.TEXT_VALUE))
 		
 	}
 	

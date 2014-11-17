@@ -29,7 +29,7 @@ import org.junit.rules.ErrorCollector;
 public class TestCreateVariousNodeTypes extends CheckFilesToNodesTemplate {
   protected void step1_defineFiles() {
     FileItem _createFile = this.source.createFile("My Document.css");
-    _createFile.setText(".html {}");
+    _createFile.setText(".class {}");
   }
   
   protected void step2_assertNodes() {

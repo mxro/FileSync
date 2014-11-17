@@ -9,7 +9,7 @@ import de.oehme.xtend.junit.JUnit
 class TestCreateVariousNodeTypes extends CheckFilesToNodesTemplate {
 	
 	override protected step1_defineFiles() {
-		source.createFile("My Document.css").text = ".html {}"
+		source.createFile("My Document.css").text = ".class {}"
 	}
 	
 	override protected step2_assertNodes() {

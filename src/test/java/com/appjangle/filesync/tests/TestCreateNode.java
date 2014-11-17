@@ -1,6 +1,6 @@
 package com.appjangle.filesync.tests;
 
-import com.appjangle.filesync.tests.CheckNodesToFilesTemplate;
+import com.appjangle.filesync.tests.CheckFilesToNodesTemplate;
 import de.oehme.xtend.junit.JUnit;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
 import org.hamcrest.Matcher;
@@ -9,13 +9,11 @@ import org.junit.internal.ArrayComparisonFailure;
 
 @JUnit
 @SuppressWarnings("all")
-public class TestCreateNode extends CheckNodesToFilesTemplate {
-  protected void step1_defineData() {
-    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+public class TestCreateNode extends CheckFilesToNodesTemplate {
+  protected void step1_defineFiles() {
   }
   
-  protected void step2_assertFiles() {
-    throw new UnsupportedOperationException("TODO: auto-generated method stub");
+  protected void step2_assertNodes() {
   }
   
   private static void assertArrayEquals(final Object[] expecteds, final Object[] actuals) {

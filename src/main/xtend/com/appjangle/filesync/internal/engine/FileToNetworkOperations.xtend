@@ -46,11 +46,7 @@ class FileToNetworkOperations {
 
 		val locallyChangedFiles = determineLocallyChangedFiles(metadata, folder)
 
-		if (ENABLE_LOG) {
-			println(this + ": Locally Added: " + locallyAddedFiles)
-			println(this + ": Locally Removed: " + locallyRemovedFiles)
-			println(this + ": Locally Changed: " + locallyChangedFiles)
-		}
+		
 
 		/*
 		 * Don't add hidden files.
@@ -64,6 +60,12 @@ class FileToNetworkOperations {
 			}
 			return true
 		]
+
+		if (ENABLE_LOG) {
+			println(this + ": Locally Added: " + locallyAddedFiles)
+			println(this + ": Locally Removed: " + locallyRemovedFiles)
+			println(this + ": Locally Changed: " + locallyChangedFiles)
+		}
 
 		val agg = Async.collect(3,
 			Async.embed(cb,

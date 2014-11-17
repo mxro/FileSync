@@ -53,10 +53,10 @@ class FolderToNode implements Converter {
 		val ops = new LinkedList<NetworkOperation>
 
 		ops.add(
-			[ ctx |
+			[ ctx, opscb |
 				
 				metadata.remove(cachedFile.name)
-				newArrayList(ctx.parent.removeSafe(ctx.session.link(address)))
+				opscb.onSuccess(newArrayList(ctx.parent.removeSafe(ctx.session.link(address))))
 			])
 
 		cb.onSuccess(ops)

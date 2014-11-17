@@ -6,10 +6,13 @@ import de.mxro.file.FileItem;
 import de.oehme.xtend.junit.Hamcrest;
 import de.oehme.xtend.junit.JUnit;
 import io.nextweb.Link;
+import io.nextweb.ListQuery;
 import io.nextweb.Node;
+import io.nextweb.NodeList;
 import io.nextweb.Query;
 import io.nextweb.Session;
 import org.eclipse.xtext.xbase.lib.Extension;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.Matcher;
@@ -32,6 +35,9 @@ public class TestCreateHtmlNode extends CheckFilesToNodesTemplate {
   protected void step2_assertNodes() {
     Query _select = this.result.select("./.n/My_Document");
     _select.get();
+    ListQuery _selectAll = this.result.selectAll();
+    NodeList _get = _selectAll.get();
+    InputOutput.<NodeList>println(_get);
     Link _HTML_VALUE = this.n.HTML_VALUE(this.session);
     Query _select_1 = this.result.select(_HTML_VALUE);
     final Node node = _select_1.get();
@@ -41,8 +47,8 @@ public class TestCreateHtmlNode extends CheckFilesToNodesTemplate {
     Session _session = node.session();
     Link _LABEL = this.n.LABEL(_session);
     Query _select_2 = node.select(_LABEL);
-    Node _get = _select_2.get();
-    Object _value_1 = _get.value();
+    Node _get_1 = _select_2.get();
+    Object _value_1 = _get_1.value();
     Matcher<Object> _equalTo_1 = TestCreateHtmlNode.<Object>equalTo("My Document");
     this.<Object>operator_doubleArrow(_value_1, _equalTo_1);
   }

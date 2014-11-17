@@ -6,7 +6,7 @@ import de.mxro.fn.Success
 import de.oehme.xtend.junit.JUnit
 
 @JUnit
-class TestRemoveFolder extends CheckUpdatesTemplate {
+class TestRemoveHtmlFile extends CheckUpdatesTemplate {
 	
 	override protected step1_defineData() {
 		val file1 = source.append("<p>file1</p>", "./file1")

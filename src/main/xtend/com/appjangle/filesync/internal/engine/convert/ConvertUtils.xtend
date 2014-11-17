@@ -16,8 +16,8 @@ class ConvertUtils {
 	val textValueExtensions = #{
 		N.HTML_VALUE -> '.html',
 		"1" -> '.type',
-		"2" -> '.css',
-		"3" -> '.js',
+		N.CSS -> '.css',
+		N.JAVASCRIPT -> '.js',
 		N.COFFEESCRIPT -> '.coffee'	
 	}
 

@@ -15,6 +15,7 @@ import io.nextweb.promise.NextwebPromise;
 import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
 import java.util.List;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
 public class NetworkUtils {
@@ -41,6 +42,7 @@ public class NetworkUtils {
       for (final NetworkOperation op : ops) {
         final Closure<List<Deferred<?>>> _function_1 = new Closure<List<Deferred<?>>>() {
           public void apply(final List<Deferred<?>> qries) {
+            InputOutput.<String>println(("exec " + qries));
             final ValueCallback<Success> opscbsitem = opscbs.createCallback();
             int _size = qries.size();
             final Closure<List<Success>> _function = new Closure<List<Success>>() {

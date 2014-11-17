@@ -38,7 +38,7 @@ class NetworkUtils {
 
 			op.apply(ctx,
 				cb.embed [ qries |
-
+					println('exec '+qries)
 					val opscbsitem = opscbs.createCallback
 					
 					val cbs = Async.collect(qries.size,

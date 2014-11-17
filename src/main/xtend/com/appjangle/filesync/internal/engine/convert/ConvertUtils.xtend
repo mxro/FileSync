@@ -30,6 +30,8 @@ class ConvertUtils {
 	}
 
 	def isTextType(Link link) {
+		
+		
 		textValueExtensions.keySet.contains(link.uri())
 	}
 

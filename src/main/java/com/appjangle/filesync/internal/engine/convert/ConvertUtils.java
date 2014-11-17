@@ -85,8 +85,8 @@ public class ConvertUtils {
     Query _xblockexpression = null;
     {
       final Session session = toNode.session();
-      String _extension = source.getExtension();
-      final String ext = ("." + _extension);
+      String ext = source.getExtension();
+      ext = ("." + ext);
       boolean _equals = Objects.equal(ext, ".html");
       if (_equals) {
         Link _HTML_VALUE = this.n.HTML_VALUE(session);

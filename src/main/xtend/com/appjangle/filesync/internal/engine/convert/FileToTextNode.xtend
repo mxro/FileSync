@@ -23,9 +23,9 @@ class FileToTextNode implements Converter {
 
 	override worksOn(FileItem source) {
 
-		val name = source.name
+		val it = source.name
 
-		name.endsWith('.html')
+		endsWith('.html') || endsWith('.js')
 
 	}
 

@@ -15,6 +15,7 @@ class TestCreateVariousNodeTypes extends CheckFilesToNodesTemplate {
 		
 		source.createFile("My CoffeeScript.coffee").text = "window.alert 'nothing much'"
 		
+		source.createFile("My type.type").text = "Something for my type"
 		
 	}
 	
@@ -32,6 +33,9 @@ class TestCreateVariousNodeTypes extends CheckFilesToNodesTemplate {
 		
 		result.select(session.COFFEESCRIPT).get.value() => equalTo("window.alert 'nothing much'")
 		
+		result.selectAll(session.TYPE).get.size => equalTo(1)
+		
+		result.select(session.TYPE).get.value() => equalTo("Something for my type")
 		
 	}
 	

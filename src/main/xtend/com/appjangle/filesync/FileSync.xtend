@@ -12,9 +12,18 @@ import java.io.File
 
 class FileSync {
 	
+	/**
+	 * Synchronized the contents of a folder and a node, without synchronizing sub-folders.
+	 */
 	def static syncSingleFolder(File folder, Node node, ValueCallback<Success> cb) {
 		
 		new SyncFolder(FilesJre.wrap(folder), node, createDefaultConverter).doIt(cb)
+		
+	}
+	
+	def static sync(File folder, Node node, ValueCallback<Success> cb) {
+		
+		
 		
 	}
 	

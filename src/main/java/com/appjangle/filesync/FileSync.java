@@ -13,11 +13,18 @@ import java.io.File;
 
 @SuppressWarnings("all")
 public class FileSync {
+  /**
+   * Synchronized the contents of a folder and a node, without synchronizing sub-folders.
+   */
   public static void syncSingleFolder(final File folder, final Node node, final ValueCallback<Success> cb) {
     FileItem _wrap = FilesJre.wrap(folder);
     ConverterCollection _createDefaultConverter = FileSync.createDefaultConverter();
     SyncFolder _syncFolder = new SyncFolder(_wrap, node, _createDefaultConverter);
     _syncFolder.doIt(cb);
+  }
+  
+  public static Object sync(final File folder, final Node node, final ValueCallback<Success> cb) {
+    return null;
   }
   
   public static ConverterCollection createDefaultConverter() {

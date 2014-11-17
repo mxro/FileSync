@@ -10,7 +10,7 @@ class TestRecursiveSync extends CheckNodesToFilesTemplate{
 	}
 	
 	override protected step1_defineData() {
-		source.append("oh my").append("And in the subfolder")
+		source.append("oh my", "./node1").append("And in the subfolder", "./sub")
 		source.append('Hello').append("Any another foder")
 		
 		val node3 = source.append("node3")
@@ -19,11 +19,13 @@ class TestRecursiveSync extends CheckNodesToFilesTemplate{
 	}
 	
 	override protected step2_assertFiles() {
-		println(result.children)
 		
-		result.getChild("oh_my").exists => true
 		
-		result.getChild("oh_my").getChild("And_in_the_subfolder").exists => true
+		result.getChild("node1").exists => true
+		
+		println(result.getChild("node1").children)
+		
+		result.getChild("node1").getChild("sub").exists => true
 		
 		result.getChild("child1").getChild("b").exists => true
 		

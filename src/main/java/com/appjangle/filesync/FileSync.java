@@ -1,5 +1,6 @@
 package com.appjangle.filesync;
 
+import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.internal.engine.FileUtils;
 import com.appjangle.filesync.internal.engine.SyncFolder;
 import com.appjangle.filesync.internal.engine.convert.ConverterCollection;
@@ -43,27 +44,20 @@ public class FileSync {
           public Boolean apply(final FileItem it) {
             boolean _and = false;
             boolean _and_1 = false;
-            boolean _and_2 = false;
             boolean _isDirectory = it.isDirectory();
             if (!_isDirectory) {
-              _and_2 = false;
-            } else {
-              boolean _visible = it.getVisible();
-              _and_2 = _visible;
-            }
-            if (!_and_2) {
               _and_1 = false;
             } else {
-              String _name = it.getName();
-              boolean _startsWith = _name.startsWith(".");
-              boolean _not = (!_startsWith);
-              _and_1 = _not;
+              boolean _visible = it.getVisible();
+              _and_1 = _visible;
             }
             if (!_and_1) {
               _and = false;
             } else {
-              boolean _hasMetadata = FileSync.fileUtils.hasMetadata(it);
-              _and = _hasMetadata;
+              String _name = it.getName();
+              boolean _startsWith = _name.startsWith(".");
+              boolean _not = (!_startsWith);
+              _and = _not;
             }
             return Boolean.valueOf(_and);
           }
@@ -71,7 +65,8 @@ public class FileSync {
         final Iterable<FileItem> toSync = IterableExtensions.<FileItem>filter(_children, _function);
         List<FileItem> _list = IterableExtensions.<FileItem>toList(toSync);
         final Closure2<FileItem, ValueCallback<Object>> _function_1 = new Closure2<FileItem, ValueCallback<Object>>() {
-          public void apply(final FileItem item, final ValueCallback<Object> itmcb) {
+          public void apply(final FileItem childFolder, final ValueCallback<Object> itmcb) {
+            final Metadata metadata = FileSync.fileUtils.assertMetadata(childFolder);
           }
         };
         final Closure<List<Object>> _function_2 = new Closure<List<Object>>() {

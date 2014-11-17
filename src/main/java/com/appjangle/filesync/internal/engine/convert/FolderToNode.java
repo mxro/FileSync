@@ -27,6 +27,7 @@ import java.util.List;
 import mx.gwtutils.MxroGWTUtils;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Extension;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
 public class FolderToNode implements Converter {
@@ -42,11 +43,36 @@ public class FolderToNode implements Converter {
     String _name = source.getName();
     final String simpleName = MxroGWTUtils.getSimpleName(_name);
     final LinkedList<NetworkOperation> ops = new LinkedList<NetworkOperation>();
+    InputOutput.<String>println("here!!!");
     final NetworkOperation _function = new NetworkOperation() {
       public void apply(final NetworkOperationContext ctx, final ValueCallback<List<Deferred<?>>> opscb) {
         Node _parent = ctx.parent();
         String _name = source.getName();
         final Query baseNode = _parent.appendSafe(_name, ("./" + simpleName));
+        metadata.add(new ItemMetadata() {
+          public String name() {
+            return source.getName();
+          }
+          
+          public Date lastModified() {
+            return source.lastModified();
+          }
+          
+          public String uri() {
+            Node _parent = ctx.parent();
+            String _uri = _parent.uri();
+            String _plus = (_uri + "/");
+            return (_plus + simpleName);
+          }
+          
+          public String hash() {
+            return source.hash();
+          }
+          
+          public String converter() {
+            return FolderToNode.this.toString();
+          }
+        });
         ArrayList<Deferred<?>> _newArrayList = CollectionLiterals.<Deferred<?>>newArrayList(baseNode);
         opscb.onSuccess(_newArrayList);
       }

@@ -30,9 +30,36 @@ class FolderToNode implements Converter {
 		val simpleName = MxroGWTUtils.getSimpleName(source.name)
 		val ops = new LinkedList<NetworkOperation>
 
+		println('here!!!')
+
 		ops.add(
 			[ ctx, opscb |
 				val baseNode = ctx.parent.appendSafe(source.name, "./" + simpleName)
+				
+				metadata.add(new ItemMetadata() {
+					
+					override name() {
+						source.name
+					}
+					
+					override lastModified() {
+						source.lastModified
+					}
+					
+					override uri() {
+						ctx.parent.uri()+"/"+simpleName
+					}
+					
+					override hash() {
+						source.hash
+					}
+					
+					override converter() {
+						FolderToNode.this.toString
+					}
+					
+				})
+				
 				opscb.onSuccess(newArrayList(
 					baseNode
 				))

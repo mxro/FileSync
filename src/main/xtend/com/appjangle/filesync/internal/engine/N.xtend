@@ -25,7 +25,15 @@ class N {
 	}
 	
 	def LABEL(Session session) {
-		return session.link("https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel")
+		return session.link(LABEL)
+	}
+	
+	def static ICON() {
+		return "https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/icon32"
+	}
+	
+	def ICON(Session session) {
+		return session.link(ICON)
 	}
 	
 }

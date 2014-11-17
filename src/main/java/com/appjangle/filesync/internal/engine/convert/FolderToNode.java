@@ -8,6 +8,7 @@ import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.NetworkOperation;
 import com.appjangle.filesync.NetworkOperationContext;
 import com.appjangle.filesync.internal.engine.FileUtils;
+import com.appjangle.filesync.internal.engine.N;
 import com.appjangle.filesync.internal.engine.convert.ConvertUtils;
 import de.mxro.async.Async;
 import de.mxro.async.callbacks.ValueCallback;
@@ -47,32 +48,42 @@ public class FolderToNode implements Converter {
         Node _parent = ctx.parent();
         String _name = source.getName();
         final Query baseNode = _parent.appendSafe(_name, ("./" + simpleName));
-        metadata.add(new ItemMetadata() {
-          public String name() {
-            return source.getName();
-          }
-          
-          public Date lastModified() {
-            return source.lastModified();
-          }
-          
-          public String uri() {
-            Node _parent = ctx.parent();
-            String _uri = _parent.uri();
-            String _plus = (_uri + "/");
-            return (_plus + simpleName);
-          }
-          
-          public String hash() {
-            int _hashCode = simpleName.hashCode();
-            return Integer.valueOf(_hashCode).toString();
-          }
-          
-          public String converter() {
-            return FolderToNode.this.toString();
-          }
-        });
-        ArrayList<Deferred<?>> _newArrayList = CollectionLiterals.<Deferred<?>>newArrayList(baseNode);
+        metadata.add(
+          new ItemMetadata() {
+            public String name() {
+              return source.getName();
+            }
+            
+            public Date lastModified() {
+              return source.lastModified();
+            }
+            
+            public String uri() {
+              Node _parent = ctx.parent();
+              String _uri = _parent.uri();
+              String _plus = (_uri + "/");
+              return (_plus + simpleName);
+            }
+            
+            public String hash() {
+              int _hashCode = simpleName.hashCode();
+              return Integer.valueOf(_hashCode).toString();
+            }
+            
+            public String converter() {
+              return FolderToNode.this.toString();
+            }
+          });
+        String _name_1 = source.getName();
+        Query _appendSafe = baseNode.appendSafe(_name_1, "./.label");
+        Session _session = baseNode.session();
+        Link _LABEL = FolderToNode.this.n.LABEL(_session);
+        Query _appendSafe_1 = _appendSafe.appendSafe(_LABEL);
+        Query _appendSafe_2 = baseNode.appendSafe("https://appjangle.com/files/img/20141020/List.png", "./.icon");
+        Session _session_1 = baseNode.session();
+        Link _ICON = FolderToNode.this.n.ICON(_session_1);
+        Query _appendSafe_3 = _appendSafe_2.appendSafe(_ICON);
+        ArrayList<Deferred<?>> _newArrayList = CollectionLiterals.<Deferred<?>>newArrayList(baseNode, _appendSafe_1, _appendSafe_3);
         opscb.onSuccess(_newArrayList);
       }
     };
@@ -173,4 +184,7 @@ public class FolderToNode implements Converter {
   
   @Extension
   private FileUtils futils = new FileUtils();
+  
+  @Extension
+  private N n = new N();
 }

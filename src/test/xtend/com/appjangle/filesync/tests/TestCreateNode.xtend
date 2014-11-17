@@ -1,8 +1,11 @@
 package com.appjangle.filesync.tests
 
+import com.appjangle.filesync.internal.engine.N
+import de.oehme.xtend.junit.Hamcrest
 import de.oehme.xtend.junit.JUnit
 
 @JUnit
+@Hamcrest
 class TestCreateNode extends CheckFilesToNodesTemplate {
 	
 	override protected step1_defineFiles() {
@@ -10,11 +13,15 @@ class TestCreateNode extends CheckFilesToNodesTemplate {
 	}
 	
 	override protected step2_assertNodes() {
-		println(source.children)
-		println(result.selectAll().get)
+		
+		val node = result.select("./Oh_my_test").get()
+		
+		node => notNullValue
+		
+		node.select(node.session().LABEL).get().value() => equalTo("Oh my test")
 		
 	}
 	
-	
+	extension N n = new N
 	
 }

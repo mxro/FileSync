@@ -13,7 +13,7 @@ import org.junit.internal.ArrayComparisonFailure;
 
 @JUnit
 @SuppressWarnings("all")
-public class TestCreateMultipleNodes extends CheckNodesToFilesTemplate {
+public class TestCreateMultipleFiles extends CheckNodesToFilesTemplate {
   protected void step1_defineData() {
     final Query html = this.source.append("<html></html>", "./html");
     Query _append = html.append("Html Document");
@@ -28,18 +28,18 @@ public class TestCreateMultipleNodes extends CheckNodesToFilesTemplate {
   protected void step2_assertFiles() {
     List<FileItem> _children = this.result.getChildren();
     int _size = _children.size();
-    TestCreateMultipleNodes.<Integer, Integer>operator_doubleArrow(Integer.valueOf(_size), Integer.valueOf(4));
+    TestCreateMultipleFiles.<Integer, Integer>operator_doubleArrow(Integer.valueOf(_size), Integer.valueOf(4));
     boolean _contains = this.result.contains(".filesync-meta");
-    TestCreateMultipleNodes.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_contains), Boolean.valueOf(true));
+    TestCreateMultipleFiles.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_contains), Boolean.valueOf(true));
     boolean _contains_1 = this.result.contains("Html Document.html");
-    TestCreateMultipleNodes.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_contains_1), Boolean.valueOf(true));
+    TestCreateMultipleFiles.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_contains_1), Boolean.valueOf(true));
     FileItem _child = this.result.getChild("Html Document.html");
     String _text = _child.getText();
-    TestCreateMultipleNodes.<String, String>operator_doubleArrow(_text, "<html></html>");
+    TestCreateMultipleFiles.<String, String>operator_doubleArrow(_text, "<html></html>");
     List<FileItem> _children_1 = this.result.getChildren();
     String _string = _children_1.toString();
     boolean _contains_2 = _string.contains("Folder");
-    TestCreateMultipleNodes.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_contains_2), Boolean.valueOf(true));
+    TestCreateMultipleFiles.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_contains_2), Boolean.valueOf(true));
   }
   
   private static void assertArrayEquals(final Object[] expecteds, final Object[] actuals) {

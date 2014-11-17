@@ -26,6 +26,16 @@ public class N {
   }
   
   public Link LABEL(final Session session) {
-    return session.link("https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel");
+    String _LABEL = N.LABEL();
+    return session.link(_LABEL);
+  }
+  
+  public static String ICON() {
+    return "https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/icon32";
+  }
+  
+  public Link ICON(final Session session) {
+    String _ICON = N.ICON();
+    return session.link(_ICON);
   }
 }

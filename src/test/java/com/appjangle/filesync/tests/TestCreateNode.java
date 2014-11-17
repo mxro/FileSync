@@ -1,18 +1,26 @@
 package com.appjangle.filesync.tests;
 
+import com.appjangle.filesync.internal.engine.N;
 import com.appjangle.filesync.tests.CheckFilesToNodesTemplate;
-import de.mxro.file.FileItem;
+import de.oehme.xtend.junit.Hamcrest;
 import de.oehme.xtend.junit.JUnit;
-import io.nextweb.ListQuery;
-import io.nextweb.NodeList;
-import java.util.List;
-import org.eclipse.xtext.xbase.lib.InputOutput;
+import io.nextweb.Link;
+import io.nextweb.Node;
+import io.nextweb.Query;
+import io.nextweb.Session;
+import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
+import org.hamcrest.CoreMatchers;
 import org.hamcrest.Matcher;
+import org.hamcrest.core.AnyOf;
+import org.hamcrest.core.CombinableMatcher;
 import org.junit.Assert;
+import org.junit.Rule;
 import org.junit.internal.ArrayComparisonFailure;
+import org.junit.rules.ErrorCollector;
 
 @JUnit
+@Hamcrest
 @SuppressWarnings("all")
 public class TestCreateNode extends CheckFilesToNodesTemplate {
   protected void step1_defineFiles() {
@@ -20,12 +28,21 @@ public class TestCreateNode extends CheckFilesToNodesTemplate {
   }
   
   protected void step2_assertNodes() {
-    List<FileItem> _children = this.source.getChildren();
-    InputOutput.<List<FileItem>>println(_children);
-    ListQuery _selectAll = this.result.selectAll();
-    NodeList _get = _selectAll.get();
-    InputOutput.<NodeList>println(_get);
+    Query _select = this.result.select("./Oh_my_test");
+    final Node node = _select.get();
+    Matcher<Object> _notNullValue = TestCreateNode.notNullValue();
+    this.<Node>operator_doubleArrow(node, _notNullValue);
+    Session _session = node.session();
+    Link _LABEL = this.n.LABEL(_session);
+    Query _select_1 = node.select(_LABEL);
+    Node _get = _select_1.get();
+    Object _value = _get.value();
+    Matcher<Object> _equalTo = TestCreateNode.<Object>equalTo("Oh my test");
+    this.<Object>operator_doubleArrow(_value, _equalTo);
   }
+  
+  @Extension
+  private N n = new N();
   
   private static void assertArrayEquals(final Object[] expecteds, final Object[] actuals) {
     Assert.assertArrayEquals(expecteds, actuals);
@@ -226,5 +243,177 @@ public class TestCreateNode extends CheckFilesToNodesTemplate {
     		expected.isAssignableFrom(actual)
     	);
     }
+  }
+  
+  @Rule
+  @Extension
+  public final ErrorCollector _errorCollector = new ErrorCollector();
+  
+  private <T extends Object> void operator_doubleArrow(final T object, final Matcher<? super T> matcher) {
+    Assert.assertThat(object, matcher);
+  }
+  
+  private static <T extends Object> Matcher<T> allOf(final Iterable<Matcher<? super T>> matchers) {
+    return CoreMatchers.<T>allOf(matchers);
+  }
+  
+  private static <T extends Object> Matcher<T> allOf(final Matcher<? super T>... matchers) {
+    return CoreMatchers.<T>allOf(matchers);
+  }
+  
+  private static <T extends Object> Matcher<T> allOf(final Matcher<? super T> first, final Matcher<? super T> second) {
+    return CoreMatchers.<T>allOf(first, second);
+  }
+  
+  private static <T extends Object> Matcher<T> allOf(final Matcher<? super T> first, final Matcher<? super T> second, final Matcher<? super T> third) {
+    return CoreMatchers.<T>allOf(first, second, third);
+  }
+  
+  private static <T extends Object> Matcher<T> allOf(final Matcher<? super T> first, final Matcher<? super T> second, final Matcher<? super T> third, final Matcher<? super T> fourth) {
+    return CoreMatchers.<T>allOf(first, second, third, fourth);
+  }
+  
+  private static <T extends Object> Matcher<T> allOf(final Matcher<? super T> first, final Matcher<? super T> second, final Matcher<? super T> third, final Matcher<? super T> fourth, final Matcher<? super T> fifth) {
+    return CoreMatchers.<T>allOf(first, second, third, fourth, fifth);
+  }
+  
+  private static <T extends Object> Matcher<T> allOf(final Matcher<? super T> first, final Matcher<? super T> second, final Matcher<? super T> third, final Matcher<? super T> fourth, final Matcher<? super T> fifth, final Matcher<? super T> sixth) {
+    return CoreMatchers.<T>allOf(first, second, third, fourth, fifth, sixth);
+  }
+  
+  private static <T extends Object> Matcher<T> any(final Class<T> type) {
+    return CoreMatchers.<T>any(type);
+  }
+  
+  private static <T extends Object> AnyOf<T> anyOf(final Iterable<Matcher<? super T>> matchers) {
+    return CoreMatchers.<T>anyOf(matchers);
+  }
+  
+  private static <T extends Object> AnyOf<T> anyOf(final Matcher<? super T>... matchers) {
+    return CoreMatchers.<T>anyOf(matchers);
+  }
+  
+  private static <T extends Object> AnyOf<T> anyOf(final Matcher<T> first, final Matcher<? super T> second) {
+    return CoreMatchers.<T>anyOf(first, second);
+  }
+  
+  private static <T extends Object> AnyOf<T> anyOf(final Matcher<T> first, final Matcher<? super T> second, final Matcher<? super T> third) {
+    return CoreMatchers.<T>anyOf(first, second, third);
+  }
+  
+  private static <T extends Object> AnyOf<T> anyOf(final Matcher<T> first, final Matcher<? super T> second, final Matcher<? super T> third, final Matcher<? super T> fourth) {
+    return CoreMatchers.<T>anyOf(first, second, third, fourth);
+  }
+  
+  private static <T extends Object> AnyOf<T> anyOf(final Matcher<T> first, final Matcher<? super T> second, final Matcher<? super T> third, final Matcher<? super T> fourth, final Matcher<? super T> fifth) {
+    return CoreMatchers.<T>anyOf(first, second, third, fourth, fifth);
+  }
+  
+  private static <T extends Object> AnyOf<T> anyOf(final Matcher<T> first, final Matcher<? super T> second, final Matcher<? super T> third, final Matcher<? super T> fourth, final Matcher<? super T> fifth, final Matcher<? super T> sixth) {
+    return CoreMatchers.<T>anyOf(first, second, third, fourth, fifth, sixth);
+  }
+  
+  private static Matcher<Object> anything() {
+    return CoreMatchers.anything();
+  }
+  
+  private static Matcher<Object> anything(final String description) {
+    return CoreMatchers.anything(description);
+  }
+  
+  private static <LHS extends Object> CombinableMatcher.CombinableBothMatcher<LHS> both(final Matcher<? super LHS> matcher) {
+    return CoreMatchers.<LHS>both(matcher);
+  }
+  
+  private static Matcher<String> containsString(final String substring) {
+    return CoreMatchers.containsString(substring);
+  }
+  
+  private static <T extends Object> Matcher<T> describedAs(final String description, final Matcher<T> matcher, final Object... values) {
+    return CoreMatchers.<T>describedAs(description, matcher, values);
+  }
+  
+  private static <LHS extends Object> CombinableMatcher.CombinableEitherMatcher<LHS> either(final Matcher<? super LHS> matcher) {
+    return CoreMatchers.<LHS>either(matcher);
+  }
+  
+  private static Matcher<String> endsWith(final String suffix) {
+    return CoreMatchers.endsWith(suffix);
+  }
+  
+  private static <T extends Object> Matcher<T> equalTo(final T operand) {
+    return CoreMatchers.<T>equalTo(operand);
+  }
+  
+  private static <U extends Object> Matcher<Iterable<U>> everyItem(final Matcher<U> itemMatcher) {
+    return CoreMatchers.<U>everyItem(itemMatcher);
+  }
+  
+  private static <T extends Object> Matcher<Iterable<? super T>> hasItem(final T item) {
+    return CoreMatchers.<T>hasItem(item);
+  }
+  
+  private static <T extends Object> Matcher<Iterable<? super T>> hasItem(final Matcher<? super T> itemMatcher) {
+    return CoreMatchers.<T>hasItem(itemMatcher);
+  }
+  
+  private static <T extends Object> Matcher<Iterable<T>> hasItems(final T... items) {
+    return CoreMatchers.<T>hasItems(items);
+  }
+  
+  private static <T extends Object> Matcher<Iterable<T>> hasItems(final Matcher<? super T>... itemMatchers) {
+    return CoreMatchers.<T>hasItems(itemMatchers);
+  }
+  
+  private static <T extends Object> Matcher<T> instanceOf(final Class<?> type) {
+    return CoreMatchers.<T>instanceOf(type);
+  }
+  
+  private static <T extends Object> Matcher<T> is(final T value) {
+    return CoreMatchers.<T>is(value);
+  }
+  
+  private static <T extends Object> Matcher<T> is(final Matcher<T> matcher) {
+    return CoreMatchers.<T>is(matcher);
+  }
+  
+  private static <T extends Object> Matcher<T> isA(final Class<T> type) {
+    return CoreMatchers.<T>isA(type);
+  }
+  
+  private static <T extends Object> Matcher<T> not(final Matcher<T> matcher) {
+    return CoreMatchers.<T>not(matcher);
+  }
+  
+  private static <T extends Object> Matcher<T> not(final T value) {
+    return CoreMatchers.<T>not(value);
+  }
+  
+  private static Matcher<Object> notNullValue() {
+    return CoreMatchers.notNullValue();
+  }
+  
+  private static <T extends Object> Matcher<T> notNullValue(final Class<T> type) {
+    return CoreMatchers.<T>notNullValue(type);
+  }
+  
+  private static Matcher<Object> nullValue() {
+    return CoreMatchers.nullValue();
+  }
+  
+  private static <T extends Object> Matcher<T> nullValue(final Class<T> type) {
+    return CoreMatchers.<T>nullValue(type);
+  }
+  
+  private static <T extends Object> Matcher<T> sameInstance(final T target) {
+    return CoreMatchers.<T>sameInstance(target);
+  }
+  
+  private static Matcher<String> startsWith(final String prefix) {
+    return CoreMatchers.startsWith(prefix);
+  }
+  
+  private static <T extends Object> Matcher<T> theInstance(final T target) {
+    return CoreMatchers.<T>theInstance(target);
   }
 }

@@ -24,8 +24,6 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
  */
 @SuppressWarnings("all")
 public class FileToNetworkOperations {
-  private final static boolean ENABLE_LOG = true;
-  
   private final Node node;
   
   private final FileItem folder;

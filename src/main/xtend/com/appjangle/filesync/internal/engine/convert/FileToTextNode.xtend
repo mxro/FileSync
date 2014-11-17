@@ -192,7 +192,7 @@ class FileToTextNode implements Converter {
 		
 		ops.add([ctx|
 			
-			val file = ctx.folder.getChild(fileName)
+			val file = ctx.folder.get(fileName)
 			
 			if (file.text != content) {
 			

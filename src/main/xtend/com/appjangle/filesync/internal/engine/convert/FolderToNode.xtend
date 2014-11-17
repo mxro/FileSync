@@ -27,6 +27,7 @@ class FolderToNode implements Converter {
 		cb.onSuccess(true)
 	}
 
+
 	override createNodes(Metadata metadata, FileItem source, ValueCallback<List<NetworkOperation>> cb) {
 		val simpleName = MxroGWTUtils.getSimpleName(source.name)
 		val ops = new LinkedList<NetworkOperation>
@@ -96,7 +97,7 @@ class FolderToNode implements Converter {
 				val ops = new LinkedList<FileOperation>
 				ops.add(
 					[ ctx |
-						val folderName = rawFolderName.toFileSystemSafeName(false, 20)
+						val folderName = rawFolderName.toFileSystemSafeName(false, 100)
 						ctx.folder.assertFolder(folderName)
 						//file.text = source.value(String)
 						ctx.metadata.add(

@@ -11,12 +11,12 @@ import com.appjangle.filesync.internal.engine.metadata.MetadataImpl
 class FileUtils {
 
 	def saveMetadata(FileItem forFolder, Metadata metadata) {
-		MetadataUtilsJre.saveToFile(metadata, forFolder.getChild(".filesync-meta").getChild("nodes.xml"))
+		MetadataUtilsJre.saveToFile(metadata, forFolder.get(".filesync-meta").get("nodes.xml"))
 	}
 
 	def hasMetadata(FileItem forFolder) {
 
-		forFolder.assertFolder(".filesync-meta").getChild("nodes.xml").exists
+		forFolder.assertFolder(".filesync-meta").get("nodes.xml").exists
 	}
 
 	def assertMetadata(FileItem forFolder) {
@@ -24,7 +24,7 @@ class FileUtils {
 
 		metadataFolder.visible = false;
 
-		if (!metadataFolder.getChild("nodes.xml").exists) {
+		if (!metadataFolder.get("nodes.xml").exists) {
 			val metadataFile = metadataFolder.createFile("nodes.xml")
 			val metadata = new MetadataImpl
 			MetadataUtilsJre.saveToFile(metadata, metadataFile)
@@ -35,7 +35,7 @@ class FileUtils {
 	}
 	
 	def loadMetadata(FileItem forFolder) {
-		MetadataUtilsJre.readFromFile(forFolder.getChild(".filesync-meta").getChild("nodes.xml"))
+		MetadataUtilsJre.readFromFile(forFolder.get(".filesync-meta").get("nodes.xml"))
 	}
 
 	def execute(List<FileOperation> operations, FileItem withFolder, Metadata withMetadata) {

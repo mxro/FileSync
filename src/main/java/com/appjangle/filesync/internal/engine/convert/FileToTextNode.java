@@ -10,6 +10,7 @@ import com.appjangle.filesync.NetworkOperationContext;
 import com.appjangle.filesync.internal.engine.FileUtils;
 import com.appjangle.filesync.internal.engine.N;
 import com.appjangle.filesync.internal.engine.convert.ConvertUtils;
+import com.google.common.base.Objects;
 import de.mxro.async.Async;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
@@ -212,13 +213,46 @@ public class FileToTextNode implements Converter {
   }
   
   public void updateFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method getChild is undefined for the type FileToTextNode"
-      + "\ntext cannot be resolved"
-      + "\n!= cannot be resolved"
-      + "\ntext cannot be resolved"
-      + "\nlastModified cannot be resolved"
-      + "\nhash cannot be resolved");
+    ItemMetadata _get = metadata.get(source);
+    final String fileName = _get.name();
+    final String content = source.<String>value(String.class);
+    final LinkedList<FileOperation> ops = new LinkedList<FileOperation>();
+    final FileOperation _function = new FileOperation() {
+      public void apply(final FileOperationContext ctx) {
+        FileItem _folder = ctx.folder();
+        final FileItem file = _folder.get(fileName);
+        String _text = file.getText();
+        boolean _notEquals = (!Objects.equal(_text, content));
+        if (_notEquals) {
+          file.setText(content);
+          Metadata _metadata = ctx.metadata();
+          _metadata.update(new ItemMetadata() {
+            public String name() {
+              return fileName;
+            }
+            
+            public Date lastModified() {
+              return file.lastModified();
+            }
+            
+            public String uri() {
+              return source.uri();
+            }
+            
+            public String hash() {
+              return file.hash();
+            }
+            
+            public String converter() {
+              Class<? extends FileToTextNode> _class = FileToTextNode.this.getClass();
+              return _class.toString();
+            }
+          });
+        }
+      }
+    };
+    ops.add(_function);
+    cb.onSuccess(ops);
   }
   
   public void removeFiles(final FileItem folder, final Metadata metadata, final ItemMetadata item, final ValueCallback<List<FileOperation>> cb) {

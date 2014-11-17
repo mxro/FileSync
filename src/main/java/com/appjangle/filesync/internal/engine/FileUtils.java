@@ -3,6 +3,8 @@ package com.appjangle.filesync.internal.engine;
 import com.appjangle.filesync.FileOperation;
 import com.appjangle.filesync.FileOperationContext;
 import com.appjangle.filesync.Metadata;
+import com.appjangle.filesync.internal.engine.metadata.MetadataImpl;
+import com.appjangle.filesync.internal.engine.metadata.MetadataUtilsJre;
 import de.mxro.file.FileItem;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.ExclusiveRange;
@@ -10,28 +12,40 @@ import org.eclipse.xtext.xbase.lib.ExclusiveRange;
 @SuppressWarnings("all")
 public class FileUtils {
   public void saveMetadata(final FileItem forFolder, final Metadata metadata) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method getChild is undefined for the type FileUtils"
-      + "\ngetChild cannot be resolved");
+    FileItem _get = forFolder.get(".filesync-meta");
+    FileItem _get_1 = _get.get("nodes.xml");
+    MetadataUtilsJre.saveToFile(metadata, _get_1);
   }
   
-  public Object hasMetadata(final FileItem forFolder) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method getChild is undefined for the type FileUtils"
-      + "\nexists cannot be resolved");
+  public boolean hasMetadata(final FileItem forFolder) {
+    FileItem _assertFolder = forFolder.assertFolder(".filesync-meta");
+    FileItem _get = _assertFolder.get("nodes.xml");
+    return _get.exists();
   }
   
   public Metadata assertMetadata(final FileItem forFolder) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method getChild is undefined for the type FileUtils"
-      + "\nexists cannot be resolved"
-      + "\n! cannot be resolved");
+    Metadata _xblockexpression = null;
+    {
+      final FileItem metadataFolder = forFolder.assertFolder(".filesync-meta");
+      metadataFolder.setVisible(false);
+      FileItem _get = metadataFolder.get("nodes.xml");
+      boolean _exists = _get.exists();
+      boolean _not = (!_exists);
+      if (_not) {
+        final FileItem metadataFile = metadataFolder.createFile("nodes.xml");
+        final MetadataImpl metadata = new MetadataImpl();
+        MetadataUtilsJre.saveToFile(metadata, metadataFile);
+        return metadata;
+      }
+      _xblockexpression = this.loadMetadata(forFolder);
+    }
+    return _xblockexpression;
   }
   
   public Metadata loadMetadata(final FileItem forFolder) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method getChild is undefined for the type FileUtils"
-      + "\ngetChild cannot be resolved");
+    FileItem _get = forFolder.get(".filesync-meta");
+    FileItem _get_1 = _get.get("nodes.xml");
+    return MetadataUtilsJre.readFromFile(_get_1);
   }
   
   public void execute(final List<FileOperation> operations, final FileItem withFolder, final Metadata withMetadata) {

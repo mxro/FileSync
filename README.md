@@ -5,7 +5,7 @@ A Desktop App for Synchronizing Files with Appjangle Data
 
 ## Motivation
 
-
+This tool can be used to work with data stored on Appjangle with various local applications, such as code editors, source code management systems, etc. 
 
 ## Usage
 

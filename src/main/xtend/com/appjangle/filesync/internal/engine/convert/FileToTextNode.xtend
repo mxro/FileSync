@@ -116,6 +116,9 @@ class FileToTextNode implements Converter {
 		ops.add(
 			[ ctx, opscb |
 				metadata.remove(cachedFile.name)
+				
+				
+				
 				ctx.parent.removeSafeRecursive(ctx.session.link(address),
 					opscb.embed [ res |
 						val list = new ArrayList<Deferred<?>>

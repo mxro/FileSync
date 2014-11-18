@@ -13,13 +13,13 @@ class TestCreateHtmlNode extends CheckFilesToNodesTemplate {
 	}
 	
 	override protected step2_assertNodes() {
+		session.commit.get
+		
 		println("here")
 		println (result.selectAll.get)
 		
 		val node = result.select("./My_Document").get
-		
-		
-		
+
 		result.selectAll(session.HTML_VALUE).get.size => equalTo(1)
 		
 		node.value() => equalTo("<html></html>")

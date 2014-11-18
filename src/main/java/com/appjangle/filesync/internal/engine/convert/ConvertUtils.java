@@ -208,9 +208,8 @@ public class ConvertUtils {
           }
         }
       }
-      String _TEXT_VALUE = N.TEXT_VALUE();
-      Link _link_1 = session.link(_TEXT_VALUE);
-      Query _appendSafe_15 = toNode.appendSafe(_link_1);
+      Link _TEXT_VALUE = this.n.TEXT_VALUE(session);
+      Query _appendSafe_15 = toNode.appendSafe(_TEXT_VALUE);
       res.add(_appendSafe_15);
       _xblockexpression = res;
     }

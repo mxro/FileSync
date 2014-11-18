@@ -12,6 +12,7 @@ import io.nextweb.NodeList;
 import io.nextweb.Query;
 import io.nextweb.Session;
 import org.eclipse.xtext.xbase.lib.Extension;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.Matcher;
@@ -34,10 +35,13 @@ public class TestCreateHtmlNode extends CheckFilesToNodesTemplate {
   protected void step2_assertNodes() {
     Query _select = this.result.select("./My_Document");
     final Node node = _select.get();
-    Link _HTML_VALUE = this.n.HTML_VALUE(this.session);
-    ListQuery _selectAll = this.result.selectAll(_HTML_VALUE);
+    ListQuery _selectAll = node.selectAll();
     NodeList _get = _selectAll.get();
-    int _size = _get.size();
+    InputOutput.<NodeList>println(_get);
+    Link _HTML_VALUE = this.n.HTML_VALUE(this.session);
+    ListQuery _selectAll_1 = this.result.selectAll(_HTML_VALUE);
+    NodeList _get_1 = _selectAll_1.get();
+    int _size = _get_1.size();
     Matcher<Integer> _equalTo = TestCreateHtmlNode.<Integer>equalTo(Integer.valueOf(1));
     this.<Integer>operator_doubleArrow(Integer.valueOf(_size), _equalTo);
     Object _value = node.value();
@@ -46,8 +50,8 @@ public class TestCreateHtmlNode extends CheckFilesToNodesTemplate {
     Session _session = node.session();
     Link _LABEL = this.n.LABEL(_session);
     Query _select_1 = node.select(_LABEL);
-    Node _get_1 = _select_1.get();
-    Object _value_1 = _get_1.value();
+    Node _get_2 = _select_1.get();
+    Object _value_1 = _get_2.value();
     Matcher<Object> _equalTo_2 = TestCreateHtmlNode.<Object>equalTo("My Document");
     this.<Object>operator_doubleArrow(_value_1, _equalTo_2);
   }

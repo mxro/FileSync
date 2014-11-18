@@ -27,7 +27,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
-import mx.gwtutils.MxroGWTUtils;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Extension;
 
@@ -63,49 +62,11 @@ public class FileToTextNode implements Converter {
   }
   
   public void createNodes(final Metadata metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {
-    String _name = source.getName();
-    final String nameWithoutExtension = MxroGWTUtils.removeExtension(_name);
-    final String simpleName = MxroGWTUtils.getSimpleName(nameWithoutExtension);
-    final LinkedList<NetworkOperation> ops = new LinkedList<NetworkOperation>();
-    final NetworkOperation _function = new NetworkOperation() {
-      public void apply(final NetworkOperationContext ctx, final ValueCallback<List<Deferred<?>>> opscb) {
-        Node _parent = ctx.parent();
-        String _text = source.getText();
-        final Query baseNode = _parent.appendSafe(_text, ("./" + simpleName));
-        metadata.add(
-          new ItemMetadata() {
-            public String name() {
-              return source.getName();
-            }
-            
-            public Date lastModified() {
-              return source.lastModified();
-            }
-            
-            public String uri() {
-              Node _parent = ctx.parent();
-              String _uri = _parent.uri();
-              String _plus = (_uri + "/");
-              return (_plus + simpleName);
-            }
-            
-            public String hash() {
-              return source.hash();
-            }
-            
-            public String converter() {
-              Class<? extends FileToTextNode> _class = FileToTextNode.this.getClass();
-              return _class.toString();
-            }
-          });
-        Query _appendLabel = FileToTextNode.this.cutils.appendLabel(baseNode, nameWithoutExtension);
-        Query _appendTypesAndIcon = FileToTextNode.this.cutils.appendTypesAndIcon(baseNode, source);
-        ArrayList<Deferred<?>> _newArrayList = CollectionLiterals.<Deferred<?>>newArrayList(baseNode, _appendLabel, _appendTypesAndIcon);
-        opscb.onSuccess(_newArrayList);
-      }
-    };
-    ops.add(_function);
-    cb.onSuccess(ops);
+    throw new Error("Unresolved compilation problems:"
+      + "\nno viable alternative at input \')\'"
+      + "\nType mismatch: cannot convert from ArrayList<Query> to Collection<? super Deferred>"
+      + "\nType mismatch: cannot convert from List<Deferred> to Deferred[]"
+      + "\nType mismatch: cannot convert from boolean to List<Deferred<?>>");
   }
   
   public void update(final Metadata metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {

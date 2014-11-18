@@ -99,8 +99,9 @@ class ConvertUtils {
 		toNode.appendSafe(label, "./.label").appendSafe(toNode.session().LABEL)
 	}
 
-	def appendTypesAndIcon(Query toNode, FileItem source) {
-
+	def List<Deferred> appendTypesAndIcon(Query toNode, FileItem source) {
+		val res = newArrayList
+		
 		val session = toNode.session()
 
 		var ext = source.extension
@@ -109,10 +110,12 @@ class ConvertUtils {
 		
 		if (ext == ".html") {
 			
-			toNode.appendSafe(session.HTML_VALUE)
-			toNode.appendSafe(session.TEMPLATE)
+			res.add(toNode.appendSafe(session.HTML_VALUE))
+			res.add(toNode.appendSafe(session.TEMPLATE))
 			
-			toNode.appendSafe("https://appjangle.com/files/img/20141029/HTML.png", "./.icon").appendSafe(session.ICON)
+			val icon = toNode.appendSafe("https://appjangle.com/files/img/20141029/HTML.png", "./.icon")
+			res.add(icon)
+			res.add(icon.appendSafe(session.ICON))
 				
 		} else if (ext == ".js") {
 			
@@ -146,7 +149,9 @@ class ConvertUtils {
 			
 		}
 		
-		toNode.appendSafe(session.link(N.TEXT_VALUE))
+		res.add(toNode.appendSafe(session.link(N.TEXT_VALUE)))
+		
+	 	res
 		
 	}
 	

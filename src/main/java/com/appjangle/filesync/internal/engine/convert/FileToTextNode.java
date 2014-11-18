@@ -102,8 +102,6 @@ public class FileToTextNode implements Converter {
         res.add(baseNode);
         Query _appendLabel = FileToTextNode.this.cutils.appendLabel(baseNode, nameWithoutExtension);
         res.add(_appendLabel);
-        List<Deferred<?>> _appendTypesAndIcon = FileToTextNode.this.cutils.appendTypesAndIcon(baseNode, source);
-        res.addAll(_appendTypesAndIcon);
         opscb.onSuccess(res);
       }
     };

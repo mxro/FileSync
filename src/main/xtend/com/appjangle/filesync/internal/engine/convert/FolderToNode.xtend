@@ -10,7 +10,6 @@ import com.appjangle.filesync.internal.engine.N
 import de.mxro.async.callbacks.ValueCallback
 import de.mxro.file.FileItem
 import io.nextweb.Node
-import io.nextweb.utils.data.NextwebDataExtension
 import java.util.Date
 import java.util.LinkedList
 import java.util.List
@@ -79,17 +78,7 @@ class FolderToNode implements Converter {
 	}
 
 	override deleteNodes(Metadata metadata, ItemMetadata cachedFile, ValueCallback<List<NetworkOperation>> cb) {
-		val address = cachedFile.uri
-
-		val ops = new LinkedList<NetworkOperation>
-
-		ops.add(
-			[ ctx, opscb |
-				metadata.remove(cachedFile.name)
-				opscb.onSuccess(newArrayList(ctx.parent.removeSafe(ctx.session.link(address))))
-			])
-
-		cb.onSuccess(ops)
+		deleteNodes(metadata, cachedFile, cb)
 	}
 
 	override createFiles(FileItem folder, Metadata metadata, Node source, ValueCallback<List<FileOperation>> cb) {

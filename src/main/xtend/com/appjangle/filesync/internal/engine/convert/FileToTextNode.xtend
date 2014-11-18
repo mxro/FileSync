@@ -9,9 +9,6 @@ import com.appjangle.filesync.internal.engine.FileUtils
 import de.mxro.async.callbacks.ValueCallback
 import de.mxro.file.FileItem
 import io.nextweb.Node
-import io.nextweb.promise.Deferred
-import io.nextweb.utils.data.NextwebDataExtension
-import java.util.ArrayList
 import java.util.LinkedList
 import java.util.List
 import mx.gwtutils.MxroGWTUtils
@@ -107,7 +104,7 @@ class FileToTextNode implements Converter {
 	}
 
 	override deleteNodes(Metadata metadata, ItemMetadata cachedFile, ValueCallback<List<NetworkOperation>> cb) {
-		
+		deleteNodes(metadata, cachedFile, cb)
 	}
 
 	override createFiles(FileItem folder, Metadata metadata, Node source, ValueCallback<List<FileOperation>> cb) {

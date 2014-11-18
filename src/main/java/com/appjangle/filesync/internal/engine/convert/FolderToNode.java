@@ -14,13 +14,11 @@ import de.mxro.async.Async;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
 import de.mxro.fn.Closure;
-import de.mxro.fn.Success;
 import io.nextweb.Link;
 import io.nextweb.Node;
 import io.nextweb.Query;
 import io.nextweb.Session;
 import io.nextweb.promise.Deferred;
-import io.nextweb.promise.NextwebPromise;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
@@ -98,22 +96,7 @@ public class FolderToNode implements Converter {
   }
   
   public void deleteNodes(final Metadata metadata, final ItemMetadata cachedFile, final ValueCallback<List<NetworkOperation>> cb) {
-    final String address = cachedFile.uri();
-    final LinkedList<NetworkOperation> ops = new LinkedList<NetworkOperation>();
-    final NetworkOperation _function = new NetworkOperation() {
-      public void apply(final NetworkOperationContext ctx, final ValueCallback<List<Deferred<?>>> opscb) {
-        String _name = cachedFile.name();
-        metadata.remove(_name);
-        Node _parent = ctx.parent();
-        Session _session = ctx.session();
-        Link _link = _session.link(address);
-        NextwebPromise<Success> _removeSafe = _parent.removeSafe(_link);
-        ArrayList<Deferred<?>> _newArrayList = CollectionLiterals.<Deferred<?>>newArrayList(_removeSafe);
-        opscb.onSuccess(_newArrayList);
-      }
-    };
-    ops.add(_function);
-    cb.onSuccess(ops);
+    this.deleteNodes(metadata, cachedFile, cb);
   }
   
   public void createFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {

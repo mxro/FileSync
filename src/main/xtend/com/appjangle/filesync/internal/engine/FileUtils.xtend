@@ -137,5 +137,44 @@ class FileUtils {
 		return s.substring(0, lastSeparatorIndex + 1)
 				+ filename.substring(0, extensionIndex);
 	}
+	
+	def String getSimpleName(String forName) {
+		val String n = forName;
+		if (n.length() > 0) {
+			var simple = "";
+			for (i : 0..<n.length()) {
+				var boolean found = OneUtilsStrings.isSimpleCharacter(n
+						.charAt(i));
+				if (found) {
+					simple = simple + n.charAt(i);
+				} else {
+					simple = simple + '_';
+				}
+			}
+			return simple;
+		} else
+			return n;
+	}
+	
+	static val char[] allowedCharacters = #{ 'a', 'b', 'c', 'd', 'e',
+            'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
+            's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '_', '-', '1', '2', '3',
+            '4', '5', '6', '7', '8', '9', '0' }
+
+    /**
+     * Returns true if the given character is a 'standard' character. (a-z,
+     * A-Z).
+     * 
+     * @param character
+     * @return
+     */
+    def static boolean isSimpleCharacter( char character) {
+        var boolean found = false;
+        for ( element : allowedCharacters) {
+            found = found || character == element
+                    || character == Character.toUpperCase(element);
+        }
+        return found;
+    }
 
 }

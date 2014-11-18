@@ -6,7 +6,10 @@ import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.internal.engine.metadata.MetadataImpl;
 import com.appjangle.filesync.internal.engine.metadata.MetadataUtilsJre;
 import de.mxro.file.FileItem;
+import java.util.Collections;
 import java.util.List;
+import org.eclipse.xtext.xbase.lib.CollectionLiterals;
+import org.eclipse.xtext.xbase.lib.Conversions;
 import org.eclipse.xtext.xbase.lib.ExclusiveRange;
 
 @SuppressWarnings("all")
@@ -199,5 +202,36 @@ public class FileUtils {
     String _substring_1 = s.substring(0, (lastSeparatorIndex + 1));
     String _substring_2 = filename.substring(0, extensionIndex);
     return (_substring_1 + _substring_2);
+  }
+  
+  public String getSimpleName(final String forName) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field OneUtilsStrings is undefined for the type FileUtils"
+      + "\nisSimpleCharacter cannot be resolved");
+  }
+  
+  private final static char[] allowedCharacters = ((char[])Conversions.unwrapArray(Collections.<Character>unmodifiableSet(CollectionLiterals.<Character>newHashSet(Character.valueOf('a'), Character.valueOf('b'), Character.valueOf('c'), Character.valueOf('d'), Character.valueOf('e'), Character.valueOf('f'), Character.valueOf('g'), Character.valueOf('h'), Character.valueOf('i'), Character.valueOf('j'), Character.valueOf('k'), Character.valueOf('l'), Character.valueOf('m'), Character.valueOf('n'), Character.valueOf('o'), Character.valueOf('p'), Character.valueOf('q'), Character.valueOf('r'), Character.valueOf('s'), Character.valueOf('t'), Character.valueOf('u'), Character.valueOf('v'), Character.valueOf('w'), Character.valueOf('x'), Character.valueOf('y'), Character.valueOf('z'), Character.valueOf('_'), Character.valueOf('-'), Character.valueOf('1'), Character.valueOf('2'), Character.valueOf('3'), Character.valueOf('4'), Character.valueOf('5'), Character.valueOf('6'), Character.valueOf('7'), Character.valueOf('8'), Character.valueOf('9'), Character.valueOf('0'))), char.class));
+  
+  /**
+   * Returns true if the given character is a 'standard' character. (a-z,
+   * A-Z).
+   * 
+   * @param character
+   * @return
+   */
+  public static boolean isSimpleCharacter(final char character) {
+    boolean found = false;
+    for (final char element : FileUtils.allowedCharacters) {
+      boolean _or = false;
+      if ((found || (character == element))) {
+        _or = true;
+      } else {
+        char _upperCase = Character.toUpperCase(element);
+        boolean _equals = (character == _upperCase);
+        _or = _equals;
+      }
+      found = _or;
+    }
+    return found;
   }
 }

@@ -61,28 +61,22 @@ public class NetworkUtils {
                     }
                   };
                   ((Query)qry).catchExceptions(_function_1);
-                  final Closure<Node> _function_2 = new Closure<Node>() {
-                    public void apply(final Node succ) {
-                      itmcb.onSuccess(Success.INSTANCE);
-                    }
-                  };
-                  ((Query)qry).get(_function_2);
                 } else {
                   if ((qry instanceof NextwebPromise<?>)) {
                     final NextwebPromise<Object> safeQry = ((NextwebPromise<Object>) qry);
-                    final ExceptionListener _function_3 = new ExceptionListener() {
+                    final ExceptionListener _function_2 = new ExceptionListener() {
                       public void onFailure(final ExceptionResult er) {
                         Throwable _exception = er.exception();
                         itmcb.onFailure(_exception);
                       }
                     };
-                    safeQry.catchExceptions(_function_3);
-                    final Closure<Object> _function_4 = new Closure<Object>() {
+                    safeQry.catchExceptions(_function_2);
+                    final Closure<Object> _function_3 = new Closure<Object>() {
                       public void apply(final Object succ) {
                         itmcb.onSuccess(Success.INSTANCE);
                       }
                     };
-                    safeQry.get(_function_4);
+                    safeQry.get(_function_3);
                   } else {
                     Class<? extends Deferred> _class = qry.getClass();
                     String _plus = ("Unsupported pending query: " + _class);

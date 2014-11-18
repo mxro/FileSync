@@ -140,19 +140,23 @@ public class FileToTextNode implements Converter {
         Session _session = ctx.session();
         final Link nodeToBeRemoved = _session.link(address);
         final Node parent = ctx.parent();
+        final ArrayList<Deferred<?>> list = new ArrayList<Deferred<?>>();
         Session _session_1 = parent.session();
         Link _link = _session_1.link(parent);
         boolean _hasDirectChild = FileToTextNode.this.nutils.hasDirectChild(_link, nodeToBeRemoved);
         if (_hasDirectChild) {
           final Closure<List<NextwebPromise<Success>>> _function = new Closure<List<NextwebPromise<Success>>>() {
             public void apply(final List<NextwebPromise<Success>> res) {
-              final ArrayList<Deferred<?>> list = new ArrayList<Deferred<?>>();
               list.addAll(res);
               opscb.onSuccess(list);
             }
           };
           ValueCallback<List<NextwebPromise<Success>>> _embed = Async.<List<NextwebPromise<Success>>>embed(opscb, _function);
           FileToTextNode.this.nutils.removeSafeRecursive(parent, nodeToBeRemoved, _embed);
+        } else {
+          NextwebPromise<Success> _removeSafe = parent.removeSafe(nodeToBeRemoved);
+          list.add(_removeSafe);
+          opscb.onSuccess(list);
         }
       }
     };

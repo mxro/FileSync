@@ -116,15 +116,23 @@ class FileToTextNode implements Converter {
 				metadata.remove(cachedFile.name)
 				val nodeToBeRemoved = ctx.session.link(address)
 				val parent = ctx.parent
+				
+				val list = new ArrayList<Deferred<?>>
+				
 				if (parent.session().link(parent).hasDirectChild(nodeToBeRemoved)) {
 
 					parent.removeSafeRecursive(nodeToBeRemoved,
 						opscb.embed [ res |
-							val list = new ArrayList<Deferred<?>>
+							
 							list.addAll(res)
 							opscb.onSuccess(list)
 						])
 
+				} else {
+					
+					list.add(parent.removeSafe(nodeToBeRemoved));
+					opscb.onSuccess(list)
+					
 				}
 			])
 

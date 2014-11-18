@@ -6,6 +6,7 @@ import com.appjangle.filesync.ItemMetadata
 import com.appjangle.filesync.Metadata
 import com.appjangle.filesync.NetworkOperation
 import com.appjangle.filesync.internal.engine.FileUtils
+import com.appjangle.filesync.internal.engine.N
 import de.mxro.async.callbacks.ValueCallback
 import de.mxro.file.FileItem
 import io.nextweb.Node
@@ -80,7 +81,8 @@ class FileToTextNode implements Converter {
 				val res = newArrayList
 				res.add(baseNode)
 				res.add(baseNode.appendLabel(nameWithoutExtension))
-				baseNode.appendSafe("hellpo")
+				baseNode.appendSafe(baseNode.session().HTML_VALUE)
+				
 				//res.addAll(baseNode.appendTypesAndIcon(source))
 				
 				opscb.onSuccess(res )
@@ -218,6 +220,7 @@ class FileToTextNode implements Converter {
 
 	extension ConvertUtils cutils = new ConvertUtils
 	extension FileUtils futils = new FileUtils
+	extension N n = new N
 	
 
 }

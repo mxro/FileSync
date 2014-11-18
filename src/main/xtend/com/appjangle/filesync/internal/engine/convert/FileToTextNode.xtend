@@ -43,9 +43,9 @@ class FileToTextNode implements Converter {
 
 	override createNodes(Metadata metadata, FileItem source, ValueCallback<List<NetworkOperation>> cb) {
 
-		val nameWithoutExtension = MxroGWTUtils.removeExtension(source.name)
+		val nameWithoutExtension = source.name.removeExtension
 
-		val simpleName = MxroGWTUtils.getSimpleName(nameWithoutExtension)
+		val simpleName = nameWithoutExtension.getSimpleName
 
 		val ops = new LinkedList<NetworkOperation>
 

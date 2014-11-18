@@ -143,7 +143,7 @@ class FileUtils {
 		if (n.length() > 0) {
 			var simple = "";
 			for (i : 0..<n.length()) {
-				var boolean found = OneUtilsStrings.isSimpleCharacter(n
+				var boolean found = isSimpleCharacter(n
 						.charAt(i));
 				if (found) {
 					simple = simple + n.charAt(i);

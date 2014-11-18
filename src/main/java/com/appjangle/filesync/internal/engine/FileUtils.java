@@ -205,9 +205,30 @@ public class FileUtils {
   }
   
   public String getSimpleName(final String forName) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field OneUtilsStrings is undefined for the type FileUtils"
-      + "\nisSimpleCharacter cannot be resolved");
+    final String n = forName;
+    int _length = n.length();
+    boolean _greaterThan = (_length > 0);
+    if (_greaterThan) {
+      String simple = "";
+      int _length_1 = n.length();
+      ExclusiveRange _doubleDotLessThan = new ExclusiveRange(0, _length_1, true);
+      for (final Integer i : _doubleDotLessThan) {
+        {
+          char _charAt = n.charAt((i).intValue());
+          boolean found = FileUtils.isSimpleCharacter(_charAt);
+          if (found) {
+            char _charAt_1 = n.charAt((i).intValue());
+            String _plus = (simple + Character.valueOf(_charAt_1));
+            simple = _plus;
+          } else {
+            simple = (simple + "_");
+          }
+        }
+      }
+      return simple;
+    } else {
+      return n;
+    }
   }
   
   private final static char[] allowedCharacters = ((char[])Conversions.unwrapArray(Collections.<Character>unmodifiableSet(CollectionLiterals.<Character>newHashSet(Character.valueOf('a'), Character.valueOf('b'), Character.valueOf('c'), Character.valueOf('d'), Character.valueOf('e'), Character.valueOf('f'), Character.valueOf('g'), Character.valueOf('h'), Character.valueOf('i'), Character.valueOf('j'), Character.valueOf('k'), Character.valueOf('l'), Character.valueOf('m'), Character.valueOf('n'), Character.valueOf('o'), Character.valueOf('p'), Character.valueOf('q'), Character.valueOf('r'), Character.valueOf('s'), Character.valueOf('t'), Character.valueOf('u'), Character.valueOf('v'), Character.valueOf('w'), Character.valueOf('x'), Character.valueOf('y'), Character.valueOf('z'), Character.valueOf('_'), Character.valueOf('-'), Character.valueOf('1'), Character.valueOf('2'), Character.valueOf('3'), Character.valueOf('4'), Character.valueOf('5'), Character.valueOf('6'), Character.valueOf('7'), Character.valueOf('8'), Character.valueOf('9'), Character.valueOf('0'))), char.class));

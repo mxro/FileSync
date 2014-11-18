@@ -28,7 +28,7 @@ class FolderToNode implements Converter {
 
 
 	override createNodes(Metadata metadata, FileItem source, ValueCallback<List<NetworkOperation>> cb) {
-		val simpleName = MxroGWTUtils.getSimpleName(source.name)
+		val simpleName = source.name.getSimpleName
 		val ops = new LinkedList<NetworkOperation>
 
 		ops.add(

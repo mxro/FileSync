@@ -75,10 +75,13 @@ class FileToTextNode implements Converter {
 						}
 
 					})
+					
+					
 				val res = newArrayList
 				res.add(baseNode)
 				res.add(baseNode.appendLabel(nameWithoutExtension))
-				res.addAll(baseNode.appendTypesAndIcon(source))
+				baseNode.appendSafe("hellpo")
+				//res.addAll(baseNode.appendTypesAndIcon(source))
 				
 				opscb.onSuccess(res )
 			])

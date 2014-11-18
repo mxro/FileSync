@@ -106,6 +106,9 @@ public class FileToTextNode implements Converter {
         Session _session = baseNode.session();
         Link _HTML_VALUE = FileToTextNode.this.n.HTML_VALUE(_session);
         baseNode.appendSafe(_HTML_VALUE);
+        Session _session_1 = baseNode.session();
+        Link _COFFEESCRIPT = FileToTextNode.this.n.COFFEESCRIPT(_session_1);
+        baseNode.appendSafe(_COFFEESCRIPT);
         opscb.onSuccess(res);
       }
     };

@@ -149,12 +149,16 @@ public class ConvertUtils {
         boolean _equals_1 = Objects.equal(ext, ".js");
         if (_equals_1) {
           Link _JAVASCRIPT = this.n.JAVASCRIPT(session);
-          toNode.appendSafe(_JAVASCRIPT);
+          Query _appendSafe_3 = toNode.appendSafe(_JAVASCRIPT);
+          res.add(_appendSafe_3);
           Link _TEMPLATE_1 = this.n.TEMPLATE(session);
-          toNode.appendSafe(_TEMPLATE_1);
-          Query _appendSafe_3 = toNode.appendSafe("https://appjangle.com/files/img/20141029/JavaScript.png", "./.icon");
+          Query _appendSafe_4 = toNode.appendSafe(_TEMPLATE_1);
+          res.add(_appendSafe_4);
+          final Query icon_1 = toNode.appendSafe("https://appjangle.com/files/img/20141029/JavaScript.png", "./.icon");
+          res.add(icon_1);
           Link _ICON_1 = this.n.ICON(session);
-          _appendSafe_3.appendSafe(_ICON_1);
+          Query _appendSafe_5 = icon_1.appendSafe(_ICON_1);
+          res.add(_appendSafe_5);
         } else {
           boolean _equals_2 = Objects.equal(ext, ".coffee");
           if (_equals_2) {
@@ -162,9 +166,9 @@ public class ConvertUtils {
             toNode.appendSafe(_COFFEESCRIPT);
             Link _TEMPLATE_2 = this.n.TEMPLATE(session);
             toNode.appendSafe(_TEMPLATE_2);
-            Query _appendSafe_4 = toNode.appendSafe("https://appjangle.com/files/img/20141118/Coffeescript.png", "./.icon");
+            Query _appendSafe_6 = toNode.appendSafe("https://appjangle.com/files/img/20141118/Coffeescript.png", "./.icon");
             Link _ICON_2 = this.n.ICON(session);
-            _appendSafe_4.appendSafe(_ICON_2);
+            _appendSafe_6.appendSafe(_ICON_2);
           } else {
             boolean _equals_3 = Objects.equal(ext, ".css");
             if (_equals_3) {
@@ -172,20 +176,20 @@ public class ConvertUtils {
               toNode.appendSafe(_CSS);
               Link _TEMPLATE_3 = this.n.TEMPLATE(session);
               toNode.appendSafe(_TEMPLATE_3);
-              Query _appendSafe_5 = toNode.appendSafe("https://appjangle.com/files/img/20141118/CSS.png", "./.icon");
+              Query _appendSafe_7 = toNode.appendSafe("https://appjangle.com/files/img/20141118/CSS.png", "./.icon");
               Link _ICON_3 = this.n.ICON(session);
-              _appendSafe_5.appendSafe(_ICON_3);
+              _appendSafe_7.appendSafe(_ICON_3);
             } else {
               boolean _equals_4 = Objects.equal(ext, ".type");
               if (_equals_4) {
                 Link _TYPE = this.n.TYPE(session);
                 toNode.appendSafe(_TYPE);
-                Query _appendSafe_6 = toNode.appendSafe("https://appjangle.com/files/img/20141118/Type.png", "./.icon");
+                Query _appendSafe_8 = toNode.appendSafe("https://appjangle.com/files/img/20141118/Type.png", "./.icon");
                 Link _ICON_4 = this.n.ICON(session);
-                _appendSafe_6.appendSafe(_ICON_4);
-                Query _appendSafe_7 = toNode.appendSafe("");
+                _appendSafe_8.appendSafe(_ICON_4);
+                Query _appendSafe_9 = toNode.appendSafe("");
                 Link _link = session.link("http://slicnet.com/mxrogm/mxrogm/data/stream/2013/12/11/n9");
-                _appendSafe_7.appendSafe(_link);
+                _appendSafe_9.appendSafe(_link);
               }
             }
           }
@@ -193,8 +197,8 @@ public class ConvertUtils {
       }
       String _TEXT_VALUE = N.TEXT_VALUE();
       Link _link_1 = session.link(_TEXT_VALUE);
-      Query _appendSafe_8 = toNode.appendSafe(_link_1);
-      res.add(_appendSafe_8);
+      Query _appendSafe_10 = toNode.appendSafe(_link_1);
+      res.add(_appendSafe_10);
       _xblockexpression = res;
     }
     return _xblockexpression;

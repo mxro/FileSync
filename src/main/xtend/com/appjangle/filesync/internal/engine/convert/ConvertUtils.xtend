@@ -119,10 +119,12 @@ class ConvertUtils {
 				
 		} else if (ext == ".js") {
 			
-			toNode.appendSafe(session.JAVASCRIPT)
-			toNode.appendSafe(session.TEMPLATE)
+			res.add(toNode.appendSafe(session.JAVASCRIPT))
+			res.add(toNode.appendSafe(session.TEMPLATE))
 			
-			toNode.appendSafe("https://appjangle.com/files/img/20141029/JavaScript.png", "./.icon").appendSafe(session.ICON)
+			val icon = toNode.appendSafe("https://appjangle.com/files/img/20141029/JavaScript.png", "./.icon");
+			res.add(icon)
+			res.add(icon.appendSafe(session.ICON))
 			
 		} else if (ext == ".coffee") {
 			

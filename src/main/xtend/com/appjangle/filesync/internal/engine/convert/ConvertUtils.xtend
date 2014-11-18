@@ -111,11 +111,11 @@ class ConvertUtils {
 		if (ext == ".html") {
 			
 			res.add(toNode.appendSafe(session.HTML_VALUE))
-			res.add(toNode.appendSafe(session.TEMPLATE))
+			/*res.add(toNode.appendSafe(session.TEMPLATE))
 			
-			//val icon = toNode.appendSafe("https://appjangle.com/files/img/20141029/HTML.png", "./.icon")
-			//res.add(icon)
-			//res.add(icon.appendSafe(session.ICON))
+			val icon = toNode.appendSafe("https://appjangle.com/files/img/20141029/HTML.png", "./.icon")
+			res.add(icon)
+			res.add(icon.appendSafe(session.ICON))*/
 				
 		} else if (ext == ".js") {
 			

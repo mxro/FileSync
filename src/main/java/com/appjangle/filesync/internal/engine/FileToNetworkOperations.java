@@ -14,10 +14,10 @@ import io.nextweb.Node;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.function.Consumer;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 
 /**
  * Determines operations performed on local files which need to be uploaded to the cloud.
@@ -100,14 +100,14 @@ public class FileToNetworkOperations {
     };
     ValueCallback<List<List<NetworkOperation>>> _embed = Async.<List<List<NetworkOperation>>>embed(cb, _function);
     final Aggregator<List<NetworkOperation>> agg = Async.<List<NetworkOperation>>collect(_size, _embed);
-    final Consumer<String> _function_1 = new Consumer<String>() {
-      public void accept(final String fileName) {
+    final Procedure1<String> _function_1 = new Procedure1<String>() {
+      public void apply(final String fileName) {
         FileItem _get = FileToNetworkOperations.this.folder.get(fileName);
         ValueCallback<List<NetworkOperation>> _createCallback = agg.createCallback();
         FileToNetworkOperations.this.converter.update(FileToNetworkOperations.this.metadata, _get, _createCallback);
       }
     };
-    fileNames.forEach(_function_1);
+    IterableExtensions.<String>forEach(fileNames, _function_1);
   }
   
   public void createOperationsFromRemovedFiles(final List<String> fileNames, final ValueCallback<List<NetworkOperation>> cb) {
@@ -120,14 +120,14 @@ public class FileToNetworkOperations {
     };
     ValueCallback<List<List<NetworkOperation>>> _embed = Async.<List<List<NetworkOperation>>>embed(cb, _function);
     final Aggregator<List<NetworkOperation>> agg = Async.<List<NetworkOperation>>collect(_size, _embed);
-    final Consumer<String> _function_1 = new Consumer<String>() {
-      public void accept(final String fileName) {
+    final Procedure1<String> _function_1 = new Procedure1<String>() {
+      public void apply(final String fileName) {
         ItemMetadata _get = FileToNetworkOperations.this.metadata.get(fileName);
         ValueCallback<List<NetworkOperation>> _createCallback = agg.createCallback();
         FileToNetworkOperations.this.converter.deleteNodes(FileToNetworkOperations.this.metadata, _get, _createCallback);
       }
     };
-    fileNames.forEach(_function_1);
+    IterableExtensions.<String>forEach(fileNames, _function_1);
   }
   
   public void createOperationsFromCreatedFiles(final Iterable<String> fileNames, final ValueCallback<List<NetworkOperation>> cb) {
@@ -140,14 +140,14 @@ public class FileToNetworkOperations {
     };
     ValueCallback<List<List<NetworkOperation>>> _embed = Async.<List<List<NetworkOperation>>>embed(cb, _function);
     final Aggregator<List<NetworkOperation>> agg = Async.<List<NetworkOperation>>collect(_size, _embed);
-    final Consumer<String> _function_1 = new Consumer<String>() {
-      public void accept(final String fileName) {
+    final Procedure1<String> _function_1 = new Procedure1<String>() {
+      public void apply(final String fileName) {
         FileItem _get = FileToNetworkOperations.this.folder.get(fileName);
         ValueCallback<List<NetworkOperation>> _createCallback = agg.createCallback();
         FileToNetworkOperations.this.converter.createNodes(FileToNetworkOperations.this.metadata, _get, _createCallback);
       }
     };
-    fileNames.forEach(_function_1);
+    IterableExtensions.<String>forEach(fileNames, _function_1);
   }
   
   public static ArrayList<String> determineLocallyChangedFiles(final Metadata metadata, final FileItem folder) {

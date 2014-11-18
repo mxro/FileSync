@@ -32,10 +32,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.Consumer;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Extension;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Pair;
+import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 
 @SuppressWarnings("all")
 public class ConvertUtils {
@@ -253,8 +254,8 @@ public class ConvertUtils {
     };
     ValueCallback<List<Object>> _embed = Async.<List<Object>>embed(cb, _function);
     final Aggregator<Object> cbs = Async.<Object>collect(_size, _embed);
-    final Consumer<String> _function_1 = new Consumer<String>() {
-      public void accept(final String labelType) {
+    final Procedure1<String> _function_1 = new Procedure1<String>() {
+      public void apply(final String labelType) {
         Session _session = fromNode.session();
         Link _link = _session.link(labelType);
         final Query qry = fromNode.select(_link);
@@ -281,7 +282,7 @@ public class ConvertUtils {
         qry.get(_function_2);
       }
     };
-    this.labelTypes.forEach(_function_1);
+    IterableExtensions.<String>forEach(this.labelTypes, _function_1);
   }
   
   public static String getNameFromUri(final String uri) {

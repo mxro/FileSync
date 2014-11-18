@@ -1,5 +1,8 @@
 package com.appjangle.filesync.internal.engine.convert
 
+import com.appjangle.filesync.ItemMetadata
+import com.appjangle.filesync.Metadata
+import com.appjangle.filesync.NetworkOperation
 import com.appjangle.filesync.internal.engine.N
 import de.mxro.async.Async
 import de.mxro.async.callbacks.ValueCallback
@@ -7,9 +10,14 @@ import de.mxro.file.FileItem
 import io.nextweb.Link
 import io.nextweb.Node
 import io.nextweb.Query
+import io.nextweb.promise.Deferred
+import java.util.ArrayList
+import java.util.LinkedList
+import java.util.List
 import mx.gwtutils.MxroGWTUtils
 
 import static extension de.mxro.async.Async.embed
+import io.nextweb.utils.data.NextwebDataExtension
 
 class ConvertUtils {
 
@@ -54,7 +62,38 @@ class ConvertUtils {
 
 	}
 
-	
+	def deleteNodes(Metadata metadata, ItemMetadata cachedFile, ValueCallback<List<NetworkOperation>> cb) {
+		val address = cachedFile.uri
+
+		val ops = new LinkedList<NetworkOperation>
+
+		ops.add(
+			[ ctx, opscb |
+				metadata.remove(cachedFile.name)
+				val nodeToBeRemoved = ctx.session.link(address)
+				val parent = ctx.parent
+				
+				val list = new ArrayList<Deferred<?>>
+				
+				if (parent.session().link(parent).hasDirectChild(nodeToBeRemoved)) {
+
+					parent.removeSafeRecursive(nodeToBeRemoved,
+						opscb.embed [ res |
+							
+							list.addAll(res)
+							opscb.onSuccess(list)
+						])
+
+				} else {
+					
+					list.add(parent.removeSafe(nodeToBeRemoved));
+					opscb.onSuccess(list)
+					
+				}
+			])
+
+		cb.onSuccess(ops)
+	}
 
 	def appendLabel(Query toNode, String label) {
 		toNode.appendSafe(label, "./.label").appendSafe(toNode.session().LABEL)
@@ -162,5 +201,5 @@ class ConvertUtils {
 	}
 	
 	extension N n = new N
-
+	extension NextwebDataExtension ext = new NextwebDataExtension
 }

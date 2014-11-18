@@ -107,36 +107,7 @@ class FileToTextNode implements Converter {
 	}
 
 	override deleteNodes(Metadata metadata, ItemMetadata cachedFile, ValueCallback<List<NetworkOperation>> cb) {
-		val address = cachedFile.uri
-
-		val ops = new LinkedList<NetworkOperation>
-
-		ops.add(
-			[ ctx, opscb |
-				metadata.remove(cachedFile.name)
-				val nodeToBeRemoved = ctx.session.link(address)
-				val parent = ctx.parent
-				
-				val list = new ArrayList<Deferred<?>>
-				
-				if (parent.session().link(parent).hasDirectChild(nodeToBeRemoved)) {
-
-					parent.removeSafeRecursive(nodeToBeRemoved,
-						opscb.embed [ res |
-							
-							list.addAll(res)
-							opscb.onSuccess(list)
-						])
-
-				} else {
-					
-					list.add(parent.removeSafe(nodeToBeRemoved));
-					opscb.onSuccess(list)
-					
-				}
-			])
-
-		cb.onSuccess(ops)
+		
 	}
 
 	override createFiles(FileItem folder, Metadata metadata, Node source, ValueCallback<List<FileOperation>> cb) {
@@ -247,6 +218,6 @@ class FileToTextNode implements Converter {
 
 	extension ConvertUtils cutils = new ConvertUtils
 	extension FileUtils futils = new FileUtils
-	extension NextwebDataExtension nutils = new NextwebDataExtension
+	
 
 }

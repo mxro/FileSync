@@ -10,6 +10,7 @@ import com.appjangle.filesync.internal.engine.N
 import de.mxro.async.callbacks.ValueCallback
 import de.mxro.file.FileItem
 import io.nextweb.Node
+import io.nextweb.utils.data.NextwebDataExtension
 import java.util.Date
 import java.util.LinkedList
 import java.util.List
@@ -152,6 +153,6 @@ class FolderToNode implements Converter {
 	extension ConvertUtils utils = new ConvertUtils
 	extension FileUtils futils = new FileUtils
 	extension N n = new N
-	extension NextwebDataExtension nutils = new NextwebDataExtension
+	
 
 }

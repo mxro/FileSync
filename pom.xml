@@ -33,12 +33,9 @@
 			<version>[0.0.1,)</version>
 		</dependency>
 
-		<!-- <dependency>
-			<groupId>com.appjangle.jreinternal</groupId>
-			<artifactId>appjangle-jre-internal</artifactId>
-			<version>[0.0.1,)</version>
-		</dependency>-->
-	
+		<!-- <dependency> <groupId>com.appjangle.jreinternal</groupId> <artifactId>appjangle-jre-internal</artifactId> 
+			<version>[0.0.1,)</version> </dependency> -->
+
 		<dependency>
 			<groupId>com.appjangle.java</groupId>
 			<artifactId>appjangle-jre</artifactId>
@@ -49,6 +46,12 @@
 			<groupId>io.nextweb.utils.data</groupId>
 			<artifactId>nextweb-data-utils</artifactId>
 			<version>[0.0.1,)</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.appjangle.java</groupId>
+					<artifactId>appjangle-jre</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<dependency>

@@ -7,9 +7,7 @@ import de.oehme.xtend.junit.JUnit;
 import io.nextweb.Link;
 import io.nextweb.Query;
 import io.nextweb.Session;
-import java.util.List;
 import org.eclipse.xtext.xbase.lib.Extension;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
 import org.hamcrest.Matcher;
 import org.junit.Assert;
@@ -69,11 +67,8 @@ public class TestRecursiveSync extends CheckNodesToFilesTemplate {
     boolean _isDirectory = _get_11.isDirectory();
     TestRecursiveSync.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_isDirectory), Boolean.valueOf(true));
     FileItem _get_12 = this.result.get("node3");
-    List<FileItem> _children = _get_12.getChildren();
-    InputOutput.<List<FileItem>>println(_children);
-    FileItem _get_13 = this.result.get("node3");
-    FileItem _get_14 = _get_13.get("My Html Document.html");
-    String _text = _get_14.getText();
+    FileItem _get_13 = _get_12.get("My Html Document.html");
+    String _text = _get_13.getText();
     TestRecursiveSync.<String, String>operator_doubleArrow(_text, "<html></html>");
   }
   

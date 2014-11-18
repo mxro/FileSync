@@ -42,7 +42,7 @@ class TestRecursiveSync extends CheckNodesToFilesTemplate{
 		
 		// checking files
 		
-		println(result.get("node3").children)
+		// println(result.get("node3").children)
 		result.get("node3").get("My Html Document.html").text => "<html></html>"
 		
 	}

@@ -112,8 +112,7 @@ class ConvertUtils {
 			toNode.appendSafe(session.HTML_VALUE)
 			toNode.appendSafe(session.TEMPLATE)
 			
-			toNode.appendSafe("https://appjangle.com/files/img/20141029/HTML.png", "./.icon")
-			.appendSafe(session.ICON)
+			toNode.appendSafe("https://appjangle.com/files/img/20141029/HTML.png", "./.icon").appendSafe(session.ICON)
 				
 		} else if (ext == ".js") {
 			

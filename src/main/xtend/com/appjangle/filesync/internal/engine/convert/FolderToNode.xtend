@@ -78,7 +78,7 @@ class FolderToNode implements Converter {
 	}
 
 	override deleteNodes(Metadata metadata, ItemMetadata cachedFile, ValueCallback<List<NetworkOperation>> cb) {
-		n.deleteNodes(metadata, cachedFile, cb)
+		utils.deleteNodes(metadata, cachedFile, cb)
 	}
 
 	override createFiles(FileItem folder, Metadata metadata, Node source, ValueCallback<List<FileOperation>> cb) {

@@ -132,7 +132,7 @@ public class FileToTextNode implements Converter {
   }
   
   public void deleteNodes(final Metadata metadata, final ItemMetadata cachedFile, final ValueCallback<List<NetworkOperation>> cb) {
-    this.deleteNodes(metadata, cachedFile, cb);
+    this.cutils.deleteNodes(metadata, cachedFile, cb);
   }
   
   public void createFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {

@@ -107,7 +107,7 @@ class FileToTextNode implements Converter {
 	}
 
 	override deleteNodes(Metadata metadata, ItemMetadata cachedFile, ValueCallback<List<NetworkOperation>> cb) {
-		deleteNodes(metadata, cachedFile, cb)
+		cutils.deleteNodes(metadata, cachedFile, cb)
 	}
 
 	override createFiles(FileItem folder, Metadata metadata, Node source, ValueCallback<List<FileOperation>> cb) {

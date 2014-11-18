@@ -96,11 +96,7 @@ public class FolderToNode implements Converter {
   }
   
   public void deleteNodes(final Metadata metadata, final ItemMetadata cachedFile, final ValueCallback<List<NetworkOperation>> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nInvalid number of arguments. The method deleteNodes(Metadata, ItemMetadata, ValueCallback<List<NetworkOperation>>) is not applicable for the arguments (N,Metadata,ItemMetadata,ValueCallback<List<NetworkOperation>>)"
-      + "\nType mismatch: cannot convert from N to Metadata"
-      + "\nType mismatch: cannot convert from Metadata to ItemMetadata"
-      + "\nType mismatch: cannot convert from ItemMetadata to ValueCallback<List<NetworkOperation>>");
+    this.utils.deleteNodes(metadata, cachedFile, cb);
   }
   
   public void createFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {

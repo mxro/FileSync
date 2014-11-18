@@ -24,6 +24,10 @@ class N {
 		"https://u1.linnk.it/6wbnoq/Types/aTextValue"
 	}
 	
+	def  TEXT_VALUE(Session session) {
+		session.link(TEXT_VALUE)
+	}
+	
 	def static LABEL() {
 		"https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel"
 	}

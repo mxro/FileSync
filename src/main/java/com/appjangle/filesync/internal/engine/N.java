@@ -26,6 +26,11 @@ public class N {
     return "https://u1.linnk.it/6wbnoq/Types/aTextValue";
   }
   
+  public Link TEXT_VALUE(final Session session) {
+    String _TEXT_VALUE = N.TEXT_VALUE();
+    return session.link(_TEXT_VALUE);
+  }
+  
   public static String LABEL() {
     return "https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel";
   }

@@ -18,6 +18,8 @@ import mx.gwtutils.MxroGWTUtils
 
 import static extension de.mxro.async.Async.embed
 import io.nextweb.utils.data.NextwebDataExtension
+import io.nextweb.Entity
+import io.nextweb.Session
 
 class ConvertUtils {
 
@@ -111,11 +113,11 @@ class ConvertUtils {
 		if (ext == ".html") {
 			
 			res.add(toNode.appendSafe(session.HTML_VALUE))
-			/*res.add(toNode.appendSafe(session.TEMPLATE))
+			res.add(toNode.appendSafe(session.TEMPLATE))
 			
 			val icon = toNode.appendSafe("https://appjangle.com/files/img/20141029/HTML.png", "./.icon")
 			res.add(icon)
-			res.add(icon.appendSafe(session.ICON))*/
+			res.add(icon.appendSafe(session.ICON))
 				
 		} else if (ext == ".js") {
 			
@@ -164,11 +166,13 @@ class ConvertUtils {
 			
 		}
 		
-		res.add(toNode.appendSafe(session.link(N.TEXT_VALUE)))
+		res.add(toNode.appendSafe(session.TEXT_VALUE))
 		
 	 	res
 		
 	}
+	
+	
 	
 
 	public static val NO_VALUE = new Object()

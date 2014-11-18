@@ -32,7 +32,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
-import mx.gwtutils.MxroGWTUtils;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Pair;
@@ -44,12 +43,9 @@ public class ConvertUtils {
   private final Map<String, String> textValueExtensions = Collections.<String, String>unmodifiableMap(CollectionLiterals.<String, String>newHashMap(Pair.<String, String>of(N.HTML_VALUE(), ".html"), Pair.<String, String>of(N.TYPE(), ".type"), Pair.<String, String>of(N.CSS(), ".css"), Pair.<String, String>of(N.JAVASCRIPT(), ".js"), Pair.<String, String>of(N.COFFEESCRIPT(), ".coffee")));
   
   public boolean isTextValue(final String fileName) {
-    boolean _xblockexpression = false;
-    {
-      final String ext = MxroGWTUtils.getExtension(fileName);
-      _xblockexpression = this.textValueExtensions.containsValue(("." + ext));
-    }
-    return _xblockexpression;
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field MxroGWTUtils is undefined for the type ConvertUtils"
+      + "\ngetExtension cannot be resolved");
   }
   
   public boolean isTextType(final Link link) {

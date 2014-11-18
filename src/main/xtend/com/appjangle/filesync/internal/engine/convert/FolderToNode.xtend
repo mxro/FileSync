@@ -13,7 +13,6 @@ import io.nextweb.Node
 import java.util.Date
 import java.util.LinkedList
 import java.util.List
-import mx.gwtutils.MxroGWTUtils
 
 import static extension de.mxro.async.Async.embed
 

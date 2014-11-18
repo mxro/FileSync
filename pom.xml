@@ -40,7 +40,7 @@
 		</dependency>-->
 	
 		<dependency>
-			<groupId>com.appjangle.jre</groupId>
+			<groupId>com.appjangle.java</groupId>
 			<artifactId>appjangle-jre</artifactId>
 			<version>0.3.6</version>
 		</dependency>
@@ -254,8 +254,6 @@
 			</resource>
 
 		</resources>
-
-
 
 	</build>
 

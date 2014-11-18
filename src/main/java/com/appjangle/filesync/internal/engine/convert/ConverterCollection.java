@@ -5,8 +5,12 @@ import com.appjangle.filesync.FileOperation;
 import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.NetworkOperation;
+import com.appjangle.filesync.internal.engine.convert.ConvertUtils;
+import de.mxro.async.Async;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
+import de.mxro.fn.Closure;
+import de.mxro.fn.Closure2;
 import io.nextweb.Node;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,26 +48,46 @@ public class ConverterCollection implements Converter {
   }
   
   public void worksOn(final Node node, final ValueCallback<Boolean> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method forEach is undefined for the type ConverterCollection"
-      + "\nThe method embed is undefined for the type ConverterCollection"
-      + "\nThe method contains is undefined for the type ConverterCollection"
-      + "\nInvalid number of arguments. The method worksOn(Node, ValueCallback<Boolean>) is not applicable for the arguments (Node,Node,Object)"
-      + "\nType mismatch: cannot convert from Node to ValueCallback<Boolean>"
-      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or put the closures into a typed context."
-      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or put the closures into a typed context.");
+    final Closure2<Converter, ValueCallback<Boolean>> _function = new Closure2<Converter, ValueCallback<Boolean>>() {
+      public void apply(final Converter c, final ValueCallback<Boolean> itmcb) {
+        c.worksOn(node, itmcb);
+      }
+    };
+    final Closure<List<Boolean>> _function_1 = new Closure<List<Boolean>>() {
+      public void apply(final List<Boolean> res) {
+        boolean _contains = res.contains(Boolean.valueOf(true));
+        cb.onSuccess(Boolean.valueOf(_contains));
+      }
+    };
+    ValueCallback<List<Boolean>> _embed = Async.<List<Boolean>>embed(cb, _function_1);
+    Async.<Converter, Boolean>forEach(this.converters, _function, _embed);
   }
   
-  private Object findConverter(final FileItem forFileItem, final ValueCallback<Converter> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method forEach is undefined for the type ConverterCollection"
-      + "\nThe method onSuccess is undefined for the type ConverterCollection"
-      + "\nThe method onSuccess is undefined for the type ConverterCollection"
-      + "\nThe method embed is undefined for the type ConverterCollection"
-      + "\nType mismatch: cannot convert from FileItem to ValueCallback<Boolean>"
-      + "\nType mismatch: cannot convert from void to boolean"
-      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or put the closures into a typed context."
-      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or put the closures into a typed context.");
+  private void findConverter(final FileItem forFileItem, final ValueCallback<Converter> cb) {
+    final Closure2<Converter, ValueCallback<Object>> _function = new Closure2<Converter, ValueCallback<Object>>() {
+      public void apply(final Converter c, final ValueCallback<Object> itmcb) {
+        boolean _worksOn = c.worksOn(forFileItem);
+        if (_worksOn) {
+          itmcb.onSuccess(c);
+        } else {
+          itmcb.onSuccess(ConvertUtils.NO_VALUE);
+        }
+      }
+    };
+    final Closure<List<Object>> _function_1 = new Closure<List<Object>>() {
+      public void apply(final List<Object> res) {
+        for (final Object item : res) {
+          if ((item instanceof Converter)) {
+            cb.onSuccess(((Converter)item));
+            return;
+          }
+        }
+        Exception _exception = new Exception(("Cannot find converter for " + forFileItem));
+        cb.onFailure(_exception);
+      }
+    };
+    ValueCallback<List<Object>> _embed = Async.<List<Object>>embed(cb, _function_1);
+    Async.<Converter, Object>forEach(this.converters, _function, _embed);
   }
   
   private void findConverter(final ItemMetadata forItem, final ValueCallback<Converter> cb) {
@@ -87,74 +111,95 @@ public class ConverterCollection implements Converter {
     throw new RuntimeException(_plus_3);
   }
   
-  private Object findConverter(final Node forNode, final ValueCallback<Converter> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method forEach is undefined for the type ConverterCollection"
-      + "\nThe method embed is undefined for the type ConverterCollection"
-      + "\nThe method onSuccess is undefined for the type ConverterCollection"
-      + "\nThe method onSuccess is undefined for the type ConverterCollection"
-      + "\nThe method embed is undefined for the type ConverterCollection"
-      + "\nInvalid number of arguments. The method worksOn(Node, ValueCallback<Boolean>) is not applicable for the arguments (Node,Node,Object)"
-      + "\nType mismatch: cannot convert from Node to ValueCallback<Boolean>"
-      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or put the closures into a typed context."
-      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or put the closures into a typed context."
-      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or put the closures into a typed context.");
+  private void findConverter(final Node forNode, final ValueCallback<Converter> cb) {
+    final Closure2<Converter, ValueCallback<Object>> _function = new Closure2<Converter, ValueCallback<Object>>() {
+      public void apply(final Converter c, final ValueCallback<Object> itmcb) {
+        final Closure<Boolean> _function = new Closure<Boolean>() {
+          public void apply(final Boolean res) {
+            if ((res).booleanValue()) {
+              itmcb.onSuccess(c);
+            } else {
+              itmcb.onSuccess(ConvertUtils.NO_VALUE);
+            }
+          }
+        };
+        ValueCallback<Boolean> _embed = Async.<Boolean>embed(itmcb, _function);
+        c.worksOn(forNode, _embed);
+      }
+    };
+    final Closure<List<Object>> _function_1 = new Closure<List<Object>>() {
+      public void apply(final List<Object> res) {
+        for (final Object item : res) {
+          if ((item instanceof Converter)) {
+            cb.onSuccess(((Converter)item));
+            return;
+          }
+        }
+        Exception _exception = new Exception(("Cannot find converter for " + forNode));
+        cb.onFailure(_exception);
+      }
+    };
+    ValueCallback<List<Object>> _embed = Async.<List<Object>>embed(cb, _function_1);
+    Async.<Converter, Object>forEach(this.converters, _function, _embed);
   }
   
   public void createNodes(final Metadata metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method embed is undefined for the type ConverterCollection"
-      + "\nInvalid number of arguments. The method createNodes(Metadata, FileItem, ValueCallback<List<NetworkOperation>>) is not applicable for the arguments (Metadata,Metadata,FileItem,ValueCallback<List<NetworkOperation>>)"
-      + "\nType mismatch: cannot convert from Metadata to FileItem"
-      + "\nType mismatch: cannot convert from FileItem to ValueCallback<List<NetworkOperation>>"
-      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or put the closures into a typed context.");
+    final Closure<Converter> _function = new Closure<Converter>() {
+      public void apply(final Converter converter) {
+        converter.createNodes(metadata, source, cb);
+      }
+    };
+    ValueCallback<Converter> _embed = Async.<Converter>embed(cb, _function);
+    this.findConverter(source, _embed);
   }
   
   public void update(final Metadata metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method embed is undefined for the type ConverterCollection"
-      + "\nInvalid number of arguments. The method update(Metadata, FileItem, ValueCallback<List<NetworkOperation>>) is not applicable for the arguments (Metadata,Metadata,FileItem,ValueCallback<List<NetworkOperation>>)"
-      + "\nType mismatch: cannot convert from Metadata to FileItem"
-      + "\nType mismatch: cannot convert from FileItem to ValueCallback<List<NetworkOperation>>"
-      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or put the closures into a typed context.");
+    final Closure<Converter> _function = new Closure<Converter>() {
+      public void apply(final Converter converter) {
+        converter.update(metadata, source, cb);
+      }
+    };
+    ValueCallback<Converter> _embed = Async.<Converter>embed(cb, _function);
+    this.findConverter(source, _embed);
   }
   
   public void deleteNodes(final Metadata metadata, final ItemMetadata cachedFile, final ValueCallback<List<NetworkOperation>> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method embed is undefined for the type ConverterCollection"
-      + "\nInvalid number of arguments. The method deleteNodes(Metadata, ItemMetadata, ValueCallback<List<NetworkOperation>>) is not applicable for the arguments (Metadata,Metadata,ItemMetadata,ValueCallback<List<NetworkOperation>>)"
-      + "\nType mismatch: cannot convert from Metadata to ItemMetadata"
-      + "\nType mismatch: cannot convert from ItemMetadata to ValueCallback<List<NetworkOperation>>"
-      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or put the closures into a typed context.");
+    final Closure<Converter> _function = new Closure<Converter>() {
+      public void apply(final Converter converter) {
+        converter.deleteNodes(metadata, cachedFile, cb);
+      }
+    };
+    ValueCallback<Converter> _embed = Async.<Converter>embed(cb, _function);
+    this.findConverter(cachedFile, _embed);
   }
   
   public void createFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method embed is undefined for the type ConverterCollection"
-      + "\nInvalid number of arguments. The method createFiles(FileItem, Metadata, Node, ValueCallback<List<FileOperation>>) is not applicable for the arguments (FileItem,FileItem,Metadata,Node,ValueCallback<List<FileOperation>>)"
-      + "\nType mismatch: cannot convert from FileItem to Metadata"
-      + "\nType mismatch: cannot convert from Metadata to Node"
-      + "\nType mismatch: cannot convert from Node to ValueCallback<List<FileOperation>>"
-      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or put the closures into a typed context.");
+    final Closure<Converter> _function = new Closure<Converter>() {
+      public void apply(final Converter converter) {
+        converter.createFiles(folder, metadata, source, cb);
+      }
+    };
+    ValueCallback<Converter> _embed = Async.<Converter>embed(cb, _function);
+    this.findConverter(source, _embed);
   }
   
   public void updateFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method embed is undefined for the type ConverterCollection"
-      + "\nInvalid number of arguments. The method updateFiles(FileItem, Metadata, Node, ValueCallback<List<FileOperation>>) is not applicable for the arguments (FileItem,FileItem,Metadata,Node,ValueCallback<List<FileOperation>>)"
-      + "\nType mismatch: cannot convert from FileItem to Metadata"
-      + "\nType mismatch: cannot convert from Metadata to Node"
-      + "\nType mismatch: cannot convert from Node to ValueCallback<List<FileOperation>>"
-      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or put the closures into a typed context.");
+    final Closure<Converter> _function = new Closure<Converter>() {
+      public void apply(final Converter converter) {
+        converter.updateFiles(folder, metadata, source, cb);
+      }
+    };
+    ValueCallback<Converter> _embed = Async.<Converter>embed(cb, _function);
+    this.findConverter(source, _embed);
   }
   
   public void removeFiles(final FileItem folder, final Metadata metadata, final ItemMetadata item, final ValueCallback<List<FileOperation>> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method embed is undefined for the type ConverterCollection"
-      + "\nInvalid number of arguments. The method removeFiles(FileItem, Metadata, ItemMetadata, ValueCallback<List<FileOperation>>) is not applicable for the arguments (FileItem,FileItem,Metadata,ItemMetadata,ValueCallback<List<FileOperation>>)"
-      + "\nType mismatch: cannot convert from FileItem to Metadata"
-      + "\nType mismatch: cannot convert from Metadata to ItemMetadata"
-      + "\nType mismatch: cannot convert from ItemMetadata to ValueCallback<List<FileOperation>>"
-      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or put the closures into a typed context.");
+    final Closure<Converter> _function = new Closure<Converter>() {
+      public void apply(final Converter converter) {
+        converter.removeFiles(folder, metadata, item, cb);
+      }
+    };
+    ValueCallback<Converter> _embed = Async.<Converter>embed(cb, _function);
+    this.findConverter(item, _embed);
   }
 }

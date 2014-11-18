@@ -3,6 +3,15 @@ FileSync
 
 A Desktop App for Synchronizing Files with Appjangle Data
 
+## Usage
+
+   Session session = Nextweb.createSession()
+   
+   Node node = session.link("https://...").get()
+   
+   FileSync.sync(new File("/tmp/sync"), node)
+
+
 ## Planned Features
 
 - Keep a map with file hashes mapped to URIs of files they belong to. Look up this cache whenever 

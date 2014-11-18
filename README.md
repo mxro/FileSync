@@ -3,14 +3,17 @@ FileSync
 
 A Desktop App for Synchronizing Files with Appjangle Data
 
+## Motivation
+
+
+
 ## Usage
 
-   Session session = Nextweb.createSession()
+   Session session = Nextweb.createSession();
    
-   Node node = session.link("https://...").get()
+   Node node = session.link("https://...").get();
    
-   FileSync.sync(new File("/tmp/sync"), node)
-
+   FileSyncJre.sync(new File("/tmp/sync"), node);
 
 ## Planned Features
 

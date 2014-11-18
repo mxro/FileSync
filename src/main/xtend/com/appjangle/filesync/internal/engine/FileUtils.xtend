@@ -96,5 +96,15 @@ class FileUtils {
 		}
 		return result;
 	}
+	
+	def  String getExtension(String name) {
+
+        val int idx = name.lastIndexOf(".");
+        if (idx < 0) {
+            return "";
+        }
+
+        return name.substring(idx + 1);
+    }
 
 }

@@ -4,6 +4,7 @@ import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.NetworkOperation;
 import com.appjangle.filesync.NetworkOperationContext;
+import com.appjangle.filesync.internal.engine.FileUtils;
 import com.appjangle.filesync.internal.engine.N;
 import com.google.common.base.Objects;
 import de.mxro.async.Aggregator;
@@ -43,9 +44,12 @@ public class ConvertUtils {
   private final Map<String, String> textValueExtensions = Collections.<String, String>unmodifiableMap(CollectionLiterals.<String, String>newHashMap(Pair.<String, String>of(N.HTML_VALUE(), ".html"), Pair.<String, String>of(N.TYPE(), ".type"), Pair.<String, String>of(N.CSS(), ".css"), Pair.<String, String>of(N.JAVASCRIPT(), ".js"), Pair.<String, String>of(N.COFFEESCRIPT(), ".coffee")));
   
   public boolean isTextValue(final String fileName) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field MxroGWTUtils is undefined for the type ConvertUtils"
-      + "\ngetExtension cannot be resolved");
+    boolean _xblockexpression = false;
+    {
+      final String ext = this.futils.getExtension(fileName);
+      _xblockexpression = this.textValueExtensions.containsValue(("." + ext));
+    }
+    return _xblockexpression;
   }
   
   public boolean isTextType(final Link link) {
@@ -291,4 +295,7 @@ public class ConvertUtils {
   
   @Extension
   private NextwebDataExtension ext = new NextwebDataExtension();
+  
+  @Extension
+  private FileUtils futils = new FileUtils();
 }

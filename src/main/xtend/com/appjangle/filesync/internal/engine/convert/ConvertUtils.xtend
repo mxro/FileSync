@@ -3,6 +3,7 @@ package com.appjangle.filesync.internal.engine.convert
 import com.appjangle.filesync.ItemMetadata
 import com.appjangle.filesync.Metadata
 import com.appjangle.filesync.NetworkOperation
+import com.appjangle.filesync.internal.engine.FileUtils
 import com.appjangle.filesync.internal.engine.N
 import de.mxro.async.Async
 import de.mxro.async.callbacks.ValueCallback
@@ -11,15 +12,12 @@ import io.nextweb.Link
 import io.nextweb.Node
 import io.nextweb.Query
 import io.nextweb.promise.Deferred
+import io.nextweb.utils.data.NextwebDataExtension
 import java.util.ArrayList
 import java.util.LinkedList
 import java.util.List
 
-
 import static extension de.mxro.async.Async.embed
-import io.nextweb.utils.data.NextwebDataExtension
-import io.nextweb.Entity
-import io.nextweb.Session
 
 class ConvertUtils {
 
@@ -34,7 +32,7 @@ class ConvertUtils {
 	}
 
 	def isTextValue(String fileName) {
-		val ext = MxroGWTUtils.getExtension(fileName)
+		val ext = fileName.getExtension
 
 		textValueExtensions.containsValue('.'+ext)
 	}
@@ -225,4 +223,5 @@ class ConvertUtils {
 	
 	extension N n = new N
 	extension NextwebDataExtension ext = new NextwebDataExtension
+	extension FileUtils futils = new FileUtils
 }

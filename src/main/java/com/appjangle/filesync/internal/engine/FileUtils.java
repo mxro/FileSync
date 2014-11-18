@@ -164,4 +164,12 @@ public class FileUtils {
     }
     return result;
   }
+  
+  public String getExtension(final String name) {
+    final int idx = name.lastIndexOf(".");
+    if ((idx < 0)) {
+      return "";
+    }
+    return name.substring((idx + 1));
+  }
 }

@@ -10,11 +10,9 @@ import com.appjangle.filesync.NetworkOperationContext;
 import com.appjangle.filesync.internal.engine.FileUtils;
 import com.appjangle.filesync.internal.engine.convert.ConvertUtils;
 import com.google.common.base.Objects;
-import de.mxro.async.Async;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
 import de.mxro.fn.Closure;
-import de.mxro.fn.Success;
 import io.nextweb.Link;
 import io.nextweb.LinkList;
 import io.nextweb.LinkListQuery;
@@ -22,7 +20,6 @@ import io.nextweb.Node;
 import io.nextweb.Query;
 import io.nextweb.Session;
 import io.nextweb.promise.Deferred;
-import io.nextweb.promise.NextwebPromise;
 import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
 import io.nextweb.utils.data.NextwebDataExtension;
@@ -131,79 +128,17 @@ public class FileToTextNode implements Converter {
   }
   
   public void deleteNodes(final Metadata metadata, final ItemMetadata cachedFile, final ValueCallback<List<NetworkOperation>> cb) {
-    final String address = cachedFile.uri();
-    final LinkedList<NetworkOperation> ops = new LinkedList<NetworkOperation>();
-    final NetworkOperation _function = new NetworkOperation() {
-      public void apply(final NetworkOperationContext ctx, final ValueCallback<List<Deferred<?>>> opscb) {
-        String _name = cachedFile.name();
-        metadata.remove(_name);
-        Node _parent = ctx.parent();
-        Session _session = ctx.session();
-        Link _link = _session.link(address);
-        final Closure<List<NextwebPromise<Success>>> _function = new Closure<List<NextwebPromise<Success>>>() {
-          public void apply(final List<NextwebPromise<Success>> res) {
-            final ArrayList<Deferred<?>> list = new ArrayList<Deferred<?>>();
-            list.addAll(res);
-            opscb.onSuccess(list);
-          }
-        };
-        ValueCallback<List<NextwebPromise<Success>>> _embed = Async.<List<NextwebPromise<Success>>>embed(opscb, _function);
-        FileToTextNode.this.nutils.removeSafeRecursive(_parent, _link, _embed);
-      }
-    };
-    ops.add(_function);
-    cb.onSuccess(ops);
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method embed is undefined for the type FileToTextNode"
+      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or put the closures into a typed context.");
   }
   
   public void createFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
-    final Closure<String> _function = new Closure<String>() {
-      public void apply(final String ext) {
-        final Closure<String> _function = new Closure<String>() {
-          public void apply(final String rawFileName) {
-            final String fileName = FileToTextNode.this.futils.toFileSystemSafeName(rawFileName, false, 100);
-            final LinkedList<FileOperation> ops = new LinkedList<FileOperation>();
-            final FileOperation _function = new FileOperation() {
-              public void apply(final FileOperationContext ctx) {
-                FileItem _folder = ctx.folder();
-                final FileItem file = _folder.createFile(fileName);
-                String _value = source.<String>value(String.class);
-                file.setText(_value);
-                Metadata _metadata = ctx.metadata();
-                _metadata.add(
-                  new ItemMetadata() {
-                    public String name() {
-                      return fileName;
-                    }
-                    
-                    public Date lastModified() {
-                      return file.lastModified();
-                    }
-                    
-                    public String uri() {
-                      return source.uri();
-                    }
-                    
-                    public String hash() {
-                      return file.hash();
-                    }
-                    
-                    public String converter() {
-                      Class<? extends FileToTextNode> _class = FileToTextNode.this.getClass();
-                      return _class.toString();
-                    }
-                  });
-              }
-            };
-            ops.add(_function);
-            cb.onSuccess(ops);
-          }
-        };
-        ValueCallback<String> _embed = Async.<String>embed(cb, _function);
-        FileToTextNode.this.cutils.getFileName(source, folder, ext, _embed);
-      }
-    };
-    ValueCallback<String> _embed = Async.<String>embed(cb, _function);
-    this.cutils.getFileExtension(source, _embed);
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method embed is undefined for the type FileToTextNode"
+      + "\nThe method embed is undefined for the type FileToTextNode"
+      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or put the closures into a typed context."
+      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or put the closures into a typed context.");
   }
   
   public void updateFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {

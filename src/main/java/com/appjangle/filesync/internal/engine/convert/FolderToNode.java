@@ -10,10 +10,8 @@ import com.appjangle.filesync.NetworkOperationContext;
 import com.appjangle.filesync.internal.engine.FileUtils;
 import com.appjangle.filesync.internal.engine.N;
 import com.appjangle.filesync.internal.engine.convert.ConvertUtils;
-import de.mxro.async.Async;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
-import de.mxro.fn.Closure;
 import de.mxro.fn.Success;
 import io.nextweb.Link;
 import io.nextweb.Node;
@@ -117,47 +115,9 @@ public class FolderToNode implements Converter {
   }
   
   public void createFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
-    final Closure<String> _function = new Closure<String>() {
-      public void apply(final String rawFolderName) {
-        final LinkedList<FileOperation> ops = new LinkedList<FileOperation>();
-        final FileOperation _function = new FileOperation() {
-          public void apply(final FileOperationContext ctx) {
-            final String folderName = FolderToNode.this.futils.toFileSystemSafeName(rawFolderName, false, 100);
-            FileItem _folder = ctx.folder();
-            _folder.assertFolder(folderName);
-            Metadata _metadata = ctx.metadata();
-            _metadata.add(
-              new ItemMetadata() {
-                public String name() {
-                  return folderName;
-                }
-                
-                public Date lastModified() {
-                  return new Date();
-                }
-                
-                public String uri() {
-                  return source.uri();
-                }
-                
-                public String hash() {
-                  int _hashCode = folderName.hashCode();
-                  return Integer.valueOf(_hashCode).toString();
-                }
-                
-                public String converter() {
-                  Class<? extends FolderToNode> _class = FolderToNode.this.getClass();
-                  return _class.toString();
-                }
-              });
-          }
-        };
-        ops.add(_function);
-        cb.onSuccess(ops);
-      }
-    };
-    ValueCallback<String> _embed = Async.<String>embed(cb, _function);
-    this.utils.getFileName(source, _embed);
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method embed is undefined for the type FolderToNode"
+      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or put the closures into a typed context.");
   }
   
   public void updateFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {

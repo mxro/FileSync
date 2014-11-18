@@ -4,23 +4,13 @@ import com.appjangle.filesync.Converter;
 import com.appjangle.filesync.FileOperation;
 import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
-import com.appjangle.filesync.internal.engine.convert.ConvertUtils;
 import com.google.common.base.Objects;
-import de.mxro.async.Aggregator;
-import de.mxro.async.Async;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
-import de.mxro.fn.Closure;
-import de.mxro.fn.collections.CollectionsUtils;
-import io.nextweb.ListQuery;
 import io.nextweb.Node;
 import io.nextweb.NodeList;
-import io.nextweb.promise.exceptions.ExceptionListener;
-import io.nextweb.promise.exceptions.ExceptionResult;
 import java.util.ArrayList;
 import java.util.List;
-import org.eclipse.xtext.xbase.lib.Functions.Function1;
-import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
 /**
  * Determines operations to be performed on local files based on remote changes made in the cloud.
@@ -43,97 +33,41 @@ public class NetworkToFileOperations {
   }
   
   public void determineOps(final ValueCallback<List<FileOperation>> cb) {
-    final ListQuery qry = this.node.selectAll();
-    final ExceptionListener _function = new ExceptionListener() {
-      public void onFailure(final ExceptionResult er) {
-        Throwable _exception = er.exception();
-        cb.onFailure(_exception);
-      }
-    };
-    qry.catchExceptions(_function);
-    final Closure<NodeList> _function_1 = new Closure<NodeList>() {
-      public void apply(final NodeList children) {
-        Iterable<Node> remotelyAdded = NetworkToFileOperations.this.determineRemotelyAddedNodes(children);
-        final ArrayList<ItemMetadata> remotelyRemoved = NetworkToFileOperations.this.determineRemotelyRemovedNodes(children);
-        final ArrayList<Node> remotelyUpdated = NetworkToFileOperations.this.determineRemotelyUpdatedNodes(children);
-        final Function1<Node, Boolean> _function = new Function1<Node, Boolean>() {
-          public Boolean apply(final Node node) {
-            String _uri = node.uri();
-            String _nameFromUri = ConvertUtils.getNameFromUri(_uri);
-            boolean _startsWith = _nameFromUri.startsWith(".");
-            if (_startsWith) {
-              return Boolean.valueOf(false);
-            }
-            return Boolean.valueOf(true);
-          }
-        };
-        Iterable<Node> _filter = IterableExtensions.<Node>filter(remotelyAdded, _function);
-        remotelyAdded = _filter;
-        final Closure<List<List<FileOperation>>> _function_1 = new Closure<List<List<FileOperation>>>() {
-          public void apply(final List<List<FileOperation>> res) {
-            List<FileOperation> _flatten = CollectionsUtils.<FileOperation>flatten(res);
-            cb.onSuccess(_flatten);
-          }
-        };
-        ValueCallback<List<List<FileOperation>>> _embed = Async.<List<List<FileOperation>>>embed(cb, _function_1);
-        final Aggregator<List<FileOperation>> agg = Async.<List<FileOperation>>collect(3, _embed);
-        ValueCallback<List<FileOperation>> _createCallback = agg.createCallback();
-        NetworkToFileOperations.this.deduceCreateOperations(remotelyAdded, _createCallback);
-        ValueCallback<List<FileOperation>> _createCallback_1 = agg.createCallback();
-        NetworkToFileOperations.this.deduceRemoveOperations(remotelyRemoved, _createCallback_1);
-        ValueCallback<List<FileOperation>> _createCallback_2 = agg.createCallback();
-        NetworkToFileOperations.this.deduceUpdateOperations(remotelyUpdated, _createCallback_2);
-      }
-    };
-    qry.get(_function_1);
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method collect is undefined for the type NetworkToFileOperations"
+      + "\nThe method embed is undefined for the type NetworkToFileOperations"
+      + "\nThe method flatten is undefined for the type NetworkToFileOperations"
+      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or put the closures into a typed context."
+      + "\ncreateCallback cannot be resolved"
+      + "\ncreateCallback cannot be resolved"
+      + "\ncreateCallback cannot be resolved");
   }
   
   public void deduceUpdateOperations(final Iterable<Node> remotelyUpdated, final ValueCallback<List<FileOperation>> cb) {
-    int _size = IterableExtensions.size(remotelyUpdated);
-    final Closure<List<List<FileOperation>>> _function = new Closure<List<List<FileOperation>>>() {
-      public void apply(final List<List<FileOperation>> res) {
-        List<FileOperation> _flatten = CollectionsUtils.<FileOperation>flatten(res);
-        cb.onSuccess(_flatten);
-      }
-    };
-    ValueCallback<List<List<FileOperation>>> _embed = Async.<List<List<FileOperation>>>embed(cb, _function);
-    final Aggregator<List<FileOperation>> agg = Async.<List<FileOperation>>collect(_size, _embed);
-    for (final Node updatedNode : remotelyUpdated) {
-      ValueCallback<List<FileOperation>> _createCallback = agg.createCallback();
-      this.converter.updateFiles(this.folder, this.metadata, updatedNode, _createCallback);
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method collect is undefined for the type NetworkToFileOperations"
+      + "\nThe method embed is undefined for the type NetworkToFileOperations"
+      + "\nThe method flatten is undefined for the type NetworkToFileOperations"
+      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or put the closures into a typed context."
+      + "\ncreateCallback cannot be resolved");
   }
   
   public void deduceCreateOperations(final Iterable<Node> remotelyAdded, final ValueCallback<List<FileOperation>> cb) {
-    int _size = IterableExtensions.size(remotelyAdded);
-    final Closure<List<List<FileOperation>>> _function = new Closure<List<List<FileOperation>>>() {
-      public void apply(final List<List<FileOperation>> res) {
-        List<FileOperation> _flatten = CollectionsUtils.<FileOperation>flatten(res);
-        cb.onSuccess(_flatten);
-      }
-    };
-    ValueCallback<List<List<FileOperation>>> _embed = Async.<List<List<FileOperation>>>embed(cb, _function);
-    final Aggregator<List<FileOperation>> agg = Async.<List<FileOperation>>collect(_size, _embed);
-    for (final Node newNode : remotelyAdded) {
-      ValueCallback<List<FileOperation>> _createCallback = agg.createCallback();
-      this.converter.createFiles(this.folder, this.metadata, newNode, _createCallback);
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method collect is undefined for the type NetworkToFileOperations"
+      + "\nThe method embed is undefined for the type NetworkToFileOperations"
+      + "\nThe method flatten is undefined for the type NetworkToFileOperations"
+      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or put the closures into a typed context."
+      + "\ncreateCallback cannot be resolved");
   }
   
   public void deduceRemoveOperations(final List<ItemMetadata> remotelyRemoved, final ValueCallback<List<FileOperation>> cb) {
-    int _size = remotelyRemoved.size();
-    final Closure<List<List<FileOperation>>> _function = new Closure<List<List<FileOperation>>>() {
-      public void apply(final List<List<FileOperation>> res) {
-        List<FileOperation> _flatten = CollectionsUtils.<FileOperation>flatten(res);
-        cb.onSuccess(_flatten);
-      }
-    };
-    ValueCallback<List<List<FileOperation>>> _embed = Async.<List<List<FileOperation>>>embed(cb, _function);
-    final Aggregator<List<FileOperation>> agg = Async.<List<FileOperation>>collect(_size, _embed);
-    for (final ItemMetadata removedNode : remotelyRemoved) {
-      ValueCallback<List<FileOperation>> _createCallback = agg.createCallback();
-      this.converter.removeFiles(this.folder, this.metadata, removedNode, _createCallback);
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method collect is undefined for the type NetworkToFileOperations"
+      + "\nThe method embed is undefined for the type NetworkToFileOperations"
+      + "\nThe method flatten is undefined for the type NetworkToFileOperations"
+      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or put the closures into a typed context."
+      + "\ncreateCallback cannot be resolved");
   }
   
   public ArrayList<Node> determineRemotelyAddedNodes(final NodeList children) {

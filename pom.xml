@@ -43,7 +43,6 @@
 			<groupId>com.appjangle.jre</groupId>
 			<artifactId>appjangle-jre</artifactId>
 			<version>0.3.6</version>
-			
 		</dependency>
 
 		<dependency>

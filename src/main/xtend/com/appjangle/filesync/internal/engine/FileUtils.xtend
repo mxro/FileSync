@@ -106,5 +106,36 @@ class FileUtils {
 
         return name.substring(idx + 1);
     }
+    
+    /**
+	 * from http://stackoverflow.com/questions/941272/how-do-i-trim-a-file-
+	 * extension-from-a-string-in-java
+	 * 
+	 * @param s
+	 * @return
+	 */
+	def String removeExtension(String s) {
+		val String works = s + "";
+		val String separator = "/"; // System.getProperty("file.separator");
+
+		var String filename;
+
+		// Remove the path up to the filename.
+		val int lastSeparatorIndex = works.replaceAll("\\\\", "/")
+				.lastIndexOf(separator);
+		if (lastSeparatorIndex == -1) {
+			filename = s;
+		} else {
+			filename = s.substring(lastSeparatorIndex + 1);
+		}
+
+		// Remove the extension.
+		val int extensionIndex = filename.lastIndexOf(".");
+		if (extensionIndex == -1)
+			return s;
+
+		return s.substring(0, lastSeparatorIndex + 1)
+				+ filename.substring(0, extensionIndex);
+	}
 
 }

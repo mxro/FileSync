@@ -128,26 +128,39 @@ class ConvertUtils {
 			
 		} else if (ext == ".coffee") {
 			
-			toNode.appendSafe(session.COFFEESCRIPT)
-			toNode.appendSafe(session.TEMPLATE)
+			res.add(toNode.appendSafe(session.COFFEESCRIPT))
+			res.add(toNode.appendSafe(session.TEMPLATE))
 			
-			toNode.appendSafe("https://appjangle.com/files/img/20141118/Coffeescript.png", "./.icon").appendSafe(session.ICON)
+			val icon = toNode.appendSafe("https://appjangle.com/files/img/20141118/Coffeescript.png", "./.icon");
+			
+			res.add(icon)
+			res.add(icon.appendSafe(session.ICON))
 			
 		} else if (ext == ".css") {
 			
-			toNode.appendSafe(session.CSS)
+			res.add(toNode.appendSafe(session.CSS))
 			
-			toNode.appendSafe(session.TEMPLATE)
+			res.add(toNode.appendSafe(session.TEMPLATE))
 			
-			toNode.appendSafe("https://appjangle.com/files/img/20141118/CSS.png", "./.icon").appendSafe(session.ICON)
+			val icon = toNode.appendSafe("https://appjangle.com/files/img/20141118/CSS.png", "./.icon")
+			
+			res.add(icon)
+			
+			res.add(icon.appendSafe(session.ICON))
 			
 		} else if (ext == ".type") {
 			
-			toNode.appendSafe(session.TYPE)
+			res.add(toNode.appendSafe(session.TYPE))
 			
-			toNode.appendSafe("https://appjangle.com/files/img/20141118/Type.png", "./.icon").appendSafe(session.ICON)
+			val icon = toNode.appendSafe("https://appjangle.com/files/img/20141118/Type.png", "./.icon")
 			
-			toNode.appendSafe("").appendSafe(session.link("http://slicnet.com/mxrogm/mxrogm/data/stream/2013/12/11/n9"));
+			res.add(icon)
+			res.add(icon.appendSafe(session.ICON))
+			
+			val description = toNode.appendSafe("")
+			
+			res.add(description)
+			res.add(description.appendSafe(session.link("http://slicnet.com/mxrogm/mxrogm/data/stream/2013/12/11/n9")))
 			
 		}
 		

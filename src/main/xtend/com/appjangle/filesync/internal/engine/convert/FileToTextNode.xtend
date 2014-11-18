@@ -53,9 +53,7 @@ class FileToTextNode implements Converter {
 
 		ops.add(
 			[ ctx, opscb |
-				
 				val baseNode = ctx.parent.appendSafe(source.text, "./" + simpleName)
-				
 				metadata.add(
 					new ItemMetadata() {
 
@@ -116,15 +114,18 @@ class FileToTextNode implements Converter {
 		ops.add(
 			[ ctx, opscb |
 				metadata.remove(cachedFile.name)
-				
-				
-				
-				ctx.parent.removeSafeRecursive(ctx.session.link(address),
-					opscb.embed [ res |
-						val list = new ArrayList<Deferred<?>>
-						list.addAll(res)
-						opscb.onSuccess(list)
-					])
+				val nodeToBeRemoved = ctx.session.link(address)
+				val parent = ctx.parent
+				if (parent.session().link(parent).hasDirectChild(nodeToBeRemoved)) {
+
+					parent.removeSafeRecursive(nodeToBeRemoved,
+						opscb.embed [ res |
+							val list = new ArrayList<Deferred<?>>
+							list.addAll(res)
+							opscb.onSuccess(list)
+						])
+
+				}
 			])
 
 		cb.onSuccess(ops)

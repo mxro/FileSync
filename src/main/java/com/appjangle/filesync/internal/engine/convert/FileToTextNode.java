@@ -137,18 +137,23 @@ public class FileToTextNode implements Converter {
       public void apply(final NetworkOperationContext ctx, final ValueCallback<List<Deferred<?>>> opscb) {
         String _name = cachedFile.name();
         metadata.remove(_name);
-        Node _parent = ctx.parent();
         Session _session = ctx.session();
-        Link _link = _session.link(address);
-        final Closure<List<NextwebPromise<Success>>> _function = new Closure<List<NextwebPromise<Success>>>() {
-          public void apply(final List<NextwebPromise<Success>> res) {
-            final ArrayList<Deferred<?>> list = new ArrayList<Deferred<?>>();
-            list.addAll(res);
-            opscb.onSuccess(list);
-          }
-        };
-        ValueCallback<List<NextwebPromise<Success>>> _embed = Async.<List<NextwebPromise<Success>>>embed(opscb, _function);
-        FileToTextNode.this.nutils.removeSafeRecursive(_parent, _link, _embed);
+        final Link nodeToBeRemoved = _session.link(address);
+        final Node parent = ctx.parent();
+        Session _session_1 = parent.session();
+        Link _link = _session_1.link(parent);
+        boolean _hasDirectChild = FileToTextNode.this.nutils.hasDirectChild(_link, nodeToBeRemoved);
+        if (_hasDirectChild) {
+          final Closure<List<NextwebPromise<Success>>> _function = new Closure<List<NextwebPromise<Success>>>() {
+            public void apply(final List<NextwebPromise<Success>> res) {
+              final ArrayList<Deferred<?>> list = new ArrayList<Deferred<?>>();
+              list.addAll(res);
+              opscb.onSuccess(list);
+            }
+          };
+          ValueCallback<List<NextwebPromise<Success>>> _embed = Async.<List<NextwebPromise<Success>>>embed(opscb, _function);
+          FileToTextNode.this.nutils.removeSafeRecursive(parent, nodeToBeRemoved, _embed);
+        }
       }
     };
     ops.add(_function);

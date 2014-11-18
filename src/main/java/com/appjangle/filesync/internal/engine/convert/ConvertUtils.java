@@ -125,10 +125,10 @@ public class ConvertUtils {
     return _appendSafe.appendSafe(_LABEL);
   }
   
-  public List<Deferred> appendTypesAndIcon(final Query toNode, final FileItem source) {
-    ArrayList<Deferred> _xblockexpression = null;
+  public List<Deferred<?>> appendTypesAndIcon(final Query toNode, final FileItem source) {
+    ArrayList<Deferred<?>> _xblockexpression = null;
     {
-      final ArrayList<Deferred> res = CollectionLiterals.<Deferred>newArrayList();
+      final ArrayList<Deferred<?>> res = CollectionLiterals.<Deferred<?>>newArrayList();
       final Session session = toNode.session();
       String ext = source.getExtension();
       ext = ("." + ext);

@@ -63,8 +63,7 @@ public class FileToTextNode implements Converter {
   
   public void createNodes(final Metadata metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {
     throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from ArrayList<Query> to Collection<? super Deferred>"
-      + "\nType mismatch: cannot convert from List<Deferred> to Deferred[]"
+      + "\nType mismatch: cannot convert from ArrayList<Query> to Collection<? super Object>"
       + "\nType mismatch: cannot convert from boolean to List<Deferred<?>>");
   }
   

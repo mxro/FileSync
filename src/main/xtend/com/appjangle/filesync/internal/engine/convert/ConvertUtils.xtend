@@ -99,7 +99,7 @@ class ConvertUtils {
 		toNode.appendSafe(label, "./.label").appendSafe(toNode.session().LABEL)
 	}
 
-	def List<Deferred> appendTypesAndIcon(Query toNode, FileItem source) {
+	def List<Deferred<?>> appendTypesAndIcon(Query toNode, FileItem source) {
 		val res = newArrayList
 		
 		val session = toNode.session()

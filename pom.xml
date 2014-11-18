@@ -38,7 +38,7 @@
 			<artifactId>appjangle-jre-internal</artifactId>
 			<version>[0.0.1,)</version>
 		</dependency>-->
-		
+	
 		<dependency>
 			<groupId>com.appjangle.jre</groupId>
 			<artifactId>appjangle-jre</artifactId>

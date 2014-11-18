@@ -53,10 +53,10 @@ class NetworkUtils {
 						if (qry instanceof Query) {
 							
 							qry.catchExceptions [er|itmcb.onFailure(er.exception)]
-							/*qry.get([succ|
+							qry.get([succ|
 								
 								itmcb.onSuccess(Success.INSTANCE)
-							])*/
+							])
 
 						} else if (qry instanceof NextwebPromise<?>) {
 							

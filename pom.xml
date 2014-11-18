@@ -65,6 +65,7 @@
 				</exclusion>
 
 			</exclusions>
+			<scope>test</scope>
 		</dependency>
 
 

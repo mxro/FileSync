@@ -13,7 +13,7 @@ class TestCreateHtmlNode extends CheckFilesToNodesTemplate {
 	}
 	
 	override protected step2_assertNodes() {
-		session.commit.get
+		
 		
 		println("here")
 		println (result.selectAll.get)

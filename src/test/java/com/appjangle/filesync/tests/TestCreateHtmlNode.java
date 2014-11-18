@@ -3,7 +3,6 @@ package com.appjangle.filesync.tests;
 import com.appjangle.filesync.internal.engine.N;
 import com.appjangle.filesync.tests.CheckFilesToNodesTemplate;
 import de.mxro.file.FileItem;
-import de.mxro.fn.Success;
 import de.oehme.xtend.junit.Hamcrest;
 import de.oehme.xtend.junit.JUnit;
 import io.nextweb.Link;
@@ -12,7 +11,6 @@ import io.nextweb.Node;
 import io.nextweb.NodeList;
 import io.nextweb.Query;
 import io.nextweb.Session;
-import io.nextweb.promise.NextwebPromise;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
@@ -35,8 +33,6 @@ public class TestCreateHtmlNode extends CheckFilesToNodesTemplate {
   }
   
   protected void step2_assertNodes() {
-    NextwebPromise<Success> _commit = this.session.commit();
-    _commit.get();
     InputOutput.<String>println("here");
     ListQuery _selectAll = this.result.selectAll();
     NodeList _get = _selectAll.get();

@@ -9,5 +9,8 @@ A Desktop App for Synchronizing Files with Appjangle Data
 a new file is inserted and use the URI of the file if a matching hash exists.
 
 - Store value of folder nodes in children metadata.
+ 
+  - OR store value in a special file 'value.xml' within the folder (or .value.xml)
 
 - Add support for two files with identical names (but different extensions) in one folder.
+

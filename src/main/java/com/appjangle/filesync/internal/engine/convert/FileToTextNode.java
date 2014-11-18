@@ -8,7 +8,6 @@ import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.NetworkOperation;
 import com.appjangle.filesync.NetworkOperationContext;
 import com.appjangle.filesync.internal.engine.FileUtils;
-import com.appjangle.filesync.internal.engine.N;
 import com.appjangle.filesync.internal.engine.convert.ConvertUtils;
 import com.google.common.base.Objects;
 import de.mxro.async.Async;
@@ -250,7 +249,4 @@ public class FileToTextNode implements Converter {
   
   @Extension
   private FileUtils futils = new FileUtils();
-  
-  @Extension
-  private N n = new N();
 }

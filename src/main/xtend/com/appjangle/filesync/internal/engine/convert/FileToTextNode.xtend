@@ -218,7 +218,6 @@ class FileToTextNode implements Converter {
 
 	extension ConvertUtils cutils = new ConvertUtils
 	extension FileUtils futils = new FileUtils
-	extension N n = new N
 	
 
 }

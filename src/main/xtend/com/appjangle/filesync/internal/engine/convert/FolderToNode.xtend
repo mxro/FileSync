@@ -152,5 +152,6 @@ class FolderToNode implements Converter {
 	extension ConvertUtils utils = new ConvertUtils
 	extension FileUtils futils = new FileUtils
 	extension N n = new N
+	extension NextwebDataExtension nutils = new NextwebDataExtension
 
 }

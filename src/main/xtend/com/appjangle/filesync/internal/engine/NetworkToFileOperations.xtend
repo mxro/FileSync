@@ -43,6 +43,7 @@ class NetworkToFileOperations {
 						itmcb.onSuccess(new Value<Object>(link))
 					]
 					link.catchUndefined[
+						params.notifications.onNodeNotDefined(params.node, link)
 						itmcb.onSuccess(new Value<Object>(link))
 					]
 					link.catchExceptions[itmcb.onFailure(exception)]

@@ -10,6 +10,6 @@ public class SyncNotifications {
     InputOutput.<String>println(((("insuf " + inFolder) + " ") + forNode));
   }
   
-  public void onNodeNotDefined(final Link parent, final Link node) {
+  public void onNodeNotDefined(final /* Node */Object parent, final Link node) {
   }
 }

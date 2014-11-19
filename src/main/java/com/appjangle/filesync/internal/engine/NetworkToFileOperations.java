@@ -70,6 +70,9 @@ public class NetworkToFileOperations {
             link.catchUnauthorized(_function);
             final UndefinedListener _function_1 = new UndefinedListener() {
               public void onUndefined(final UndefinedResult it) {
+                SyncNotifications _notifications = NetworkToFileOperations.this.params.getNotifications();
+                Node _node = NetworkToFileOperations.this.params.getNode();
+                _notifications.onNodeNotDefined(_node, link);
                 Value<Object> _value = new Value<Object>(link);
                 itmcb.onSuccess(_value);
               }

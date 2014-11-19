@@ -9,7 +9,7 @@ class SyncNotifications {
 		println('insuf '+inFolder+' '+forNode)
 	}
 	
-	def void onNodeNotDefined(Link parent, Link node) {
+	def void onNodeNotDefined(Node parent, Link node) {
 		
 	}
 	

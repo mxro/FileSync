@@ -5,10 +5,12 @@ import com.appjangle.filesync.tests.CheckFilesToNodesTemplate;
 import de.oehme.xtend.junit.Hamcrest;
 import de.oehme.xtend.junit.JUnit;
 import io.nextweb.Link;
+import io.nextweb.ListQuery;
 import io.nextweb.Node;
 import io.nextweb.Query;
 import io.nextweb.Session;
 import org.eclipse.xtext.xbase.lib.Extension;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.Matcher;
@@ -28,6 +30,8 @@ public class TestCreateNode extends CheckFilesToNodesTemplate {
   }
   
   protected void step2_assertNodes() {
+    ListQuery _selectAll = this.result.selectAll();
+    InputOutput.<ListQuery>println(_selectAll);
     Query _select = this.result.select("./Oh_my_test");
     final Node node = _select.get();
     Matcher<Object> _notNullValue = TestCreateNode.notNullValue();

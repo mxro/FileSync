@@ -14,6 +14,8 @@ class TestCreateNode extends CheckFilesToNodesTemplate {
 	
 	override protected step2_assertNodes() {
 		
+		println(result.selectAll)
+		
 		val node = result.select("./Oh_my_test").get()
 		
 		node => notNullValue

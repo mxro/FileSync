@@ -3,7 +3,6 @@ package com.appjangle.filesync;
 import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.internal.engine.FileUtils;
-import com.appjangle.filesync.internal.engine.SyncFolder;
 import com.appjangle.filesync.internal.engine.convert.ConverterCollection;
 import com.appjangle.filesync.internal.engine.convert.FileToTextNode;
 import com.appjangle.filesync.internal.engine.convert.FolderToNode;
@@ -39,9 +38,9 @@ public class FileSync {
    * <p>Synchronized the contents of a folder and a node without synchronizing sub-folders.
    */
   public static void syncSingleFolder(final FileItem folder, final Node node, final ValueCallback<Success> cb) {
-    ConverterCollection _createDefaultConverter = FileSync.createDefaultConverter();
-    SyncFolder _syncFolder = new SyncFolder(folder, node, _createDefaultConverter);
-    _syncFolder.doIt(cb);
+    throw new Error("Unresolved compilation problems:"
+      + "\nInvalid number of arguments. The constructor SyncFolder(SyncParams) is not applicable for the arguments (FileItem,Node,ConverterCollection)"
+      + "\nType mismatch: cannot convert from FileItem to SyncParams");
   }
   
   /**

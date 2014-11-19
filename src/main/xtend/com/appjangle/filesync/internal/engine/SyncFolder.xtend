@@ -11,14 +11,10 @@ import static extension de.mxro.async.Async.embed
 
 class SyncFolder {
 	
-	val FileItem folder
-	val Node node
-	val Converter converter
+	val SyncParams params
 	
-	new(FileItem folder, Node node, Converter converter) {
-		this.folder = folder
-		this.node = node
-		this.converter = converter
+	new(SyncParams params) {
+		this.params = params
 	}
 	
 	var Metadata metadata 

@@ -39,9 +39,12 @@ class NetworkToFileOperations {
 			
 			Async.forEach(children.links,
 				[ link, itmcb |
-					link.catchExceptions[itmcb.onFailure(exception)]
+					params.node.shield().get( [
+						link.catchExceptions[itmcb.onFailure(exception)]
 					link.catchUndefined [itmcb.onSuccess(new Value<Object>(link)) ]
 					link.get [ itmcb.onSuccess(new Value<Object>(it)) ]
+					])
+					
 				],
 				cb.embed [ List<Value<Object>> values |
 					
@@ -62,8 +65,7 @@ class NetworkToFileOperations {
 						Async.embed(cb,
 							[ res |
 								cb.onSuccess(CollectionsUtils.flatten(res))
-							]))
-							
+							]))	
 							
 					remotelyAdded.deduceCreateOperations(agg.createCallback)
 					remotelyRemoved.deduceRemoveOperations(agg.createCallback)

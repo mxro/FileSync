@@ -19,6 +19,7 @@ import io.nextweb.Link;
 import io.nextweb.LinkList;
 import io.nextweb.LinkListQuery;
 import io.nextweb.Node;
+import io.nextweb.Query;
 import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
 import io.nextweb.promise.exceptions.UndefinedListener;
@@ -56,27 +57,34 @@ public class NetworkToFileOperations {
         List<Link> _links = children.links();
         final Closure2<Link, ValueCallback<Value<Object>>> _function = new Closure2<Link, ValueCallback<Value<Object>>>() {
           public void apply(final Link link, final ValueCallback<Value<Object>> itmcb) {
-            final ExceptionListener _function = new ExceptionListener() {
-              public void onFailure(final ExceptionResult it) {
-                Throwable _exception = it.exception();
-                itmcb.onFailure(_exception);
-              }
-            };
-            link.catchExceptions(_function);
-            final UndefinedListener _function_1 = new UndefinedListener() {
-              public void onUndefined(final UndefinedResult it) {
-                Value<Object> _value = new Value<Object>(link);
-                itmcb.onSuccess(_value);
-              }
-            };
-            link.catchUndefined(_function_1);
-            final Closure<Node> _function_2 = new Closure<Node>() {
+            Node _node = NetworkToFileOperations.this.params.getNode();
+            Query _shield = _node.shield();
+            final Closure<Node> _function = new Closure<Node>() {
               public void apply(final Node it) {
-                Value<Object> _value = new Value<Object>(it);
-                itmcb.onSuccess(_value);
+                final ExceptionListener _function = new ExceptionListener() {
+                  public void onFailure(final ExceptionResult it) {
+                    Throwable _exception = it.exception();
+                    itmcb.onFailure(_exception);
+                  }
+                };
+                link.catchExceptions(_function);
+                final UndefinedListener _function_1 = new UndefinedListener() {
+                  public void onUndefined(final UndefinedResult it) {
+                    Value<Object> _value = new Value<Object>(link);
+                    itmcb.onSuccess(_value);
+                  }
+                };
+                link.catchUndefined(_function_1);
+                final Closure<Node> _function_2 = new Closure<Node>() {
+                  public void apply(final Node it) {
+                    Value<Object> _value = new Value<Object>(it);
+                    itmcb.onSuccess(_value);
+                  }
+                };
+                link.get(_function_2);
               }
             };
-            link.get(_function_2);
+            _shield.get(_function);
           }
         };
         final Closure<List<Value<Object>>> _function_1 = new Closure<List<Value<Object>>>() {

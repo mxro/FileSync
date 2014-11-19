@@ -65,6 +65,7 @@ class FileSync {
 						val itmmetadata = metadata.get(childFolder.name)
 						
 						if (!itmmetadata.uri.startsWith(params.node.uri())) {
+							//println('skip '+itmmetadata.uri)
 							itmcb.onSuccess(Success.INSTANCE)
 							return;
 						}

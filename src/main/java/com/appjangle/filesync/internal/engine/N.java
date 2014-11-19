@@ -84,4 +84,13 @@ public class N {
     String _TYPE = N.TYPE();
     return session.link(_TYPE);
   }
+  
+  public static String RICHTEXT() {
+    return "http://slicnet.com/mxrogm/mxrogm/data/stream/2014/3/28/n3";
+  }
+  
+  public Link RICHTEXT(final Session session) {
+    String _RICHTEXT = N.RICHTEXT();
+    return session.link(_RICHTEXT);
+  }
 }

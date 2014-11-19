@@ -17,13 +17,9 @@ class SyncFolder {
 	
 	var Metadata metadata 
 
+
 	def doIt(ValueCallback<Success> cb) {
-		if (!params.settings.upload) {
-			download(cb)
-			return
-		}
-	
-	
+
 		if (!params.folder.hasMetadata) {
 
 			metadata = params.folder.assertMetadata
@@ -34,6 +30,11 @@ class SyncFolder {
 		
 		metadata = params.folder.assertMetadata
 		
+		if (!params.settings.upload) {
+			download(cb)
+			return
+		}
+		
 		new FileToNetworkOperations(params, metadata).determineOps(cb.embed [ ops |
 			ops.execute(params.node, cb.embed [ 
 				
@@ -43,6 +44,7 @@ class SyncFolder {
 		
 	}
 
+	
 	
 	def download(ValueCallback<Success> cb) {
 		if (!params.settings.download) {

@@ -17,18 +17,18 @@ import static extension de.mxro.async.Async.embed
 
 class FileSync {
 
-
 	def static syncSingleFolder(SyncParams params, ValueCallback<Success> cb) {
 		new SyncFolder(params).doIt(cb)
 	}
 
-	def  static defaultSyncParams() {
+	def static defaultSyncParams() {
 		val params = new SyncParams
-		
+
 		params.converter = createDefaultConverter
 		params.settings = new SynchronizationSettings
-		params.state = new SynchronizationState() {}
-		
+		params.state = new SynchronizationState() {
+		}
+
 		return params
 	}
 
@@ -44,17 +44,16 @@ class FileSync {
 	 */
 	def static syncSingleFolder(FileItem folder, Node node, ValueCallback<Success> cb) {
 		val params = defaultSyncParams
-		
+
 		params.folder = folder
 		params.node = node
-		
+
 		syncSingleFolder(params, cb)
 
 	}
 
-
-	def static  void sync(SyncParams params, ValueCallback<Success> cb) {
-			syncSingleFolder(params,
+	def static void sync(SyncParams params, ValueCallback<Success> cb) {
+		syncSingleFolder(params,
 			cb.embed [
 				val toSync = params.folder.children.filter[isDirectory && visible && !name.startsWith('.')]
 				Async.forEach(toSync.toList,
@@ -62,12 +61,17 @@ class FileSync {
 						val metadata = params.folder.loadMetadata
 						val itmmetadata = metadata.get(childFolder.name)
 						val qry = params.node.session().link(itmmetadata.uri)
-						qry.catchExceptions[er|cb.onFailure(er.exception)]
+						qry.catchExceptions[er|itmcb.onFailure(er.exception)]
 						qry.get [ childNode |
-							
-							sync(childFolder, childNode, itmcb)
+							val childParams = new SyncParams(params)
+							childParams.folder = childFolder
+							childParams.node = childNode
+							sync(childParams, itmcb)
 						]
-					], cb.embed[cb.onSuccess(Success.INSTANCE)])
+					],
+					cb.embed [
+						cb.onSuccess(Success.INSTANCE)
+					])
 			])
 	}
 
@@ -76,10 +80,10 @@ class FileSync {
 	 */
 	def static void sync(FileItem folder, Node node, ValueCallback<Success> cb) {
 		val params = defaultSyncParams
-		
+
 		params.folder = folder
 		params.node = node
-		
+
 		sync(params, cb)
 	}
 

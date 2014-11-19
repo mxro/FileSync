@@ -28,7 +28,8 @@ class ConvertUtils {
 		N.TYPE -> '.type',
 		N.CSS -> '.css',
 		N.JAVASCRIPT -> '.js',
-		N.COFFEESCRIPT -> '.coffee'	
+		N.COFFEESCRIPT -> '.coffee',
+		N.RICHTEXT -> '.htm'	
 	}
 
 	def isTextValue(String fileName) {
@@ -117,7 +118,16 @@ class ConvertUtils {
 			res.add(icon)
 			res.add(icon.appendSafe(session.ICON))
 				
+		} else if (ext == ".htm") {
+			res.add(toNode.appendSafe(session.RICHTEXT))
+			res.add(toNode.appendSafe(session.TEMPLATE))
+			
+			val icon = toNode.appendSafe("https://appjangle.com/files/img/20141119/RTF.png", "./.icon")
+			res.add(icon)
+			res.add(icon.appendSafe(session.ICON))
+			
 		} else if (ext == ".js") {
+			
 			
 			res.add(toNode.appendSafe(session.JAVASCRIPT))
 			res.add(toNode.appendSafe(session.TEMPLATE))

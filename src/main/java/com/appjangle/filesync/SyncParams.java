@@ -21,6 +21,17 @@ public class SyncParams {
   
   private Converter converter;
   
+  public SyncParams() {
+  }
+  
+  public SyncParams(final SyncParams params) {
+    this.folder = params.folder;
+    this.node = params.node;
+    this.settings = params.settings;
+    this.state = params.state;
+    this.converter = params.converter;
+  }
+  
   @Pure
   public FileItem getFolder() {
     return this.folder;

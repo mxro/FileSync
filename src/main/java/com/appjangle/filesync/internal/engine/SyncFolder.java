@@ -29,17 +29,10 @@ public class SyncFolder {
   private Metadata metadata;
   
   public void doIt(final ValueCallback<Success> cb) {
-    SynchronizationSettings _settings = this.params.getSettings();
-    boolean _isUpload = _settings.isUpload();
-    boolean _not = (!_isUpload);
-    if (_not) {
-      this.download(cb);
-      return;
-    }
     FileItem _folder = this.params.getFolder();
     boolean _hasMetadata = this.fileUtils.hasMetadata(_folder);
-    boolean _not_1 = (!_hasMetadata);
-    if (_not_1) {
+    boolean _not = (!_hasMetadata);
+    if (_not) {
       FileItem _folder_1 = this.params.getFolder();
       Metadata _assertMetadata = this.fileUtils.assertMetadata(_folder_1);
       this.metadata = _assertMetadata;
@@ -49,6 +42,13 @@ public class SyncFolder {
     FileItem _folder_2 = this.params.getFolder();
     Metadata _assertMetadata_1 = this.fileUtils.assertMetadata(_folder_2);
     this.metadata = _assertMetadata_1;
+    SynchronizationSettings _settings = this.params.getSettings();
+    boolean _isUpload = _settings.isUpload();
+    boolean _not_1 = (!_isUpload);
+    if (_not_1) {
+      this.download(cb);
+      return;
+    }
     FileToNetworkOperations _fileToNetworkOperations = new FileToNetworkOperations(this.params, this.metadata);
     final Closure<List<NetworkOperation>> _function = new Closure<List<NetworkOperation>>() {
       public void apply(final List<NetworkOperation> ops) {

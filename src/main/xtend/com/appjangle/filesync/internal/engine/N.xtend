@@ -76,4 +76,12 @@ class N {
 		session.link(TYPE)
 	}
 	
+	def static RICHTEXT() {
+		"http://slicnet.com/mxrogm/mxrogm/data/stream/2014/3/28/n3"
+	}
+	
+	def RICHTEXT(Session session) {
+		session.link(RICHTEXT)
+	}
+	
 }

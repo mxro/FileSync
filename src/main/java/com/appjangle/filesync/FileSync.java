@@ -106,13 +106,16 @@ public class FileSync {
             final ExceptionListener _function = new ExceptionListener() {
               public void onFailure(final ExceptionResult er) {
                 Throwable _exception = er.exception();
-                cb.onFailure(_exception);
+                itmcb.onFailure(_exception);
               }
             };
             qry.catchExceptions(_function);
             final Closure<Node> _function_1 = new Closure<Node>() {
               public void apply(final Node childNode) {
-                FileSync.sync(childFolder, childNode, itmcb);
+                final SyncParams childParams = new SyncParams(params);
+                childParams.setFolder(childFolder);
+                childParams.setNode(childNode);
+                FileSync.sync(childParams, itmcb);
               }
             };
             qry.get(_function_1);

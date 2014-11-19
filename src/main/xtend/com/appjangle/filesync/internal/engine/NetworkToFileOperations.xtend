@@ -25,7 +25,6 @@ class NetworkToFileOperations {
 	new(SyncParams params, Metadata metadata) {
 		this.params = params
 		this.metadata = metadata
-		
 
 	}
 

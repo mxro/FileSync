@@ -18,8 +18,7 @@ public class NodesXml implements Serializable {
   public NodesXml() {
     ArrayList<ItemXml> _newArrayList = CollectionLiterals.<ItemXml>newArrayList();
     this.items = _newArrayList;
-    ItemXml _itemXml = new ItemXml();
-    this.value = _itemXml;
+    this.value = null;
   }
   
   @Pure

@@ -13,7 +13,7 @@ class NodesXml implements Serializable {
 	
 	new() {
 		items = newArrayList
-		value = new ItemXml
+		value = null
 	}
 	
 }

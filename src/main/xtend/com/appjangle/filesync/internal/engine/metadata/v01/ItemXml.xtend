@@ -37,5 +37,4 @@ class ItemXml implements ItemMetadata, Serializable {
 	
 	
 	
-	
 }

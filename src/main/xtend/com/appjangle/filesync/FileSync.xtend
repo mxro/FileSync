@@ -22,7 +22,6 @@ class FileSync {
 	 */
 	def static syncSingleFolder(File folder, Node node, ValueCallback<Success> cb) {
 		syncSingleFolder(FilesJre.wrap(folder), node, cb)
-
 	}
 
 	/**

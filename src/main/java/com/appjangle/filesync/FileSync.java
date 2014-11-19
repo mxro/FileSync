@@ -4,6 +4,7 @@ import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.SyncParams;
 import com.appjangle.filesync.SynchronizationSettings;
+import com.appjangle.filesync.SynchronizationState;
 import com.appjangle.filesync.internal.engine.FileUtils;
 import com.appjangle.filesync.internal.engine.SyncFolder;
 import com.appjangle.filesync.internal.engine.convert.ConverterCollection;
@@ -29,17 +30,19 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
 @SuppressWarnings("all")
 public class FileSync {
-  private static void syncSingleFolder(final SyncParams params, final ValueCallback<Success> cb) {
+  public static void syncSingleFolder(final SyncParams params, final ValueCallback<Success> cb) {
     SyncFolder _syncFolder = new SyncFolder(params);
     _syncFolder.doIt(cb);
   }
   
-  private static SyncParams defaultSyncParams() {
+  public static SyncParams defaultSyncParams() {
     final SyncParams params = new SyncParams();
     ConverterCollection _createDefaultConverter = FileSync.createDefaultConverter();
     params.setConverter(_createDefaultConverter);
     SynchronizationSettings _synchronizationSettings = new SynchronizationSettings();
     params.setSettings(_synchronizationSettings);
+    params.setState(new SynchronizationState() {
+    });
     return params;
   }
   
@@ -61,7 +64,7 @@ public class FileSync {
     FileSync.syncSingleFolder(params, cb);
   }
   
-  private static void sync(final SyncParams params, final ValueCallback<Success> cb) {
+  public static void sync(final SyncParams params, final ValueCallback<Success> cb) {
     final Closure<Success> _function = new Closure<Success>() {
       public void apply(final Success it) {
         FileItem _folder = params.getFolder();

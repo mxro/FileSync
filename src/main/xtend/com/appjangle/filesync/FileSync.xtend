@@ -18,15 +18,16 @@ import static extension de.mxro.async.Async.embed
 class FileSync {
 
 
-	def private static syncSingleFolder(SyncParams params, ValueCallback<Success> cb) {
+	def static syncSingleFolder(SyncParams params, ValueCallback<Success> cb) {
 		new SyncFolder(params).doIt(cb)
 	}
 
-	def private static defaultSyncParams() {
+	def  static defaultSyncParams() {
 		val params = new SyncParams
 		
 		params.converter = createDefaultConverter
 		params.settings = new SynchronizationSettings
+		params.state = new SynchronizationState() {}
 		
 		return params
 	}
@@ -52,7 +53,7 @@ class FileSync {
 	}
 
 
-	def static private void sync(SyncParams params, ValueCallback<Success> cb) {
+	def static  void sync(SyncParams params, ValueCallback<Success> cb) {
 			syncSingleFolder(params,
 			cb.embed [
 				val toSync = params.folder.children.filter[isDirectory && visible && !name.startsWith('.')]

@@ -38,11 +38,13 @@ public class TestRecursiveSync extends CheckNodesToFilesTemplate {
     Session _session = this.source.session();
     Link _LABEL = this.n.LABEL(_session);
     _append_5.append(_LABEL);
-    Query _append_6 = this.source.append("node4", "./node4");
     Session _session_1 = this.source.session();
-    Link _COFFEESCRIPT = this.n.COFFEESCRIPT(_session_1);
-    _append_6.append(_COFFEESCRIPT);
-    html.append("sth");
+    Link _HTML_VALUE = this.n.HTML_VALUE(_session_1);
+    html.append(_HTML_VALUE);
+    Query _append_6 = this.source.append("node4", "./node4");
+    Session _session_2 = this.source.session();
+    Link _HTML_VALUE_1 = this.n.HTML_VALUE(_session_2);
+    _append_6.append(_HTML_VALUE_1);
   }
   
   protected void step2_assertFiles() {

@@ -21,18 +21,18 @@ class SyncFolder {
 
 	def doIt(ValueCallback<Success> cb) {
 	
-		if (!folder.hasMetadata) {
+		if (!params.folder.hasMetadata) {
 
-			metadata = folder.assertMetadata
+			metadata = params.folder.assertMetadata
 	
 			download(cb)
 			return;
 		}
 		
-		metadata = folder.assertMetadata
+		metadata = params.folder.assertMetadata
 		
-		new FileToNetworkOperations(node, folder, metadata, converter).determineOps(cb.embed [ ops |
-			ops.execute(node, cb.embed [ 
+		new FileToNetworkOperations(params, metadata).determineOps(cb.embed [ ops |
+			ops.execute(params.node, cb.embed [ 
 				
 				download(cb)
 			])

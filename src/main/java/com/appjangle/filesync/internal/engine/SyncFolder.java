@@ -4,6 +4,7 @@ import com.appjangle.filesync.FileOperation;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.NetworkOperation;
 import com.appjangle.filesync.SyncParams;
+import com.appjangle.filesync.SynchronizationSettings;
 import com.appjangle.filesync.internal.engine.FileToNetworkOperations;
 import com.appjangle.filesync.internal.engine.FileUtils;
 import com.appjangle.filesync.internal.engine.NetworkToFileOperations;
@@ -28,10 +29,17 @@ public class SyncFolder {
   private Metadata metadata;
   
   public void doIt(final ValueCallback<Success> cb) {
+    SynchronizationSettings _settings = this.params.getSettings();
+    boolean _isDownload = _settings.isDownload();
+    boolean _not = (!_isDownload);
+    if (_not) {
+      this.download(cb);
+      return;
+    }
     FileItem _folder = this.params.getFolder();
     boolean _hasMetadata = this.fileUtils.hasMetadata(_folder);
-    boolean _not = (!_hasMetadata);
-    if (_not) {
+    boolean _not_1 = (!_hasMetadata);
+    if (_not_1) {
       FileItem _folder_1 = this.params.getFolder();
       Metadata _assertMetadata = this.fileUtils.assertMetadata(_folder_1);
       this.metadata = _assertMetadata;
@@ -59,6 +67,13 @@ public class SyncFolder {
   }
   
   public void download(final ValueCallback<Success> cb) {
+    SynchronizationSettings _settings = this.params.getSettings();
+    boolean _isDownload = _settings.isDownload();
+    boolean _not = (!_isDownload);
+    if (_not) {
+      cb.onSuccess(Success.INSTANCE);
+      return;
+    }
     NetworkToFileOperations _networkToFileOperations = new NetworkToFileOperations(this.params, this.metadata);
     final Closure<List<FileOperation>> _function = new Closure<List<FileOperation>>() {
       public void apply(final List<FileOperation> ops) {

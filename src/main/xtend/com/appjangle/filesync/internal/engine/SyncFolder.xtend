@@ -18,6 +18,11 @@ class SyncFolder {
 	var Metadata metadata 
 
 	def doIt(ValueCallback<Success> cb) {
+		if (!params.settings.download) {
+			download(cb)
+			return
+		}
+	
 	
 		if (!params.folder.hasMetadata) {
 
@@ -42,6 +47,11 @@ class SyncFolder {
 	
 	
 	def download(ValueCallback<Success> cb) {
+		if (!params.settings.download) {
+			cb.onSuccess(Success.INSTANCE)
+			return;
+		}
+		
 		new NetworkToFileOperations(params, metadata).determineOps(cb.embed([ ops |
 			
 			ops.execute(params.folder, metadata)

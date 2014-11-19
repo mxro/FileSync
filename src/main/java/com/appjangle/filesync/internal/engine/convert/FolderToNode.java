@@ -25,6 +25,7 @@ import java.util.LinkedList;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Extension;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
 public class FolderToNode implements Converter {
@@ -107,6 +108,7 @@ public class FolderToNode implements Converter {
             final String folderName = FolderToNode.this.futils.toFileSystemSafeName(rawFolderName, false, 100);
             FileItem _folder = ctx.folder();
             _folder.assertFolder(folderName);
+            InputOutput.<String>println(("create " + folderName));
             Metadata _metadata = ctx.metadata();
             _metadata.add(
               new ItemMetadata() {

@@ -97,7 +97,7 @@ class NetworkToFileOperations {
 
 		for (newNode : remotelyAdded) {
 			
-			println('create '+newNode)
+			println('create for '+newNode)
 			
 			params.converter.createFiles(params.folder, metadata, newNode, agg.createCallback)
 

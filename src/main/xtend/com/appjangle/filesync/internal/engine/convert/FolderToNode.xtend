@@ -86,9 +86,13 @@ class FolderToNode implements Converter {
 				val ops = new LinkedList<FileOperation>
 				ops.add(
 					[ ctx |
+						
+						
 						val folderName = rawFolderName.toFileSystemSafeName(false, 100)
 						ctx.folder.assertFolder(folderName)
-						//file.text = source.value(String)
+						
+						println('create '+folderName)
+						
 						ctx.metadata.add(
 							new ItemMetadata() {
 

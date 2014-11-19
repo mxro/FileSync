@@ -109,6 +109,8 @@ public class FileSync {
             boolean _startsWith = _uri.startsWith(_uri_1);
             boolean _not = (!_startsWith);
             if (_not) {
+              itmcb.onSuccess(Success.INSTANCE);
+              return;
             }
             Node _node_1 = params.getNode();
             Session _session = _node_1.session();

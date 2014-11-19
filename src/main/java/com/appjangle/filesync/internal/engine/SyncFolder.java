@@ -55,21 +55,30 @@ public class SyncFolder {
       this.download(cb);
       return;
     }
-    FileToNetworkOperations _fileToNetworkOperations = new FileToNetworkOperations(this.params, this.metadata);
-    final Closure<List<NetworkOperation>> _function = new Closure<List<NetworkOperation>>() {
-      public void apply(final List<NetworkOperation> ops) {
-        Node _node = SyncFolder.this.params.getNode();
-        final Closure<Success> _function = new Closure<Success>() {
-          public void apply(final Success it) {
-            SyncFolder.this.download(cb);
+    SyncValueOperations _syncValueOperations = new SyncValueOperations();
+    Node _node_1 = this.params.getNode();
+    FileItem _folder_4 = this.params.getFolder();
+    final Closure<Success> _function = new Closure<Success>() {
+      public void apply(final Success it) {
+        FileToNetworkOperations _fileToNetworkOperations = new FileToNetworkOperations(SyncFolder.this.params, SyncFolder.this.metadata);
+        final Closure<List<NetworkOperation>> _function = new Closure<List<NetworkOperation>>() {
+          public void apply(final List<NetworkOperation> ops) {
+            Node _node = SyncFolder.this.params.getNode();
+            final Closure<Success> _function = new Closure<Success>() {
+              public void apply(final Success it) {
+                SyncFolder.this.download(cb);
+              }
+            };
+            ValueCallback<Success> _embed = Async.<Success>embed(cb, _function);
+            SyncFolder.this.networkUtils.execute(ops, _node, _embed);
           }
         };
-        ValueCallback<Success> _embed = Async.<Success>embed(cb, _function);
-        SyncFolder.this.networkUtils.execute(ops, _node, _embed);
+        ValueCallback<List<NetworkOperation>> _embed = Async.<List<NetworkOperation>>embed(cb, _function);
+        _fileToNetworkOperations.determineOps(_embed);
       }
     };
-    ValueCallback<List<NetworkOperation>> _embed = Async.<List<NetworkOperation>>embed(cb, _function);
-    _fileToNetworkOperations.determineOps(_embed);
+    ValueCallback<Success> _embed = Async.<Success>embed(cb, _function);
+    _syncValueOperations.uploadValue(_node_1, this.metadata, _folder_4, _embed);
   }
   
   public void download(final ValueCallback<Success> cb) {

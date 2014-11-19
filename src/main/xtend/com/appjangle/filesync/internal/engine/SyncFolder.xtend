@@ -36,16 +36,16 @@ class SyncFolder {
 			return
 		}
 
-		
-
-		new FileToNetworkOperations(params, metadata).determineOps(
-			cb.embed [ ops |
-				ops.execute(params.node,
-					cb.embed [
-						download(cb)
+		new SyncValueOperations().uploadValue(params.node, metadata, params.folder,
+			cb.embed [
+				new FileToNetworkOperations(params, metadata).determineOps(
+					cb.embed [ ops |
+						ops.execute(params.node,
+							cb.embed [
+								download(cb)
+							])
 					])
 			])
-
 	}
 
 	def download(ValueCallback<Success> cb) {

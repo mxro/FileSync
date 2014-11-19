@@ -5,6 +5,7 @@ import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.internal.engine.metadata.MetadataImpl;
 import com.appjangle.filesync.internal.engine.metadata.v01.ItemXml;
 import com.appjangle.filesync.internal.engine.metadata.v01.NodesXml;
+import com.google.common.base.Objects;
 import com.thoughtworks.xstream.XStream;
 import de.mxro.file.FileItem;
 import java.util.Date;
@@ -74,6 +75,10 @@ public class MetadataUtilsJre {
   public static ItemXml toItemXml(final ItemMetadata item) {
     ItemXml _xblockexpression = null;
     {
+      boolean _equals = Objects.equal(item, null);
+      if (_equals) {
+        return null;
+      }
       final ItemXml itemXml = new ItemXml();
       String _converter = item.converter();
       itemXml.converter = _converter;

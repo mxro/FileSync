@@ -61,6 +61,8 @@ class MetadataUtilsJre {
 			nodesXml.items.add(item.toItemXml)
 			
 		}
+		
+		
 		nodesXml.value = toItemXml(metadata.value)
 		
 		nodesXml
@@ -68,6 +70,10 @@ class MetadataUtilsJre {
 	}
 	
 	def static ItemXml toItemXml(ItemMetadata item) {
+		if (item == null) {
+			return null
+		}
+		
 		val itemXml = new ItemXml
 		
 		itemXml.converter = item.converter

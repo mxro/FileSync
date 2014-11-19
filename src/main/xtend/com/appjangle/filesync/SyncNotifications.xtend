@@ -8,7 +8,7 @@ import org.eclipse.xtend.lib.annotations.Accessors
 @Accessors
 class SyncNotifications {
 	
-	val printToStdOut = false
+	var boolean printToStdOut = false
 	
 	def void onInsufficientAuthorization(FileItem inFolder, Link forNode) {
 		if (printToStdOut) {
@@ -17,7 +17,9 @@ class SyncNotifications {
 	}
 	
 	def void onNodeNotDefined(Node parent, Link node) {
-		
+		if (printToStdOut) {
+			println("Node is not defined  ["+node+"] in parent ["+parent+"]")
+		}
 	}
 	
 	def void onStartSynchronizing(FileItem folder, Node node) {

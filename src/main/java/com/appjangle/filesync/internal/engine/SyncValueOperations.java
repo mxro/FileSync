@@ -2,6 +2,7 @@ package com.appjangle.filesync.internal.engine;
 
 import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
+import com.google.common.base.Objects;
 import de.mxro.file.FileItem;
 import io.nextweb.Node;
 import java.util.Date;
@@ -45,6 +46,17 @@ public class SyncValueOperations {
       ItemMetadata _createMetadata = SyncValueOperations.createMetadata(node, _get_1);
       metadata.setValue(_createMetadata);
       return;
+    }
+    FileItem _get_2 = folder.get("value.txt");
+    final String oldText = _get_2.getText();
+    Object _value_1 = node.value();
+    String _string_1 = _value_1.toString();
+    boolean _notEquals = (!Objects.equal(oldText, _string_1));
+    if (_notEquals) {
+      FileItem _get_3 = folder.get("value.txt");
+      Object _value_2 = node.value();
+      String _string_2 = _value_2.toString();
+      _get_3.setText(_string_2);
     }
   }
 }

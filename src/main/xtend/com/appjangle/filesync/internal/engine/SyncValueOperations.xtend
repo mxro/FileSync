@@ -4,7 +4,6 @@ import com.appjangle.filesync.ItemMetadata
 import com.appjangle.filesync.Metadata
 import de.mxro.file.FileItem
 import io.nextweb.Node
-import java.util.Date
 
 class SyncValueOperations {
 	
@@ -44,7 +43,11 @@ class SyncValueOperations {
 			return;
 		}
 		
+		val oldText = folder.get("value.txt").text
 		
+		if (oldText != node.value().toString()) {
+			folder.get("value.txt").text = node.value().toString()
+		}
 		
 	}
 	

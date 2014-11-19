@@ -69,7 +69,6 @@ class FileSync {
 							return;
 						}
 						
-						
 						val qry = params.node.session().link(itmmetadata.uri)
 						qry.catchExceptions[er|itmcb.onFailure(er.exception)]
 						qry.get [ childNode |

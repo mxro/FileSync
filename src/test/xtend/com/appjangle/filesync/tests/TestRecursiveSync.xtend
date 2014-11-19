@@ -17,7 +17,8 @@ class TestRecursiveSync extends CheckNodesToFilesTemplate{
 		val node3 = source.append("node3", "./node3")
 		node3.append("child1", "./child1").append("b", "./inThere").get
 		node3.append("child2").append("c")
-
+		node3.append(source.session().COFFEESCRIPT)
+		
 		val html = node3.append("<html></html>", "./html")
 		html.append("My Html Document", "./.label").append(source.session().LABEL)
 		
@@ -27,6 +28,7 @@ class TestRecursiveSync extends CheckNodesToFilesTemplate{
 	
 	override protected step2_assertFiles() {
 		
+		// checking directories
 		result.get("node1").exists => true
 		
 		result.get("node1").get("sub").exists => true
@@ -40,10 +42,10 @@ class TestRecursiveSync extends CheckNodesToFilesTemplate{
 		result.get("node3").get("child1").get("inThere").isDirectory => true
 		
 		// checking files
-		
-		// println(result.get("node3").children)
 		result.get("node3").get("My Html Document.html").text => "<html></html>"
 		
+		// checking exclusions
+		println(result.get("node3").children)
 	}
 	
 	extension N n = new N

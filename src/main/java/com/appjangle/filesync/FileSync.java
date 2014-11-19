@@ -10,6 +10,7 @@ import com.appjangle.filesync.internal.engine.SyncFolder;
 import com.appjangle.filesync.internal.engine.convert.ConverterCollection;
 import com.appjangle.filesync.internal.engine.convert.FileToTextNode;
 import com.appjangle.filesync.internal.engine.convert.FolderToNode;
+import com.appjangle.filesync.internal.engine.convert.NodeToNothing;
 import de.mxro.async.Async;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
@@ -20,6 +21,7 @@ import de.mxro.fn.Success;
 import io.nextweb.Link;
 import io.nextweb.Node;
 import io.nextweb.Session;
+import io.nextweb.nodes.Token;
 import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
 import java.io.File;
@@ -150,6 +152,14 @@ public class FileSync {
       final ConverterCollection coll = new ConverterCollection();
       FileToTextNode _fileToTextNode = new FileToTextNode();
       coll.addConverter(_fileToTextNode);
+      final Closure2<Node, ValueCallback<Boolean>> _function = new Closure2<Node, ValueCallback<Boolean>>() {
+        public void apply(final Node node, final ValueCallback<Boolean> cb) {
+          Object _value = node.value();
+          cb.onSuccess(Boolean.valueOf((_value instanceof Token)));
+        }
+      };
+      NodeToNothing _nodeToNothing = new NodeToNothing(_function);
+      coll.addConverter(_nodeToNothing);
       FolderToNode _folderToNode = new FolderToNode();
       coll.addConverter(_folderToNode);
       _xblockexpression = coll;

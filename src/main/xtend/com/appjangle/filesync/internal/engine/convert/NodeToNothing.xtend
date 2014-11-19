@@ -1,24 +1,31 @@
 package com.appjangle.filesync.internal.engine.convert
 
 import com.appjangle.filesync.Converter
-import de.mxro.file.FileItem
-import io.nextweb.Node
-import de.mxro.async.callbacks.ValueCallback
-import com.appjangle.filesync.Metadata
-import java.util.List
-import com.appjangle.filesync.NetworkOperation
-import com.appjangle.filesync.ItemMetadata
 import com.appjangle.filesync.FileOperation
+import com.appjangle.filesync.ItemMetadata
+import com.appjangle.filesync.Metadata
+import com.appjangle.filesync.NetworkOperation
+import de.mxro.async.callbacks.ValueCallback
+import de.mxro.file.FileItem
+import de.mxro.fn.Closure2
+import io.nextweb.Node
+import java.util.List
 
 class NodeToNothing implements Converter {
+	
+	val Closure2<Node, ValueCallback<Boolean>> test
+	
+	new(Closure2<Node, ValueCallback<Boolean>> test) {
+		this.test = test
+	}
 	
 	override worksOn(FileItem source) {
 		false
 	}
 	
 	override worksOn(Node node, ValueCallback<Boolean> cb) {
-		
-	}
+		test.apply(node, cb)
+	} 
 	
 	override createNodes(Metadata metadata, FileItem source, ValueCallback<List<NetworkOperation>> cb) {
 		throw new IllegalStateException("This operation should never be triggered for this converter.")

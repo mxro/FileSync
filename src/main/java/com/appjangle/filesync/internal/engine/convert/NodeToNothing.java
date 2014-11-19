@@ -7,6 +7,7 @@ import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.NetworkOperation;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
+import de.mxro.fn.Closure2;
 import io.nextweb.Node;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,11 +15,18 @@ import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 
 @SuppressWarnings("all")
 public class NodeToNothing implements Converter {
+  private final Closure2<Node, ValueCallback<Boolean>> test;
+  
+  public NodeToNothing(final Closure2<Node, ValueCallback<Boolean>> test) {
+    this.test = test;
+  }
+  
   public boolean worksOn(final FileItem source) {
     return false;
   }
   
   public void worksOn(final Node node, final ValueCallback<Boolean> cb) {
+    this.test.apply(node, cb);
   }
   
   public void createNodes(final Metadata metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {

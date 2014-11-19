@@ -63,6 +63,8 @@ class NetworkToFileOperations {
 							[ res |
 								cb.onSuccess(CollectionsUtils.flatten(res))
 							]))
+							
+							
 					remotelyAdded.deduceCreateOperations(agg.createCallback)
 					remotelyRemoved.deduceRemoveOperations(agg.createCallback)
 					remotelyUpdated.deduceUpdateOperations(agg.createCallback)

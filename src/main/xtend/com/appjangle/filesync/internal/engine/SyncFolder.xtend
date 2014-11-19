@@ -40,11 +40,9 @@ class SyncFolder {
 				download(cb)
 			])
 		])
-
 		
 	}
-	
-	
+
 	
 	def download(ValueCallback<Success> cb) {
 		if (!params.settings.download) {

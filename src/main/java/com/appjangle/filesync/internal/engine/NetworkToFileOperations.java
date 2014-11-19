@@ -19,7 +19,6 @@ import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
 import java.util.ArrayList;
 import java.util.List;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
 /**
@@ -48,7 +47,6 @@ public class NetworkToFileOperations {
     qry.catchExceptions(_function);
     final Closure<NodeList> _function_1 = new Closure<NodeList>() {
       public void apply(final NodeList children) {
-        InputOutput.<NodeList>println(children);
         Iterable<Node> remotelyAdded = NetworkToFileOperations.this.determineRemotelyAddedNodes(children);
         final ArrayList<ItemMetadata> remotelyRemoved = NetworkToFileOperations.this.determineRemotelyRemovedNodes(children);
         final ArrayList<Node> remotelyUpdated = NetworkToFileOperations.this.determineRemotelyUpdatedNodes(children);

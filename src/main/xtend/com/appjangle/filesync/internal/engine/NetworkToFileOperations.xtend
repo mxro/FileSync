@@ -35,7 +35,6 @@ class NetworkToFileOperations {
 		qry.catchExceptions[er|cb.onFailure(er.exception)]
 
 		qry.get [ children |
-			println(children)
 			
 			var Iterable<Node> remotelyAdded = children.determineRemotelyAddedNodes
 			val remotelyRemoved = children.determineRemotelyRemovedNodes
@@ -51,9 +50,7 @@ class NetworkToFileOperations {
 				
 				return true;
 			]*/
-			
-			
-			
+
 			val agg = Async.collect(3,
 				Async.embed(cb,
 					[ res |

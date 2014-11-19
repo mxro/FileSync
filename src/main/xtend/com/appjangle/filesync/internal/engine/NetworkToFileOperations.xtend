@@ -140,10 +140,12 @@ class NetworkToFileOperations {
 
 		for (item : metadata.children) {
 			for (Node n : children) {
+				
 				var contains = false;
 				if (n.uri() == item.uri) {
 					contains = true
 				}
+				
 				if (!contains) {
 					res.add(item)
 				}

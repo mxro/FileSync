@@ -1,12 +1,12 @@
 package com.appjangle.filesync
 
 import de.mxro.file.FileItem
-import io.nextweb.Node
+import io.nextweb.Link
 
 class SyncNotifications {
 	
-	def void onInsufficientAuthorization(FileItem inFolder, Node forNode) {
-		
+	def void onInsufficientAuthorization(FileItem inFolder, Link forNode) {
+		println('insuf '+inFolder+' '+forNode)
 	}
 	
 }

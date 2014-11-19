@@ -9,4 +9,7 @@ public class SyncNotifications {
   public void onInsufficientAuthorization(final FileItem inFolder, final Link forNode) {
     InputOutput.<String>println(((("insuf " + inFolder) + " ") + forNode));
   }
+  
+  public void onNodeNotDefined(final Link parent, final Link node) {
+  }
 }

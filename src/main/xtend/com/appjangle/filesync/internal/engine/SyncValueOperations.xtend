@@ -51,4 +51,10 @@ class SyncValueOperations {
 		
 	}
 	
+	def uploadValue(Node node, Metadata metadata, FileItem folder) {
+		
+		checkArgument()
+		
+	}
+	
 }

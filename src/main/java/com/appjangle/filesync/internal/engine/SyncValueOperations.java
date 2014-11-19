@@ -59,4 +59,9 @@ public class SyncValueOperations {
       _get_3.setText(_string_2);
     }
   }
+  
+  public Object uploadValue(final Node node, final Metadata metadata, final FileItem folder) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field checkArgument is undefined for the type SyncValueOperations");
+  }
 }

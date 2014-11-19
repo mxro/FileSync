@@ -101,7 +101,7 @@ class FileSync {
 		])
 		
 		coll.addConverter(new FolderToNothing [file |
-			file.name.startsWith(".")
+			file.name.startsWith(".") || !file.visible
 		])
 		
 		coll.addConverter(new FolderToNode)

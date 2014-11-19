@@ -44,7 +44,7 @@ class FileToNetworkOperations {
 		/*
 		 * Don't add hidden files.
 		 */
-		locallyAddedFiles = locallyAddedFiles.filter [ fileName |
+		/*locallyAddedFiles = locallyAddedFiles.filter [ fileName |
 			if (fileName.startsWith(".")) {
 				return false;
 			}
@@ -52,7 +52,7 @@ class FileToNetworkOperations {
 				return false;
 			}
 			return true
-		]
+		]*/
 
 		
 

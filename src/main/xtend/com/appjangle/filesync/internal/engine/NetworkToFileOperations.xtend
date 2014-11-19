@@ -52,7 +52,7 @@ class NetworkToFileOperations {
 				return true;
 			]*/
 			
-			println("added" +remotelyAdded)
+			
 			
 			val agg = Async.collect(3,
 				Async.embed(cb,
@@ -96,7 +96,9 @@ class NetworkToFileOperations {
 				]))
 
 		for (newNode : remotelyAdded) {
-
+			
+			println('create '+newNode)
+			
 			params.converter.createFiles(params.folder, metadata, newNode, agg.createCallback)
 
 		}

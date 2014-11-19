@@ -12,7 +12,6 @@ import io.nextweb.Node;
 import java.util.ArrayList;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
 public class NodeToNothing implements Converter {
@@ -43,7 +42,6 @@ public class NodeToNothing implements Converter {
   }
   
   public void createFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
-    InputOutput.<String>println(("ignoring " + source));
     ArrayList<FileOperation> _newArrayList = CollectionLiterals.<FileOperation>newArrayList();
     cb.onSuccess(_newArrayList);
   }

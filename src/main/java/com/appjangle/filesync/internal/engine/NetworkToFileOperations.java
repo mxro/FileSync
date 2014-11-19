@@ -52,7 +52,6 @@ public class NetworkToFileOperations {
         Iterable<Node> remotelyAdded = NetworkToFileOperations.this.determineRemotelyAddedNodes(children);
         final ArrayList<ItemMetadata> remotelyRemoved = NetworkToFileOperations.this.determineRemotelyRemovedNodes(children);
         final ArrayList<Node> remotelyUpdated = NetworkToFileOperations.this.determineRemotelyUpdatedNodes(children);
-        InputOutput.<String>println(("added" + remotelyAdded));
         final Closure<List<List<FileOperation>>> _function = new Closure<List<List<FileOperation>>>() {
           public void apply(final List<List<FileOperation>> res) {
             List<FileOperation> _flatten = CollectionsUtils.<FileOperation>flatten(res);
@@ -101,10 +100,13 @@ public class NetworkToFileOperations {
     ValueCallback<List<List<FileOperation>>> _embed = Async.<List<List<FileOperation>>>embed(cb, _function);
     final Aggregator<List<FileOperation>> agg = Async.<List<FileOperation>>collect(_size, _embed);
     for (final Node newNode : remotelyAdded) {
-      Converter _converter = this.params.getConverter();
-      FileItem _folder = this.params.getFolder();
-      ValueCallback<List<FileOperation>> _createCallback = agg.createCallback();
-      _converter.createFiles(_folder, this.metadata, newNode, _createCallback);
+      {
+        InputOutput.<String>println(("create " + newNode));
+        Converter _converter = this.params.getConverter();
+        FileItem _folder = this.params.getFolder();
+        ValueCallback<List<FileOperation>> _createCallback = agg.createCallback();
+        _converter.createFiles(_folder, this.metadata, newNode, _createCallback);
+      }
     }
   }
   

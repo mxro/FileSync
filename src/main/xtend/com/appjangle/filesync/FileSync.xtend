@@ -2,7 +2,6 @@ package com.appjangle.filesync
 
 import com.appjangle.filesync.internal.engine.FileUtils
 import com.appjangle.filesync.internal.engine.SyncFolder
-import com.appjangle.filesync.internal.engine.SyncParams
 import com.appjangle.filesync.internal.engine.convert.ConverterCollection
 import com.appjangle.filesync.internal.engine.convert.FileToTextNode
 import com.appjangle.filesync.internal.engine.convert.FolderToNode

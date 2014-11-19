@@ -4,7 +4,7 @@ import com.appjangle.filesync.Converter;
 import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.NetworkOperation;
-import com.appjangle.filesync.internal.engine.SyncParams;
+import com.appjangle.filesync.SyncParams;
 import de.mxro.async.Aggregator;
 import de.mxro.async.Async;
 import de.mxro.async.callbacks.ValueCallback;

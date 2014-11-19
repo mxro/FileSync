@@ -1,6 +1,7 @@
 package com.appjangle.filesync.internal.engine
 
 import com.appjangle.filesync.Metadata
+import com.appjangle.filesync.SyncParams
 import de.mxro.async.callbacks.ValueCallback
 import de.mxro.fn.Success
 

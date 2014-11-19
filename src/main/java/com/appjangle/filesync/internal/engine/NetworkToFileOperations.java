@@ -4,7 +4,7 @@ import com.appjangle.filesync.Converter;
 import com.appjangle.filesync.FileOperation;
 import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
-import com.appjangle.filesync.internal.engine.SyncParams;
+import com.appjangle.filesync.SyncParams;
 import com.appjangle.filesync.internal.engine.convert.ConvertUtils;
 import com.google.common.base.Objects;
 import de.mxro.async.Aggregator;

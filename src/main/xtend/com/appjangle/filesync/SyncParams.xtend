@@ -1,4 +1,4 @@
-package com.appjangle.filesync.internal.engine
+package com.appjangle.filesync
 
 import com.appjangle.filesync.Converter
 import com.appjangle.filesync.SynchronizationSettings

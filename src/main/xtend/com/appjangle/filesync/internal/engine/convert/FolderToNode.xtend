@@ -81,11 +81,11 @@ class FolderToNode implements Converter {
 	}
 
 	override createFiles(FileItem folder, Metadata metadata, Node source, ValueCallback<List<FileOperation>> cb) {
-		println('try create '+source)
+
 		source.getFileName(
 			cb.embed [ rawFolderName |
 				val ops = new LinkedList<FileOperation>
-				println('schedule ops '+source)
+
 				ops.add(
 					[ ctx |
 						

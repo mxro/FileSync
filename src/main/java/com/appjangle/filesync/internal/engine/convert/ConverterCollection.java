@@ -14,6 +14,7 @@ import de.mxro.fn.Closure2;
 import io.nextweb.Node;
 import java.util.ArrayList;
 import java.util.List;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
 public class ConverterCollection implements Converter {
@@ -131,6 +132,7 @@ public class ConverterCollection implements Converter {
       public void apply(final List<Object> res) {
         for (final Object item : res) {
           if ((item instanceof Converter)) {
+            InputOutput.<String>println(((("using conv " + item) + " for ") + forNode));
             cb.onSuccess(((Converter)item));
             return;
           }

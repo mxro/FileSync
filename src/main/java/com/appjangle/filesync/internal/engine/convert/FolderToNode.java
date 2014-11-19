@@ -25,7 +25,6 @@ import java.util.LinkedList;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Extension;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
 public class FolderToNode implements Converter {
@@ -100,11 +99,9 @@ public class FolderToNode implements Converter {
   }
   
   public void createFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
-    InputOutput.<String>println(("try create " + source));
     final Closure<String> _function = new Closure<String>() {
       public void apply(final String rawFolderName) {
         final LinkedList<FileOperation> ops = new LinkedList<FileOperation>();
-        InputOutput.<String>println(("schedule ops " + source));
         final FileOperation _function = new FileOperation() {
           public void apply(final FileOperationContext ctx) {
             final String folderName = FolderToNode.this.futils.toFileSystemSafeName(rawFolderName, false, 100);

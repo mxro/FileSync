@@ -40,6 +40,14 @@ public class N {
     return session.link(_LABEL);
   }
   
+  public static String LABEL2() {
+    return "https://u1.linnk.it/qc8sbw/usr/apps/textsync/upload/label";
+  }
+  
+  public static String LABEL3() {
+    return "https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/longLabel";
+  }
+  
   public static String ICON() {
     return "https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/icon32";
   }

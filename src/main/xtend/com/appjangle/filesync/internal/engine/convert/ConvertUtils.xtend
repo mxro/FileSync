@@ -21,7 +21,7 @@ import static extension de.mxro.async.Async.embed
 
 class ConvertUtils {
 
-	val labelTypes = #[N.LABEL]
+	val labelTypes = #[N.LABEL, N.LABEL2, N.LABEL3]
 
 	val textValueExtensions = #{
 		N.HTML_VALUE -> '.html',

@@ -36,6 +36,14 @@ class N {
 		session.link(LABEL)
 	}
 	
+	def static LABEL2() {
+		"https://u1.linnk.it/qc8sbw/usr/apps/textsync/upload/label"
+	}
+	
+	def static LABEL3() {
+		"https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/longLabel"
+	}
+	
 	def static ICON() {
 		"https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/icon32"
 	}

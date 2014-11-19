@@ -33,6 +33,8 @@ class MetadataUtilsJre {
 			metadata.add(item)
 		}
 		
+		metadata.value = nodesXml.value
+		
 		metadata
 		
 	}
@@ -59,6 +61,7 @@ class MetadataUtilsJre {
 			nodesXml.items.add(item.toItemXml)
 			
 		}
+		nodesXml.value = toItemXml(metadata.value)
 		
 		nodesXml
 		

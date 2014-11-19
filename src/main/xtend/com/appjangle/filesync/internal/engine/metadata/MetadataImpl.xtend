@@ -2,13 +2,14 @@ package com.appjangle.filesync.internal.engine.metadata
 
 import com.appjangle.filesync.ItemMetadata
 import com.appjangle.filesync.Metadata
+import com.appjangle.filesync.internal.engine.metadata.v01.ItemXml
 import io.nextweb.Node
 import java.util.List
-import com.appjangle.filesync.internal.engine.metadata.v01.ItemXml
 
 class MetadataImpl implements Metadata {
 	
 	val List<ItemMetadata> items
+	var ItemMetadata value
 	
 	new() {
 		items = newArrayList
@@ -31,6 +32,10 @@ class MetadataImpl implements Metadata {
 		items.add(itemMetadata.toXml)
 		
 		this
+	}
+	
+	def setValue(ItemMetadata itemMetadata) {
+		this.value = itemMetadata
 	}
 	
 	override update(ItemMetadata itemMetadata) {
@@ -78,5 +83,10 @@ class MetadataImpl implements Metadata {
 		}
 		
 		foundIdx
-	} 
+	}
+	
+	override value() {
+		value
+	}
+	
 }

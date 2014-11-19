@@ -5,7 +5,9 @@ import com.appjangle.filesync.SyncNotifications;
 import com.appjangle.filesync.SynchronizationSettings;
 import com.appjangle.filesync.SynchronizationState;
 import de.mxro.file.FileItem;
+import io.nextweb.Link;
 import io.nextweb.Node;
+import java.util.List;
 import org.eclipse.xtend.lib.annotations.Accessors;
 import org.eclipse.xtext.xbase.lib.Pure;
 
@@ -28,7 +30,7 @@ public class SyncParams {
    * <p>The Node defined as the root of the synchronization.
    * <p>All nodes under this root will be resolved.
    */
-  private Node syncRoot;
+  private List<Link> syncRoots;
   
   public SyncParams() {
   }
@@ -40,6 +42,7 @@ public class SyncParams {
     this.state = params.state;
     this.converter = params.converter;
     this.notifications = params.notifications;
+    this.syncRoots = params.syncRoots;
   }
   
   @Pure
@@ -97,11 +100,11 @@ public class SyncParams {
   }
   
   @Pure
-  public Node getSyncRoot() {
-    return this.syncRoot;
+  public List<Link> getSyncRoots() {
+    return this.syncRoots;
   }
   
-  public void setSyncRoot(final Node syncRoot) {
-    this.syncRoot = syncRoot;
+  public void setSyncRoots(final List<Link> syncRoots) {
+    this.syncRoots = syncRoots;
   }
 }

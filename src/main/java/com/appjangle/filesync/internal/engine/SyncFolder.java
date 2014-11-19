@@ -83,6 +83,12 @@ public class SyncFolder {
       cb.onSuccess(Success.INSTANCE);
       return;
     }
+    FileItem _folder_1 = this.params.getFolder();
+    FileItem _assertFile = _folder_1.assertFile("value.txt");
+    Node _node_1 = this.params.getNode();
+    Object _value = _node_1.value();
+    String _string = _value.toString();
+    _assertFile.setText(_string);
     NetworkToFileOperations _networkToFileOperations = new NetworkToFileOperations(this.params, this.metadata);
     final Closure<List<FileOperation>> _function = new Closure<List<FileOperation>>() {
       public void apply(final List<FileOperation> ops) {

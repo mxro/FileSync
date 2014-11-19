@@ -16,6 +16,7 @@ import de.mxro.fn.Success
 import io.nextweb.Node
 import io.nextweb.nodes.Token
 import java.io.File
+import java.util.LinkedList
 
 import static extension de.mxro.async.Async.embed
 
@@ -33,6 +34,8 @@ class FileSync {
 		params.state = new SynchronizationState() {
 		}
 		params.notifications = new SyncNotifications
+
+		params.syncRoots = new LinkedList
 
 		return params
 	}
@@ -63,9 +66,9 @@ class FileSync {
 			cb.onSuccess(Success.INSTANCE);
 			return;
 		}
-		
+
 		params.state.addSynced(params.node);
-		
+
 		syncSingleFolder(params,
 			cb.embed [
 				val toSync = params.folder.children.filter[isDirectory && visible && !name.startsWith('.')]
@@ -73,19 +76,25 @@ class FileSync {
 					[ childFolder, itmcb |
 						val metadata = params.folder.loadMetadata
 						val itmmetadata = metadata.get(childFolder.name)
-						
-						if (!itmmetadata.uri.startsWith(params.node.uri()) && !itmmetadata.uri.startsWith(params.syncRoot.uri())) {
+						val isChild = itmmetadata.uri.startsWith(params.node.uri())
+						var withinSyncRoots = false
+						for (syncRoot : params.syncRoots) {
+							if (itmmetadata.uri.startsWith(syncRoot.uri())) {
+								withinSyncRoots = true
+							}
+						}
+						if (!isChild && !withinSyncRoots) {
 							itmcb.onSuccess(Success.INSTANCE)
 							return;
-						}
 
+						}
 						val qry = params.node.session().link(itmmetadata.uri)
 						qry.catchExceptions[er|itmcb.onFailure(er.exception)]
 						qry.get [ childNode |
 							val childParams = new SyncParams(params)
 							childParams.folder = childFolder
 							childParams.node = childNode
-							sync(childParams, itmcb)
+							syncInt(childParams, itmcb)
 						]
 					],
 					cb.embed [
@@ -93,9 +102,11 @@ class FileSync {
 					])
 			])
 	}
-	
+
 	static def void sync(SyncParams params, ValueCallback<Success> cb) {
-		params.syncRoot = params.node
+		if (params.syncRoots.size() == 0) {
+			params.syncRoots.add(params.node.session().link(params.node))
+		}
 		syncInt(params, cb)
 	}
 
@@ -116,19 +127,22 @@ class FileSync {
 		val coll = new ConverterCollection
 
 		coll.addConverter(new FileToTextNode)
-		
-		coll.addConverter(new NodeToNothing [node, cb |
-			cb.onSuccess(node.value() instanceof Token)
-		])
-		
-		coll.addConverter(new NodeToNothing [node, cb |
-			cb.onSuccess(ConvertUtils.getNameFromUri(node.uri()).startsWith('.'))
-		])
-		
-		coll.addConverter(new FolderToNothing [file |
-			file.name.startsWith(".") || !file.visible
-		])
-		
+
+		coll.addConverter(
+			new NodeToNothing [ node, cb |
+				cb.onSuccess(node.value() instanceof Token)
+			])
+
+		coll.addConverter(
+			new NodeToNothing [ node, cb |
+				cb.onSuccess(ConvertUtils.getNameFromUri(node.uri()).startsWith('.'))
+			])
+
+		coll.addConverter(
+			new FolderToNothing [ file |
+				file.name.startsWith(".") || !file.visible
+			])
+
 		coll.addConverter(new FolderToNode)
 
 		coll

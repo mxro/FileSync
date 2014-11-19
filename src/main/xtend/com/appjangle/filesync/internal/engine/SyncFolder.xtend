@@ -36,6 +36,8 @@ class SyncFolder {
 			return
 		}
 
+		
+
 		new FileToNetworkOperations(params, metadata).determineOps(
 			cb.embed [ ops |
 				ops.execute(params.node,
@@ -52,6 +54,8 @@ class SyncFolder {
 			cb.onSuccess(Success.INSTANCE)
 			return;
 		}
+
+		params.folder.assertFile('value.txt').text = params.node.value().toString()
 
 		new NetworkToFileOperations(params, metadata).determineOps(
 			cb.embed(

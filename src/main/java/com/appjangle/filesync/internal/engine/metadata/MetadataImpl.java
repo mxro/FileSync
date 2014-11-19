@@ -17,6 +17,8 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
 public class MetadataImpl implements Metadata {
   private final List<ItemMetadata> items;
   
+  private ItemMetadata value;
+  
   public MetadataImpl() {
     ArrayList<ItemMetadata> _newArrayList = CollectionLiterals.<ItemMetadata>newArrayList();
     this.items = _newArrayList;
@@ -55,6 +57,10 @@ public class MetadataImpl implements Metadata {
       _xblockexpression = this;
     }
     return _xblockexpression;
+  }
+  
+  public ItemMetadata setValue(final ItemMetadata itemMetadata) {
+    return this.value = itemMetadata;
   }
   
   public Metadata update(final ItemMetadata itemMetadata) {
@@ -125,5 +131,9 @@ public class MetadataImpl implements Metadata {
       _xblockexpression = foundIdx;
     }
     return _xblockexpression;
+  }
+  
+  public ItemMetadata value() {
+    return this.value;
   }
 }

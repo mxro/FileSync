@@ -1,7 +1,9 @@
 package com.appjangle.filesync
 
 import de.mxro.file.FileItem
+import io.nextweb.Link
 import io.nextweb.Node
+import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 
 @Accessors
@@ -23,7 +25,7 @@ class SyncParams {
 	 * <p>The Node defined as the root of the synchronization.
 	 * <p>All nodes under this root will be resolved. 
 	 */
-	var Node syncRoot;
+	var List<Link> syncRoots;
 	
 	new() {
 		
@@ -36,6 +38,7 @@ class SyncParams {
 		state = params.state
 		converter = params.converter
 		notifications = params.notifications
+		syncRoots = params.syncRoots
 	} 
 	
 }

@@ -36,6 +36,7 @@ public class MetadataUtilsJre {
       for (final ItemXml item : nodesXml.items) {
         metadata.add(item);
       }
+      metadata.setValue(nodesXml.value);
       _xblockexpression = metadata;
     }
     return _xblockexpression;
@@ -62,6 +63,9 @@ public class MetadataUtilsJre {
         ItemXml _itemXml = MetadataUtilsJre.toItemXml(item);
         nodesXml.items.add(_itemXml);
       }
+      ItemMetadata _value = metadata.value();
+      ItemXml _itemXml_1 = MetadataUtilsJre.toItemXml(_value);
+      nodesXml.value = _itemXml_1;
       _xblockexpression = nodesXml;
     }
     return _xblockexpression;

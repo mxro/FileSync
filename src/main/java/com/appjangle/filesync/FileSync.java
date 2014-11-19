@@ -29,6 +29,7 @@ import io.nextweb.nodes.Token;
 import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
 import java.io.File;
+import java.util.LinkedList;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
@@ -51,6 +52,8 @@ public class FileSync {
     });
     SyncNotifications _syncNotifications = new SyncNotifications();
     params.setNotifications(_syncNotifications);
+    LinkedList<Link> _linkedList = new LinkedList<Link>();
+    params.setSyncRoots(_linkedList);
     return params;
   }
   
@@ -121,23 +124,21 @@ public class FileSync {
             final Metadata metadata = FileSync.fileUtils.loadMetadata(_folder);
             String _name = childFolder.getName();
             final ItemMetadata itmmetadata = metadata.get(_name);
-            boolean _and = false;
             String _uri = itmmetadata.uri();
             Node _node = params.getNode();
             String _uri_1 = _node.uri();
-            boolean _startsWith = _uri.startsWith(_uri_1);
-            boolean _not = (!_startsWith);
-            if (!_not) {
-              _and = false;
-            } else {
+            final boolean isChild = _uri.startsWith(_uri_1);
+            boolean withinSyncRoots = false;
+            List<Link> _syncRoots = params.getSyncRoots();
+            for (final Link syncRoot : _syncRoots) {
               String _uri_2 = itmmetadata.uri();
-              Node _syncRoot = params.getSyncRoot();
-              String _uri_3 = _syncRoot.uri();
-              boolean _startsWith_1 = _uri_2.startsWith(_uri_3);
-              boolean _not_1 = (!_startsWith_1);
-              _and = _not_1;
+              String _uri_3 = syncRoot.uri();
+              boolean _startsWith = _uri_2.startsWith(_uri_3);
+              if (_startsWith) {
+                withinSyncRoots = true;
+              }
             }
-            if (_and) {
+            if (((!isChild) && (!withinSyncRoots))) {
               itmcb.onSuccess(Success.INSTANCE);
               return;
             }
@@ -157,7 +158,7 @@ public class FileSync {
                 final SyncParams childParams = new SyncParams(params);
                 childParams.setFolder(childFolder);
                 childParams.setNode(childNode);
-                FileSync.sync(childParams, itmcb);
+                FileSync.syncInt(childParams, itmcb);
               }
             };
             qry.get(_function_1);
@@ -177,8 +178,17 @@ public class FileSync {
   }
   
   public static void sync(final SyncParams params, final ValueCallback<Success> cb) {
-    Node _node = params.getNode();
-    params.setSyncRoot(_node);
+    List<Link> _syncRoots = params.getSyncRoots();
+    int _size = _syncRoots.size();
+    boolean _equals = (_size == 0);
+    if (_equals) {
+      List<Link> _syncRoots_1 = params.getSyncRoots();
+      Node _node = params.getNode();
+      Session _session = _node.session();
+      Node _node_1 = params.getNode();
+      Link _link = _session.link(_node_1);
+      _syncRoots_1.add(_link);
+    }
     FileSync.syncInt(params, cb);
   }
   

@@ -47,7 +47,7 @@ class NetworkToFileOperations {
 						itmcb.onSuccess(new Value<Object>(link))
 					]
 					link.catchExceptions[itmcb.onFailure(exception)]
-					println("get another one")
+					
 					link.get[itmcb.onSuccess(new Value<Object>(it))]
 					
 				],

@@ -17,4 +17,7 @@ public class SyncNotifications {
   
   public void onFinishedSynchronizing(final FileItem folder, final Node node) {
   }
+  
+  public void onNodeSkippedBecauseItWasAlreadySynced(final FileItem folder, final Node node) {
+  }
 }

@@ -22,5 +22,9 @@ class SyncNotifications {
 		
 	}
 	
+	def void onNodeSkippedBecauseItWasAlreadySynced(FileItem folder, Node node) {
+		
+	}
+	
 	
 }

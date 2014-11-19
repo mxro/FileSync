@@ -42,9 +42,7 @@ public class TestRecursiveSync extends CheckNodesToFilesTemplate {
     Session _session_1 = this.source.session();
     Link _COFFEESCRIPT = this.n.COFFEESCRIPT(_session_1);
     _append_6.append(_COFFEESCRIPT);
-    Session _session_2 = this.source.session();
-    Link _HTML_VALUE = this.n.HTML_VALUE(_session_2);
-    html.append(_HTML_VALUE);
+    html.append("sth");
   }
   
   protected void step2_assertFiles() {
@@ -76,7 +74,7 @@ public class TestRecursiveSync extends CheckNodesToFilesTemplate {
     FileItem _get_13 = _get_12.get("My Html Document.html");
     String _text = _get_13.getText();
     TestRecursiveSync.<String, String>operator_doubleArrow(_text, "<html></html>");
-    FileItem _get_14 = this.result.get("node3");
+    FileItem _get_14 = this.result.get("node4");
     List<FileItem> _children = _get_14.getChildren();
     InputOutput.<List<FileItem>>println(_children);
   }

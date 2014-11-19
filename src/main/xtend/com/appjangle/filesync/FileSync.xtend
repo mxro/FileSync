@@ -96,11 +96,11 @@ class FileSync {
 
 		coll.addConverter(new FileToTextNode)
 		
-		coll.addConverter(new NodeToNothing([node, cb |
+		coll.addConverter(new NodeToNothing [node, cb |
 			cb.onSuccess(node.value() instanceof Token)
-		]))
+		])
 		
-		coll.addConverter(new FolderToNothing([file |
+		coll.addConverter(new FolderToNothing [file |
 			return false
 		])
 		

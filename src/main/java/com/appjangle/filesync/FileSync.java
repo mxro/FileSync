@@ -8,16 +8,22 @@ import com.appjangle.filesync.SynchronizationState;
 import com.appjangle.filesync.internal.engine.FileUtils;
 import com.appjangle.filesync.internal.engine.SyncFolder;
 import com.appjangle.filesync.internal.engine.convert.ConverterCollection;
+import com.appjangle.filesync.internal.engine.convert.FileToTextNode;
+import com.appjangle.filesync.internal.engine.convert.FolderToNode;
+import com.appjangle.filesync.internal.engine.convert.FolderToNothing;
+import com.appjangle.filesync.internal.engine.convert.NodeToNothing;
 import de.mxro.async.Async;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
 import de.mxro.file.Jre.FilesJre;
 import de.mxro.fn.Closure;
 import de.mxro.fn.Closure2;
+import de.mxro.fn.Function;
 import de.mxro.fn.Success;
 import io.nextweb.Link;
 import io.nextweb.Node;
 import io.nextweb.Session;
+import io.nextweb.nodes.Token;
 import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
 import java.io.File;
@@ -143,10 +149,31 @@ public class FileSync {
   }
   
   public static ConverterCollection createDefaultConverter() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nmissing \')\' at \'coll\'"
-      + "\nFolderToNothing cannot be resolved."
-      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or put the closures into a typed context.");
+    ConverterCollection _xblockexpression = null;
+    {
+      final ConverterCollection coll = new ConverterCollection();
+      FileToTextNode _fileToTextNode = new FileToTextNode();
+      coll.addConverter(_fileToTextNode);
+      final Closure2<Node, ValueCallback<Boolean>> _function = new Closure2<Node, ValueCallback<Boolean>>() {
+        public void apply(final Node node, final ValueCallback<Boolean> cb) {
+          Object _value = node.value();
+          cb.onSuccess(Boolean.valueOf((_value instanceof Token)));
+        }
+      };
+      NodeToNothing _nodeToNothing = new NodeToNothing(_function);
+      coll.addConverter(_nodeToNothing);
+      final Function<FileItem, Boolean> _function_1 = new Function<FileItem, Boolean>() {
+        public Boolean apply(final FileItem file) {
+          return Boolean.valueOf(false);
+        }
+      };
+      FolderToNothing _folderToNothing = new FolderToNothing(_function_1);
+      coll.addConverter(_folderToNothing);
+      FolderToNode _folderToNode = new FolderToNode();
+      coll.addConverter(_folderToNode);
+      _xblockexpression = coll;
+    }
+    return _xblockexpression;
   }
   
   @Extension

@@ -61,13 +61,11 @@ public class FileSync {
     FileSync.syncSingleFolder(params, cb);
   }
   
-  /**
-   * <p>Synchronized the contents of the specified folder with the specified nodes and does the same for all sub-folders and child nodes.
-   */
-  public static void sync(final FileItem folder, final Node node, final ValueCallback<Success> cb) {
+  private static void sync(final SyncParams params, final ValueCallback<Success> cb) {
     final Closure<Success> _function = new Closure<Success>() {
       public void apply(final Success it) {
-        List<FileItem> _children = folder.getChildren();
+        FileItem _folder = params.getFolder();
+        List<FileItem> _children = _folder.getChildren();
         final Function1<FileItem, Boolean> _function = new Function1<FileItem, Boolean>() {
           public Boolean apply(final FileItem it) {
             boolean _and = false;
@@ -94,10 +92,12 @@ public class FileSync {
         List<FileItem> _list = IterableExtensions.<FileItem>toList(toSync);
         final Closure2<FileItem, ValueCallback<Success>> _function_1 = new Closure2<FileItem, ValueCallback<Success>>() {
           public void apply(final FileItem childFolder, final ValueCallback<Success> itmcb) {
-            final Metadata metadata = FileSync.fileUtils.loadMetadata(folder);
+            FileItem _folder = params.getFolder();
+            final Metadata metadata = FileSync.fileUtils.loadMetadata(_folder);
             String _name = childFolder.getName();
             final ItemMetadata itmmetadata = metadata.get(_name);
-            Session _session = node.session();
+            Node _node = params.getNode();
+            Session _session = _node.session();
             String _uri = itmmetadata.uri();
             final Link qry = _session.link(_uri);
             final ExceptionListener _function = new ExceptionListener() {
@@ -125,7 +125,17 @@ public class FileSync {
       }
     };
     ValueCallback<Success> _embed = Async.<Success>embed(cb, _function);
-    FileSync.syncSingleFolder(folder, node, _embed);
+    FileSync.syncSingleFolder(params, _embed);
+  }
+  
+  /**
+   * <p>Synchronized the contents of the specified folder with the specified nodes and does the same for all sub-folders and child nodes.
+   */
+  public static void sync(final FileItem folder, final Node node, final ValueCallback<Success> cb) {
+    final SyncParams params = FileSync.defaultSyncParams();
+    params.setFolder(folder);
+    params.setNode(node);
+    FileSync.sync(params, cb);
   }
   
   public static ConverterCollection createDefaultConverter() {

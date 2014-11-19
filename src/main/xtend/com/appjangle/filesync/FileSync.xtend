@@ -49,23 +49,19 @@ class FileSync {
 		params.node = node
 		
 		syncSingleFolder(params, cb)
-		
 
 	}
 
-	/**
-	 * <p>Synchronized the contents of the specified folder with the specified nodes and does the same for all sub-folders and child nodes.
-	 */
-	def static void sync(FileItem folder, Node node, ValueCallback<Success> cb) {
 
-		syncSingleFolder(folder, node,
+	def static private void sync(SyncParams params, ValueCallback<Success> cb) {
+			syncSingleFolder(params,
 			cb.embed [
-				val toSync = folder.children.filter[isDirectory && visible && !name.startsWith('.')]
+				val toSync = params.folder.children.filter[isDirectory && visible && !name.startsWith('.')]
 				Async.forEach(toSync.toList,
 					[ childFolder, itmcb |
-						val metadata = folder.loadMetadata
+						val metadata = params.folder.loadMetadata
 						val itmmetadata = metadata.get(childFolder.name)
-						val qry = node.session().link(itmmetadata.uri)
+						val qry = params.node.session().link(itmmetadata.uri)
 						qry.catchExceptions[er|cb.onFailure(er.exception)]
 						qry.get [ childNode |
 							
@@ -73,7 +69,18 @@ class FileSync {
 						]
 					], cb.embed[cb.onSuccess(Success.INSTANCE)])
 			])
+	}
 
+	/**
+	 * <p>Synchronized the contents of the specified folder with the specified nodes and does the same for all sub-folders and child nodes.
+	 */
+	def static void sync(FileItem folder, Node node, ValueCallback<Success> cb) {
+		val params = defaultSyncParams
+		
+		params.folder = folder
+		params.node = node
+		
+		sync(params, cb)
 	}
 
 	def static createDefaultConverter() {

@@ -139,9 +139,12 @@ class NetworkToFileOperations {
 		val res = new ArrayList<ItemMetadata>(0)
 
 		for (item : metadata.children) {
-
 			for (Node n : children) {
+				var contains = false;
 				if (n.uri() == item.uri) {
+					contains = true
+				}
+				if (!contains) {
 					res.add(item)
 				}
 			}

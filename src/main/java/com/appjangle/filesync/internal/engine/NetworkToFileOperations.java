@@ -198,11 +198,17 @@ public class NetworkToFileOperations {
       List<ItemMetadata> _children = this.metadata.getChildren();
       for (final ItemMetadata item : _children) {
         for (final Node n : children) {
-          String _uri = n.uri();
-          String _uri_1 = item.uri();
-          boolean _equals = Objects.equal(_uri, _uri_1);
-          if (_equals) {
-            res.add(item);
+          {
+            boolean contains = false;
+            String _uri = n.uri();
+            String _uri_1 = item.uri();
+            boolean _equals = Objects.equal(_uri, _uri_1);
+            if (_equals) {
+              contains = true;
+            }
+            if ((!contains)) {
+              res.add(item);
+            }
           }
         }
       }

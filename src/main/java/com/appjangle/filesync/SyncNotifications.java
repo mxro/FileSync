@@ -2,6 +2,7 @@ package com.appjangle.filesync;
 
 import de.mxro.file.FileItem;
 import io.nextweb.Link;
+import io.nextweb.Node;
 import org.eclipse.xtext.xbase.lib.InputOutput;
 
 @SuppressWarnings("all")
@@ -10,6 +11,6 @@ public class SyncNotifications {
     InputOutput.<String>println(((("insuf " + inFolder) + " ") + forNode));
   }
   
-  public void onNodeNotDefined(final /* Node */Object parent, final Link node) {
+  public void onNodeNotDefined(final Node parent, final Link node) {
   }
 }

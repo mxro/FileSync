@@ -49,7 +49,6 @@ class TestRecursiveSync extends CheckNodesToFilesTemplate{
 		
 		// assure that of external node only one node is created.
 		
-		//println(result.get("node4").get("Plain Text Editor").children)
 		result.get("node4").get("Plain Text Editor").children.size => 0
 	}
 	

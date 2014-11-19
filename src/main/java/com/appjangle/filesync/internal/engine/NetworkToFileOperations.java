@@ -21,6 +21,8 @@ import io.nextweb.LinkListQuery;
 import io.nextweb.Node;
 import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
+import io.nextweb.promise.exceptions.UnauthorizedListener;
+import io.nextweb.promise.exceptions.UnauthorizedResult;
 import io.nextweb.promise.exceptions.UndefinedListener;
 import io.nextweb.promise.exceptions.UndefinedResult;
 import java.util.ArrayList;
@@ -56,27 +58,37 @@ public class NetworkToFileOperations {
         List<Link> _links = children.links();
         final Closure2<Link, ValueCallback<Value<Object>>> _function = new Closure2<Link, ValueCallback<Value<Object>>>() {
           public void apply(final Link link, final ValueCallback<Value<Object>> itmcb) {
-            final UndefinedListener _function = new UndefinedListener() {
+            final UnauthorizedListener _function = new UnauthorizedListener() {
+              public void onUnauthorized(final UnauthorizedResult it) {
+                SyncNotifications _notifications = NetworkToFileOperations.this.params.getNotifications();
+                FileItem _folder = NetworkToFileOperations.this.params.getFolder();
+                _notifications.onInsufficientAuthorization(_folder, link);
+                Value<Object> _value = new Value<Object>(link);
+                itmcb.onSuccess(_value);
+              }
+            };
+            link.catchUnauthorized(_function);
+            final UndefinedListener _function_1 = new UndefinedListener() {
               public void onUndefined(final UndefinedResult it) {
                 Value<Object> _value = new Value<Object>(link);
                 itmcb.onSuccess(_value);
               }
             };
-            link.catchUndefined(_function);
-            final ExceptionListener _function_1 = new ExceptionListener() {
+            link.catchUndefined(_function_1);
+            final ExceptionListener _function_2 = new ExceptionListener() {
               public void onFailure(final ExceptionResult it) {
                 Throwable _exception = it.exception();
                 itmcb.onFailure(_exception);
               }
             };
-            link.catchExceptions(_function_1);
-            final Closure<Node> _function_2 = new Closure<Node>() {
+            link.catchExceptions(_function_2);
+            final Closure<Node> _function_3 = new Closure<Node>() {
               public void apply(final Node it) {
                 Value<Object> _value = new Value<Object>(it);
                 itmcb.onSuccess(_value);
               }
             };
-            link.get(_function_2);
+            link.get(_function_3);
           }
         };
         final Closure<List<Value<Object>>> _function_1 = new Closure<List<Value<Object>>>() {
@@ -89,10 +101,6 @@ public class NetworkToFileOperations {
                 Object _get_1 = value.get();
                 nodes.add(((Node) _get_1));
               } else {
-                SyncNotifications _notifications = NetworkToFileOperations.this.params.getNotifications();
-                FileItem _folder = NetworkToFileOperations.this.params.getFolder();
-                Object _get_2 = value.get();
-                _notifications.onInsufficientAuthorization(_folder, ((Link) _get_2));
               }
             }
             final Iterable<Node> remotelyAdded = NetworkToFileOperations.this.determineRemotelyAddedNodes(nodes);

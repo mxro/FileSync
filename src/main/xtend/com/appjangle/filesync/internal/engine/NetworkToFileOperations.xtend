@@ -38,7 +38,13 @@ class NetworkToFileOperations {
 		qry.get [ children |
 			Async.forEach(children.links,
 				[ link, itmcb |
-					link.catchUndefined[itmcb.onSuccess(new Value<Object>(link))]
+					link.catchUnauthorized[
+						params.notifications.onInsufficientAuthorization(params.folder, link)
+						itmcb.onSuccess(new Value<Object>(link))
+					]
+					link.catchUndefined[
+						itmcb.onSuccess(new Value<Object>(link))
+					]
 					link.catchExceptions[itmcb.onFailure(exception)]
 					link.get[itmcb.onSuccess(new Value<Object>(it))]
 				],
@@ -48,7 +54,7 @@ class NetworkToFileOperations {
 						if (value.get instanceof Node) {
 							nodes.add(value.get as Node)
 						} else {
-							params.notifications.onInsufficientAuthorization(params.folder, value.get as Link)
+							
 						}
 					}
 					val Iterable<Node> remotelyAdded = nodes.determineRemotelyAddedNodes

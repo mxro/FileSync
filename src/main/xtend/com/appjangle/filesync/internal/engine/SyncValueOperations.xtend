@@ -3,7 +3,9 @@ package com.appjangle.filesync.internal.engine
 import com.appjangle.filesync.ItemMetadata
 import com.appjangle.filesync.Metadata
 import com.google.common.base.Preconditions
+import de.mxro.async.callbacks.ValueCallback
 import de.mxro.file.FileItem
+import de.mxro.fn.Success
 import io.nextweb.Node
 
 class SyncValueOperations {
@@ -48,14 +50,22 @@ class SyncValueOperations {
 		
 		if (oldText != node.value().toString()) {
 			folder.get("value.txt").text = node.value().toString()
+			metadata.value = createMetadata(node, folder.get("value.txt"))
 		}
 		
 	}
 	
-	def uploadValue(Node node, Metadata metadata, FileItem folder) {
+	def uploadValue(Node node, Metadata metadata, FileItem folder, ValueCallback<Success> cb) {
 		
-		Preconditions.checkState(folder.get("value.txt").exists)
+		val file = folder.get("value.txt")
 		
+		Preconditions.checkState(file.exists)
+		
+		if (metadata.value.lastModified.time > file.lastModified.time) {
+			
+			node.setValueSafe(file.text
+			
+		}
 		
 	}
 	

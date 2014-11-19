@@ -3,9 +3,11 @@ package com.appjangle.filesync.internal.engine;
 import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
 import com.google.common.base.Objects;
-import com.google.common.base.Preconditions;
+import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
+import de.mxro.fn.Success;
 import io.nextweb.Node;
+import io.nextweb.Query;
 import java.util.Date;
 
 @SuppressWarnings("all")
@@ -58,12 +60,14 @@ public class SyncValueOperations {
       Object _value_2 = node.value();
       String _string_2 = _value_2.toString();
       _get_3.setText(_string_2);
+      FileItem _get_4 = folder.get("value.txt");
+      ItemMetadata _createMetadata_1 = SyncValueOperations.createMetadata(node, _get_4);
+      metadata.setValue(_createMetadata_1);
     }
   }
   
-  public void uploadValue(final Node node, final Metadata metadata, final FileItem folder) {
-    FileItem _get = folder.get("value.txt");
-    boolean _exists = _get.exists();
-    Preconditions.checkState(_exists);
+  public Query uploadValue(final Node node, final Metadata metadata, final FileItem folder, final ValueCallback<Success> cb) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nmissing \')\' at \'}\'");
   }
 }

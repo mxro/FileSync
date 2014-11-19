@@ -58,7 +58,7 @@ public class SyncFolder {
     _fileToNetworkOperations.determineOps(_embed);
   }
   
-  public Object download(final ValueCallback<Success> cb) {
+  public void download(final ValueCallback<Success> cb) {
     NetworkToFileOperations _networkToFileOperations = new NetworkToFileOperations(this.params, this.metadata);
     final Closure<List<FileOperation>> _function = new Closure<List<FileOperation>>() {
       public void apply(final List<FileOperation> ops) {
@@ -70,7 +70,7 @@ public class SyncFolder {
       }
     };
     ValueCallback<List<FileOperation>> _embed = Async.<List<FileOperation>>embed(cb, _function);
-    return _networkToFileOperations.determineOps(_embed);
+    _networkToFileOperations.determineOps(_embed);
   }
   
   @Extension

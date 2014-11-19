@@ -32,7 +32,7 @@ class NetworkToFileOperations {
 
 	def determineOps(ValueCallback<List<FileOperation>> cb) {
 
-		val qry = node.selectAll
+		val qry = params.node.selectAll
 
 		qry.catchExceptions[er|cb.onFailure(er.exception)]
 
@@ -77,7 +77,7 @@ class NetworkToFileOperations {
 
 		for (updatedNode : remotelyUpdated) {
 
-			converter.updateFiles(folder, metadata, updatedNode, agg.createCallback)
+			params.converter.updateFiles(params.folder, metadata, updatedNode, agg.createCallback)
 
 		}
 		
@@ -93,7 +93,7 @@ class NetworkToFileOperations {
 
 		for (newNode : remotelyAdded) {
 
-			converter.createFiles(folder, metadata, newNode, agg.createCallback)
+			params.converter.createFiles(params.folder, metadata, newNode, agg.createCallback)
 
 		}
 
@@ -109,7 +109,7 @@ class NetworkToFileOperations {
 				
 		for (removedNode : remotelyRemoved) {
 
-			converter.removeFiles(folder, metadata, removedNode, agg.createCallback)
+			params.converter.removeFiles(params.folder, metadata, removedNode, agg.createCallback)
 
 		}
 		

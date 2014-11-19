@@ -20,7 +20,8 @@ class SyncParams {
 	var SyncNotifications notifications
 	
 	/**
-	 * The Node defined as the root of the synchronzation. 
+	 * <p>The Node defined as the root of the synchronization.
+	 * <p>All nodes under this root will be resolved. 
 	 */
 	var Node syncRoot;
 	

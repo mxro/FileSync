@@ -13,7 +13,6 @@ import de.mxro.file.FileItem;
 import de.mxro.fn.Closure;
 import de.mxro.fn.collections.CollectionsUtils;
 import io.nextweb.Node;
-import io.nextweb.NodeList;
 import java.util.ArrayList;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
@@ -34,10 +33,8 @@ public class NetworkToFileOperations {
   
   public void determineOps(final ValueCallback<List<FileOperation>> cb) {
     throw new Error("Unresolved compilation problems:"
-      + "\nThe method embed is undefined for the type NetworkToFileOperations"
-      + "\nType mismatch: cannot convert from LinkList to NodeList"
-      + "\nType mismatch: cannot convert from LinkList to NodeList"
-      + "\nType mismatch: cannot convert from LinkList to NodeList");
+      + "\nmissing \')\' at \']\'"
+      + "\nType mismatch: cannot convert from Value<Node> to Node");
   }
   
   public void deduceUpdateOperations(final Iterable<Node> remotelyUpdated, final ValueCallback<List<FileOperation>> cb) {
@@ -94,7 +91,7 @@ public class NetworkToFileOperations {
     }
   }
   
-  public ArrayList<Node> determineRemotelyAddedNodes(final NodeList children) {
+  public ArrayList<Node> determineRemotelyAddedNodes(final List<Node> children) {
     ArrayList<Node> _xblockexpression = null;
     {
       final ArrayList<Node> res = new ArrayList<Node>(0);
@@ -110,18 +107,19 @@ public class NetworkToFileOperations {
     return _xblockexpression;
   }
   
-  public ArrayList<ItemMetadata> determineRemotelyRemovedNodes(final NodeList children) {
+  public ArrayList<ItemMetadata> determineRemotelyRemovedNodes(final List<Node> children) {
     ArrayList<ItemMetadata> _xblockexpression = null;
     {
       final ArrayList<ItemMetadata> res = new ArrayList<ItemMetadata>(0);
       List<ItemMetadata> _children = this.metadata.getChildren();
       for (final ItemMetadata item : _children) {
-        List<String> _uris = children.uris();
-        String _uri = item.uri();
-        boolean _contains = _uris.contains(_uri);
-        boolean _not = (!_contains);
-        if (_not) {
-          res.add(item);
+        for (final Node n : children) {
+          String _uri = n.uri();
+          String _uri_1 = item.uri();
+          boolean _equals = Objects.equal(_uri, _uri_1);
+          if (_equals) {
+            res.add(item);
+          }
         }
       }
       _xblockexpression = res;
@@ -129,7 +127,7 @@ public class NetworkToFileOperations {
     return _xblockexpression;
   }
   
-  public ArrayList<Node> determineRemotelyUpdatedNodes(final NodeList children) {
+  public ArrayList<Node> determineRemotelyUpdatedNodes(final List<Node> children) {
     ArrayList<Node> _xblockexpression = null;
     {
       int _size = children.size();

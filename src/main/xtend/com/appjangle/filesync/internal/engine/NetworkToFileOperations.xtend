@@ -5,14 +5,14 @@ import com.appjangle.filesync.ItemMetadata
 import com.appjangle.filesync.Metadata
 import com.appjangle.filesync.SyncParams
 import de.mxro.async.Async
+import de.mxro.async.Value
 import de.mxro.async.callbacks.ValueCallback
 import de.mxro.fn.collections.CollectionsUtils
 import io.nextweb.Node
-import io.nextweb.NodeList
 import java.util.ArrayList
 import java.util.List
 
-import static de.mxro.async.Async.*
+import static extension de.mxro.async.Async.*
 
 /**
  * Determines operations to be performed on local files based on remote changes made in the cloud.
@@ -21,7 +21,6 @@ class NetworkToFileOperations {
 
 	val SyncParams params
 	val Metadata metadata;
-	
 
 	new(SyncParams params, Metadata metadata) {
 		this.params = params
@@ -37,45 +36,40 @@ class NetworkToFileOperations {
 
 		qry.get [ children |
 			
-			
-			Async.forEach(children.links, [link, itmcb |
-				
-			], cb.embed([]))
-			
-			var Iterable<Node> remotelyAdded = children.determineRemotelyAddedNodes
-			val remotelyRemoved = children.determineRemotelyRemovedNodes
-			val remotelyUpdated = children.determineRemotelyUpdatedNodes
-			
-			/*
-			 * Don't download nodes starting with '.'
-			 */ 
-			/*remotelyAdded = remotelyAdded.filter [ node |
-				if (ConvertUtils.getNameFromUri(node.uri()).startsWith('.')) {
-					return false;
-				}
-				
-				return true;
-			]*/
-
-			val agg = Async.collect(3,
-				Async.embed(cb,
-					[ res |
-						cb.onSuccess(CollectionsUtils.flatten(res))
-					]))
-				
-				
+			Async.forEach(children.links,
+				[ link, itmcb |
+					link.catchExceptions[itmcb.onFailure(exception)]
+					link.catchUndefined [itmcb.onSuccess(new Value<Node>(null)]
+					link.get [ itmcb.onSuccess(new Value<Node>(it)) ]
+				],
+				cb.embed [ List<Value<Node>> values |
 					
-			remotelyAdded.deduceCreateOperations(agg.createCallback)
-			remotelyRemoved.deduceRemoveOperations(agg.createCallback)
-			remotelyUpdated.deduceUpdateOperations(agg.createCallback)
+					val nodes = new ArrayList<Node>(values.size())
 					
+					for (value : values) {
+						if (value.get() != null) {
+							nodes.add(value)
+						}
+					} 
+					
+					val Iterable<Node> remotelyAdded = nodes.determineRemotelyAddedNodes
+					val remotelyRemoved = nodes.determineRemotelyRemovedNodes
+					val remotelyUpdated = nodes.determineRemotelyUpdatedNodes
+					val agg = Async.collect(3,
+						Async.embed(cb,
+							[ res |
+								cb.onSuccess(CollectionsUtils.flatten(res))
+							]))
+					remotelyAdded.deduceCreateOperations(agg.createCallback)
+					remotelyRemoved.deduceRemoveOperations(agg.createCallback)
+					remotelyUpdated.deduceUpdateOperations(agg.createCallback)
+				])
 		]
 
 	}
 
+	def deduceUpdateOperations(Iterable<Node> remotelyUpdated, ValueCallback<List<FileOperation>> cb) {
 
-	def deduceUpdateOperations(Iterable<Node> remotelyUpdated, ValueCallback<List<FileOperation>> cb ) {
-		
 		val agg = Async.collect(remotelyUpdated.size,
 			Async.embed(cb,
 				[ res |
@@ -87,7 +81,7 @@ class NetworkToFileOperations {
 			params.converter.updateFiles(params.folder, metadata, updatedNode, agg.createCallback)
 
 		}
-		
+
 	}
 
 	def deduceCreateOperations(Iterable<Node> remotelyAdded, ValueCallback<List<FileOperation>> cb) {
@@ -99,30 +93,30 @@ class NetworkToFileOperations {
 				]))
 
 		for (newNode : remotelyAdded) {
-			
+
 			params.converter.createFiles(params.folder, metadata, newNode, agg.createCallback)
 
 		}
 
 	}
-	
+
 	def deduceRemoveOperations(List<ItemMetadata> remotelyRemoved, ValueCallback<List<FileOperation>> cb) {
-		
+
 		val agg = Async.collect(remotelyRemoved.size,
 			Async.embed(cb,
 				[ res |
 					cb.onSuccess(CollectionsUtils.flatten(res))
 				]))
-				
+
 		for (removedNode : remotelyRemoved) {
 
 			params.converter.removeFiles(params.folder, metadata, removedNode, agg.createCallback)
 
 		}
-		
+
 	}
 
-	def determineRemotelyAddedNodes(NodeList children) {
+	def determineRemotelyAddedNodes(List<Node> children) {
 
 		val res = new ArrayList<Node>(0)
 
@@ -135,14 +129,16 @@ class NetworkToFileOperations {
 		res
 	}
 
-	def determineRemotelyRemovedNodes(NodeList children) {
+	def determineRemotelyRemovedNodes(List<Node> children) {
 
 		val res = new ArrayList<ItemMetadata>(0)
 
 		for (item : metadata.children) {
 
-			if (!children.uris.contains(item.uri)) {
-				res.add(item)
+			for (Node n : children) {
+				if (n.uri() == item.uri) {
+					res.add(item)
+				}
 			}
 
 		}
@@ -151,15 +147,16 @@ class NetworkToFileOperations {
 
 	}
 
-	def determineRemotelyUpdatedNodes(NodeList children) {
+	def determineRemotelyUpdatedNodes(List<Node> children) {
 		val res = new ArrayList<Node>(children.size)
 
 		for (node : children) {
+
 			// TODO: not yet supported, just update all
 			if (metadata.get(node) != null) {
 				res.add(node)
 			}
-			
+
 		}
 
 		res

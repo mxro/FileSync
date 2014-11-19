@@ -100,6 +100,7 @@ public class FolderToNode implements Converter {
   }
   
   public void createFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
+    InputOutput.<String>println(("try create " + source));
     final Closure<String> _function = new Closure<String>() {
       public void apply(final String rawFolderName) {
         final LinkedList<FileOperation> ops = new LinkedList<FileOperation>();
@@ -108,7 +109,7 @@ public class FolderToNode implements Converter {
             final String folderName = FolderToNode.this.futils.toFileSystemSafeName(rawFolderName, false, 100);
             FileItem _folder = ctx.folder();
             _folder.assertFolder(folderName);
-            InputOutput.<String>println(("create " + folderName));
+            InputOutput.<String>println(("creatde " + source));
             Metadata _metadata = ctx.metadata();
             _metadata.add(
               new ItemMetadata() {

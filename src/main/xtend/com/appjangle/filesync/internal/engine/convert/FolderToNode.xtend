@@ -81,6 +81,7 @@ class FolderToNode implements Converter {
 	}
 
 	override createFiles(FileItem folder, Metadata metadata, Node source, ValueCallback<List<FileOperation>> cb) {
+		println('try create '+source)
 		source.getFileName(
 			cb.embed [ rawFolderName |
 				val ops = new LinkedList<FileOperation>
@@ -91,7 +92,7 @@ class FolderToNode implements Converter {
 						val folderName = rawFolderName.toFileSystemSafeName(false, 100)
 						ctx.folder.assertFolder(folderName)
 						
-						println('create '+folderName)
+						println('creatde '+source)
 						
 						ctx.metadata.add(
 							new ItemMetadata() {

@@ -32,6 +32,7 @@ class FileSync {
 		params.settings = new SynchronizationSettings
 		params.state = new SynchronizationState() {
 		}
+		params.notifications = new SyncNotifications
 
 		return params
 	}

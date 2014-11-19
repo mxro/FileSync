@@ -1,6 +1,7 @@
 package com.appjangle.filesync;
 
 import com.appjangle.filesync.Converter;
+import com.appjangle.filesync.SyncNotifications;
 import com.appjangle.filesync.SynchronizationSettings;
 import com.appjangle.filesync.SynchronizationState;
 import de.mxro.file.FileItem;
@@ -21,6 +22,8 @@ public class SyncParams {
   
   private Converter converter;
   
+  private SyncNotifications notifications;
+  
   public SyncParams() {
   }
   
@@ -30,6 +33,7 @@ public class SyncParams {
     this.settings = params.settings;
     this.state = params.state;
     this.converter = params.converter;
+    this.notifications = params.notifications;
   }
   
   @Pure
@@ -75,5 +79,14 @@ public class SyncParams {
   
   public void setConverter(final Converter converter) {
     this.converter = converter;
+  }
+  
+  @Pure
+  public SyncNotifications getNotifications() {
+    return this.notifications;
+  }
+  
+  public void setNotifications(final SyncNotifications notifications) {
+    this.notifications = notifications;
   }
 }

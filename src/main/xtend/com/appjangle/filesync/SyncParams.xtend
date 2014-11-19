@@ -17,6 +17,8 @@ class SyncParams {
 	
 	var Converter converter
 	
+	var SyncNotifications notifications
+	
 	new() {
 		
 	}
@@ -27,6 +29,7 @@ class SyncParams {
 		settings = params.settings
 		state = params.state
 		converter = params.converter
+		notifications = params.notifications
 	} 
 	
 }

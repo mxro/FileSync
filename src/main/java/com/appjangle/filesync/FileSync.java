@@ -2,6 +2,7 @@ package com.appjangle.filesync;
 
 import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
+import com.appjangle.filesync.SyncNotifications;
 import com.appjangle.filesync.SyncParams;
 import com.appjangle.filesync.SynchronizationSettings;
 import com.appjangle.filesync.SynchronizationState;
@@ -48,6 +49,8 @@ public class FileSync {
     params.setSettings(_synchronizationSettings);
     params.setState(new SynchronizationState() {
     });
+    SyncNotifications _syncNotifications = new SyncNotifications();
+    params.setNotifications(_syncNotifications);
     return params;
   }
   

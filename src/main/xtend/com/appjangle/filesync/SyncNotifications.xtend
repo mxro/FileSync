@@ -31,7 +31,9 @@ class SyncNotifications {
 	}
 	
 	def void onNodeSkippedBecauseItWasAlreadySynced(FileItem folder, Node node) {
-		
+		if (printToStdOut) {
+			println("Node was already synchronized ["+node+"] in folder ["+folder+"]. Synchronziation skipped.")
+		}
 	}
 	
 	

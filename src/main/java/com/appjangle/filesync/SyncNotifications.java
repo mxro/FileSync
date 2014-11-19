@@ -31,6 +31,9 @@ public class SyncNotifications {
   }
   
   public void onNodeSkippedBecauseItWasAlreadySynced(final FileItem folder, final Node node) {
+    if (this.printToStdOut) {
+      InputOutput.<String>println((((("Node was already synchronized [" + node) + "] in folder [") + folder) + "]. Synchronziation skipped."));
+    }
   }
   
   @Pure

@@ -5,6 +5,7 @@ import com.appjangle.filesync.internal.engine.SyncFolder
 import com.appjangle.filesync.internal.engine.convert.ConverterCollection
 import com.appjangle.filesync.internal.engine.convert.FileToTextNode
 import com.appjangle.filesync.internal.engine.convert.FolderToNode
+import com.appjangle.filesync.internal.engine.convert.FolderToNothing
 import com.appjangle.filesync.internal.engine.convert.NodeToNothing
 import de.mxro.async.Async
 import de.mxro.async.callbacks.ValueCallback
@@ -12,10 +13,10 @@ import de.mxro.file.FileItem
 import de.mxro.file.Jre.FilesJre
 import de.mxro.fn.Success
 import io.nextweb.Node
+import io.nextweb.nodes.Token
 import java.io.File
 
 import static extension de.mxro.async.Async.embed
-import io.nextweb.nodes.Token
 
 class FileSync {
 
@@ -98,6 +99,10 @@ class FileSync {
 		coll.addConverter(new NodeToNothing([node, cb |
 			cb.onSuccess(node.value() instanceof Token)
 		]))
+		
+		coll.addConverter(new FolderToNothing([file |
+			return false
+		])
 		
 		coll.addConverter(new FolderToNode)
 

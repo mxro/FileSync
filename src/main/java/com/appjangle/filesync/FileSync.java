@@ -2,7 +2,9 @@ package com.appjangle.filesync;
 
 import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
+import com.appjangle.filesync.SynchronizationSettings;
 import com.appjangle.filesync.internal.engine.FileUtils;
+import com.appjangle.filesync.internal.engine.SyncFolder;
 import com.appjangle.filesync.internal.engine.SyncParams;
 import com.appjangle.filesync.internal.engine.convert.ConverterCollection;
 import com.appjangle.filesync.internal.engine.convert.FileToTextNode;
@@ -27,29 +29,33 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
 @SuppressWarnings("all")
 public class FileSync {
-  private static Object syncSingleFolder(final SyncParams params) {
-    return null;
+  private static void syncSingleFolder(final SyncParams params, final ValueCallback<Success> cb) {
+    SyncFolder _syncFolder = new SyncFolder(params);
+    _syncFolder.doIt(cb);
   }
   
   private static SyncParams defaultSyncParams() {
-    return new SyncParams();
+    final SyncParams params = new SyncParams();
+    ConverterCollection _createDefaultConverter = FileSync.createDefaultConverter();
+    params.setConverter(_createDefaultConverter);
+    SynchronizationSettings _synchronizationSettings = new SynchronizationSettings();
+    params.setSettings(_synchronizationSettings);
+    return params;
   }
   
   /**
    * <p>Synchronized the contents of a folder and a node without synchronizing sub-folders.
    */
-  public static void syncSingleFolder(final File folder, final Node node, final ValueCallback<Success> cb) {
+  public static Object syncSingleFolder(final File folder, final Node node, final ValueCallback<Success> cb) {
     FileItem _wrap = FilesJre.wrap(folder);
-    FileSync.syncSingleFolder(_wrap, node, cb);
+    return FileSync.syncSingleFolder(_wrap, node, cb);
   }
   
   /**
    * <p>Synchronized the contents of a folder and a node without synchronizing sub-folders.
    */
-  public static void syncSingleFolder(final FileItem folder, final Node node, final ValueCallback<Success> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nInvalid number of arguments. The constructor SyncFolder(SyncParams) is not applicable for the arguments (FileItem,Node,ConverterCollection)"
-      + "\nType mismatch: cannot convert from FileItem to SyncParams");
+  public static Object syncSingleFolder(final FileItem folder, final Node node, final ValueCallback<Success> cb) {
+    return null;
   }
   
   /**

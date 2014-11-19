@@ -1,9 +1,11 @@
 package com.appjangle.filesync.internal.engine;
 
+import com.appjangle.filesync.FileOperation;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.NetworkOperation;
 import com.appjangle.filesync.internal.engine.FileToNetworkOperations;
 import com.appjangle.filesync.internal.engine.FileUtils;
+import com.appjangle.filesync.internal.engine.NetworkToFileOperations;
 import com.appjangle.filesync.internal.engine.NetworkUtils;
 import com.appjangle.filesync.internal.engine.SyncParams;
 import de.mxro.async.Async;
@@ -56,14 +58,19 @@ public class SyncFolder {
     _fileToNetworkOperations.determineOps(_embed);
   }
   
-  public void download(final ValueCallback<Success> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field node is undefined for the type SyncFolder"
-      + "\nThe method or field folder is undefined for the type SyncFolder"
-      + "\nThe method or field converter is undefined for the type SyncFolder"
-      + "\nThe method or field folder is undefined for the type SyncFolder"
-      + "\nThe method or field folder is undefined for the type SyncFolder"
-      + "\nsaveMetadata cannot be resolved");
+  public Object download(final ValueCallback<Success> cb) {
+    NetworkToFileOperations _networkToFileOperations = new NetworkToFileOperations(this.params, this.metadata);
+    final Closure<List<FileOperation>> _function = new Closure<List<FileOperation>>() {
+      public void apply(final List<FileOperation> ops) {
+        FileItem _folder = SyncFolder.this.params.folder();
+        SyncFolder.this.fileUtils.execute(ops, _folder, SyncFolder.this.metadata);
+        FileItem _folder_1 = SyncFolder.this.params.folder();
+        SyncFolder.this.fileUtils.saveMetadata(_folder_1, SyncFolder.this.metadata);
+        cb.onSuccess(Success.INSTANCE);
+      }
+    };
+    ValueCallback<List<FileOperation>> _embed = Async.<List<FileOperation>>embed(cb, _function);
+    return _networkToFileOperations.determineOps(_embed);
   }
   
   @Extension

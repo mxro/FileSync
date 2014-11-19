@@ -19,16 +19,14 @@ import java.util.List
  */
 class NetworkToFileOperations {
 
-	val Node node;
-	val FileItem folder;
+	val SyncParams params
 	val Metadata metadata;
-	val Converter converter;
+	
 
-	new(Node node, FileItem folder, Metadata metadata, Converter converter) {
-		this.node = node
-		this.folder = folder
+	new(SyncParams params, Metadata metadata) {
+		this.params = params
 		this.metadata = metadata
-		this.converter = converter
+		
 
 	}
 

@@ -1,11 +1,8 @@
 package com.appjangle.filesync.internal.engine
 
-import com.appjangle.filesync.Converter
 import com.appjangle.filesync.Metadata
 import de.mxro.async.callbacks.ValueCallback
-import de.mxro.file.FileItem
 import de.mxro.fn.Success
-import io.nextweb.Node
 
 import static extension de.mxro.async.Async.embed
 
@@ -44,11 +41,11 @@ class SyncFolder {
 	
 	
 	def download(ValueCallback<Success> cb) {
-		new NetworkToFileOperations(node, folder, metadata, converter).determineOps(cb.embed([ ops |
+		new NetworkToFileOperations(params, metadata).determineOps(cb.embed([ ops |
 			
-			ops.execute(folder, metadata)
+			ops.execute(params.folder, metadata)
 			
-			folder.saveMetadata(metadata)
+			params.folder.saveMetadata(metadata)
 			
 			cb.onSuccess(Success.INSTANCE)
 		]))

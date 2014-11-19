@@ -3,6 +3,7 @@ package com.appjangle.filesync.internal.engine;
 import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
 import com.google.common.base.Objects;
+import com.google.common.base.Preconditions;
 import de.mxro.file.FileItem;
 import io.nextweb.Node;
 import java.util.Date;
@@ -60,8 +61,9 @@ public class SyncValueOperations {
     }
   }
   
-  public Object uploadValue(final Node node, final Metadata metadata, final FileItem folder) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field checkArgument is undefined for the type SyncValueOperations");
+  public void uploadValue(final Node node, final Metadata metadata, final FileItem folder) {
+    FileItem _get = folder.get("value.txt");
+    boolean _exists = _get.exists();
+    Preconditions.checkState(_exists);
   }
 }

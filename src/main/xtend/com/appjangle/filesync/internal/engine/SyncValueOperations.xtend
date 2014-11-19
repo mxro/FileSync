@@ -2,6 +2,7 @@ package com.appjangle.filesync.internal.engine
 
 import com.appjangle.filesync.ItemMetadata
 import com.appjangle.filesync.Metadata
+import com.google.common.base.Preconditions
 import de.mxro.file.FileItem
 import io.nextweb.Node
 
@@ -53,7 +54,8 @@ class SyncValueOperations {
 	
 	def uploadValue(Node node, Metadata metadata, FileItem folder) {
 		
-		checkArgument()
+		Preconditions.checkState(folder.get("value.txt").exists)
+		
 		
 	}
 	

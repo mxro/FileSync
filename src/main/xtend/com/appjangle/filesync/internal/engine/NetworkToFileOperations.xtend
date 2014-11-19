@@ -35,6 +35,8 @@ class NetworkToFileOperations {
 		qry.catchExceptions[er|cb.onFailure(er.exception)]
 
 		qry.get [ children |
+			println(children)
+			
 			var Iterable<Node> remotelyAdded = children.determineRemotelyAddedNodes
 			val remotelyRemoved = children.determineRemotelyRemovedNodes
 			val remotelyUpdated = children.determineRemotelyUpdatedNodes
@@ -56,7 +58,7 @@ class NetworkToFileOperations {
 						cb.onSuccess(CollectionsUtils.flatten(res))
 					]))
 				
-				println(remotelyAdded)
+				
 					
 			remotelyAdded.deduceCreateOperations(agg.createCallback)
 			remotelyRemoved.deduceRemoveOperations(agg.createCallback)

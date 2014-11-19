@@ -2,6 +2,7 @@ package com.appjangle.filesync
 
 import com.appjangle.filesync.internal.engine.FileUtils
 import com.appjangle.filesync.internal.engine.SyncFolder
+import com.appjangle.filesync.internal.engine.convert.ConvertUtils
 import com.appjangle.filesync.internal.engine.convert.ConverterCollection
 import com.appjangle.filesync.internal.engine.convert.FileToTextNode
 import com.appjangle.filesync.internal.engine.convert.FolderToNode
@@ -105,6 +106,10 @@ class FileSync {
 		
 		coll.addConverter(new NodeToNothing [node, cb |
 			cb.onSuccess(node.value() instanceof Token)
+		])
+		
+		coll.addConverter(new NodeToNothing [node, cb |
+			cb.onSuccess(ConvertUtils.getNameFromUri(node.uri()).startsWith('.'))
 		])
 		
 		coll.addConverter(new FolderToNothing [file |

@@ -7,6 +7,7 @@ import com.appjangle.filesync.SynchronizationSettings;
 import com.appjangle.filesync.SynchronizationState;
 import com.appjangle.filesync.internal.engine.FileUtils;
 import com.appjangle.filesync.internal.engine.SyncFolder;
+import com.appjangle.filesync.internal.engine.convert.ConvertUtils;
 import com.appjangle.filesync.internal.engine.convert.ConverterCollection;
 import com.appjangle.filesync.internal.engine.convert.FileToTextNode;
 import com.appjangle.filesync.internal.engine.convert.FolderToNode;
@@ -171,7 +172,17 @@ public class FileSync {
       };
       NodeToNothing _nodeToNothing = new NodeToNothing(_function);
       coll.addConverter(_nodeToNothing);
-      final Function<FileItem, Boolean> _function_1 = new Function<FileItem, Boolean>() {
+      final Closure2<Node, ValueCallback<Boolean>> _function_1 = new Closure2<Node, ValueCallback<Boolean>>() {
+        public void apply(final Node node, final ValueCallback<Boolean> cb) {
+          String _uri = node.uri();
+          String _nameFromUri = ConvertUtils.getNameFromUri(_uri);
+          boolean _startsWith = _nameFromUri.startsWith(".");
+          cb.onSuccess(Boolean.valueOf(_startsWith));
+        }
+      };
+      NodeToNothing _nodeToNothing_1 = new NodeToNothing(_function_1);
+      coll.addConverter(_nodeToNothing_1);
+      final Function<FileItem, Boolean> _function_2 = new Function<FileItem, Boolean>() {
         public Boolean apply(final FileItem file) {
           boolean _or = false;
           String _name = file.getName();
@@ -186,7 +197,7 @@ public class FileSync {
           return Boolean.valueOf(_or);
         }
       };
-      FolderToNothing _folderToNothing = new FolderToNothing(_function_1);
+      FolderToNothing _folderToNothing = new FolderToNothing(_function_2);
       coll.addConverter(_folderToNothing);
       FolderToNode _folderToNode = new FolderToNode();
       coll.addConverter(_folderToNode);

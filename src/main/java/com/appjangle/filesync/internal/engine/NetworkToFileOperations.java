@@ -48,6 +48,7 @@ public class NetworkToFileOperations {
     qry.catchExceptions(_function);
     final Closure<NodeList> _function_1 = new Closure<NodeList>() {
       public void apply(final NodeList children) {
+        InputOutput.<NodeList>println(children);
         Iterable<Node> remotelyAdded = NetworkToFileOperations.this.determineRemotelyAddedNodes(children);
         final ArrayList<ItemMetadata> remotelyRemoved = NetworkToFileOperations.this.determineRemotelyRemovedNodes(children);
         final ArrayList<Node> remotelyUpdated = NetworkToFileOperations.this.determineRemotelyUpdatedNodes(children);
@@ -59,7 +60,6 @@ public class NetworkToFileOperations {
         };
         ValueCallback<List<List<FileOperation>>> _embed = Async.<List<List<FileOperation>>>embed(cb, _function);
         final Aggregator<List<FileOperation>> agg = Async.<List<FileOperation>>collect(3, _embed);
-        InputOutput.<Iterable<Node>>println(remotelyAdded);
         ValueCallback<List<FileOperation>> _createCallback = agg.createCallback();
         NetworkToFileOperations.this.deduceCreateOperations(remotelyAdded, _createCallback);
         ValueCallback<List<FileOperation>> _createCallback_1 = agg.createCallback();

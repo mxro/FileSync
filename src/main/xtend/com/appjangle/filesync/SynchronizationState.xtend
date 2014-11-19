@@ -1,5 +1,5 @@
 package com.appjangle.filesync
 
-class SynchronizationState {
+interface SynchronizationState {
 	
 }

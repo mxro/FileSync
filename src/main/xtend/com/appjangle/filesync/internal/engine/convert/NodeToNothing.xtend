@@ -40,6 +40,7 @@ class NodeToNothing implements Converter {
 	}
 	
 	override createFiles(FileItem folder, Metadata metadata, Node source, ValueCallback<List<FileOperation>> cb) {
+		println('ignoring '+source)
 		cb.onSuccess(newArrayList)
 	}
 	

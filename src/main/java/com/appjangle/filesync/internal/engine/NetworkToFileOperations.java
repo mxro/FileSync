@@ -52,6 +52,7 @@ public class NetworkToFileOperations {
         Iterable<Node> remotelyAdded = NetworkToFileOperations.this.determineRemotelyAddedNodes(children);
         final ArrayList<ItemMetadata> remotelyRemoved = NetworkToFileOperations.this.determineRemotelyRemovedNodes(children);
         final ArrayList<Node> remotelyUpdated = NetworkToFileOperations.this.determineRemotelyUpdatedNodes(children);
+        InputOutput.<String>println(("added" + remotelyAdded));
         final Closure<List<List<FileOperation>>> _function = new Closure<List<List<FileOperation>>>() {
           public void apply(final List<List<FileOperation>> res) {
             List<FileOperation> _flatten = CollectionsUtils.<FileOperation>flatten(res);

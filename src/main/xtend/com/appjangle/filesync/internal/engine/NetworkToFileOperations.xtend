@@ -52,6 +52,8 @@ class NetworkToFileOperations {
 				return true;
 			]*/
 			
+			println("added" +remotelyAdded)
+			
 			val agg = Async.collect(3,
 				Async.embed(cb,
 					[ res |

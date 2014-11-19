@@ -103,10 +103,17 @@ public class FileSync {
             final Metadata metadata = FileSync.fileUtils.loadMetadata(_folder);
             String _name = childFolder.getName();
             final ItemMetadata itmmetadata = metadata.get(_name);
-            Node _node = params.getNode();
-            Session _session = _node.session();
             String _uri = itmmetadata.uri();
-            final Link qry = _session.link(_uri);
+            Node _node = params.getNode();
+            String _uri_1 = _node.uri();
+            boolean _startsWith = _uri.startsWith(_uri_1);
+            boolean _not = (!_startsWith);
+            if (_not) {
+            }
+            Node _node_1 = params.getNode();
+            Session _session = _node_1.session();
+            String _uri_2 = itmmetadata.uri();
+            final Link qry = _session.link(_uri_2);
             final ExceptionListener _function = new ExceptionListener() {
               public void onFailure(final ExceptionResult er) {
                 Throwable _exception = er.exception();

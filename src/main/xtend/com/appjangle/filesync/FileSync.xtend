@@ -63,6 +63,12 @@ class FileSync {
 					[ childFolder, itmcb |
 						val metadata = params.folder.loadMetadata
 						val itmmetadata = metadata.get(childFolder.name)
+						
+						if (!itmmetadata.uri.startsWith(params.node.uri())) {
+							
+						}
+						
+						
 						val qry = params.node.session().link(itmmetadata.uri)
 						qry.catchExceptions[er|itmcb.onFailure(er.exception)]
 						qry.get [ childNode |

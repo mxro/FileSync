@@ -27,6 +27,7 @@ import io.nextweb.promise.exceptions.UndefinedListener;
 import io.nextweb.promise.exceptions.UndefinedResult;
 import java.util.ArrayList;
 import java.util.List;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
 /**
@@ -85,6 +86,7 @@ public class NetworkToFileOperations {
               }
             };
             link.catchExceptions(_function_2);
+            InputOutput.<String>println("get another one");
             final Closure<Node> _function_3 = new Closure<Node>() {
               public void apply(final Node it) {
                 Value<Object> _value = new Value<Object>(it);

@@ -73,6 +73,20 @@ public class FileSync {
   }
   
   private static void syncInt(final SyncParams params, final ValueCallback<Success> cb) {
+    SynchronizationState _state = params.getState();
+    Node _node = params.getNode();
+    boolean _wasSynced = _state.wasSynced(_node);
+    if (_wasSynced) {
+      SyncNotifications _notifications = params.getNotifications();
+      FileItem _folder = params.getFolder();
+      Node _node_1 = params.getNode();
+      _notifications.onNodeSkippedBecauseItWasAlreadySynced(_folder, _node_1);
+      cb.onSuccess(Success.INSTANCE);
+      return;
+    }
+    SynchronizationState _state_1 = params.getState();
+    Node _node_2 = params.getNode();
+    _state_1.addSynced(_node_2);
     final Closure<Success> _function = new Closure<Success>() {
       public void apply(final Success it) {
         FileItem _folder = params.getFolder();

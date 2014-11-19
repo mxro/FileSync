@@ -58,6 +58,14 @@ class FileSync {
 	}
 
 	private def static void syncInt(SyncParams params, ValueCallback<Success> cb) {
+		if (params.state.wasSynced(params.node)) {
+			params.notifications.onNodeSkippedBecauseItWasAlreadySynced(params.folder, params.node);
+			cb.onSuccess(Success.INSTANCE);
+			return;
+		}
+		
+		params.state.addSynced(params.node);
+		
 		syncSingleFolder(params,
 			cb.embed [
 				val toSync = params.folder.children.filter[isDirectory && visible && !name.startsWith('.')]
@@ -70,7 +78,7 @@ class FileSync {
 							itmcb.onSuccess(Success.INSTANCE)
 							return;
 						}
-						
+
 						val qry = params.node.session().link(itmmetadata.uri)
 						qry.catchExceptions[er|itmcb.onFailure(er.exception)]
 						qry.get [ childNode |

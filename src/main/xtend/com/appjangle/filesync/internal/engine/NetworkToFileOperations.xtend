@@ -8,6 +8,7 @@ import de.mxro.async.Async
 import de.mxro.async.Value
 import de.mxro.async.callbacks.ValueCallback
 import de.mxro.fn.collections.CollectionsUtils
+import io.nextweb.Link
 import io.nextweb.Node
 import java.util.ArrayList
 import java.util.List
@@ -39,16 +40,18 @@ class NetworkToFileOperations {
 			Async.forEach(children.links,
 				[ link, itmcb |
 					link.catchExceptions[itmcb.onFailure(exception)]
-					link.catchUndefined [itmcb.onSuccess(new Value<Node>(null)]
-					link.get [ itmcb.onSuccess(new Value<Node>(it)) ]
+					link.catchUndefined [itmcb.onSuccess(new Value<Object>(link)) ]
+					link.get [ itmcb.onSuccess(new Value<Object>(it)) ]
 				],
-				cb.embed [ List<Value<Node>> values |
+				cb.embed [ List<Value<Object>> values |
 					
 					val nodes = new ArrayList<Node>(values.size())
 					
 					for (value : values) {
-						if (value.get() != null) {
-							nodes.add(value)
+						if (value.get instanceof Node) {
+							nodes.add(value.get as Node)
+						} else {
+							params.notifications.onInsufficientAuthorization(params.folder, value.get as Link)
 						}
 					} 
 					

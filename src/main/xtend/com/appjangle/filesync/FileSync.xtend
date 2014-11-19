@@ -43,7 +43,12 @@ class FileSync {
 	 * <p>Synchronized the contents of a folder and a node without synchronizing sub-folders.
 	 */
 	def static syncSingleFolder(FileItem folder, Node node, ValueCallback<Success> cb) {
-
+		val params = defaultSyncParams
+		
+		params.folder = folder
+		params.node = node
+		
+		syncSingleFolder(params, cb)
 		
 
 	}

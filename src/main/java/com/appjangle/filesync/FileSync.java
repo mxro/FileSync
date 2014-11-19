@@ -46,16 +46,19 @@ public class FileSync {
   /**
    * <p>Synchronized the contents of a folder and a node without synchronizing sub-folders.
    */
-  public static Object syncSingleFolder(final File folder, final Node node, final ValueCallback<Success> cb) {
+  public static void syncSingleFolder(final File folder, final Node node, final ValueCallback<Success> cb) {
     FileItem _wrap = FilesJre.wrap(folder);
-    return FileSync.syncSingleFolder(_wrap, node, cb);
+    FileSync.syncSingleFolder(_wrap, node, cb);
   }
   
   /**
    * <p>Synchronized the contents of a folder and a node without synchronizing sub-folders.
    */
-  public static Object syncSingleFolder(final FileItem folder, final Node node, final ValueCallback<Success> cb) {
-    return null;
+  public static void syncSingleFolder(final FileItem folder, final Node node, final ValueCallback<Success> cb) {
+    final SyncParams params = FileSync.defaultSyncParams();
+    params.setFolder(folder);
+    params.setNode(node);
+    FileSync.syncSingleFolder(params, cb);
   }
   
   /**

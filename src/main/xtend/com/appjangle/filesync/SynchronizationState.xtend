@@ -14,9 +14,14 @@ class SynchronizationState {
 	
 	def addSynced(Node n) {
 		Preconditions.checkState(!synced.contains(n.uri()), "Node was already synced [%s]", n.uri())
+		
 		synced.add(n.uri())
 	}
 	
+	
+	def wasSynced(Node n) {
+		synced.contains(n.uri())
+	}
 	
 	new() {
 		synced = new HashSet<String>

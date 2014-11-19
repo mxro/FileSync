@@ -26,6 +26,11 @@ public class SynchronizationState {
     return _xblockexpression;
   }
   
+  public boolean wasSynced(final Node n) {
+    String _uri = n.uri();
+    return this.synced.contains(_uri);
+  }
+  
   public SynchronizationState() {
     HashSet<String> _hashSet = new HashSet<String>();
     this.synced = _hashSet;

@@ -57,7 +57,7 @@ class FileSync {
 
 	}
 
-	def static void sync(SyncParams params, ValueCallback<Success> cb) {
+	private def static void syncInt(SyncParams params, ValueCallback<Success> cb) {
 		syncSingleFolder(params,
 			cb.embed [
 				val toSync = params.folder.children.filter[isDirectory && visible && !name.startsWith('.')]
@@ -85,6 +85,11 @@ class FileSync {
 						cb.onSuccess(Success.INSTANCE)
 					])
 			])
+	}
+	
+	static def void sync(SyncParams params, ValueCallback<Success> cb) {
+		params.syncRoot = params.node
+		syncInt(params, cb)
 	}
 
 	/**

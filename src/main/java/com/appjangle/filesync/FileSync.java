@@ -72,7 +72,7 @@ public class FileSync {
     FileSync.syncSingleFolder(params, cb);
   }
   
-  public static void sync(final SyncParams params, final ValueCallback<Success> cb) {
+  private static void syncInt(final SyncParams params, final ValueCallback<Success> cb) {
     final Closure<Success> _function = new Closure<Success>() {
       public void apply(final Success it) {
         FileItem _folder = params.getFolder();
@@ -149,6 +149,12 @@ public class FileSync {
     };
     ValueCallback<Success> _embed = Async.<Success>embed(cb, _function);
     FileSync.syncSingleFolder(params, _embed);
+  }
+  
+  public static void sync(final SyncParams params, final ValueCallback<Success> cb) {
+    Node _node = params.getNode();
+    params.setSyncRoot(_node);
+    FileSync.syncInt(params, cb);
   }
   
   /**

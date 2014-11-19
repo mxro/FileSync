@@ -1,12 +1,14 @@
 package com.appjangle.filesync.internal.engine
 
+import com.appjangle.filesync.ItemMetadata
 import com.appjangle.filesync.Metadata
 import de.mxro.file.FileItem
 import io.nextweb.Node
-import com.appjangle.filesync.internal.engine.metadata.MetadataUtilsJre
-import com.appjangle.filesync.ItemMetadata
+import java.util.Date
 
 class SyncValueOperations {
+	
+	
 	
 	def downloadValue(Node node, Metadata metadata, FileItem folder) {
 		
@@ -16,23 +18,23 @@ class SyncValueOperations {
 			metadata.value = new ItemMetadata() {
 				
 				override name() {
-					throw new UnsupportedOperationException("TODO: auto-generated method stub")
+					"value.txt"
 				}
 				
 				override lastModified() {
-					throw new UnsupportedOperationException("TODO: auto-generated method stub")
+					folder.get("value.txt").lastModified
 				}
 				
 				override uri() {
-					throw new UnsupportedOperationException("TODO: auto-generated method stub")
+					node.uri()
 				}
 				
 				override hash() {
-					throw new UnsupportedOperationException("TODO: auto-generated method stub")
+					folder.get("value.txt").hash
 				}
 				
 				override converter() {
-					throw new UnsupportedOperationException("TODO: auto-generated method stub")
+					""
 				}
 				
 			}

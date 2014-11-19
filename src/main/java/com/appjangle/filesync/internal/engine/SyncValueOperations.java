@@ -19,23 +19,25 @@ public class SyncValueOperations {
       _createFile.setText(_string);
       metadata.setValue(new ItemMetadata() {
         public String name() {
-          throw new UnsupportedOperationException("TODO: auto-generated method stub");
+          return "value.txt";
         }
         
         public Date lastModified() {
-          throw new UnsupportedOperationException("TODO: auto-generated method stub");
+          FileItem _get = folder.get("value.txt");
+          return _get.lastModified();
         }
         
         public String uri() {
-          throw new UnsupportedOperationException("TODO: auto-generated method stub");
+          return node.uri();
         }
         
         public String hash() {
-          throw new UnsupportedOperationException("TODO: auto-generated method stub");
+          FileItem _get = folder.get("value.txt");
+          return _get.hash();
         }
         
         public String converter() {
-          throw new UnsupportedOperationException("TODO: auto-generated method stub");
+          return "";
         }
       });
       return;

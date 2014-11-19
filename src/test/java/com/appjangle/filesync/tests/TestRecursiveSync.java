@@ -77,7 +77,8 @@ public class TestRecursiveSync extends CheckNodesToFilesTemplate {
     String _text = _get_13.getText();
     TestRecursiveSync.<String, String>operator_doubleArrow(_text, "<html></html>");
     FileItem _get_14 = this.result.get("node4");
-    List<FileItem> _children = _get_14.getChildren();
+    FileItem _get_15 = _get_14.get("n1");
+    List<FileItem> _children = _get_15.getChildren();
     InputOutput.<List<FileItem>>println(_children);
   }
   

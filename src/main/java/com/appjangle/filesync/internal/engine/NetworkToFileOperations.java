@@ -56,20 +56,20 @@ public class NetworkToFileOperations {
         List<Link> _links = children.links();
         final Closure2<Link, ValueCallback<Value<Object>>> _function = new Closure2<Link, ValueCallback<Value<Object>>>() {
           public void apply(final Link link, final ValueCallback<Value<Object>> itmcb) {
-            final ExceptionListener _function = new ExceptionListener() {
-              public void onFailure(final ExceptionResult it) {
-                Throwable _exception = it.exception();
-                itmcb.onFailure(_exception);
-              }
-            };
-            link.catchExceptions(_function);
-            final UndefinedListener _function_1 = new UndefinedListener() {
+            final UndefinedListener _function = new UndefinedListener() {
               public void onUndefined(final UndefinedResult it) {
                 Value<Object> _value = new Value<Object>(link);
                 itmcb.onSuccess(_value);
               }
             };
-            link.catchUndefined(_function_1);
+            link.catchUndefined(_function);
+            final ExceptionListener _function_1 = new ExceptionListener() {
+              public void onFailure(final ExceptionResult it) {
+                Throwable _exception = it.exception();
+                itmcb.onFailure(_exception);
+              }
+            };
+            link.catchExceptions(_function_1);
             final Closure<Node> _function_2 = new Closure<Node>() {
               public void apply(final Node it) {
                 Value<Object> _value = new Value<Object>(it);

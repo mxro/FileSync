@@ -38,8 +38,8 @@ class NetworkToFileOperations {
 		qry.get [ children |
 			Async.forEach(children.links,
 				[ link, itmcb |
-					link.catchExceptions[itmcb.onFailure(exception)]
 					link.catchUndefined[itmcb.onSuccess(new Value<Object>(link))]
+					link.catchExceptions[itmcb.onFailure(exception)]
 					link.get[itmcb.onSuccess(new Value<Object>(it))]
 				],
 				cb.embed [ List<Value<Object>> values |

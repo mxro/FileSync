@@ -46,7 +46,9 @@ class TestRecursiveSync extends CheckNodesToFilesTemplate{
 		result.get("node3").get("My Html Document.html").text => "<html></html>"
 		
 		// checking exclusions
-		println(result.get("node4").get("n1").children)
+		
+		// assure that of external node only one node is created.
+		result.get("node4").children.get(0).children.size => 0
 	}
 	
 	extension N n = new N

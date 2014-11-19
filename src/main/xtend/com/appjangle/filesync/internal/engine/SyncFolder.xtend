@@ -18,7 +18,7 @@ class SyncFolder {
 	var Metadata metadata 
 
 	def doIt(ValueCallback<Success> cb) {
-		if (!params.settings.download) {
+		if (!params.settings.upload) {
 			download(cb)
 			return
 		}

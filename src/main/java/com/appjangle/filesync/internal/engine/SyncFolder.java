@@ -30,8 +30,8 @@ public class SyncFolder {
   
   public void doIt(final ValueCallback<Success> cb) {
     SynchronizationSettings _settings = this.params.getSettings();
-    boolean _isDownload = _settings.isDownload();
-    boolean _not = (!_isDownload);
+    boolean _isUpload = _settings.isUpload();
+    boolean _not = (!_isUpload);
     if (_not) {
       this.download(cb);
       return;

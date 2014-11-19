@@ -36,28 +36,21 @@ class NetworkToFileOperations {
 		qry.catchExceptions[er|cb.onFailure(er.exception)]
 
 		qry.get [ children |
-			
 			Async.forEach(children.links,
 				[ link, itmcb |
-					params.node.shield().get( [
-						link.catchExceptions[itmcb.onFailure(exception)]
-					link.catchUndefined [itmcb.onSuccess(new Value<Object>(link)) ]
-					link.get [ itmcb.onSuccess(new Value<Object>(it)) ]
-					])
-					
+					link.catchExceptions[itmcb.onFailure(exception)]
+					link.catchUndefined[itmcb.onSuccess(new Value<Object>(link))]
+					link.get[itmcb.onSuccess(new Value<Object>(it))]
 				],
 				cb.embed [ List<Value<Object>> values |
-					
 					val nodes = new ArrayList<Node>(values.size())
-					
 					for (value : values) {
 						if (value.get instanceof Node) {
 							nodes.add(value.get as Node)
 						} else {
 							params.notifications.onInsufficientAuthorization(params.folder, value.get as Link)
 						}
-					} 
-					
+					}
 					val Iterable<Node> remotelyAdded = nodes.determineRemotelyAddedNodes
 					val remotelyRemoved = nodes.determineRemotelyRemovedNodes
 					val remotelyUpdated = nodes.determineRemotelyUpdatedNodes
@@ -65,8 +58,7 @@ class NetworkToFileOperations {
 						Async.embed(cb,
 							[ res |
 								cb.onSuccess(CollectionsUtils.flatten(res))
-							]))	
-							
+							]))
 					remotelyAdded.deduceCreateOperations(agg.createCallback)
 					remotelyRemoved.deduceRemoveOperations(agg.createCallback)
 					remotelyUpdated.deduceUpdateOperations(agg.createCallback)
@@ -139,7 +131,7 @@ class NetworkToFileOperations {
 	def determineRemotelyRemovedNodes(List<Node> children) {
 
 		val res = new ArrayList<ItemMetadata>(0)
-		
+
 		val uris = new ArrayList<String>(children.size)
 		for (node : children) {
 			uris.add(node.uri())

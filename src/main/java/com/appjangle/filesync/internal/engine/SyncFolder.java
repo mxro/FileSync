@@ -76,6 +76,10 @@ public class SyncFolder {
     boolean _isDownload = _settings.isDownload();
     boolean _not = (!_isDownload);
     if (_not) {
+      SyncNotifications _notifications = this.params.getNotifications();
+      FileItem _folder = this.params.getFolder();
+      Node _node = this.params.getNode();
+      _notifications.onFinishedSynchronizing(_folder, _node);
       cb.onSuccess(Success.INSTANCE);
       return;
     }
@@ -86,6 +90,10 @@ public class SyncFolder {
         SyncFolder.this.fileUtils.execute(ops, _folder, SyncFolder.this.metadata);
         FileItem _folder_1 = SyncFolder.this.params.getFolder();
         SyncFolder.this.fileUtils.saveMetadata(_folder_1, SyncFolder.this.metadata);
+        SyncNotifications _notifications = SyncFolder.this.params.getNotifications();
+        FileItem _folder_2 = SyncFolder.this.params.getFolder();
+        Node _node = SyncFolder.this.params.getNode();
+        _notifications.onFinishedSynchronizing(_folder_2, _node);
         cb.onSuccess(Success.INSTANCE);
       }
     };

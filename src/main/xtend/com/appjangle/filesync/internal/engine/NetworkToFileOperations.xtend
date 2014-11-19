@@ -8,7 +8,6 @@ import de.mxro.async.Async
 import de.mxro.async.Value
 import de.mxro.async.callbacks.ValueCallback
 import de.mxro.fn.collections.CollectionsUtils
-import io.nextweb.Link
 import io.nextweb.Node
 import java.util.ArrayList
 import java.util.List

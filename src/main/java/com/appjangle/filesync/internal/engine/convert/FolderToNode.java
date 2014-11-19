@@ -104,12 +104,12 @@ public class FolderToNode implements Converter {
     final Closure<String> _function = new Closure<String>() {
       public void apply(final String rawFolderName) {
         final LinkedList<FileOperation> ops = new LinkedList<FileOperation>();
+        InputOutput.<String>println(("schedule ops " + source));
         final FileOperation _function = new FileOperation() {
           public void apply(final FileOperationContext ctx) {
             final String folderName = FolderToNode.this.futils.toFileSystemSafeName(rawFolderName, false, 100);
             FileItem _folder = ctx.folder();
             _folder.assertFolder(folderName);
-            InputOutput.<String>println(("creatde " + source));
             Metadata _metadata = ctx.metadata();
             _metadata.add(
               new ItemMetadata() {

@@ -85,6 +85,7 @@ class FolderToNode implements Converter {
 		source.getFileName(
 			cb.embed [ rawFolderName |
 				val ops = new LinkedList<FileOperation>
+				println('schedule ops '+source)
 				ops.add(
 					[ ctx |
 						
@@ -92,7 +93,6 @@ class FolderToNode implements Converter {
 						val folderName = rawFolderName.toFileSystemSafeName(false, 100)
 						ctx.folder.assertFolder(folderName)
 						
-						println('creatde '+source)
 						
 						ctx.metadata.add(
 							new ItemMetadata() {

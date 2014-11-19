@@ -164,7 +164,8 @@ public class FileSync {
       coll.addConverter(_nodeToNothing);
       final Function<FileItem, Boolean> _function_1 = new Function<FileItem, Boolean>() {
         public Boolean apply(final FileItem file) {
-          return Boolean.valueOf(false);
+          String _name = file.getName();
+          return Boolean.valueOf(_name.startsWith("."));
         }
       };
       FolderToNothing _folderToNothing = new FolderToNothing(_function_1);

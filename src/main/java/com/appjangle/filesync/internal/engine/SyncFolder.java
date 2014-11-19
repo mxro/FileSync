@@ -10,6 +10,7 @@ import com.appjangle.filesync.internal.engine.FileToNetworkOperations;
 import com.appjangle.filesync.internal.engine.FileUtils;
 import com.appjangle.filesync.internal.engine.NetworkToFileOperations;
 import com.appjangle.filesync.internal.engine.NetworkUtils;
+import com.appjangle.filesync.internal.engine.SyncValueOperations;
 import de.mxro.async.Async;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
@@ -83,12 +84,10 @@ public class SyncFolder {
       cb.onSuccess(Success.INSTANCE);
       return;
     }
-    FileItem _folder_1 = this.params.getFolder();
-    FileItem _assertFile = _folder_1.assertFile("value.txt");
+    SyncValueOperations _syncValueOperations = new SyncValueOperations();
     Node _node_1 = this.params.getNode();
-    Object _value = _node_1.value();
-    String _string = _value.toString();
-    _assertFile.setText(_string);
+    FileItem _folder_1 = this.params.getFolder();
+    _syncValueOperations.downloadValue(_node_1, this.metadata, _folder_1);
     NetworkToFileOperations _networkToFileOperations = new NetworkToFileOperations(this.params, this.metadata);
     final Closure<List<FileOperation>> _function = new Closure<List<FileOperation>>() {
       public void apply(final List<FileOperation> ops) {

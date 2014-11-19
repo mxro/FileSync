@@ -63,7 +63,16 @@ class SyncValueOperations {
 		
 		if (metadata.value.lastModified.time > file.lastModified.time) {
 			
-			node.setValueSafe(file.text
+			val qry = node.setValueSafe(file.text)
+			
+			qry.catchExceptions [cb.onFailure(exception) ]
+			
+			qry.get [
+				metadata.value = createMetadata(node, folder.get('value.txt'))
+				cb.onSuccess(Success.INSTANCE)
+			]
+			
+			
 			
 		}
 		

@@ -55,7 +55,7 @@ class SyncFolder {
 			return;
 		}
 
-		params.folder.assertFile('value.txt').text = params.node.value().toString()
+		new SyncValueOperations().downloadValue(params.node, metadata, params.folder)
 
 		new NetworkToFileOperations(params, metadata).determineOps(
 			cb.embed(

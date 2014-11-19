@@ -34,8 +34,10 @@ class MetadataImpl implements Metadata {
 		this
 	}
 	
-	def setValue(ItemMetadata itemMetadata) {
+	override setValue(ItemMetadata itemMetadata) {
 		this.value = itemMetadata
+		
+		this
 	}
 	
 	override update(ItemMetadata itemMetadata) {

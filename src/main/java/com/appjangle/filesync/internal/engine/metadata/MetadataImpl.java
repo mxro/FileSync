@@ -59,8 +59,13 @@ public class MetadataImpl implements Metadata {
     return _xblockexpression;
   }
   
-  public ItemMetadata setValue(final ItemMetadata itemMetadata) {
-    return this.value = itemMetadata;
+  public Metadata setValue(final ItemMetadata itemMetadata) {
+    MetadataImpl _xblockexpression = null;
+    {
+      this.value = itemMetadata;
+      _xblockexpression = this;
+    }
+    return _xblockexpression;
   }
   
   public Metadata update(final ItemMetadata itemMetadata) {

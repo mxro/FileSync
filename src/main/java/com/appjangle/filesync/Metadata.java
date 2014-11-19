@@ -19,4 +19,6 @@ public interface Metadata {
   public abstract Metadata remove(final String name);
   
   public abstract ItemMetadata value();
+  
+  public abstract Metadata setValue(final ItemMetadata item);
 }

@@ -19,4 +19,6 @@ interface Metadata {
 	
 	def ItemMetadata value()
 	
+	def Metadata setValue(ItemMetadata item)
+	
 }

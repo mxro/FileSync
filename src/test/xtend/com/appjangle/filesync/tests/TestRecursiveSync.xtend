@@ -46,7 +46,7 @@ class TestRecursiveSync extends CheckNodesToFilesTemplate{
 		result.get("node3").get("My Html Document.html").text => "<html></html>"
 		
 		// checking exclusions
-		println(result.get("node4").children)
+		println(result.children)
 	}
 	
 	extension N n = new N

@@ -137,18 +137,15 @@ class NetworkToFileOperations {
 	def determineRemotelyRemovedNodes(List<Node> children) {
 
 		val res = new ArrayList<ItemMetadata>(0)
+		
+		val uris = new ArrayList<String>(children.size)
+		for (node : children) {
+			uris.add(node.uri())
+		}
 
 		for (item : metadata.children) {
-			for (Node n : children) {
-				
-				var contains = false;
-				if (n.uri() == item.uri) {
-					contains = true
-				}
-				
-				if (!contains) {
-					res.add(item)
-				}
+			if (!uris.contains(item.uri)) {
+				res.add(item)
 			}
 
 		}

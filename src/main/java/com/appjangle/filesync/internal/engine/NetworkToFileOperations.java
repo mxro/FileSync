@@ -195,21 +195,19 @@ public class NetworkToFileOperations {
     ArrayList<ItemMetadata> _xblockexpression = null;
     {
       final ArrayList<ItemMetadata> res = new ArrayList<ItemMetadata>(0);
+      int _size = children.size();
+      final ArrayList<String> uris = new ArrayList<String>(_size);
+      for (final Node node : children) {
+        String _uri = node.uri();
+        uris.add(_uri);
+      }
       List<ItemMetadata> _children = this.metadata.getChildren();
       for (final ItemMetadata item : _children) {
-        for (final Node n : children) {
-          {
-            boolean contains = false;
-            String _uri = n.uri();
-            String _uri_1 = item.uri();
-            boolean _equals = Objects.equal(_uri, _uri_1);
-            if (_equals) {
-              contains = true;
-            }
-            if ((!contains)) {
-              res.add(item);
-            }
-          }
+        String _uri_1 = item.uri();
+        boolean _contains = uris.contains(_uri_1);
+        boolean _not = (!_contains);
+        if (_not) {
+          res.add(item);
         }
       }
       _xblockexpression = res;

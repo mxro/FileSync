@@ -24,6 +24,11 @@ public class SyncParams {
   
   private SyncNotifications notifications;
   
+  /**
+   * The Node defined as the root of the synchronzation.
+   */
+  private Node syncRoot;
+  
   public SyncParams() {
   }
   
@@ -88,5 +93,14 @@ public class SyncParams {
   
   public void setNotifications(final SyncNotifications notifications) {
     this.notifications = notifications;
+  }
+  
+  @Pure
+  public Node getSyncRoot() {
+    return this.syncRoot;
+  }
+  
+  public void setSyncRoot(final Node syncRoot) {
+    this.syncRoot = syncRoot;
   }
 }

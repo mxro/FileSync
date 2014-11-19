@@ -19,6 +19,11 @@ class SyncParams {
 	
 	var SyncNotifications notifications
 	
+	/**
+	 * The Node defined as the root of the synchronzation. 
+	 */
+	var Node syncRoot;
+	
 	new() {
 		
 	}

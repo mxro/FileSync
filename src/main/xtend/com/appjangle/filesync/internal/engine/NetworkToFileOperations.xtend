@@ -4,7 +4,6 @@ import com.appjangle.filesync.FileOperation
 import com.appjangle.filesync.ItemMetadata
 import com.appjangle.filesync.Metadata
 import com.appjangle.filesync.SyncParams
-import com.appjangle.filesync.internal.engine.convert.ConvertUtils
 import de.mxro.async.Async
 import de.mxro.async.callbacks.ValueCallback
 import de.mxro.fn.collections.CollectionsUtils
@@ -12,6 +11,8 @@ import io.nextweb.Node
 import io.nextweb.NodeList
 import java.util.ArrayList
 import java.util.List
+
+import static de.mxro.async.Async.*
 
 /**
  * Determines operations to be performed on local files based on remote changes made in the cloud.
@@ -30,11 +31,16 @@ class NetworkToFileOperations {
 
 	def determineOps(ValueCallback<List<FileOperation>> cb) {
 
-		val qry = params.node.selectAll
+		val qry = params.node.selectAllLinks
 
 		qry.catchExceptions[er|cb.onFailure(er.exception)]
 
 		qry.get [ children |
+			
+			
+			Async.forEach(children.links, [link, itmcb |
+				
+			], cb.embed([]))
 			
 			var Iterable<Node> remotelyAdded = children.determineRemotelyAddedNodes
 			val remotelyRemoved = children.determineRemotelyRemovedNodes

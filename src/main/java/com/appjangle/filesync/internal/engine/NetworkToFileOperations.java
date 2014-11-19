@@ -12,11 +12,8 @@ import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
 import de.mxro.fn.Closure;
 import de.mxro.fn.collections.CollectionsUtils;
-import io.nextweb.ListQuery;
 import io.nextweb.Node;
 import io.nextweb.NodeList;
-import io.nextweb.promise.exceptions.ExceptionListener;
-import io.nextweb.promise.exceptions.ExceptionResult;
 import java.util.ArrayList;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
@@ -36,37 +33,11 @@ public class NetworkToFileOperations {
   }
   
   public void determineOps(final ValueCallback<List<FileOperation>> cb) {
-    Node _node = this.params.getNode();
-    final ListQuery qry = _node.selectAll();
-    final ExceptionListener _function = new ExceptionListener() {
-      public void onFailure(final ExceptionResult er) {
-        Throwable _exception = er.exception();
-        cb.onFailure(_exception);
-      }
-    };
-    qry.catchExceptions(_function);
-    final Closure<NodeList> _function_1 = new Closure<NodeList>() {
-      public void apply(final NodeList children) {
-        Iterable<Node> remotelyAdded = NetworkToFileOperations.this.determineRemotelyAddedNodes(children);
-        final ArrayList<ItemMetadata> remotelyRemoved = NetworkToFileOperations.this.determineRemotelyRemovedNodes(children);
-        final ArrayList<Node> remotelyUpdated = NetworkToFileOperations.this.determineRemotelyUpdatedNodes(children);
-        final Closure<List<List<FileOperation>>> _function = new Closure<List<List<FileOperation>>>() {
-          public void apply(final List<List<FileOperation>> res) {
-            List<FileOperation> _flatten = CollectionsUtils.<FileOperation>flatten(res);
-            cb.onSuccess(_flatten);
-          }
-        };
-        ValueCallback<List<List<FileOperation>>> _embed = Async.<List<List<FileOperation>>>embed(cb, _function);
-        final Aggregator<List<FileOperation>> agg = Async.<List<FileOperation>>collect(3, _embed);
-        ValueCallback<List<FileOperation>> _createCallback = agg.createCallback();
-        NetworkToFileOperations.this.deduceCreateOperations(remotelyAdded, _createCallback);
-        ValueCallback<List<FileOperation>> _createCallback_1 = agg.createCallback();
-        NetworkToFileOperations.this.deduceRemoveOperations(remotelyRemoved, _createCallback_1);
-        ValueCallback<List<FileOperation>> _createCallback_2 = agg.createCallback();
-        NetworkToFileOperations.this.deduceUpdateOperations(remotelyUpdated, _createCallback_2);
-      }
-    };
-    qry.get(_function_1);
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method embed is undefined for the type NetworkToFileOperations"
+      + "\nType mismatch: cannot convert from LinkList to NodeList"
+      + "\nType mismatch: cannot convert from LinkList to NodeList"
+      + "\nType mismatch: cannot convert from LinkList to NodeList");
   }
   
   public void deduceUpdateOperations(final Iterable<Node> remotelyUpdated, final ValueCallback<List<FileOperation>> cb) {

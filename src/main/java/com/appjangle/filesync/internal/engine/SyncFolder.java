@@ -3,6 +3,7 @@ package com.appjangle.filesync.internal.engine;
 import com.appjangle.filesync.FileOperation;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.NetworkOperation;
+import com.appjangle.filesync.SyncNotifications;
 import com.appjangle.filesync.SyncParams;
 import com.appjangle.filesync.SynchronizationSettings;
 import com.appjangle.filesync.internal.engine.FileToNetworkOperations;
@@ -29,18 +30,22 @@ public class SyncFolder {
   private Metadata metadata;
   
   public void doIt(final ValueCallback<Success> cb) {
+    SyncNotifications _notifications = this.params.getNotifications();
     FileItem _folder = this.params.getFolder();
-    boolean _hasMetadata = this.fileUtils.hasMetadata(_folder);
+    Node _node = this.params.getNode();
+    _notifications.onStartSynchronizing(_folder, _node);
+    FileItem _folder_1 = this.params.getFolder();
+    boolean _hasMetadata = this.fileUtils.hasMetadata(_folder_1);
     boolean _not = (!_hasMetadata);
     if (_not) {
-      FileItem _folder_1 = this.params.getFolder();
-      Metadata _assertMetadata = this.fileUtils.assertMetadata(_folder_1);
+      FileItem _folder_2 = this.params.getFolder();
+      Metadata _assertMetadata = this.fileUtils.assertMetadata(_folder_2);
       this.metadata = _assertMetadata;
       this.download(cb);
       return;
     }
-    FileItem _folder_2 = this.params.getFolder();
-    Metadata _assertMetadata_1 = this.fileUtils.assertMetadata(_folder_2);
+    FileItem _folder_3 = this.params.getFolder();
+    Metadata _assertMetadata_1 = this.fileUtils.assertMetadata(_folder_3);
     this.metadata = _assertMetadata_1;
     SynchronizationSettings _settings = this.params.getSettings();
     boolean _isUpload = _settings.isUpload();

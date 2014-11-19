@@ -19,7 +19,9 @@ class SyncFolder {
 
 
 	def doIt(ValueCallback<Success> cb) {
-
+		
+		params.notifications.onStartSynchronizing(params.folder, params.node)
+		
 		if (!params.folder.hasMetadata) {
 
 			metadata = params.folder.assertMetadata

@@ -8,6 +8,30 @@ import java.util.Date;
 
 @SuppressWarnings("all")
 public class SyncValueOperations {
+  public static ItemMetadata createMetadata(final Node node, final FileItem forFile) {
+    return new ItemMetadata() {
+      public String name() {
+        return forFile.getName();
+      }
+      
+      public Date lastModified() {
+        return forFile.lastModified();
+      }
+      
+      public String uri() {
+        return node.uri();
+      }
+      
+      public String hash() {
+        return forFile.hash();
+      }
+      
+      public String converter() {
+        return "";
+      }
+    };
+  }
+  
   public void downloadValue(final Node node, final Metadata metadata, final FileItem folder) {
     FileItem _get = folder.get("value.txt");
     boolean _exists = _get.exists();
@@ -17,29 +41,9 @@ public class SyncValueOperations {
       Object _value = node.value();
       String _string = _value.toString();
       _createFile.setText(_string);
-      metadata.setValue(new ItemMetadata() {
-        public String name() {
-          return "value.txt";
-        }
-        
-        public Date lastModified() {
-          FileItem _get = folder.get("value.txt");
-          return _get.lastModified();
-        }
-        
-        public String uri() {
-          return node.uri();
-        }
-        
-        public String hash() {
-          FileItem _get = folder.get("value.txt");
-          return _get.hash();
-        }
-        
-        public String converter() {
-          return "";
-        }
-      });
+      FileItem _get_1 = folder.get("value.txt");
+      ItemMetadata _createMetadata = SyncValueOperations.createMetadata(node, _get_1);
+      metadata.setValue(_createMetadata);
       return;
     }
   }

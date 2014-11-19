@@ -8,21 +8,15 @@ import java.util.Date
 
 class SyncValueOperations {
 	
-	
-	
-	def downloadValue(Node node, Metadata metadata, FileItem folder) {
-		
-		if (!folder.get("value.txt").exists) {
-			folder.createFile("value.txt").text = node.value().toString()
-			
-			metadata.value = new ItemMetadata() {
+	def static createMetadata(Node node, FileItem forFile) {
+		new ItemMetadata() {
 				
 				override name() {
-					"value.txt"
+					forFile.name
 				}
 				
 				override lastModified() {
-					folder.get("value.txt").lastModified
+					forFile.lastModified
 				}
 				
 				override uri() {
@@ -30,7 +24,7 @@ class SyncValueOperations {
 				}
 				
 				override hash() {
-					folder.get("value.txt").hash
+					forFile.hash
 				}
 				
 				override converter() {
@@ -38,6 +32,14 @@ class SyncValueOperations {
 				}
 				
 			}
+	}
+	
+	def downloadValue(Node node, Metadata metadata, FileItem folder) {
+		
+		if (!folder.get("value.txt").exists) {
+			folder.createFile("value.txt").text = node.value().toString()
+			
+			metadata.value = createMetadata(node, folder.get("value.txt"))
 			
 			return;
 		}

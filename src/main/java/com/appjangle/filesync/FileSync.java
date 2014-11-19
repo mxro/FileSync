@@ -3,6 +3,7 @@ package com.appjangle.filesync;
 import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.internal.engine.FileUtils;
+import com.appjangle.filesync.internal.engine.SyncParams;
 import com.appjangle.filesync.internal.engine.convert.ConverterCollection;
 import com.appjangle.filesync.internal.engine.convert.FileToTextNode;
 import com.appjangle.filesync.internal.engine.convert.FolderToNode;
@@ -26,6 +27,14 @@ import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
 @SuppressWarnings("all")
 public class FileSync {
+  private static Object syncSingleFolder(final SyncParams params) {
+    return null;
+  }
+  
+  private static SyncParams defaultSyncParams() {
+    return new SyncParams();
+  }
+  
   /**
    * <p>Synchronized the contents of a folder and a node without synchronizing sub-folders.
    */

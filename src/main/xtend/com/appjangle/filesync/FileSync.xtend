@@ -2,6 +2,7 @@ package com.appjangle.filesync
 
 import com.appjangle.filesync.internal.engine.FileUtils
 import com.appjangle.filesync.internal.engine.SyncFolder
+import com.appjangle.filesync.internal.engine.SyncParams
 import com.appjangle.filesync.internal.engine.convert.ConverterCollection
 import com.appjangle.filesync.internal.engine.convert.FileToTextNode
 import com.appjangle.filesync.internal.engine.convert.FolderToNode
@@ -16,6 +17,15 @@ import java.io.File
 import static extension de.mxro.async.Async.embed
 
 class FileSync {
+
+
+	def private static syncSingleFolder(SyncParams params) {
+		
+	}
+
+	def private static defaultSyncParams() {
+		return new SyncParams
+	}
 
 	/**
 	 * <p>Synchronized the contents of a folder and a node without synchronizing sub-folders.

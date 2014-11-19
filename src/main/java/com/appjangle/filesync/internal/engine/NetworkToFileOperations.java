@@ -38,7 +38,7 @@ public class NetworkToFileOperations {
   }
   
   public void determineOps(final ValueCallback<List<FileOperation>> cb) {
-    Node _node = this.params.node();
+    Node _node = this.params.getNode();
     final ListQuery qry = _node.selectAll();
     final ExceptionListener _function = new ExceptionListener() {
       public void onFailure(final ExceptionResult er) {
@@ -95,8 +95,8 @@ public class NetworkToFileOperations {
     ValueCallback<List<List<FileOperation>>> _embed = Async.<List<List<FileOperation>>>embed(cb, _function);
     final Aggregator<List<FileOperation>> agg = Async.<List<FileOperation>>collect(_size, _embed);
     for (final Node updatedNode : remotelyUpdated) {
-      Converter _converter = this.params.converter();
-      FileItem _folder = this.params.folder();
+      Converter _converter = this.params.getConverter();
+      FileItem _folder = this.params.getFolder();
       ValueCallback<List<FileOperation>> _createCallback = agg.createCallback();
       _converter.updateFiles(_folder, this.metadata, updatedNode, _createCallback);
     }
@@ -113,8 +113,8 @@ public class NetworkToFileOperations {
     ValueCallback<List<List<FileOperation>>> _embed = Async.<List<List<FileOperation>>>embed(cb, _function);
     final Aggregator<List<FileOperation>> agg = Async.<List<FileOperation>>collect(_size, _embed);
     for (final Node newNode : remotelyAdded) {
-      Converter _converter = this.params.converter();
-      FileItem _folder = this.params.folder();
+      Converter _converter = this.params.getConverter();
+      FileItem _folder = this.params.getFolder();
       ValueCallback<List<FileOperation>> _createCallback = agg.createCallback();
       _converter.createFiles(_folder, this.metadata, newNode, _createCallback);
     }
@@ -131,8 +131,8 @@ public class NetworkToFileOperations {
     ValueCallback<List<List<FileOperation>>> _embed = Async.<List<List<FileOperation>>>embed(cb, _function);
     final Aggregator<List<FileOperation>> agg = Async.<List<FileOperation>>collect(_size, _embed);
     for (final ItemMetadata removedNode : remotelyRemoved) {
-      Converter _converter = this.params.converter();
-      FileItem _folder = this.params.folder();
+      Converter _converter = this.params.getConverter();
+      FileItem _folder = this.params.getFolder();
       ValueCallback<List<FileOperation>> _createCallback = agg.createCallback();
       _converter.removeFiles(_folder, this.metadata, removedNode, _createCallback);
     }

@@ -28,23 +28,23 @@ public class SyncFolder {
   private Metadata metadata;
   
   public void doIt(final ValueCallback<Success> cb) {
-    FileItem _folder = this.params.folder();
+    FileItem _folder = this.params.getFolder();
     boolean _hasMetadata = this.fileUtils.hasMetadata(_folder);
     boolean _not = (!_hasMetadata);
     if (_not) {
-      FileItem _folder_1 = this.params.folder();
+      FileItem _folder_1 = this.params.getFolder();
       Metadata _assertMetadata = this.fileUtils.assertMetadata(_folder_1);
       this.metadata = _assertMetadata;
       this.download(cb);
       return;
     }
-    FileItem _folder_2 = this.params.folder();
+    FileItem _folder_2 = this.params.getFolder();
     Metadata _assertMetadata_1 = this.fileUtils.assertMetadata(_folder_2);
     this.metadata = _assertMetadata_1;
     FileToNetworkOperations _fileToNetworkOperations = new FileToNetworkOperations(this.params, this.metadata);
     final Closure<List<NetworkOperation>> _function = new Closure<List<NetworkOperation>>() {
       public void apply(final List<NetworkOperation> ops) {
-        Node _node = SyncFolder.this.params.node();
+        Node _node = SyncFolder.this.params.getNode();
         final Closure<Success> _function = new Closure<Success>() {
           public void apply(final Success it) {
             SyncFolder.this.download(cb);
@@ -62,9 +62,9 @@ public class SyncFolder {
     NetworkToFileOperations _networkToFileOperations = new NetworkToFileOperations(this.params, this.metadata);
     final Closure<List<FileOperation>> _function = new Closure<List<FileOperation>>() {
       public void apply(final List<FileOperation> ops) {
-        FileItem _folder = SyncFolder.this.params.folder();
+        FileItem _folder = SyncFolder.this.params.getFolder();
         SyncFolder.this.fileUtils.execute(ops, _folder, SyncFolder.this.metadata);
-        FileItem _folder_1 = SyncFolder.this.params.folder();
+        FileItem _folder_1 = SyncFolder.this.params.getFolder();
         SyncFolder.this.fileUtils.saveMetadata(_folder_1, SyncFolder.this.metadata);
         cb.onSuccess(Success.INSTANCE);
       }

@@ -5,16 +5,64 @@ import com.appjangle.filesync.SynchronizationSettings;
 import com.appjangle.filesync.SynchronizationState;
 import de.mxro.file.FileItem;
 import io.nextweb.Node;
+import org.eclipse.xtend.lib.annotations.Accessors;
+import org.eclipse.xtext.xbase.lib.Pure;
 
+@Accessors
 @SuppressWarnings("all")
-public interface SyncParams {
-  public abstract FileItem folder();
+public class SyncParams {
+  private FileItem folder;
   
-  public abstract Node node();
+  private Node node;
   
-  public abstract SynchronizationSettings settings();
+  private SynchronizationSettings settings;
   
-  public abstract SynchronizationState state();
+  private SynchronizationState state;
   
-  public abstract Converter converter();
+  private Converter converter;
+  
+  @Pure
+  public FileItem getFolder() {
+    return this.folder;
+  }
+  
+  public void setFolder(final FileItem folder) {
+    this.folder = folder;
+  }
+  
+  @Pure
+  public Node getNode() {
+    return this.node;
+  }
+  
+  public void setNode(final Node node) {
+    this.node = node;
+  }
+  
+  @Pure
+  public SynchronizationSettings getSettings() {
+    return this.settings;
+  }
+  
+  public void setSettings(final SynchronizationSettings settings) {
+    this.settings = settings;
+  }
+  
+  @Pure
+  public SynchronizationState getState() {
+    return this.state;
+  }
+  
+  public void setState(final SynchronizationState state) {
+    this.state = state;
+  }
+  
+  @Pure
+  public Converter getConverter() {
+    return this.converter;
+  }
+  
+  public void setConverter(final Converter converter) {
+    this.converter = converter;
+  }
 }

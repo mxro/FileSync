@@ -5,17 +5,19 @@ import com.appjangle.filesync.SynchronizationSettings
 import com.appjangle.filesync.SynchronizationState
 import de.mxro.file.FileItem
 import io.nextweb.Node
+import org.eclipse.xtend.lib.annotations.Accessors
 
-interface SyncParams {
+@Accessors
+class SyncParams {
 	
-	def FileItem folder()
+	var FileItem folder
 	
-	def Node node()
+	var Node node
 	
-	def SynchronizationSettings settings()
+	var SynchronizationSettings settings
 	
-	def SynchronizationState state()
+	var SynchronizationState state
 	
-	def Converter converter()
+	var Converter converter
 	
 }

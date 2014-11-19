@@ -35,27 +35,27 @@ public class FileToNetworkOperations {
   
   public void determineOps(final ValueCallback<List<NetworkOperation>> cb) {
     try {
-      FileItem _folder = this.params.folder();
+      FileItem _folder = this.params.getFolder();
       boolean _isDirectory = _folder.isDirectory();
       boolean _not = (!_isDirectory);
       if (_not) {
-        FileItem _folder_1 = this.params.folder();
+        FileItem _folder_1 = this.params.getFolder();
         String _plus = ("File passed and not directory. " + _folder_1);
         throw new Exception(_plus);
       }
-      FileItem _folder_2 = this.params.folder();
+      FileItem _folder_2 = this.params.getFolder();
       boolean _exists = _folder_2.exists();
       boolean _not_1 = (!_exists);
       if (_not_1) {
-        FileItem _folder_3 = this.params.folder();
+        FileItem _folder_3 = this.params.getFolder();
         String _plus_1 = ("File passed does not exist. " + _folder_3);
         throw new Exception(_plus_1);
       }
-      FileItem _folder_4 = this.params.folder();
+      FileItem _folder_4 = this.params.getFolder();
       Iterable<String> locallyAddedFiles = FileToNetworkOperations.determineLocallyAddedFiles(this.metadata, _folder_4);
-      FileItem _folder_5 = this.params.folder();
+      FileItem _folder_5 = this.params.getFolder();
       final ArrayList<String> locallyRemovedFiles = FileToNetworkOperations.determineLocallyRemovedFiles(this.metadata, _folder_5);
-      FileItem _folder_6 = this.params.folder();
+      FileItem _folder_6 = this.params.getFolder();
       final ArrayList<String> locallyChangedFiles = FileToNetworkOperations.determineLocallyChangedFiles(this.metadata, _folder_6);
       final Function1<String, Boolean> _function = new Function1<String, Boolean>() {
         public Boolean apply(final String fileName) {
@@ -63,7 +63,7 @@ public class FileToNetworkOperations {
           if (_startsWith) {
             return Boolean.valueOf(false);
           }
-          FileItem _folder = FileToNetworkOperations.this.params.folder();
+          FileItem _folder = FileToNetworkOperations.this.params.getFolder();
           FileItem _get = _folder.get(fileName);
           boolean _visible = _get.getVisible();
           boolean _not = (!_visible);
@@ -106,8 +106,8 @@ public class FileToNetworkOperations {
     final Aggregator<List<NetworkOperation>> agg = Async.<List<NetworkOperation>>collect(_size, _embed);
     final Procedure1<String> _function_1 = new Procedure1<String>() {
       public void apply(final String fileName) {
-        Converter _converter = FileToNetworkOperations.this.params.converter();
-        FileItem _folder = FileToNetworkOperations.this.params.folder();
+        Converter _converter = FileToNetworkOperations.this.params.getConverter();
+        FileItem _folder = FileToNetworkOperations.this.params.getFolder();
         FileItem _get = _folder.get(fileName);
         ValueCallback<List<NetworkOperation>> _createCallback = agg.createCallback();
         _converter.update(FileToNetworkOperations.this.metadata, _get, _createCallback);
@@ -128,7 +128,7 @@ public class FileToNetworkOperations {
     final Aggregator<List<NetworkOperation>> agg = Async.<List<NetworkOperation>>collect(_size, _embed);
     final Procedure1<String> _function_1 = new Procedure1<String>() {
       public void apply(final String fileName) {
-        Converter _converter = FileToNetworkOperations.this.params.converter();
+        Converter _converter = FileToNetworkOperations.this.params.getConverter();
         ItemMetadata _get = FileToNetworkOperations.this.metadata.get(fileName);
         ValueCallback<List<NetworkOperation>> _createCallback = agg.createCallback();
         _converter.deleteNodes(FileToNetworkOperations.this.metadata, _get, _createCallback);
@@ -149,8 +149,8 @@ public class FileToNetworkOperations {
     final Aggregator<List<NetworkOperation>> agg = Async.<List<NetworkOperation>>collect(_size, _embed);
     final Procedure1<String> _function_1 = new Procedure1<String>() {
       public void apply(final String fileName) {
-        Converter _converter = FileToNetworkOperations.this.params.converter();
-        FileItem _folder = FileToNetworkOperations.this.params.folder();
+        Converter _converter = FileToNetworkOperations.this.params.getConverter();
+        FileItem _folder = FileToNetworkOperations.this.params.getFolder();
         FileItem _get = _folder.get(fileName);
         ValueCallback<List<NetworkOperation>> _createCallback = agg.createCallback();
         _converter.createNodes(FileToNetworkOperations.this.metadata, _get, _createCallback);

@@ -1,5 +1,13 @@
 package com.appjangle.filesync
 
-interface SynchronizationState {
+import java.util.List
+
+class SynchronizationState {
+	
+	/**
+	 * All nodes already synchronized
+	 */
+	val List<String> synced;
+	
 	
 }

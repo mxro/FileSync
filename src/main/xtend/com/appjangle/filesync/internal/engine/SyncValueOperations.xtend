@@ -8,6 +8,11 @@ class SyncValueOperations {
 	
 	def downloadValue(Node node, Metadata metadata, FileItem folder) {
 		
+		if (!folder.get("value.txt").exists) {
+			folder.createFile("value.txt").text = node.value().toString()
+			return;
+		}
+		
 		
 		
 	}

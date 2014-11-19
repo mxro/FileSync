@@ -7,9 +7,7 @@ import de.oehme.xtend.junit.JUnit;
 import io.nextweb.Link;
 import io.nextweb.Query;
 import io.nextweb.Session;
-import java.util.List;
 import org.eclipse.xtext.xbase.lib.Extension;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
 import org.hamcrest.Matcher;
 import org.junit.Assert;
@@ -43,8 +41,8 @@ public class TestRecursiveSync extends CheckNodesToFilesTemplate {
     html.append(_HTML_VALUE);
     Query _append_6 = this.source.append("node4", "./node4");
     Session _session_2 = this.source.session();
-    Link _HTML_VALUE_1 = this.n.HTML_VALUE(_session_2);
-    _append_6.append(_HTML_VALUE_1);
+    Link _link = _session_2.link("http://slicnet.com/mxrogm/mxrogm/data/stream/2013/12/3/n1");
+    _append_6.append(_link);
   }
   
   protected void step2_assertFiles() {
@@ -76,8 +74,6 @@ public class TestRecursiveSync extends CheckNodesToFilesTemplate {
     FileItem _get_13 = _get_12.get("My Html Document.html");
     String _text = _get_13.getText();
     TestRecursiveSync.<String, String>operator_doubleArrow(_text, "<html></html>");
-    List<FileItem> _children = this.result.getChildren();
-    InputOutput.<List<FileItem>>println(_children);
   }
   
   @Extension

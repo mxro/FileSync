@@ -92,7 +92,7 @@ class ConverterCollection implements Converter {
 		], cb.embed [res |
 			for (item : res) {
 				if (item instanceof Converter) {
-					println("using conv "+item+ " for "+forNode)
+					//println("using conv "+item+ " for "+forNode)
 					cb.onSuccess(item)
 					return;
 				}

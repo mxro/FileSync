@@ -23,7 +23,7 @@ class TestRecursiveSync extends CheckNodesToFilesTemplate{
 		html.append("My Html Document", "./.label").append(source.session().LABEL)
 		html.append(source.session().HTML_VALUE)
 		
-		source.append("node4", "./node4").append(source.session().HTML_VALUE)
+		source.append("node4", "./node4").append(source.session().link('http://slicnet.com/mxrogm/mxrogm/data/stream/2013/12/3/n1'))
 		
 	}
 	
@@ -46,7 +46,7 @@ class TestRecursiveSync extends CheckNodesToFilesTemplate{
 		result.get("node3").get("My Html Document.html").text => "<html></html>"
 		
 		// checking exclusions
-		println(result.children)
+		
 	}
 	
 	extension N n = new N

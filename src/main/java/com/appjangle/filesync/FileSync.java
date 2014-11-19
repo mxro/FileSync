@@ -30,7 +30,6 @@ import java.io.File;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
 @SuppressWarnings("all")
@@ -105,12 +104,9 @@ public class FileSync {
             String _name = childFolder.getName();
             final ItemMetadata itmmetadata = metadata.get(_name);
             String _uri = itmmetadata.uri();
-            String _plus = ("do it " + _uri);
-            InputOutput.<String>println(_plus);
-            String _uri_1 = itmmetadata.uri();
             Node _node = params.getNode();
-            String _uri_2 = _node.uri();
-            boolean _startsWith = _uri_1.startsWith(_uri_2);
+            String _uri_1 = _node.uri();
+            boolean _startsWith = _uri.startsWith(_uri_1);
             boolean _not = (!_startsWith);
             if (_not) {
               itmcb.onSuccess(Success.INSTANCE);
@@ -118,8 +114,8 @@ public class FileSync {
             }
             Node _node_1 = params.getNode();
             Session _session = _node_1.session();
-            String _uri_3 = itmmetadata.uri();
-            final Link qry = _session.link(_uri_3);
+            String _uri_2 = itmmetadata.uri();
+            final Link qry = _session.link(_uri_2);
             final ExceptionListener _function = new ExceptionListener() {
               public void onFailure(final ExceptionResult er) {
                 Throwable _exception = er.exception();

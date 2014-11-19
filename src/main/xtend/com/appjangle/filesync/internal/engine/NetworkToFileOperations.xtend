@@ -42,19 +42,21 @@ class NetworkToFileOperations {
 			/*
 			 * Don't download nodes starting with '.'
 			 */ 
-			remotelyAdded = remotelyAdded.filter [ node |
+			/*remotelyAdded = remotelyAdded.filter [ node |
 				if (ConvertUtils.getNameFromUri(node.uri()).startsWith('.')) {
 					return false;
 				}
 				
 				return true;
-			]
+			]*/
 			
 			val agg = Async.collect(3,
 				Async.embed(cb,
 					[ res |
 						cb.onSuccess(CollectionsUtils.flatten(res))
 					]))
+				
+				println(remotelyAdded)
 					
 			remotelyAdded.deduceCreateOperations(agg.createCallback)
 			remotelyRemoved.deduceRemoveOperations(agg.createCallback)

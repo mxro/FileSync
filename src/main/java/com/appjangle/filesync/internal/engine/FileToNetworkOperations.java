@@ -1,14 +1,23 @@
 package com.appjangle.filesync.internal.engine;
 
+import com.appjangle.filesync.Converter;
 import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.NetworkOperation;
 import com.appjangle.filesync.internal.engine.SyncParams;
+import de.mxro.async.Aggregator;
+import de.mxro.async.Async;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
+import de.mxro.fn.Closure;
+import de.mxro.fn.collections.CollectionsUtils;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import org.eclipse.xtext.xbase.lib.Exceptions;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 
 /**
  * Determines operations performed on local files which need to be uploaded to the cloud.
@@ -25,44 +34,129 @@ public class FileToNetworkOperations {
   }
   
   public void determineOps(final ValueCallback<List<NetworkOperation>> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field folder is undefined for the type FileToNetworkOperations"
-      + "\nThe method or field folder is undefined for the type FileToNetworkOperations"
-      + "\nThe method or field folder is undefined for the type FileToNetworkOperations"
-      + "\nThe method or field folder is undefined for the type FileToNetworkOperations"
-      + "\nThe method or field folder is undefined for the type FileToNetworkOperations"
-      + "\nThe method or field folder is undefined for the type FileToNetworkOperations"
-      + "\nThe method or field folder is undefined for the type FileToNetworkOperations"
-      + "\nThe method or field folder is undefined for the type FileToNetworkOperations"
-      + "\ndirectory cannot be resolved"
-      + "\n! cannot be resolved"
-      + "\nexists cannot be resolved"
-      + "\n! cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nvisible cannot be resolved"
-      + "\n! cannot be resolved");
+    try {
+      FileItem _folder = this.params.folder();
+      boolean _isDirectory = _folder.isDirectory();
+      boolean _not = (!_isDirectory);
+      if (_not) {
+        FileItem _folder_1 = this.params.folder();
+        String _plus = ("File passed and not directory. " + _folder_1);
+        throw new Exception(_plus);
+      }
+      FileItem _folder_2 = this.params.folder();
+      boolean _exists = _folder_2.exists();
+      boolean _not_1 = (!_exists);
+      if (_not_1) {
+        FileItem _folder_3 = this.params.folder();
+        String _plus_1 = ("File passed does not exist. " + _folder_3);
+        throw new Exception(_plus_1);
+      }
+      FileItem _folder_4 = this.params.folder();
+      Iterable<String> locallyAddedFiles = FileToNetworkOperations.determineLocallyAddedFiles(this.metadata, _folder_4);
+      FileItem _folder_5 = this.params.folder();
+      final ArrayList<String> locallyRemovedFiles = FileToNetworkOperations.determineLocallyRemovedFiles(this.metadata, _folder_5);
+      FileItem _folder_6 = this.params.folder();
+      final ArrayList<String> locallyChangedFiles = FileToNetworkOperations.determineLocallyChangedFiles(this.metadata, _folder_6);
+      final Function1<String, Boolean> _function = new Function1<String, Boolean>() {
+        public Boolean apply(final String fileName) {
+          boolean _startsWith = fileName.startsWith(".");
+          if (_startsWith) {
+            return Boolean.valueOf(false);
+          }
+          FileItem _folder = FileToNetworkOperations.this.params.folder();
+          FileItem _get = _folder.get(fileName);
+          boolean _visible = _get.getVisible();
+          boolean _not = (!_visible);
+          if (_not) {
+            return Boolean.valueOf(false);
+          }
+          return Boolean.valueOf(true);
+        }
+      };
+      Iterable<String> _filter = IterableExtensions.<String>filter(locallyAddedFiles, _function);
+      locallyAddedFiles = _filter;
+      final Closure<List<List<NetworkOperation>>> _function_1 = new Closure<List<List<NetworkOperation>>>() {
+        public void apply(final List<List<NetworkOperation>> res) {
+          final List<NetworkOperation> ops = CollectionsUtils.<NetworkOperation>flatten(res);
+          cb.onSuccess(ops);
+        }
+      };
+      ValueCallback<List<List<NetworkOperation>>> _embed = Async.<List<List<NetworkOperation>>>embed(cb, _function_1);
+      final Aggregator<List<NetworkOperation>> agg = Async.<List<NetworkOperation>>collect(3, _embed);
+      ValueCallback<List<NetworkOperation>> _createCallback = agg.createCallback();
+      this.createOperationsFromRemovedFiles(locallyRemovedFiles, _createCallback);
+      ValueCallback<List<NetworkOperation>> _createCallback_1 = agg.createCallback();
+      this.createOperationsFromChangedFiles(locallyChangedFiles, _createCallback_1);
+      ValueCallback<List<NetworkOperation>> _createCallback_2 = agg.createCallback();
+      this.createOperationsFromCreatedFiles(locallyAddedFiles, _createCallback_2);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
   
   public void createOperationsFromChangedFiles(final List<String> fileNames, final ValueCallback<List<NetworkOperation>> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field converter is undefined for the type FileToNetworkOperations"
-      + "\nThe method or field folder is undefined for the type FileToNetworkOperations"
-      + "\nupdate cannot be resolved"
-      + "\nget cannot be resolved");
+    int _size = fileNames.size();
+    final Closure<List<List<NetworkOperation>>> _function = new Closure<List<List<NetworkOperation>>>() {
+      public void apply(final List<List<NetworkOperation>> res) {
+        List<NetworkOperation> _flatten = CollectionsUtils.<NetworkOperation>flatten(res);
+        cb.onSuccess(_flatten);
+      }
+    };
+    ValueCallback<List<List<NetworkOperation>>> _embed = Async.<List<List<NetworkOperation>>>embed(cb, _function);
+    final Aggregator<List<NetworkOperation>> agg = Async.<List<NetworkOperation>>collect(_size, _embed);
+    final Procedure1<String> _function_1 = new Procedure1<String>() {
+      public void apply(final String fileName) {
+        Converter _converter = FileToNetworkOperations.this.params.converter();
+        FileItem _folder = FileToNetworkOperations.this.params.folder();
+        FileItem _get = _folder.get(fileName);
+        ValueCallback<List<NetworkOperation>> _createCallback = agg.createCallback();
+        _converter.update(FileToNetworkOperations.this.metadata, _get, _createCallback);
+      }
+    };
+    IterableExtensions.<String>forEach(fileNames, _function_1);
   }
   
   public void createOperationsFromRemovedFiles(final List<String> fileNames, final ValueCallback<List<NetworkOperation>> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field converter is undefined for the type FileToNetworkOperations"
-      + "\ndeleteNodes cannot be resolved");
+    int _size = fileNames.size();
+    final Closure<List<List<NetworkOperation>>> _function = new Closure<List<List<NetworkOperation>>>() {
+      public void apply(final List<List<NetworkOperation>> res) {
+        List<NetworkOperation> _flatten = CollectionsUtils.<NetworkOperation>flatten(res);
+        cb.onSuccess(_flatten);
+      }
+    };
+    ValueCallback<List<List<NetworkOperation>>> _embed = Async.<List<List<NetworkOperation>>>embed(cb, _function);
+    final Aggregator<List<NetworkOperation>> agg = Async.<List<NetworkOperation>>collect(_size, _embed);
+    final Procedure1<String> _function_1 = new Procedure1<String>() {
+      public void apply(final String fileName) {
+        Converter _converter = FileToNetworkOperations.this.params.converter();
+        ItemMetadata _get = FileToNetworkOperations.this.metadata.get(fileName);
+        ValueCallback<List<NetworkOperation>> _createCallback = agg.createCallback();
+        _converter.deleteNodes(FileToNetworkOperations.this.metadata, _get, _createCallback);
+      }
+    };
+    IterableExtensions.<String>forEach(fileNames, _function_1);
   }
   
   public void createOperationsFromCreatedFiles(final Iterable<String> fileNames, final ValueCallback<List<NetworkOperation>> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field converter is undefined for the type FileToNetworkOperations"
-      + "\nThe method or field folder is undefined for the type FileToNetworkOperations"
-      + "\ncreateNodes cannot be resolved"
-      + "\nget cannot be resolved");
+    int _size = IterableExtensions.size(fileNames);
+    final Closure<List<List<NetworkOperation>>> _function = new Closure<List<List<NetworkOperation>>>() {
+      public void apply(final List<List<NetworkOperation>> res) {
+        List<NetworkOperation> _flatten = CollectionsUtils.<NetworkOperation>flatten(res);
+        cb.onSuccess(_flatten);
+      }
+    };
+    ValueCallback<List<List<NetworkOperation>>> _embed = Async.<List<List<NetworkOperation>>>embed(cb, _function);
+    final Aggregator<List<NetworkOperation>> agg = Async.<List<NetworkOperation>>collect(_size, _embed);
+    final Procedure1<String> _function_1 = new Procedure1<String>() {
+      public void apply(final String fileName) {
+        Converter _converter = FileToNetworkOperations.this.params.converter();
+        FileItem _folder = FileToNetworkOperations.this.params.folder();
+        FileItem _get = _folder.get(fileName);
+        ValueCallback<List<NetworkOperation>> _createCallback = agg.createCallback();
+        _converter.createNodes(FileToNetworkOperations.this.metadata, _get, _createCallback);
+      }
+    };
+    IterableExtensions.<String>forEach(fileNames, _function_1);
   }
   
   public static ArrayList<String> determineLocallyChangedFiles(final Metadata metadata, final FileItem folder) {

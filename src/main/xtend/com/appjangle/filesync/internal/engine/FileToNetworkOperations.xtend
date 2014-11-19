@@ -1,6 +1,5 @@
 package com.appjangle.filesync.internal.engine
 
-import com.appjangle.filesync.Converter
 import com.appjangle.filesync.ItemMetadata
 import com.appjangle.filesync.Metadata
 import com.appjangle.filesync.NetworkOperation
@@ -8,7 +7,6 @@ import de.mxro.async.Async
 import de.mxro.async.callbacks.ValueCallback
 import de.mxro.file.FileItem
 import de.mxro.fn.collections.CollectionsUtils
-import io.nextweb.Node
 import java.util.ArrayList
 import java.util.List
 
@@ -30,17 +28,17 @@ class FileToNetworkOperations {
 
 	def determineOps(ValueCallback<List<NetworkOperation>> cb) {
 
-		if (!folder.directory)
-			throw new Exception('File passed and not directory. ' + folder)
+		if (!params.folder.directory)
+			throw new Exception('File passed and not directory. ' + params.folder)
 
-		if (!folder.exists)
-			throw new Exception('File passed does not exist. ' + folder)
+		if (!params.folder.exists)
+			throw new Exception('File passed does not exist. ' + params.folder)
 
-		var Iterable<String> locallyAddedFiles = determineLocallyAddedFiles(metadata, folder)
+		var Iterable<String> locallyAddedFiles = determineLocallyAddedFiles(metadata, params.folder)
 
-		val locallyRemovedFiles = determineLocallyRemovedFiles(metadata, folder)
+		val locallyRemovedFiles = determineLocallyRemovedFiles(metadata, params.folder)
 
-		val locallyChangedFiles = determineLocallyChangedFiles(metadata, folder)
+		val locallyChangedFiles = determineLocallyChangedFiles(metadata, params.folder)
 
 		/*
 		 * Don't add hidden files.
@@ -49,7 +47,7 @@ class FileToNetworkOperations {
 			if (fileName.startsWith(".")) {
 				return false;
 			}
-			if (!folder.get(fileName).visible) {
+			if (!params.folder.get(fileName).visible) {
 				return false;
 			}
 			return true
@@ -79,7 +77,7 @@ class FileToNetworkOperations {
 				]))
 
 		fileNames.forEach [ fileName |
-			converter.update(metadata, folder.get(fileName), agg.createCallback());
+			params.converter.update(metadata, params.folder.get(fileName), agg.createCallback());
 		]
 
 	}
@@ -93,7 +91,7 @@ class FileToNetworkOperations {
 				]))
 
 		fileNames.forEach [ fileName |
-			converter.deleteNodes(metadata, metadata.get(fileName), agg.createCallback)
+			params.converter.deleteNodes(metadata, metadata.get(fileName), agg.createCallback)
 		]
 
 	}
@@ -107,7 +105,7 @@ class FileToNetworkOperations {
 				]))
 
 		fileNames.forEach [ fileName |
-			converter.createNodes(metadata, folder.get(fileName), agg.createCallback());
+			params.converter.createNodes(metadata, params.folder.get(fileName), agg.createCallback());
 		]
 
 	}

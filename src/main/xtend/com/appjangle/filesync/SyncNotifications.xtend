@@ -7,10 +7,18 @@ import io.nextweb.Node
 class SyncNotifications {
 	
 	def void onInsufficientAuthorization(FileItem inFolder, Link forNode) {
-		println('insuf '+inFolder+' '+forNode)
+		
 	}
 	
 	def void onNodeNotDefined(Node parent, Link node) {
+		
+	}
+	
+	def void onStartSynchronizing(FileItem folder, Node node) {
+		
+	}
+	
+	def void onFinishedSynchronizing(FileItem folder, Node node) {
 		
 	}
 	

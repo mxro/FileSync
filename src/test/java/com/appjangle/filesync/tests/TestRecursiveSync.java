@@ -9,7 +9,6 @@ import io.nextweb.Query;
 import io.nextweb.Session;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.Extension;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
 import org.hamcrest.Matcher;
 import org.junit.Assert;
@@ -77,15 +76,9 @@ public class TestRecursiveSync extends CheckNodesToFilesTemplate {
     String _text = _get_13.getText();
     TestRecursiveSync.<String, String>operator_doubleArrow(_text, "<html></html>");
     FileItem _get_14 = this.result.get("node4");
-    List<FileItem> _children = _get_14.getChildren();
-    FileItem _get_15 = _children.get(0);
-    List<FileItem> _children_1 = _get_15.getChildren();
-    InputOutput.<List<FileItem>>println(_children_1);
-    FileItem _get_16 = this.result.get("node4");
-    List<FileItem> _children_2 = _get_16.getChildren();
-    FileItem _get_17 = _children_2.get(0);
-    List<FileItem> _children_3 = _get_17.getChildren();
-    int _size = _children_3.size();
+    FileItem _get_15 = _get_14.get("Plain Text Editor");
+    List<FileItem> _children = _get_15.getChildren();
+    int _size = _children.size();
     TestRecursiveSync.<Integer, Integer>operator_doubleArrow(Integer.valueOf(_size), Integer.valueOf(0));
   }
   

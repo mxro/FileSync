@@ -186,13 +186,14 @@ public class ConverterCollection implements Converter {
   }
   
   public void updateFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
+    ItemMetadata _get = metadata.get(source);
     final Closure<Converter> _function = new Closure<Converter>() {
       public void apply(final Converter converter) {
         converter.updateFiles(folder, metadata, source, cb);
       }
     };
     ValueCallback<Converter> _embed = Async.<Converter>embed(cb, _function);
-    this.findConverter(source, _embed);
+    this.findConverter(_get, _embed);
   }
   
   public void removeFiles(final FileItem folder, final Metadata metadata, final ItemMetadata item, final ValueCallback<List<FileOperation>> cb) {

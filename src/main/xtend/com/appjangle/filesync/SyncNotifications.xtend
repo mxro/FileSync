@@ -18,7 +18,7 @@ class SyncNotifications {
 	
 	def void onNodeNotDefined(Node parent, Link node) {
 		if (printToStdOut) {
-			println("Node is not defined  ["+node+"] in parent ["+parent+"]")
+			println("Folder is not defined  ["+node+"] in parent ["+parent+"]")
 		}
 	}
 	

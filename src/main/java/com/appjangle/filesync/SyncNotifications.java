@@ -20,7 +20,7 @@ public class SyncNotifications {
   
   public void onNodeNotDefined(final Node parent, final Link node) {
     if (this.printToStdOut) {
-      InputOutput.<String>println((((("Node is not defined  [" + node) + "] in parent [") + parent) + "]"));
+      InputOutput.<String>println((((("Folder is not defined  [" + node) + "] in parent [") + parent) + "]"));
     }
   }
   

@@ -108,7 +108,7 @@ class ConverterCollection implements Converter {
 	}
 	
 	override update(Metadata metadata, FileItem source, ValueCallback<List<NetworkOperation>> cb) {
-		findConverter(source, cb.embed [ converter |
+		findConverter(metadata.get(source.name), cb.embed [ converter |
 			converter.update(metadata, source, cb)
 		])
 	}

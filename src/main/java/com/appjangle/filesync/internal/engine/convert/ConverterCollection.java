@@ -154,13 +154,15 @@ public class ConverterCollection implements Converter {
   }
   
   public void update(final Metadata metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {
+    String _name = source.getName();
+    ItemMetadata _get = metadata.get(_name);
     final Closure<Converter> _function = new Closure<Converter>() {
       public void apply(final Converter converter) {
         converter.update(metadata, source, cb);
       }
     };
     ValueCallback<Converter> _embed = Async.<Converter>embed(cb, _function);
-    this.findConverter(source, _embed);
+    this.findConverter(_get, _embed);
   }
   
   public void deleteNodes(final Metadata metadata, final ItemMetadata cachedFile, final ValueCallback<List<NetworkOperation>> cb) {

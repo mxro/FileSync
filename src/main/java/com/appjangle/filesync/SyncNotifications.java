@@ -26,13 +26,13 @@ public class SyncNotifications {
   
   public void onStartSynchronizing(final FileItem folder, final Node node) {
     if (this.printToStdOut) {
-      InputOutput.<String>println((((("Start synchronizing  [" + node) + "] and [") + folder) + "]"));
+      InputOutput.<String>println((((("[" + node) + "]->Start in [") + folder) + "]"));
     }
   }
   
   public void onFinishedSynchronizing(final FileItem folder, final Node node) {
     if (this.printToStdOut) {
-      InputOutput.<String>println((((("Finished synchronizing  [" + node) + "] and [") + folder) + "]"));
+      InputOutput.<String>println((((("[" + node) + "]->Finish in [") + folder) + "]"));
     }
   }
   

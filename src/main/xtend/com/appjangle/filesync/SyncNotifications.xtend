@@ -24,13 +24,13 @@ class SyncNotifications {
 	
 	def void onStartSynchronizing(FileItem folder, Node node) {
 		if (printToStdOut) {
-			println("Start synchronizing  ["+node+"] and ["+folder+"]")
+			println("["+node+"]->Start in ["+folder+"]")
 		}
 	}
 	
 	def void onFinishedSynchronizing(FileItem folder, Node node) {
 		if (printToStdOut) {
-			println("Finished synchronizing  ["+node+"] and ["+folder+"]")
+			println("["+node+"]->Finish in ["+folder+"]")
 		}
 	}
 	

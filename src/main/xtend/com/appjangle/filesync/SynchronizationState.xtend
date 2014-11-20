@@ -12,14 +12,14 @@ class SynchronizationState {
 	 */
 	val Set<String> synced;
 	
-	def addSynced(Node n) {
+	def synchronized addSynced(Node n) {
 		Preconditions.checkState(!synced.contains(n.uri()), "Node was already synced [%s]", n.uri())
 		
 		synced.add(n.uri())
 	}
 	
 	
-	def wasSynced(Node n) {
+	def synchronized wasSynced(Node n) {
 		synced.contains(n.uri())
 	}
 	

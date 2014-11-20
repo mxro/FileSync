@@ -12,7 +12,7 @@ public class SynchronizationState {
    */
   private final Set<String> synced;
   
-  public boolean addSynced(final Node n) {
+  public synchronized boolean addSynced(final Node n) {
     boolean _xblockexpression = false;
     {
       String _uri = n.uri();
@@ -26,7 +26,7 @@ public class SynchronizationState {
     return _xblockexpression;
   }
   
-  public boolean wasSynced(final Node n) {
+  public synchronized boolean wasSynced(final Node n) {
     String _uri = n.uri();
     return this.synced.contains(_uri);
   }

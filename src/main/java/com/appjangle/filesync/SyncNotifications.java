@@ -25,9 +25,15 @@ public class SyncNotifications {
   }
   
   public void onStartSynchronizing(final FileItem folder, final Node node) {
+    if (this.printToStdOut) {
+      InputOutput.<String>println((((("Start synchronizing  [" + node) + "] and [") + folder) + "]"));
+    }
   }
   
   public void onFinishedSynchronizing(final FileItem folder, final Node node) {
+    if (this.printToStdOut) {
+      InputOutput.<String>println((((("Finished synchronizing  [" + node) + "] and [") + folder) + "]"));
+    }
   }
   
   public void onNodeSkippedBecauseItWasAlreadySynced(final FileItem folder, final Node node) {

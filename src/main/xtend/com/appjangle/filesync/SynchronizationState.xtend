@@ -5,6 +5,9 @@ import java.util.HashSet
 import java.util.Set
 import com.google.common.base.Preconditions
 
+/**
+ * Must be synchronized.
+ */
 class SynchronizationState {
 	
 	/**

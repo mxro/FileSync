@@ -5,6 +5,9 @@ import io.nextweb.Node;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Must be synchronized.
+ */
 @SuppressWarnings("all")
 public class SynchronizationState {
   /**

@@ -6,6 +6,7 @@ import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.NetworkOperation;
 import com.appjangle.filesync.internal.engine.convert.ConvertUtils;
+import com.appjangle.filesync.internal.engine.convert.FolderToNode;
 import de.mxro.async.Async;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
@@ -176,6 +177,13 @@ public class ConverterCollection implements Converter {
   }
   
   public void createFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
+    String _uri = source.uri();
+    boolean _endsWith = _uri.endsWith("Types");
+    if (_endsWith) {
+      FolderToNode _folderToNode = new FolderToNode();
+      _folderToNode.createFiles(folder, metadata, source, cb);
+      return;
+    }
     final Closure<Converter> _function = new Closure<Converter>() {
       public void apply(final Converter converter) {
         converter.createFiles(folder, metadata, source, cb);

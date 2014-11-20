@@ -120,6 +120,11 @@ class ConverterCollection implements Converter {
 	}
 	
 	override createFiles(FileItem folder, Metadata metadata, Node source, ValueCallback<List<FileOperation>> cb) {
+		if (source.uri().endsWith( "Types")) {
+			new FolderToNode().createFiles(folder, metadata, source, cb)
+			return;
+		}
+		
 		findConverter(source, cb.embed [ converter |
 			converter.createFiles(folder, metadata, source, cb)
 		])

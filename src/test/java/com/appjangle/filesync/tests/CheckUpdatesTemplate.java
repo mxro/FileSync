@@ -2,9 +2,9 @@ package com.appjangle.filesync.tests;
 
 import com.appjangle.filesync.FileSync;
 import com.appjangle.filesync.tests.CheckNodesToFilesTemplate;
-import de.mxro.async.Deferred;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.async.jre.AsyncJre;
+import de.mxro.async.promise.Deferred;
 import de.mxro.fn.Success;
 import io.nextweb.promise.NextwebPromise;
 import org.eclipse.xtext.xbase.lib.Exceptions;

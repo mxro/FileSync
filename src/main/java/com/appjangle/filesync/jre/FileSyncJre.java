@@ -1,9 +1,9 @@
 package com.appjangle.filesync.jre;
 
 import com.appjangle.filesync.FileSync;
-import de.mxro.async.Deferred;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.async.jre.AsyncJre;
+import de.mxro.async.promise.Deferred;
 import de.mxro.file.FileItem;
 import de.mxro.file.Jre.FilesJre;
 import de.mxro.fn.Success;

@@ -7,7 +7,7 @@ import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.SyncNotifications;
 import com.appjangle.filesync.SyncParams;
 import com.google.common.base.Objects;
-import de.mxro.async.Async;
+import de.mxro.async.AsyncCommon;
 import de.mxro.async.Value;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.async.helper.Aggregator;
@@ -115,8 +115,8 @@ public class NetworkToFileOperations {
                 cb.onSuccess(_flatten);
               }
             };
-            ValueCallback<List<List<FileOperation>>> _embed = Async.<List<List<FileOperation>>>embed(cb, _function);
-            final Aggregator<List<FileOperation>> agg = Async.<List<FileOperation>>collect(3, _embed);
+            ValueCallback<List<List<FileOperation>>> _embed = AsyncCommon.<List<List<FileOperation>>>embed(cb, _function);
+            final Aggregator<List<FileOperation>> agg = AsyncCommon.<List<FileOperation>>collect(3, _embed);
             ValueCallback<List<FileOperation>> _createCallback = agg.createCallback();
             NetworkToFileOperations.this.deduceCreateOperations(remotelyAdded, _createCallback);
             ValueCallback<List<FileOperation>> _createCallback_1 = agg.createCallback();
@@ -125,8 +125,8 @@ public class NetworkToFileOperations {
             NetworkToFileOperations.this.deduceUpdateOperations(remotelyUpdated, _createCallback_2);
           }
         };
-        ValueCallback<List<Value<Object>>> _embed = Async.<List<Value<Object>>>embed(cb, _function_1);
-        Async.<Link, Value<Object>>forEach(_links, _function, _embed);
+        ValueCallback<List<Value<Object>>> _embed = AsyncCommon.<List<Value<Object>>>embed(cb, _function_1);
+        AsyncCommon.<Link, Value<Object>>forEach(_links, _function, _embed);
       }
     };
     qry.get(_function_1);
@@ -140,8 +140,8 @@ public class NetworkToFileOperations {
         cb.onSuccess(_flatten);
       }
     };
-    ValueCallback<List<List<FileOperation>>> _embed = Async.<List<List<FileOperation>>>embed(cb, _function);
-    final Aggregator<List<FileOperation>> agg = Async.<List<FileOperation>>collect(_size, _embed);
+    ValueCallback<List<List<FileOperation>>> _embed = AsyncCommon.<List<List<FileOperation>>>embed(cb, _function);
+    final Aggregator<List<FileOperation>> agg = AsyncCommon.<List<FileOperation>>collect(_size, _embed);
     for (final Node updatedNode : remotelyUpdated) {
       Converter _converter = this.params.getConverter();
       FileItem _folder = this.params.getFolder();
@@ -158,8 +158,8 @@ public class NetworkToFileOperations {
         cb.onSuccess(_flatten);
       }
     };
-    ValueCallback<List<List<FileOperation>>> _embed = Async.<List<List<FileOperation>>>embed(cb, _function);
-    final Aggregator<List<FileOperation>> agg = Async.<List<FileOperation>>collect(_size, _embed);
+    ValueCallback<List<List<FileOperation>>> _embed = AsyncCommon.<List<List<FileOperation>>>embed(cb, _function);
+    final Aggregator<List<FileOperation>> agg = AsyncCommon.<List<FileOperation>>collect(_size, _embed);
     for (final Node newNode : remotelyAdded) {
       Converter _converter = this.params.getConverter();
       FileItem _folder = this.params.getFolder();
@@ -176,8 +176,8 @@ public class NetworkToFileOperations {
         cb.onSuccess(_flatten);
       }
     };
-    ValueCallback<List<List<FileOperation>>> _embed = Async.<List<List<FileOperation>>>embed(cb, _function);
-    final Aggregator<List<FileOperation>> agg = Async.<List<FileOperation>>collect(_size, _embed);
+    ValueCallback<List<List<FileOperation>>> _embed = AsyncCommon.<List<List<FileOperation>>>embed(cb, _function);
+    final Aggregator<List<FileOperation>> agg = AsyncCommon.<List<FileOperation>>collect(_size, _embed);
     for (final ItemMetadata removedNode : remotelyRemoved) {
       Converter _converter = this.params.getConverter();
       FileItem _folder = this.params.getFolder();

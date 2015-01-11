@@ -4,7 +4,6 @@ import com.appjangle.filesync.FileOperation
 import com.appjangle.filesync.ItemMetadata
 import com.appjangle.filesync.Metadata
 import com.appjangle.filesync.SyncParams
-import de.mxro.async.Async
 import de.mxro.async.Value
 import de.mxro.async.callbacks.ValueCallback
 import de.mxro.fn.collections.CollectionsUtils
@@ -12,7 +11,8 @@ import io.nextweb.Node
 import java.util.ArrayList
 import java.util.List
 
-import static extension de.mxro.async.Async.*
+import static extension de.mxro.async.AsyncCommon.*
+import de.mxro.async.AsyncCommon
 
 /**
  * Determines operations to be performed on local files based on remote changes made in the cloud.
@@ -35,7 +35,7 @@ class NetworkToFileOperations {
 		qry.catchExceptions[er|cb.onFailure(er.exception)]
 
 		qry.get [ children |
-			Async.forEach(children.links,
+			AsyncCommon.forEach(children.links,
 				[ link, itmcb |
 					link.catchUnauthorized[
 						params.notifications.onInsufficientAuthorization(params.folder, link)
@@ -62,8 +62,8 @@ class NetworkToFileOperations {
 					val Iterable<Node> remotelyAdded = nodes.determineRemotelyAddedNodes
 					val remotelyRemoved = nodes.determineRemotelyRemovedNodes
 					val remotelyUpdated = nodes.determineRemotelyUpdatedNodes
-					val agg = Async.collect(3,
-						Async.embed(cb,
+					val agg = AsyncCommon.collect(3,
+						AsyncCommon.embed(cb,
 							[ res |
 								cb.onSuccess(CollectionsUtils.flatten(res))
 							]))
@@ -77,8 +77,8 @@ class NetworkToFileOperations {
 
 	def deduceUpdateOperations(Iterable<Node> remotelyUpdated, ValueCallback<List<FileOperation>> cb) {
 
-		val agg = Async.collect(remotelyUpdated.size,
-			Async.embed(cb,
+		val agg = AsyncCommon.collect(remotelyUpdated.size,
+			AsyncCommon.embed(cb,
 				[ res |
 					cb.onSuccess(CollectionsUtils.flatten(res))
 				]))
@@ -93,8 +93,8 @@ class NetworkToFileOperations {
 
 	def deduceCreateOperations(Iterable<Node> remotelyAdded, ValueCallback<List<FileOperation>> cb) {
 
-		val agg = Async.collect(remotelyAdded.size,
-			Async.embed(cb,
+		val agg = AsyncCommon.collect(remotelyAdded.size,
+			AsyncCommon.embed(cb,
 				[ res |
 					cb.onSuccess(CollectionsUtils.flatten(res))
 				]))
@@ -109,8 +109,8 @@ class NetworkToFileOperations {
 
 	def deduceRemoveOperations(List<ItemMetadata> remotelyRemoved, ValueCallback<List<FileOperation>> cb) {
 
-		val agg = Async.collect(remotelyRemoved.size,
-			Async.embed(cb,
+		val agg = AsyncCommon.collect(remotelyRemoved.size,
+			AsyncCommon.embed(cb,
 				[ res |
 					cb.onSuccess(CollectionsUtils.flatten(res))
 				]))

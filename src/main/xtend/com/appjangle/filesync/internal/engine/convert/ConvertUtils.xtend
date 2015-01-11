@@ -5,7 +5,6 @@ import com.appjangle.filesync.Metadata
 import com.appjangle.filesync.NetworkOperation
 import com.appjangle.filesync.internal.engine.FileUtils
 import com.appjangle.filesync.internal.engine.N
-import de.mxro.async.Async
 import de.mxro.async.callbacks.ValueCallback
 import de.mxro.file.FileItem
 import io.nextweb.Link
@@ -17,7 +16,8 @@ import java.util.ArrayList
 import java.util.LinkedList
 import java.util.List
 
-import static extension de.mxro.async.Async.embed
+import static extension de.mxro.async.AsyncCommon.embed
+import de.mxro.async.AsyncCommon
 
 class ConvertUtils {
 
@@ -201,7 +201,7 @@ class ConvertUtils {
 
 	def getFileName(Node fromNode, ValueCallback<String> cb) {
 
-		val cbs = Async.collect(labelTypes.size,
+		val cbs = AsyncCommon.collect(labelTypes.size,
 			cb.embed(
 				[ res |
 					for (item : res) {

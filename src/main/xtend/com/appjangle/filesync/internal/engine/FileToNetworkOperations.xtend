@@ -4,12 +4,12 @@ import com.appjangle.filesync.ItemMetadata
 import com.appjangle.filesync.Metadata
 import com.appjangle.filesync.NetworkOperation
 import com.appjangle.filesync.SyncParams
-import de.mxro.async.Async
 import de.mxro.async.callbacks.ValueCallback
 import de.mxro.file.FileItem
 import de.mxro.fn.collections.CollectionsUtils
 import java.util.ArrayList
 import java.util.List
+import de.mxro.async.AsyncCommon
 
 /**
  * Determines operations performed on local files which need to be uploaded to the cloud.
@@ -56,8 +56,8 @@ class FileToNetworkOperations {
 
 		
 
-		val agg = Async.collect(3,
-			Async.embed(cb,
+		val agg = AsyncCommon.collect(3,
+			AsyncCommon.embed(cb,
 				[ res |
 					val ops = CollectionsUtils.flatten(res)
 					cb.onSuccess(ops)
@@ -71,8 +71,8 @@ class FileToNetworkOperations {
 
 	def createOperationsFromChangedFiles(List<String> fileNames, ValueCallback<List<NetworkOperation>> cb) {
 
-		val agg = Async.collect(fileNames.size,
-			Async.embed(cb,
+		val agg = AsyncCommon.collect(fileNames.size,
+			AsyncCommon.embed(cb,
 				[ res |
 					cb.onSuccess(CollectionsUtils.flatten(res))
 				]))
@@ -85,8 +85,8 @@ class FileToNetworkOperations {
 
 	def createOperationsFromRemovedFiles(List<String> fileNames, ValueCallback<List<NetworkOperation>> cb) {
 
-		val agg = Async.collect(fileNames.size,
-			Async.embed(cb,
+		val agg = AsyncCommon.collect(fileNames.size,
+			AsyncCommon.embed(cb,
 				[ res |
 					cb.onSuccess(CollectionsUtils.flatten(res))
 				]))
@@ -99,8 +99,8 @@ class FileToNetworkOperations {
 
 	def createOperationsFromCreatedFiles(Iterable<String> fileNames, ValueCallback<List<NetworkOperation>> cb) {
 
-		val agg = Async.collect(fileNames.size,
-			Async.embed(cb,
+		val agg = AsyncCommon.collect(fileNames.size,
+			AsyncCommon.embed(cb,
 				[ res |
 					cb.onSuccess(CollectionsUtils.flatten(res))
 				]))

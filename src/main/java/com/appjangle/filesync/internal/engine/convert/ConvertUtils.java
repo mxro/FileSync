@@ -7,7 +7,7 @@ import com.appjangle.filesync.NetworkOperationContext;
 import com.appjangle.filesync.internal.engine.FileUtils;
 import com.appjangle.filesync.internal.engine.N;
 import com.google.common.base.Objects;
-import de.mxro.async.Async;
+import de.mxro.async.AsyncCommon;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.async.helper.Aggregator;
 import de.mxro.file.FileItem;
@@ -106,7 +106,7 @@ public class ConvertUtils {
               opscb.onSuccess(list);
             }
           };
-          ValueCallback<List<NextwebPromise<Success>>> _embed = Async.<List<NextwebPromise<Success>>>embed(opscb, _function);
+          ValueCallback<List<NextwebPromise<Success>>> _embed = AsyncCommon.<List<NextwebPromise<Success>>>embed(opscb, _function);
           ConvertUtils.this.ext.removeSafeRecursive(parent, nodeToBeRemoved, _embed);
         } else {
           NextwebPromise<Success> _removeSafe = parent.removeSafe(nodeToBeRemoved);
@@ -248,7 +248,7 @@ public class ConvertUtils {
         cb.onSuccess(fileName);
       }
     };
-    ValueCallback<String> _embed = Async.<String>embed(cb, _function);
+    ValueCallback<String> _embed = AsyncCommon.<String>embed(cb, _function);
     this.getFileName(forNode, _embed);
   }
   
@@ -267,8 +267,8 @@ public class ConvertUtils {
         cb.onSuccess(_nameFromUri);
       }
     };
-    ValueCallback<List<Object>> _embed = Async.<List<Object>>embed(cb, _function);
-    final Aggregator<Object> cbs = Async.<Object>collect(_size, _embed);
+    ValueCallback<List<Object>> _embed = AsyncCommon.<List<Object>>embed(cb, _function);
+    final Aggregator<Object> cbs = AsyncCommon.<Object>collect(_size, _embed);
     final Procedure1<String> _function_1 = new Procedure1<String>() {
       public void apply(final String labelType) {
         Session _session = fromNode.session();

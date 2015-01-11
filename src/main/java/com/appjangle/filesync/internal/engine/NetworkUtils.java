@@ -2,7 +2,7 @@ package com.appjangle.filesync.internal.engine;
 
 import com.appjangle.filesync.NetworkOperation;
 import com.appjangle.filesync.NetworkOperationContext;
-import de.mxro.async.Async;
+import de.mxro.async.AsyncCommon;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.async.helper.Aggregator;
 import de.mxro.fn.Closure;
@@ -36,8 +36,8 @@ public class NetworkUtils {
           cb.onSuccess(Success.INSTANCE);
         }
       };
-      ValueCallback<List<Success>> _embed = Async.<List<Success>>embed(cb, _function);
-      final Aggregator<Success> opscbs = Async.<Success>collect(_size, _embed);
+      ValueCallback<List<Success>> _embed = AsyncCommon.<List<Success>>embed(cb, _function);
+      final Aggregator<Success> opscbs = AsyncCommon.<Success>collect(_size, _embed);
       for (final NetworkOperation op : ops) {
         final Closure<List<Deferred<?>>> _function_1 = new Closure<List<Deferred<?>>>() {
           public void apply(final List<Deferred<?>> qries) {
@@ -48,8 +48,8 @@ public class NetworkUtils {
                 opscbsitem.onSuccess(Success.INSTANCE);
               }
             };
-            ValueCallback<List<Success>> _embed = Async.<List<Success>>embed(cb, _function);
-            final Aggregator<Success> cbs = Async.<Success>collect(_size, _embed);
+            ValueCallback<List<Success>> _embed = AsyncCommon.<List<Success>>embed(cb, _function);
+            final Aggregator<Success> cbs = AsyncCommon.<Success>collect(_size, _embed);
             for (final Deferred<?> qry : qries) {
               {
                 final ValueCallback<Success> itmcb = cbs.createCallback();
@@ -93,7 +93,7 @@ public class NetworkUtils {
             }
           }
         };
-        ValueCallback<List<Deferred<?>>> _embed_1 = Async.<List<Deferred<?>>>embed(cb, _function_1);
+        ValueCallback<List<Deferred<?>>> _embed_1 = AsyncCommon.<List<Deferred<?>>>embed(cb, _function_1);
         op.apply(ctx, _embed_1);
       }
       Session _session = onNode.session();

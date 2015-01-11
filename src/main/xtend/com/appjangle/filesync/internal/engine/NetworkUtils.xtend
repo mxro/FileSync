@@ -2,7 +2,6 @@ package com.appjangle.filesync.internal.engine
 
 import com.appjangle.filesync.NetworkOperation
 import com.appjangle.filesync.NetworkOperationContext
-import de.mxro.async.Async
 import de.mxro.async.callbacks.ValueCallback
 import de.mxro.fn.Success
 import io.nextweb.Node
@@ -10,7 +9,8 @@ import io.nextweb.Query
 import io.nextweb.promise.NextwebPromise
 import java.util.List
 
-import static extension de.mxro.async.Async.embed
+import de.mxro.async.AsyncCommon
+import static extension de.mxro.async.AsyncCommon.embed
 
 class NetworkUtils {
 
@@ -28,7 +28,7 @@ class NetworkUtils {
 
 		};
 
-		val opscbs = Async.collect(ops.size,
+		val opscbs = de.mxro.async.AsyncCommon.AsyncCommon.collect(ops.size,
 			cb.embed(
 				[
 					cb.onSuccess(Success.INSTANCE)
@@ -41,7 +41,7 @@ class NetworkUtils {
 					//println('exec '+qries)
 					val opscbsitem = opscbs.createCallback
 					
-					val cbs = Async.collect(qries.size,
+					val cbs = de.mxro.async.AsyncCommon.AsyncCommon.collect(qries.size,
 						cb.embed(
 							[
 								opscbsitem.onSuccess(Success.INSTANCE)

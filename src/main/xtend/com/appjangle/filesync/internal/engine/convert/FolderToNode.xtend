@@ -14,7 +14,7 @@ import java.util.Date
 import java.util.LinkedList
 import java.util.List
 
-import static extension de.mxro.async.Async.embed
+import static extension de.mxro.async.AsyncCommon.embed
 
 class FolderToNode implements Converter {
 

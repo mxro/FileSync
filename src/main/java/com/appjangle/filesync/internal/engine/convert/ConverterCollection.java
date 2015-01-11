@@ -7,7 +7,7 @@ import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.NetworkOperation;
 import com.appjangle.filesync.internal.engine.convert.ConvertUtils;
 import com.appjangle.filesync.internal.engine.convert.FolderToNode;
-import de.mxro.async.Async;
+import de.mxro.async.AsyncCommon;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
 import de.mxro.fn.Closure;
@@ -60,8 +60,8 @@ public class ConverterCollection implements Converter {
         cb.onSuccess(Boolean.valueOf(_contains));
       }
     };
-    ValueCallback<List<Boolean>> _embed = Async.<List<Boolean>>embed(cb, _function_1);
-    Async.<Converter, Boolean>forEach(this.converters, _function, _embed);
+    ValueCallback<List<Boolean>> _embed = AsyncCommon.<List<Boolean>>embed(cb, _function_1);
+    AsyncCommon.<Converter, Boolean>forEach(this.converters, _function, _embed);
   }
   
   private void findConverter(final FileItem forFileItem, final ValueCallback<Converter> cb) {
@@ -87,8 +87,8 @@ public class ConverterCollection implements Converter {
         cb.onFailure(_exception);
       }
     };
-    ValueCallback<List<Object>> _embed = Async.<List<Object>>embed(cb, _function_1);
-    Async.<Converter, Object>forEach(this.converters, _function, _embed);
+    ValueCallback<List<Object>> _embed = AsyncCommon.<List<Object>>embed(cb, _function_1);
+    AsyncCommon.<Converter, Object>forEach(this.converters, _function, _embed);
   }
   
   private void findConverter(final ItemMetadata forItem, final ValueCallback<Converter> cb) {
@@ -124,7 +124,7 @@ public class ConverterCollection implements Converter {
             }
           }
         };
-        ValueCallback<Boolean> _embed = Async.<Boolean>embed(itmcb, _function);
+        ValueCallback<Boolean> _embed = AsyncCommon.<Boolean>embed(itmcb, _function);
         c.worksOn(forNode, _embed);
       }
     };
@@ -140,8 +140,8 @@ public class ConverterCollection implements Converter {
         cb.onFailure(_exception);
       }
     };
-    ValueCallback<List<Object>> _embed = Async.<List<Object>>embed(cb, _function_1);
-    Async.<Converter, Object>forEach(this.converters, _function, _embed);
+    ValueCallback<List<Object>> _embed = AsyncCommon.<List<Object>>embed(cb, _function_1);
+    AsyncCommon.<Converter, Object>forEach(this.converters, _function, _embed);
   }
   
   public void createNodes(final Metadata metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {
@@ -150,7 +150,7 @@ public class ConverterCollection implements Converter {
         converter.createNodes(metadata, source, cb);
       }
     };
-    ValueCallback<Converter> _embed = Async.<Converter>embed(cb, _function);
+    ValueCallback<Converter> _embed = AsyncCommon.<Converter>embed(cb, _function);
     this.findConverter(source, _embed);
   }
   
@@ -162,7 +162,7 @@ public class ConverterCollection implements Converter {
         converter.update(metadata, source, cb);
       }
     };
-    ValueCallback<Converter> _embed = Async.<Converter>embed(cb, _function);
+    ValueCallback<Converter> _embed = AsyncCommon.<Converter>embed(cb, _function);
     this.findConverter(_get, _embed);
   }
   
@@ -172,7 +172,7 @@ public class ConverterCollection implements Converter {
         converter.deleteNodes(metadata, cachedFile, cb);
       }
     };
-    ValueCallback<Converter> _embed = Async.<Converter>embed(cb, _function);
+    ValueCallback<Converter> _embed = AsyncCommon.<Converter>embed(cb, _function);
     this.findConverter(cachedFile, _embed);
   }
   
@@ -189,7 +189,7 @@ public class ConverterCollection implements Converter {
         converter.createFiles(folder, metadata, source, cb);
       }
     };
-    ValueCallback<Converter> _embed = Async.<Converter>embed(cb, _function);
+    ValueCallback<Converter> _embed = AsyncCommon.<Converter>embed(cb, _function);
     this.findConverter(source, _embed);
   }
   
@@ -200,7 +200,7 @@ public class ConverterCollection implements Converter {
         converter.updateFiles(folder, metadata, source, cb);
       }
     };
-    ValueCallback<Converter> _embed = Async.<Converter>embed(cb, _function);
+    ValueCallback<Converter> _embed = AsyncCommon.<Converter>embed(cb, _function);
     this.findConverter(_get, _embed);
   }
   
@@ -210,7 +210,7 @@ public class ConverterCollection implements Converter {
         converter.removeFiles(folder, metadata, item, cb);
       }
     };
-    ValueCallback<Converter> _embed = Async.<Converter>embed(cb, _function);
+    ValueCallback<Converter> _embed = AsyncCommon.<Converter>embed(cb, _function);
     this.findConverter(item, _embed);
   }
 }

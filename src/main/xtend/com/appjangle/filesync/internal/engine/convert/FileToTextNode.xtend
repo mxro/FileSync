@@ -12,7 +12,7 @@ import io.nextweb.Node
 import java.util.LinkedList
 import java.util.List
 
-import static extension de.mxro.async.Async.embed
+import static extension de.mxro.async.AsyncCommon.embed
 
 class FileToTextNode implements Converter {
 

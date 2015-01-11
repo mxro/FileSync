@@ -10,7 +10,7 @@ import com.appjangle.filesync.NetworkOperationContext;
 import com.appjangle.filesync.internal.engine.FileUtils;
 import com.appjangle.filesync.internal.engine.N;
 import com.appjangle.filesync.internal.engine.convert.ConvertUtils;
-import de.mxro.async.Async;
+import de.mxro.async.AsyncCommon;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
 import de.mxro.fn.Closure;
@@ -138,7 +138,7 @@ public class FolderToNode implements Converter {
         cb.onSuccess(ops);
       }
     };
-    ValueCallback<String> _embed = Async.<String>embed(cb, _function);
+    ValueCallback<String> _embed = AsyncCommon.<String>embed(cb, _function);
     this.utils.getFileName(source, _embed);
   }
   

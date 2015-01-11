@@ -11,7 +11,7 @@ import com.appjangle.filesync.internal.engine.FileUtils;
 import com.appjangle.filesync.internal.engine.NetworkToFileOperations;
 import com.appjangle.filesync.internal.engine.NetworkUtils;
 import com.appjangle.filesync.internal.engine.SyncValueOperations;
-import de.mxro.async.Async;
+import de.mxro.async.AsyncCommon;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
 import de.mxro.fn.Closure;
@@ -69,15 +69,15 @@ public class SyncFolder {
                 SyncFolder.this.download(cb);
               }
             };
-            ValueCallback<Success> _embed = Async.<Success>embed(cb, _function);
+            ValueCallback<Success> _embed = AsyncCommon.<Success>embed(cb, _function);
             SyncFolder.this.networkUtils.execute(ops, _node, _embed);
           }
         };
-        ValueCallback<List<NetworkOperation>> _embed = Async.<List<NetworkOperation>>embed(cb, _function);
+        ValueCallback<List<NetworkOperation>> _embed = AsyncCommon.<List<NetworkOperation>>embed(cb, _function);
         _fileToNetworkOperations.determineOps(_embed);
       }
     };
-    ValueCallback<Success> _embed = Async.<Success>embed(cb, _function);
+    ValueCallback<Success> _embed = AsyncCommon.<Success>embed(cb, _function);
     _syncValueOperations.uploadValue(_node_1, this.metadata, _folder_4, _embed);
   }
   
@@ -111,7 +111,7 @@ public class SyncFolder {
         cb.onSuccess(Success.INSTANCE);
       }
     };
-    ValueCallback<List<FileOperation>> _embed = Async.<List<FileOperation>>embed(cb, _function);
+    ValueCallback<List<FileOperation>> _embed = AsyncCommon.<List<FileOperation>>embed(cb, _function);
     _networkToFileOperations.determineOps(_embed);
   }
   

@@ -10,7 +10,7 @@ import com.appjangle.filesync.NetworkOperationContext;
 import com.appjangle.filesync.internal.engine.FileUtils;
 import com.appjangle.filesync.internal.engine.convert.ConvertUtils;
 import com.google.common.base.Objects;
-import de.mxro.async.Async;
+import de.mxro.async.AsyncCommon;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.file.FileItem;
 import de.mxro.fn.Closure;
@@ -176,11 +176,11 @@ public class FileToTextNode implements Converter {
             cb.onSuccess(ops);
           }
         };
-        ValueCallback<String> _embed = Async.<String>embed(cb, _function);
+        ValueCallback<String> _embed = AsyncCommon.<String>embed(cb, _function);
         FileToTextNode.this.cutils.getFileName(source, folder, ext, _embed);
       }
     };
-    ValueCallback<String> _embed = Async.<String>embed(cb, _function);
+    ValueCallback<String> _embed = AsyncCommon.<String>embed(cb, _function);
     this.cutils.getFileExtension(source, _embed);
   }
   

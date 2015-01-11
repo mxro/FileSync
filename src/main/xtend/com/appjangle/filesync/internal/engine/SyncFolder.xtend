@@ -5,7 +5,7 @@ import com.appjangle.filesync.SyncParams
 import de.mxro.async.callbacks.ValueCallback
 import de.mxro.fn.Success
 
-import static extension de.mxro.async.Async.embed
+import static extension de.mxro.async.AsyncCommon.embed
 
 class SyncFolder {
 

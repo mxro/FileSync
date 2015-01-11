@@ -5,7 +5,7 @@ import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.NetworkOperation;
 import com.appjangle.filesync.SyncParams;
-import de.mxro.async.Async;
+import de.mxro.async.AsyncCommon;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.async.helper.Aggregator;
 import de.mxro.file.FileItem;
@@ -62,8 +62,8 @@ public class FileToNetworkOperations {
           cb.onSuccess(ops);
         }
       };
-      ValueCallback<List<List<NetworkOperation>>> _embed = Async.<List<List<NetworkOperation>>>embed(cb, _function);
-      final Aggregator<List<NetworkOperation>> agg = Async.<List<NetworkOperation>>collect(3, _embed);
+      ValueCallback<List<List<NetworkOperation>>> _embed = AsyncCommon.<List<List<NetworkOperation>>>embed(cb, _function);
+      final Aggregator<List<NetworkOperation>> agg = AsyncCommon.<List<NetworkOperation>>collect(3, _embed);
       ValueCallback<List<NetworkOperation>> _createCallback = agg.createCallback();
       this.createOperationsFromRemovedFiles(locallyRemovedFiles, _createCallback);
       ValueCallback<List<NetworkOperation>> _createCallback_1 = agg.createCallback();
@@ -83,8 +83,8 @@ public class FileToNetworkOperations {
         cb.onSuccess(_flatten);
       }
     };
-    ValueCallback<List<List<NetworkOperation>>> _embed = Async.<List<List<NetworkOperation>>>embed(cb, _function);
-    final Aggregator<List<NetworkOperation>> agg = Async.<List<NetworkOperation>>collect(_size, _embed);
+    ValueCallback<List<List<NetworkOperation>>> _embed = AsyncCommon.<List<List<NetworkOperation>>>embed(cb, _function);
+    final Aggregator<List<NetworkOperation>> agg = AsyncCommon.<List<NetworkOperation>>collect(_size, _embed);
     final Procedure1<String> _function_1 = new Procedure1<String>() {
       public void apply(final String fileName) {
         Converter _converter = FileToNetworkOperations.this.params.getConverter();
@@ -105,8 +105,8 @@ public class FileToNetworkOperations {
         cb.onSuccess(_flatten);
       }
     };
-    ValueCallback<List<List<NetworkOperation>>> _embed = Async.<List<List<NetworkOperation>>>embed(cb, _function);
-    final Aggregator<List<NetworkOperation>> agg = Async.<List<NetworkOperation>>collect(_size, _embed);
+    ValueCallback<List<List<NetworkOperation>>> _embed = AsyncCommon.<List<List<NetworkOperation>>>embed(cb, _function);
+    final Aggregator<List<NetworkOperation>> agg = AsyncCommon.<List<NetworkOperation>>collect(_size, _embed);
     final Procedure1<String> _function_1 = new Procedure1<String>() {
       public void apply(final String fileName) {
         Converter _converter = FileToNetworkOperations.this.params.getConverter();
@@ -126,8 +126,8 @@ public class FileToNetworkOperations {
         cb.onSuccess(_flatten);
       }
     };
-    ValueCallback<List<List<NetworkOperation>>> _embed = Async.<List<List<NetworkOperation>>>embed(cb, _function);
-    final Aggregator<List<NetworkOperation>> agg = Async.<List<NetworkOperation>>collect(_size, _embed);
+    ValueCallback<List<List<NetworkOperation>>> _embed = AsyncCommon.<List<List<NetworkOperation>>>embed(cb, _function);
+    final Aggregator<List<NetworkOperation>> agg = AsyncCommon.<List<NetworkOperation>>collect(_size, _embed);
     final Procedure1<String> _function_1 = new Procedure1<String>() {
       public void apply(final String fileName) {
         Converter _converter = FileToNetworkOperations.this.params.getConverter();

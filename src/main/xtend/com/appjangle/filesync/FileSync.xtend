@@ -8,7 +8,6 @@ import com.appjangle.filesync.internal.engine.convert.FileToTextNode
 import com.appjangle.filesync.internal.engine.convert.FolderToNode
 import com.appjangle.filesync.internal.engine.convert.FolderToNothing
 import com.appjangle.filesync.internal.engine.convert.NodeToNothing
-import de.mxro.async.Async
 import de.mxro.async.callbacks.ValueCallback
 import de.mxro.file.FileItem
 import de.mxro.file.Jre.FilesJre
@@ -18,7 +17,8 @@ import io.nextweb.nodes.Token
 import java.io.File
 import java.util.LinkedList
 
-import static extension de.mxro.async.Async.embed
+import de.mxro.async.AsyncCommon
+import static extension de.mxro.async.AsyncCommon.embed
 
 class FileSync {
 
@@ -72,7 +72,7 @@ class FileSync {
 		syncSingleFolder(params,
 			cb.embed [
 				val toSync = params.folder.children.filter[isDirectory && visible && !name.startsWith('.')]
-				Async.forEach(toSync.toList,
+				AsyncCommon.forEach(toSync.toList,
 					[ childFolder, itmcb |
 						val metadata = params.folder.loadMetadata
 						val itmmetadata = metadata.get(childFolder.name)

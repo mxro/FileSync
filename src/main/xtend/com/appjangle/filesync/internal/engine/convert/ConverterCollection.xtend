@@ -5,14 +5,14 @@ import com.appjangle.filesync.FileOperation
 import com.appjangle.filesync.ItemMetadata
 import com.appjangle.filesync.Metadata
 import com.appjangle.filesync.NetworkOperation
-import de.mxro.async.Async
 import de.mxro.async.callbacks.ValueCallback
 import de.mxro.file.FileItem
 import io.nextweb.Node
 import java.util.ArrayList
 import java.util.List
 
-import static extension de.mxro.async.Async.embed
+import static extension de.mxro.async.AsyncCommon.embed
+import de.mxro.async.AsyncCommon
 
 class ConverterCollection implements Converter {
 	
@@ -39,7 +39,7 @@ class ConverterCollection implements Converter {
 	
 	override worksOn(Node node, ValueCallback<Boolean> cb) {
 		
-		Async.forEach(converters, [c, itmcb |
+		AsyncCommon.forEach(converters, [c, itmcb |
 			c.worksOn(node, itmcb)
 		], cb.embed [res |
 			cb.onSuccess(res.contains(true))
@@ -48,7 +48,7 @@ class ConverterCollection implements Converter {
 	}
 	
 	def private findConverter(FileItem forFileItem, ValueCallback<Converter> cb) {
-		Async.forEach(converters, [c, itmcb |
+		AsyncCommon.forEach(converters, [c, itmcb |
 			if (c.worksOn(forFileItem)) {
 				itmcb.onSuccess(c)
 			} else {
@@ -80,7 +80,7 @@ class ConverterCollection implements Converter {
 	}
 	
 	def private findConverter(Node forNode, ValueCallback<Converter> cb) {
-		Async.forEach(converters, [c, itmcb |
+		AsyncCommon.forEach(converters, [c, itmcb |
 			c.worksOn(forNode, itmcb.embed [res |
 				if (res) {
 					itmcb.onSuccess(c)

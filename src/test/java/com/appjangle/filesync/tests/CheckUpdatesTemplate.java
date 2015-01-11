@@ -27,7 +27,7 @@ public abstract class CheckUpdatesTemplate extends CheckNodesToFilesTemplate {
       NextwebPromise<Success> _commit = this.session.commit();
       _commit.get();
       final Deferred<Success> _function = new Deferred<Success>() {
-        public void get(final ValueCallback<Success> cb) {
+        public void apply(final ValueCallback<Success> cb) {
           FileSync.syncSingleFolder(CheckUpdatesTemplate.this.target, CheckUpdatesTemplate.this.source, cb);
         }
       };
@@ -37,7 +37,7 @@ public abstract class CheckUpdatesTemplate extends CheckNodesToFilesTemplate {
       NextwebPromise<Success> _commit_1 = this.session.commit();
       _commit_1.get();
       final Deferred<Success> _function_1 = new Deferred<Success>() {
-        public void get(final ValueCallback<Success> cb) {
+        public void apply(final ValueCallback<Success> cb) {
           FileSync.syncSingleFolder(CheckUpdatesTemplate.this.target, CheckUpdatesTemplate.this.source, cb);
         }
       };
@@ -46,7 +46,7 @@ public abstract class CheckUpdatesTemplate extends CheckNodesToFilesTemplate {
       Thread.sleep(2000);
       this.step5_updateFiles();
       final Deferred<Success> _function_2 = new Deferred<Success>() {
-        public void get(final ValueCallback<Success> cb) {
+        public void apply(final ValueCallback<Success> cb) {
           FileSync.syncSingleFolder(CheckUpdatesTemplate.this.target, CheckUpdatesTemplate.this.source, cb);
         }
       };

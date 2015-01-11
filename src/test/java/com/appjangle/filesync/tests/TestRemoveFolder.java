@@ -55,7 +55,7 @@ public class TestRemoveFolder extends CheckUpdatesTemplate {
   
   protected void step6_assertNodesAfterUpdate() {
     final Deferred<Success> _function = new Deferred<Success>() {
-      public void get(final ValueCallback<Success> cb) {
+      public void apply(final ValueCallback<Success> cb) {
         final Query qry = TestRemoveFolder.this.source.select("./folder2");
         final ExceptionListener _function = new ExceptionListener() {
           public void onFailure(final ExceptionResult er) {

@@ -14,7 +14,7 @@ import java.io.File;
 public class FileSyncJre {
   public static void sync(final File folder, final Node node) {
     final Deferred<Success> _function = new Deferred<Success>() {
-      public void get(final ValueCallback<Success> cb) {
+      public void apply(final ValueCallback<Success> cb) {
         FileItem _wrap = FilesJre.wrap(folder);
         FileSync.sync(_wrap, node, cb);
       }

@@ -69,7 +69,7 @@ public abstract class CheckNodesToFilesTemplate {
     NextwebPromise<Success> _commit = this.session.commit();
     _commit.get();
     final Deferred<Success> _function = new Deferred<Success>() {
-      public void get(final ValueCallback<Success> cb) {
+      public void apply(final ValueCallback<Success> cb) {
         boolean _doRecursiveSync = CheckNodesToFilesTemplate.this.doRecursiveSync();
         boolean _not = (!_doRecursiveSync);
         if (_not) {

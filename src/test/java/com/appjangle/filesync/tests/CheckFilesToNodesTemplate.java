@@ -4,7 +4,7 @@ import com.appjangle.filesync.FileSync;
 import com.appjangle.jre.AppjangleJre;
 import de.mxro.async.Operation;
 import de.mxro.async.callbacks.ValueCallback;
-import de.mxro.async.jre.AsyncJre;
+import de.mxro.async.jre.Async;
 import de.mxro.file.FileItem;
 import de.mxro.file.Jre.FilesJre;
 import de.mxro.fn.Success;
@@ -66,14 +66,14 @@ public abstract class CheckFilesToNodesTemplate {
         FileSync.syncSingleFolder(CheckFilesToNodesTemplate.this.sourceFolder, CheckFilesToNodesTemplate.this.result, cb);
       }
     };
-    AsyncJre.<Success>waitFor(_function);
+    Async.<Success>waitFor(_function);
     this.step1_defineFiles();
     final Operation<Success> _function_1 = new Operation<Success>() {
       public void apply(final ValueCallback<Success> cb) {
         FileSync.syncSingleFolder(CheckFilesToNodesTemplate.this.sourceFolder, CheckFilesToNodesTemplate.this.result, cb);
       }
     };
-    AsyncJre.<Success>waitFor(_function_1);
+    Async.<Success>waitFor(_function_1);
     NextwebPromise<Success> _commit = this.session.commit();
     _commit.get();
     this.step2_assertNodes();

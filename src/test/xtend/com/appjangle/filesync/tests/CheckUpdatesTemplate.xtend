@@ -1,8 +1,8 @@
 package com.appjangle.filesync.tests
 
 import com.appjangle.filesync.FileSync
-import de.mxro.async.jre.AsyncJre
 import org.junit.Test
+import de.mxro.async.jre.Async
 
 abstract class CheckUpdatesTemplate extends CheckNodesToFilesTemplate {
 	
@@ -20,7 +20,7 @@ abstract class CheckUpdatesTemplate extends CheckNodesToFilesTemplate {
 		session.commit.get
 
 
-		AsyncJre.waitFor [cb |
+		Async.waitFor [cb |
 			FileSync.syncSingleFolder(target, source, cb)
 		]
 		
@@ -30,7 +30,7 @@ abstract class CheckUpdatesTemplate extends CheckNodesToFilesTemplate {
 		
 		session.commit.get
 		
-		AsyncJre.waitFor [cb |
+		Async.waitFor [cb |
 			FileSync.syncSingleFolder(target, source, cb)
 		]
 		
@@ -41,7 +41,7 @@ abstract class CheckUpdatesTemplate extends CheckNodesToFilesTemplate {
 		
 		step5_updateFiles
 		
-		AsyncJre.waitFor [cb |
+		Async.waitFor [cb |
 			FileSync.syncSingleFolder(target, source, cb)
 		]
 		

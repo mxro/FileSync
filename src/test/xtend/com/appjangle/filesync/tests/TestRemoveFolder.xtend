@@ -1,8 +1,8 @@
 package com.appjangle.filesync.tests
 
-import de.mxro.async.jre.AsyncJre
 import de.oehme.xtend.junit.JUnit
 import de.mxro.fn.Success
+import de.mxro.async.jre.Async
 
 @JUnit
 class TestRemoveFolder extends CheckUpdatesTemplate {
@@ -32,7 +32,7 @@ class TestRemoveFolder extends CheckUpdatesTemplate {
 	
 	
 	override protected step6_assertNodesAfterUpdate() {
-		AsyncJre.waitFor([cb |
+		Async.waitFor([cb |
 			val qry = source.select("./folder2")
 			
 			qry.catchExceptions(er|cb.onFailure(er.exception))

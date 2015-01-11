@@ -19,6 +19,7 @@ import java.util.List
 import static extension de.mxro.async.AsyncCommon.embed
 import de.mxro.async.AsyncCommon
 
+
 class ConvertUtils {
 
 	val labelTypes = #[N.LABEL, N.LABEL2, N.LABEL3]

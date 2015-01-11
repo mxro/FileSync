@@ -2,7 +2,6 @@ package com.appjangle.filesync.tests
 
 import com.appjangle.filesync.FileSync
 import com.appjangle.jre.AppjangleJre
-import de.mxro.async.jre.AsyncJre
 import de.mxro.file.FileItem
 import de.mxro.file.Jre.FilesJre
 import io.nextweb.Node
@@ -14,6 +13,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TemporaryFolder
+import de.mxro.async.jre.Async
 
 abstract class CheckNodesToFilesTemplate {
 
@@ -53,7 +53,7 @@ abstract class CheckNodesToFilesTemplate {
 		session.commit.get
 
 
-		AsyncJre.waitFor [ cb |
+		Async.waitFor [ cb |
 			if (!doRecursiveSync) {
 				FileSync.syncSingleFolder(result, source, cb)
 			} else {

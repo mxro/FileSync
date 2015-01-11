@@ -1,9 +1,9 @@
 package com.appjangle.filesync.tests
 
 import com.appjangle.filesync.internal.engine.N
-import de.mxro.async.jre.AsyncJre
 import de.mxro.fn.Success
 import de.oehme.xtend.junit.JUnit
+import de.mxro.async.jre.Async
 
 @JUnit
 class TestRemoveHtmlFile extends CheckUpdatesTemplate {
@@ -47,7 +47,7 @@ class TestRemoveHtmlFile extends CheckUpdatesTemplate {
 	
 	
 	override protected step6_assertNodesAfterUpdate() {
-		AsyncJre.waitFor([cb |
+		Async.Async.waitFor([cb |
 			val qry = source.select("./file2")
 			
 			qry.catchExceptions(er|cb.onFailure(er.exception))

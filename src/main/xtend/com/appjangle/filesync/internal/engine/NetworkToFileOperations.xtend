@@ -14,6 +14,7 @@ import java.util.List
 import static extension de.mxro.async.AsyncCommon.*
 import de.mxro.async.AsyncCommon
 
+
 /**
  * Determines operations to be performed on local files based on remote changes made in the cloud.
  */

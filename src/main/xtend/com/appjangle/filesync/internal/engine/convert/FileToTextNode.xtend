@@ -14,6 +14,7 @@ import java.util.List
 
 import static extension de.mxro.async.AsyncCommon.embed
 
+
 class FileToTextNode implements Converter {
 
 	override worksOn(FileItem source) {

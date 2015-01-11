@@ -16,6 +16,7 @@ import java.util.List
 
 import static extension de.mxro.async.AsyncCommon.embed
 
+
 class FolderToNode implements Converter {
 
 	override worksOn(FileItem source) {

@@ -4,7 +4,7 @@ import com.appjangle.filesync.FileSync;
 import com.appjangle.filesync.tests.CheckNodesToFilesTemplate;
 import de.mxro.async.Operation;
 import de.mxro.async.callbacks.ValueCallback;
-import de.mxro.async.jre.AsyncJre;
+import de.mxro.async.jre.Async;
 import de.mxro.fn.Success;
 import io.nextweb.promise.NextwebPromise;
 import org.eclipse.xtext.xbase.lib.Exceptions;
@@ -31,7 +31,7 @@ public abstract class CheckUpdatesTemplate extends CheckNodesToFilesTemplate {
           FileSync.syncSingleFolder(CheckUpdatesTemplate.this.target, CheckUpdatesTemplate.this.source, cb);
         }
       };
-      AsyncJre.<Success>waitFor(_function);
+      Async.<Success>waitFor(_function);
       this.step2_assertFiles();
       this.step3_updateNodes();
       NextwebPromise<Success> _commit_1 = this.session.commit();
@@ -41,7 +41,7 @@ public abstract class CheckUpdatesTemplate extends CheckNodesToFilesTemplate {
           FileSync.syncSingleFolder(CheckUpdatesTemplate.this.target, CheckUpdatesTemplate.this.source, cb);
         }
       };
-      AsyncJre.<Success>waitFor(_function_1);
+      Async.<Success>waitFor(_function_1);
       this.step4_assertFilesAfterUpdate();
       Thread.sleep(2000);
       this.step5_updateFiles();
@@ -50,7 +50,7 @@ public abstract class CheckUpdatesTemplate extends CheckNodesToFilesTemplate {
           FileSync.syncSingleFolder(CheckUpdatesTemplate.this.target, CheckUpdatesTemplate.this.source, cb);
         }
       };
-      AsyncJre.<Success>waitFor(_function_2);
+      Async.<Success>waitFor(_function_2);
       this.step6_assertNodesAfterUpdate();
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);

@@ -28,7 +28,7 @@ class NetworkUtils {
 
 		};
 
-		val opscbs = de.mxro.async.AsyncCommon.AsyncCommon.collect(ops.size,
+		val opscbs = de.mxro.async.AsyncCommon.collect(ops.size,
 			cb.embed(
 				[
 					cb.onSuccess(Success.INSTANCE)
@@ -41,7 +41,7 @@ class NetworkUtils {
 					//println('exec '+qries)
 					val opscbsitem = opscbs.createCallback
 					
-					val cbs = de.mxro.async.AsyncCommon.AsyncCommon.collect(qries.size,
+					val cbs = de.mxro.async.AsyncCommon.collect(qries.size,
 						cb.embed(
 							[
 								opscbsitem.onSuccess(Success.INSTANCE)

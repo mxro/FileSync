@@ -7,6 +7,7 @@ import de.mxro.fn.Success
 
 import static extension de.mxro.async.AsyncCommon.embed
 
+
 class SyncFolder {
 
 	val SyncParams params

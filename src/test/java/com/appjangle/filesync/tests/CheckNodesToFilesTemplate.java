@@ -4,7 +4,7 @@ import com.appjangle.filesync.FileSync;
 import com.appjangle.jre.AppjangleJre;
 import de.mxro.async.Operation;
 import de.mxro.async.callbacks.ValueCallback;
-import de.mxro.async.jre.AsyncJre;
+import de.mxro.async.jre.Async;
 import de.mxro.file.FileItem;
 import de.mxro.file.Jre.FilesJre;
 import de.mxro.fn.Success;
@@ -79,7 +79,7 @@ public abstract class CheckNodesToFilesTemplate {
         }
       }
     };
-    AsyncJre.<Success>waitFor(_function);
+    Async.<Success>waitFor(_function);
     this.step2_assertFiles();
   }
   

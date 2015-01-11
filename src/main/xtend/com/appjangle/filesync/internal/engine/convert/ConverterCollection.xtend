@@ -14,6 +14,7 @@ import java.util.List
 import static extension de.mxro.async.AsyncCommon.embed
 import de.mxro.async.AsyncCommon
 
+
 class ConverterCollection implements Converter {
 	
 	val List<Converter> converters;

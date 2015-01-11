@@ -11,6 +11,7 @@ import java.util.ArrayList
 import java.util.List
 import de.mxro.async.AsyncCommon
 
+
 /**
  * Determines operations performed on local files which need to be uploaded to the cloud.
  */

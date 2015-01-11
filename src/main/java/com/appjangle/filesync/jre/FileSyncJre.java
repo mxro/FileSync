@@ -3,7 +3,7 @@ package com.appjangle.filesync.jre;
 import com.appjangle.filesync.FileSync;
 import de.mxro.async.Operation;
 import de.mxro.async.callbacks.ValueCallback;
-import de.mxro.async.jre.AsyncJre;
+import de.mxro.async.jre.Async;
 import de.mxro.file.FileItem;
 import de.mxro.file.Jre.FilesJre;
 import de.mxro.fn.Success;
@@ -19,6 +19,6 @@ public class FileSyncJre {
         FileSync.sync(_wrap, node, cb);
       }
     };
-    AsyncJre.<Success>waitFor(_function);
+    Async.<Success>waitFor(_function);
   }
 }

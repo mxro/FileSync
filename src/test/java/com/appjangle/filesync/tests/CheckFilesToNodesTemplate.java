@@ -1,6 +1,10 @@
 package com.appjangle.filesync.tests;
 
+import com.appjangle.filesync.FileSync;
 import com.appjangle.jre.AppjangleJre;
+import de.mxro.async.Operation;
+import de.mxro.async.callbacks.ValueCallback;
+import de.mxro.async.jre.AsyncJre;
 import de.mxro.file.FileItem;
 import de.mxro.file.Jre.FilesJre;
 import de.mxro.fn.Success;
@@ -57,11 +61,22 @@ public abstract class CheckFilesToNodesTemplate {
   
   @Test
   public void test() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from (ValueCallback<Success>)=>void to Operation<Object>"
-      + "\nType mismatch: cannot convert from (ValueCallback<Success>)=>void to Operation<Object>"
-      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or use the closures in a more specific context."
-      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or use the closures in a more specific context.");
+    final Operation<Success> _function = new Operation<Success>() {
+      public void apply(final ValueCallback<Success> cb) {
+        FileSync.syncSingleFolder(CheckFilesToNodesTemplate.this.sourceFolder, CheckFilesToNodesTemplate.this.result, cb);
+      }
+    };
+    AsyncJre.<Success>waitFor(_function);
+    this.step1_defineFiles();
+    final Operation<Success> _function_1 = new Operation<Success>() {
+      public void apply(final ValueCallback<Success> cb) {
+        FileSync.syncSingleFolder(CheckFilesToNodesTemplate.this.sourceFolder, CheckFilesToNodesTemplate.this.result, cb);
+      }
+    };
+    AsyncJre.<Success>waitFor(_function_1);
+    NextwebPromise<Success> _commit = this.session.commit();
+    _commit.get();
+    this.step2_assertNodes();
   }
   
   @After

@@ -43,6 +43,7 @@ abstract class CheckFilesToNodesTemplate {
 	
 	def protected abstract void step2_assertNodes()
 	
+	
 	@Test
 	def void test() {
 		AsyncJre.waitFor [cb |

@@ -12,6 +12,7 @@ class FileSyncJre {
 		AsyncJre.waitFor([cb |
 			FileSync.sync(FilesJre.wrap(folder), node, cb)
 		])
+		
 	}
 	
 }

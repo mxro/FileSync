@@ -19,6 +19,7 @@ abstract class CheckUpdatesTemplate extends CheckNodesToFilesTemplate {
 		step1_defineData
 		session.commit.get
 
+
 		AsyncJre.waitFor [cb |
 			FileSync.syncSingleFolder(target, source, cb)
 		]

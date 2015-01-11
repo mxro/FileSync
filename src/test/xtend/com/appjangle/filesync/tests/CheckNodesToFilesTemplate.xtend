@@ -52,6 +52,7 @@ abstract class CheckNodesToFilesTemplate {
 		step1_defineData
 		session.commit.get
 
+
 		AsyncJre.waitFor [ cb |
 			if (!doRecursiveSync) {
 				FileSync.syncSingleFolder(result, source, cb)

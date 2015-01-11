@@ -47,7 +47,7 @@ class TestRemoveHtmlFile extends CheckUpdatesTemplate {
 	
 	
 	override protected step6_assertNodesAfterUpdate() {
-		Async.Async.waitFor([cb |
+		Async.waitFor([cb |
 			val qry = source.select("./file2")
 			
 			qry.catchExceptions(er|cb.onFailure(er.exception))

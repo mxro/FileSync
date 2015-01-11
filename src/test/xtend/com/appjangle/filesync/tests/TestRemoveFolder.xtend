@@ -32,6 +32,7 @@ class TestRemoveFolder extends CheckUpdatesTemplate {
 	
 	
 	override protected step6_assertNodesAfterUpdate() {
+		
 		Async.waitFor([cb |
 			val qry = source.select("./folder2")
 			

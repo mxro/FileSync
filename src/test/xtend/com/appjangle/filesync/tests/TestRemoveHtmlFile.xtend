@@ -45,6 +45,7 @@ class TestRemoveHtmlFile extends CheckUpdatesTemplate {
 		result.deleteFile("html2.html")
 	}
 	
+	
 	override protected step6_assertNodesAfterUpdate() {
 		AsyncJre.waitFor([cb |
 			val qry = source.select("./file2")

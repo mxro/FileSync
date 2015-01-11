@@ -1,9 +1,9 @@
 package com.appjangle.filesync.tests;
 
 import com.appjangle.filesync.tests.CheckUpdatesTemplate;
+import de.mxro.async.Deferred;
 import de.mxro.async.callbacks.ValueCallback;
 import de.mxro.async.jre.AsyncJre;
-import de.mxro.async.promise.Deferred;
 import de.mxro.file.FileItem;
 import de.mxro.fn.Closure;
 import de.mxro.fn.Success;

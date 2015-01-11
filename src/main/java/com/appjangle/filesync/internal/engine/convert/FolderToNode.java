@@ -18,7 +18,7 @@ import io.nextweb.Link;
 import io.nextweb.Node;
 import io.nextweb.Query;
 import io.nextweb.Session;
-import io.nextweb.promise.Deferred;
+import io.nextweb.promise.NextwebOperation;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
@@ -41,7 +41,7 @@ public class FolderToNode implements Converter {
     final String simpleName = this.futils.getSimpleName(_name);
     final LinkedList<NetworkOperation> ops = new LinkedList<NetworkOperation>();
     final NetworkOperation _function = new NetworkOperation() {
-      public void apply(final NetworkOperationContext ctx, final ValueCallback<List<Deferred<?>>> opscb) {
+      public void apply(final NetworkOperationContext ctx, final ValueCallback<List<NextwebOperation<?>>> opscb) {
         Node _parent = ctx.parent();
         String _name = source.getName();
         final Query baseNode = _parent.appendSafe(_name, ("./" + simpleName));
@@ -81,7 +81,7 @@ public class FolderToNode implements Converter {
         Session _session_1 = baseNode.session();
         Link _ICON = FolderToNode.this.n.ICON(_session_1);
         Query _appendSafe_3 = _appendSafe_2.appendSafe(_ICON);
-        ArrayList<Deferred<?>> _newArrayList = CollectionLiterals.<Deferred<?>>newArrayList(baseNode, _appendSafe_1, _appendSafe_3);
+        ArrayList<NextwebOperation<?>> _newArrayList = CollectionLiterals.<NextwebOperation<?>>newArrayList(baseNode, _appendSafe_1, _appendSafe_3);
         opscb.onSuccess(_newArrayList);
       }
     };

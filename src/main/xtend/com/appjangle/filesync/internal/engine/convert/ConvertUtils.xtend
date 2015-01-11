@@ -10,7 +10,6 @@ import de.mxro.file.FileItem
 import io.nextweb.Link
 import io.nextweb.Node
 import io.nextweb.Query
-import io.nextweb.promise.Deferred
 import io.nextweb.utils.data.NextwebDataExtension
 import java.util.ArrayList
 import java.util.LinkedList
@@ -18,7 +17,7 @@ import java.util.List
 
 import static extension de.mxro.async.AsyncCommon.embed
 import de.mxro.async.AsyncCommon
-
+import io.nextweb.promise.NextwebOperation
 
 class ConvertUtils {
 
@@ -75,7 +74,7 @@ class ConvertUtils {
 				val nodeToBeRemoved = ctx.session.link(address)
 				val parent = ctx.parent
 				
-				val list = new ArrayList<Deferred<?>>
+				val list = new ArrayList<NextwebOperation<?>>
 				
 				if (parent.session().link(parent).hasDirectChild(nodeToBeRemoved)) {
 
@@ -101,7 +100,7 @@ class ConvertUtils {
 		toNode.appendSafe(label, "./.label").appendSafe(toNode.session().LABEL)
 	}
 
-	def List<Deferred<?>> appendTypesAndIcon(Query toNode, FileItem source) {
+	def List<NextwebOperation<?>> appendTypesAndIcon(Query toNode, FileItem source) {
 		val res = newArrayList
 		
 		val session = toNode.session()

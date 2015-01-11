@@ -20,7 +20,7 @@ import io.nextweb.LinkListQuery;
 import io.nextweb.Node;
 import io.nextweb.Query;
 import io.nextweb.Session;
-import io.nextweb.promise.Deferred;
+import io.nextweb.promise.NextwebOperation;
 import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
 import java.util.ArrayList;
@@ -67,7 +67,7 @@ public class FileToTextNode implements Converter {
     final String simpleName = this.futils.getSimpleName(nameWithoutExtension);
     final LinkedList<NetworkOperation> ops = new LinkedList<NetworkOperation>();
     final NetworkOperation _function = new NetworkOperation() {
-      public void apply(final NetworkOperationContext ctx, final ValueCallback<List<Deferred<?>>> opscb) {
+      public void apply(final NetworkOperationContext ctx, final ValueCallback<List<NextwebOperation<?>>> opscb) {
         Node _parent = ctx.parent();
         String _text = source.getText();
         final Query baseNode = _parent.appendSafe(_text, ("./" + simpleName));
@@ -97,11 +97,11 @@ public class FileToTextNode implements Converter {
               return _class.toString();
             }
           });
-        final ArrayList<Deferred<?>> res = CollectionLiterals.<Deferred<?>>newArrayList();
+        final ArrayList<NextwebOperation<?>> res = CollectionLiterals.<NextwebOperation<?>>newArrayList();
         res.add(baseNode);
         Query _appendLabel = FileToTextNode.this.cutils.appendLabel(baseNode, nameWithoutExtension);
         res.add(_appendLabel);
-        List<Deferred<?>> _appendTypesAndIcon = FileToTextNode.this.cutils.appendTypesAndIcon(baseNode, source);
+        List<NextwebOperation<?>> _appendTypesAndIcon = FileToTextNode.this.cutils.appendTypesAndIcon(baseNode, source);
         res.addAll(_appendTypesAndIcon);
         opscb.onSuccess(res);
       }
@@ -117,11 +117,11 @@ public class FileToTextNode implements Converter {
     final String address = _get.uri();
     final LinkedList<NetworkOperation> ops = new LinkedList<NetworkOperation>();
     final NetworkOperation _function = new NetworkOperation() {
-      public void apply(final NetworkOperationContext ctx, final ValueCallback<List<Deferred<?>>> opscb) {
+      public void apply(final NetworkOperationContext ctx, final ValueCallback<List<NextwebOperation<?>>> opscb) {
         Session _session = ctx.session();
         Link _link = _session.link(address);
         Query _setValueSafe = _link.setValueSafe(content);
-        ArrayList<Deferred<?>> _newArrayList = CollectionLiterals.<Deferred<?>>newArrayList(_setValueSafe);
+        ArrayList<NextwebOperation<?>> _newArrayList = CollectionLiterals.<NextwebOperation<?>>newArrayList(_setValueSafe);
         opscb.onSuccess(_newArrayList);
       }
     };

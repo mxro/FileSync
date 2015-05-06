@@ -8,7 +8,9 @@ import com.appjangle.filesync.internal.engine.convert.FileToTextNode
 import com.appjangle.filesync.internal.engine.convert.FolderToNode
 import com.appjangle.filesync.internal.engine.convert.FolderToNothing
 import com.appjangle.filesync.internal.engine.convert.NodeToNothing
+import de.mxro.async.AsyncCommon
 import de.mxro.async.callbacks.ValueCallback
+import de.mxro.async.jre.Async
 import de.mxro.file.FileItem
 import de.mxro.file.Jre.FilesJre
 import de.mxro.fn.Success
@@ -17,7 +19,6 @@ import io.nextweb.nodes.Token
 import java.io.File
 import java.util.LinkedList
 
-import de.mxro.async.AsyncCommon
 import static extension de.mxro.async.AsyncCommon.embed
 
 class FileSync {
@@ -107,6 +108,13 @@ class FileSync {
 		if (params.syncRoots.size() == 0) {
 			params.syncRoots.add(params.node.session().link(params.node))
 		}
+		
+		//for (root : params.syncRoots) {
+			
+		//}
+		
+		Async.parallel(params.syncRoots);
+		
 		syncInt(params, cb)
 	}
 

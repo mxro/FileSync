@@ -16,6 +16,7 @@ import com.appjangle.filesync.internal.engine.convert.FolderToNothing;
 import com.appjangle.filesync.internal.engine.convert.NodeToNothing;
 import de.mxro.async.AsyncCommon;
 import de.mxro.async.callbacks.ValueCallback;
+import de.mxro.async.jre.Async;
 import de.mxro.file.FileItem;
 import de.mxro.file.Jre.FilesJre;
 import de.mxro.fn.Closure;
@@ -189,6 +190,8 @@ public class FileSync {
       Link _link = _session.link(_node_1);
       _syncRoots_1.add(_link);
     }
+    List<Link> _syncRoots_2 = params.getSyncRoots();
+    Async.<Object>parallel(_syncRoots_2);
     FileSync.syncInt(params, cb);
   }
   

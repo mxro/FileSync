@@ -79,9 +79,11 @@ class FileSync {
 						val itmmetadata = metadata.get(childFolder.name)
 						val isChild = itmmetadata.uri.startsWith(params.node.uri())
 						var withinSyncRoots = false
+						var matchedSyncRoot = null
 						for (syncRoot : params.syncRoots) {
 							if (itmmetadata.uri.startsWith(syncRoot.uri())) {
 								withinSyncRoots = true
+								matchedSyncRoot = syncRoot
 							}
 						}
 						if (!isChild && !withinSyncRoots) {
@@ -89,6 +91,8 @@ class FileSync {
 							return;
 
 						}
+						if (withinSyncRoots)
+						
 						val qry = params.node.session().link(itmmetadata.uri)
 						qry.catchExceptions[er|itmcb.onFailure(er.exception)]
 						qry.get [ childNode |

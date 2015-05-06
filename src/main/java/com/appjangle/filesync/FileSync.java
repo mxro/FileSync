@@ -193,7 +193,7 @@ public class FileSync {
                 boolean _startsWith = _uri.startsWith("http://localhost");
                 if (_startsWith) {
                   String _uri_1 = childNode.uri();
-                  String _plus = ("Illegal node " + _uri_1);
+                  String _plus = ("ERROR: Illegal node " + _uri_1);
                   String _plus_1 = (_plus + " with parent ");
                   Node _node = params.getNode();
                   String _uri_2 = _node.uri();

@@ -79,7 +79,7 @@ class FileSync {
 						val itmmetadata = metadata.get(childFolder.name)
 						val isChild = itmmetadata.uri.startsWith(params.node.uri())
 						var withinSyncRoots = false
-						var matchedSyncRoot = null
+						var matchedSyncRoot 
 						for (syncRoot : params.syncRoots) {
 							if (itmmetadata.uri.startsWith(syncRoot.uri())) {
 								withinSyncRoots = true

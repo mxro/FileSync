@@ -33,6 +33,7 @@ import java.util.LinkedList;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
 @SuppressWarnings("all")
@@ -188,6 +189,19 @@ public class FileSync {
                 final SyncParams childParams = new SyncParams(params);
                 childParams.setFolder(childFolder);
                 childParams.setNode(childNode);
+                String _uri = childNode.uri();
+                boolean _startsWith = _uri.startsWith("http://localhost");
+                if (_startsWith) {
+                  String _uri_1 = childNode.uri();
+                  String _plus = ("Illegal node " + _uri_1);
+                  String _plus_1 = (_plus + " with parent ");
+                  Node _node = params.getNode();
+                  String _uri_2 = _node.uri();
+                  String _plus_2 = (_plus_1 + _uri_2);
+                  InputOutput.<String>println(_plus_2);
+                  itmcb.onSuccess(Success.INSTANCE);
+                  return;
+                }
                 FileSync.syncInt(childParams, itmcb);
               }
             };

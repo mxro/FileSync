@@ -102,6 +102,13 @@ class FileSync {
 							val childParams = new SyncParams(params)
 							childParams.folder = childFolder
 							childParams.node = childNode
+							if (childNode.uri().startsWith("http://localhost")) {
+								println("Illegal node "+childNode.uri()+" with parent "+params.node.uri())
+								itmcb.onSuccess(Success.INSTANCE)
+								
+								return;
+							}
+							
 							syncInt(childParams, itmcb)
 						]
 					],

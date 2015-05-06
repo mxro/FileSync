@@ -109,11 +109,7 @@ class FileSync {
 			params.syncRoots.add(params.node.session().link(params.node))
 		}
 		
-		//for (root : params.syncRoots) {
-			
-		//}
 		
-		Async.parallel(params.syncRoots);
 		
 		syncInt(params, cb)
 	}

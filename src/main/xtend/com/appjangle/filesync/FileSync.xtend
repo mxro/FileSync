@@ -10,10 +10,10 @@ import com.appjangle.filesync.internal.engine.convert.FolderToNothing
 import com.appjangle.filesync.internal.engine.convert.NodeToNothing
 import de.mxro.async.AsyncCommon
 import de.mxro.async.callbacks.ValueCallback
-import de.mxro.async.jre.Async
 import de.mxro.file.FileItem
 import de.mxro.file.Jre.FilesJre
 import de.mxro.fn.Success
+import io.nextweb.Link
 import io.nextweb.Node
 import io.nextweb.nodes.Token
 import java.io.File
@@ -79,7 +79,7 @@ class FileSync {
 						val itmmetadata = metadata.get(childFolder.name)
 						val isChild = itmmetadata.uri.startsWith(params.node.uri())
 						var withinSyncRoots = false
-						var matchedSyncRoot 
+						var Link matchedSyncRoot = null
 						for (syncRoot : params.syncRoots) {
 							if (itmmetadata.uri.startsWith(syncRoot.uri())) {
 								withinSyncRoots = true
@@ -91,9 +91,12 @@ class FileSync {
 							return;
 
 						}
-						if (withinSyncRoots)
-						
-						val qry = params.node.session().link(itmmetadata.uri)
+						var Link qry
+						if (withinSyncRoots && matchedSyncRoot.secret() !== null && matchedSyncRoot.secret().length > 0) {
+							qry = params.node.session().link(itmmetadata.uri, matchedSyncRoot.secret())
+						} else {
+							qry = params.node.session().link(itmmetadata.uri)
+						}
 						qry.catchExceptions[er|itmcb.onFailure(er.exception)]
 						qry.get [ childNode |
 							val childParams = new SyncParams(params)
@@ -112,9 +115,7 @@ class FileSync {
 		if (params.syncRoots.size() == 0) {
 			params.syncRoots.add(params.node.session().link(params.node))
 		}
-		
-		
-		
+
 		syncInt(params, cb)
 	}
 

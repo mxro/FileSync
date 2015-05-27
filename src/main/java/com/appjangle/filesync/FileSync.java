@@ -145,6 +145,19 @@ public class FileSync {
               itmcb.onSuccess(Success.INSTANCE);
               return;
             }
+            boolean inDontFollow = false;
+            List<Link> _dontFollow = params.getDontFollow();
+            for (final Link dontFollow : _dontFollow) {
+              String _uri_4 = itmmetadata.uri();
+              boolean _equals = _uri_4.equals(dontFollow);
+              if (_equals) {
+                inDontFollow = true;
+              }
+            }
+            if (inDontFollow) {
+              itmcb.onSuccess(Success.INSTANCE);
+              return;
+            }
             Link qry = null;
             boolean _and = false;
             boolean _and_1 = false;
@@ -166,15 +179,15 @@ public class FileSync {
             if (_and) {
               Node _node_1 = params.getNode();
               Session _session = _node_1.session();
-              String _uri_4 = itmmetadata.uri();
+              String _uri_5 = itmmetadata.uri();
               String _secret_2 = matchedSyncRoot.secret();
-              Link _link = _session.link(_uri_4, _secret_2);
+              Link _link = _session.link(_uri_5, _secret_2);
               qry = _link;
             } else {
               Node _node_2 = params.getNode();
               Session _session_1 = _node_2.session();
-              String _uri_5 = itmmetadata.uri();
-              Link _link_1 = _session_1.link(_uri_5);
+              String _uri_6 = itmmetadata.uri();
+              Link _link_1 = _session_1.link(_uri_6);
               qry = _link_1;
             }
             final ExceptionListener _function = new ExceptionListener() {

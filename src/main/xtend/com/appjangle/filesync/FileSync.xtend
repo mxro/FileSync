@@ -86,11 +86,26 @@ class FileSync {
 								matchedSyncRoot = syncRoot
 							}
 						}
+						
 						if (!isChild && !withinSyncRoots) {
 							itmcb.onSuccess(Success.INSTANCE)
 							return;
 
 						}
+						
+						var inDontFollow = false;
+						for (dontFollow : params.dontFollow) {
+							if (itmmetadata.uri.equals(dontFollow)) {
+								inDontFollow = true
+							}
+						}
+						
+						if (inDontFollow) {
+							itmcb.onSuccess(Success.INSTANCE)
+							return;
+						}
+						
+						
 						var Link qry
 						if (withinSyncRoots && matchedSyncRoot.secret() !== null && matchedSyncRoot.secret().length > 0) {
 							qry = params.node.session().link(itmmetadata.uri, matchedSyncRoot.secret())

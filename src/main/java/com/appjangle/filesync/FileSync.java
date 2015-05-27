@@ -190,18 +190,15 @@ public class FileSync {
                 childParams.setFolder(childFolder);
                 childParams.setNode(childNode);
                 String _uri = childNode.uri();
-                String _plus = ("Processing " + _uri);
-                InputOutput.<String>println(_plus);
-                String _uri_1 = childNode.uri();
-                boolean _startsWith = _uri_1.startsWith("http://localhost");
+                boolean _startsWith = _uri.startsWith("http://localhost");
                 if (_startsWith) {
-                  String _uri_2 = childNode.uri();
-                  String _plus_1 = ("ERROR: Illegal node " + _uri_2);
-                  String _plus_2 = (_plus_1 + " with parent ");
+                  String _uri_1 = childNode.uri();
+                  String _plus = ("ERROR: Illegal node " + _uri_1);
+                  String _plus_1 = (_plus + " with parent ");
                   Node _node = params.getNode();
-                  String _uri_3 = _node.uri();
-                  String _plus_3 = (_plus_2 + _uri_3);
-                  InputOutput.<String>println(_plus_3);
+                  String _uri_2 = _node.uri();
+                  String _plus_2 = (_plus_1 + _uri_2);
+                  InputOutput.<String>println(_plus_2);
                   itmcb.onSuccess(Success.INSTANCE);
                   return;
                 }

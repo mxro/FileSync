@@ -37,6 +37,8 @@ class FileSync {
 		params.notifications = new SyncNotifications
 
 		params.syncRoots = new LinkedList
+		
+		params.dontFollow = new LinkedList
 
 		return params
 	}

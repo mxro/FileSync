@@ -55,6 +55,8 @@ public class FileSync {
     params.setNotifications(_syncNotifications);
     LinkedList<Link> _linkedList = new LinkedList<Link>();
     params.setSyncRoots(_linkedList);
+    LinkedList<Link> _linkedList_1 = new LinkedList<Link>();
+    params.setDontFollow(_linkedList_1);
     return params;
   }
   

@@ -149,7 +149,8 @@ public class FileSync {
             List<Link> _dontFollow = params.getDontFollow();
             for (final Link dontFollow : _dontFollow) {
               String _uri_4 = itmmetadata.uri();
-              boolean _equals = _uri_4.equals(dontFollow);
+              String _uri_5 = dontFollow.uri();
+              boolean _equals = _uri_4.equals(_uri_5);
               if (_equals) {
                 inDontFollow = true;
               }
@@ -179,15 +180,15 @@ public class FileSync {
             if (_and) {
               Node _node_1 = params.getNode();
               Session _session = _node_1.session();
-              String _uri_5 = itmmetadata.uri();
+              String _uri_6 = itmmetadata.uri();
               String _secret_2 = matchedSyncRoot.secret();
-              Link _link = _session.link(_uri_5, _secret_2);
+              Link _link = _session.link(_uri_6, _secret_2);
               qry = _link;
             } else {
               Node _node_2 = params.getNode();
               Session _session_1 = _node_2.session();
-              String _uri_6 = itmmetadata.uri();
-              Link _link_1 = _session_1.link(_uri_6);
+              String _uri_7 = itmmetadata.uri();
+              Link _link_1 = _session_1.link(_uri_7);
               qry = _link_1;
             }
             final ExceptionListener _function = new ExceptionListener() {

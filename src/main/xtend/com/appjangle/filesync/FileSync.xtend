@@ -95,7 +95,7 @@ class FileSync {
 						
 						var inDontFollow = false;
 						for (dontFollow : params.dontFollow) {
-							if (itmmetadata.uri.equals(dontFollow)) {
+							if (itmmetadata.uri.equals(dontFollow.uri())) {
 								inDontFollow = true
 							}
 						}

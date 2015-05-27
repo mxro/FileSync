@@ -32,6 +32,11 @@ public class SyncParams {
    */
   private List<Link> syncRoots;
   
+  /**
+   * <p>If these nodes are found as a child node of another node, their children will not be resolved.
+   */
+  private List<Link> dontFollow;
+  
   public SyncParams() {
   }
   
@@ -43,6 +48,7 @@ public class SyncParams {
     this.converter = params.converter;
     this.notifications = params.notifications;
     this.syncRoots = params.syncRoots;
+    this.dontFollow = params.dontFollow;
   }
   
   @Pure
@@ -106,5 +112,14 @@ public class SyncParams {
   
   public void setSyncRoots(final List<Link> syncRoots) {
     this.syncRoots = syncRoots;
+  }
+  
+  @Pure
+  public List<Link> getDontFollow() {
+    return this.dontFollow;
+  }
+  
+  public void setDontFollow(final List<Link> dontFollow) {
+    this.dontFollow = dontFollow;
   }
 }

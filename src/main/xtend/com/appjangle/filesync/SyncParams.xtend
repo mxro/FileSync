@@ -27,6 +27,11 @@ class SyncParams {
 	 */
 	var List<Link> syncRoots;
 	
+	/**
+	 * <p>If these nodes are found as a child node of another node, their children will not be resolved.
+	 */
+	var List<Link> dontFollow;
+	
 	new() {
 		
 	}
@@ -39,6 +44,7 @@ class SyncParams {
 		converter = params.converter
 		notifications = params.notifications
 		syncRoots = params.syncRoots
+		dontFollow = params.dontFollow
 	} 
 	
 }

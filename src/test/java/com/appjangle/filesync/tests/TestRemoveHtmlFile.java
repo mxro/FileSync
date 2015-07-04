@@ -26,6 +26,7 @@ import org.junit.internal.ArrayComparisonFailure;
 @JUnit
 @SuppressWarnings("all")
 public class TestRemoveHtmlFile extends CheckUpdatesTemplate {
+  @Override
   protected void step1_defineData() {
     final Query file1 = this.source.append("<p>file1</p>", "./file1");
     Query _append = file1.append("html1", "./label");
@@ -47,6 +48,7 @@ public class TestRemoveHtmlFile extends CheckUpdatesTemplate {
     file3.append(_HTML_VALUE_2);
   }
   
+  @Override
   protected void step2_assertFiles() {
     List<FileItem> _children = this.result.getChildren();
     int _size = _children.size();
@@ -56,6 +58,7 @@ public class TestRemoveHtmlFile extends CheckUpdatesTemplate {
     TestRemoveHtmlFile.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_exists), Boolean.valueOf(true));
   }
   
+  @Override
   protected void step3_updateNodes() {
     final Query html = this.source.select("./file1");
     Query _select = html.select("./label");
@@ -68,6 +71,7 @@ public class TestRemoveHtmlFile extends CheckUpdatesTemplate {
     this.source.remove(html);
   }
   
+  @Override
   protected void step4_assertFilesAfterUpdate() {
     FileItem _get = this.result.get("html1.html");
     boolean _exists = _get.exists();
@@ -76,15 +80,19 @@ public class TestRemoveHtmlFile extends CheckUpdatesTemplate {
     _select.get();
   }
   
+  @Override
   protected void step5_updateFiles() {
     this.result.deleteFile("html2.html");
   }
   
+  @Override
   protected void step6_assertNodesAfterUpdate() {
     final Operation<Success> _function = new Operation<Success>() {
+      @Override
       public void apply(final ValueCallback<Success> cb) {
         final Query qry = TestRemoveHtmlFile.this.source.select("./file2");
         final ExceptionListener _function = new ExceptionListener() {
+          @Override
           public void onFailure(final ExceptionResult er) {
             Throwable _exception = er.exception();
             cb.onFailure(_exception);
@@ -92,12 +100,14 @@ public class TestRemoveHtmlFile extends CheckUpdatesTemplate {
         };
         qry.catchExceptions(_function);
         final UndefinedListener _function_1 = new UndefinedListener() {
+          @Override
           public void onUndefined(final UndefinedResult it) {
             cb.onSuccess(Success.INSTANCE);
           }
         };
         qry.catchUndefined(_function_1);
         final Closure<Node> _function_2 = new Closure<Node>() {
+          @Override
           public void apply(final Node it) {
             Exception _exception = new Exception("Node should have been removed.");
             cb.onFailure(_exception);

@@ -59,12 +59,15 @@ public class SyncFolder {
     Node _node_1 = this.params.getNode();
     FileItem _folder_4 = this.params.getFolder();
     final Closure<Success> _function = new Closure<Success>() {
+      @Override
       public void apply(final Success it) {
         FileToNetworkOperations _fileToNetworkOperations = new FileToNetworkOperations(SyncFolder.this.params, SyncFolder.this.metadata);
         final Closure<List<NetworkOperation>> _function = new Closure<List<NetworkOperation>>() {
+          @Override
           public void apply(final List<NetworkOperation> ops) {
             Node _node = SyncFolder.this.params.getNode();
             final Closure<Success> _function = new Closure<Success>() {
+              @Override
               public void apply(final Success it) {
                 SyncFolder.this.download(cb);
               }
@@ -99,6 +102,7 @@ public class SyncFolder {
     _syncValueOperations.downloadValue(_node_1, this.metadata, _folder_1);
     NetworkToFileOperations _networkToFileOperations = new NetworkToFileOperations(this.params, this.metadata);
     final Closure<List<FileOperation>> _function = new Closure<List<FileOperation>>() {
+      @Override
       public void apply(final List<FileOperation> ops) {
         FileItem _folder = SyncFolder.this.params.getFolder();
         SyncFolder.this.fileUtils.execute(ops, _folder, SyncFolder.this.metadata);

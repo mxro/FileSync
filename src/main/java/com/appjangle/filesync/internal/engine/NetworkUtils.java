@@ -22,16 +22,19 @@ public class NetworkUtils {
     NextwebPromise<Success> _xblockexpression = null;
     {
       final NetworkOperationContext ctx = new NetworkOperationContext() {
+        @Override
         public Session session() {
           return onNode.session();
         }
         
+        @Override
         public Node parent() {
           return onNode;
         }
       };
       int _size = ops.size();
       final Closure<List<Success>> _function = new Closure<List<Success>>() {
+        @Override
         public void apply(final List<Success> it) {
           cb.onSuccess(Success.INSTANCE);
         }
@@ -40,10 +43,12 @@ public class NetworkUtils {
       final Aggregator<Success> opscbs = AsyncCommon.<Success>collect(_size, _embed);
       for (final NetworkOperation op : ops) {
         final Closure<List<NextwebOperation<?>>> _function_1 = new Closure<List<NextwebOperation<?>>>() {
+          @Override
           public void apply(final List<NextwebOperation<?>> qries) {
             final ValueCallback<Success> opscbsitem = opscbs.createCallback();
             int _size = qries.size();
             final Closure<List<Success>> _function = new Closure<List<Success>>() {
+              @Override
               public void apply(final List<Success> it) {
                 opscbsitem.onSuccess(Success.INSTANCE);
               }
@@ -55,6 +60,7 @@ public class NetworkUtils {
                 final ValueCallback<Success> itmcb = cbs.createCallback();
                 if ((qry instanceof Query)) {
                   final ExceptionListener _function_1 = new ExceptionListener() {
+                    @Override
                     public void onFailure(final ExceptionResult er) {
                       Throwable _exception = er.exception();
                       itmcb.onFailure(_exception);
@@ -62,6 +68,7 @@ public class NetworkUtils {
                   };
                   ((Query)qry).catchExceptions(_function_1);
                   final Closure<Node> _function_2 = new Closure<Node>() {
+                    @Override
                     public void apply(final Node succ) {
                       itmcb.onSuccess(Success.INSTANCE);
                     }
@@ -71,6 +78,7 @@ public class NetworkUtils {
                   if ((qry instanceof NextwebPromise<?>)) {
                     final NextwebPromise<Object> safeQry = ((NextwebPromise<Object>) qry);
                     final ExceptionListener _function_3 = new ExceptionListener() {
+                      @Override
                       public void onFailure(final ExceptionResult er) {
                         Throwable _exception = er.exception();
                         itmcb.onFailure(_exception);
@@ -78,6 +86,7 @@ public class NetworkUtils {
                     };
                     safeQry.catchExceptions(_function_3);
                     final Closure<Object> _function_4 = new Closure<Object>() {
+                      @Override
                       public void apply(final Object succ) {
                         itmcb.onSuccess(Success.INSTANCE);
                       }

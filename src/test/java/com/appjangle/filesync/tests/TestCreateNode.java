@@ -25,10 +25,12 @@ import org.junit.rules.ErrorCollector;
 @Hamcrest
 @SuppressWarnings("all")
 public class TestCreateNode extends CheckFilesToNodesTemplate {
+  @Override
   protected void step1_defineFiles() {
     this.source.assertFolder("Oh my test");
   }
   
+  @Override
   protected void step2_assertNodes() {
     ListQuery _selectAll = this.result.selectAll();
     NodeList _get = _selectAll.get();

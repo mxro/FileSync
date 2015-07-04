@@ -53,10 +53,12 @@ public class FileUtils {
   
   public void execute(final List<FileOperation> operations, final FileItem withFolder, final Metadata withMetadata) {
     final FileOperationContext ctx = new FileOperationContext() {
+      @Override
       public FileItem folder() {
         return withFolder;
       }
       
+      @Override
       public Metadata metadata() {
         return withMetadata;
       }

@@ -94,10 +94,12 @@ public class FileSync {
     Node _node_2 = params.getNode();
     _state_1.addSynced(_node_2);
     final Closure<Success> _function = new Closure<Success>() {
+      @Override
       public void apply(final Success it) {
         FileItem _folder = params.getFolder();
         List<FileItem> _children = _folder.getChildren();
         final Function1<FileItem, Boolean> _function = new Function1<FileItem, Boolean>() {
+          @Override
           public Boolean apply(final FileItem it) {
             boolean _and = false;
             boolean _and_1 = false;
@@ -122,6 +124,7 @@ public class FileSync {
         final Iterable<FileItem> toSync = IterableExtensions.<FileItem>filter(_children, _function);
         List<FileItem> _list = IterableExtensions.<FileItem>toList(toSync);
         final Closure2<FileItem, ValueCallback<Success>> _function_1 = new Closure2<FileItem, ValueCallback<Success>>() {
+          @Override
           public void apply(final FileItem childFolder, final ValueCallback<Success> itmcb) {
             FileItem _folder = params.getFolder();
             final Metadata metadata = FileSync.fileUtils.loadMetadata(_folder);
@@ -194,6 +197,7 @@ public class FileSync {
               qry = _link_1;
             }
             final ExceptionListener _function = new ExceptionListener() {
+              @Override
               public void onFailure(final ExceptionResult er) {
                 Throwable _exception = er.exception();
                 itmcb.onFailure(_exception);
@@ -201,6 +205,7 @@ public class FileSync {
             };
             qry.catchExceptions(_function);
             final Closure<Node> _function_1 = new Closure<Node>() {
+              @Override
               public void apply(final Node childNode) {
                 final SyncParams childParams = new SyncParams(params);
                 childParams.setFolder(childFolder);
@@ -225,6 +230,7 @@ public class FileSync {
           }
         };
         final Closure<List<Success>> _function_2 = new Closure<List<Success>>() {
+          @Override
           public void apply(final List<Success> it) {
             cb.onSuccess(Success.INSTANCE);
           }
@@ -269,6 +275,7 @@ public class FileSync {
       FileToTextNode _fileToTextNode = new FileToTextNode();
       coll.addConverter(_fileToTextNode);
       final Closure2<Node, ValueCallback<Boolean>> _function = new Closure2<Node, ValueCallback<Boolean>>() {
+        @Override
         public void apply(final Node node, final ValueCallback<Boolean> cb) {
           Object _value = node.value();
           cb.onSuccess(Boolean.valueOf((_value instanceof Token)));
@@ -277,6 +284,7 @@ public class FileSync {
       NodeToNothing _nodeToNothing = new NodeToNothing(_function);
       coll.addConverter(_nodeToNothing);
       final Closure2<Node, ValueCallback<Boolean>> _function_1 = new Closure2<Node, ValueCallback<Boolean>>() {
+        @Override
         public void apply(final Node node, final ValueCallback<Boolean> cb) {
           String _uri = node.uri();
           String _nameFromUri = ConvertUtils.getNameFromUri(_uri);
@@ -287,6 +295,7 @@ public class FileSync {
       NodeToNothing _nodeToNothing_1 = new NodeToNothing(_function_1);
       coll.addConverter(_nodeToNothing_1);
       final Function<FileItem, Boolean> _function_2 = new Function<FileItem, Boolean>() {
+        @Override
         public Boolean apply(final FileItem file) {
           boolean _or = false;
           String _name = file.getName();

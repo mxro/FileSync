@@ -25,6 +25,7 @@ import org.junit.rules.ErrorCollector;
 @Hamcrest
 @SuppressWarnings("all")
 public class TestCreateVariousNodeTypes extends CheckFilesToNodesTemplate {
+  @Override
   protected void step1_defineFiles() {
     FileItem _createFile = this.source.createFile("My Document.css");
     _createFile.setText(".class {}");
@@ -36,6 +37,7 @@ public class TestCreateVariousNodeTypes extends CheckFilesToNodesTemplate {
     _createFile_3.setText("Something for my type");
   }
   
+  @Override
   protected void step2_assertNodes() {
     Link _CSS = this.n.CSS(this.session);
     ListQuery _selectAll = this.result.selectAll(_CSS);

@@ -12,10 +12,12 @@ import org.junit.internal.ArrayComparisonFailure;
 @JUnit
 @SuppressWarnings("all")
 public class TestCreateFolder extends CheckNodesToFilesTemplate {
+  @Override
   protected void step1_defineData() {
     this.source.append("A Folder");
   }
   
+  @Override
   protected void step2_assertFiles() {
     List<FileItem> _children = this.result.getChildren();
     int _size = _children.size();

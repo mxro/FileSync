@@ -62,6 +62,7 @@ public abstract class CheckFilesToNodesTemplate {
   @Test
   public void test() {
     final Operation<Success> _function = new Operation<Success>() {
+      @Override
       public void apply(final ValueCallback<Success> cb) {
         FileSync.syncSingleFolder(CheckFilesToNodesTemplate.this.sourceFolder, CheckFilesToNodesTemplate.this.result, cb);
       }
@@ -69,6 +70,7 @@ public abstract class CheckFilesToNodesTemplate {
     Async.<Success>waitFor(_function);
     this.step1_defineFiles();
     final Operation<Success> _function_1 = new Operation<Success>() {
+      @Override
       public void apply(final ValueCallback<Success> cb) {
         FileSync.syncSingleFolder(CheckFilesToNodesTemplate.this.sourceFolder, CheckFilesToNodesTemplate.this.result, cb);
       }

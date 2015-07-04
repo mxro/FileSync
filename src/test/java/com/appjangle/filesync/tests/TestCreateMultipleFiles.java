@@ -14,6 +14,7 @@ import org.junit.internal.ArrayComparisonFailure;
 @JUnit
 @SuppressWarnings("all")
 public class TestCreateMultipleFiles extends CheckNodesToFilesTemplate {
+  @Override
   protected void step1_defineData() {
     final Query html = this.source.append("<html></html>", "./html");
     Query _append = html.append("Html Document");
@@ -25,6 +26,7 @@ public class TestCreateMultipleFiles extends CheckNodesToFilesTemplate {
     this.source.append("Folder 2");
   }
   
+  @Override
   protected void step2_assertFiles() {
     List<FileItem> _children = this.result.getChildren();
     int _size = _children.size();

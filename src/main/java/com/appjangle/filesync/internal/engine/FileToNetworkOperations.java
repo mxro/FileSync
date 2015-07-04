@@ -57,6 +57,7 @@ public class FileToNetworkOperations {
       FileItem _folder_6 = this.params.getFolder();
       final ArrayList<String> locallyChangedFiles = FileToNetworkOperations.determineLocallyChangedFiles(this.metadata, _folder_6);
       final Closure<List<List<NetworkOperation>>> _function = new Closure<List<List<NetworkOperation>>>() {
+        @Override
         public void apply(final List<List<NetworkOperation>> res) {
           final List<NetworkOperation> ops = CollectionsUtils.<NetworkOperation>flatten(res);
           cb.onSuccess(ops);
@@ -78,6 +79,7 @@ public class FileToNetworkOperations {
   public void createOperationsFromChangedFiles(final List<String> fileNames, final ValueCallback<List<NetworkOperation>> cb) {
     int _size = fileNames.size();
     final Closure<List<List<NetworkOperation>>> _function = new Closure<List<List<NetworkOperation>>>() {
+      @Override
       public void apply(final List<List<NetworkOperation>> res) {
         List<NetworkOperation> _flatten = CollectionsUtils.<NetworkOperation>flatten(res);
         cb.onSuccess(_flatten);
@@ -86,6 +88,7 @@ public class FileToNetworkOperations {
     ValueCallback<List<List<NetworkOperation>>> _embed = AsyncCommon.<List<List<NetworkOperation>>>embed(cb, _function);
     final Aggregator<List<NetworkOperation>> agg = AsyncCommon.<List<NetworkOperation>>collect(_size, _embed);
     final Procedure1<String> _function_1 = new Procedure1<String>() {
+      @Override
       public void apply(final String fileName) {
         Converter _converter = FileToNetworkOperations.this.params.getConverter();
         FileItem _folder = FileToNetworkOperations.this.params.getFolder();
@@ -100,6 +103,7 @@ public class FileToNetworkOperations {
   public void createOperationsFromRemovedFiles(final List<String> fileNames, final ValueCallback<List<NetworkOperation>> cb) {
     int _size = fileNames.size();
     final Closure<List<List<NetworkOperation>>> _function = new Closure<List<List<NetworkOperation>>>() {
+      @Override
       public void apply(final List<List<NetworkOperation>> res) {
         List<NetworkOperation> _flatten = CollectionsUtils.<NetworkOperation>flatten(res);
         cb.onSuccess(_flatten);
@@ -108,6 +112,7 @@ public class FileToNetworkOperations {
     ValueCallback<List<List<NetworkOperation>>> _embed = AsyncCommon.<List<List<NetworkOperation>>>embed(cb, _function);
     final Aggregator<List<NetworkOperation>> agg = AsyncCommon.<List<NetworkOperation>>collect(_size, _embed);
     final Procedure1<String> _function_1 = new Procedure1<String>() {
+      @Override
       public void apply(final String fileName) {
         Converter _converter = FileToNetworkOperations.this.params.getConverter();
         ItemMetadata _get = FileToNetworkOperations.this.metadata.get(fileName);
@@ -121,6 +126,7 @@ public class FileToNetworkOperations {
   public void createOperationsFromCreatedFiles(final Iterable<String> fileNames, final ValueCallback<List<NetworkOperation>> cb) {
     int _size = IterableExtensions.size(fileNames);
     final Closure<List<List<NetworkOperation>>> _function = new Closure<List<List<NetworkOperation>>>() {
+      @Override
       public void apply(final List<List<NetworkOperation>> res) {
         List<NetworkOperation> _flatten = CollectionsUtils.<NetworkOperation>flatten(res);
         cb.onSuccess(_flatten);
@@ -129,6 +135,7 @@ public class FileToNetworkOperations {
     ValueCallback<List<List<NetworkOperation>>> _embed = AsyncCommon.<List<List<NetworkOperation>>>embed(cb, _function);
     final Aggregator<List<NetworkOperation>> agg = AsyncCommon.<List<NetworkOperation>>collect(_size, _embed);
     final Procedure1<String> _function_1 = new Procedure1<String>() {
+      @Override
       public void apply(final String fileName) {
         Converter _converter = FileToNetworkOperations.this.params.getConverter();
         FileItem _folder = FileToNetworkOperations.this.params.getFolder();

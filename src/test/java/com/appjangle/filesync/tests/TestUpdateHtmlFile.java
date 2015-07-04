@@ -14,6 +14,7 @@ import org.junit.internal.ArrayComparisonFailure;
 @JUnit
 @SuppressWarnings("all")
 public class TestUpdateHtmlFile extends CheckUpdatesTemplate {
+  @Override
   protected void step1_defineData() {
     final Query html = this.source.append("<p>Hello 1</p>", "./html");
     Query _append = html.append("doc");
@@ -23,28 +24,33 @@ public class TestUpdateHtmlFile extends CheckUpdatesTemplate {
     html.append(_link_1);
   }
   
+  @Override
   protected void step2_assertFiles() {
     FileItem _get = this.result.get("doc.html");
     String _text = _get.getText();
     TestUpdateHtmlFile.<String, String>operator_doubleArrow(_text, "<p>Hello 1</p>");
   }
   
+  @Override
   protected void step3_updateNodes() {
     Query _select = this.source.select("./html");
     _select.setValue("<p>Hello 1 and Hello 2 are an amazing team.</p>");
   }
   
+  @Override
   protected void step4_assertFilesAfterUpdate() {
     FileItem _get = this.result.get("doc.html");
     String _text = _get.getText();
     TestUpdateHtmlFile.<String, String>operator_doubleArrow(_text, "<p>Hello 1 and Hello 2 are an amazing team.</p>");
   }
   
+  @Override
   protected void step5_updateFiles() {
     FileItem _get = this.result.get("doc.html");
     _get.setText("And now for something different");
   }
   
+  @Override
   protected void step6_assertNodesAfterUpdate() {
     Query _select = this.source.select("./html");
     Node _get = _select.get();

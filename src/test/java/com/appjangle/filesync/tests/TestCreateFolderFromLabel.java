@@ -14,6 +14,7 @@ import org.junit.internal.ArrayComparisonFailure;
 @JUnit
 @SuppressWarnings("all")
 public class TestCreateFolderFromLabel extends CheckNodesToFilesTemplate {
+  @Override
   protected void step1_defineData() {
     Query _append = this.source.append("No value", "./value");
     Query _append_1 = _append.append("Labelled Node");
@@ -21,6 +22,7 @@ public class TestCreateFolderFromLabel extends CheckNodesToFilesTemplate {
     _append_1.append(_link);
   }
   
+  @Override
   protected void step2_assertFiles() {
     List<FileItem> _children = this.result.getChildren();
     int _size = _children.size();

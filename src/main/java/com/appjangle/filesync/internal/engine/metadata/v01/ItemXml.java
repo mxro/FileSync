@@ -25,22 +25,27 @@ public class ItemXml implements ItemMetadata, Serializable {
   @Accessors
   public String converter;
   
+  @Override
   public String name() {
     return this.name;
   }
   
+  @Override
   public Date lastModified() {
     return this.lastModified;
   }
   
+  @Override
   public String uri() {
     return this.uri;
   }
   
+  @Override
   public String hash() {
     return this.hash;
   }
   
+  @Override
   public String converter() {
     return this.converter;
   }

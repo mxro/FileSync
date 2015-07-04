@@ -62,6 +62,7 @@ public class ConvertUtils {
   public void getFileExtension(final Node forNode, final ValueCallback<String> cb) {
     final LinkListQuery qry = forNode.selectAllLinks();
     final ExceptionListener _function = new ExceptionListener() {
+      @Override
       public void onFailure(final ExceptionResult er) {
         Throwable _exception = er.exception();
         cb.onFailure(_exception);
@@ -69,6 +70,7 @@ public class ConvertUtils {
     };
     qry.catchExceptions(_function);
     final Closure<LinkList> _function_1 = new Closure<LinkList>() {
+      @Override
       public void apply(final LinkList links) {
         Set<Map.Entry<String, String>> _entrySet = ConvertUtils.this.textValueExtensions.entrySet();
         for (final Map.Entry<String, String> mapping : _entrySet) {
@@ -89,6 +91,7 @@ public class ConvertUtils {
     final String address = cachedFile.uri();
     final LinkedList<NetworkOperation> ops = new LinkedList<NetworkOperation>();
     final NetworkOperation _function = new NetworkOperation() {
+      @Override
       public void apply(final NetworkOperationContext ctx, final ValueCallback<List<NextwebOperation<?>>> opscb) {
         String _name = cachedFile.name();
         metadata.remove(_name);
@@ -101,6 +104,7 @@ public class ConvertUtils {
         boolean _hasDirectChild = ConvertUtils.this.ext.hasDirectChild(_link, nodeToBeRemoved);
         if (_hasDirectChild) {
           final Closure<List<NextwebPromise<Success>>> _function = new Closure<List<NextwebPromise<Success>>>() {
+            @Override
             public void apply(final List<NextwebPromise<Success>> res) {
               list.addAll(res);
               opscb.onSuccess(list);
@@ -236,6 +240,7 @@ public class ConvertUtils {
   
   public void getFileName(final Node forNode, final FileItem inFolder, final String fileExtension, final ValueCallback<String> cb) {
     final Closure<String> _function = new Closure<String>() {
+      @Override
       public void apply(final String fileNameFromNode) {
         String fileName = (fileNameFromNode + fileExtension);
         int idx = 1;
@@ -255,6 +260,7 @@ public class ConvertUtils {
   public void getFileName(final Node fromNode, final ValueCallback<String> cb) {
     int _size = this.labelTypes.size();
     final Closure<List<Object>> _function = new Closure<List<Object>>() {
+      @Override
       public void apply(final List<Object> res) {
         for (final Object item : res) {
           if ((item instanceof String)) {
@@ -270,18 +276,21 @@ public class ConvertUtils {
     ValueCallback<List<Object>> _embed = AsyncCommon.<List<Object>>embed(cb, _function);
     final Aggregator<Object> cbs = AsyncCommon.<Object>collect(_size, _embed);
     final Procedure1<String> _function_1 = new Procedure1<String>() {
+      @Override
       public void apply(final String labelType) {
         Session _session = fromNode.session();
         Link _link = _session.link(labelType);
         final Query qry = fromNode.select(_link);
         final ValueCallback<Object> itmcb = cbs.createCallback();
         final UndefinedListener _function = new UndefinedListener() {
+          @Override
           public void onUndefined(final UndefinedResult it) {
             itmcb.onSuccess(ConvertUtils.NO_VALUE);
           }
         };
         qry.catchUndefined(_function);
         final ExceptionListener _function_1 = new ExceptionListener() {
+          @Override
           public void onFailure(final ExceptionResult er) {
             Throwable _exception = er.exception();
             itmcb.onFailure(_exception);
@@ -289,6 +298,7 @@ public class ConvertUtils {
         };
         qry.catchExceptions(_function_1);
         final Closure<Node> _function_2 = new Closure<Node>() {
+          @Override
           public void apply(final Node label) {
             Object _value = label.value();
             itmcb.onSuccess(_value);

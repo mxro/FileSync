@@ -26,11 +26,13 @@ import org.junit.rules.ErrorCollector;
 @Hamcrest
 @SuppressWarnings("all")
 public class TestCreateHtmlNode extends CheckFilesToNodesTemplate {
+  @Override
   protected void step1_defineFiles() {
     FileItem _createFile = this.source.createFile("My Document.html");
     _createFile.setText("<html></html>");
   }
   
+  @Override
   protected void step2_assertNodes() {
     Query _select = this.result.select("./My_Document");
     final Node node = _select.get();

@@ -21,12 +21,14 @@ public abstract class CheckUpdatesTemplate extends CheckNodesToFilesTemplate {
   protected abstract void step6_assertNodesAfterUpdate();
   
   @Test
+  @Override
   public void test() {
     try {
       this.step1_defineData();
       NextwebPromise<Success> _commit = this.session.commit();
       _commit.get();
       final Operation<Success> _function = new Operation<Success>() {
+        @Override
         public void apply(final ValueCallback<Success> cb) {
           FileSync.syncSingleFolder(CheckUpdatesTemplate.this.target, CheckUpdatesTemplate.this.source, cb);
         }
@@ -37,6 +39,7 @@ public abstract class CheckUpdatesTemplate extends CheckNodesToFilesTemplate {
       NextwebPromise<Success> _commit_1 = this.session.commit();
       _commit_1.get();
       final Operation<Success> _function_1 = new Operation<Success>() {
+        @Override
         public void apply(final ValueCallback<Success> cb) {
           FileSync.syncSingleFolder(CheckUpdatesTemplate.this.target, CheckUpdatesTemplate.this.source, cb);
         }
@@ -46,6 +49,7 @@ public abstract class CheckUpdatesTemplate extends CheckNodesToFilesTemplate {
       Thread.sleep(2000);
       this.step5_updateFiles();
       final Operation<Success> _function_2 = new Operation<Success>() {
+        @Override
         public void apply(final ValueCallback<Success> cb) {
           FileSync.syncSingleFolder(CheckUpdatesTemplate.this.target, CheckUpdatesTemplate.this.source, cb);
         }

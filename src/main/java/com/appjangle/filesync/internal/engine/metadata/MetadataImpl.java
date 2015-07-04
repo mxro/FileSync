@@ -24,12 +24,15 @@ public class MetadataImpl implements Metadata {
     this.items = _newArrayList;
   }
   
+  @Override
   public List<ItemMetadata> getChildren() {
     return this.items;
   }
   
+  @Override
   public ItemMetadata get(final String name) {
     final Function1<ItemMetadata, Boolean> _function = new Function1<ItemMetadata, Boolean>() {
+      @Override
       public Boolean apply(final ItemMetadata it) {
         String _name = it.name();
         return Boolean.valueOf(Objects.equal(_name, name));
@@ -38,8 +41,10 @@ public class MetadataImpl implements Metadata {
     return IterableExtensions.<ItemMetadata>findFirst(this.items, _function);
   }
   
+  @Override
   public ItemMetadata get(final Node forNode) {
     final Function1<ItemMetadata, Boolean> _function = new Function1<ItemMetadata, Boolean>() {
+      @Override
       public Boolean apply(final ItemMetadata it) {
         String _uri = it.uri();
         String _uri_1 = forNode.uri();
@@ -49,6 +54,7 @@ public class MetadataImpl implements Metadata {
     return IterableExtensions.<ItemMetadata>findFirst(this.items, _function);
   }
   
+  @Override
   public Metadata add(final ItemMetadata itemMetadata) {
     MetadataImpl _xblockexpression = null;
     {
@@ -59,6 +65,7 @@ public class MetadataImpl implements Metadata {
     return _xblockexpression;
   }
   
+  @Override
   public Metadata setValue(final ItemMetadata itemMetadata) {
     MetadataImpl _xblockexpression = null;
     {
@@ -68,6 +75,7 @@ public class MetadataImpl implements Metadata {
     return _xblockexpression;
   }
   
+  @Override
   public Metadata update(final ItemMetadata itemMetadata) {
     MetadataImpl _xblockexpression = null;
     {
@@ -85,6 +93,7 @@ public class MetadataImpl implements Metadata {
     return _xblockexpression;
   }
   
+  @Override
   public Metadata remove(final String name) {
     MetadataImpl _xblockexpression = null;
     {
@@ -138,6 +147,7 @@ public class MetadataImpl implements Metadata {
     return _xblockexpression;
   }
   
+  @Override
   public ItemMetadata value() {
     return this.value;
   }

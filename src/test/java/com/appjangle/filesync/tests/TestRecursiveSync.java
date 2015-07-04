@@ -17,10 +17,12 @@ import org.junit.internal.ArrayComparisonFailure;
 @JUnit
 @SuppressWarnings("all")
 public class TestRecursiveSync extends CheckNodesToFilesTemplate {
+  @Override
   protected boolean doRecursiveSync() {
     return true;
   }
   
+  @Override
   protected void step1_defineData() {
     Query _append = this.source.append("oh my", "./node1");
     _append.append("And in the subfolder", "./sub");
@@ -46,6 +48,7 @@ public class TestRecursiveSync extends CheckNodesToFilesTemplate {
     _append_6.append(_link);
   }
   
+  @Override
   protected void step2_assertFiles() {
     FileItem _get = this.result.get("node1");
     boolean _exists = _get.exists();

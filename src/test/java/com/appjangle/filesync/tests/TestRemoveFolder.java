@@ -23,12 +23,14 @@ import org.junit.internal.ArrayComparisonFailure;
 @JUnit
 @SuppressWarnings("all")
 public class TestRemoveFolder extends CheckUpdatesTemplate {
+  @Override
   protected void step1_defineData() {
     this.source.append("folder1", "./folder1");
     this.source.append("folder2", "./folder2");
     this.source.append("folder3", "./folder3");
   }
   
+  @Override
   protected void step2_assertFiles() {
     List<FileItem> _children = this.result.getChildren();
     int _size = _children.size();
@@ -38,26 +40,32 @@ public class TestRemoveFolder extends CheckUpdatesTemplate {
     TestRemoveFolder.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_exists), Boolean.valueOf(true));
   }
   
+  @Override
   protected void step3_updateNodes() {
     Query _select = this.source.select("./folder1");
     this.source.remove(_select);
   }
   
+  @Override
   protected void step4_assertFilesAfterUpdate() {
     FileItem _get = this.result.get("folder1");
     boolean _exists = _get.exists();
     TestRemoveFolder.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_exists), Boolean.valueOf(false));
   }
   
+  @Override
   protected void step5_updateFiles() {
     this.result.deleteFolder("folder2");
   }
   
+  @Override
   protected void step6_assertNodesAfterUpdate() {
     final Operation<Success> _function = new Operation<Success>() {
+      @Override
       public void apply(final ValueCallback<Success> cb) {
         final Query qry = TestRemoveFolder.this.source.select("./folder2");
         final ExceptionListener _function = new ExceptionListener() {
+          @Override
           public void onFailure(final ExceptionResult er) {
             Throwable _exception = er.exception();
             cb.onFailure(_exception);
@@ -65,12 +73,14 @@ public class TestRemoveFolder extends CheckUpdatesTemplate {
         };
         qry.catchExceptions(_function);
         final UndefinedListener _function_1 = new UndefinedListener() {
+          @Override
           public void onUndefined(final UndefinedResult it) {
             cb.onSuccess(Success.INSTANCE);
           }
         };
         qry.catchUndefined(_function_1);
         final Closure<Node> _function_2 = new Closure<Node>() {
+          @Override
           public void apply(final Node it) {
             Exception _exception = new Exception("Node should have been removed.");
             cb.onFailure(_exception);

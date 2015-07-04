@@ -47,6 +47,7 @@ public class NetworkToFileOperations {
     Node _node = this.params.getNode();
     final LinkListQuery qry = _node.selectAllLinks();
     final ExceptionListener _function = new ExceptionListener() {
+      @Override
       public void onFailure(final ExceptionResult er) {
         Throwable _exception = er.exception();
         cb.onFailure(_exception);
@@ -54,11 +55,14 @@ public class NetworkToFileOperations {
     };
     qry.catchExceptions(_function);
     final Closure<LinkList> _function_1 = new Closure<LinkList>() {
+      @Override
       public void apply(final LinkList children) {
         List<Link> _links = children.links();
         final Closure2<Link, ValueCallback<Value<Object>>> _function = new Closure2<Link, ValueCallback<Value<Object>>>() {
+          @Override
           public void apply(final Link link, final ValueCallback<Value<Object>> itmcb) {
             final UnauthorizedListener _function = new UnauthorizedListener() {
+              @Override
               public void onUnauthorized(final UnauthorizedResult it) {
                 SyncNotifications _notifications = NetworkToFileOperations.this.params.getNotifications();
                 FileItem _folder = NetworkToFileOperations.this.params.getFolder();
@@ -69,6 +73,7 @@ public class NetworkToFileOperations {
             };
             link.catchUnauthorized(_function);
             final UndefinedListener _function_1 = new UndefinedListener() {
+              @Override
               public void onUndefined(final UndefinedResult it) {
                 SyncNotifications _notifications = NetworkToFileOperations.this.params.getNotifications();
                 Node _node = NetworkToFileOperations.this.params.getNode();
@@ -79,6 +84,7 @@ public class NetworkToFileOperations {
             };
             link.catchUndefined(_function_1);
             final ExceptionListener _function_2 = new ExceptionListener() {
+              @Override
               public void onFailure(final ExceptionResult it) {
                 Throwable _exception = it.exception();
                 itmcb.onFailure(_exception);
@@ -86,6 +92,7 @@ public class NetworkToFileOperations {
             };
             link.catchExceptions(_function_2);
             final Closure<Node> _function_3 = new Closure<Node>() {
+              @Override
               public void apply(final Node it) {
                 Value<Object> _value = new Value<Object>(it);
                 itmcb.onSuccess(_value);
@@ -95,6 +102,7 @@ public class NetworkToFileOperations {
           }
         };
         final Closure<List<Value<Object>>> _function_1 = new Closure<List<Value<Object>>>() {
+          @Override
           public void apply(final List<Value<Object>> values) {
             int _size = values.size();
             final ArrayList<Node> nodes = new ArrayList<Node>(_size);
@@ -110,6 +118,7 @@ public class NetworkToFileOperations {
             final ArrayList<ItemMetadata> remotelyRemoved = NetworkToFileOperations.this.determineRemotelyRemovedNodes(nodes);
             final ArrayList<Node> remotelyUpdated = NetworkToFileOperations.this.determineRemotelyUpdatedNodes(nodes);
             final Closure<List<List<FileOperation>>> _function = new Closure<List<List<FileOperation>>>() {
+              @Override
               public void apply(final List<List<FileOperation>> res) {
                 List<FileOperation> _flatten = CollectionsUtils.<FileOperation>flatten(res);
                 cb.onSuccess(_flatten);
@@ -135,6 +144,7 @@ public class NetworkToFileOperations {
   public void deduceUpdateOperations(final Iterable<Node> remotelyUpdated, final ValueCallback<List<FileOperation>> cb) {
     int _size = IterableExtensions.size(remotelyUpdated);
     final Closure<List<List<FileOperation>>> _function = new Closure<List<List<FileOperation>>>() {
+      @Override
       public void apply(final List<List<FileOperation>> res) {
         List<FileOperation> _flatten = CollectionsUtils.<FileOperation>flatten(res);
         cb.onSuccess(_flatten);
@@ -153,6 +163,7 @@ public class NetworkToFileOperations {
   public void deduceCreateOperations(final Iterable<Node> remotelyAdded, final ValueCallback<List<FileOperation>> cb) {
     int _size = IterableExtensions.size(remotelyAdded);
     final Closure<List<List<FileOperation>>> _function = new Closure<List<List<FileOperation>>>() {
+      @Override
       public void apply(final List<List<FileOperation>> res) {
         List<FileOperation> _flatten = CollectionsUtils.<FileOperation>flatten(res);
         cb.onSuccess(_flatten);
@@ -171,6 +182,7 @@ public class NetworkToFileOperations {
   public void deduceRemoveOperations(final List<ItemMetadata> remotelyRemoved, final ValueCallback<List<FileOperation>> cb) {
     int _size = remotelyRemoved.size();
     final Closure<List<List<FileOperation>>> _function = new Closure<List<List<FileOperation>>>() {
+      @Override
       public void apply(final List<List<FileOperation>> res) {
         List<FileOperation> _flatten = CollectionsUtils.<FileOperation>flatten(res);
         cb.onSuccess(_flatten);

@@ -18,22 +18,27 @@ import java.util.Date;
 public class SyncValueOperations {
   public static ItemMetadata createMetadata(final Node node, final FileItem forFile) {
     return new ItemMetadata() {
+      @Override
       public String name() {
         return forFile.getName();
       }
       
+      @Override
       public Date lastModified() {
         return forFile.lastModified();
       }
       
+      @Override
       public String uri() {
         return node.uri();
       }
       
+      @Override
       public String hash() {
         return forFile.hash();
       }
       
+      @Override
       public String converter() {
         return "";
       }
@@ -84,6 +89,7 @@ public class SyncValueOperations {
       String _text = file.getText();
       final Query qry = node.setValueSafe(_text);
       final ExceptionListener _function = new ExceptionListener() {
+        @Override
         public void onFailure(final ExceptionResult it) {
           Throwable _exception = it.exception();
           cb.onFailure(_exception);
@@ -91,6 +97,7 @@ public class SyncValueOperations {
       };
       qry.catchExceptions(_function);
       final Closure<Node> _function_1 = new Closure<Node>() {
+        @Override
         public void apply(final Node it) {
           FileItem _get = folder.get("value.txt");
           ItemMetadata _createMetadata = SyncValueOperations.createMetadata(node, _get);

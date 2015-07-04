@@ -3,9 +3,9 @@ package com.appjangle.filesync.internal.engine
 import com.appjangle.filesync.ItemMetadata
 import com.appjangle.filesync.Metadata
 import com.google.common.base.Preconditions
-import de.mxro.async.callbacks.ValueCallback
 import de.mxro.file.FileItem
 import de.mxro.fn.Success
+import delight.async.callbacks.ValueCallback
 import io.nextweb.Node
 
 class SyncValueOperations {

@@ -3,7 +3,7 @@ package com.appjangle.filesync.tests
 import com.appjangle.filesync.internal.engine.N
 import de.mxro.fn.Success
 import de.oehme.xtend.junit.JUnit
-import de.mxro.async.jre.Async
+import delight.async.jre.Async
 
 @JUnit
 class TestRemoveHtmlFile extends CheckUpdatesTemplate {

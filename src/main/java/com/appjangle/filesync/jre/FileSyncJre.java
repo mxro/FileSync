@@ -1,14 +1,24 @@
 package com.appjangle.filesync.jre;
 
+import com.appjangle.filesync.FileSync;
+import de.mxro.file.FileItem;
+import de.mxro.file.Jre.FilesJre;
+import de.mxro.fn.Success;
+import delight.async.Operation;
+import delight.async.callbacks.ValueCallback;
+import delight.async.jre.Async;
 import io.nextweb.Node;
 import java.io.File;
 
 @SuppressWarnings("all")
 public class FileSyncJre {
   public static void sync(final File folder, final Node node) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field Async is undefined for the type FileSyncJre"
-      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or put the closures into a typed context."
-      + "\nwaitFor cannot be resolved");
+    final Operation<Success> _function = new Operation<Success>() {
+      public void apply(final ValueCallback<Success> cb) {
+        FileItem _wrap = FilesJre.wrap(folder);
+        FileSync.sync(_wrap, node, cb);
+      }
+    };
+    Async.<Success>waitFor(_function);
   }
 }

@@ -1,9 +1,9 @@
 package com.appjangle.filesync
 
-import de.mxro.async.callbacks.ValueCallback
 import de.mxro.fn.Closure2
-import java.util.List
+import delight.async.callbacks.ValueCallback
 import io.nextweb.promise.NextwebOperation
+import java.util.List
 
 interface NetworkOperation extends Closure2<NetworkOperationContext, ValueCallback<List<NextwebOperation<?>>>> {
 	

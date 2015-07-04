@@ -1,8 +1,8 @@
 package com.appjangle.filesync.tests
 
 import com.appjangle.filesync.FileSync
+import delight.async.jre.Async
 import org.junit.Test
-import de.mxro.async.jre.Async
 
 abstract class CheckUpdatesTemplate extends CheckNodesToFilesTemplate {
 	

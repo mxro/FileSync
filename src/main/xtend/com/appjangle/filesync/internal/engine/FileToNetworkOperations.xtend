@@ -4,13 +4,12 @@ import com.appjangle.filesync.ItemMetadata
 import com.appjangle.filesync.Metadata
 import com.appjangle.filesync.NetworkOperation
 import com.appjangle.filesync.SyncParams
-import de.mxro.async.callbacks.ValueCallback
 import de.mxro.file.FileItem
 import de.mxro.fn.collections.CollectionsUtils
+import delight.async.AsyncCommon
+import delight.async.callbacks.ValueCallback
 import java.util.ArrayList
 import java.util.List
-import de.mxro.async.AsyncCommon
-
 
 /**
  * Determines operations performed on local files which need to be uploaded to the cloud.

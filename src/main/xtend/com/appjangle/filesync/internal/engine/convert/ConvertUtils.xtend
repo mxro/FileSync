@@ -5,19 +5,18 @@ import com.appjangle.filesync.Metadata
 import com.appjangle.filesync.NetworkOperation
 import com.appjangle.filesync.internal.engine.FileUtils
 import com.appjangle.filesync.internal.engine.N
-import de.mxro.async.callbacks.ValueCallback
 import de.mxro.file.FileItem
+import delight.async.AsyncCommon
+import delight.async.callbacks.ValueCallback
+import static extension delight.async.AsyncCommon.*
 import io.nextweb.Link
 import io.nextweb.Node
 import io.nextweb.Query
+import io.nextweb.promise.NextwebOperation
 import io.nextweb.utils.data.NextwebDataExtension
 import java.util.ArrayList
 import java.util.LinkedList
 import java.util.List
-
-import static extension de.mxro.async.AsyncCommon.embed
-import de.mxro.async.AsyncCommon
-import io.nextweb.promise.NextwebOperation
 
 class ConvertUtils {
 

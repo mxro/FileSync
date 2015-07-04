@@ -4,16 +4,14 @@ import com.appjangle.filesync.FileOperation
 import com.appjangle.filesync.ItemMetadata
 import com.appjangle.filesync.Metadata
 import com.appjangle.filesync.SyncParams
-import de.mxro.async.Value
-import de.mxro.async.callbacks.ValueCallback
 import de.mxro.fn.collections.CollectionsUtils
+import delight.async.AsyncCommon
+import delight.async.Value
+import delight.async.callbacks.ValueCallback
+import static extension delight.async.AsyncCommon.*
 import io.nextweb.Node
 import java.util.ArrayList
 import java.util.List
-
-import static extension de.mxro.async.AsyncCommon.*
-import de.mxro.async.AsyncCommon
-
 
 /**
  * Determines operations to be performed on local files based on remote changes made in the cloud.

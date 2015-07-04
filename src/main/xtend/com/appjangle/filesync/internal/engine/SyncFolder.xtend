@@ -2,11 +2,9 @@ package com.appjangle.filesync.internal.engine
 
 import com.appjangle.filesync.Metadata
 import com.appjangle.filesync.SyncParams
-import de.mxro.async.callbacks.ValueCallback
 import de.mxro.fn.Success
-
-import static extension de.mxro.async.AsyncCommon.embed
-
+import delight.async.callbacks.ValueCallback
+import static extension delight.async.AsyncCommon.*
 
 class SyncFolder {
 

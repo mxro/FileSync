@@ -4,6 +4,7 @@ import com.appjangle.filesync.FileSync
 import com.appjangle.jre.AppjangleJre
 import de.mxro.file.FileItem
 import de.mxro.file.Jre.FilesJre
+import delight.async.jre.Async
 import io.nextweb.Node
 import io.nextweb.Session
 import io.nextweb.common.LocalServer
@@ -13,7 +14,6 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TemporaryFolder
-import de.mxro.async.jre.Async
 
 abstract class CheckNodesToFilesTemplate {
 

@@ -3,40 +3,24 @@ package com.appjangle.filesync.internal.engine.convert;
 import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.NetworkOperation;
-import com.appjangle.filesync.NetworkOperationContext;
 import com.appjangle.filesync.internal.engine.FileUtils;
 import com.appjangle.filesync.internal.engine.N;
 import com.google.common.base.Objects;
-import de.mxro.async.AsyncCommon;
-import de.mxro.async.callbacks.ValueCallback;
-import de.mxro.async.helper.Aggregator;
 import de.mxro.file.FileItem;
-import de.mxro.fn.Closure;
-import de.mxro.fn.Success;
 import io.nextweb.Link;
-import io.nextweb.LinkList;
-import io.nextweb.LinkListQuery;
 import io.nextweb.Node;
 import io.nextweb.Query;
 import io.nextweb.Session;
 import io.nextweb.promise.NextwebOperation;
-import io.nextweb.promise.NextwebPromise;
-import io.nextweb.promise.exceptions.ExceptionListener;
-import io.nextweb.promise.exceptions.ExceptionResult;
-import io.nextweb.promise.exceptions.UndefinedListener;
-import io.nextweb.promise.exceptions.UndefinedResult;
 import io.nextweb.utils.data.NextwebDataExtension;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Extension;
-import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.Pair;
-import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 
 @SuppressWarnings("all")
 public class ConvertUtils {
@@ -59,64 +43,19 @@ public class ConvertUtils {
     return _keySet.contains(_uri);
   }
   
-  public void getFileExtension(final Node forNode, final ValueCallback<String> cb) {
-    final LinkListQuery qry = forNode.selectAllLinks();
-    final ExceptionListener _function = new ExceptionListener() {
-      public void onFailure(final ExceptionResult er) {
-        Throwable _exception = er.exception();
-        cb.onFailure(_exception);
-      }
-    };
-    qry.catchExceptions(_function);
-    final Closure<LinkList> _function_1 = new Closure<LinkList>() {
-      public void apply(final LinkList links) {
-        Set<Map.Entry<String, String>> _entrySet = ConvertUtils.this.textValueExtensions.entrySet();
-        for (final Map.Entry<String, String> mapping : _entrySet) {
-          String _key = mapping.getKey();
-          boolean _contains = links.contains(_key);
-          if (_contains) {
-            String _value = mapping.getValue();
-            cb.onSuccess(_value);
-            return;
-          }
-        }
-      }
-    };
-    qry.get(_function_1);
+  public void getFileExtension(final Node forNode, final /* ValueCallback<String> */Object cb) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nonFailure cannot be resolved"
+      + "\nonSuccess cannot be resolved");
   }
   
-  public void deleteNodes(final Metadata metadata, final ItemMetadata cachedFile, final ValueCallback<List<NetworkOperation>> cb) {
-    final String address = cachedFile.uri();
-    final LinkedList<NetworkOperation> ops = new LinkedList<NetworkOperation>();
-    final NetworkOperation _function = new NetworkOperation() {
-      public void apply(final NetworkOperationContext ctx, final ValueCallback<List<NextwebOperation<?>>> opscb) {
-        String _name = cachedFile.name();
-        metadata.remove(_name);
-        Session _session = ctx.session();
-        final Link nodeToBeRemoved = _session.link(address);
-        final Node parent = ctx.parent();
-        final ArrayList<NextwebOperation<?>> list = new ArrayList<NextwebOperation<?>>();
-        Session _session_1 = parent.session();
-        Link _link = _session_1.link(parent);
-        boolean _hasDirectChild = ConvertUtils.this.ext.hasDirectChild(_link, nodeToBeRemoved);
-        if (_hasDirectChild) {
-          final Closure<List<NextwebPromise<Success>>> _function = new Closure<List<NextwebPromise<Success>>>() {
-            public void apply(final List<NextwebPromise<Success>> res) {
-              list.addAll(res);
-              opscb.onSuccess(list);
-            }
-          };
-          ValueCallback<List<NextwebPromise<Success>>> _embed = AsyncCommon.<List<NextwebPromise<Success>>>embed(opscb, _function);
-          ConvertUtils.this.ext.removeSafeRecursive(parent, nodeToBeRemoved, _embed);
-        } else {
-          NextwebPromise<Success> _removeSafe = parent.removeSafe(nodeToBeRemoved);
-          list.add(_removeSafe);
-          opscb.onSuccess(list);
-        }
-      }
-    };
-    ops.add(_function);
-    cb.onSuccess(ops);
+  public Object deleteNodes(final Metadata metadata, final ItemMetadata cachedFile, final /* ValueCallback<List<NetworkOperation>> */Object cb) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or put the closures into a typed context."
+      + "\nembed cannot be resolved"
+      + "\nonSuccess cannot be resolved"
+      + "\nonSuccess cannot be resolved"
+      + "\nonSuccess cannot be resolved");
   }
   
   public Query appendLabel(final Query toNode, final String label) {
@@ -234,70 +173,26 @@ public class ConvertUtils {
   
   public final static Object NO_VALUE = new Object();
   
-  public void getFileName(final Node forNode, final FileItem inFolder, final String fileExtension, final ValueCallback<String> cb) {
-    final Closure<String> _function = new Closure<String>() {
-      public void apply(final String fileNameFromNode) {
-        String fileName = (fileNameFromNode + fileExtension);
-        int idx = 1;
-        while (inFolder.get(fileName).exists()) {
-          {
-            fileName = ((fileNameFromNode + Integer.valueOf(idx)) + fileExtension);
-            idx++;
-          }
-        }
-        cb.onSuccess(fileName);
-      }
-    };
-    ValueCallback<String> _embed = AsyncCommon.<String>embed(cb, _function);
-    this.getFileName(forNode, _embed);
+  public void getFileName(final Node forNode, final FileItem inFolder, final String fileExtension, final /* ValueCallback<String> */Object cb) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nType mismatch: cannot convert from int to Iterable<?>"
+      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or put the closures into a typed context."
+      + "\nembed cannot be resolved"
+      + "\nonSuccess cannot be resolved");
   }
   
-  public void getFileName(final Node fromNode, final ValueCallback<String> cb) {
-    int _size = this.labelTypes.size();
-    final Closure<List<Object>> _function = new Closure<List<Object>>() {
-      public void apply(final List<Object> res) {
-        for (final Object item : res) {
-          if ((item instanceof String)) {
-            cb.onSuccess(((String)item));
-            return;
-          }
-        }
-        String _uri = fromNode.uri();
-        String _nameFromUri = ConvertUtils.getNameFromUri(_uri);
-        cb.onSuccess(_nameFromUri);
-      }
-    };
-    ValueCallback<List<Object>> _embed = AsyncCommon.<List<Object>>embed(cb, _function);
-    final Aggregator<Object> cbs = AsyncCommon.<Object>collect(_size, _embed);
-    final Procedure1<String> _function_1 = new Procedure1<String>() {
-      public void apply(final String labelType) {
-        Session _session = fromNode.session();
-        Link _link = _session.link(labelType);
-        final Query qry = fromNode.select(_link);
-        final ValueCallback<Object> itmcb = cbs.createCallback();
-        final UndefinedListener _function = new UndefinedListener() {
-          public void onUndefined(final UndefinedResult it) {
-            itmcb.onSuccess(ConvertUtils.NO_VALUE);
-          }
-        };
-        qry.catchUndefined(_function);
-        final ExceptionListener _function_1 = new ExceptionListener() {
-          public void onFailure(final ExceptionResult er) {
-            Throwable _exception = er.exception();
-            itmcb.onFailure(_exception);
-          }
-        };
-        qry.catchExceptions(_function_1);
-        final Closure<Node> _function_2 = new Closure<Node>() {
-          public void apply(final Node label) {
-            Object _value = label.value();
-            itmcb.onSuccess(_value);
-          }
-        };
-        qry.get(_function_2);
-      }
-    };
-    IterableExtensions.<String>forEach(this.labelTypes, _function_1);
+  public void getFileName(final Node fromNode, final /* ValueCallback<String> */Object cb) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field AsyncCommon is undefined for the type ConvertUtils"
+      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or put the closures into a typed context."
+      + "\ncollect cannot be resolved"
+      + "\nembed cannot be resolved"
+      + "\nonSuccess cannot be resolved"
+      + "\nonSuccess cannot be resolved"
+      + "\ncreateCallback cannot be resolved"
+      + "\nonSuccess cannot be resolved"
+      + "\nonFailure cannot be resolved"
+      + "\nonSuccess cannot be resolved");
   }
   
   public static String getNameFromUri(final String uri) {

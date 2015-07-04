@@ -1,10 +1,6 @@
 package com.appjangle.filesync.tests;
 
-import com.appjangle.filesync.FileSync;
 import com.appjangle.jre.AppjangleJre;
-import de.mxro.async.Operation;
-import de.mxro.async.callbacks.ValueCallback;
-import de.mxro.async.jre.Async;
 import de.mxro.file.FileItem;
 import de.mxro.file.Jre.FilesJre;
 import de.mxro.fn.Success;
@@ -65,22 +61,10 @@ public abstract class CheckNodesToFilesTemplate {
   
   @Test
   public void test() {
-    this.step1_defineData();
-    NextwebPromise<Success> _commit = this.session.commit();
-    _commit.get();
-    final Operation<Success> _function = new Operation<Success>() {
-      public void apply(final ValueCallback<Success> cb) {
-        boolean _doRecursiveSync = CheckNodesToFilesTemplate.this.doRecursiveSync();
-        boolean _not = (!_doRecursiveSync);
-        if (_not) {
-          FileSync.syncSingleFolder(CheckNodesToFilesTemplate.this.result, CheckNodesToFilesTemplate.this.source, cb);
-        } else {
-          FileSync.sync(CheckNodesToFilesTemplate.this.result, CheckNodesToFilesTemplate.this.source, cb);
-        }
-      }
-    };
-    Async.<Success>waitFor(_function);
-    this.step2_assertFiles();
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field Async is undefined for the type CheckNodesToFilesTemplate"
+      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or put the closures into a typed context."
+      + "\nwaitFor cannot be resolved");
   }
   
   @After

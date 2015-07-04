@@ -2,20 +2,10 @@ package com.appjangle.filesync.tests;
 
 import com.appjangle.filesync.internal.engine.N;
 import com.appjangle.filesync.tests.CheckUpdatesTemplate;
-import de.mxro.async.Operation;
-import de.mxro.async.callbacks.ValueCallback;
-import de.mxro.async.jre.Async;
 import de.mxro.file.FileItem;
-import de.mxro.fn.Closure;
-import de.mxro.fn.Success;
 import de.oehme.xtend.junit.JUnit;
 import io.nextweb.Link;
-import io.nextweb.Node;
 import io.nextweb.Query;
-import io.nextweb.promise.exceptions.ExceptionListener;
-import io.nextweb.promise.exceptions.ExceptionResult;
-import io.nextweb.promise.exceptions.UndefinedListener;
-import io.nextweb.promise.exceptions.UndefinedResult;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
@@ -81,32 +71,13 @@ public class TestRemoveHtmlFile extends CheckUpdatesTemplate {
   }
   
   protected void step6_assertNodesAfterUpdate() {
-    final Operation<Success> _function = new Operation<Success>() {
-      public void apply(final ValueCallback<Success> cb) {
-        final Query qry = TestRemoveHtmlFile.this.source.select("./file2");
-        final ExceptionListener _function = new ExceptionListener() {
-          public void onFailure(final ExceptionResult er) {
-            Throwable _exception = er.exception();
-            cb.onFailure(_exception);
-          }
-        };
-        qry.catchExceptions(_function);
-        final UndefinedListener _function_1 = new UndefinedListener() {
-          public void onUndefined(final UndefinedResult it) {
-            cb.onSuccess(Success.INSTANCE);
-          }
-        };
-        qry.catchUndefined(_function_1);
-        final Closure<Node> _function_2 = new Closure<Node>() {
-          public void apply(final Node it) {
-            Exception _exception = new Exception("Node should have been removed.");
-            cb.onFailure(_exception);
-          }
-        };
-        qry.get(_function_2);
-      }
-    };
-    Async.<Success>waitFor(_function);
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field Async is undefined for the type TestRemoveHtmlFile"
+      + "\nThe method onFailure is undefined for the type TestRemoveHtmlFile"
+      + "\nThe method onSuccess is undefined for the type TestRemoveHtmlFile"
+      + "\nThe method onFailure is undefined for the type TestRemoveHtmlFile"
+      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or put the closures into a typed context."
+      + "\nwaitFor cannot be resolved");
   }
   
   @Extension

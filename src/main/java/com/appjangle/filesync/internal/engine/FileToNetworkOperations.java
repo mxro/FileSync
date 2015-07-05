@@ -1,16 +1,14 @@
 package com.appjangle.filesync.internal.engine;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.NetworkOperation;
 import com.appjangle.filesync.SyncParams;
-
 import de.mxro.file.FileItem;
 import delight.async.callbacks.ValueCallback;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Determines operations performed on local files which need to be uploaded to the cloud.

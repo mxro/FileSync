@@ -1,18 +1,16 @@
 package com.appjangle.filesync.internal.engine;
 
-import java.util.Collections;
-import java.util.List;
-
-import org.eclipse.xtext.xbase.lib.CollectionLiterals;
-import org.eclipse.xtext.xbase.lib.Conversions;
-import org.eclipse.xtext.xbase.lib.ExclusiveRange;
-
 import com.appjangle.filesync.FileOperation;
+import com.appjangle.filesync.FileOperationContext;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.internal.engine.metadata.MetadataImpl;
 import com.appjangle.filesync.internal.engine.metadata.MetadataUtilsJre;
-
 import de.mxro.file.FileItem;
+import java.util.Collections;
+import java.util.List;
+import org.eclipse.xtext.xbase.lib.CollectionLiterals;
+import org.eclipse.xtext.xbase.lib.Conversions;
+import org.eclipse.xtext.xbase.lib.ExclusiveRange;
 
 @SuppressWarnings("all")
 public class FileUtils {
@@ -54,8 +52,20 @@ public class FileUtils {
   }
   
   public void execute(final List<FileOperation> operations, final FileItem withFolder, final Metadata withMetadata) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method apply is undefined for the type FileUtils");
+    final FileOperationContext ctx = new FileOperationContext() {
+      @Override
+      public FileItem folder() {
+        return withFolder;
+      }
+      
+      @Override
+      public Metadata metadata() {
+        return withMetadata;
+      }
+    };
+    for (final FileOperation op : operations) {
+      op.apply(ctx);
+    }
   }
   
   /**

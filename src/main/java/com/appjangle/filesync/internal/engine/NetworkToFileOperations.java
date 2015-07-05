@@ -1,17 +1,14 @@
 package com.appjangle.filesync.internal.engine;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.appjangle.filesync.FileOperation;
 import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.SyncParams;
 import com.google.common.base.Objects;
-
 import delight.async.callbacks.ValueCallback;
-import io.nextweb.LinkList;
 import io.nextweb.Node;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Determines operations to be performed on local files based on remote changes made in the cloud.
@@ -27,19 +24,9 @@ public class NetworkToFileOperations {
     this.metadata = metadata;
   }
   
-  public LinkList determineOps(final ValueCallback<List<FileOperation>> cb) {
+  public void determineOps(final ValueCallback<List<FileOperation>> cb) {
     throw new Error("Unresolved compilation problems:"
-      + "\nThe method links is undefined for the type NetworkToFileOperations"
       + "\nThe method or field CollectionsUtils is undefined for the type NetworkToFileOperations"
-      + "\nThe method catchUnauthorized is undefined for the type NetworkToFileOperations"
-      + "\nThe method catchUndefined is undefined for the type NetworkToFileOperations"
-      + "\nThe method catchExceptions is undefined for the type NetworkToFileOperations"
-      + "\nThe method or field exception is undefined for the type NetworkToFileOperations"
-      + "\nThe method get is undefined for the type NetworkToFileOperations"
-      + "\nInvalid number of arguments. The method get() is not applicable for the arguments ((Object)=>void)"
-      + "\nType mismatch: cannot convert from Object to Link"
-      + "\nType mismatch: cannot convert from Object to Link"
-      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or put the closures into a typed context."
       + "\nflatten cannot be resolved");
   }
   

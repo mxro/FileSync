@@ -1,7 +1,7 @@
 package com.appjangle.filesync
 
-import de.mxro.fn.Closure2
 import delight.async.callbacks.ValueCallback
+import delight.functional.Closure2
 import io.nextweb.promise.NextwebOperation
 import java.util.List
 

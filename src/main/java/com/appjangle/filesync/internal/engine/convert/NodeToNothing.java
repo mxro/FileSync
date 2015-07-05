@@ -1,25 +1,23 @@
 package com.appjangle.filesync.internal.engine.convert;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.eclipse.xtext.xbase.lib.CollectionLiterals;
-
 import com.appjangle.filesync.Converter;
 import com.appjangle.filesync.FileOperation;
 import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.NetworkOperation;
-
 import de.mxro.file.FileItem;
 import delight.async.callbacks.ValueCallback;
+import delight.functional.Closure2;
 import io.nextweb.Node;
+import java.util.ArrayList;
+import java.util.List;
+import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 
 @SuppressWarnings("all")
 public class NodeToNothing implements Converter {
-  private final /* Closure2<Node, ValueCallback<Boolean>> */Object test;
+  private final Closure2<Node, ValueCallback<Boolean>> test;
   
-  public NodeToNothing(final /* Closure2<Node, ValueCallback<Boolean>> */Object test) {
+  public NodeToNothing(final Closure2<Node, ValueCallback<Boolean>> test) {
     this.test = test;
   }
   
@@ -30,8 +28,7 @@ public class NodeToNothing implements Converter {
   
   @Override
   public void worksOn(final Node node, final ValueCallback<Boolean> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\napply cannot be resolved");
+    this.test.apply(node, cb);
   }
   
   @Override

@@ -1,10 +1,13 @@
 package com.appjangle.filesync;
 
-import java.util.List;
-
+import com.appjangle.filesync.FileOperation;
+import com.appjangle.filesync.ItemMetadata;
+import com.appjangle.filesync.Metadata;
+import com.appjangle.filesync.NetworkOperation;
 import de.mxro.file.FileItem;
 import delight.async.callbacks.ValueCallback;
 import io.nextweb.Node;
+import java.util.List;
 
 @SuppressWarnings("all")
 public interface Converter {

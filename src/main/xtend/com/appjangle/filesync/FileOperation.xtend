@@ -1,6 +1,6 @@
 package com.appjangle.filesync
 
-import de.mxro.fn.Closure
+import delight.functional.Closure
 
 interface FileOperation extends Closure<FileOperationContext> {
 	

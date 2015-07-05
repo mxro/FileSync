@@ -2,18 +2,7 @@ package com.appjangle.filesync.tests;
 
 import com.appjangle.filesync.tests.CheckUpdatesTemplate;
 import de.mxro.file.FileItem;
-import de.mxro.fn.Closure;
-import de.mxro.fn.Success;
 import de.oehme.xtend.junit.JUnit;
-import delight.async.Operation;
-import delight.async.callbacks.ValueCallback;
-import delight.async.jre.Async;
-import io.nextweb.Node;
-import io.nextweb.Query;
-import io.nextweb.promise.exceptions.ExceptionListener;
-import io.nextweb.promise.exceptions.ExceptionResult;
-import io.nextweb.promise.exceptions.UndefinedListener;
-import io.nextweb.promise.exceptions.UndefinedResult;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
 import org.hamcrest.Matcher;
@@ -42,8 +31,8 @@ public class TestRemoveFolder extends CheckUpdatesTemplate {
   
   @Override
   protected void step3_updateNodes() {
-    Query _select = this.source.select("./folder1");
-    this.source.remove(_select);
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method remove is undefined for the type TestRemoveFolder");
   }
   
   @Override
@@ -60,36 +49,10 @@ public class TestRemoveFolder extends CheckUpdatesTemplate {
   
   @Override
   protected void step6_assertNodesAfterUpdate() {
-    final Operation<Success> _function = new Operation<Success>() {
-      @Override
-      public void apply(final ValueCallback<Success> cb) {
-        final Query qry = TestRemoveFolder.this.source.select("./folder2");
-        final ExceptionListener _function = new ExceptionListener() {
-          @Override
-          public void onFailure(final ExceptionResult er) {
-            Throwable _exception = er.exception();
-            cb.onFailure(_exception);
-          }
-        };
-        qry.catchExceptions(_function);
-        final UndefinedListener _function_1 = new UndefinedListener() {
-          @Override
-          public void onUndefined(final UndefinedResult it) {
-            cb.onSuccess(Success.INSTANCE);
-          }
-        };
-        qry.catchUndefined(_function_1);
-        final Closure<Node> _function_2 = new Closure<Node>() {
-          @Override
-          public void apply(final Node it) {
-            Exception _exception = new Exception("Node should have been removed.");
-            cb.onFailure(_exception);
-          }
-        };
-        qry.get(_function_2);
-      }
-    };
-    Async.<Success>waitFor(_function);
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field Success is undefined for the type TestRemoveFolder"
+      + "\nInvalid number of arguments. The method get() is not applicable for the arguments ((Object)=>void)"
+      + "\nINSTANCE cannot be resolved");
   }
   
   private static void assertArrayEquals(final Object[] expecteds, final Object[] actuals) {

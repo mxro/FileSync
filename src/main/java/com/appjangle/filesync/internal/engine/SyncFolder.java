@@ -1,6 +1,5 @@
 package com.appjangle.filesync.internal.engine;
 
-import com.appjangle.filesync.FileOperation;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.NetworkOperation;
 import com.appjangle.filesync.SyncNotifications;
@@ -8,14 +7,12 @@ import com.appjangle.filesync.SyncParams;
 import com.appjangle.filesync.SynchronizationSettings;
 import com.appjangle.filesync.internal.engine.FileToNetworkOperations;
 import com.appjangle.filesync.internal.engine.FileUtils;
-import com.appjangle.filesync.internal.engine.NetworkToFileOperations;
 import com.appjangle.filesync.internal.engine.NetworkUtils;
 import com.appjangle.filesync.internal.engine.SyncValueOperations;
 import de.mxro.file.FileItem;
-import de.mxro.fn.Closure;
-import de.mxro.fn.Success;
 import delight.async.AsyncCommon;
 import delight.async.callbacks.ValueCallback;
+import delight.functional.Closure;
 import io.nextweb.Node;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.Extension;
@@ -30,7 +27,7 @@ public class SyncFolder {
   
   private Metadata metadata;
   
-  public void doIt(final ValueCallback<Success> cb) {
+  public void doIt(final /* ValueCallback<Success> */Object cb) {
     SyncNotifications _notifications = this.params.getNotifications();
     FileItem _folder = this.params.getFolder();
     Node _node = this.params.getNode();
@@ -84,39 +81,12 @@ public class SyncFolder {
     _syncValueOperations.uploadValue(_node_1, this.metadata, _folder_4, _embed);
   }
   
-  public void download(final ValueCallback<Success> cb) {
-    SynchronizationSettings _settings = this.params.getSettings();
-    boolean _isDownload = _settings.isDownload();
-    boolean _not = (!_isDownload);
-    if (_not) {
-      SyncNotifications _notifications = this.params.getNotifications();
-      FileItem _folder = this.params.getFolder();
-      Node _node = this.params.getNode();
-      _notifications.onFinishedSynchronizing(_folder, _node);
-      cb.onSuccess(Success.INSTANCE);
-      return;
-    }
-    SyncValueOperations _syncValueOperations = new SyncValueOperations();
-    Node _node_1 = this.params.getNode();
-    FileItem _folder_1 = this.params.getFolder();
-    _syncValueOperations.downloadValue(_node_1, this.metadata, _folder_1);
-    NetworkToFileOperations _networkToFileOperations = new NetworkToFileOperations(this.params, this.metadata);
-    final Closure<List<FileOperation>> _function = new Closure<List<FileOperation>>() {
-      @Override
-      public void apply(final List<FileOperation> ops) {
-        FileItem _folder = SyncFolder.this.params.getFolder();
-        SyncFolder.this.fileUtils.execute(ops, _folder, SyncFolder.this.metadata);
-        FileItem _folder_1 = SyncFolder.this.params.getFolder();
-        SyncFolder.this.fileUtils.saveMetadata(_folder_1, SyncFolder.this.metadata);
-        SyncNotifications _notifications = SyncFolder.this.params.getNotifications();
-        FileItem _folder_2 = SyncFolder.this.params.getFolder();
-        Node _node = SyncFolder.this.params.getNode();
-        _notifications.onFinishedSynchronizing(_folder_2, _node);
-        cb.onSuccess(Success.INSTANCE);
-      }
-    };
-    ValueCallback<List<FileOperation>> _embed = AsyncCommon.<List<FileOperation>>embed(cb, _function);
-    _networkToFileOperations.determineOps(_embed);
+  public void download(final /* ValueCallback<Success> */Object cb) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method or field Success is undefined for the type SyncFolder"
+      + "\nThe method or field Success is undefined for the type SyncFolder"
+      + "\nINSTANCE cannot be resolved"
+      + "\nINSTANCE cannot be resolved");
   }
   
   @Extension

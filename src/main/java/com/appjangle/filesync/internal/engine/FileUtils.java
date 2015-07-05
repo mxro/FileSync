@@ -1,7 +1,6 @@
 package com.appjangle.filesync.internal.engine;
 
 import com.appjangle.filesync.FileOperation;
-import com.appjangle.filesync.FileOperationContext;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.internal.engine.metadata.MetadataImpl;
 import com.appjangle.filesync.internal.engine.metadata.MetadataUtilsJre;
@@ -52,20 +51,8 @@ public class FileUtils {
   }
   
   public void execute(final List<FileOperation> operations, final FileItem withFolder, final Metadata withMetadata) {
-    final FileOperationContext ctx = new FileOperationContext() {
-      @Override
-      public FileItem folder() {
-        return withFolder;
-      }
-      
-      @Override
-      public Metadata metadata() {
-        return withMetadata;
-      }
-    };
-    for (final FileOperation op : operations) {
-      op.apply(ctx);
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method apply is undefined for the type FileUtils");
   }
   
   /**

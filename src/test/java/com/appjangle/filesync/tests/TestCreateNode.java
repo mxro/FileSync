@@ -4,12 +4,6 @@ import com.appjangle.filesync.internal.engine.N;
 import com.appjangle.filesync.tests.CheckFilesToNodesTemplate;
 import de.oehme.xtend.junit.Hamcrest;
 import de.oehme.xtend.junit.JUnit;
-import io.nextweb.Link;
-import io.nextweb.ListQuery;
-import io.nextweb.Node;
-import io.nextweb.NodeList;
-import io.nextweb.Query;
-import io.nextweb.Session;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
 import org.hamcrest.CoreMatchers;
@@ -32,21 +26,9 @@ public class TestCreateNode extends CheckFilesToNodesTemplate {
   
   @Override
   protected void step2_assertNodes() {
-    ListQuery _selectAll = this.result.selectAll();
-    NodeList _get = _selectAll.get();
-    int _size = _get.size();
-    TestCreateNode.<Integer, Integer>operator_doubleArrow(Integer.valueOf(_size), Integer.valueOf(1));
-    Query _select = this.result.select("./Oh_my_test");
-    final Node node = _select.get();
-    Matcher<Object> _notNullValue = TestCreateNode.notNullValue();
-    this.<Node>operator_doubleArrow(node, _notNullValue);
-    Session _session = node.session();
-    Link _LABEL = this.n.LABEL(_session);
-    Query _select_1 = node.select(_LABEL);
-    Node _get_1 = _select_1.get();
-    Object _value = _get_1.value();
-    Matcher<Object> _equalTo = TestCreateNode.<Object>equalTo("Oh my test");
-    this.<Object>operator_doubleArrow(_value, _equalTo);
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method size is undefined for the type TestCreateNode"
+      + "\n=> cannot be resolved");
   }
   
   @Extension

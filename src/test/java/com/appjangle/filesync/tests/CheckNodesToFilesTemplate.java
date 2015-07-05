@@ -1,18 +1,12 @@
 package com.appjangle.filesync.tests;
 
-import com.appjangle.filesync.FileSync;
 import com.appjangle.jre.AppjangleJre;
 import de.mxro.file.FileItem;
 import de.mxro.file.Jre.FilesJre;
-import de.mxro.fn.Success;
-import delight.async.Operation;
-import delight.async.callbacks.ValueCallback;
-import delight.async.jre.Async;
 import io.nextweb.Node;
 import io.nextweb.Query;
 import io.nextweb.Session;
 import io.nextweb.common.LocalServer;
-import io.nextweb.promise.NextwebPromise;
 import java.io.File;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.junit.After;
@@ -65,30 +59,17 @@ public abstract class CheckNodesToFilesTemplate {
   
   @Test
   public void test() {
-    this.step1_defineData();
-    NextwebPromise<Success> _commit = this.session.commit();
-    _commit.get();
-    final Operation<Success> _function = new Operation<Success>() {
-      @Override
-      public void apply(final ValueCallback<Success> cb) {
-        boolean _doRecursiveSync = CheckNodesToFilesTemplate.this.doRecursiveSync();
-        boolean _not = (!_doRecursiveSync);
-        if (_not) {
-          FileSync.syncSingleFolder(CheckNodesToFilesTemplate.this.result, CheckNodesToFilesTemplate.this.source, cb);
-        } else {
-          FileSync.sync(CheckNodesToFilesTemplate.this.result, CheckNodesToFilesTemplate.this.source, cb);
-        }
-      }
-    };
-    Async.<Success>waitFor(_function);
-    this.step2_assertFiles();
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method commit is undefined for the type CheckNodesToFilesTemplate"
+      + "\nget cannot be resolved");
   }
   
   @After
   public void tearDown() {
-    NextwebPromise<Success> _close = this.session.close();
-    _close.get();
-    NextwebPromise<Success> _shutdown = this.server.shutdown();
-    _shutdown.get();
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method close is undefined for the type CheckNodesToFilesTemplate"
+      + "\nThe method shutdown is undefined for the type CheckNodesToFilesTemplate"
+      + "\nget cannot be resolved"
+      + "\nget cannot be resolved");
   }
 }

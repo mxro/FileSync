@@ -5,11 +5,6 @@ import com.appjangle.filesync.tests.CheckFilesToNodesTemplate;
 import de.mxro.file.FileItem;
 import de.oehme.xtend.junit.Hamcrest;
 import de.oehme.xtend.junit.JUnit;
-import io.nextweb.Link;
-import io.nextweb.ListQuery;
-import io.nextweb.Node;
-import io.nextweb.NodeList;
-import io.nextweb.Query;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
 import org.hamcrest.CoreMatchers;
@@ -39,54 +34,15 @@ public class TestCreateVariousNodeTypes extends CheckFilesToNodesTemplate {
   
   @Override
   protected void step2_assertNodes() {
-    Link _CSS = this.n.CSS(this.session);
-    ListQuery _selectAll = this.result.selectAll(_CSS);
-    NodeList _get = _selectAll.get();
-    int _size = _get.size();
-    Matcher<Integer> _equalTo = TestCreateVariousNodeTypes.<Integer>equalTo(Integer.valueOf(1));
-    this.<Integer>operator_doubleArrow(Integer.valueOf(_size), _equalTo);
-    Link _CSS_1 = this.n.CSS(this.session);
-    Query _select = this.result.select(_CSS_1);
-    Node _get_1 = _select.get();
-    Object _value = _get_1.value();
-    Matcher<Object> _equalTo_1 = TestCreateVariousNodeTypes.<Object>equalTo(".class {}");
-    this.<Object>operator_doubleArrow(_value, _equalTo_1);
-    Link _JAVASCRIPT = this.n.JAVASCRIPT(this.session);
-    ListQuery _selectAll_1 = this.result.selectAll(_JAVASCRIPT);
-    NodeList _get_2 = _selectAll_1.get();
-    int _size_1 = _get_2.size();
-    Matcher<Integer> _equalTo_2 = TestCreateVariousNodeTypes.<Integer>equalTo(Integer.valueOf(1));
-    this.<Integer>operator_doubleArrow(Integer.valueOf(_size_1), _equalTo_2);
-    Link _JAVASCRIPT_1 = this.n.JAVASCRIPT(this.session);
-    Query _select_1 = this.result.select(_JAVASCRIPT_1);
-    Node _get_3 = _select_1.get();
-    Object _value_1 = _get_3.value();
-    Matcher<Object> _equalTo_3 = TestCreateVariousNodeTypes.<Object>equalTo("window.alert(\'nothing much\');");
-    this.<Object>operator_doubleArrow(_value_1, _equalTo_3);
-    Link _COFFEESCRIPT = this.n.COFFEESCRIPT(this.session);
-    ListQuery _selectAll_2 = this.result.selectAll(_COFFEESCRIPT);
-    NodeList _get_4 = _selectAll_2.get();
-    int _size_2 = _get_4.size();
-    Matcher<Integer> _equalTo_4 = TestCreateVariousNodeTypes.<Integer>equalTo(Integer.valueOf(1));
-    this.<Integer>operator_doubleArrow(Integer.valueOf(_size_2), _equalTo_4);
-    Link _COFFEESCRIPT_1 = this.n.COFFEESCRIPT(this.session);
-    Query _select_2 = this.result.select(_COFFEESCRIPT_1);
-    Node _get_5 = _select_2.get();
-    Object _value_2 = _get_5.value();
-    Matcher<Object> _equalTo_5 = TestCreateVariousNodeTypes.<Object>equalTo("window.alert \'nothing much\'");
-    this.<Object>operator_doubleArrow(_value_2, _equalTo_5);
-    Link _TYPE = this.n.TYPE(this.session);
-    ListQuery _selectAll_3 = this.result.selectAll(_TYPE);
-    NodeList _get_6 = _selectAll_3.get();
-    int _size_3 = _get_6.size();
-    Matcher<Integer> _equalTo_6 = TestCreateVariousNodeTypes.<Integer>equalTo(Integer.valueOf(1));
-    this.<Integer>operator_doubleArrow(Integer.valueOf(_size_3), _equalTo_6);
-    Link _TYPE_1 = this.n.TYPE(this.session);
-    Query _select_3 = this.result.select(_TYPE_1);
-    Node _get_7 = _select_3.get();
-    Object _value_3 = _get_7.value();
-    Matcher<Object> _equalTo_7 = TestCreateVariousNodeTypes.<Object>equalTo("Something for my type");
-    this.<Object>operator_doubleArrow(_value_3, _equalTo_7);
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method size is undefined for the type TestCreateVariousNodeTypes"
+      + "\nThe method size is undefined for the type TestCreateVariousNodeTypes"
+      + "\nThe method size is undefined for the type TestCreateVariousNodeTypes"
+      + "\nThe method size is undefined for the type TestCreateVariousNodeTypes"
+      + "\n=> cannot be resolved"
+      + "\n=> cannot be resolved"
+      + "\n=> cannot be resolved"
+      + "\n=> cannot be resolved");
   }
   
   @Extension

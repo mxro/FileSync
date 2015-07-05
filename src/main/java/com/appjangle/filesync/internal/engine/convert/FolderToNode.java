@@ -2,26 +2,16 @@ package com.appjangle.filesync.internal.engine.convert;
 
 import com.appjangle.filesync.Converter;
 import com.appjangle.filesync.FileOperation;
-import com.appjangle.filesync.FileOperationContext;
 import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.NetworkOperation;
-import com.appjangle.filesync.NetworkOperationContext;
 import com.appjangle.filesync.internal.engine.FileUtils;
 import com.appjangle.filesync.internal.engine.N;
 import com.appjangle.filesync.internal.engine.convert.ConvertUtils;
 import de.mxro.file.FileItem;
-import de.mxro.fn.Closure;
-import delight.async.AsyncCommon;
 import delight.async.callbacks.ValueCallback;
-import io.nextweb.Link;
 import io.nextweb.Node;
-import io.nextweb.Query;
-import io.nextweb.Session;
-import io.nextweb.promise.NextwebOperation;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Extension;
@@ -40,62 +30,25 @@ public class FolderToNode implements Converter {
   
   @Override
   public void createNodes(final Metadata metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {
-    String _name = source.getName();
-    final String simpleName = this.futils.getSimpleName(_name);
-    final LinkedList<NetworkOperation> ops = new LinkedList<NetworkOperation>();
-    final NetworkOperation _function = new NetworkOperation() {
-      @Override
-      public void apply(final NetworkOperationContext ctx, final ValueCallback<List<NextwebOperation<?>>> opscb) {
-        Node _parent = ctx.parent();
-        String _name = source.getName();
-        final Query baseNode = _parent.appendSafe(_name, ("./" + simpleName));
-        metadata.add(
-          new ItemMetadata() {
-            @Override
-            public String name() {
-              return source.getName();
-            }
-            
-            @Override
-            public Date lastModified() {
-              return source.lastModified();
-            }
-            
-            @Override
-            public String uri() {
-              Node _parent = ctx.parent();
-              String _uri = _parent.uri();
-              String _plus = (_uri + "/");
-              return (_plus + simpleName);
-            }
-            
-            @Override
-            public String hash() {
-              int _hashCode = simpleName.hashCode();
-              return Integer.valueOf(_hashCode).toString();
-            }
-            
-            @Override
-            public String converter() {
-              Class<? extends FolderToNode> _class = FolderToNode.this.getClass();
-              return _class.toString();
-            }
-          });
-        String _name_1 = source.getName();
-        Query _appendSafe = baseNode.appendSafe(_name_1, "./.label");
-        Session _session = baseNode.session();
-        Link _LABEL = FolderToNode.this.n.LABEL(_session);
-        Query _appendSafe_1 = _appendSafe.appendSafe(_LABEL);
-        Query _appendSafe_2 = baseNode.appendSafe("https://appjangle.com/files/img/20141020/List.png", "./.icon");
-        Session _session_1 = baseNode.session();
-        Link _ICON = FolderToNode.this.n.ICON(_session_1);
-        Query _appendSafe_3 = _appendSafe_2.appendSafe(_ICON);
-        ArrayList<NextwebOperation<?>> _newArrayList = CollectionLiterals.<NextwebOperation<?>>newArrayList(baseNode, _appendSafe_1, _appendSafe_3);
-        opscb.onSuccess(_newArrayList);
-      }
-    };
-    ops.add(_function);
-    cb.onSuccess(ops);
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method parent is undefined for the type FolderToNode"
+      + "\nThe method parent is undefined for the type null"
+      + "\nInvalid number of arguments. The method onSuccess(Closure<Success>) is not applicable for the arguments (Object,ArrayList<Object>)"
+      + "\nType mismatch: cannot convert from Object to Closure<Success>"
+      + "\nType mismatch: cannot convert from (Object, Object)=>SimpleCallback to NetworkOperation"
+      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or use the closures in a more specific context."
+      + "\nappendSafe cannot be resolved"
+      + "\nappendSafe cannot be resolved"
+      + "\nappendSafe cannot be resolved"
+      + "\nsession cannot be resolved"
+      + "\nLABEL cannot be resolved"
+      + "\nappendSafe cannot be resolved"
+      + "\nappendSafe cannot be resolved"
+      + "\nsession cannot be resolved"
+      + "\nICON cannot be resolved"
+      + "\nuri cannot be resolved"
+      + "\n+ cannot be resolved"
+      + "\n+ cannot be resolved");
   }
   
   @Override
@@ -111,54 +64,13 @@ public class FolderToNode implements Converter {
   
   @Override
   public void createFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
-    final Closure<String> _function = new Closure<String>() {
-      @Override
-      public void apply(final String rawFolderName) {
-        final LinkedList<FileOperation> ops = new LinkedList<FileOperation>();
-        final FileOperation _function = new FileOperation() {
-          @Override
-          public void apply(final FileOperationContext ctx) {
-            final String folderName = FolderToNode.this.futils.toFileSystemSafeName(rawFolderName, false, 100);
-            FileItem _folder = ctx.folder();
-            _folder.assertFolder(folderName);
-            Metadata _metadata = ctx.metadata();
-            _metadata.add(
-              new ItemMetadata() {
-                @Override
-                public String name() {
-                  return folderName;
-                }
-                
-                @Override
-                public Date lastModified() {
-                  return new Date();
-                }
-                
-                @Override
-                public String uri() {
-                  return source.uri();
-                }
-                
-                @Override
-                public String hash() {
-                  int _hashCode = folderName.hashCode();
-                  return Integer.valueOf(_hashCode).toString();
-                }
-                
-                @Override
-                public String converter() {
-                  Class<? extends FolderToNode> _class = FolderToNode.this.getClass();
-                  return _class.toString();
-                }
-              });
-          }
-        };
-        ops.add(_function);
-        cb.onSuccess(ops);
-      }
-    };
-    ValueCallback<String> _embed = AsyncCommon.<String>embed(cb, _function);
-    this.utils.getFileName(source, _embed);
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method folder is undefined for the type FolderToNode"
+      + "\nThe method metadata is undefined for the type FolderToNode"
+      + "\nType mismatch: cannot convert from (Object)=>Object to FileOperation"
+      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or use the closures in a more specific context."
+      + "\nassertFolder cannot be resolved"
+      + "\nadd cannot be resolved");
   }
   
   @Override
@@ -169,19 +81,13 @@ public class FolderToNode implements Converter {
   
   @Override
   public void removeFiles(final FileItem folder, final Metadata metadata, final ItemMetadata item, final ValueCallback<List<FileOperation>> cb) {
-    final String folderName = item.name();
-    final LinkedList<FileOperation> ops = new LinkedList<FileOperation>();
-    final FileOperation _function = new FileOperation() {
-      @Override
-      public void apply(final FileOperationContext ctx) {
-        FileItem _folder = ctx.folder();
-        _folder.deleteFolder(folderName);
-        Metadata _metadata = ctx.metadata();
-        _metadata.remove(folderName);
-      }
-    };
-    ops.add(_function);
-    cb.onSuccess(ops);
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method folder is undefined for the type FolderToNode"
+      + "\nThe method metadata is undefined for the type FolderToNode"
+      + "\nType mismatch: cannot convert from (Object)=>Object to FileOperation"
+      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or use the closures in a more specific context."
+      + "\ndeleteFolder cannot be resolved"
+      + "\nremove cannot be resolved");
   }
   
   @Extension

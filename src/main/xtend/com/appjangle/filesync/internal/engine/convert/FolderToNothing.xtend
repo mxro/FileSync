@@ -6,8 +6,8 @@ import com.appjangle.filesync.ItemMetadata
 import com.appjangle.filesync.Metadata
 import com.appjangle.filesync.NetworkOperation
 import de.mxro.file.FileItem
-import de.mxro.fn.Function
 import delight.async.callbacks.ValueCallback
+import delight.functional.Function
 import io.nextweb.Node
 import java.util.List
 

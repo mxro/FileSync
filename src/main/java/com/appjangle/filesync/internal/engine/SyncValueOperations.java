@@ -1,13 +1,18 @@
 package com.appjangle.filesync.internal.engine;
 
-import java.util.Date;
-
 import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
 import com.google.common.base.Objects;
-
+import com.google.common.base.Preconditions;
 import de.mxro.file.FileItem;
+import delight.async.callbacks.ValueCallback;
+import delight.functional.Closure;
+import delight.functional.Success;
 import io.nextweb.Node;
+import io.nextweb.Query;
+import io.nextweb.promise.exceptions.ExceptionListener;
+import io.nextweb.promise.exceptions.ExceptionResult;
+import java.util.Date;
 
 @SuppressWarnings("all")
 public class SyncValueOperations {
@@ -70,10 +75,37 @@ public class SyncValueOperations {
     }
   }
   
-  public Node uploadValue(final Node node, final Metadata metadata, final FileItem folder, final /* ValueCallback<Success> */Object cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field Success is undefined for the type SyncValueOperations"
-      + "\nInvalid number of arguments. The method get() is not applicable for the arguments ((Object)=>void)"
-      + "\nINSTANCE cannot be resolved");
+  public void uploadValue(final Node node, final Metadata metadata, final FileItem folder, final ValueCallback<Success> cb) {
+    final FileItem file = folder.get("value.txt");
+    boolean _exists = file.exists();
+    Preconditions.checkState(_exists);
+    ItemMetadata _value = metadata.value();
+    Date _lastModified = _value.lastModified();
+    long _time = _lastModified.getTime();
+    Date _lastModified_1 = file.lastModified();
+    long _time_1 = _lastModified_1.getTime();
+    boolean _greaterThan = (_time > _time_1);
+    if (_greaterThan) {
+      String _text = file.getText();
+      final Query qry = node.setValueSafe(_text);
+      final ExceptionListener _function = new ExceptionListener() {
+        @Override
+        public void onFailure(final ExceptionResult it) {
+          Throwable _exception = it.exception();
+          cb.onFailure(_exception);
+        }
+      };
+      qry.catchExceptions(_function);
+      final Closure<Node> _function_1 = new Closure<Node>() {
+        @Override
+        public void apply(final Node it) {
+          FileItem _get = folder.get("value.txt");
+          ItemMetadata _createMetadata = SyncValueOperations.createMetadata(node, _get);
+          metadata.setValue(_createMetadata);
+          cb.onSuccess(Success.INSTANCE);
+        }
+      };
+      qry.get(_function_1);
+    }
   }
 }

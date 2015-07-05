@@ -1,22 +1,25 @@
 package com.appjangle.filesync.tests;
 
+import com.appjangle.filesync.FileSync;
+import com.appjangle.jre.AppjangleJre;
+import de.mxro.file.FileItem;
+import de.mxro.file.Jre.FilesJre;
+import delight.async.Operation;
+import delight.async.callbacks.ValueCallback;
+import delight.async.jre.Async;
+import delight.functional.Success;
+import io.nextweb.Node;
+import io.nextweb.Query;
+import io.nextweb.Session;
+import io.nextweb.common.LocalServer;
+import io.nextweb.promise.NextwebPromise;
 import java.io.File;
-
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
-
-import com.appjangle.jre.AppjangleJre;
-
-import de.mxro.file.FileItem;
-import de.mxro.file.Jre.FilesJre;
-import io.nextweb.Node;
-import io.nextweb.Query;
-import io.nextweb.Session;
-import io.nextweb.common.LocalServer;
 
 @SuppressWarnings("all")
 public abstract class CheckFilesToNodesTemplate {
@@ -58,17 +61,31 @@ public abstract class CheckFilesToNodesTemplate {
   
   @Test
   public void test() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method commit is undefined for the type CheckFilesToNodesTemplate"
-      + "\nget cannot be resolved");
+    final Operation<Success> _function = new Operation<Success>() {
+      @Override
+      public void apply(final ValueCallback<Success> cb) {
+        FileSync.syncSingleFolder(CheckFilesToNodesTemplate.this.sourceFolder, CheckFilesToNodesTemplate.this.result, cb);
+      }
+    };
+    Async.<Success>waitFor(_function);
+    this.step1_defineFiles();
+    final Operation<Success> _function_1 = new Operation<Success>() {
+      @Override
+      public void apply(final ValueCallback<Success> cb) {
+        FileSync.syncSingleFolder(CheckFilesToNodesTemplate.this.sourceFolder, CheckFilesToNodesTemplate.this.result, cb);
+      }
+    };
+    Async.<Success>waitFor(_function_1);
+    NextwebPromise<Success> _commit = this.session.commit();
+    _commit.get();
+    this.step2_assertNodes();
   }
   
   @After
   public void tearDown() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method close is undefined for the type CheckFilesToNodesTemplate"
-      + "\nThe method shutdown is undefined for the type CheckFilesToNodesTemplate"
-      + "\nget cannot be resolved"
-      + "\nget cannot be resolved");
+    NextwebPromise<Success> _close = this.session.close();
+    _close.get();
+    NextwebPromise<Success> _shutdown = this.server.shutdown();
+    _shutdown.get();
   }
 }

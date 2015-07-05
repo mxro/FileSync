@@ -5,9 +5,9 @@ import com.appjangle.filesync.Metadata
 import com.appjangle.filesync.NetworkOperation
 import com.appjangle.filesync.SyncParams
 import de.mxro.file.FileItem
-import de.mxro.fn.collections.CollectionsUtils
 import delight.async.AsyncCommon
 import delight.async.callbacks.ValueCallback
+import delight.functional.collections.CollectionsUtils
 import java.util.ArrayList
 import java.util.List
 

@@ -1,11 +1,9 @@
 package com.appjangle.filesync;
 
+import com.google.common.base.Preconditions;
+import io.nextweb.Node;
 import java.util.HashSet;
 import java.util.Set;
-
-import com.google.common.base.Preconditions;
-
-import io.nextweb.Node;
 
 /**
  * Must be synchronized.

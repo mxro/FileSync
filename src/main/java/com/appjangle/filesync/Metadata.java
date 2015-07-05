@@ -1,8 +1,8 @@
 package com.appjangle.filesync;
 
-import java.util.List;
-
+import com.appjangle.filesync.ItemMetadata;
 import io.nextweb.Node;
+import java.util.List;
 
 @SuppressWarnings("all")
 public interface Metadata {

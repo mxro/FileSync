@@ -9,11 +9,12 @@ import com.appjangle.filesync.internal.engine.FileUtils
 import com.appjangle.filesync.internal.engine.N
 import de.mxro.file.FileItem
 import delight.async.callbacks.ValueCallback
-import static extension delight.async.AsyncCommon.*
 import io.nextweb.Node
 import java.util.Date
 import java.util.LinkedList
 import java.util.List
+
+import static extension delight.async.AsyncCommon.*
 
 class FolderToNode implements Converter {
 

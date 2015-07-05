@@ -1,19 +1,27 @@
 package com.appjangle.filesync.tests;
 
+import com.appjangle.filesync.internal.engine.N;
+import com.appjangle.filesync.tests.CheckUpdatesTemplate;
+import de.mxro.file.FileItem;
+import de.oehme.xtend.junit.JUnit;
+import delight.async.Operation;
+import delight.async.callbacks.ValueCallback;
+import delight.async.jre.Async;
+import delight.functional.Closure;
+import delight.functional.Success;
+import io.nextweb.Link;
+import io.nextweb.Node;
+import io.nextweb.Query;
+import io.nextweb.promise.exceptions.ExceptionListener;
+import io.nextweb.promise.exceptions.ExceptionResult;
+import io.nextweb.promise.exceptions.UndefinedListener;
+import io.nextweb.promise.exceptions.UndefinedResult;
 import java.util.List;
-
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
 import org.hamcrest.Matcher;
 import org.junit.Assert;
 import org.junit.internal.ArrayComparisonFailure;
-
-import com.appjangle.filesync.internal.engine.N;
-
-import de.mxro.file.FileItem;
-import de.oehme.xtend.junit.JUnit;
-import io.nextweb.Link;
-import io.nextweb.Query;
 
 @JUnit
 @SuppressWarnings("all")
@@ -52,11 +60,15 @@ public class TestRemoveHtmlFile extends CheckUpdatesTemplate {
   
   @Override
   protected void step3_updateNodes() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method remove is undefined for the type TestRemoveHtmlFile"
-      + "\nThe method remove is undefined for the type TestRemoveHtmlFile"
-      + "\nThe method remove is undefined for the type TestRemoveHtmlFile"
-      + "\nThe method remove is undefined for the type TestRemoveHtmlFile");
+    final Query html = this.source.select("./file1");
+    Query _select = html.select("./label");
+    Link _LABEL = this.n.LABEL(this.session);
+    _select.remove(_LABEL);
+    Query _select_1 = html.select("./label");
+    html.remove(_select_1);
+    Link _HTML_VALUE = this.n.HTML_VALUE(this.session);
+    html.remove(_HTML_VALUE);
+    this.source.remove(html);
   }
   
   @Override
@@ -75,10 +87,36 @@ public class TestRemoveHtmlFile extends CheckUpdatesTemplate {
   
   @Override
   protected void step6_assertNodesAfterUpdate() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field Success is undefined for the type TestRemoveHtmlFile"
-      + "\nInvalid number of arguments. The method get() is not applicable for the arguments ((Object)=>void)"
-      + "\nINSTANCE cannot be resolved");
+    final Operation<Success> _function = new Operation<Success>() {
+      @Override
+      public void apply(final ValueCallback<Success> cb) {
+        final Query qry = TestRemoveHtmlFile.this.source.select("./file2");
+        final ExceptionListener _function = new ExceptionListener() {
+          @Override
+          public void onFailure(final ExceptionResult er) {
+            Throwable _exception = er.exception();
+            cb.onFailure(_exception);
+          }
+        };
+        qry.catchExceptions(_function);
+        final UndefinedListener _function_1 = new UndefinedListener() {
+          @Override
+          public void onUndefined(final UndefinedResult it) {
+            cb.onSuccess(Success.INSTANCE);
+          }
+        };
+        qry.catchUndefined(_function_1);
+        final Closure<Node> _function_2 = new Closure<Node>() {
+          @Override
+          public void apply(final Node it) {
+            Exception _exception = new Exception("Node should have been removed.");
+            cb.onFailure(_exception);
+          }
+        };
+        qry.get(_function_2);
+      }
+    };
+    Async.<Success>waitFor(_function);
   }
   
   @Extension

@@ -1,20 +1,17 @@
 package com.appjangle.filesync.internal.engine.metadata;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import org.eclipse.xtext.xbase.lib.CollectionLiterals;
-import org.eclipse.xtext.xbase.lib.ExclusiveRange;
-import org.eclipse.xtext.xbase.lib.Functions.Function1;
-import org.eclipse.xtext.xbase.lib.IterableExtensions;
-
 import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.internal.engine.metadata.v01.ItemXml;
 import com.google.common.base.Objects;
-
 import io.nextweb.Node;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import org.eclipse.xtext.xbase.lib.CollectionLiterals;
+import org.eclipse.xtext.xbase.lib.ExclusiveRange;
+import org.eclipse.xtext.xbase.lib.Functions.Function1;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
 @SuppressWarnings("all")
 public class MetadataImpl implements Metadata {

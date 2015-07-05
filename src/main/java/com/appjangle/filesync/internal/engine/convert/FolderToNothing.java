@@ -7,6 +7,7 @@ import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.NetworkOperation;
 import de.mxro.file.FileItem;
 import delight.async.callbacks.ValueCallback;
+import delight.functional.Function;
 import io.nextweb.Node;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,16 +15,15 @@ import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 
 @SuppressWarnings("all")
 public class FolderToNothing implements Converter {
-  private final /* Function<FileItem, Boolean> */Object test;
+  private final Function<FileItem, Boolean> test;
   
-  public FolderToNothing(final /* Function<FileItem, Boolean> */Object test) {
+  public FolderToNothing(final Function<FileItem, Boolean> test) {
     this.test = test;
   }
   
   @Override
   public boolean worksOn(final FileItem source) {
-    throw new Error("Unresolved compilation problems:"
-      + "\napply cannot be resolved");
+    return (this.test.apply(source)).booleanValue();
   }
   
   @Override

@@ -10,15 +10,16 @@ import com.appjangle.filesync.internal.engine.convert.FolderToNothing
 import com.appjangle.filesync.internal.engine.convert.NodeToNothing
 import de.mxro.file.FileItem
 import de.mxro.file.Jre.FilesJre
-import de.mxro.fn.Success
 import delight.async.AsyncCommon
 import delight.async.callbacks.ValueCallback
-import static extension delight.async.AsyncCommon.*
+import delight.functional.Success
 import io.nextweb.Link
 import io.nextweb.Node
 import io.nextweb.nodes.Token
 import java.io.File
 import java.util.LinkedList
+
+import static extension delight.async.AsyncCommon.*
 
 class FileSync {
 

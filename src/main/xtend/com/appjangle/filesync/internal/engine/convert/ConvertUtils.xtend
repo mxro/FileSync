@@ -8,7 +8,6 @@ import com.appjangle.filesync.internal.engine.N
 import de.mxro.file.FileItem
 import delight.async.AsyncCommon
 import delight.async.callbacks.ValueCallback
-import static extension delight.async.AsyncCommon.*
 import io.nextweb.Link
 import io.nextweb.Node
 import io.nextweb.Query
@@ -17,6 +16,8 @@ import io.nextweb.utils.data.NextwebDataExtension
 import java.util.ArrayList
 import java.util.LinkedList
 import java.util.List
+
+import static extension delight.async.AsyncCommon.*
 
 class ConvertUtils {
 

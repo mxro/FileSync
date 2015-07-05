@@ -1,8 +1,8 @@
 package com.appjangle.filesync.tests
 
-import de.mxro.fn.Success
 import de.oehme.xtend.junit.JUnit
 import delight.async.jre.Async
+import delight.functional.Success
 
 @JUnit
 class TestRemoveFolder extends CheckUpdatesTemplate {

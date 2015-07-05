@@ -1,16 +1,15 @@
 package com.appjangle.filesync.internal.engine.metadata;
 
-import java.util.Date;
-import java.util.List;
-
 import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
+import com.appjangle.filesync.internal.engine.metadata.MetadataImpl;
 import com.appjangle.filesync.internal.engine.metadata.v01.ItemXml;
 import com.appjangle.filesync.internal.engine.metadata.v01.NodesXml;
 import com.google.common.base.Objects;
 import com.thoughtworks.xstream.XStream;
-
 import de.mxro.file.FileItem;
+import java.util.Date;
+import java.util.List;
 
 @SuppressWarnings("all")
 public class MetadataUtilsJre {

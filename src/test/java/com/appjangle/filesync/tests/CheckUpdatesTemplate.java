@@ -1,6 +1,5 @@
 package com.appjangle.filesync.tests;
 
-import com.appjangle.filesync.tests.CheckNodesToFilesTemplate;
 import org.junit.Test;
 
 @SuppressWarnings("all")

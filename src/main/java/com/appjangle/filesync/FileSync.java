@@ -1,22 +1,20 @@
 package com.appjangle.filesync;
 
-import com.appjangle.filesync.SyncNotifications;
-import com.appjangle.filesync.SyncParams;
-import com.appjangle.filesync.SynchronizationSettings;
-import com.appjangle.filesync.SynchronizationState;
-import com.appjangle.filesync.internal.engine.FileUtils;
-import com.appjangle.filesync.internal.engine.SyncFolder;
-import com.appjangle.filesync.internal.engine.convert.ConverterCollection;
-import de.mxro.file.FileItem;
-import de.mxro.file.Jre.FilesJre;
-import delight.async.callbacks.ValueCallback;
-import io.nextweb.Link;
-import io.nextweb.Node;
-import io.nextweb.Session;
 import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
+
 import org.eclipse.xtext.xbase.lib.Extension;
+
+import com.appjangle.filesync.internal.engine.FileUtils;
+import com.appjangle.filesync.internal.engine.SyncFolder;
+import com.appjangle.filesync.internal.engine.convert.ConverterCollection;
+
+import de.mxro.file.FileItem;
+import de.mxro.file.Jre.FilesJre;
+import io.nextweb.Link;
+import io.nextweb.Node;
+import io.nextweb.Session;
 
 @SuppressWarnings("all")
 public class FileSync {

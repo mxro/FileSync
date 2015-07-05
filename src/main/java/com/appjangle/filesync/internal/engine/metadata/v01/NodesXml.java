@@ -1,9 +1,9 @@
 package com.appjangle.filesync.internal.engine.metadata.v01;
 
-import com.appjangle.filesync.internal.engine.metadata.v01.ItemXml;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 import org.eclipse.xtend.lib.annotations.Accessors;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.Pure;

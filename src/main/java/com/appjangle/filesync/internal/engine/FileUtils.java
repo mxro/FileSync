@@ -1,15 +1,18 @@
 package com.appjangle.filesync.internal.engine;
 
+import java.util.Collections;
+import java.util.List;
+
+import org.eclipse.xtext.xbase.lib.CollectionLiterals;
+import org.eclipse.xtext.xbase.lib.Conversions;
+import org.eclipse.xtext.xbase.lib.ExclusiveRange;
+
 import com.appjangle.filesync.FileOperation;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.internal.engine.metadata.MetadataImpl;
 import com.appjangle.filesync.internal.engine.metadata.MetadataUtilsJre;
+
 import de.mxro.file.FileItem;
-import java.util.Collections;
-import java.util.List;
-import org.eclipse.xtext.xbase.lib.CollectionLiterals;
-import org.eclipse.xtext.xbase.lib.Conversions;
-import org.eclipse.xtext.xbase.lib.ExclusiveRange;
 
 @SuppressWarnings("all")
 public class FileUtils {

@@ -1,8 +1,9 @@
 package com.appjangle.filesync.tests.utils;
 
-import com.appjangle.filesync.internal.engine.convert.ConvertUtils;
 import org.junit.Assert;
 import org.junit.Test;
+
+import com.appjangle.filesync.internal.engine.convert.ConvertUtils;
 
 @SuppressWarnings("all")
 public class AddressesCanBeDerivedFromUris {

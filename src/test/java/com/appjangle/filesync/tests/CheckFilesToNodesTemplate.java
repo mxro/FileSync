@@ -1,19 +1,22 @@
 package com.appjangle.filesync.tests;
 
-import com.appjangle.jre.AppjangleJre;
-import de.mxro.file.FileItem;
-import de.mxro.file.Jre.FilesJre;
-import io.nextweb.Node;
-import io.nextweb.Query;
-import io.nextweb.Session;
-import io.nextweb.common.LocalServer;
 import java.io.File;
+
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
+
+import com.appjangle.jre.AppjangleJre;
+
+import de.mxro.file.FileItem;
+import de.mxro.file.Jre.FilesJre;
+import io.nextweb.Node;
+import io.nextweb.Query;
+import io.nextweb.Session;
+import io.nextweb.common.LocalServer;
 
 @SuppressWarnings("all")
 public abstract class CheckFilesToNodesTemplate {

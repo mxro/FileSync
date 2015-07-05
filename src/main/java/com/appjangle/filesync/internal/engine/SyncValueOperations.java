@@ -1,12 +1,13 @@
 package com.appjangle.filesync.internal.engine;
 
+import java.util.Date;
+
 import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
 import com.google.common.base.Objects;
+
 import de.mxro.file.FileItem;
-import delight.async.callbacks.ValueCallback;
 import io.nextweb.Node;
-import java.util.Date;
 
 @SuppressWarnings("all")
 public class SyncValueOperations {

@@ -1,9 +1,10 @@
 package com.appjangle.filesync.internal.engine;
 
-import com.appjangle.filesync.NetworkOperation;
-import delight.async.callbacks.ValueCallback;
-import io.nextweb.Node;
 import java.util.List;
+
+import com.appjangle.filesync.NetworkOperation;
+
+import io.nextweb.Node;
 
 @SuppressWarnings("all")
 public class NetworkUtils {

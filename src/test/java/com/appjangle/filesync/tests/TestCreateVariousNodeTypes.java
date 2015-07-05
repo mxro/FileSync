@@ -1,10 +1,5 @@
 package com.appjangle.filesync.tests;
 
-import com.appjangle.filesync.internal.engine.N;
-import com.appjangle.filesync.tests.CheckFilesToNodesTemplate;
-import de.mxro.file.FileItem;
-import de.oehme.xtend.junit.Hamcrest;
-import de.oehme.xtend.junit.JUnit;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
 import org.hamcrest.CoreMatchers;
@@ -15,6 +10,12 @@ import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.internal.ArrayComparisonFailure;
 import org.junit.rules.ErrorCollector;
+
+import com.appjangle.filesync.internal.engine.N;
+
+import de.mxro.file.FileItem;
+import de.oehme.xtend.junit.Hamcrest;
+import de.oehme.xtend.junit.JUnit;
 
 @JUnit
 @Hamcrest

@@ -1,15 +1,17 @@
 package com.appjangle.filesync.internal.engine;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.appjangle.filesync.FileOperation;
 import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.SyncParams;
 import com.google.common.base.Objects;
+
 import delight.async.callbacks.ValueCallback;
 import io.nextweb.LinkList;
 import io.nextweb.Node;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Determines operations to be performed on local files based on remote changes made in the cloud.

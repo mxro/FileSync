@@ -1,11 +1,22 @@
 package com.appjangle.filesync.internal.engine.convert;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import org.eclipse.xtext.xbase.lib.CollectionLiterals;
+import org.eclipse.xtext.xbase.lib.Extension;
+import org.eclipse.xtext.xbase.lib.Pair;
+
 import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.NetworkOperation;
 import com.appjangle.filesync.internal.engine.FileUtils;
 import com.appjangle.filesync.internal.engine.N;
 import com.google.common.base.Objects;
+
 import de.mxro.file.FileItem;
 import delight.async.AsyncCommon;
 import delight.async.callbacks.ValueCallback;
@@ -17,14 +28,6 @@ import io.nextweb.Query;
 import io.nextweb.Session;
 import io.nextweb.promise.NextwebOperation;
 import io.nextweb.utils.data.NextwebDataExtension;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import org.eclipse.xtext.xbase.lib.CollectionLiterals;
-import org.eclipse.xtext.xbase.lib.Extension;
-import org.eclipse.xtext.xbase.lib.Pair;
 
 @SuppressWarnings("all")
 public class ConvertUtils {

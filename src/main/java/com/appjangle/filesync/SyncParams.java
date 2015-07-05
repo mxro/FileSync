@@ -1,15 +1,13 @@
 package com.appjangle.filesync;
 
-import com.appjangle.filesync.Converter;
-import com.appjangle.filesync.SyncNotifications;
-import com.appjangle.filesync.SynchronizationSettings;
-import com.appjangle.filesync.SynchronizationState;
+import java.util.List;
+
+import org.eclipse.xtend.lib.annotations.Accessors;
+import org.eclipse.xtext.xbase.lib.Pure;
+
 import de.mxro.file.FileItem;
 import io.nextweb.Link;
 import io.nextweb.Node;
-import java.util.List;
-import org.eclipse.xtend.lib.annotations.Accessors;
-import org.eclipse.xtext.xbase.lib.Pure;
 
 @Accessors
 @SuppressWarnings("all")

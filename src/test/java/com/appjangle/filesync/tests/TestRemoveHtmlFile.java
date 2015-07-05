@@ -1,17 +1,19 @@
 package com.appjangle.filesync.tests;
 
-import com.appjangle.filesync.internal.engine.N;
-import com.appjangle.filesync.tests.CheckUpdatesTemplate;
-import de.mxro.file.FileItem;
-import de.oehme.xtend.junit.JUnit;
-import io.nextweb.Link;
-import io.nextweb.Query;
 import java.util.List;
+
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
 import org.hamcrest.Matcher;
 import org.junit.Assert;
 import org.junit.internal.ArrayComparisonFailure;
+
+import com.appjangle.filesync.internal.engine.N;
+
+import de.mxro.file.FileItem;
+import de.oehme.xtend.junit.JUnit;
+import io.nextweb.Link;
+import io.nextweb.Query;
 
 @JUnit
 @SuppressWarnings("all")

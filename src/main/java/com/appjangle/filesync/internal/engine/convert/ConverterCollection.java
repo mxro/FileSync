@@ -1,20 +1,20 @@
 package com.appjangle.filesync.internal.engine.convert;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.appjangle.filesync.Converter;
 import com.appjangle.filesync.FileOperation;
 import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.NetworkOperation;
-import com.appjangle.filesync.internal.engine.convert.ConvertUtils;
-import com.appjangle.filesync.internal.engine.convert.FolderToNode;
+
 import de.mxro.file.FileItem;
 import delight.async.AsyncCommon;
 import delight.async.callbacks.ValueCallback;
 import delight.functional.Closure;
 import delight.functional.Closure2;
 import io.nextweb.Node;
-import java.util.ArrayList;
-import java.util.List;
 
 @SuppressWarnings("all")
 public class ConverterCollection implements Converter {

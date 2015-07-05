@@ -1,5 +1,11 @@
 package com.appjangle.filesync.internal.engine.convert;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.eclipse.xtext.xbase.lib.CollectionLiterals;
+import org.eclipse.xtext.xbase.lib.Extension;
+
 import com.appjangle.filesync.Converter;
 import com.appjangle.filesync.FileOperation;
 import com.appjangle.filesync.ItemMetadata;
@@ -7,14 +13,10 @@ import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.NetworkOperation;
 import com.appjangle.filesync.internal.engine.FileUtils;
 import com.appjangle.filesync.internal.engine.N;
-import com.appjangle.filesync.internal.engine.convert.ConvertUtils;
+
 import de.mxro.file.FileItem;
 import delight.async.callbacks.ValueCallback;
 import io.nextweb.Node;
-import java.util.ArrayList;
-import java.util.List;
-import org.eclipse.xtext.xbase.lib.CollectionLiterals;
-import org.eclipse.xtext.xbase.lib.Extension;
 
 @SuppressWarnings("all")
 public class FolderToNode implements Converter {

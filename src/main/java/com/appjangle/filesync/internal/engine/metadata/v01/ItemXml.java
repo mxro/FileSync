@@ -1,11 +1,13 @@
 package com.appjangle.filesync.internal.engine.metadata.v01;
 
-import com.appjangle.filesync.ItemMetadata;
 import java.io.Serializable;
 import java.util.Date;
+
 import org.eclipse.xtend.lib.annotations.Accessors;
 import org.eclipse.xtend.lib.annotations.EqualsHashCode;
 import org.eclipse.xtext.xbase.lib.Pure;
+
+import com.appjangle.filesync.ItemMetadata;
 
 @EqualsHashCode
 @SuppressWarnings("all")

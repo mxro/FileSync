@@ -1,6 +1,7 @@
 package com.appjangle.filesync;
 
 import com.appjangle.filesync.ItemMetadata;
+import io.nextweb.Node;
 import java.util.List;
 
 @SuppressWarnings("all")
@@ -9,7 +10,7 @@ public interface Metadata {
   
   public abstract ItemMetadata get(final String name);
   
-  public abstract ItemMetadata get(final /* Node */Object forNode);
+  public abstract ItemMetadata get(final Node forNode);
   
   public abstract Metadata add(final ItemMetadata itemMetadata);
   

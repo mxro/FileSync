@@ -1,5 +1,7 @@
 package com.appjangle.filesync;
 
+import com.google.common.base.Preconditions;
+import io.nextweb.Node;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,16 +15,23 @@ public class SynchronizationState {
    */
   private final Set<String> synced;
   
-  public synchronized boolean addSynced(final /* Node */Object n) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nuri cannot be resolved"
-      + "\nuri cannot be resolved"
-      + "\nuri cannot be resolved");
+  public synchronized boolean addSynced(final Node n) {
+    boolean _xblockexpression = false;
+    {
+      String _uri = n.uri();
+      boolean _contains = this.synced.contains(_uri);
+      boolean _not = (!_contains);
+      String _uri_1 = n.uri();
+      Preconditions.checkState(_not, "Node was already synced [%s]", _uri_1);
+      String _uri_2 = n.uri();
+      _xblockexpression = this.synced.add(_uri_2);
+    }
+    return _xblockexpression;
   }
   
-  public synchronized boolean wasSynced(final /* Node */Object n) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nuri cannot be resolved");
+  public synchronized boolean wasSynced(final Node n) {
+    String _uri = n.uri();
+    return this.synced.contains(_uri);
   }
   
   public SynchronizationState() {

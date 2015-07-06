@@ -1,8 +1,11 @@
 package com.appjangle.filesync;
 
+import io.nextweb.Node;
+import io.nextweb.Session;
+
 @SuppressWarnings("all")
 public interface NetworkOperationContext {
-  public abstract /* Session */Object session();
+  public abstract Session session();
   
-  public abstract /* Node */Object parent();
+  public abstract Node parent();
 }

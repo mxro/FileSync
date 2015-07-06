@@ -9,8 +9,10 @@ import io.nextweb.Link;
 import io.nextweb.Node;
 import java.util.List;
 import org.eclipse.xtend.lib.annotations.Accessors;
+import org.eclipse.xtext.xbase.lib.Pure;
 
-/* @Accessors */@SuppressWarnings("all")
+@Accessors
+@SuppressWarnings("all")
 public class SyncParams {
   private FileItem folder;
   
@@ -47,5 +49,77 @@ public class SyncParams {
     this.notifications = params.notifications;
     this.syncRoots = params.syncRoots;
     this.dontFollow = params.dontFollow;
+  }
+  
+  @Pure
+  public FileItem getFolder() {
+    return this.folder;
+  }
+  
+  public void setFolder(final FileItem folder) {
+    this.folder = folder;
+  }
+  
+  @Pure
+  public Node getNode() {
+    return this.node;
+  }
+  
+  public void setNode(final Node node) {
+    this.node = node;
+  }
+  
+  @Pure
+  public SynchronizationSettings getSettings() {
+    return this.settings;
+  }
+  
+  public void setSettings(final SynchronizationSettings settings) {
+    this.settings = settings;
+  }
+  
+  @Pure
+  public SynchronizationState getState() {
+    return this.state;
+  }
+  
+  public void setState(final SynchronizationState state) {
+    this.state = state;
+  }
+  
+  @Pure
+  public Converter getConverter() {
+    return this.converter;
+  }
+  
+  public void setConverter(final Converter converter) {
+    this.converter = converter;
+  }
+  
+  @Pure
+  public SyncNotifications getNotifications() {
+    return this.notifications;
+  }
+  
+  public void setNotifications(final SyncNotifications notifications) {
+    this.notifications = notifications;
+  }
+  
+  @Pure
+  public List<Link> getSyncRoots() {
+    return this.syncRoots;
+  }
+  
+  public void setSyncRoots(final List<Link> syncRoots) {
+    this.syncRoots = syncRoots;
+  }
+  
+  @Pure
+  public List<Link> getDontFollow() {
+    return this.dontFollow;
+  }
+  
+  public void setDontFollow(final List<Link> dontFollow) {
+    this.dontFollow = dontFollow;
   }
 }

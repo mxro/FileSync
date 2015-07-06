@@ -3,17 +3,6 @@ package com.appjangle.filesync.tests;
 import com.appjangle.filesync.tests.CheckUpdatesTemplate;
 import de.mxro.file.FileItem;
 import de.oehme.xtend.junit.JUnit;
-import delight.async.Operation;
-import delight.async.callbacks.ValueCallback;
-import delight.async.jre.Async;
-import delight.functional.Closure;
-import delight.functional.Success;
-import io.nextweb.Node;
-import io.nextweb.Query;
-import io.nextweb.promise.exceptions.ExceptionListener;
-import io.nextweb.promise.exceptions.ExceptionResult;
-import io.nextweb.promise.exceptions.UndefinedListener;
-import io.nextweb.promise.exceptions.UndefinedResult;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
 import org.hamcrest.Matcher;
@@ -25,9 +14,10 @@ import org.junit.internal.ArrayComparisonFailure;
 public class TestRemoveFolder extends CheckUpdatesTemplate {
   @Override
   protected void step1_defineData() {
-    this.source.append("folder1", "./folder1");
-    this.source.append("folder2", "./folder2");
-    this.source.append("folder3", "./folder3");
+    throw new Error("Unresolved compilation problems:"
+      + "\nappend cannot be resolved"
+      + "\nappend cannot be resolved"
+      + "\nappend cannot be resolved");
   }
   
   @Override
@@ -42,8 +32,9 @@ public class TestRemoveFolder extends CheckUpdatesTemplate {
   
   @Override
   protected void step3_updateNodes() {
-    Query _select = this.source.select("./folder1");
-    this.source.remove(_select);
+    throw new Error("Unresolved compilation problems:"
+      + "\nremove cannot be resolved"
+      + "\nselect cannot be resolved");
   }
   
   @Override
@@ -60,36 +51,13 @@ public class TestRemoveFolder extends CheckUpdatesTemplate {
   
   @Override
   protected void step6_assertNodesAfterUpdate() {
-    final Operation<Success> _function = new Operation<Success>() {
-      @Override
-      public void apply(final ValueCallback<Success> cb) {
-        final Query qry = TestRemoveFolder.this.source.select("./folder2");
-        final ExceptionListener _function = new ExceptionListener() {
-          @Override
-          public void onFailure(final ExceptionResult er) {
-            Throwable _exception = er.exception();
-            cb.onFailure(_exception);
-          }
-        };
-        qry.catchExceptions(_function);
-        final UndefinedListener _function_1 = new UndefinedListener() {
-          @Override
-          public void onUndefined(final UndefinedResult it) {
-            cb.onSuccess(Success.INSTANCE);
-          }
-        };
-        qry.catchUndefined(_function_1);
-        final Closure<Node> _function_2 = new Closure<Node>() {
-          @Override
-          public void apply(final Node it) {
-            Exception _exception = new Exception("Node should have been removed.");
-            cb.onFailure(_exception);
-          }
-        };
-        qry.get(_function_2);
-      }
-    };
-    Async.<Success>waitFor(_function);
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method exception is undefined for the type TestRemoveFolder"
+      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or put the closures into a typed context."
+      + "\nselect cannot be resolved"
+      + "\ncatchExceptions cannot be resolved"
+      + "\ncatchUndefined cannot be resolved"
+      + "\nget cannot be resolved");
   }
   
   private static void assertArrayEquals(final Object[] expecteds, final Object[] actuals) {

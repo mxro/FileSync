@@ -8,7 +8,6 @@ import com.appjangle.filesync.NetworkOperation;
 import de.mxro.file.FileItem;
 import delight.async.callbacks.ValueCallback;
 import delight.functional.Function;
-import io.nextweb.Node;
 import java.util.ArrayList;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.CollectionLiterals;
@@ -27,7 +26,7 @@ public class FolderToNothing implements Converter {
   }
   
   @Override
-  public void worksOn(final Node node, final ValueCallback<Boolean> cb) {
+  public void worksOn(final /* Node */Object node, final ValueCallback<Boolean> cb) {
     cb.onSuccess(Boolean.valueOf(false));
   }
   
@@ -48,12 +47,12 @@ public class FolderToNothing implements Converter {
   }
   
   @Override
-  public void createFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
+  public void createFiles(final FileItem folder, final Metadata metadata, final /* Node */Object source, final ValueCallback<List<FileOperation>> cb) {
     throw new IllegalStateException("This operation should never be triggered for this converter.");
   }
   
   @Override
-  public void updateFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
+  public void updateFiles(final FileItem folder, final Metadata metadata, final /* Node */Object source, final ValueCallback<List<FileOperation>> cb) {
     throw new IllegalStateException("This operation should never be triggered for this converter.");
   }
   

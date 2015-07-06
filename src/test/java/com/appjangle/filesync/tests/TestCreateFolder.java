@@ -14,7 +14,8 @@ import org.junit.internal.ArrayComparisonFailure;
 public class TestCreateFolder extends CheckNodesToFilesTemplate {
   @Override
   protected void step1_defineData() {
-    this.source.append("A Folder");
+    throw new Error("Unresolved compilation problems:"
+      + "\nappend cannot be resolved");
   }
   
   @Override

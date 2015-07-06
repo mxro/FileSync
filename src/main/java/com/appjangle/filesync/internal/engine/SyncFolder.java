@@ -16,7 +16,6 @@ import delight.async.AsyncCommon;
 import delight.async.callbacks.ValueCallback;
 import delight.functional.Closure;
 import delight.functional.Success;
-import io.nextweb.Node;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.Extension;
 

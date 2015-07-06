@@ -3,9 +3,6 @@ package com.appjangle.filesync.tests;
 import com.appjangle.filesync.tests.CheckUpdatesTemplate;
 import de.mxro.file.FileItem;
 import de.oehme.xtend.junit.JUnit;
-import io.nextweb.Link;
-import io.nextweb.Node;
-import io.nextweb.Query;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
 import org.hamcrest.Matcher;
 import org.junit.Assert;
@@ -16,12 +13,13 @@ import org.junit.internal.ArrayComparisonFailure;
 public class TestUpdateHtmlFile extends CheckUpdatesTemplate {
   @Override
   protected void step1_defineData() {
-    final Query html = this.source.append("<p>Hello 1</p>", "./html");
-    Query _append = html.append("doc");
-    Link _link = this.session.link("https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel");
-    _append.append(_link);
-    Link _link_1 = this.session.link("https://admin1.linnk.it/types/v01/isHtmlValue");
-    html.append(_link_1);
+    throw new Error("Unresolved compilation problems:"
+      + "\nappend cannot be resolved"
+      + "\nappend cannot be resolved"
+      + "\nappend cannot be resolved"
+      + "\nlink cannot be resolved"
+      + "\nappend cannot be resolved"
+      + "\nlink cannot be resolved");
   }
   
   @Override
@@ -33,8 +31,9 @@ public class TestUpdateHtmlFile extends CheckUpdatesTemplate {
   
   @Override
   protected void step3_updateNodes() {
-    Query _select = this.source.select("./html");
-    _select.setValue("<p>Hello 1 and Hello 2 are an amazing team.</p>");
+    throw new Error("Unresolved compilation problems:"
+      + "\nselect cannot be resolved"
+      + "\nsetValue cannot be resolved");
   }
   
   @Override
@@ -52,10 +51,11 @@ public class TestUpdateHtmlFile extends CheckUpdatesTemplate {
   
   @Override
   protected void step6_assertNodesAfterUpdate() {
-    Query _select = this.source.select("./html");
-    Node _get = _select.get();
-    Object _value = _get.value();
-    TestUpdateHtmlFile.<Object, String>operator_doubleArrow(_value, "And now for something different");
+    throw new Error("Unresolved compilation problems:"
+      + "\nselect cannot be resolved"
+      + "\nget cannot be resolved"
+      + "\nvalue cannot be resolved"
+      + "\n=> cannot be resolved");
   }
   
   private static void assertArrayEquals(final Object[] expecteds, final Object[] actuals) {

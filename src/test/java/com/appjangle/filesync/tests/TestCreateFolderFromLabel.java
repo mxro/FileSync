@@ -3,8 +3,6 @@ package com.appjangle.filesync.tests;
 import com.appjangle.filesync.tests.CheckNodesToFilesTemplate;
 import de.mxro.file.FileItem;
 import de.oehme.xtend.junit.JUnit;
-import io.nextweb.Link;
-import io.nextweb.Query;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
 import org.hamcrest.Matcher;
@@ -16,10 +14,11 @@ import org.junit.internal.ArrayComparisonFailure;
 public class TestCreateFolderFromLabel extends CheckNodesToFilesTemplate {
   @Override
   protected void step1_defineData() {
-    Query _append = this.source.append("No value", "./value");
-    Query _append_1 = _append.append("Labelled Node");
-    Link _link = this.session.link("https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel");
-    _append_1.append(_link);
+    throw new Error("Unresolved compilation problems:"
+      + "\nappend cannot be resolved"
+      + "\nappend cannot be resolved"
+      + "\nappend cannot be resolved"
+      + "\nlink cannot be resolved");
   }
   
   @Override

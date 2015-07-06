@@ -6,13 +6,11 @@ import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.NetworkOperation;
 import com.appjangle.filesync.internal.engine.convert.ConvertUtils;
-import com.appjangle.filesync.internal.engine.convert.FolderToNode;
 import de.mxro.file.FileItem;
 import delight.async.AsyncCommon;
 import delight.async.callbacks.ValueCallback;
 import delight.functional.Closure;
 import delight.functional.Closure2;
-import io.nextweb.Node;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,7 +48,7 @@ public class ConverterCollection implements Converter {
   }
   
   @Override
-  public void worksOn(final Node node, final ValueCallback<Boolean> cb) {
+  public void worksOn(final /* Node */Object node, final ValueCallback<Boolean> cb) {
     final Closure2<Converter, ValueCallback<Boolean>> _function = new Closure2<Converter, ValueCallback<Boolean>>() {
       @Override
       public void apply(final Converter c, final ValueCallback<Boolean> itmcb) {
@@ -118,7 +116,7 @@ public class ConverterCollection implements Converter {
     throw new RuntimeException(_plus_3);
   }
   
-  private void findConverter(final Node forNode, final ValueCallback<Converter> cb) {
+  private void findConverter(final /* Node */Object forNode, final ValueCallback<Converter> cb) {
     final Closure2<Converter, ValueCallback<Object>> _function = new Closure2<Converter, ValueCallback<Object>>() {
       @Override
       public void apply(final Converter c, final ValueCallback<Object> itmcb) {
@@ -145,7 +143,8 @@ public class ConverterCollection implements Converter {
             return;
           }
         }
-        Exception _exception = new Exception(("Cannot find converter for " + forNode));
+        String _plus = ("Cannot find converter for " + forNode);
+        Exception _exception = new Exception(_plus);
         cb.onFailure(_exception);
       }
     };
@@ -192,26 +191,14 @@ public class ConverterCollection implements Converter {
   }
   
   @Override
-  public void createFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
-    String _uri = source.uri();
-    boolean _endsWith = _uri.endsWith("Types");
-    if (_endsWith) {
-      FolderToNode _folderToNode = new FolderToNode();
-      _folderToNode.createFiles(folder, metadata, source, cb);
-      return;
-    }
-    final Closure<Converter> _function = new Closure<Converter>() {
-      @Override
-      public void apply(final Converter converter) {
-        converter.createFiles(folder, metadata, source, cb);
-      }
-    };
-    ValueCallback<Converter> _embed = AsyncCommon.<Converter>embed(cb, _function);
-    this.findConverter(source, _embed);
+  public void createFiles(final FileItem folder, final Metadata metadata, final /* Node */Object source, final ValueCallback<List<FileOperation>> cb) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nuri cannot be resolved"
+      + "\nendsWith cannot be resolved");
   }
   
   @Override
-  public void updateFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
+  public void updateFiles(final FileItem folder, final Metadata metadata, final /* Node */Object source, final ValueCallback<List<FileOperation>> cb) {
     ItemMetadata _get = metadata.get(source);
     final Closure<Converter> _function = new Closure<Converter>() {
       @Override

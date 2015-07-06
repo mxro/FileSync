@@ -1,14 +1,22 @@
 package com.appjangle.filesync.internal.engine;
 
+import com.appjangle.filesync.Converter;
 import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.NetworkOperation;
 import com.appjangle.filesync.SyncParams;
 import de.mxro.file.FileItem;
+import delight.async.AsyncCommon;
 import delight.async.callbacks.ValueCallback;
+import delight.async.helper.Aggregator;
+import delight.functional.Closure;
+import delight.functional.collections.CollectionsUtils;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.function.Consumer;
+import org.eclipse.xtext.xbase.lib.Exceptions;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
 
 /**
  * Determines operations performed on local files which need to be uploaded to the cloud.
@@ -25,31 +33,118 @@ public class FileToNetworkOperations {
   }
   
   public void determineOps(final ValueCallback<List<NetworkOperation>> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe field folder is not visible"
-      + "\nThe field folder is not visible"
-      + "\nThe field folder is not visible"
-      + "\nThe field folder is not visible"
-      + "\nThe field folder is not visible"
-      + "\nThe field folder is not visible"
-      + "\nThe field folder is not visible");
+    try {
+      FileItem _folder = this.params.getFolder();
+      boolean _isDirectory = _folder.isDirectory();
+      boolean _not = (!_isDirectory);
+      if (_not) {
+        FileItem _folder_1 = this.params.getFolder();
+        String _plus = ("File passed and not directory. " + _folder_1);
+        throw new Exception(_plus);
+      }
+      FileItem _folder_2 = this.params.getFolder();
+      boolean _exists = _folder_2.exists();
+      boolean _not_1 = (!_exists);
+      if (_not_1) {
+        FileItem _folder_3 = this.params.getFolder();
+        String _plus_1 = ("File passed does not exist. " + _folder_3);
+        throw new Exception(_plus_1);
+      }
+      FileItem _folder_4 = this.params.getFolder();
+      Iterable<String> locallyAddedFiles = FileToNetworkOperations.determineLocallyAddedFiles(this.metadata, _folder_4);
+      FileItem _folder_5 = this.params.getFolder();
+      final ArrayList<String> locallyRemovedFiles = FileToNetworkOperations.determineLocallyRemovedFiles(this.metadata, _folder_5);
+      FileItem _folder_6 = this.params.getFolder();
+      final ArrayList<String> locallyChangedFiles = FileToNetworkOperations.determineLocallyChangedFiles(this.metadata, _folder_6);
+      final Closure<List<List<NetworkOperation>>> _function = new Closure<List<List<NetworkOperation>>>() {
+        @Override
+        public void apply(final List<List<NetworkOperation>> res) {
+          final List<NetworkOperation> ops = CollectionsUtils.<NetworkOperation>flatten(res);
+          cb.onSuccess(ops);
+        }
+      };
+      ValueCallback<List<List<NetworkOperation>>> _embed = AsyncCommon.<List<List<NetworkOperation>>>embed(cb, _function);
+      final Aggregator<List<NetworkOperation>> agg = AsyncCommon.<List<NetworkOperation>>collect(3, _embed);
+      ValueCallback<List<NetworkOperation>> _createCallback = agg.createCallback();
+      this.createOperationsFromRemovedFiles(locallyRemovedFiles, _createCallback);
+      ValueCallback<List<NetworkOperation>> _createCallback_1 = agg.createCallback();
+      this.createOperationsFromChangedFiles(locallyChangedFiles, _createCallback_1);
+      ValueCallback<List<NetworkOperation>> _createCallback_2 = agg.createCallback();
+      this.createOperationsFromCreatedFiles(locallyAddedFiles, _createCallback_2);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
   
   public void createOperationsFromChangedFiles(final List<String> fileNames, final ValueCallback<List<NetworkOperation>> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe field converter is not visible"
-      + "\nThe field folder is not visible");
+    int _size = fileNames.size();
+    final Closure<List<List<NetworkOperation>>> _function = new Closure<List<List<NetworkOperation>>>() {
+      @Override
+      public void apply(final List<List<NetworkOperation>> res) {
+        List<NetworkOperation> _flatten = CollectionsUtils.<NetworkOperation>flatten(res);
+        cb.onSuccess(_flatten);
+      }
+    };
+    ValueCallback<List<List<NetworkOperation>>> _embed = AsyncCommon.<List<List<NetworkOperation>>>embed(cb, _function);
+    final Aggregator<List<NetworkOperation>> agg = AsyncCommon.<List<NetworkOperation>>collect(_size, _embed);
+    final Consumer<String> _function_1 = new Consumer<String>() {
+      @Override
+      public void accept(final String fileName) {
+        Converter _converter = FileToNetworkOperations.this.params.getConverter();
+        FileItem _folder = FileToNetworkOperations.this.params.getFolder();
+        FileItem _get = _folder.get(fileName);
+        ValueCallback<List<NetworkOperation>> _createCallback = agg.createCallback();
+        _converter.update(FileToNetworkOperations.this.metadata, _get, _createCallback);
+      }
+    };
+    fileNames.forEach(_function_1);
   }
   
   public void createOperationsFromRemovedFiles(final List<String> fileNames, final ValueCallback<List<NetworkOperation>> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe field converter is not visible");
+    int _size = fileNames.size();
+    final Closure<List<List<NetworkOperation>>> _function = new Closure<List<List<NetworkOperation>>>() {
+      @Override
+      public void apply(final List<List<NetworkOperation>> res) {
+        List<NetworkOperation> _flatten = CollectionsUtils.<NetworkOperation>flatten(res);
+        cb.onSuccess(_flatten);
+      }
+    };
+    ValueCallback<List<List<NetworkOperation>>> _embed = AsyncCommon.<List<List<NetworkOperation>>>embed(cb, _function);
+    final Aggregator<List<NetworkOperation>> agg = AsyncCommon.<List<NetworkOperation>>collect(_size, _embed);
+    final Consumer<String> _function_1 = new Consumer<String>() {
+      @Override
+      public void accept(final String fileName) {
+        Converter _converter = FileToNetworkOperations.this.params.getConverter();
+        ItemMetadata _get = FileToNetworkOperations.this.metadata.get(fileName);
+        ValueCallback<List<NetworkOperation>> _createCallback = agg.createCallback();
+        _converter.deleteNodes(FileToNetworkOperations.this.metadata, _get, _createCallback);
+      }
+    };
+    fileNames.forEach(_function_1);
   }
   
   public void createOperationsFromCreatedFiles(final Iterable<String> fileNames, final ValueCallback<List<NetworkOperation>> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe field converter is not visible"
-      + "\nThe field folder is not visible");
+    int _size = IterableExtensions.size(fileNames);
+    final Closure<List<List<NetworkOperation>>> _function = new Closure<List<List<NetworkOperation>>>() {
+      @Override
+      public void apply(final List<List<NetworkOperation>> res) {
+        List<NetworkOperation> _flatten = CollectionsUtils.<NetworkOperation>flatten(res);
+        cb.onSuccess(_flatten);
+      }
+    };
+    ValueCallback<List<List<NetworkOperation>>> _embed = AsyncCommon.<List<List<NetworkOperation>>>embed(cb, _function);
+    final Aggregator<List<NetworkOperation>> agg = AsyncCommon.<List<NetworkOperation>>collect(_size, _embed);
+    final Consumer<String> _function_1 = new Consumer<String>() {
+      @Override
+      public void accept(final String fileName) {
+        Converter _converter = FileToNetworkOperations.this.params.getConverter();
+        FileItem _folder = FileToNetworkOperations.this.params.getFolder();
+        FileItem _get = _folder.get(fileName);
+        ValueCallback<List<NetworkOperation>> _createCallback = agg.createCallback();
+        _converter.createNodes(FileToNetworkOperations.this.metadata, _get, _createCallback);
+      }
+    };
+    fileNames.forEach(_function_1);
   }
   
   public static ArrayList<String> determineLocallyChangedFiles(final Metadata metadata, final FileItem folder) {

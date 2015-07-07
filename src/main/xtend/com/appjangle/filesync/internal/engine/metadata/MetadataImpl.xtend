@@ -1,9 +1,9 @@
 package com.appjangle.filesync.internal.engine.metadata
 
+import com.appjangle.api.Node
 import com.appjangle.filesync.ItemMetadata
 import com.appjangle.filesync.Metadata
 import com.appjangle.filesync.internal.engine.metadata.v01.ItemXml
-import io.nextweb.Node
 import java.util.List
 
 class MetadataImpl implements Metadata {

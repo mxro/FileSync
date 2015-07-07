@@ -1,5 +1,6 @@
 package com.appjangle.filesync.internal.engine.metadata;
 
+import com.appjangle.api.Node;
 import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.internal.engine.metadata.v01.ItemXml;
@@ -41,9 +42,16 @@ public class MetadataImpl implements Metadata {
   }
   
   @Override
-  public ItemMetadata get(final /* Node */Object forNode) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nuri cannot be resolved");
+  public ItemMetadata get(final Node forNode) {
+    final Function1<ItemMetadata, Boolean> _function = new Function1<ItemMetadata, Boolean>() {
+      @Override
+      public Boolean apply(final ItemMetadata it) {
+        String _uri = it.uri();
+        String _uri_1 = forNode.uri();
+        return Boolean.valueOf(Objects.equal(_uri, _uri_1));
+      }
+    };
+    return IterableExtensions.<ItemMetadata>findFirst(this.items, _function);
   }
   
   @Override

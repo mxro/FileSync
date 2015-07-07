@@ -1,6 +1,6 @@
 package com.appjangle.filesync
 
-import io.nextweb.Node
+import com.appjangle.api.Node
 import java.util.List
 
 interface Metadata {

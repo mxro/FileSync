@@ -1,9 +1,9 @@
 package com.appjangle.filesync.jre
 
+import com.appjangle.api.Node
 import com.appjangle.filesync.FileSync
 import de.mxro.file.Jre.FilesJre
 import delight.async.jre.Async
-import io.nextweb.Node
 import java.io.File
 
 class FileSyncJre {

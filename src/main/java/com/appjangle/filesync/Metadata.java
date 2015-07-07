@@ -1,5 +1,6 @@
 package com.appjangle.filesync;
 
+import com.appjangle.api.Node;
 import com.appjangle.filesync.ItemMetadata;
 import java.util.List;
 
@@ -9,7 +10,7 @@ public interface Metadata {
   
   public abstract ItemMetadata get(final String name);
   
-  public abstract ItemMetadata get(final /* Node */Object forNode);
+  public abstract ItemMetadata get(final Node forNode);
   
   public abstract Metadata add(final ItemMetadata itemMetadata);
   

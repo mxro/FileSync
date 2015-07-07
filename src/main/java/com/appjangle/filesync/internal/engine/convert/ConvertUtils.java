@@ -9,6 +9,7 @@ import com.appjangle.api.Query;
 import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.NetworkOperation;
+import com.appjangle.filesync.NetworkOperationContext;
 import com.appjangle.filesync.internal.engine.FileUtils;
 import com.appjangle.filesync.internal.engine.N;
 import com.google.common.base.Objects;
@@ -17,7 +18,9 @@ import delight.async.AsyncCommon;
 import delight.async.callbacks.ValueCallback;
 import delight.async.helper.Aggregator;
 import delight.functional.Closure;
+import delight.functional.Success;
 import io.nextweb.promise.NextwebOperation;
+import io.nextweb.promise.NextwebPromise;
 import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
 import io.nextweb.promise.exceptions.UndefinedListener;
@@ -25,6 +28,7 @@ import io.nextweb.promise.exceptions.UndefinedResult;
 import io.nextweb.utils.data.NextwebDataExtension;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -83,13 +87,39 @@ public class ConvertUtils {
   }
   
   public void deleteNodes(final Metadata metadata, final ItemMetadata cachedFile, final ValueCallback<List<NetworkOperation>> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nlink cannot be resolved"
-      + "\nsession cannot be resolved"
-      + "\nlink cannot be resolved"
-      + "\nhasDirectChild cannot be resolved"
-      + "\nremoveSafeRecursive cannot be resolved"
-      + "\nremoveSafe cannot be resolved");
+    final String address = cachedFile.uri();
+    final LinkedList<NetworkOperation> ops = new LinkedList<NetworkOperation>();
+    final NetworkOperation _function = new NetworkOperation() {
+      @Override
+      public void apply(final NetworkOperationContext ctx, final ValueCallback<List<NextwebOperation<?>>> opscb) {
+        String _name = cachedFile.name();
+        metadata.remove(_name);
+        Client _session = ctx.session();
+        final Link nodeToBeRemoved = _session.link(address);
+        final Node parent = ctx.parent();
+        final ArrayList<NextwebOperation<?>> list = new ArrayList<NextwebOperation<?>>();
+        Client _session_1 = parent.session();
+        Link _link = _session_1.link(parent);
+        boolean _hasDirectChild = ConvertUtils.this.ext.hasDirectChild(_link, nodeToBeRemoved);
+        if (_hasDirectChild) {
+          final Closure<List<NextwebPromise<Success>>> _function = new Closure<List<NextwebPromise<Success>>>() {
+            @Override
+            public void apply(final List<NextwebPromise<Success>> res) {
+              list.addAll(res);
+              opscb.onSuccess(list);
+            }
+          };
+          ValueCallback<List<NextwebPromise<Success>>> _embed = AsyncCommon.<List<NextwebPromise<Success>>>embed(opscb, _function);
+          ConvertUtils.this.ext.removeSafeRecursive(parent, nodeToBeRemoved, _embed);
+        } else {
+          NextwebPromise<Success> _removeSafe = parent.removeSafe(nodeToBeRemoved);
+          list.add(_removeSafe);
+          opscb.onSuccess(list);
+        }
+      }
+    };
+    ops.add(_function);
+    cb.onSuccess(ops);
   }
   
   public Query appendLabel(final Query toNode, final String label) {

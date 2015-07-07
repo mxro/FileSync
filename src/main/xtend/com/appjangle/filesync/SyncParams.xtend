@@ -1,8 +1,8 @@
 package com.appjangle.filesync
 
+import com.appjangle.api.Link
+import com.appjangle.api.Node
 import de.mxro.file.FileItem
-import io.nextweb.Link
-import io.nextweb.Node
 import java.util.List
 import org.eclipse.xtend.lib.annotations.Accessors
 

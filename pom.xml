@@ -40,8 +40,8 @@
 		</dependency>
 
 		<dependency>
-			<groupId>io.nextweb.utils.data</groupId>
-			<artifactId>nextweb-data-utils</artifactId>
+			<groupId>com.appjangle</groupId>
+			<artifactId>appjangle-api-operations</artifactId>
 			<version>0.0.7</version>
 			<exclusions>
 				<exclusion>

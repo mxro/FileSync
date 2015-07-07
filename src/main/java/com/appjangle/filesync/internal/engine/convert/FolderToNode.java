@@ -15,7 +15,9 @@ import com.appjangle.filesync.internal.engine.FileUtils;
 import com.appjangle.filesync.internal.engine.N;
 import com.appjangle.filesync.internal.engine.convert.ConvertUtils;
 import de.mxro.file.FileItem;
+import delight.async.AsyncCommon;
 import delight.async.callbacks.ValueCallback;
+import delight.functional.Closure;
 import io.nextweb.promise.NextwebOperation;
 import java.util.ArrayList;
 import java.util.Date;
@@ -32,7 +34,7 @@ public class FolderToNode implements Converter {
   }
   
   @Override
-  public void worksOn(final /* Node */Object node, final ValueCallback<Boolean> cb) {
+  public void worksOn(final Node node, final ValueCallback<Boolean> cb) {
     cb.onSuccess(Boolean.valueOf(true));
   }
   
@@ -108,14 +110,59 @@ public class FolderToNode implements Converter {
   }
   
   @Override
-  public Object createFiles(final FileItem folder, final Metadata metadata, final /* Node */Object source, final ValueCallback<List<FileOperation>> cb) {
-    throw new Error("Unresolved compilation problems:"
-      + "\ngetFileName cannot be resolved"
-      + "\nuri cannot be resolved");
+  public void createFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
+    final Closure<String> _function = new Closure<String>() {
+      @Override
+      public void apply(final String rawFolderName) {
+        final LinkedList<FileOperation> ops = new LinkedList<FileOperation>();
+        final FileOperation _function = new FileOperation() {
+          @Override
+          public void apply(final FileOperationContext ctx) {
+            final String folderName = FolderToNode.this.futils.toFileSystemSafeName(rawFolderName, false, 100);
+            FileItem _folder = ctx.folder();
+            _folder.assertFolder(folderName);
+            Metadata _metadata = ctx.metadata();
+            _metadata.add(
+              new ItemMetadata() {
+                @Override
+                public String name() {
+                  return folderName;
+                }
+                
+                @Override
+                public Date lastModified() {
+                  return new Date();
+                }
+                
+                @Override
+                public String uri() {
+                  return source.uri();
+                }
+                
+                @Override
+                public String hash() {
+                  int _hashCode = folderName.hashCode();
+                  return Integer.valueOf(_hashCode).toString();
+                }
+                
+                @Override
+                public String converter() {
+                  Class<? extends FolderToNode> _class = FolderToNode.this.getClass();
+                  return _class.toString();
+                }
+              });
+          }
+        };
+        ops.add(_function);
+        cb.onSuccess(ops);
+      }
+    };
+    ValueCallback<String> _embed = AsyncCommon.<String>embed(cb, _function);
+    this.utils.getFileName(source, _embed);
   }
   
   @Override
-  public void updateFiles(final FileItem folder, final Metadata metadata, final /* Node */Object source, final ValueCallback<List<FileOperation>> cb) {
+  public void updateFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
     ArrayList<FileOperation> _newArrayList = CollectionLiterals.<FileOperation>newArrayList();
     cb.onSuccess(_newArrayList);
   }

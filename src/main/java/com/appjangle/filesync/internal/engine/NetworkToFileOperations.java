@@ -40,6 +40,8 @@ public class NetworkToFileOperations {
       + "\nThe method catchExceptions is undefined for the type NetworkToFileOperations"
       + "\nThe method or field exception is undefined for the type NetworkToFileOperations"
       + "\nThe method get is undefined for the type NetworkToFileOperations"
+      + "\nType mismatch: cannot convert from Object to Link"
+      + "\nType mismatch: cannot convert from Object to Link"
       + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or put the closures into a typed context."
       + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or put the closures into a typed context."
       + "\nselectAllLinks cannot be resolved"

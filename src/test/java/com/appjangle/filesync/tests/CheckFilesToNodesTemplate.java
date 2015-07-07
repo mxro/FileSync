@@ -10,7 +10,7 @@ import delight.async.jre.Async;
 import delight.functional.Success;
 import io.nextweb.Node;
 import io.nextweb.Query;
-import io.nextweb.Session;
+import io.nextweb.Client;
 import io.nextweb.common.LocalServer;
 import io.nextweb.promise.NextwebPromise;
 import java.io.File;
@@ -25,7 +25,7 @@ import org.junit.rules.TemporaryFolder;
 public abstract class CheckFilesToNodesTemplate {
   protected LocalServer server;
   
-  protected Session session;
+  protected Client session;
   
   protected Node result;
   
@@ -41,7 +41,7 @@ public abstract class CheckFilesToNodesTemplate {
     try {
       LocalServer _startServer = AppjangleJre.startServer();
       this.server = _startServer;
-      Session _createSession = AppjangleJre.createSession(this.server);
+      Client _createSession = AppjangleJre.createSession(this.server);
       this.session = _createSession;
       Query _seed = this.session.seed(this.server);
       Node _get = _seed.get();

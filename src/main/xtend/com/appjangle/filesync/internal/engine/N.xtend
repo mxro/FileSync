@@ -1,6 +1,6 @@
 package com.appjangle.filesync.internal.engine
 
-import io.nextweb.Session
+import io.nextweb.Client
 
 class N {
 	
@@ -8,7 +8,7 @@ class N {
 		"https://admin1.linnk.it/types/v01/isHtmlValue"
 	}
 	
-	def  HTML_VALUE(Session session) {
+	def  HTML_VALUE(Client session) {
 		session.link("https://admin1.linnk.it/types/v01/isHtmlValue")
 	}
 	
@@ -16,7 +16,7 @@ class N {
 		"https://u1.linnk.it/6wbnoq/Types/aTemplate"
 	}
 	
-	def TEMPLATE(Session session) {
+	def TEMPLATE(Client session) {
 		 session.link(TEMPLATE)
 	}
 	
@@ -24,7 +24,7 @@ class N {
 		"https://u1.linnk.it/6wbnoq/Types/aTextValue"
 	}
 	
-	def  TEXT_VALUE(Session session) {
+	def  TEXT_VALUE(Client session) {
 		session.link(TEXT_VALUE)
 	}
 	
@@ -32,7 +32,7 @@ class N {
 		"https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel"
 	}
 	
-	def LABEL(Session session) {
+	def LABEL(Client session) {
 		session.link(LABEL)
 	}
 	
@@ -48,7 +48,7 @@ class N {
 		"https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/icon32"
 	}
 	
-	def ICON(Session session) {
+	def ICON(Client session) {
 		 session.link(ICON)
 	}
 	
@@ -56,7 +56,7 @@ class N {
 		"http://slicnet.com/mxrogm/mxrogm/data/stream/2014/1/10/n3"
 	}
 	
-	def COFFEESCRIPT(Session session) {
+	def COFFEESCRIPT(Client session) {
 		session.link(COFFEESCRIPT)
 	}
 	
@@ -64,7 +64,7 @@ class N {
 		"https://u1.linnk.it/qc8sbw/usr/apps/textsync/upload/java-script-document"
 	}
 	
-	def JAVASCRIPT(Session session) {
+	def JAVASCRIPT(Client session) {
 		session.link(JAVASCRIPT)
 	}
 	
@@ -72,7 +72,7 @@ class N {
 		"https://u1.linnk.it/qc8sbw/usr/apps/textsync/upload/CSSDocument"
 	}
 	
-	def  CSS(Session session) {
+	def  CSS(Client session) {
 		session.link(CSS)
 	}
 	
@@ -80,7 +80,7 @@ class N {
 		"http://slicnet.com/mxrogm/mxrogm/data/stream/2013/12/11/n5"
 	}
 	
-	def TYPE(Session session) {
+	def TYPE(Client session) {
 		session.link(TYPE)
 	}
 	
@@ -88,7 +88,7 @@ class N {
 		"http://slicnet.com/mxrogm/mxrogm/data/stream/2014/3/28/n3"
 	}
 	
-	def RICHTEXT(Session session) {
+	def RICHTEXT(Client session) {
 		session.link(RICHTEXT)
 	}
 	

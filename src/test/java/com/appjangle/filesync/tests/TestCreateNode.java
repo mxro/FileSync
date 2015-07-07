@@ -9,7 +9,7 @@ import io.nextweb.ListQuery;
 import io.nextweb.Node;
 import io.nextweb.NodeList;
 import io.nextweb.Query;
-import io.nextweb.Session;
+import io.nextweb.Client;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
 import org.hamcrest.CoreMatchers;
@@ -40,7 +40,7 @@ public class TestCreateNode extends CheckFilesToNodesTemplate {
     final Node node = _select.get();
     Matcher<Object> _notNullValue = TestCreateNode.notNullValue();
     this.<Node>operator_doubleArrow(node, _notNullValue);
-    Session _session = node.session();
+    Client _session = node.session();
     Link _LABEL = this.n.LABEL(_session);
     Query _select_1 = node.select(_LABEL);
     Node _get_1 = _select_1.get();

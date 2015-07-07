@@ -24,7 +24,7 @@ import delight.functional.Function;
 import delight.functional.Success;
 import io.nextweb.Link;
 import io.nextweb.Node;
-import io.nextweb.Session;
+import io.nextweb.Client;
 import io.nextweb.nodes.Token;
 import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
@@ -184,14 +184,14 @@ public class FileSync {
             }
             if (_and) {
               Node _node_1 = params.getNode();
-              Session _session = _node_1.session();
+              Client _session = _node_1.session();
               String _uri_6 = itmmetadata.uri();
               String _secret_2 = matchedSyncRoot.secret();
               Link _link = _session.link(_uri_6, _secret_2);
               qry = _link;
             } else {
               Node _node_2 = params.getNode();
-              Session _session_1 = _node_2.session();
+              Client _session_1 = _node_2.session();
               String _uri_7 = itmmetadata.uri();
               Link _link_1 = _session_1.link(_uri_7);
               qry = _link_1;
@@ -250,7 +250,7 @@ public class FileSync {
     if (_equals) {
       List<Link> _syncRoots_1 = params.getSyncRoots();
       Node _node = params.getNode();
-      Session _session = _node.session();
+      Client _session = _node.session();
       Node _node_1 = params.getNode();
       Link _link = _session.link(_node_1);
       _syncRoots_1.add(_link);

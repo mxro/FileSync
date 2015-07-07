@@ -10,7 +10,7 @@ import io.nextweb.ListQuery;
 import io.nextweb.Node;
 import io.nextweb.NodeList;
 import io.nextweb.Query;
-import io.nextweb.Session;
+import io.nextweb.Client;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
 import org.hamcrest.CoreMatchers;
@@ -45,7 +45,7 @@ public class TestCreateHtmlNode extends CheckFilesToNodesTemplate {
     Object _value = node.value();
     Matcher<Object> _equalTo_1 = TestCreateHtmlNode.<Object>equalTo("<html></html>");
     this.<Object>operator_doubleArrow(_value, _equalTo_1);
-    Session _session = node.session();
+    Client _session = node.session();
     Link _LABEL = this.n.LABEL(_session);
     Query _select_1 = node.select(_LABEL);
     Node _get_1 = _select_1.get();

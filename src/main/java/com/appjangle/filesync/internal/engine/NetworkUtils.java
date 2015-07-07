@@ -9,7 +9,7 @@ import delight.functional.Closure;
 import delight.functional.Success;
 import io.nextweb.Node;
 import io.nextweb.Query;
-import io.nextweb.Session;
+import io.nextweb.Client;
 import io.nextweb.promise.NextwebOperation;
 import io.nextweb.promise.NextwebPromise;
 import io.nextweb.promise.exceptions.ExceptionListener;
@@ -23,7 +23,7 @@ public class NetworkUtils {
     {
       final NetworkOperationContext ctx = new NetworkOperationContext() {
         @Override
-        public Session session() {
+        public Client session() {
           return onNode.session();
         }
         
@@ -105,7 +105,7 @@ public class NetworkUtils {
         ValueCallback<List<NextwebOperation<?>>> _embed_1 = AsyncCommon.<List<NextwebOperation<?>>>embed(cb, _function_1);
         op.apply(ctx, _embed_1);
       }
-      Session _session = onNode.session();
+      Client _session = onNode.session();
       _xblockexpression = _session.commit();
     }
     return _xblockexpression;

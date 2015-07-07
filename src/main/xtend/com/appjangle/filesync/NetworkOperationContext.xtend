@@ -1,9 +1,9 @@
 package com.appjangle.filesync
 
 import io.nextweb.Node
-import io.nextweb.Session
+import io.nextweb.Client
 
 interface NetworkOperationContext {
-	def Session session()
+	def Client session()
 	def Node parent()
 }

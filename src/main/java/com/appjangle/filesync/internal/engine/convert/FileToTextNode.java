@@ -19,7 +19,7 @@ import io.nextweb.LinkList;
 import io.nextweb.LinkListQuery;
 import io.nextweb.Node;
 import io.nextweb.Query;
-import io.nextweb.Session;
+import io.nextweb.Client;
 import io.nextweb.promise.NextwebOperation;
 import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
@@ -131,7 +131,7 @@ public class FileToTextNode implements Converter {
     final NetworkOperation _function = new NetworkOperation() {
       @Override
       public void apply(final NetworkOperationContext ctx, final ValueCallback<List<NextwebOperation<?>>> opscb) {
-        Session _session = ctx.session();
+        Client _session = ctx.session();
         Link _link = _session.link(address);
         Query _setValueSafe = _link.setValueSafe(content);
         ArrayList<NextwebOperation<?>> _newArrayList = CollectionLiterals.<NextwebOperation<?>>newArrayList(_setValueSafe);

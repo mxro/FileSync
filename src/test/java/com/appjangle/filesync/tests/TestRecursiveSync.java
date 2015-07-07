@@ -6,7 +6,7 @@ import de.mxro.file.FileItem;
 import de.oehme.xtend.junit.JUnit;
 import io.nextweb.Link;
 import io.nextweb.Query;
-import io.nextweb.Session;
+import io.nextweb.Client;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
@@ -36,14 +36,14 @@ public class TestRecursiveSync extends CheckNodesToFilesTemplate {
     _append_4.append("c");
     final Query html = node3.append("<html></html>", "./html");
     Query _append_5 = html.append("My Html Document", "./.label");
-    Session _session = this.source.session();
+    Client _session = this.source.session();
     Link _LABEL = this.n.LABEL(_session);
     _append_5.append(_LABEL);
-    Session _session_1 = this.source.session();
+    Client _session_1 = this.source.session();
     Link _HTML_VALUE = this.n.HTML_VALUE(_session_1);
     html.append(_HTML_VALUE);
     Query _append_6 = this.source.append("node4", "./node4");
-    Session _session_2 = this.source.session();
+    Client _session_2 = this.source.session();
     Link _link = _session_2.link("http://slicnet.com/mxrogm/mxrogm/data/stream/2013/12/3/n1");
     _append_6.append(_link);
   }

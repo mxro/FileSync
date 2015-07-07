@@ -18,7 +18,7 @@ import io.nextweb.LinkList;
 import io.nextweb.LinkListQuery;
 import io.nextweb.Node;
 import io.nextweb.Query;
-import io.nextweb.Session;
+import io.nextweb.Client;
 import io.nextweb.promise.NextwebOperation;
 import io.nextweb.promise.NextwebPromise;
 import io.nextweb.promise.exceptions.ExceptionListener;
@@ -94,11 +94,11 @@ public class ConvertUtils {
       public void apply(final NetworkOperationContext ctx, final ValueCallback<List<NextwebOperation<?>>> opscb) {
         String _name = cachedFile.name();
         metadata.remove(_name);
-        Session _session = ctx.session();
+        Client _session = ctx.session();
         final Link nodeToBeRemoved = _session.link(address);
         final Node parent = ctx.parent();
         final ArrayList<NextwebOperation<?>> list = new ArrayList<NextwebOperation<?>>();
-        Session _session_1 = parent.session();
+        Client _session_1 = parent.session();
         Link _link = _session_1.link(parent);
         boolean _hasDirectChild = ConvertUtils.this.ext.hasDirectChild(_link, nodeToBeRemoved);
         if (_hasDirectChild) {
@@ -124,7 +124,7 @@ public class ConvertUtils {
   
   public Query appendLabel(final Query toNode, final String label) {
     Query _appendSafe = toNode.appendSafe(label, "./.label");
-    Session _session = toNode.session();
+    Client _session = toNode.session();
     Link _LABEL = this.n.LABEL(_session);
     return _appendSafe.appendSafe(_LABEL);
   }
@@ -133,7 +133,7 @@ public class ConvertUtils {
     ArrayList<NextwebOperation<?>> _xblockexpression = null;
     {
       final ArrayList<NextwebOperation<?>> res = CollectionLiterals.<NextwebOperation<?>>newArrayList();
-      final Session session = toNode.session();
+      final Client session = toNode.session();
       String ext = source.getExtension();
       ext = ("." + ext);
       boolean _equals = Objects.equal(ext, ".html");
@@ -277,7 +277,7 @@ public class ConvertUtils {
     final Consumer<String> _function_1 = new Consumer<String>() {
       @Override
       public void accept(final String labelType) {
-        Session _session = fromNode.session();
+        Client _session = fromNode.session();
         Link _link = _session.link(labelType);
         final Query qry = fromNode.select(_link);
         final ValueCallback<Object> itmcb = cbs.createCallback();

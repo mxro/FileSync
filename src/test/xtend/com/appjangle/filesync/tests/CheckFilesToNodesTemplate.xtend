@@ -6,7 +6,6 @@ import de.mxro.file.FileItem
 import de.mxro.file.Jre.FilesJre
 import delight.async.jre.Async
 import io.nextweb.Node
-import io.nextweb.Session
 import io.nextweb.common.LocalServer
 import java.io.File
 import org.junit.After
@@ -14,11 +13,12 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TemporaryFolder
+import io.nextweb.Client
 
 abstract class CheckFilesToNodesTemplate {
 	
 	protected LocalServer server
-	protected Session session
+	protected Client session
 	protected Node result
 	protected File sourceFolder
 	protected FileItem source

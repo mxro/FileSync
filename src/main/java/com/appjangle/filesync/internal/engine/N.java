@@ -1,7 +1,7 @@
 package com.appjangle.filesync.internal.engine;
 
-import io.nextweb.Link;
 import io.nextweb.Client;
+import io.nextweb.Link;
 
 @SuppressWarnings("all")
 public class N {

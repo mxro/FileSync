@@ -1,10 +1,12 @@
 package com.appjangle.filesync.internal.engine;
 
+import com.appjangle.api.Node;
 import com.appjangle.filesync.Converter;
 import com.appjangle.filesync.FileOperation;
 import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.SyncParams;
+import com.google.common.base.Objects;
 import de.mxro.file.FileItem;
 import delight.async.AsyncCommon;
 import delight.async.callbacks.ValueCallback;
@@ -31,10 +33,6 @@ public class NetworkToFileOperations {
   
   public Object determineOps(final ValueCallback<List<FileOperation>> cb) {
     throw new Error("Unresolved compilation problems:"
-      + "\nNode cannot be resolved to a type."
-      + "\nNode cannot be resolved to a type."
-      + "\nNode cannot be resolved to a type."
-      + "\nNode cannot be resolved to a type."
       + "\nThe method exception is undefined for the type NetworkToFileOperations"
       + "\nThe method links is undefined for the type NetworkToFileOperations"
       + "\nThe method catchUnauthorized is undefined for the type NetworkToFileOperations"
@@ -49,7 +47,7 @@ public class NetworkToFileOperations {
       + "\nget cannot be resolved");
   }
   
-  public void deduceUpdateOperations(final /* Iterable<Node> */Object remotelyUpdated, final ValueCallback<List<FileOperation>> cb) {
+  public void deduceUpdateOperations(final Iterable<Node> remotelyUpdated, final ValueCallback<List<FileOperation>> cb) {
     int _size = IterableExtensions.size(remotelyUpdated);
     final Closure<List<List<FileOperation>>> _function = new Closure<List<List<FileOperation>>>() {
       @Override
@@ -68,7 +66,7 @@ public class NetworkToFileOperations {
     }
   }
   
-  public void deduceCreateOperations(final /* Iterable<Node> */Object remotelyAdded, final ValueCallback<List<FileOperation>> cb) {
+  public void deduceCreateOperations(final Iterable<Node> remotelyAdded, final ValueCallback<List<FileOperation>> cb) {
     int _size = IterableExtensions.size(remotelyAdded);
     final Closure<List<List<FileOperation>>> _function = new Closure<List<List<FileOperation>>>() {
       @Override
@@ -106,18 +104,60 @@ public class NetworkToFileOperations {
     }
   }
   
-  public /* ArrayList<Node> */Object determineRemotelyAddedNodes(final /* List<Node> */Object children) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nNode cannot be resolved to a type.");
+  public ArrayList<Node> determineRemotelyAddedNodes(final List<Node> children) {
+    ArrayList<Node> _xblockexpression = null;
+    {
+      final ArrayList<Node> res = new ArrayList<Node>(0);
+      for (final Node child : children) {
+        ItemMetadata _get = this.metadata.get(child);
+        boolean _equals = Objects.equal(_get, null);
+        if (_equals) {
+          res.add(child);
+        }
+      }
+      _xblockexpression = res;
+    }
+    return _xblockexpression;
   }
   
-  public ArrayList<ItemMetadata> determineRemotelyRemovedNodes(final /* List<Node> */Object children) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nuri cannot be resolved");
+  public ArrayList<ItemMetadata> determineRemotelyRemovedNodes(final List<Node> children) {
+    ArrayList<ItemMetadata> _xblockexpression = null;
+    {
+      final ArrayList<ItemMetadata> res = new ArrayList<ItemMetadata>(0);
+      int _size = children.size();
+      final ArrayList<String> uris = new ArrayList<String>(_size);
+      for (final Node node : children) {
+        String _uri = node.uri();
+        uris.add(_uri);
+      }
+      List<ItemMetadata> _children = this.metadata.getChildren();
+      for (final ItemMetadata item : _children) {
+        String _uri_1 = item.uri();
+        boolean _contains = uris.contains(_uri_1);
+        boolean _not = (!_contains);
+        if (_not) {
+          res.add(item);
+        }
+      }
+      _xblockexpression = res;
+    }
+    return _xblockexpression;
   }
   
-  public /* ArrayList<Node> */Object determineRemotelyUpdatedNodes(final /* List<Node> */Object children) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nNode cannot be resolved to a type.");
+  public ArrayList<Node> determineRemotelyUpdatedNodes(final List<Node> children) {
+    ArrayList<Node> _xblockexpression = null;
+    {
+      int _size = children.size();
+      final ArrayList<Node> res = new ArrayList<Node>(_size);
+      for (final Node node : children) {
+        ItemMetadata _get = this.metadata.get(node);
+        boolean _notEquals = (!Objects.equal(_get, null));
+        if (_notEquals) {
+          res.add(node);
+        }
+      }
+      _xblockexpression = res;
+    }
+    return _xblockexpression;
   }
 }

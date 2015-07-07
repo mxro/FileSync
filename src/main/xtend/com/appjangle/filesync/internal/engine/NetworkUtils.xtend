@@ -1,12 +1,12 @@
 package com.appjangle.filesync.internal.engine
 
+import com.appjangle.api.Node
+import com.appjangle.api.Query
 import com.appjangle.filesync.NetworkOperation
 import com.appjangle.filesync.NetworkOperationContext
 import delight.async.AsyncCommon
 import delight.async.callbacks.ValueCallback
 import delight.functional.Success
-import io.nextweb.Node
-import io.nextweb.Query
 import io.nextweb.promise.NextwebPromise
 import java.util.List
 

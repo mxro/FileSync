@@ -1,5 +1,8 @@
 package com.appjangle.filesync
 
+import com.appjangle.api.Link
+import com.appjangle.api.Node
+import com.appjangle.api.nodes.Token
 import com.appjangle.filesync.internal.engine.FileUtils
 import com.appjangle.filesync.internal.engine.SyncFolder
 import com.appjangle.filesync.internal.engine.convert.ConvertUtils
@@ -13,9 +16,6 @@ import de.mxro.file.Jre.FilesJre
 import delight.async.AsyncCommon
 import delight.async.callbacks.ValueCallback
 import delight.functional.Success
-import io.nextweb.Link
-import io.nextweb.Node
-import io.nextweb.nodes.Token
 import java.io.File
 import java.util.LinkedList
 

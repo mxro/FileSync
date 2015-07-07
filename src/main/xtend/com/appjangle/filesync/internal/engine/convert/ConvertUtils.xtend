@@ -12,12 +12,12 @@ import de.mxro.file.FileItem
 import delight.async.AsyncCommon
 import delight.async.callbacks.ValueCallback
 import io.nextweb.promise.NextwebOperation
-import com.appjangle.api.operations.NextwebDataExtension
 import java.util.ArrayList
 import java.util.LinkedList
 import java.util.List
 
 import static extension delight.async.AsyncCommon.*
+import com.appjangle.api.operations.OperationsImpl
 
 class ConvertUtils {
 
@@ -232,6 +232,6 @@ class ConvertUtils {
 	}
 	
 	extension N n = new N
-	extension NextwebDataExtension ext = new NextwebDataExtension
+	extension OperationsImpl ext = new OperationsImpl
 	extension FileUtils futils = new FileUtils
 }

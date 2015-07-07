@@ -1,15 +1,16 @@
 package com.appjangle.filesync.tests;
 
+import com.appjangle.api.Client;
+import com.appjangle.api.Link;
+import com.appjangle.api.ListQuery;
+import com.appjangle.api.Node;
+import com.appjangle.api.NodeList;
+import com.appjangle.api.Query;
 import com.appjangle.filesync.internal.engine.N;
 import com.appjangle.filesync.tests.CheckFilesToNodesTemplate;
 import de.oehme.xtend.junit.Hamcrest;
 import de.oehme.xtend.junit.JUnit;
-import io.nextweb.Client;
-import io.nextweb.Link;
-import io.nextweb.ListQuery;
-import io.nextweb.Node;
-import io.nextweb.NodeList;
-import io.nextweb.Query;
+
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
 import org.hamcrest.CoreMatchers;

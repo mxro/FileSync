@@ -1,12 +1,13 @@
 package com.appjangle.filesync.tests;
 
+import com.appjangle.api.Client;
+import com.appjangle.api.Link;
+import com.appjangle.api.Query;
 import com.appjangle.filesync.internal.engine.N;
 import com.appjangle.filesync.tests.CheckNodesToFilesTemplate;
 import de.mxro.file.FileItem;
 import de.oehme.xtend.junit.JUnit;
-import io.nextweb.Client;
-import io.nextweb.Link;
-import io.nextweb.Query;
+
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;

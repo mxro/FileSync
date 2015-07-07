@@ -1,5 +1,7 @@
 package com.appjangle.filesync.tests;
 
+import com.appjangle.api.Node;
+import com.appjangle.api.Query;
 import com.appjangle.filesync.tests.CheckUpdatesTemplate;
 import de.mxro.file.FileItem;
 import de.oehme.xtend.junit.JUnit;
@@ -8,8 +10,7 @@ import delight.async.callbacks.ValueCallback;
 import delight.async.jre.Async;
 import delight.functional.Closure;
 import delight.functional.Success;
-import io.nextweb.Node;
-import io.nextweb.Query;
+
 import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
 import io.nextweb.promise.exceptions.UndefinedListener;

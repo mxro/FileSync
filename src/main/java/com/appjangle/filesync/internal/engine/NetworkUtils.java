@@ -1,5 +1,8 @@
 package com.appjangle.filesync.internal.engine;
 
+import com.appjangle.api.Client;
+import com.appjangle.api.Node;
+import com.appjangle.api.Query;
 import com.appjangle.filesync.NetworkOperation;
 import com.appjangle.filesync.NetworkOperationContext;
 import delight.async.AsyncCommon;
@@ -7,9 +10,7 @@ import delight.async.callbacks.ValueCallback;
 import delight.async.helper.Aggregator;
 import delight.functional.Closure;
 import delight.functional.Success;
-import io.nextweb.Client;
-import io.nextweb.Node;
-import io.nextweb.Query;
+
 import io.nextweb.promise.NextwebOperation;
 import io.nextweb.promise.NextwebPromise;
 import io.nextweb.promise.exceptions.ExceptionListener;

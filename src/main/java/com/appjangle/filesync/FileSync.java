@@ -1,5 +1,9 @@
 package com.appjangle.filesync;
 
+import com.appjangle.api.Client;
+import com.appjangle.api.Link;
+import com.appjangle.api.Node;
+import com.appjangle.api.nodes.Token;
 import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.SyncNotifications;
@@ -22,10 +26,7 @@ import delight.functional.Closure;
 import delight.functional.Closure2;
 import delight.functional.Function;
 import delight.functional.Success;
-import io.nextweb.Client;
-import io.nextweb.Link;
-import io.nextweb.Node;
-import io.nextweb.nodes.Token;
+
 import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
 import java.io.File;

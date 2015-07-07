@@ -1,5 +1,7 @@
 package com.appjangle.filesync.internal.engine;
 
+import com.appjangle.api.Node;
+import com.appjangle.api.Query;
 import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
 import com.google.common.base.Objects;
@@ -8,8 +10,7 @@ import de.mxro.file.FileItem;
 import delight.async.callbacks.ValueCallback;
 import delight.functional.Closure;
 import delight.functional.Success;
-import io.nextweb.Node;
-import io.nextweb.Query;
+
 import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
 import java.util.Date;

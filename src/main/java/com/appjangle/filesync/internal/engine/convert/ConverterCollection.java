@@ -1,5 +1,6 @@
 package com.appjangle.filesync.internal.engine.convert;
 
+import com.appjangle.api.Node;
 import com.appjangle.filesync.Converter;
 import com.appjangle.filesync.FileOperation;
 import com.appjangle.filesync.ItemMetadata;
@@ -12,7 +13,7 @@ import delight.async.AsyncCommon;
 import delight.async.callbacks.ValueCallback;
 import delight.functional.Closure;
 import delight.functional.Closure2;
-import io.nextweb.Node;
+
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,5 +1,6 @@
 package com.appjangle.filesync.internal.engine;
 
+import com.appjangle.api.Node;
 import com.appjangle.filesync.FileOperation;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.NetworkOperation;
@@ -16,7 +17,7 @@ import delight.async.AsyncCommon;
 import delight.async.callbacks.ValueCallback;
 import delight.functional.Closure;
 import delight.functional.Success;
-import io.nextweb.Node;
+
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.Extension;
 

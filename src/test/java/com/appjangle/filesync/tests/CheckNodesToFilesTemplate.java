@@ -1,5 +1,9 @@
 package com.appjangle.filesync.tests;
 
+import com.appjangle.api.Client;
+import com.appjangle.api.Node;
+import com.appjangle.api.Query;
+import com.appjangle.api.common.LocalServer;
 import com.appjangle.filesync.FileSync;
 import com.appjangle.jre.AppjangleJre;
 import de.mxro.file.FileItem;
@@ -8,10 +12,7 @@ import delight.async.Operation;
 import delight.async.callbacks.ValueCallback;
 import delight.async.jre.Async;
 import delight.functional.Success;
-import io.nextweb.Client;
-import io.nextweb.Node;
-import io.nextweb.Query;
-import io.nextweb.common.LocalServer;
+
 import io.nextweb.promise.NextwebPromise;
 import java.io.File;
 import org.eclipse.xtext.xbase.lib.Exceptions;

@@ -1,11 +1,13 @@
 package com.appjangle.filesync;
 
 import de.mxro.file.FileItem;
-import io.nextweb.Link;
-import io.nextweb.Node;
+
 import org.eclipse.xtend.lib.annotations.Accessors;
 import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.Pure;
+
+import com.appjangle.api.Link;
+import com.appjangle.api.Node;
 
 @Accessors
 @SuppressWarnings("all")

@@ -1,5 +1,9 @@
 package com.appjangle.filesync.internal.engine.convert;
 
+import com.appjangle.api.Client;
+import com.appjangle.api.Link;
+import com.appjangle.api.Node;
+import com.appjangle.api.Query;
 import com.appjangle.filesync.Converter;
 import com.appjangle.filesync.FileOperation;
 import com.appjangle.filesync.FileOperationContext;
@@ -14,10 +18,7 @@ import de.mxro.file.FileItem;
 import delight.async.AsyncCommon;
 import delight.async.callbacks.ValueCallback;
 import delight.functional.Closure;
-import io.nextweb.Client;
-import io.nextweb.Link;
-import io.nextweb.Node;
-import io.nextweb.Query;
+
 import io.nextweb.promise.NextwebOperation;
 import java.util.ArrayList;
 import java.util.Date;

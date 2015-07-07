@@ -1,5 +1,11 @@
 package com.appjangle.filesync.internal.engine.convert;
 
+import com.appjangle.api.Client;
+import com.appjangle.api.Link;
+import com.appjangle.api.LinkList;
+import com.appjangle.api.LinkListQuery;
+import com.appjangle.api.Node;
+import com.appjangle.api.Query;
 import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.NetworkOperation;
@@ -13,12 +19,7 @@ import delight.async.callbacks.ValueCallback;
 import delight.async.helper.Aggregator;
 import delight.functional.Closure;
 import delight.functional.Success;
-import io.nextweb.Client;
-import io.nextweb.Link;
-import io.nextweb.LinkList;
-import io.nextweb.LinkListQuery;
-import io.nextweb.Node;
-import io.nextweb.Query;
+
 import io.nextweb.promise.NextwebOperation;
 import io.nextweb.promise.NextwebPromise;
 import io.nextweb.promise.exceptions.ExceptionListener;

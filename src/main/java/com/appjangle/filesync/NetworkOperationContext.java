@@ -1,7 +1,7 @@
 package com.appjangle.filesync;
 
-import io.nextweb.Client;
-import io.nextweb.Node;
+import com.appjangle.api.Client;
+import com.appjangle.api.Node;
 
 @SuppressWarnings("all")
 public interface NetworkOperationContext {

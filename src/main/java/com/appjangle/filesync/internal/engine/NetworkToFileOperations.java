@@ -1,5 +1,9 @@
 package com.appjangle.filesync.internal.engine;
 
+import com.appjangle.api.Link;
+import com.appjangle.api.LinkList;
+import com.appjangle.api.LinkListQuery;
+import com.appjangle.api.Node;
 import com.appjangle.filesync.Converter;
 import com.appjangle.filesync.FileOperation;
 import com.appjangle.filesync.ItemMetadata;
@@ -15,10 +19,7 @@ import delight.async.helper.Aggregator;
 import delight.functional.Closure;
 import delight.functional.Closure2;
 import delight.functional.collections.CollectionsUtils;
-import io.nextweb.Link;
-import io.nextweb.LinkList;
-import io.nextweb.LinkListQuery;
-import io.nextweb.Node;
+
 import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
 import io.nextweb.promise.exceptions.UnauthorizedListener;

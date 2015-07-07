@@ -1,10 +1,11 @@
 package com.appjangle.filesync.internal.engine.metadata;
 
+import com.appjangle.api.Node;
 import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.internal.engine.metadata.v01.ItemXml;
 import com.google.common.base.Objects;
-import io.nextweb.Node;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

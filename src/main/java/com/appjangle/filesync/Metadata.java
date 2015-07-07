@@ -1,7 +1,8 @@
 package com.appjangle.filesync;
 
+import com.appjangle.api.Node;
 import com.appjangle.filesync.ItemMetadata;
-import io.nextweb.Node;
+
 import java.util.List;
 
 @SuppressWarnings("all")

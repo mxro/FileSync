@@ -7,7 +7,6 @@ import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.NetworkOperation;
 import de.mxro.file.FileItem;
 import delight.async.callbacks.ValueCallback;
-
 import java.util.List;
 
 @SuppressWarnings("all")

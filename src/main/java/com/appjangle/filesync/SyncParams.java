@@ -1,13 +1,10 @@
 package com.appjangle.filesync;
 
-import com.appjangle.api.Link;
-import com.appjangle.api.Node;
 import com.appjangle.filesync.Converter;
 import com.appjangle.filesync.SyncNotifications;
 import com.appjangle.filesync.SynchronizationSettings;
 import com.appjangle.filesync.SynchronizationState;
 import de.mxro.file.FileItem;
-
 import java.util.List;
 import org.eclipse.xtend.lib.annotations.Accessors;
 import org.eclipse.xtext.xbase.lib.Pure;
@@ -17,7 +14,7 @@ import org.eclipse.xtext.xbase.lib.Pure;
 public class SyncParams {
   private FileItem folder;
   
-  private Node node;
+  private /* Node */Object node;
   
   private SynchronizationSettings settings;
   
@@ -31,12 +28,12 @@ public class SyncParams {
    * <p>The Node defined as the root of the synchronization.
    * <p>All nodes under this root will be resolved.
    */
-  private List<Link> syncRoots;
+  private /* List<Link> */Object syncRoots;
   
   /**
    * <p>If these nodes are found as a child node of another node, their children will not be resolved.
    */
-  private List<Link> dontFollow;
+  private /* List<Link> */Object dontFollow;
   
   public SyncParams() {
   }
@@ -107,20 +104,20 @@ public class SyncParams {
   }
   
   @Pure
-  public List<Link> getSyncRoots() {
+  public /* List<Link> */Object getSyncRoots() {
     return this.syncRoots;
   }
   
-  public void setSyncRoots(final List<Link> syncRoots) {
+  public void setSyncRoots(final /* List<Link> */Object syncRoots) {
     this.syncRoots = syncRoots;
   }
   
   @Pure
-  public List<Link> getDontFollow() {
+  public /* List<Link> */Object getDontFollow() {
     return this.dontFollow;
   }
   
-  public void setDontFollow(final List<Link> dontFollow) {
+  public void setDontFollow(final /* List<Link> */Object dontFollow) {
     this.dontFollow = dontFollow;
   }
 }

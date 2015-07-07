@@ -7,7 +7,6 @@ import com.appjangle.filesync.internal.engine.N;
 import com.appjangle.filesync.tests.CheckNodesToFilesTemplate;
 import de.mxro.file.FileItem;
 import de.oehme.xtend.junit.JUnit;
-
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;

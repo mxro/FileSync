@@ -6,7 +6,6 @@ import com.appjangle.api.Query;
 import com.appjangle.filesync.tests.CheckUpdatesTemplate;
 import de.mxro.file.FileItem;
 import de.oehme.xtend.junit.JUnit;
-
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
 import org.hamcrest.Matcher;
 import org.junit.Assert;

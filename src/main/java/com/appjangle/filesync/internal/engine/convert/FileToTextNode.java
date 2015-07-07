@@ -2,8 +2,6 @@ package com.appjangle.filesync.internal.engine.convert;
 
 import com.appjangle.api.Client;
 import com.appjangle.api.Link;
-import com.appjangle.api.LinkList;
-import com.appjangle.api.LinkListQuery;
 import com.appjangle.api.Node;
 import com.appjangle.api.Query;
 import com.appjangle.filesync.Converter;
@@ -15,15 +13,9 @@ import com.appjangle.filesync.NetworkOperation;
 import com.appjangle.filesync.NetworkOperationContext;
 import com.appjangle.filesync.internal.engine.FileUtils;
 import com.appjangle.filesync.internal.engine.convert.ConvertUtils;
-import com.google.common.base.Objects;
 import de.mxro.file.FileItem;
-import delight.async.AsyncCommon;
 import delight.async.callbacks.ValueCallback;
-import delight.functional.Closure;
-
 import io.nextweb.promise.NextwebOperation;
-import io.nextweb.promise.exceptions.ExceptionListener;
-import io.nextweb.promise.exceptions.ExceptionResult;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
@@ -40,30 +32,14 @@ public class FileToTextNode implements Converter {
   }
   
   @Override
-  public void worksOn(final Node node, final ValueCallback<Boolean> cb) {
-    final LinkListQuery qry = node.selectAllLinks();
-    final ExceptionListener _function = new ExceptionListener() {
-      @Override
-      public void onFailure(final ExceptionResult er) {
-        Throwable _exception = er.exception();
-        cb.onFailure(_exception);
-      }
-    };
-    qry.catchExceptions(_function);
-    final Closure<LinkList> _function_1 = new Closure<LinkList>() {
-      @Override
-      public void apply(final LinkList links) {
-        for (final Link link : links) {
-          boolean _isTextType = FileToTextNode.this.cutils.isTextType(link);
-          if (_isTextType) {
-            cb.onSuccess(Boolean.valueOf(true));
-            return;
-          }
-        }
-        cb.onSuccess(Boolean.valueOf(false));
-      }
-    };
-    qry.get(_function_1);
+  public Object worksOn(final /* Node */Object node, final ValueCallback<Boolean> cb) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method exception is undefined for the type FileToTextNode"
+      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or put the closures into a typed context."
+      + "\nThere is no context to infer the closure\'s argument types from. Consider typing the arguments or put the closures into a typed context."
+      + "\nselectAllLinks cannot be resolved"
+      + "\ncatchExceptions cannot be resolved"
+      + "\nget cannot be resolved");
   }
   
   @Override
@@ -149,114 +125,19 @@ public class FileToTextNode implements Converter {
   }
   
   @Override
-  public void createFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
-    final Closure<String> _function = new Closure<String>() {
-      @Override
-      public void apply(final String ext) {
-        final Closure<String> _function = new Closure<String>() {
-          @Override
-          public void apply(final String rawFileName) {
-            final String fileName = FileToTextNode.this.futils.toFileSystemSafeName(rawFileName, false, 100);
-            final LinkedList<FileOperation> ops = new LinkedList<FileOperation>();
-            final FileOperation _function = new FileOperation() {
-              @Override
-              public void apply(final FileOperationContext ctx) {
-                FileItem _folder = ctx.folder();
-                final FileItem file = _folder.createFile(fileName);
-                String _value = source.<String>value(String.class);
-                file.setText(_value);
-                Metadata _metadata = ctx.metadata();
-                _metadata.add(
-                  new ItemMetadata() {
-                    @Override
-                    public String name() {
-                      return fileName;
-                    }
-                    
-                    @Override
-                    public Date lastModified() {
-                      return file.lastModified();
-                    }
-                    
-                    @Override
-                    public String uri() {
-                      return source.uri();
-                    }
-                    
-                    @Override
-                    public String hash() {
-                      return file.hash();
-                    }
-                    
-                    @Override
-                    public String converter() {
-                      Class<? extends FileToTextNode> _class = FileToTextNode.this.getClass();
-                      return _class.toString();
-                    }
-                  });
-              }
-            };
-            ops.add(_function);
-            cb.onSuccess(ops);
-          }
-        };
-        ValueCallback<String> _embed = AsyncCommon.<String>embed(cb, _function);
-        FileToTextNode.this.cutils.getFileName(source, folder, ext, _embed);
-      }
-    };
-    ValueCallback<String> _embed = AsyncCommon.<String>embed(cb, _function);
-    this.cutils.getFileExtension(source, _embed);
+  public Object createFiles(final FileItem folder, final Metadata metadata, final /* Node */Object source, final ValueCallback<List<FileOperation>> cb) {
+    throw new Error("Unresolved compilation problems:"
+      + "\ngetFileExtension cannot be resolved"
+      + "\ngetFileName cannot be resolved"
+      + "\nvalue cannot be resolved"
+      + "\nuri cannot be resolved");
   }
   
   @Override
-  public void updateFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
-    ItemMetadata _get = metadata.get(source);
-    final String fileName = _get.name();
-    final String content = source.<String>value(String.class);
-    final LinkedList<FileOperation> ops = new LinkedList<FileOperation>();
-    final FileOperation _function = new FileOperation() {
-      @Override
-      public void apply(final FileOperationContext ctx) {
-        FileItem _folder = ctx.folder();
-        final FileItem file = _folder.get(fileName);
-        String _text = file.getText();
-        boolean _notEquals = (!Objects.equal(_text, content));
-        if (_notEquals) {
-          file.setText(content);
-          Metadata _metadata = ctx.metadata();
-          _metadata.update(
-            new ItemMetadata() {
-              @Override
-              public String name() {
-                return fileName;
-              }
-              
-              @Override
-              public Date lastModified() {
-                return file.lastModified();
-              }
-              
-              @Override
-              public String uri() {
-                return source.uri();
-              }
-              
-              @Override
-              public String hash() {
-                return file.hash();
-              }
-              
-              @Override
-              public String converter() {
-                Class<? extends FileToTextNode> _class = FileToTextNode.this.getClass();
-                return _class.toString();
-              }
-            });
-        }
-      }
-    };
-    ops.add(_function);
-    cb.onSuccess(ops);
+  public void updateFiles(final FileItem folder, final Metadata metadata, final /* Node */Object source, final ValueCallback<List<FileOperation>> cb) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nvalue cannot be resolved"
+      + "\nuri cannot be resolved");
   }
   
   @Override

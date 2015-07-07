@@ -1,19 +1,19 @@
 package com.appjangle.filesync.tests
 
+import com.appjangle.api.Client
+import com.appjangle.api.Node
+import com.appjangle.api.common.LocalServer
 import com.appjangle.filesync.FileSync
 import com.appjangle.jre.AppjangleJre
 import de.mxro.file.FileItem
 import de.mxro.file.Jre.FilesJre
 import delight.async.jre.Async
-import io.nextweb.Node
-import io.nextweb.common.LocalServer
 import java.io.File
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TemporaryFolder
-import io.nextweb.Client
 
 abstract class CheckFilesToNodesTemplate {
 	

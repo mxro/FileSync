@@ -1,12 +1,12 @@
 package com.appjangle.filesync.internal.engine
 
+import com.appjangle.api.Node
 import com.appjangle.filesync.ItemMetadata
 import com.appjangle.filesync.Metadata
 import com.google.common.base.Preconditions
 import de.mxro.file.FileItem
 import delight.async.callbacks.ValueCallback
 import delight.functional.Success
-import io.nextweb.Node
 
 class SyncValueOperations {
 	

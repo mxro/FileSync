@@ -10,7 +10,6 @@ import com.appjangle.filesync.tests.CheckFilesToNodesTemplate;
 import de.mxro.file.FileItem;
 import de.oehme.xtend.junit.Hamcrest;
 import de.oehme.xtend.junit.JUnit;
-
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
 import org.hamcrest.CoreMatchers;

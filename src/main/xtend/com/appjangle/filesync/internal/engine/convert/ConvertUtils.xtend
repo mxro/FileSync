@@ -1,5 +1,8 @@
 package com.appjangle.filesync.internal.engine.convert
 
+import com.appjangle.api.Link
+import com.appjangle.api.Node
+import com.appjangle.api.Query
 import com.appjangle.filesync.ItemMetadata
 import com.appjangle.filesync.Metadata
 import com.appjangle.filesync.NetworkOperation
@@ -8,9 +11,6 @@ import com.appjangle.filesync.internal.engine.N
 import de.mxro.file.FileItem
 import delight.async.AsyncCommon
 import delight.async.callbacks.ValueCallback
-import io.nextweb.Link
-import io.nextweb.Node
-import io.nextweb.Query
 import io.nextweb.promise.NextwebOperation
 import io.nextweb.utils.data.NextwebDataExtension
 import java.util.ArrayList

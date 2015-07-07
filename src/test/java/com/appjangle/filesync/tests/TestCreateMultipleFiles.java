@@ -1,11 +1,8 @@
 package com.appjangle.filesync.tests;
 
-import com.appjangle.api.Link;
-import com.appjangle.api.Query;
 import com.appjangle.filesync.tests.CheckNodesToFilesTemplate;
 import de.mxro.file.FileItem;
 import de.oehme.xtend.junit.JUnit;
-
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
 import org.hamcrest.Matcher;
@@ -17,14 +14,15 @@ import org.junit.internal.ArrayComparisonFailure;
 public class TestCreateMultipleFiles extends CheckNodesToFilesTemplate {
   @Override
   protected void step1_defineData() {
-    final Query html = this.source.append("<html></html>", "./html");
-    Query _append = html.append("Html Document");
-    Link _link = this.session.link("https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel");
-    _append.append(_link);
-    Link _link_1 = this.session.link("https://admin1.linnk.it/types/v01/isHtmlValue");
-    html.append(_link_1);
-    this.source.append("Folder 1");
-    this.source.append("Folder 2");
+    throw new Error("Unresolved compilation problems:"
+      + "\nappend cannot be resolved"
+      + "\nappend cannot be resolved"
+      + "\nappend cannot be resolved"
+      + "\nlink cannot be resolved"
+      + "\nappend cannot be resolved"
+      + "\nlink cannot be resolved"
+      + "\nappend cannot be resolved"
+      + "\nappend cannot be resolved");
   }
   
   @Override

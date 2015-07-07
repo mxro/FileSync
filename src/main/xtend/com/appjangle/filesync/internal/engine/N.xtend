@@ -1,6 +1,6 @@
 package com.appjangle.filesync.internal.engine
 
-import io.nextweb.Client
+import com.appjangle.api.Client
 
 class N {
 	

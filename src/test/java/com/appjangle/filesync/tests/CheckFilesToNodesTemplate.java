@@ -12,7 +12,6 @@ import delight.async.Operation;
 import delight.async.callbacks.ValueCallback;
 import delight.async.jre.Async;
 import delight.functional.Success;
-
 import io.nextweb.promise.NextwebPromise;
 import java.io.File;
 import org.eclipse.xtext.xbase.lib.Exceptions;

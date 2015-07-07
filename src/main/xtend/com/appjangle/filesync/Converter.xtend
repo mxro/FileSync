@@ -1,8 +1,8 @@
 package com.appjangle.filesync
 
+import com.appjangle.api.Node
 import de.mxro.file.FileItem
 import delight.async.callbacks.ValueCallback
-import io.nextweb.Node
 import java.util.List
 
 interface Converter {

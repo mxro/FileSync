@@ -10,7 +10,6 @@ import delight.async.callbacks.ValueCallback;
 import delight.async.jre.Async;
 import delight.functional.Closure;
 import delight.functional.Success;
-
 import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
 import io.nextweb.promise.exceptions.UndefinedListener;

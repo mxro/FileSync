@@ -12,7 +12,7 @@ import de.mxro.file.FileItem
 import delight.async.AsyncCommon
 import delight.async.callbacks.ValueCallback
 import io.nextweb.promise.NextwebOperation
-import io.nextweb.utils.data.NextwebDataExtension
+import com.appjangle.api.operations.NextwebDataExtension
 import java.util.ArrayList
 import java.util.LinkedList
 import java.util.List

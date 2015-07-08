@@ -6,7 +6,7 @@ import com.appjangle.api.LinkList;
 import com.appjangle.api.LinkListQuery;
 import com.appjangle.api.Node;
 import com.appjangle.api.Query;
-import com.appjangle.api.operations.OperationsImpl;
+import com.appjangle.api.operations.OperationsExtension;
 import com.appjangle.filesync.ItemMetadata;
 import com.appjangle.filesync.Metadata;
 import com.appjangle.filesync.NetworkOperation;
@@ -319,7 +319,7 @@ public class ConvertUtils {
   private N n = new N();
   
   @Extension
-  private OperationsImpl ext = new OperationsImpl();
+  private OperationsExtension ext = new OperationsExtension();
   
   @Extension
   private FileUtils futils = new FileUtils();

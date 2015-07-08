@@ -17,7 +17,7 @@ import java.util.LinkedList
 import java.util.List
 
 import static extension delight.async.AsyncCommon.*
-import com.appjangle.api.operations.OperationsImpl
+import com.appjangle.api.operations.OperationsExtension
 
 class ConvertUtils {
 
@@ -232,6 +232,6 @@ class ConvertUtils {
 	}
 	
 	extension N n = new N
-	extension OperationsImpl ext = new OperationsImpl
+	extension OperationsExtension ext = new OperationsExtension
 	extension FileUtils futils = new FileUtils
 }

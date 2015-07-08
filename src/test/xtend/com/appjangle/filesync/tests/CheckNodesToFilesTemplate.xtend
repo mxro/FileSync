@@ -29,7 +29,7 @@ abstract class CheckNodesToFilesTemplate {
 
 	@Before
 	def void setUp() {
-		server = Servers.startServer()
+		server = Servers.createAndStart()
 
 		session = Clients.create(server)
 

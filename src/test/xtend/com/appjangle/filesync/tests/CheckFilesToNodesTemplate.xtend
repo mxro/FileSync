@@ -29,9 +29,9 @@ abstract class CheckFilesToNodesTemplate {
 	
 	@Before
 	def void setUp() {
-		server = Servers.startServer()
+		server = Servers.createAndStart()
 
-		session = Clients.Clients.create(server)
+		session = Clients.create(server)
 
 		result = session.seed(server).get
 		

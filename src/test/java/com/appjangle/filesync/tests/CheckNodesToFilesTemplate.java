@@ -40,8 +40,8 @@ public abstract class CheckNodesToFilesTemplate {
   @Before
   public void setUp() {
     try {
-      LocalServer _startServer = Servers.startServer();
-      this.server = _startServer;
+      LocalServer _createAndStart = Servers.createAndStart();
+      this.server = _createAndStart;
       Client _create = Clients.create(this.server);
       this.session = _create;
       Query _seed = this.session.seed(this.server);

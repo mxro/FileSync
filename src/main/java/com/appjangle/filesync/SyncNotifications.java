@@ -5,10 +5,8 @@ import com.appjangle.api.Node;
 import de.mxro.file.FileItem;
 import org.eclipse.xtend.lib.annotations.Accessors;
 import org.eclipse.xtext.xbase.lib.InputOutput;
-import org.eclipse.xtext.xbase.lib.Pure;
 
-@Accessors
-@SuppressWarnings("all")
+/* @Accessors */@SuppressWarnings("all")
 public class SyncNotifications {
   private boolean printToStdOut = false;
   
@@ -38,14 +36,5 @@ public class SyncNotifications {
     if (this.printToStdOut) {
       InputOutput.<String>println((((("Node was already synchronized [" + node) + "] in folder [") + folder) + "]. Synchronziation skipped."));
     }
-  }
-  
-  @Pure
-  public boolean isPrintToStdOut() {
-    return this.printToStdOut;
-  }
-  
-  public void setPrintToStdOut(final boolean printToStdOut) {
-    this.printToStdOut = printToStdOut;
   }
 }

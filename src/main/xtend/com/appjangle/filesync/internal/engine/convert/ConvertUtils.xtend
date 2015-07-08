@@ -3,6 +3,8 @@ package com.appjangle.filesync.internal.engine.convert
 import com.appjangle.api.Link
 import com.appjangle.api.Node
 import com.appjangle.api.Query
+import com.appjangle.api.operations.OperationsExtension
+import com.appjangle.api.queries.QueriesExtension
 import com.appjangle.filesync.ItemMetadata
 import com.appjangle.filesync.Metadata
 import com.appjangle.filesync.NetworkOperation
@@ -17,7 +19,6 @@ import java.util.LinkedList
 import java.util.List
 
 import static extension delight.async.AsyncCommon.*
-import com.appjangle.api.operations.OperationsExtension
 
 class ConvertUtils {
 
@@ -231,7 +232,9 @@ class ConvertUtils {
 		uri.substring(uri.lastIndexOf("/") + 1)
 	}
 	
+	
 	extension N n = new N
 	extension OperationsExtension ext = new OperationsExtension
+	extension QueriesExtension qxt = new QueriesExtension
 	extension FileUtils futils = new FileUtils
 }

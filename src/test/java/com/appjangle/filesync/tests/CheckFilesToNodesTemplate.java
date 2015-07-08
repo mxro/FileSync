@@ -2,15 +2,20 @@ package com.appjangle.filesync.tests;
 
 import com.appjangle.api.Client;
 import com.appjangle.api.Node;
+import com.appjangle.api.Query;
 import com.appjangle.api.common.LocalServer;
+import com.appjangle.api.servers.Servers;
 import com.appjangle.filesync.FileSync;
+import com.appjangle.jre.Clients;
 import de.mxro.file.FileItem;
+import de.mxro.file.Jre.FilesJre;
 import delight.async.Operation;
 import delight.async.callbacks.ValueCallback;
 import delight.async.jre.Async;
 import delight.functional.Success;
 import io.nextweb.promise.NextwebPromise;
 import java.io.File;
+import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
@@ -34,12 +39,21 @@ public abstract class CheckFilesToNodesTemplate {
   
   @Before
   public void setUp() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method or field Clients is undefined for the type CheckFilesToNodesTemplate"
-      + "\nThe method or field Clients is undefined for the type CheckFilesToNodesTemplate"
-      + "\nstartServer cannot be resolved"
-      + "\nClients cannot be resolved"
-      + "\ncreateSession cannot be resolved");
+    try {
+      LocalServer _startServer = Servers.startServer();
+      this.server = _startServer;
+      Client _createSession = Clients.createSession(this.server);
+      this.session = _createSession;
+      Query _seed = this.session.seed(this.server);
+      Node _get = _seed.get();
+      this.result = _get;
+      File _newFolder = this.tempFolder.newFolder("sync1");
+      this.sourceFolder = _newFolder;
+      FileItem _wrap = FilesJre.wrap(this.sourceFolder);
+      this.source = _wrap;
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
   
   protected abstract void step1_defineFiles();

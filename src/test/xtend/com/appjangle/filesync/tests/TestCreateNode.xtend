@@ -4,6 +4,7 @@ import com.appjangle.filesync.internal.engine.N
 import de.oehme.xtend.junit.Hamcrest
 import de.oehme.xtend.junit.JUnit
 
+
 @JUnit
 @Hamcrest
 class TestCreateNode extends CheckFilesToNodesTemplate {

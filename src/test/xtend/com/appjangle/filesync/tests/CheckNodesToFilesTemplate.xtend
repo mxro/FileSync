@@ -3,7 +3,9 @@ package com.appjangle.filesync.tests
 import com.appjangle.api.Client
 import com.appjangle.api.Node
 import com.appjangle.api.common.LocalServer
+import com.appjangle.api.servers.Servers
 import com.appjangle.filesync.FileSync
+import com.appjangle.jre.Clients
 import de.mxro.file.FileItem
 import de.mxro.file.Jre.FilesJre
 import delight.async.jre.Async
@@ -13,7 +15,6 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TemporaryFolder
-import com.appjangle.jre.Clients
 
 abstract class CheckNodesToFilesTemplate {
 
@@ -28,9 +29,9 @@ abstract class CheckNodesToFilesTemplate {
 
 	@Before
 	def void setUp() {
-		server = Clients.startServer()
+		server = Servers.startServer()
 
-		session = Clients.Clients.create(server)
+		session = Clients.create(server)
 
 		source = session.seed(server).get
 

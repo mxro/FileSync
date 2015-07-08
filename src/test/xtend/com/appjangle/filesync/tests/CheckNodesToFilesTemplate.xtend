@@ -30,7 +30,7 @@ abstract class CheckNodesToFilesTemplate {
 	def void setUp() {
 		server = Clients.startServer()
 
-		session = Clients.Clients.createSession(server)
+		session = Clients.createSession(server)
 
 		source = session.seed(server).get
 

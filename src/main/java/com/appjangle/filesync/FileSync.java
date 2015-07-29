@@ -184,16 +184,16 @@ public class FileSync {
             }
             if (_and) {
               Node _node_1 = params.getNode();
-              Client _session = _node_1.session();
+              Client _client = _node_1.client();
               String _uri_6 = itmmetadata.uri();
               String _secret_2 = matchedSyncRoot.secret();
-              Link _link = _session.link(_uri_6, _secret_2);
+              Link _link = _client.link(_uri_6, _secret_2);
               qry = _link;
             } else {
               Node _node_2 = params.getNode();
-              Client _session_1 = _node_2.session();
+              Client _client_1 = _node_2.client();
               String _uri_7 = itmmetadata.uri();
-              Link _link_1 = _session_1.link(_uri_7);
+              Link _link_1 = _client_1.link(_uri_7);
               qry = _link_1;
             }
             final ExceptionListener _function = new ExceptionListener() {
@@ -250,9 +250,9 @@ public class FileSync {
     if (_equals) {
       List<Link> _syncRoots_1 = params.getSyncRoots();
       Node _node = params.getNode();
-      Client _session = _node.session();
+      Client _client = _node.client();
       Node _node_1 = params.getNode();
-      Link _link = _session.link(_node_1);
+      Link _link = _client.link(_node_1);
       _syncRoots_1.add(_link);
     }
     FileSync.syncInt(params, cb);

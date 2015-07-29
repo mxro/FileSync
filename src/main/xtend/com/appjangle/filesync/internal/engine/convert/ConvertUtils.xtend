@@ -77,7 +77,7 @@ class ConvertUtils {
 				
 				val list = new ArrayList<NextwebOperation<?>>
 				
-				if (parent.session().link(parent).hasDirectChild(nodeToBeRemoved)) {
+				if (parent.client().link(parent).hasDirectChild(nodeToBeRemoved)) {
 
 					parent.removeSafeRecursive(nodeToBeRemoved,
 						opscb.embed [ res |
@@ -98,13 +98,13 @@ class ConvertUtils {
 	}
 
 	def appendLabel(Query toNode, String label) {
-		toNode.appendSafe(label, "./.label").appendSafe(toNode.session().LABEL)
+		toNode.appendSafe(label, "./.label").appendSafe(toNode.client().LABEL)
 	}
 
 	def List<NextwebOperation<?>> appendTypesAndIcon(Query toNode, FileItem source) {
 		val res = newArrayList
 		
-		val session = toNode.session()
+		val session = toNode.client()
 
 		var ext = source.extension
 		
@@ -217,7 +217,7 @@ class ConvertUtils {
 				]));
 
 		labelTypes.forEach [ labelType |
-			val qry = fromNode.select(fromNode.session().link(labelType))
+			val qry = fromNode.select(fromNode.client().link(labelType))
 			val itmcb = cbs.createCallback
 			qry.catchUndefined([itmcb.onSuccess(ConvertUtils.NO_VALUE)])
 			qry.catchExceptions([er|itmcb.onFailure(er.exception)])

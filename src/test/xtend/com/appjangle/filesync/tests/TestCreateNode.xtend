@@ -21,7 +21,7 @@ class TestCreateNode extends CheckFilesToNodesTemplate {
 		
 		node => notNullValue
 		
-		node.select(node.session().LABEL).get().value() => equalTo("Oh my test")
+		node.select(node.client().LABEL).get().value() => equalTo("Oh my test")
 		
 	}
 	

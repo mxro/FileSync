@@ -20,10 +20,10 @@ class TestRecursiveSync extends CheckNodesToFilesTemplate{
 		
 		
 		val html = node3.append("<html></html>", "./html")
-		html.append("My Html Document", "./.label").append(source.session().LABEL)
-		html.append(source.session().HTML_VALUE)
+		html.append("My Html Document", "./.label").append(source.client().LABEL)
+		html.append(source.client().HTML_VALUE)
 		
-		source.append("node4", "./node4").append(source.session().link('http://slicnet.com/mxrogm/mxrogm/data/stream/2013/12/3/n1'))
+		source.append("node4", "./node4").append(source.client().link('http://slicnet.com/mxrogm/mxrogm/data/stream/2013/12/3/n1'))
 		
 	}
 	

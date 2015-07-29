@@ -110,9 +110,9 @@ class FileSync {
 						
 						var Link qry
 						if (withinSyncRoots && matchedSyncRoot.secret() !== null && matchedSyncRoot.secret().length > 0) {
-							qry = params.node.session().link(itmmetadata.uri, matchedSyncRoot.secret())
+							qry = params.node.client().link(itmmetadata.uri, matchedSyncRoot.secret())
 						} else {
-							qry = params.node.session().link(itmmetadata.uri)
+							qry = params.node.client().link(itmmetadata.uri)
 						}
 						qry.catchExceptions[er|itmcb.onFailure(er.exception)]
 						qry.get [ childNode |
@@ -138,7 +138,7 @@ class FileSync {
 
 	static def void sync(SyncParams params, ValueCallback<Success> cb) {
 		if (params.syncRoots.size() == 0) {
-			params.syncRoots.add(params.node.session().link(params.node))
+			params.syncRoots.add(params.node.client().link(params.node))
 		}
 
 		syncInt(params, cb)

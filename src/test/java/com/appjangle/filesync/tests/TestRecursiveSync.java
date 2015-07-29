@@ -36,15 +36,15 @@ public class TestRecursiveSync extends CheckNodesToFilesTemplate {
     _append_4.append("c");
     final Query html = node3.append("<html></html>", "./html");
     Query _append_5 = html.append("My Html Document", "./.label");
-    Client _session = this.source.session();
-    Link _LABEL = this.n.LABEL(_session);
+    Client _client = this.source.client();
+    Link _LABEL = this.n.LABEL(_client);
     _append_5.append(_LABEL);
-    Client _session_1 = this.source.session();
-    Link _HTML_VALUE = this.n.HTML_VALUE(_session_1);
+    Client _client_1 = this.source.client();
+    Link _HTML_VALUE = this.n.HTML_VALUE(_client_1);
     html.append(_HTML_VALUE);
     Query _append_6 = this.source.append("node4", "./node4");
-    Client _session_2 = this.source.session();
-    Link _link = _session_2.link("http://slicnet.com/mxrogm/mxrogm/data/stream/2013/12/3/n1");
+    Client _client_2 = this.source.client();
+    Link _link = _client_2.link("http://slicnet.com/mxrogm/mxrogm/data/stream/2013/12/3/n1");
     _append_6.append(_link);
   }
   

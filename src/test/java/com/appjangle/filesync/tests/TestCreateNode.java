@@ -40,8 +40,8 @@ public class TestCreateNode extends CheckFilesToNodesTemplate {
     final Node node = _select.get();
     Matcher<Object> _notNullValue = TestCreateNode.notNullValue();
     this.<Node>operator_doubleArrow(node, _notNullValue);
-    Client _session = node.session();
-    Link _LABEL = this.n.LABEL(_session);
+    Client _client = node.client();
+    Link _LABEL = this.n.LABEL(_client);
     Query _select_1 = node.select(_LABEL);
     Node _get_1 = _select_1.get();
     Object _value = _get_1.value();

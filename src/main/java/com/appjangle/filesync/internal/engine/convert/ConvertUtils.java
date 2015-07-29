@@ -99,8 +99,8 @@ public class ConvertUtils {
         final Link nodeToBeRemoved = _session.link(address);
         final Node parent = ctx.parent();
         final ArrayList<NextwebOperation<?>> list = new ArrayList<NextwebOperation<?>>();
-        Client _session_1 = parent.session();
-        Link _link = _session_1.link(parent);
+        Client _client = parent.client();
+        Link _link = _client.link(parent);
         boolean _hasDirectChild = ConvertUtils.this.qxt.hasDirectChild(_link, nodeToBeRemoved);
         if (_hasDirectChild) {
           final Closure<List<NextwebPromise<Success>>> _function = new Closure<List<NextwebPromise<Success>>>() {
@@ -125,8 +125,8 @@ public class ConvertUtils {
   
   public Query appendLabel(final Query toNode, final String label) {
     Query _appendSafe = toNode.appendSafe(label, "./.label");
-    Client _session = toNode.session();
-    Link _LABEL = this.n.LABEL(_session);
+    Client _client = toNode.client();
+    Link _LABEL = this.n.LABEL(_client);
     return _appendSafe.appendSafe(_LABEL);
   }
   
@@ -134,7 +134,7 @@ public class ConvertUtils {
     ArrayList<NextwebOperation<?>> _xblockexpression = null;
     {
       final ArrayList<NextwebOperation<?>> res = CollectionLiterals.<NextwebOperation<?>>newArrayList();
-      final Client session = toNode.session();
+      final Client session = toNode.client();
       String ext = source.getExtension();
       ext = ("." + ext);
       boolean _equals = Objects.equal(ext, ".html");
@@ -278,8 +278,8 @@ public class ConvertUtils {
     final Consumer<String> _function_1 = new Consumer<String>() {
       @Override
       public void accept(final String labelType) {
-        Client _session = fromNode.session();
-        Link _link = _session.link(labelType);
+        Client _client = fromNode.client();
+        Link _link = _client.link(labelType);
         final Query qry = fromNode.select(_link);
         final ValueCallback<Object> itmcb = cbs.createCallback();
         final UndefinedListener _function = new UndefinedListener() {

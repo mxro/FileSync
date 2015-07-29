@@ -20,7 +20,7 @@ class TestCreateHtmlNode extends CheckFilesToNodesTemplate {
 		
 		node.value() => equalTo("<html></html>")
 		
-		node.select(node.session().LABEL).get().value() => equalTo("My Document")
+		node.select(node.client().LABEL).get().value() => equalTo("My Document")
 	}
 	
 	extension N n = new N

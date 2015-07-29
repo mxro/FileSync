@@ -19,7 +19,7 @@ class NetworkUtils {
 		val ctx = new NetworkOperationContext() {
 
 			override session() {
-				onNode.session()
+				onNode.client
 			}
 
 			override parent() {
@@ -74,7 +74,7 @@ class NetworkUtils {
 
 		}
 
-		onNode.session().commit
+		onNode.client().commit
 
 	}
 

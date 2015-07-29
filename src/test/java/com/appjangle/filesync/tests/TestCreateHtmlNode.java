@@ -45,8 +45,8 @@ public class TestCreateHtmlNode extends CheckFilesToNodesTemplate {
     Object _value = node.value();
     Matcher<Object> _equalTo_1 = TestCreateHtmlNode.<Object>equalTo("<html></html>");
     this.<Object>operator_doubleArrow(_value, _equalTo_1);
-    Client _session = node.session();
-    Link _LABEL = this.n.LABEL(_session);
+    Client _client = node.client();
+    Link _LABEL = this.n.LABEL(_client);
     Query _select_1 = node.select(_LABEL);
     Node _get_1 = _select_1.get();
     Object _value_1 = _get_1.value();

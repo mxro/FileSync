@@ -83,12 +83,12 @@ public class FolderToNode implements Converter {
           });
         String _name_1 = source.getName();
         Query _appendSafe = baseNode.appendSafe(_name_1, "./.label");
-        Client _session = baseNode.session();
-        Link _LABEL = FolderToNode.this.n.LABEL(_session);
+        Client _client = baseNode.client();
+        Link _LABEL = FolderToNode.this.n.LABEL(_client);
         Query _appendSafe_1 = _appendSafe.appendSafe(_LABEL);
         Query _appendSafe_2 = baseNode.appendSafe("https://appjangle.com/files/img/20141020/List.png", "./.icon");
-        Client _session_1 = baseNode.session();
-        Link _ICON = FolderToNode.this.n.ICON(_session_1);
+        Client _client_1 = baseNode.client();
+        Link _ICON = FolderToNode.this.n.ICON(_client_1);
         Query _appendSafe_3 = _appendSafe_2.appendSafe(_ICON);
         ArrayList<NextwebOperation<?>> _newArrayList = CollectionLiterals.<NextwebOperation<?>>newArrayList(baseNode, _appendSafe_1, _appendSafe_3);
         opscb.onSuccess(_newArrayList);

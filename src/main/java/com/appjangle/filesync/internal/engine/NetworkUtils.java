@@ -24,7 +24,7 @@ public class NetworkUtils {
       final NetworkOperationContext ctx = new NetworkOperationContext() {
         @Override
         public Client session() {
-          return onNode.session();
+          return onNode.client();
         }
         
         @Override
@@ -105,8 +105,8 @@ public class NetworkUtils {
         ValueCallback<List<NextwebOperation<?>>> _embed_1 = AsyncCommon.<List<NextwebOperation<?>>>embed(cb, _function_1);
         op.apply(ctx, _embed_1);
       }
-      Client _session = onNode.session();
-      _xblockexpression = _session.commit();
+      Client _client = onNode.client();
+      _xblockexpression = _client.commit();
     }
     return _xblockexpression;
   }

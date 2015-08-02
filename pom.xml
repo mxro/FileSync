@@ -42,7 +42,7 @@
 		<dependency>
 			<groupId>com.appjangle</groupId>
 			<artifactId>appjangle-api-operations</artifactId>
-			<version>0.0.7</version>
+			<version>[0.0.1,)</version>
 			<exclusions>
 				<exclusion>
 					<groupId>com.appjangle.java</groupId>

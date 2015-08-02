@@ -81,9 +81,9 @@ class ConvertUtils {
 				if (parent.client().link(parent).hasDirectChild(nodeToBeRemoved)) {
 
 					parent.removeRecursive(nodeToBeRemoved,
-						 opscb.embed [
+						AsyncUtils.wrap(nodeToBeRemoved.exceptionManager, opscb.embed [
 							opscb.onSuccess(list)
-						])
+						]))
 
 				} else {
 					

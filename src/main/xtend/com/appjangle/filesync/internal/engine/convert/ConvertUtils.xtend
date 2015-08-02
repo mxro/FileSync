@@ -82,7 +82,7 @@ class ConvertUtils {
 					parent.removeRecursive(nodeToBeRemoved,
 						opscb.embed [ res |
 							
-							list.addAll(res)
+							//list.addAll(res)
 							opscb.onSuccess(list)
 						])
 

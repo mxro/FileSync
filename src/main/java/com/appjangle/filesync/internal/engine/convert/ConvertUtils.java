@@ -85,7 +85,7 @@ public class ConvertUtils {
   
   public void deleteNodes(final Metadata metadata, final ItemMetadata cachedFile, final ValueCallback<List<NetworkOperation>> cb) {
     throw new Error("Unresolved compilation problems:"
-      + "\nType mismatch: cannot convert from ValueCallback<Collection<? extends NextwebOperation<?>>> to NextwebCallback<Success>");
+      + "\nType mismatch: cannot convert from ValueCallback<Object> to NextwebCallback<Success>");
   }
   
   public Query appendLabel(final Query toNode, final String label) {

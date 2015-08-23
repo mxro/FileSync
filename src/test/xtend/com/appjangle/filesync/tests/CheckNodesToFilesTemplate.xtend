@@ -3,7 +3,7 @@ package com.appjangle.filesync.tests
 import com.appjangle.api.Client
 import com.appjangle.api.Node
 import com.appjangle.api.common.LocalServer
-import com.appjangle.api.servers.Servers
+import com.appjangle.api.servers.jre.Servers
 import com.appjangle.filesync.FileSync
 import com.appjangle.jre.Clients
 import de.mxro.file.FileItem

@@ -29,7 +29,7 @@ import io.nextweb.promise.exceptions.ExceptionResult;
 import io.nextweb.promise.exceptions.NextwebExceptionManager;
 import io.nextweb.promise.exceptions.UndefinedListener;
 import io.nextweb.promise.exceptions.UndefinedResult;
-import io.nextweb.promise.utils.AsyncUtils;
+import io.nextweb.promise.utils.CallbackUtils;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -114,7 +114,7 @@ public class ConvertUtils {
             }
           };
           ValueCallback<Success> _embed = AsyncCommon.<Success>embed(opscb, _function);
-          final NextwebCallback<Success> innercb = AsyncUtils.<Success>wrap(_exceptionManager, _embed);
+          final NextwebCallback<Success> innercb = CallbackUtils.<Success>wrap(_exceptionManager, _embed);
           ConvertUtils.this.ext.removeRecursive(parent, nodeToBeRemoved, innercb);
         } else {
           NextwebPromise<Success> _remove = parent.remove(nodeToBeRemoved);

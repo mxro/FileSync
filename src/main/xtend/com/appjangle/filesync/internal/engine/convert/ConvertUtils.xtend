@@ -14,12 +14,12 @@ import de.mxro.file.FileItem
 import delight.async.AsyncCommon
 import delight.async.callbacks.ValueCallback
 import io.nextweb.promise.NextwebOperation
-import io.nextweb.promise.utils.AsyncUtils
 import java.util.ArrayList
 import java.util.LinkedList
 import java.util.List
 
 import static extension delight.async.AsyncCommon.*
+import io.nextweb.promise.utils.CallbackUtils
 
 class ConvertUtils {
 
@@ -79,7 +79,7 @@ class ConvertUtils {
 				val list = new ArrayList<NextwebOperation<?>>
 				
 				if (parent.client().link(parent).hasDirectChild(nodeToBeRemoved)) {
-					val innercb = AsyncUtils.wrap(nodeToBeRemoved.exceptionManager, opscb.embed [
+					val innercb = CallbackUtils.wrap(nodeToBeRemoved.exceptionManager, opscb.embed [
 							opscb.onSuccess(list)
 						])
 					parent.removeRecursive(nodeToBeRemoved,innercb)

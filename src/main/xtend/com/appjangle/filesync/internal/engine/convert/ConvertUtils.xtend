@@ -79,7 +79,7 @@ class ConvertUtils {
 				val list = new ArrayList<NextwebOperation<?>>
 				
 				if (parent.client().link(parent).hasDirectChild(nodeToBeRemoved)) {
-					val innercb = CallbackUtils.wrap(nodeToBeRemoved.exceptionManager, opscb.embed [
+					val innercb = CallbackUtils.asNextwebCallback(nodeToBeRemoved.exceptionManager, opscb.embed [
 							opscb.onSuccess(list)
 						])
 					parent.removeRecursive(nodeToBeRemoved,innercb)

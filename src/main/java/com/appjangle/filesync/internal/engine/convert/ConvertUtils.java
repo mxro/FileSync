@@ -114,7 +114,7 @@ public class ConvertUtils {
             }
           };
           ValueCallback<Success> _embed = AsyncCommon.<Success>embed(opscb, _function);
-          final DataCallback<Success> innercb = CallbackUtils.<Success>asNextwebCallback(_exceptionManager, _embed);
+          final DataCallback<Success> innercb = CallbackUtils.<Success>asDataCallback(_exceptionManager, _embed);
           ConvertUtils.this.ext.removeRecursive(parent, nodeToBeRemoved, innercb);
         } else {
           DataPromise<Success> _remove = parent.remove(nodeToBeRemoved);

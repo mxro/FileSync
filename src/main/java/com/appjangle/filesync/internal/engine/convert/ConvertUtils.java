@@ -22,7 +22,7 @@ import delight.async.helper.Aggregator;
 import delight.functional.Closure;
 import delight.functional.Success;
 import io.nextweb.promise.NextwebOperation;
-import io.nextweb.promise.NextwebPromise;
+import io.nextweb.promise.DataPromise;
 import io.nextweb.promise.callbacks.NextwebCallback;
 import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
@@ -117,7 +117,7 @@ public class ConvertUtils {
           final NextwebCallback<Success> innercb = CallbackUtils.<Success>asNextwebCallback(_exceptionManager, _embed);
           ConvertUtils.this.ext.removeRecursive(parent, nodeToBeRemoved, innercb);
         } else {
-          NextwebPromise<Success> _remove = parent.remove(nodeToBeRemoved);
+          DataPromise<Success> _remove = parent.remove(nodeToBeRemoved);
           list.add(_remove);
           opscb.onSuccess(list);
         }

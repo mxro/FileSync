@@ -13,7 +13,7 @@ import delight.async.Operation;
 import delight.async.callbacks.ValueCallback;
 import delight.async.jre.Async;
 import delight.functional.Success;
-import io.nextweb.promise.NextwebPromise;
+import io.nextweb.promise.DataPromise;
 import java.io.File;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.junit.After;
@@ -67,7 +67,7 @@ public abstract class CheckNodesToFilesTemplate {
   @Test
   public void test() {
     this.step1_defineData();
-    NextwebPromise<Success> _commit = this.session.commit();
+    DataPromise<Success> _commit = this.session.commit();
     _commit.get();
     final Operation<Success> _function = new Operation<Success>() {
       @Override
@@ -87,9 +87,9 @@ public abstract class CheckNodesToFilesTemplate {
   
   @After
   public void tearDown() {
-    NextwebPromise<Success> _close = this.session.close();
+    DataPromise<Success> _close = this.session.close();
     _close.get();
-    NextwebPromise<Success> _shutdown = this.server.shutdown();
+    DataPromise<Success> _shutdown = this.server.shutdown();
     _shutdown.get();
   }
 }

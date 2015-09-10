@@ -11,15 +11,15 @@ import delight.async.helper.Aggregator;
 import delight.functional.Closure;
 import delight.functional.Success;
 import io.nextweb.promise.NextwebOperation;
-import io.nextweb.promise.NextwebPromise;
+import io.nextweb.promise.DataPromise;
 import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
 import java.util.List;
 
 @SuppressWarnings("all")
 public class NetworkUtils {
-  public NextwebPromise<Success> execute(final List<NetworkOperation> ops, final Node onNode, final ValueCallback<Success> cb) {
-    NextwebPromise<Success> _xblockexpression = null;
+  public DataPromise<Success> execute(final List<NetworkOperation> ops, final Node onNode, final ValueCallback<Success> cb) {
+    DataPromise<Success> _xblockexpression = null;
     {
       final NetworkOperationContext ctx = new NetworkOperationContext() {
         @Override
@@ -75,8 +75,8 @@ public class NetworkUtils {
                   };
                   ((Query)qry).get(_function_2);
                 } else {
-                  if ((qry instanceof NextwebPromise<?>)) {
-                    final NextwebPromise<Object> safeQry = ((NextwebPromise<Object>) qry);
+                  if ((qry instanceof DataPromise<?>)) {
+                    final DataPromise<Object> safeQry = ((DataPromise<Object>) qry);
                     final ExceptionListener _function_3 = new ExceptionListener() {
                       @Override
                       public void onFailure(final ExceptionResult er) {

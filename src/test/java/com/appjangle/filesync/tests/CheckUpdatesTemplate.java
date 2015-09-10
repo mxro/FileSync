@@ -6,7 +6,7 @@ import delight.async.Operation;
 import delight.async.callbacks.ValueCallback;
 import delight.async.jre.Async;
 import delight.functional.Success;
-import io.nextweb.promise.NextwebPromise;
+import io.nextweb.promise.DataPromise;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.junit.Test;
 
@@ -25,7 +25,7 @@ public abstract class CheckUpdatesTemplate extends CheckNodesToFilesTemplate {
   public void test() {
     try {
       this.step1_defineData();
-      NextwebPromise<Success> _commit = this.session.commit();
+      DataPromise<Success> _commit = this.session.commit();
       _commit.get();
       final Operation<Success> _function = new Operation<Success>() {
         @Override
@@ -36,7 +36,7 @@ public abstract class CheckUpdatesTemplate extends CheckNodesToFilesTemplate {
       Async.<Success>waitFor(_function);
       this.step2_assertFiles();
       this.step3_updateNodes();
-      NextwebPromise<Success> _commit_1 = this.session.commit();
+      DataPromise<Success> _commit_1 = this.session.commit();
       _commit_1.get();
       final Operation<Success> _function_1 = new Operation<Success>() {
         @Override

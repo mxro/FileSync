@@ -7,10 +7,10 @@ import com.appjangle.filesync.NetworkOperationContext
 import delight.async.AsyncCommon
 import delight.async.callbacks.ValueCallback
 import delight.functional.Success
-import io.nextweb.promise.NextwebPromise
 import java.util.List
 
 import static extension delight.async.AsyncCommon.*
+import io.nextweb.promise.DataPromise
 
 class NetworkUtils {
 
@@ -58,9 +58,9 @@ class NetworkUtils {
 								itmcb.onSuccess(Success.INSTANCE)
 							])
 
-						} else if (qry instanceof NextwebPromise<?>) {
+						} else if (qry instanceof DataPromise<?>) {
 							
-							val safeQry = qry as NextwebPromise<Object>
+							val safeQry = qry as DataPromise<Object>
 							//val res = onNode.session().promise(safeQry)
 							safeQry.catchExceptions [er|itmcb.onFailure(er.exception)]
 							safeQry.get([succ|itmcb.onSuccess(Success.INSTANCE)])

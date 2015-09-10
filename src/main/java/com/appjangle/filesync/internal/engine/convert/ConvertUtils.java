@@ -24,9 +24,9 @@ import delight.functional.Success;
 import io.nextweb.promise.DataOperation;
 import io.nextweb.promise.DataPromise;
 import io.nextweb.promise.callbacks.DataCallback;
+import io.nextweb.promise.exceptions.DataExceptionManager;
 import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
-import io.nextweb.promise.exceptions.NextwebExceptionManager;
 import io.nextweb.promise.exceptions.UndefinedListener;
 import io.nextweb.promise.exceptions.UndefinedResult;
 import io.nextweb.promise.utils.CallbackUtils;
@@ -106,7 +106,7 @@ public class ConvertUtils {
         Link _link = _client.link(parent);
         boolean _hasDirectChild = ConvertUtils.this.qxt.hasDirectChild(_link, nodeToBeRemoved);
         if (_hasDirectChild) {
-          NextwebExceptionManager _exceptionManager = nodeToBeRemoved.getExceptionManager();
+          DataExceptionManager _exceptionManager = nodeToBeRemoved.getExceptionManager();
           final Closure<Success> _function = new Closure<Success>() {
             @Override
             public void apply(final Success it) {

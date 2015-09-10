@@ -20,7 +20,7 @@ import de.mxro.file.FileItem;
 import delight.async.AsyncCommon;
 import delight.async.callbacks.ValueCallback;
 import delight.functional.Closure;
-import io.nextweb.promise.NextwebOperation;
+import io.nextweb.promise.DataOperation;
 import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
 import java.util.ArrayList;
@@ -73,7 +73,7 @@ public class FileToTextNode implements Converter {
     final LinkedList<NetworkOperation> ops = new LinkedList<NetworkOperation>();
     final NetworkOperation _function = new NetworkOperation() {
       @Override
-      public void apply(final NetworkOperationContext ctx, final ValueCallback<List<NextwebOperation<?>>> opscb) {
+      public void apply(final NetworkOperationContext ctx, final ValueCallback<List<DataOperation<?>>> opscb) {
         Node _parent = ctx.parent();
         String _text = source.getText();
         final Query baseNode = _parent.appendSafe(_text, ("./" + simpleName));
@@ -108,11 +108,11 @@ public class FileToTextNode implements Converter {
               return _class.toString();
             }
           });
-        final ArrayList<NextwebOperation<?>> res = CollectionLiterals.<NextwebOperation<?>>newArrayList();
+        final ArrayList<DataOperation<?>> res = CollectionLiterals.<DataOperation<?>>newArrayList();
         res.add(baseNode);
         Query _appendLabel = FileToTextNode.this.cutils.appendLabel(baseNode, nameWithoutExtension);
         res.add(_appendLabel);
-        List<NextwebOperation<?>> _appendTypesAndIcon = FileToTextNode.this.cutils.appendTypesAndIcon(baseNode, source);
+        List<DataOperation<?>> _appendTypesAndIcon = FileToTextNode.this.cutils.appendTypesAndIcon(baseNode, source);
         res.addAll(_appendTypesAndIcon);
         opscb.onSuccess(res);
       }
@@ -130,11 +130,11 @@ public class FileToTextNode implements Converter {
     final LinkedList<NetworkOperation> ops = new LinkedList<NetworkOperation>();
     final NetworkOperation _function = new NetworkOperation() {
       @Override
-      public void apply(final NetworkOperationContext ctx, final ValueCallback<List<NextwebOperation<?>>> opscb) {
+      public void apply(final NetworkOperationContext ctx, final ValueCallback<List<DataOperation<?>>> opscb) {
         Client _session = ctx.session();
         Link _link = _session.link(address);
         Query _setValueSafe = _link.setValueSafe(content);
-        ArrayList<NextwebOperation<?>> _newArrayList = CollectionLiterals.<NextwebOperation<?>>newArrayList(_setValueSafe);
+        ArrayList<DataOperation<?>> _newArrayList = CollectionLiterals.<DataOperation<?>>newArrayList(_setValueSafe);
         opscb.onSuccess(_newArrayList);
       }
     };

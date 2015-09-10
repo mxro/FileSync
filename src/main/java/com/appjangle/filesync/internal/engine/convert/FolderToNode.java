@@ -18,7 +18,7 @@ import de.mxro.file.FileItem;
 import delight.async.AsyncCommon;
 import delight.async.callbacks.ValueCallback;
 import delight.functional.Closure;
-import io.nextweb.promise.NextwebOperation;
+import io.nextweb.promise.DataOperation;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
@@ -45,7 +45,7 @@ public class FolderToNode implements Converter {
     final LinkedList<NetworkOperation> ops = new LinkedList<NetworkOperation>();
     final NetworkOperation _function = new NetworkOperation() {
       @Override
-      public void apply(final NetworkOperationContext ctx, final ValueCallback<List<NextwebOperation<?>>> opscb) {
+      public void apply(final NetworkOperationContext ctx, final ValueCallback<List<DataOperation<?>>> opscb) {
         Node _parent = ctx.parent();
         String _name = source.getName();
         final Query baseNode = _parent.appendSafe(_name, ("./" + simpleName));
@@ -90,7 +90,7 @@ public class FolderToNode implements Converter {
         Client _client_1 = baseNode.client();
         Link _ICON = FolderToNode.this.n.ICON(_client_1);
         Query _appendSafe_3 = _appendSafe_2.appendSafe(_ICON);
-        ArrayList<NextwebOperation<?>> _newArrayList = CollectionLiterals.<NextwebOperation<?>>newArrayList(baseNode, _appendSafe_1, _appendSafe_3);
+        ArrayList<DataOperation<?>> _newArrayList = CollectionLiterals.<DataOperation<?>>newArrayList(baseNode, _appendSafe_1, _appendSafe_3);
         opscb.onSuccess(_newArrayList);
       }
     };

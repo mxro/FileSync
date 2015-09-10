@@ -21,9 +21,9 @@ import delight.async.callbacks.ValueCallback;
 import delight.async.helper.Aggregator;
 import delight.functional.Closure;
 import delight.functional.Success;
-import io.nextweb.promise.NextwebOperation;
+import io.nextweb.promise.DataOperation;
 import io.nextweb.promise.DataPromise;
-import io.nextweb.promise.callbacks.NextwebCallback;
+import io.nextweb.promise.callbacks.DataCallback;
 import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
 import io.nextweb.promise.exceptions.NextwebExceptionManager;
@@ -95,13 +95,13 @@ public class ConvertUtils {
     final LinkedList<NetworkOperation> ops = new LinkedList<NetworkOperation>();
     final NetworkOperation _function = new NetworkOperation() {
       @Override
-      public void apply(final NetworkOperationContext ctx, final ValueCallback<List<NextwebOperation<?>>> opscb) {
+      public void apply(final NetworkOperationContext ctx, final ValueCallback<List<DataOperation<?>>> opscb) {
         String _name = cachedFile.name();
         metadata.remove(_name);
         Client _session = ctx.session();
         final Link nodeToBeRemoved = _session.link(address);
         final Node parent = ctx.parent();
-        final ArrayList<NextwebOperation<?>> list = new ArrayList<NextwebOperation<?>>();
+        final ArrayList<DataOperation<?>> list = new ArrayList<DataOperation<?>>();
         Client _client = parent.client();
         Link _link = _client.link(parent);
         boolean _hasDirectChild = ConvertUtils.this.qxt.hasDirectChild(_link, nodeToBeRemoved);
@@ -114,7 +114,7 @@ public class ConvertUtils {
             }
           };
           ValueCallback<Success> _embed = AsyncCommon.<Success>embed(opscb, _function);
-          final NextwebCallback<Success> innercb = CallbackUtils.<Success>asNextwebCallback(_exceptionManager, _embed);
+          final DataCallback<Success> innercb = CallbackUtils.<Success>asNextwebCallback(_exceptionManager, _embed);
           ConvertUtils.this.ext.removeRecursive(parent, nodeToBeRemoved, innercb);
         } else {
           DataPromise<Success> _remove = parent.remove(nodeToBeRemoved);
@@ -134,10 +134,10 @@ public class ConvertUtils {
     return _appendSafe.appendSafe(_LABEL);
   }
   
-  public List<NextwebOperation<?>> appendTypesAndIcon(final Query toNode, final FileItem source) {
-    ArrayList<NextwebOperation<?>> _xblockexpression = null;
+  public List<DataOperation<?>> appendTypesAndIcon(final Query toNode, final FileItem source) {
+    ArrayList<DataOperation<?>> _xblockexpression = null;
     {
-      final ArrayList<NextwebOperation<?>> res = CollectionLiterals.<NextwebOperation<?>>newArrayList();
+      final ArrayList<DataOperation<?>> res = CollectionLiterals.<DataOperation<?>>newArrayList();
       final Client session = toNode.client();
       String ext = source.getExtension();
       ext = ("." + ext);

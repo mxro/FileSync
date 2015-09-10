@@ -13,13 +13,13 @@ import com.appjangle.filesync.internal.engine.N
 import de.mxro.file.FileItem
 import delight.async.AsyncCommon
 import delight.async.callbacks.ValueCallback
-import io.nextweb.promise.NextwebOperation
 import java.util.ArrayList
 import java.util.LinkedList
 import java.util.List
 
 import static extension delight.async.AsyncCommon.*
 import io.nextweb.promise.utils.CallbackUtils
+import io.nextweb.promise.DataOperation
 
 class ConvertUtils {
 
@@ -76,7 +76,7 @@ class ConvertUtils {
 				val nodeToBeRemoved = ctx.session.link(address)
 				val parent = ctx.parent
 				
-				val list = new ArrayList<NextwebOperation<?>>
+				val list = new ArrayList<DataOperation<?>>
 				
 				if (parent.client().link(parent).hasDirectChild(nodeToBeRemoved)) {
 					val innercb = CallbackUtils.asNextwebCallback(nodeToBeRemoved.exceptionManager, opscb.embed [
@@ -99,7 +99,7 @@ class ConvertUtils {
 		toNode.appendSafe(label, "./.label").appendSafe(toNode.client().LABEL)
 	}
 
-	def List<NextwebOperation<?>> appendTypesAndIcon(Query toNode, FileItem source) {
+	def List<DataOperation<?>> appendTypesAndIcon(Query toNode, FileItem source) {
 		val res = newArrayList
 		
 		val session = toNode.client()

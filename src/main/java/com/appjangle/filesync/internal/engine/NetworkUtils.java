@@ -10,7 +10,7 @@ import delight.async.callbacks.ValueCallback;
 import delight.async.helper.Aggregator;
 import delight.functional.Closure;
 import delight.functional.Success;
-import io.nextweb.promise.NextwebOperation;
+import io.nextweb.promise.DataOperation;
 import io.nextweb.promise.DataPromise;
 import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
@@ -42,9 +42,9 @@ public class NetworkUtils {
       ValueCallback<List<Success>> _embed = AsyncCommon.<List<Success>>embed(cb, _function);
       final Aggregator<Success> opscbs = AsyncCommon.<Success>collect(_size, _embed);
       for (final NetworkOperation op : ops) {
-        final Closure<List<NextwebOperation<?>>> _function_1 = new Closure<List<NextwebOperation<?>>>() {
+        final Closure<List<DataOperation<?>>> _function_1 = new Closure<List<DataOperation<?>>>() {
           @Override
-          public void apply(final List<NextwebOperation<?>> qries) {
+          public void apply(final List<DataOperation<?>> qries) {
             final ValueCallback<Success> opscbsitem = opscbs.createCallback();
             int _size = qries.size();
             final Closure<List<Success>> _function = new Closure<List<Success>>() {
@@ -55,7 +55,7 @@ public class NetworkUtils {
             };
             ValueCallback<List<Success>> _embed = AsyncCommon.<List<Success>>embed(cb, _function);
             final Aggregator<Success> cbs = AsyncCommon.<Success>collect(_size, _embed);
-            for (final NextwebOperation<?> qry : qries) {
+            for (final DataOperation<?> qry : qries) {
               {
                 final ValueCallback<Success> itmcb = cbs.createCallback();
                 if ((qry instanceof Query)) {
@@ -93,7 +93,7 @@ public class NetworkUtils {
                     };
                     safeQry.get(_function_4);
                   } else {
-                    Class<? extends NextwebOperation> _class = qry.getClass();
+                    Class<? extends DataOperation> _class = qry.getClass();
                     String _plus = ("Unsupported pending query: " + _class);
                     throw new RuntimeException(_plus);
                   }
@@ -102,7 +102,7 @@ public class NetworkUtils {
             }
           }
         };
-        ValueCallback<List<NextwebOperation<?>>> _embed_1 = AsyncCommon.<List<NextwebOperation<?>>>embed(cb, _function_1);
+        ValueCallback<List<DataOperation<?>>> _embed_1 = AsyncCommon.<List<DataOperation<?>>>embed(cb, _function_1);
         op.apply(ctx, _embed_1);
       }
       Client _client = onNode.client();

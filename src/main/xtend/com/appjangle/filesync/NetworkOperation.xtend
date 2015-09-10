@@ -2,10 +2,10 @@ package com.appjangle.filesync
 
 import delight.async.callbacks.ValueCallback
 import delight.functional.Closure2
-import io.nextweb.promise.NextwebOperation
 import java.util.List
+import io.nextweb.promise.DataOperation
 
-interface NetworkOperation extends Closure2<NetworkOperationContext, ValueCallback<List<NextwebOperation<?>>>> {
+interface NetworkOperation extends Closure2<NetworkOperationContext, ValueCallback<List<DataOperation<?>>>> {
 	
 	
 	

@@ -1,11 +1,7 @@
 package com.appjangle.filesync.tests;
 
-import com.appjangle.api.Link;
-import com.appjangle.api.Query;
 import com.appjangle.filesync.tests.CheckNodesToFilesTemplate;
-import de.mxro.file.FileItem;
 import de.oehme.xtend.junit.JUnit;
-import java.util.List;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
 import org.hamcrest.Matcher;
 import org.junit.Assert;
@@ -16,16 +12,12 @@ import org.junit.internal.ArrayComparisonFailure;
 public class TestCreateFolderFromLabel extends CheckNodesToFilesTemplate {
   @Override
   protected void step1_defineData() {
-    Query _append = this.source.append("No value", "./value");
-    Query _append_1 = _append.append("Labelled Node");
-    Link _link = this.session.link("https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel");
-    _append_1.append(_link);
+    this.source.append("No value", "./value").append("Labelled Node").append(this.session.link("https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel"));
   }
   
   @Override
   protected void step2_assertFiles() {
-    List<FileItem> _children = this.result.getChildren();
-    int _size = _children.size();
+    int _size = this.result.getChildren().size();
     TestCreateFolderFromLabel.<Integer, Integer>operator_doubleArrow(Integer.valueOf(_size), Integer.valueOf(2));
     boolean _contains = this.result.contains(".filesync-meta");
     TestCreateFolderFromLabel.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_contains), Boolean.valueOf(true));

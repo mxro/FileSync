@@ -2,7 +2,6 @@ package com.appjangle.filesync.jre;
 
 import com.appjangle.api.Node;
 import com.appjangle.filesync.FileSync;
-import de.mxro.file.FileItem;
 import de.mxro.file.Jre.FilesJre;
 import delight.async.Operation;
 import delight.async.callbacks.ValueCallback;
@@ -16,8 +15,7 @@ public class FileSyncJre {
     final Operation<Success> _function = new Operation<Success>() {
       @Override
       public void apply(final ValueCallback<Success> cb) {
-        FileItem _wrap = FilesJre.wrap(folder);
-        FileSync.sync(_wrap, node, cb);
+        FileSync.sync(FilesJre.wrap(folder), node, cb);
       }
     };
     Async.<Success>waitFor(_function);

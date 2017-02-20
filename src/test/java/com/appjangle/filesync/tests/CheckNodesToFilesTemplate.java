@@ -2,7 +2,6 @@ package com.appjangle.filesync.tests;
 
 import com.appjangle.api.Client;
 import com.appjangle.api.Node;
-import com.appjangle.api.Query;
 import com.appjangle.api.common.LocalServer;
 import com.appjangle.api.servers.jre.Servers;
 import com.appjangle.filesync.FileSync;
@@ -13,7 +12,6 @@ import delight.async.Operation;
 import delight.async.callbacks.ValueCallback;
 import delight.async.jre.Async;
 import delight.functional.Success;
-import io.nextweb.promise.DataPromise;
 import java.io.File;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.junit.After;
@@ -40,17 +38,11 @@ public abstract class CheckNodesToFilesTemplate {
   @Before
   public void setUp() {
     try {
-      LocalServer _createAndStart = Servers.createAndStart();
-      this.server = _createAndStart;
-      Client _create = Clients.create(this.server);
-      this.session = _create;
-      Query _seed = this.session.seed(this.server);
-      Node _get = _seed.get();
-      this.source = _get;
-      File _newFolder = this.tempFolder.newFolder("sync1");
-      this.target = _newFolder;
-      FileItem _wrap = FilesJre.wrap(this.target);
-      this.result = _wrap;
+      this.server = Servers.createAndStart();
+      this.session = Clients.create(this.server);
+      this.source = this.session.seed(this.server).get();
+      this.target = this.tempFolder.newFolder("sync1");
+      this.result = FilesJre.wrap(this.target);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -67,8 +59,7 @@ public abstract class CheckNodesToFilesTemplate {
   @Test
   public void test() {
     this.step1_defineData();
-    DataPromise<Success> _commit = this.session.commit();
-    _commit.get();
+    this.session.commit().get();
     final Operation<Success> _function = new Operation<Success>() {
       @Override
       public void apply(final ValueCallback<Success> cb) {
@@ -87,9 +78,7 @@ public abstract class CheckNodesToFilesTemplate {
   
   @After
   public void tearDown() {
-    DataPromise<Success> _close = this.session.close();
-    _close.get();
-    DataPromise<Success> _shutdown = this.server.shutdown();
-    _shutdown.get();
+    this.session.close().get();
+    this.server.shutdown().get();
   }
 }

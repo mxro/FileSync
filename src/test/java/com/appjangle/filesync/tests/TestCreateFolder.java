@@ -1,9 +1,7 @@
 package com.appjangle.filesync.tests;
 
 import com.appjangle.filesync.tests.CheckNodesToFilesTemplate;
-import de.mxro.file.FileItem;
 import de.oehme.xtend.junit.JUnit;
-import java.util.List;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
 import org.hamcrest.Matcher;
 import org.junit.Assert;
@@ -19,14 +17,11 @@ public class TestCreateFolder extends CheckNodesToFilesTemplate {
   
   @Override
   protected void step2_assertFiles() {
-    List<FileItem> _children = this.result.getChildren();
-    int _size = _children.size();
+    int _size = this.result.getChildren().size();
     TestCreateFolder.<Integer, Integer>operator_doubleArrow(Integer.valueOf(_size), Integer.valueOf(2));
     boolean _contains = this.result.contains(".filesync-meta");
     TestCreateFolder.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_contains), Boolean.valueOf(true));
-    List<FileItem> _children_1 = this.result.getChildren();
-    String _string = _children_1.toString();
-    boolean _contains_1 = _string.contains("Folder");
+    boolean _contains_1 = this.result.getChildren().toString().contains("Folder");
     TestCreateFolder.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_contains_1), Boolean.valueOf(true));
   }
   

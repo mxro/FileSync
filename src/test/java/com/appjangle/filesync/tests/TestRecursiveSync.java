@@ -1,9 +1,13 @@
 package com.appjangle.filesync.tests;
 
+import com.appjangle.api.Client;
+import com.appjangle.api.Link;
 import com.appjangle.api.Query;
 import com.appjangle.filesync.internal.engine.N;
 import com.appjangle.filesync.tests.CheckNodesToFilesTemplate;
+import de.mxro.file.FileItem;
 import de.oehme.xtend.junit.JUnit;
+import java.util.List;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
 import org.hamcrest.Matcher;
@@ -20,34 +24,64 @@ public class TestRecursiveSync extends CheckNodesToFilesTemplate {
   
   @Override
   protected void step1_defineData() {
-    this.source.append("oh my", "./node1").append("And in the subfolder", "./sub");
-    this.source.append("Hello").append("Any another foder");
+    Query _append = this.source.append("oh my", "./node1");
+    _append.append("And in the subfolder", "./sub");
+    Query _append_1 = this.source.append("Hello");
+    _append_1.append("Any another foder");
     final Query node3 = this.source.append("node3", "./node3");
-    node3.append("child1", "./child1").append("b", "./inThere").get();
-    node3.append("child2").append("c");
+    Query _append_2 = node3.append("child1", "./child1");
+    Query _append_3 = _append_2.append("b", "./inThere");
+    _append_3.get();
+    Query _append_4 = node3.append("child2");
+    _append_4.append("c");
     final Query html = node3.append("<html></html>", "./html");
-    html.append("My Html Document", "./.label").append(this.n.LABEL(this.source.client()));
-    html.append(this.n.HTML_VALUE(this.source.client()));
-    this.source.append("node4", "./node4").append(this.source.client().link("http://slicnet.com/mxrogm/mxrogm/data/stream/2013/12/3/n1"));
+    Query _append_5 = html.append("My Html Document", "./.label");
+    Client _client = this.source.client();
+    Link _LABEL = this.n.LABEL(_client);
+    _append_5.append(_LABEL);
+    Client _client_1 = this.source.client();
+    Link _HTML_VALUE = this.n.HTML_VALUE(_client_1);
+    html.append(_HTML_VALUE);
+    Query _append_6 = this.source.append("node4", "./node4");
+    Client _client_2 = this.source.client();
+    Link _link = _client_2.link("http://slicnet.com/mxrogm/mxrogm/data/stream/2013/12/3/n1");
+    _append_6.append(_link);
   }
   
   @Override
   protected void step2_assertFiles() {
-    boolean _exists = this.result.get("node1").exists();
+    FileItem _get = this.result.get("node1");
+    boolean _exists = _get.exists();
     TestRecursiveSync.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_exists), Boolean.valueOf(true));
-    boolean _exists_1 = this.result.get("node1").get("sub").exists();
+    FileItem _get_1 = this.result.get("node1");
+    FileItem _get_2 = _get_1.get("sub");
+    boolean _exists_1 = _get_2.exists();
     TestRecursiveSync.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_exists_1), Boolean.valueOf(true));
-    boolean _exists_2 = this.result.get("node3").exists();
+    FileItem _get_3 = this.result.get("node3");
+    boolean _exists_2 = _get_3.exists();
     TestRecursiveSync.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_exists_2), Boolean.valueOf(true));
-    boolean _exists_3 = this.result.get("node3").get("child1").exists();
+    FileItem _get_4 = this.result.get("node3");
+    FileItem _get_5 = _get_4.get("child1");
+    boolean _exists_3 = _get_5.exists();
     TestRecursiveSync.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_exists_3), Boolean.valueOf(true));
-    boolean _exists_4 = this.result.get("node3").get("child1").get("inThere").exists();
+    FileItem _get_6 = this.result.get("node3");
+    FileItem _get_7 = _get_6.get("child1");
+    FileItem _get_8 = _get_7.get("inThere");
+    boolean _exists_4 = _get_8.exists();
     TestRecursiveSync.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_exists_4), Boolean.valueOf(true));
-    boolean _isDirectory = this.result.get("node3").get("child1").get("inThere").isDirectory();
+    FileItem _get_9 = this.result.get("node3");
+    FileItem _get_10 = _get_9.get("child1");
+    FileItem _get_11 = _get_10.get("inThere");
+    boolean _isDirectory = _get_11.isDirectory();
     TestRecursiveSync.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_isDirectory), Boolean.valueOf(true));
-    String _text = this.result.get("node3").get("My Html Document.html").getText();
+    FileItem _get_12 = this.result.get("node3");
+    FileItem _get_13 = _get_12.get("My Html Document.html");
+    String _text = _get_13.getText();
     TestRecursiveSync.<String, String>operator_doubleArrow(_text, "<html></html>");
-    int _size = this.result.get("node4").get("Plain Text Editor").getChildren().size();
+    FileItem _get_14 = this.result.get("node4");
+    FileItem _get_15 = _get_14.get("Plain Text Editor");
+    List<FileItem> _children = _get_15.getChildren();
+    int _size = _children.size();
     TestRecursiveSync.<Integer, Integer>operator_doubleArrow(Integer.valueOf(_size), Integer.valueOf(0));
   }
   

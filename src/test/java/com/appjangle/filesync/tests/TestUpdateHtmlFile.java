@@ -1,5 +1,7 @@
 package com.appjangle.filesync.tests;
 
+import com.appjangle.api.Link;
+import com.appjangle.api.Node;
 import com.appjangle.api.Query;
 import com.appjangle.filesync.tests.CheckUpdatesTemplate;
 import de.mxro.file.FileItem;
@@ -15,24 +17,30 @@ public class TestUpdateHtmlFile extends CheckUpdatesTemplate {
   @Override
   protected void step1_defineData() {
     final Query html = this.source.append("<p>Hello 1</p>", "./html");
-    html.append("doc").append(this.session.link("https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel"));
-    html.append(this.session.link("https://admin1.linnk.it/types/v01/isHtmlValue"));
+    Query _append = html.append("doc");
+    Link _link = this.session.link("https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel");
+    _append.append(_link);
+    Link _link_1 = this.session.link("https://admin1.linnk.it/types/v01/isHtmlValue");
+    html.append(_link_1);
   }
   
   @Override
   protected void step2_assertFiles() {
-    String _text = this.result.get("doc.html").getText();
+    FileItem _get = this.result.get("doc.html");
+    String _text = _get.getText();
     TestUpdateHtmlFile.<String, String>operator_doubleArrow(_text, "<p>Hello 1</p>");
   }
   
   @Override
   protected void step3_updateNodes() {
-    this.source.select("./html").setValue("<p>Hello 1 and Hello 2 are an amazing team.</p>");
+    Query _select = this.source.select("./html");
+    _select.setValue("<p>Hello 1 and Hello 2 are an amazing team.</p>");
   }
   
   @Override
   protected void step4_assertFilesAfterUpdate() {
-    String _text = this.result.get("doc.html").getText();
+    FileItem _get = this.result.get("doc.html");
+    String _text = _get.getText();
     TestUpdateHtmlFile.<String, String>operator_doubleArrow(_text, "<p>Hello 1 and Hello 2 are an amazing team.</p>");
   }
   
@@ -44,7 +52,9 @@ public class TestUpdateHtmlFile extends CheckUpdatesTemplate {
   
   @Override
   protected void step6_assertNodesAfterUpdate() {
-    Object _value = this.source.select("./html").get().value();
+    Query _select = this.source.select("./html");
+    Node _get = _select.get();
+    Object _value = _get.value();
     TestUpdateHtmlFile.<Object, String>operator_doubleArrow(_value, "And now for something different");
   }
   

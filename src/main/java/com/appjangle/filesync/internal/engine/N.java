@@ -18,7 +18,8 @@ public class N {
   }
   
   public Link TEMPLATE(final Client session) {
-    return session.link(N.TEMPLATE());
+    String _TEMPLATE = N.TEMPLATE();
+    return session.link(_TEMPLATE);
   }
   
   public static String TEXT_VALUE() {
@@ -26,7 +27,8 @@ public class N {
   }
   
   public Link TEXT_VALUE(final Client session) {
-    return session.link(N.TEXT_VALUE());
+    String _TEXT_VALUE = N.TEXT_VALUE();
+    return session.link(_TEXT_VALUE);
   }
   
   public static String LABEL() {
@@ -34,7 +36,8 @@ public class N {
   }
   
   public Link LABEL(final Client session) {
-    return session.link(N.LABEL());
+    String _LABEL = N.LABEL();
+    return session.link(_LABEL);
   }
   
   public static String LABEL2() {
@@ -50,7 +53,8 @@ public class N {
   }
   
   public Link ICON(final Client session) {
-    return session.link(N.ICON());
+    String _ICON = N.ICON();
+    return session.link(_ICON);
   }
   
   public static String COFFEESCRIPT() {
@@ -58,7 +62,8 @@ public class N {
   }
   
   public Link COFFEESCRIPT(final Client session) {
-    return session.link(N.COFFEESCRIPT());
+    String _COFFEESCRIPT = N.COFFEESCRIPT();
+    return session.link(_COFFEESCRIPT);
   }
   
   public static String JAVASCRIPT() {
@@ -66,7 +71,8 @@ public class N {
   }
   
   public Link JAVASCRIPT(final Client session) {
-    return session.link(N.JAVASCRIPT());
+    String _JAVASCRIPT = N.JAVASCRIPT();
+    return session.link(_JAVASCRIPT);
   }
   
   public static String CSS() {
@@ -74,7 +80,8 @@ public class N {
   }
   
   public Link CSS(final Client session) {
-    return session.link(N.CSS());
+    String _CSS = N.CSS();
+    return session.link(_CSS);
   }
   
   public static String TYPE() {
@@ -82,7 +89,8 @@ public class N {
   }
   
   public Link TYPE(final Client session) {
-    return session.link(N.TYPE());
+    String _TYPE = N.TYPE();
+    return session.link(_TYPE);
   }
   
   public static String RICHTEXT() {
@@ -90,6 +98,7 @@ public class N {
   }
   
   public Link RICHTEXT(final Client session) {
-    return session.link(N.RICHTEXT());
+    String _RICHTEXT = N.RICHTEXT();
+    return session.link(_RICHTEXT);
   }
 }

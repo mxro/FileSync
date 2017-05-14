@@ -1,5 +1,10 @@
 package com.appjangle.filesync.tests;
 
+import com.appjangle.api.Link;
+import com.appjangle.api.ListQuery;
+import com.appjangle.api.Node;
+import com.appjangle.api.NodeList;
+import com.appjangle.api.Query;
 import com.appjangle.filesync.internal.engine.N;
 import com.appjangle.filesync.tests.CheckFilesToNodesTemplate;
 import de.mxro.file.FileItem;
@@ -34,28 +39,52 @@ public class TestCreateVariousNodeTypes extends CheckFilesToNodesTemplate {
   
   @Override
   protected void step2_assertNodes() {
-    int _size = this.result.selectAll(this.n.CSS(this.session)).get().size();
+    Link _CSS = this.n.CSS(this.session);
+    ListQuery _selectAll = this.result.selectAll(_CSS);
+    NodeList _get = _selectAll.get();
+    int _size = _get.size();
     Matcher<Integer> _equalTo = TestCreateVariousNodeTypes.<Integer>equalTo(Integer.valueOf(1));
     this.<Integer>operator_doubleArrow(Integer.valueOf(_size), _equalTo);
-    Object _value = this.result.select(this.n.CSS(this.session)).get().value();
+    Link _CSS_1 = this.n.CSS(this.session);
+    Query _select = this.result.select(_CSS_1);
+    Node _get_1 = _select.get();
+    Object _value = _get_1.value();
     Matcher<Object> _equalTo_1 = TestCreateVariousNodeTypes.<Object>equalTo(".class {}");
     this.<Object>operator_doubleArrow(_value, _equalTo_1);
-    int _size_1 = this.result.selectAll(this.n.JAVASCRIPT(this.session)).get().size();
+    Link _JAVASCRIPT = this.n.JAVASCRIPT(this.session);
+    ListQuery _selectAll_1 = this.result.selectAll(_JAVASCRIPT);
+    NodeList _get_2 = _selectAll_1.get();
+    int _size_1 = _get_2.size();
     Matcher<Integer> _equalTo_2 = TestCreateVariousNodeTypes.<Integer>equalTo(Integer.valueOf(1));
     this.<Integer>operator_doubleArrow(Integer.valueOf(_size_1), _equalTo_2);
-    Object _value_1 = this.result.select(this.n.JAVASCRIPT(this.session)).get().value();
+    Link _JAVASCRIPT_1 = this.n.JAVASCRIPT(this.session);
+    Query _select_1 = this.result.select(_JAVASCRIPT_1);
+    Node _get_3 = _select_1.get();
+    Object _value_1 = _get_3.value();
     Matcher<Object> _equalTo_3 = TestCreateVariousNodeTypes.<Object>equalTo("window.alert(\'nothing much\');");
     this.<Object>operator_doubleArrow(_value_1, _equalTo_3);
-    int _size_2 = this.result.selectAll(this.n.COFFEESCRIPT(this.session)).get().size();
+    Link _COFFEESCRIPT = this.n.COFFEESCRIPT(this.session);
+    ListQuery _selectAll_2 = this.result.selectAll(_COFFEESCRIPT);
+    NodeList _get_4 = _selectAll_2.get();
+    int _size_2 = _get_4.size();
     Matcher<Integer> _equalTo_4 = TestCreateVariousNodeTypes.<Integer>equalTo(Integer.valueOf(1));
     this.<Integer>operator_doubleArrow(Integer.valueOf(_size_2), _equalTo_4);
-    Object _value_2 = this.result.select(this.n.COFFEESCRIPT(this.session)).get().value();
+    Link _COFFEESCRIPT_1 = this.n.COFFEESCRIPT(this.session);
+    Query _select_2 = this.result.select(_COFFEESCRIPT_1);
+    Node _get_5 = _select_2.get();
+    Object _value_2 = _get_5.value();
     Matcher<Object> _equalTo_5 = TestCreateVariousNodeTypes.<Object>equalTo("window.alert \'nothing much\'");
     this.<Object>operator_doubleArrow(_value_2, _equalTo_5);
-    int _size_3 = this.result.selectAll(this.n.TYPE(this.session)).get().size();
+    Link _TYPE = this.n.TYPE(this.session);
+    ListQuery _selectAll_3 = this.result.selectAll(_TYPE);
+    NodeList _get_6 = _selectAll_3.get();
+    int _size_3 = _get_6.size();
     Matcher<Integer> _equalTo_6 = TestCreateVariousNodeTypes.<Integer>equalTo(Integer.valueOf(1));
     this.<Integer>operator_doubleArrow(Integer.valueOf(_size_3), _equalTo_6);
-    Object _value_3 = this.result.select(this.n.TYPE(this.session)).get().value();
+    Link _TYPE_1 = this.n.TYPE(this.session);
+    Query _select_3 = this.result.select(_TYPE_1);
+    Node _get_7 = _select_3.get();
+    Object _value_3 = _get_7.value();
     Matcher<Object> _equalTo_7 = TestCreateVariousNodeTypes.<Object>equalTo("Something for my type");
     this.<Object>operator_doubleArrow(_value_3, _equalTo_7);
   }

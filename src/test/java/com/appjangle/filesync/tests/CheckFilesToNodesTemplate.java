@@ -2,6 +2,7 @@ package com.appjangle.filesync.tests;
 
 import com.appjangle.api.Client;
 import com.appjangle.api.Node;
+import com.appjangle.api.Query;
 import com.appjangle.api.common.LocalServer;
 import com.appjangle.api.servers.jre.Servers;
 import com.appjangle.filesync.FileSync;
@@ -12,6 +13,7 @@ import delight.async.Operation;
 import delight.async.callbacks.ValueCallback;
 import delight.async.jre.Async;
 import delight.functional.Success;
+import io.nextweb.promise.DataPromise;
 import java.io.File;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.junit.After;
@@ -38,11 +40,17 @@ public abstract class CheckFilesToNodesTemplate {
   @Before
   public void setUp() {
     try {
-      this.server = Servers.createAndStart();
-      this.session = Clients.create(this.server);
-      this.result = this.session.seed(this.server).get();
-      this.sourceFolder = this.tempFolder.newFolder("sync1");
-      this.source = FilesJre.wrap(this.sourceFolder);
+      LocalServer _createAndStart = Servers.createAndStart();
+      this.server = _createAndStart;
+      Client _create = Clients.create(this.server);
+      this.session = _create;
+      Query _seed = this.session.seed(this.server);
+      Node _get = _seed.get();
+      this.result = _get;
+      File _newFolder = this.tempFolder.newFolder("sync1");
+      this.sourceFolder = _newFolder;
+      FileItem _wrap = FilesJre.wrap(this.sourceFolder);
+      this.source = _wrap;
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -69,13 +77,16 @@ public abstract class CheckFilesToNodesTemplate {
       }
     };
     Async.<Success>waitFor(_function_1);
-    this.session.commit().get();
+    DataPromise<Success> _commit = this.session.commit();
+    _commit.get();
     this.step2_assertNodes();
   }
   
   @After
   public void tearDown() {
-    this.session.close().get();
-    this.server.shutdown().get();
+    DataPromise<Success> _close = this.session.close();
+    _close.get();
+    DataPromise<Success> _shutdown = this.server.shutdown();
+    _shutdown.get();
   }
 }

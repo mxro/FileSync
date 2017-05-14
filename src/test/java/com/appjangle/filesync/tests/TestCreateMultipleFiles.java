@@ -1,8 +1,11 @@
 package com.appjangle.filesync.tests;
 
+import com.appjangle.api.Link;
 import com.appjangle.api.Query;
 import com.appjangle.filesync.tests.CheckNodesToFilesTemplate;
+import de.mxro.file.FileItem;
 import de.oehme.xtend.junit.JUnit;
+import java.util.List;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
 import org.hamcrest.Matcher;
 import org.junit.Assert;
@@ -14,23 +17,30 @@ public class TestCreateMultipleFiles extends CheckNodesToFilesTemplate {
   @Override
   protected void step1_defineData() {
     final Query html = this.source.append("<html></html>", "./html");
-    html.append("Html Document").append(this.session.link("https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel"));
-    html.append(this.session.link("https://admin1.linnk.it/types/v01/isHtmlValue"));
+    Query _append = html.append("Html Document");
+    Link _link = this.session.link("https://u1.linnk.it/qc8sbw/usr/apps/textsync/files/shortLabel");
+    _append.append(_link);
+    Link _link_1 = this.session.link("https://admin1.linnk.it/types/v01/isHtmlValue");
+    html.append(_link_1);
     this.source.append("Folder 1");
     this.source.append("Folder 2");
   }
   
   @Override
   protected void step2_assertFiles() {
-    int _size = this.result.getChildren().size();
+    List<FileItem> _children = this.result.getChildren();
+    int _size = _children.size();
     TestCreateMultipleFiles.<Integer, Integer>operator_doubleArrow(Integer.valueOf(_size), Integer.valueOf(4));
     boolean _contains = this.result.contains(".filesync-meta");
     TestCreateMultipleFiles.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_contains), Boolean.valueOf(true));
     boolean _contains_1 = this.result.contains("Html Document.html");
     TestCreateMultipleFiles.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_contains_1), Boolean.valueOf(true));
-    String _text = this.result.get("Html Document.html").getText();
+    FileItem _get = this.result.get("Html Document.html");
+    String _text = _get.getText();
     TestCreateMultipleFiles.<String, String>operator_doubleArrow(_text, "<html></html>");
-    boolean _contains_2 = this.result.getChildren().toString().contains("Folder");
+    List<FileItem> _children_1 = this.result.getChildren();
+    String _string = _children_1.toString();
+    boolean _contains_2 = _string.contains("Folder");
     TestCreateMultipleFiles.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_contains_2), Boolean.valueOf(true));
   }
   

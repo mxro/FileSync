@@ -3,6 +3,7 @@ package com.appjangle.filesync.tests;
 import com.appjangle.api.Node;
 import com.appjangle.api.Query;
 import com.appjangle.filesync.tests.CheckUpdatesTemplate;
+import de.mxro.file.FileItem;
 import de.oehme.xtend.junit.JUnit;
 import delight.async.Operation;
 import delight.async.callbacks.ValueCallback;
@@ -13,6 +14,7 @@ import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
 import io.nextweb.promise.exceptions.UndefinedListener;
 import io.nextweb.promise.exceptions.UndefinedResult;
+import java.util.List;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure0;
 import org.hamcrest.Matcher;
 import org.junit.Assert;
@@ -30,20 +32,24 @@ public class TestRemoveFolder extends CheckUpdatesTemplate {
   
   @Override
   protected void step2_assertFiles() {
-    int _size = this.result.getChildren().size();
+    List<FileItem> _children = this.result.getChildren();
+    int _size = _children.size();
     TestRemoveFolder.<Integer, Integer>operator_doubleArrow(Integer.valueOf(_size), Integer.valueOf(4));
-    boolean _exists = this.result.get("folder1").exists();
+    FileItem _get = this.result.get("folder1");
+    boolean _exists = _get.exists();
     TestRemoveFolder.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_exists), Boolean.valueOf(true));
   }
   
   @Override
   protected void step3_updateNodes() {
-    this.source.remove(this.source.select("./folder1"));
+    Query _select = this.source.select("./folder1");
+    this.source.remove(_select);
   }
   
   @Override
   protected void step4_assertFilesAfterUpdate() {
-    boolean _exists = this.result.get("folder1").exists();
+    FileItem _get = this.result.get("folder1");
+    boolean _exists = _get.exists();
     TestRemoveFolder.<Boolean, Boolean>operator_doubleArrow(Boolean.valueOf(_exists), Boolean.valueOf(false));
   }
   
@@ -61,7 +67,8 @@ public class TestRemoveFolder extends CheckUpdatesTemplate {
         final ExceptionListener _function = new ExceptionListener() {
           @Override
           public void onFailure(final ExceptionResult er) {
-            cb.onFailure(er.exception());
+            Throwable _exception = er.exception();
+            cb.onFailure(_exception);
           }
         };
         qry.catchExceptions(_function);

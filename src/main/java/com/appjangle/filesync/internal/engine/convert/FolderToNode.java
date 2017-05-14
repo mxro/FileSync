@@ -1,5 +1,7 @@
 package com.appjangle.filesync.internal.engine.convert;
 
+import com.appjangle.api.Client;
+import com.appjangle.api.Link;
 import com.appjangle.api.Node;
 import com.appjangle.api.Query;
 import com.appjangle.filesync.Converter;
@@ -17,6 +19,7 @@ import delight.async.AsyncCommon;
 import delight.async.callbacks.ValueCallback;
 import delight.functional.Closure;
 import io.nextweb.promise.DataOperation;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -37,12 +40,15 @@ public class FolderToNode implements Converter {
   
   @Override
   public void createNodes(final Metadata metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {
-    final String simpleName = this.futils.getSimpleName(source.getName());
+    String _name = source.getName();
+    final String simpleName = this.futils.getSimpleName(_name);
     final LinkedList<NetworkOperation> ops = new LinkedList<NetworkOperation>();
     final NetworkOperation _function = new NetworkOperation() {
       @Override
       public void apply(final NetworkOperationContext ctx, final ValueCallback<List<DataOperation<?>>> opscb) {
-        final Query baseNode = ctx.parent().appendSafe(source.getName(), ("./" + simpleName));
+        Node _parent = ctx.parent();
+        String _name = source.getName();
+        final Query baseNode = _parent.appendSafe(_name, ("./" + simpleName));
         metadata.add(
           new ItemMetadata() {
             @Override
@@ -57,25 +63,35 @@ public class FolderToNode implements Converter {
             
             @Override
             public String uri() {
-              String _uri = ctx.parent().uri();
+              Node _parent = ctx.parent();
+              String _uri = _parent.uri();
               String _plus = (_uri + "/");
               return (_plus + simpleName);
             }
             
             @Override
             public String hash() {
-              return Integer.valueOf(simpleName.hashCode()).toString();
+              int _hashCode = simpleName.hashCode();
+              return Integer.valueOf(_hashCode).toString();
             }
             
             @Override
             public String converter() {
-              return FolderToNode.this.getClass().toString();
+              Class<? extends FolderToNode> _class = FolderToNode.this.getClass();
+              return _class.toString();
             }
           });
-        opscb.onSuccess(
-          CollectionLiterals.<DataOperation<?>>newArrayList(baseNode, 
-            baseNode.appendSafe(source.getName(), "./.label").appendSafe(FolderToNode.this.n.LABEL(baseNode.client())), 
-            baseNode.appendSafe("https://appjangle.com/files/img/20141020/List.png", "./.icon").appendSafe(FolderToNode.this.n.ICON(baseNode.client()))));
+        String _name_1 = source.getName();
+        Query _appendSafe = baseNode.appendSafe(_name_1, "./.label");
+        Client _client = baseNode.client();
+        Link _LABEL = FolderToNode.this.n.LABEL(_client);
+        Query _appendSafe_1 = _appendSafe.appendSafe(_LABEL);
+        Query _appendSafe_2 = baseNode.appendSafe("https://appjangle.com/files/img/20141020/List.png", "./.icon");
+        Client _client_1 = baseNode.client();
+        Link _ICON = FolderToNode.this.n.ICON(_client_1);
+        Query _appendSafe_3 = _appendSafe_2.appendSafe(_ICON);
+        ArrayList<DataOperation<?>> _newArrayList = CollectionLiterals.<DataOperation<?>>newArrayList(baseNode, _appendSafe_1, _appendSafe_3);
+        opscb.onSuccess(_newArrayList);
       }
     };
     ops.add(_function);
@@ -84,7 +100,8 @@ public class FolderToNode implements Converter {
   
   @Override
   public void update(final Metadata metadata, final FileItem source, final ValueCallback<List<NetworkOperation>> cb) {
-    cb.onSuccess(CollectionLiterals.<NetworkOperation>newArrayList());
+    ArrayList<NetworkOperation> _newArrayList = CollectionLiterals.<NetworkOperation>newArrayList();
+    cb.onSuccess(_newArrayList);
   }
   
   @Override
@@ -102,7 +119,8 @@ public class FolderToNode implements Converter {
           @Override
           public void apply(final FileOperationContext ctx) {
             final String folderName = FolderToNode.this.futils.toFileSystemSafeName(rawFolderName, false, 100);
-            ctx.folder().assertFolder(folderName);
+            FileItem _folder = ctx.folder();
+            _folder.assertFolder(folderName);
             Metadata _metadata = ctx.metadata();
             _metadata.add(
               new ItemMetadata() {
@@ -123,12 +141,14 @@ public class FolderToNode implements Converter {
                 
                 @Override
                 public String hash() {
-                  return Integer.valueOf(folderName.hashCode()).toString();
+                  int _hashCode = folderName.hashCode();
+                  return Integer.valueOf(_hashCode).toString();
                 }
                 
                 @Override
                 public String converter() {
-                  return FolderToNode.this.getClass().toString();
+                  Class<? extends FolderToNode> _class = FolderToNode.this.getClass();
+                  return _class.toString();
                 }
               });
           }
@@ -137,13 +157,14 @@ public class FolderToNode implements Converter {
         cb.onSuccess(ops);
       }
     };
-    this.utils.getFileName(source, 
-      AsyncCommon.<String>embed(cb, _function));
+    ValueCallback<String> _embed = AsyncCommon.<String>embed(cb, _function);
+    this.utils.getFileName(source, _embed);
   }
   
   @Override
   public void updateFiles(final FileItem folder, final Metadata metadata, final Node source, final ValueCallback<List<FileOperation>> cb) {
-    cb.onSuccess(CollectionLiterals.<FileOperation>newArrayList());
+    ArrayList<FileOperation> _newArrayList = CollectionLiterals.<FileOperation>newArrayList();
+    cb.onSuccess(_newArrayList);
   }
   
   @Override
@@ -153,8 +174,10 @@ public class FolderToNode implements Converter {
     final FileOperation _function = new FileOperation() {
       @Override
       public void apply(final FileOperationContext ctx) {
-        ctx.folder().deleteFolder(folderName);
-        ctx.metadata().remove(folderName);
+        FileItem _folder = ctx.folder();
+        _folder.deleteFolder(folderName);
+        Metadata _metadata = ctx.metadata();
+        _metadata.remove(folderName);
       }
     };
     ops.add(_function);

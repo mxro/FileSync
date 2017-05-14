@@ -1,6 +1,11 @@
 package com.appjangle.filesync.tests;
 
+import com.appjangle.api.Client;
+import com.appjangle.api.Link;
+import com.appjangle.api.ListQuery;
 import com.appjangle.api.Node;
+import com.appjangle.api.NodeList;
+import com.appjangle.api.Query;
 import com.appjangle.filesync.internal.engine.N;
 import com.appjangle.filesync.tests.CheckFilesToNodesTemplate;
 import de.oehme.xtend.junit.Hamcrest;
@@ -27,12 +32,19 @@ public class TestCreateNode extends CheckFilesToNodesTemplate {
   
   @Override
   protected void step2_assertNodes() {
-    int _size = this.result.selectAll().get().size();
+    ListQuery _selectAll = this.result.selectAll();
+    NodeList _get = _selectAll.get();
+    int _size = _get.size();
     TestCreateNode.<Integer, Integer>operator_doubleArrow(Integer.valueOf(_size), Integer.valueOf(1));
-    final Node node = this.result.select("./Oh_my_test").get();
+    Query _select = this.result.select("./Oh_my_test");
+    final Node node = _select.get();
     Matcher<Object> _notNullValue = TestCreateNode.notNullValue();
     this.<Node>operator_doubleArrow(node, _notNullValue);
-    Object _value = node.select(this.n.LABEL(node.client())).get().value();
+    Client _client = node.client();
+    Link _LABEL = this.n.LABEL(_client);
+    Query _select_1 = node.select(_LABEL);
+    Node _get_1 = _select_1.get();
+    Object _value = _get_1.value();
     Matcher<Object> _equalTo = TestCreateNode.<Object>equalTo("Oh my test");
     this.<Object>operator_doubleArrow(_value, _equalTo);
   }

@@ -22,7 +22,9 @@ import delight.async.helper.Aggregator;
 import delight.functional.Closure;
 import delight.functional.Success;
 import io.nextweb.promise.DataOperation;
+import io.nextweb.promise.DataPromise;
 import io.nextweb.promise.callbacks.DataCallback;
+import io.nextweb.promise.exceptions.DataExceptionManager;
 import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
 import io.nextweb.promise.exceptions.UndefinedListener;
@@ -55,7 +57,9 @@ public class ConvertUtils {
   }
   
   public boolean isTextType(final Link link) {
-    return this.textValueExtensions.keySet().contains(link.uri());
+    Set<String> _keySet = this.textValueExtensions.keySet();
+    String _uri = link.uri();
+    return _keySet.contains(_uri);
   }
   
   public void getFileExtension(final Node forNode, final ValueCallback<String> cb) {
@@ -63,7 +67,8 @@ public class ConvertUtils {
     final ExceptionListener _function = new ExceptionListener() {
       @Override
       public void onFailure(final ExceptionResult er) {
-        cb.onFailure(er.exception());
+        Throwable _exception = er.exception();
+        cb.onFailure(_exception);
       }
     };
     qry.catchExceptions(_function);
@@ -72,9 +77,11 @@ public class ConvertUtils {
       public void apply(final LinkList links) {
         Set<Map.Entry<String, String>> _entrySet = ConvertUtils.this.textValueExtensions.entrySet();
         for (final Map.Entry<String, String> mapping : _entrySet) {
-          boolean _contains = links.contains(mapping.getKey());
+          String _key = mapping.getKey();
+          boolean _contains = links.contains(_key);
           if (_contains) {
-            cb.onSuccess(mapping.getValue());
+            String _value = mapping.getValue();
+            cb.onSuccess(_value);
             return;
           }
         }
@@ -89,22 +96,29 @@ public class ConvertUtils {
     final NetworkOperation _function = new NetworkOperation() {
       @Override
       public void apply(final NetworkOperationContext ctx, final ValueCallback<List<DataOperation<?>>> opscb) {
-        metadata.remove(cachedFile.name());
-        final Link nodeToBeRemoved = ctx.session().link(address);
+        String _name = cachedFile.name();
+        metadata.remove(_name);
+        Client _session = ctx.session();
+        final Link nodeToBeRemoved = _session.link(address);
         final Node parent = ctx.parent();
         final ArrayList<DataOperation<?>> list = new ArrayList<DataOperation<?>>();
-        boolean _hasDirectChild = ConvertUtils.this.qxt.hasDirectChild(parent.client().link(parent), nodeToBeRemoved);
+        Client _client = parent.client();
+        Link _link = _client.link(parent);
+        boolean _hasDirectChild = ConvertUtils.this.qxt.hasDirectChild(_link, nodeToBeRemoved);
         if (_hasDirectChild) {
+          DataExceptionManager _exceptionManager = nodeToBeRemoved.getExceptionManager();
           final Closure<Success> _function = new Closure<Success>() {
             @Override
             public void apply(final Success it) {
               opscb.onSuccess(list);
             }
           };
-          final DataCallback<Success> innercb = CallbackUtils.<Success>asDataCallback(nodeToBeRemoved.getExceptionManager(), AsyncCommon.<Success>embed(opscb, _function));
+          ValueCallback<Success> _embed = AsyncCommon.<Success>embed(opscb, _function);
+          final DataCallback<Success> innercb = CallbackUtils.<Success>asDataCallback(_exceptionManager, _embed);
           ConvertUtils.this.ext.removeRecursive(parent, nodeToBeRemoved, innercb);
         } else {
-          list.add(parent.remove(nodeToBeRemoved));
+          DataPromise<Success> _remove = parent.remove(nodeToBeRemoved);
+          list.add(_remove);
           opscb.onSuccess(list);
         }
       }
@@ -114,7 +128,10 @@ public class ConvertUtils {
   }
   
   public Query appendLabel(final Query toNode, final String label) {
-    return toNode.appendSafe(label, "./.label").appendSafe(this.n.LABEL(toNode.client()));
+    Query _appendSafe = toNode.appendSafe(label, "./.label");
+    Client _client = toNode.client();
+    Link _LABEL = this.n.LABEL(_client);
+    return _appendSafe.appendSafe(_LABEL);
   }
   
   public List<DataOperation<?>> appendTypesAndIcon(final Query toNode, final FileItem source) {
@@ -126,60 +143,98 @@ public class ConvertUtils {
       ext = ("." + ext);
       boolean _equals = Objects.equal(ext, ".html");
       if (_equals) {
-        res.add(toNode.appendSafe(this.n.HTML_VALUE(session)));
-        res.add(toNode.appendSafe(this.n.TEMPLATE(session)));
+        Link _HTML_VALUE = this.n.HTML_VALUE(session);
+        Query _appendSafe = toNode.appendSafe(_HTML_VALUE);
+        res.add(_appendSafe);
+        Link _TEMPLATE = this.n.TEMPLATE(session);
+        Query _appendSafe_1 = toNode.appendSafe(_TEMPLATE);
+        res.add(_appendSafe_1);
         final Query icon = toNode.appendSafe("https://appjangle.com/files/img/20141029/HTML.png", "./.icon");
         res.add(icon);
-        res.add(icon.appendSafe(this.n.ICON(session)));
+        Link _ICON = this.n.ICON(session);
+        Query _appendSafe_2 = icon.appendSafe(_ICON);
+        res.add(_appendSafe_2);
       } else {
         boolean _equals_1 = Objects.equal(ext, ".htm");
         if (_equals_1) {
-          res.add(toNode.appendSafe(this.n.RICHTEXT(session)));
-          res.add(toNode.appendSafe(this.n.TEMPLATE(session)));
+          Link _RICHTEXT = this.n.RICHTEXT(session);
+          Query _appendSafe_3 = toNode.appendSafe(_RICHTEXT);
+          res.add(_appendSafe_3);
+          Link _TEMPLATE_1 = this.n.TEMPLATE(session);
+          Query _appendSafe_4 = toNode.appendSafe(_TEMPLATE_1);
+          res.add(_appendSafe_4);
           final Query icon_1 = toNode.appendSafe("https://appjangle.com/files/img/20141119/RTF.png", "./.icon");
           res.add(icon_1);
-          res.add(icon_1.appendSafe(this.n.ICON(session)));
+          Link _ICON_1 = this.n.ICON(session);
+          Query _appendSafe_5 = icon_1.appendSafe(_ICON_1);
+          res.add(_appendSafe_5);
         } else {
           boolean _equals_2 = Objects.equal(ext, ".js");
           if (_equals_2) {
-            res.add(toNode.appendSafe(this.n.JAVASCRIPT(session)));
-            res.add(toNode.appendSafe(this.n.TEMPLATE(session)));
+            Link _JAVASCRIPT = this.n.JAVASCRIPT(session);
+            Query _appendSafe_6 = toNode.appendSafe(_JAVASCRIPT);
+            res.add(_appendSafe_6);
+            Link _TEMPLATE_2 = this.n.TEMPLATE(session);
+            Query _appendSafe_7 = toNode.appendSafe(_TEMPLATE_2);
+            res.add(_appendSafe_7);
             final Query icon_2 = toNode.appendSafe("https://appjangle.com/files/img/20141029/JavaScript.png", "./.icon");
             res.add(icon_2);
-            res.add(icon_2.appendSafe(this.n.ICON(session)));
+            Link _ICON_2 = this.n.ICON(session);
+            Query _appendSafe_8 = icon_2.appendSafe(_ICON_2);
+            res.add(_appendSafe_8);
           } else {
             boolean _equals_3 = Objects.equal(ext, ".coffee");
             if (_equals_3) {
-              res.add(toNode.appendSafe(this.n.COFFEESCRIPT(session)));
-              res.add(toNode.appendSafe(this.n.TEMPLATE(session)));
+              Link _COFFEESCRIPT = this.n.COFFEESCRIPT(session);
+              Query _appendSafe_9 = toNode.appendSafe(_COFFEESCRIPT);
+              res.add(_appendSafe_9);
+              Link _TEMPLATE_3 = this.n.TEMPLATE(session);
+              Query _appendSafe_10 = toNode.appendSafe(_TEMPLATE_3);
+              res.add(_appendSafe_10);
               final Query icon_3 = toNode.appendSafe("https://appjangle.com/files/img/20141118/Coffeescript.png", "./.icon");
               res.add(icon_3);
-              res.add(icon_3.appendSafe(this.n.ICON(session)));
+              Link _ICON_3 = this.n.ICON(session);
+              Query _appendSafe_11 = icon_3.appendSafe(_ICON_3);
+              res.add(_appendSafe_11);
             } else {
               boolean _equals_4 = Objects.equal(ext, ".css");
               if (_equals_4) {
-                res.add(toNode.appendSafe(this.n.CSS(session)));
-                res.add(toNode.appendSafe(this.n.TEMPLATE(session)));
+                Link _CSS = this.n.CSS(session);
+                Query _appendSafe_12 = toNode.appendSafe(_CSS);
+                res.add(_appendSafe_12);
+                Link _TEMPLATE_4 = this.n.TEMPLATE(session);
+                Query _appendSafe_13 = toNode.appendSafe(_TEMPLATE_4);
+                res.add(_appendSafe_13);
                 final Query icon_4 = toNode.appendSafe("https://appjangle.com/files/img/20141118/CSS.png", "./.icon");
                 res.add(icon_4);
-                res.add(icon_4.appendSafe(this.n.ICON(session)));
+                Link _ICON_4 = this.n.ICON(session);
+                Query _appendSafe_14 = icon_4.appendSafe(_ICON_4);
+                res.add(_appendSafe_14);
               } else {
                 boolean _equals_5 = Objects.equal(ext, ".type");
                 if (_equals_5) {
-                  res.add(toNode.appendSafe(this.n.TYPE(session)));
+                  Link _TYPE = this.n.TYPE(session);
+                  Query _appendSafe_15 = toNode.appendSafe(_TYPE);
+                  res.add(_appendSafe_15);
                   final Query icon_5 = toNode.appendSafe("https://appjangle.com/files/img/20141118/Type.png", "./.icon");
                   res.add(icon_5);
-                  res.add(icon_5.appendSafe(this.n.ICON(session)));
+                  Link _ICON_5 = this.n.ICON(session);
+                  Query _appendSafe_16 = icon_5.appendSafe(_ICON_5);
+                  res.add(_appendSafe_16);
                   final Query description = toNode.appendSafe("");
                   res.add(description);
-                  res.add(description.appendSafe(session.link("http://slicnet.com/mxrogm/mxrogm/data/stream/2013/12/11/n9")));
+                  Link _link = session.link("http://slicnet.com/mxrogm/mxrogm/data/stream/2013/12/11/n9");
+                  Query _appendSafe_17 = description.appendSafe(_link);
+                  res.add(_appendSafe_17);
                 }
               }
             }
           }
         }
       }
-      res.add(toNode.appendSafe(this.n.TEXT_VALUE(session)));
+      Link _TEXT_VALUE = this.n.TEXT_VALUE(session);
+      Query _appendSafe_18 = toNode.appendSafe(_TEXT_VALUE);
+      res.add(_appendSafe_18);
       _xblockexpression = res;
     }
     return _xblockexpression;
@@ -202,11 +257,12 @@ public class ConvertUtils {
         cb.onSuccess(fileName);
       }
     };
-    this.getFileName(forNode, 
-      AsyncCommon.<String>embed(cb, _function));
+    ValueCallback<String> _embed = AsyncCommon.<String>embed(cb, _function);
+    this.getFileName(forNode, _embed);
   }
   
   public void getFileName(final Node fromNode, final ValueCallback<String> cb) {
+    int _size = this.labelTypes.size();
     final Closure<List<Object>> _function = new Closure<List<Object>>() {
       @Override
       public void apply(final List<Object> res) {
@@ -216,15 +272,19 @@ public class ConvertUtils {
             return;
           }
         }
-        cb.onSuccess(ConvertUtils.getNameFromUri(fromNode.uri()));
+        String _uri = fromNode.uri();
+        String _nameFromUri = ConvertUtils.getNameFromUri(_uri);
+        cb.onSuccess(_nameFromUri);
       }
     };
-    final Aggregator<Object> cbs = AsyncCommon.<Object>collect(this.labelTypes.size(), 
-      AsyncCommon.<List<Object>>embed(cb, _function));
+    ValueCallback<List<Object>> _embed = AsyncCommon.<List<Object>>embed(cb, _function);
+    final Aggregator<Object> cbs = AsyncCommon.<Object>collect(_size, _embed);
     final Consumer<String> _function_1 = new Consumer<String>() {
       @Override
       public void accept(final String labelType) {
-        final Query qry = fromNode.select(fromNode.client().link(labelType));
+        Client _client = fromNode.client();
+        Link _link = _client.link(labelType);
+        final Query qry = fromNode.select(_link);
         final ValueCallback<Object> itmcb = cbs.createCallback();
         final UndefinedListener _function = new UndefinedListener() {
           @Override
@@ -236,14 +296,16 @@ public class ConvertUtils {
         final ExceptionListener _function_1 = new ExceptionListener() {
           @Override
           public void onFailure(final ExceptionResult er) {
-            itmcb.onFailure(er.exception());
+            Throwable _exception = er.exception();
+            itmcb.onFailure(_exception);
           }
         };
         qry.catchExceptions(_function_1);
         final Closure<Node> _function_2 = new Closure<Node>() {
           @Override
           public void apply(final Node label) {
-            itmcb.onSuccess(label.value());
+            Object _value = label.value();
+            itmcb.onSuccess(_value);
           }
         };
         qry.get(_function_2);

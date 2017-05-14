@@ -8,6 +8,7 @@ import org.junit.Test;
 public class AddressesCanBeDerivedFromUris {
   @Test
   public void test() {
-    Assert.assertEquals("name.xml", ConvertUtils.getNameFromUri("https://myuri.com/just/for/testing/name.xml"));
+    String _nameFromUri = ConvertUtils.getNameFromUri("https://myuri.com/just/for/testing/name.xml");
+    Assert.assertEquals("name.xml", _nameFromUri);
   }
 }
